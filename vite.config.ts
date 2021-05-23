@@ -39,6 +39,7 @@ export default defineConfig({
   },
   build: {
     target: "esnext",
+    outDir: "docs",
     cssCodeSplit: false,
     rollupOptions: {
       plugins: [visualizer({ filename: "./analyse/index.html" })]
