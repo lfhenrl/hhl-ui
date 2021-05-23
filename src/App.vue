@@ -9,8 +9,8 @@
       :small="small"
     />
 
-    <div id="page-container" ref="page" class="overflow-auto h-100pr">
-      <router-view v-slot="{ Component, params }" class="flx-col p-20">
+    <div id="page-container" ref="page" class="overflow-auto h-100pr ml-25">
+      <router-view v-slot="{ Component, params }" class="flx-col p-25">
         <component :is="Component" v-bind="params" />
       </router-view>
     </div>

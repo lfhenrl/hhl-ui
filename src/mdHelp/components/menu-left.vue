@@ -65,8 +65,8 @@ export default MenuLeft;
 .menu-left_normal {
   overflow: auto;
   font-size: 14px;
-  min-width: 200px;
-  max-width: 200px;
+  min-width: 160px;
+  max-width: 160px;
 }
 
 .menu-left_small {
