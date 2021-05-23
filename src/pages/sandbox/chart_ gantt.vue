@@ -27,11 +27,11 @@
       <hhl-chart-tooltip v-slot="data">
         <div class="box">
           <span class="label">Start:</span>
-          <span class="text">{{ F_DMMMYYYY_HMS(data.item.start) }}</span>
+          <span class="text">{{ D_01_dec_2021_HHMMSS(data.item.start) }}</span>
         </div>
         <div class="box">
           <span class="label">End:</span>
-          <span class="text">{{ F_DMMMYYYY_HMS(data.item.end) }}</span>
+          <span class="text">{{ D_01_dec_2021_HHMMSS(data.item.end) }}</span>
         </div>
         <div class="box">
           <span class="label">Duration:</span>
@@ -49,7 +49,7 @@
 import { defineComponent } from "vue";
 import { iHHLchart } from "../../components/canvas/use/hhlChart";
 // import { testData } from "../components/canvas/data";
-import { F_DMMMYYYY_HMS } from "../../components/utils/dateFormat";
+import {D_01_dec_2021_HHMMSS } from "../../components/utils/dateFormat";
 import { getStops } from "../../components/canvas/data_EventLog";
 
 export default defineComponent({
@@ -77,7 +77,7 @@ export default defineComponent({
       ch.SetData(val);
     }
 
-    return { F_DMMMYYYY_HMS, ready };
+    return { D_01_dec_2021_HHMMSS, ready };
   }
 });
 </script>
