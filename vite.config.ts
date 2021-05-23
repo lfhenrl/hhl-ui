@@ -9,7 +9,7 @@ import ViteComponents from "vite-plugin-components";
 import visualizer from "rollup-plugin-visualizer";
 
 export default defineConfig({
-  base: "hhl-ui",
+  base: "/hhl-ui/",
   plugins: [
     vue({
       include: [/\.vue$/, /\.md$/] // <--

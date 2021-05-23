@@ -2,7 +2,7 @@
 import { defineComponent, inject } from "vue";
 import { iHHLchart } from "./use/hhlChart";
 import { DateAddSeconds } from "../utils/dateFunctions";
-import { F_HM, F_DMMM, F_YYYY } from "../utils/dateFormat";
+import {  D_HHMM, D_01_dec, D_2021 } from "../utils/dateFormat";
 
 const timeArray = [
   31536000,
@@ -75,7 +75,7 @@ export default defineComponent({
 
     function renderText(dato: Date, top: number, left: number) {
       const div = document.createElement("div");
-      div.innerHTML = `${F_HM(dato)} <br/> ${F_DMMM(dato)} <br/> ${F_YYYY(dato)} `;
+      div.innerHTML = `${D_HHMM(dato)} <br/> ${D_01_dec(dato)} <br/> ${D_2021(dato)} `;
       div.className = "hhl-chart-timescale-text";
       div.style.left = left + "px";
       div.style.top = top + "px";
