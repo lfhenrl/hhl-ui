@@ -1,0 +1,54 @@
+/* purgecss start ignore */
+@import "code.css";
+@import "custom-blocks.css";
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin-bottom: 2px;
+}
+
+p,
+ol,
+ul {
+  margin: 5px 0;
+  line-height: 1.7;
+}
+
+ul,
+ol {
+  padding-left: 1.25em;
+}
+
+li > ul,
+li > ol {
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+tr {
+  border-top: 1px solid #dfe2e5;
+}
+
+tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+th,
+td {
+  border: 1px solid #dfe2e5;
+  padding: 0.6em 1em;
+}
+
+/* purgecss end ignore */

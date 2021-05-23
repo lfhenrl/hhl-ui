@@ -1,0 +1,101 @@
+.flx-wrap {
+  flex-wrap: wrap;
+}
+
+.flx-1 {
+  flex: 1 1 0%;
+}
+
+.flx-auto {
+  flex: 1 1 auto;
+}
+
+.flx-none {
+  flex: none;
+}
+
+.flex-initial {
+  flex: 0 1 auto;
+}
+
+.flx-justify-start {
+  justify-content: flex-start;
+}
+
+.flx-justify-center {
+  justify-content: center;
+}
+
+.flx-justify-end {
+  justify-content: flex-end;
+}
+
+.flx-justify-between {
+  justify-content: space-between;
+}
+
+.flx-justify-around {
+  justify-content: space-around;
+}
+
+.flx-justify-evenly {
+  justify-content: space-evenly;
+}
+
+.flx-align-start {
+  align-items: flex-start;
+}
+
+.flx-align-center {
+  align-items: center;
+}
+
+.flx-align-end {
+  align-items: flex-end;
+}
+
+.flx-align-stretch {
+  align-items: stretch;
+}
+
+.flx-self-align-start {
+  align-self: flex-start;
+}
+
+.flx-self-align-center {
+  align-self: center;
+}
+
+.flx-self-align-end {
+  align-self: flex-end;
+}
+
+.flx-self-align-stretch {
+  align-self: stretch;
+}
+
+.flx-wrap-align-start {
+  align-content: flex-start;
+}
+
+.flx-wrap-align-center {
+  align-content: center;
+}
+
+.flx-wrap-align-end {
+  align-content: flex-end;
+}
+
+.flx-wrap-align-between {
+  align-content: space-between;
+}
+
+.flx-wrap-align-around {
+  align-content: space-around;
+}
+
+.flx-wrap-align-evenly {
+  align-content: space-evenly;
+}
+
+

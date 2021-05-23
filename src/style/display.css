@@ -1,0 +1,43 @@
+.hidden {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.block-inline {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
+}
+
+.flx-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flx-inline-row {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.flx-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flx-inline-col {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-inline {
+  display: inline-grid;
+}

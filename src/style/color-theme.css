@@ -1,0 +1,48 @@
+.col-pri {
+  background-color: var(--col-pri);
+  color: var(--col-txt-on-pri);
+  --current-bg-col: var(--col-pri);
+}
+
+.col-sec {
+  background-color: var(--col-sec);
+  color: var(--col-txt-on-sec);
+  --current-bg-col: var(--col-sec);
+}
+
+.col-ok {
+  background-color: var(--col-ok);
+  color: var(--col-txt-on-ok);
+  --current-bg-col: var(--col-ok);
+}
+
+.col-err {
+  background-color: var(--col-err);
+  color: var(--col-txt-on-err);
+  --current-bg-col: var(--col-err);
+}
+
+.col-warn {
+  background-color: var(--col-warn);
+  color: var(--col-txt-on-warn);
+  --current-bg-col: var(--col-warn);
+}
+
+.col-info {
+  background-color: var(--col-info);
+  color: var(--col-txt-on-info);
+  --current-bg-col: var(--col-info);
+}
+
+.col-black {
+  background-color: black;
+  color: white;
+  --current-bg-col: black;
+}
+
+.col-white {
+  background-color: white;
+  color: black;
+  --current-bg-col: white;
+}
+
