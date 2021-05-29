@@ -60,6 +60,22 @@
       <hhl-dt-picker label="Date" v-model="dato" type="dateTime" />
       <hhl-select :select-data="['nr1', 'nr2', 'nr3']" v-model="radioVal" label="Selector" />
       <hhl-input label="Value" :modelValue="FormatDate(dato)" />
+      <hhl-btn @click="modal = true">Modal</hhl-btn>
+      <hhl-modal v-model="modal">
+        <div class="col-white shadow-5 border borderColor-comp borderRadius-4 p-25 flx-col">
+          <div>----- This is the content. -----</div>
+          <hhl-btn size="sm" @click="modal = false" class="flx-self-align-end mt-25 col-ok">CLOSE</hhl-btn>
+        </div>
+      </hhl-modal>
+      <hhl-btn @click="utilDialog">utilDialog</hhl-btn>
+      <hhl-btn @click="utilSnack">utilSnack</hhl-btn>
+    </div>
+    <div>
+      <hhl-tabs default-tab="tab2">
+        <hhl-tab label="Tab 1" name="tab1" keep-alive> Tab 1
+          <input/> </hhl-tab>
+        <hhl-tab label="Tab 2" name="tab2"> Tab 2 </hhl-tab>
+      </hhl-tabs>
     </div>
   </div>
 </template>
@@ -79,6 +95,7 @@ export default defineComponent({
     const radioVal = ref("nr1");
     const checkArr = ref([]);
     const checkBool = ref(false);
+    const modal = ref(false);
     const dato = ref<Date>(new Date());
     function log(e: string) {
       console.log(e);
@@ -88,8 +105,38 @@ export default defineComponent({
       return D_mon_01_dec_2021_HHMMSS(val);
     }
 
+    function utilDialog() {
+      hhl
+        .dialog("I am the Title", "I am the Text ")
+        .then(() => {
+          alert("You clicked OK");
+        })
+        .catch(() => {
+          alert("You clicked CANCEL");
+        });
+    }
+
+    function utilSnack() {
+      hhl.alert("err", "TITLE", "Showing information");
+    }
+
     const v = validator;
-    return { radio, radioVal, txt, log, v, longTxt, selection, checkArr, checkBool, dato, FormatDate };
+    return {
+      radio,
+      radioVal,
+      txt,
+      log,
+      v,
+      longTxt,
+      selection,
+      checkArr,
+      checkBool,
+      dato,
+      FormatDate,
+      modal,
+      utilDialog,
+      utilSnack
+    };
   }
 });
 </script>
@@ -103,5 +150,4 @@ export default defineComponent({
   color: white;
   text-align: center;
 }
-
 </style>

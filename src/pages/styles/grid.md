@@ -44,7 +44,7 @@ You can edit the code examples.
         color: white;
         text-align: center;
       }
-    <x/style>
+    </xstyle>
 '>
 </hhl-live-editor>
 <br/>

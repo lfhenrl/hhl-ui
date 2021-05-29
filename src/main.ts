@@ -18,7 +18,7 @@ window["fakeImport"] = { validator, dateFormat };
 
 const hhlIcon = defineAsyncComponent(() => import("./components/forms/hhl-icon.vue"));
 const hhlBtn = defineAsyncComponent(() => import("./components/forms/hhl-btn.vue"));
-const hhlPop = defineAsyncComponent(() => import("./components/popUp/hhl-pop.vue"));
+const hhlPop = defineAsyncComponent(() => import("./components/popUp/pop/hhl-pop.vue"));
 const hhlRadio = defineAsyncComponent(() => import("./components/forms/hhl-radio.vue"));
 const hhlSwitch = defineAsyncComponent(() => import("./components/forms/hhl-switch.vue"));
 const hhlCheckbox = defineAsyncComponent(() => import("./components/forms/hhl-checkbox.vue"));
@@ -29,6 +29,13 @@ const hhlSelect = defineAsyncComponent(() => import("./components/forms/hhl-sele
 const hhlLayout = defineAsyncComponent(() => import("./components/layout/hhl-layout.vue"));
 const iconList = defineAsyncComponent(() => import("./mdHelp/components/icon-list.vue"));
 const hhlDtPicker = defineAsyncComponent(() => import("./components/date/hhl-dt-picker.vue"));
+const hhlModal = defineAsyncComponent(() => import("./components/popUp/hhl-modal.vue"));
+const hhlDialog = defineAsyncComponent(() => import("./components/popUp/hhl-dialog.vue"));
+
+const hhlDialogService = defineAsyncComponent(() => import("./components/dialogService/hhl-dialog-service.vue"));
+
+const hhlTabs = defineAsyncComponent(() => import("./components/navigation/hhl-tabs.vue"));
+const hhlTab = defineAsyncComponent(() => import("./components/navigation/hhl-tab.vue"));
 
 app.component("hhl-icon", hhlIcon);
 app.component("hhl-btn", hhlBtn);
@@ -42,5 +49,10 @@ app.component("hhl-select", hhlSelect);
 app.component("hhl-layout", hhlLayout);
 app.component("icon-list", iconList);
 app.component("hhl-dt-picker", hhlDtPicker);
+app.component("hhl-modal", hhlModal);
+app.component("hhl-dialog", hhlDialog);
+app.component("hhl-dialog-service", hhlDialogService);
+app.component("hhl-tab", hhlTab);
+app.component("hhl-tabs", hhlTabs);
 
 router.isReady().then(() => app.mount("#app"));

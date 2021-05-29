@@ -1,6 +1,5 @@
 <template>
-  <div v-if="selected || useShow" v-show="selected" class="hhl-tab">
-    hej
+  <div v-if="selected || keepAlive" v-show="selected" class="hhl-tab">
     <slot />
   </div>
 </template>
@@ -12,14 +11,14 @@ const HhlTab = defineComponent({
   name: "hhl-tab",
   props: {
     label: { default: "???", type: String },
-    route: { default: "???", type: String },
-    useShow: { default: false, type: Boolean },
+    name: { default: "???", type: String },
+    keepAlive: { default: false, type: Boolean },
     disabled: { default: false, type: Boolean },
     selected: { default: false, type: Boolean }
   },
   setup(props) {
-      const state: any = inject('state')
-        const selected = computed(()=>(state.selectedTab.value===props.route));
+    const selectedTab: any = inject("selectedTab");
+    const selected = computed(() => selectedTab.value === props.name);
     return { selected };
   }
 });
@@ -32,11 +31,3 @@ declare global {
 export type iHhlTab = InstanceType<typeof HhlTab>;
 export default HhlTab;
 </script>
-
-<style>
-.hhl-tab {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-</style>

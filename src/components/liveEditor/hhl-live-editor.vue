@@ -98,13 +98,13 @@ export default defineComponent({
   setup(props) {
     const el = ref<any>();
     const renderBox = ref<any>();
-    const reactiv_htmlCode = ref(props.htmlCode.trim().replaceAll("xstyle", "style"));
+    const reactiv_htmlCode = ref(props.htmlCode.replaceAll("xstyle", "style"));
     const error = ref("");
     const hideError = ref(false);
     const showCode = ref(false);
     const displayCode = ref(false);
     const column = ref(true);
-    const code = ref(props.htmlCode.trim().replaceAll("xstyle", "style"));
+    const code = ref(props.htmlCode.replaceAll("xstyle", "style"));
 
     const showError = computed(() => {
       if (showCode.value && error.value && !hideError.value) {

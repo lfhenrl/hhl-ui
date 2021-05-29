@@ -16,6 +16,7 @@
     </div>
     <menu-right :view="page" v-show="!medium" />
   </main>
+  <hhl-dialog-service/>
 </template>
 
 <script lang="ts">

@@ -1,15 +1,31 @@
 
 # Dialog
 
-## Size
+The `hhl-dialog` is a styled version of hhl-modal all the properties from modal can be used.
+
+## Using
+The dialog have a "Header", "Body" and a "Footer"
 
 <hhl-live-editor title="" htmlCode='
-      <template>
-      <div class="flx-row flx-wrap flx-initial flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-btn size="sm" icon="edit">SM</hhl-btn>
-            <hhl-btn size="md" icon="edit">MD</hhl-btn>
-            <hhl-btn size="lg" icon="mail">LG</hhl-btn>
+    <template>
+      <div class="p-25">
+        <hhl-btn @click="modal = true">Open</hhl-btn>
+        <hhl-dialog v-model="modal">
+          <template #header>
+            Here is the TITLE
+          </template>
+          Here is the BODY
+          <template #footer>
+            Here is the FOOTER
+            <hhl-btn @click="modal=false" class="ml-3 bg-ok">Ok</hhl-btn>
+            <hhl-btn @click="modal=false" class="ml-3">Cancel</hhl-btn>
+          </template>
+        </hhl-dialog>
       </div>
-      </template>
+    </template>
+    <script>
+      const modal = ref(false)
+      return { modal }
+    </script>
 '>
 </hhl-live-editor>

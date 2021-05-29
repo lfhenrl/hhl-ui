@@ -4,26 +4,25 @@
 ## Data binding
 
 <hhl-live-editor title="" htmlCode='
-      <template>
-      <div class="flx-row gap-5 p-20 flx-align-center"> 
-       <hhl-dt-picker label="Date" v-model="dato"/>
-      </hhl-dt-picker>
-      <hhl-input readonly :model-value="formatDate(dato)" label="Value"></hhl-input>
-      </div>
-      </template>
-      <script>
-      // import { * as dateFormat } from "components/utils/dateFormat";
-      const { dateFormat } = fakeImport;
-      const dato = ref(new Date());
-            function formatDate(date) {
-            if (date) {
-                  return dateFormat.D_01_dec_2021_HHMMSSms(date); 
-            } else {
-                  return "undefined"
-            }            
-      }
-      return { dato, formatDate }
-      </script>
+    <template>
+    <div class="flx-row gap-5 p-20 flx-align-center"> 
+          <hhl-dt-picker label="Date" v-model="dato"></hhl-dt-picker>
+          <hhl-input readonly :model-value="formatDate(dato)" label="Value"></hhl-input>
+    </div>
+    </template>
+    <script>
+    // import { * as dateFormat } from "components/utils/dateFormat";
+    const { dateFormat } = fakeImport;
+    const dato = ref(new Date());
+    function formatDate(date) {
+          if (date) {
+                return dateFormat.D_01_dec_2021_HHMMSSms(date); 
+          } else {
+                return "undefined"
+          }            
+    }
+    return { dato, formatDate }
+    </script>
 '>
 </hhl-live-editor>
 
@@ -325,9 +324,9 @@ Validation by adding `validator=""`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row gap-5 p-20 flx-align-center"> 
-       <hhl-dt-picker label="Date" v-model="dato" :validator="[v.required]"/>
-      </hhl-dt-picker>
-      <hhl-input readonly :model-value="formatDate(dato)" label="Value"></hhl-input>
+            <hhl-dt-picker label="Date" v-model="dato" :validator="[v.required]"/>
+            </hhl-dt-picker>
+            <hhl-input readonly :model-value="formatDate(dato)" label="Value"></hhl-input>
       </div>
       </template>
       <script>
@@ -336,7 +335,7 @@ Validation by adding `validator=""`
       const { dateFormat, validator } = fakeImport;      
       const v = validator;
       const dato = ref(new Date());
-            function formatDate(date) {
+      function formatDate(date) {
             if (date) {
                   return dateFormat.D_01_dec_2021_HHMMSSms(date); 
             } else {

@@ -9,6 +9,27 @@ import { defineComponent, onMounted, PropType, ref, watchEffect } from "vue";
 import "./css/codemirror.css";
 import { debounce } from "../utils/debounce";
 
+const tabs = ["", " ", "  ", "   ", "    ", "     ", "      "]
+
+function format(str: string) {
+  if (!str) return ""
+ let tab = "  ";
+  const lines = str.split("\n");
+  const formattet = lines.filter((item) => item !== "")
+  .map((line) => {    
+    if (line.includes("<template>")) {
+      const space = line.search(/\S/);
+      tab = tabs[space]
+      return line.trimStart();
+    }
+    if (line.includes("</template>")) return line.trimStart();
+    if (line.includes("script>")) return line.trimStart();
+    if (line.includes("style>")) return line.trimStart();
+    if (line !== "") return line.replace(tab, "");
+  });
+  return formattet.join("\n")
+}
+
 const hhlCodeEditor = defineComponent({
   name: "hhl-code-editor",
   emits: ["changed"],
@@ -42,7 +63,6 @@ const hhlCodeEditor = defineComponent({
         if (!el || !el.value) return;
         editor = CodeMirror.fromTextArea(el.value, {
           mode: "",
-          value: props.code.trim(),
           lineNumbers: true,
           lineWrapping: true,
           tabSize: 2,
@@ -56,7 +76,7 @@ const hhlCodeEditor = defineComponent({
 
         editor.on("change", debounce(updateCode, 600));
         watchEffect(() => editor.setOption("mode", props.lang));
-        editor.setValue(props.code.trim());
+        editor.setValue(format(props.code));
       }, 100);
     });
 

@@ -23,7 +23,7 @@
   --col-bg-3: hsl(0, 0%, 88%);
   --col-bg-4: hsl(0, 0%, 83%);
   --col-bg-5: hsl(0, 0%, 76%);
-  --comp-label-font-size: 13px;
+  /* --comp-label-font-size: 13px; */
   --comp-label-color: var(--col-txt-2, red);
   --comp-border-color: var(--col-txt-4);
   --comp-border-color-focus: dodgerblue;

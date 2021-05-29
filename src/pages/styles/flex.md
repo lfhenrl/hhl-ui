@@ -13,24 +13,24 @@ By adding 1 of these classes to a dom container, you will get the flex box funct
 
 <hhl-live-editor title="Flex direction" htmlCode='
     <template>
-    <div class="flx-row flx-justify-evenly mb-25" >
-      <div>FLEX ROW
-        <div class="demo_row flx-row">
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
+      <div class="flx-row flx-justify-evenly mb-25" >
+        <div>FLEX ROW
+          <div class="demo_row flx-row">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+          </div>
+        </div>
+        <div>FLEX COLUMN
+          <div class="demo_column flx-col">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+          </div>
         </div>
       </div>
-      <div>FLEX COLUMN
-        <div class="demo_column flx-col">
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-        </div>
-      </div>
-    </div>
     </template>
     <xstyle>
       .demo_row {
@@ -268,7 +268,11 @@ The default is stretch
     <template>
     <div>
       <div class="flx-row flx-align-center flx-wrap mb-10 gap-6 m-4 p-15 shadow-2">
-        <hhl-select v-model="justifyContentVal" :select-data="justifyContentList" label="Select Justify Content"></hhl-select>
+        <hhl-select 
+          v-model="justifyContentVal" 
+          :select-data="justifyContentList" 
+          label="Select Justify Content">
+        </hhl-select>
       </div>
       <div class="demo">
           <div>FLEX ROW
@@ -301,17 +305,17 @@ The default is stretch
                     "flx-justify-around",
                     "flx-justify-evenly"
                     ]);
-    return {
-    justifyContentVal,
-    justifyContentList
-    }
+      return {
+      justifyContentVal,
+      justifyContentList
+      }
     </script>
     <xstyle>
-    .demo {
-      display: flex;
-      justify-content: space-evenly;
-      padding: 10px;
-      }
+      .demo {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 10px;
+        }
       .demo_row {
         border: 1px red solid;
         height: 250px;

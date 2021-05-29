@@ -77,7 +77,6 @@ const MenuRight = defineComponent({
     watch(
       () => route.path,
       async () => {
-        console.log("Route", route)
         updateIndex();
       }
     );

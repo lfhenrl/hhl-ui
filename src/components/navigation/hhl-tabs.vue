@@ -1,63 +1,72 @@
 <template>
-  <div class="hhl-tabs">
-    <div class="hhl-tabs__tabs">
+  <div class="hhl-tabs flx-col w-100pr">
+    <div class="hhl-tabs__tabs flx-row">
       <div
         v-for="tab in tabs"
         :key="tab.props.label"
-        :selected="tab.props.route === selectedView"
-        class="hhl-tabs__tab"
-        @click="changeTab(tab.props.route)"
+        :disabled="tab.props.disabled"
+        :selected="tab.props.name === selectedTab"
+        class="hhl-tabs__tab col-txt-1 px-15 cursor-pointer border-b borderColor-bg-4 borderRadius-tl-4 borderRadius-tr-4"
+        @click="changeTab(tab.props.name)"
       >
-        {{ tab.props.label }}
+        <div class="hhl-tabs__tab_label block-inline">
+          {{ tab.props.label }}
+        </div>
       </div>
+      <div class="hhl-tabs__tab-spacer flx-1 border-b borderColor-bg-4" />
     </div>
 
-    <div class="tabs-details">
-      <slot />
-    </div>
+    <transition name="slide-fade">
+      <div class="tabs-details border border-t-none borderColor-bg-4" v-show="show">
+        <slot />
+      </div>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch, provide } from "vue";
+import { defineComponent, onMounted, ref, provide } from "vue";
 
 const HhlTabs = defineComponent({
   name: "hhl-tabs",
   props: {
-    root: { type: String },
-    defaultRoute: { type: String, required: true },
+    defaultTab: { type: String, default: "" },
     willChange: { type: Function, default: () => true }
   },
   setup(props, { slots }) {
-    const selectedView = ref(props.defaultRoute);
     const tabs = ref<any>([]);
-    const show = ref(false);
+    const show = ref(true);
+    const selectedTab = ref();
 
-    const state = {
-      selectedTab: ref(props.defaultRoute),
-     };
-
-    provide("state", state);
-
-    watch(selectedView, (value: string) => {
-    state.selectedTab.value = value
-    });
+    provide("selectedTab", selectedTab);
 
     onMounted(() => {
-      tabs.value = slots.default?.();
-      console.log("tabs", tabs.value.children);
-      changeTab(props.defaultRoute);
+      const sl = slots.default?.();
+      let selected: string = props.defaultTab;
+      if (props.defaultTab === "" && sl) {
+        const firstChild: any = sl[0];
+        selected = firstChild.props.name as string;
+      }
+      console.log(sl);
+      tabs.value = sl;
+      changeTab(selected);
     });
 
     function changeTab(e: string) {
-      if (selectedView.value === e) {
+      if (selectedTab.value === e) {
         return;
       }
+      if (props.willChange(e)) {
+        show.value = false;
 
-      selectedView.value = e;
+        setTimeout(() => {
+          selectedTab.value = e;
+          show.value = true;
+        }, 250);
+      }
     }
 
-    return { selectedView, tabs, show, changeTab };
+    return { selectedTab, tabs, show, changeTab };
   }
 });
 
@@ -71,67 +80,32 @@ export default HhlTabs;
 </script>
 
 <style>
-.hhl-tabs {
-  --hhl-tabs-active-bgColor: var(--col-bg-1);
-  --hhl-tabs-bgColor: var(--col-pri);
-  --hhl-tabs-color: var(--col-txt-on-pri);
-  --hhl-tabs-active-color: var(--col-txt-1);
-  display: flex;
-  flex-direction: column;
-  background-color: var(--hhl-tabs-active-bgColor);
-  border-radius: 4px 4px 0 0;
-  min-height: 100px;
-  padding: 20px;
-}
-.hhl-tabs__spacer {
-  height: 6px;
-}
-.hhl-tabs__tabs {
-  display: flex;
-  cursor: pointer;
-  border-radius: 4px 4px 0 0;
-  background-color: var(--hhl-tabs-bgColor);
+.hhl-tabs__tab[selected="true"] {
+  font-weight: bold;
+  border: solid 1px var(--col-bg-4);
+  border-bottom: none;
 }
 
-.hhl-tabs__tab {
-  padding: 1px 19px 3px 19px;
-  margin-right: 3px;
-  border-radius: 4px 4px 0 0;
-  color: var(--hhl-tabs-color);
-}
-
-.hhl-tabs__tab[selected] {
-  background-color: var(--hhl-tabs-active-bgColor);
-  color: var(--hhl-tabs-active-color);
+.hhl-tabs__tab[selected="true"] .hhl-tabs__tab_label {
+  border-bottom: 3px solid var(--col-pri);
+  line-height: 1;
 }
 
 .tabs-details {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  overflow: auto;
-  color: var(--col-txt-1);
+  transform-origin: top;
 }
 
-.hhl-tabs-slide-enter-to,
-.hhl-tabs-slide-leave {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
+.slide-fade-enter-active {
+  transition: all 0.25s ease-out;
 }
 
-.hhl-tabs-slide-leave-active,
-.hhl-tabs-slide-enter-active {
-  transition: all 0.22s;
+.slide-fade-leave-active {
+  transition: all 0.25s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
-.hhl-tabs-slide-enter {
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: scaleY(0);
   opacity: 0;
-  transform: translate3d(-18px, 0, 0);
-}
-
-.hhl-tabs-slide-leave-to {
-  opacity: 0;
-  transform: translate3d(18px, 0, 0);
 }
 </style>

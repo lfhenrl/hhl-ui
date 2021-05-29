@@ -7,10 +7,10 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.1.0-beta.3",
-    "vue-router": "^4.0.8",
     "@emmetio/codemirror-plugin": "^1.2.4",
-    "codemirror": "^5.61.1"
+    "codemirror": "^5.61.1",
+    "vue": "^3.1.0-beta.3",
+    "vue-router": "^4.0.8"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^4.0.3",
