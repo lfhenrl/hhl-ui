@@ -1,0 +1,14 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea {
+  outline: none;
+  border: none;
+  appearance: none;
+  background-color: transparent;
+}

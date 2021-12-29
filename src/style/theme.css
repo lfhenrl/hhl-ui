@@ -1,0 +1,35 @@
+:root {
+  --col-pri: #007bff;
+  --col-txt-on-pri: #fff;
+  --col-sec: #6c757d;
+  --col-txt-on-sec: #fff;
+  --col-ok: #28a745;
+  --col-txt-on-ok: #fff;
+  --col-err: #dc3545;
+  --col-txt-on-err: #fff;
+  --col-warn: #ffc107;
+  --col-txt-on-warn: black;
+  --col-info: #17a2b8;
+  --col-txt-on-info: #fff;
+  --col-txt-0: rgb(0, 0, 0);
+  --col-txt-1: rgba(0, 0, 0, 0.87);
+  --col-txt-2: rgba(0, 0, 0, 0.6);
+  --col-txt-3: rgba(0, 0, 0, 0.45);
+  --col-txt-4: rgba(0, 0, 0, 0.3);
+  --col-txt-5: rgba(0, 0, 0, 0.2);
+  --col-bg-0: hsl(0, 0%, 100%);
+  --col-bg-1: hsl(0, 0%, 98%);
+  --col-bg-2: hsl(0, 0%, 93%);
+  --col-bg-3: hsl(0, 0%, 88%);
+  --col-bg-4: hsl(0, 0%, 83%);
+  --col-bg-5: hsl(0, 0%, 76%);
+  /* --comp-label-font-size: 13px; */
+  --comp-label-color: var(--col-txt-2, red);
+  --comp-border-color: var(--col-txt-4);
+  --comp-border-color-focus: dodgerblue;
+  --comp-hover-bg: var(--col-bg-1);
+}
+
+/* html {
+  font-size: 20px;
+} */

@@ -1,0 +1,59 @@
+.comp-hover-bg:hover {
+  background-color: var(--comp-hover-bg);
+}
+
+.col-bg-transparent {
+  background-color: transparent !important;
+}
+
+.col-bg-0 {
+  background-color: var(--col-bg-0);
+}
+.col-bg-1 {
+  background-color: var(--col-bg-1);
+}
+.col-bg-2 {
+  background-color: var(--col-bg-2);
+}
+.col-bg-3 {
+  background-color: var(--col-bg-3);
+}
+.col-bg-4 {
+  background-color: var(--col-bg-4);
+}
+
+.col-bg-5 {
+  background-color: var(--col-bg-5);
+}
+
+.col-bg-pri {
+  background-color: var(--col-pri);
+}
+
+.col-bg-sec {
+  background-color: var(--col-sec);
+}
+
+.col-bg-ok {
+  background-color: var(--col-ok);
+}
+
+.col-bg-err {
+  background-color: var(--col-err);
+}
+
+.col-bg-warn {
+  background-color: var(--col-warn);
+}
+
+.col-bg-info {
+  background-color: var(--col-info);
+}
+
+.col-bg-black {
+  background-color: black;
+}
+
+.col-bg-white {
+  background-color: white;
+}
