@@ -20,11 +20,11 @@
 </template>
 
 <script lang="ts">
-import { onMounted, onUnmounted, ref, watch } from "vue";
+import { defineComponent, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { makeRouteList, getRouteData } from "./mdHelp/plugins/routeData";
 
-export default {
+export default defineComponent({
   name: "App",
   setup() {
     const router = useRouter();
@@ -91,7 +91,7 @@ export default {
       small
     };
   }
-};
+});
 </script>
 <style>
 #page-container {

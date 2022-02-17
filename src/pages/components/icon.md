@@ -9,9 +9,9 @@ The default is `"24px"`.
 <hhl-live-editor title="" htmlCode='
     <template>
     <div class="flx-row flx-wrap flx-initial flx-align-center flx-justify-start gap-6 p-10">
-        <hhl-icon icon="edit" size="14px"></hhl-icon>
-        <hhl-icon icon="edit"></hhl-icon>
-        <hhl-icon icon="edit" size="44px"></hhl-icon>
+        <H_icon icon="edit" size="14px"></H_icon>
+        <H_icon icon="edit"></H_icon>
+        <H_icon icon="edit" size="44px"></H_icon>
     </div>
     </template>
 '>
@@ -26,9 +26,9 @@ If you add the prop `btn` you will get a hover effect-
 <hhl-live-editor title="" htmlCode='
     <template>
     <div class="flx-row flx-wrap flx-initial flx-align-center flx-justify-start gap-6 p-10">
-        <hhl-icon btn icon="edit" size="14px"></hhl-icon>
-        <hhl-icon btn icon="edit"></hhl-icon>
-        <hhl-icon btn icon="edit" size="44px"></hhl-icon>
+        <H_icon btn icon="edit" size="14px"></H_icon>
+        <H_icon btn icon="edit"></H_icon>
+        <H_icon btn icon="edit" size="44px"></H_icon>
     </div>
     </template>
 '>
@@ -45,15 +45,15 @@ If you need a special color then just use `style="color: purple"`
 <hhl-live-editor title="" htmlCode='
     <template>
     <div class="flx-row flx-wrap flx-initial flx-align-center flx-justify-start gap-6 p-10">
-        <hhl-icon icon="edit" class="col-txt-pri"></hhl-icon>
-        <hhl-icon icon="edit" class="col-txt-sec"></hhl-icon>
-        <hhl-icon icon="edit" class="col-txt-ok"></hhl-icon>
-        <hhl-icon icon="edit" class="col-txt-err"></hhl-icon>
-        <hhl-icon icon="edit" class="col-txt-warn"></hhl-icon>
-        <hhl-icon icon="edit" class="col-txt-info"></hhl-icon>
-        <hhl-icon icon="edit" class="col-txt-black"></hhl-icon>
-        <hhl-icon icon="edit" class="col-txt-white"></hhl-icon>
-        <hhl-icon icon="edit" style="color: purple"></hhl-icon>
+        <H_icon icon="edit" class="col-txt-pri"></H_icon>
+        <H_icon icon="edit" class="col-txt-sec"></H_icon>
+        <H_icon icon="edit" class="col-txt-ok"></H_icon>
+        <H_icon icon="edit" class="col-txt-err"></H_icon>
+        <H_icon icon="edit" class="col-txt-warn"></H_icon>
+        <H_icon icon="edit" class="col-txt-info"></H_icon>
+        <H_icon icon="edit" class="col-txt-black"></H_icon>
+        <H_icon icon="edit" class="col-txt-white"></H_icon>
+        <H_icon icon="edit" style="color: purple"></H_icon>
     </div>
     </template>
 '>

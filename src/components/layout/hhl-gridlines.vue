@@ -73,7 +73,7 @@ const HhlGridlines = defineComponent({
       window.removeEventListener("resize", adjustGrid);
     });
 
-    return {cells, st };
+    return { cells, st };
   }
 });
 

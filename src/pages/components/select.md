@@ -1,18 +1,17 @@
-
 # Select
 
-The `hhl-select` component is dropdown selector for singel selection or multi selections.
+The `H_select` component is dropdown selector for singel selection or multi selections.
 
 ## Data binding simple list
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap gap-5 p-10"> 
-      <hhl-select 
+      <div class="flx-row flx-wrap gap-5 p-10 "> 
+      <H_select
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
-      </hhl-select>
-      <hhl-input readonly v-model="selection" label="Value"></hhl-input>
+      </H_select>
+      <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -29,15 +28,15 @@ The `hhl-select` component is dropdown selector for singel selection or multi se
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-wrap gap-5 p-10"> 
-      <hhl-select 
+      <H_select 
       :select-data="[
                     {value:`nr1`, label: `Number 1`},
                     {value:`nr2`, label: `Number 2`},
                     {value:`nr3`, label: `Number 3`}
                     ]" 
       v-model="selection" label="Selector">
-      </hhl-select>
-      <hhl-input readonly v-model="selection" label="Value"></hhl-input>
+      </H_select>
+      <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -50,16 +49,17 @@ The `hhl-select` component is dropdown selector for singel selection or multi se
 <br>
 
 ## Data binding list with multi selections
+
 Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-wrap gap-5 p-10"> 
-       <hhl-select multi
+       <H_select multi
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
-      </hhl-select>
-      <hhl-input readonly v-model="selection" label="Value"></hhl-input>
+      </H_select>
+      <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -72,20 +72,21 @@ Multi selections by adding `multi`
 <br>
 
 ## Data binding list with labels with multi selection
+
 Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-wrap gap-5 p-10"> 
-      <hhl-select multi
+      <H_select multi
       :select-data="[
                     {value:`nr1`, label: `Number 1`},
                     {value:`nr2`, label: `Number 2`},
                     {value:`nr3`, label: `Number 3`}
                     ]" 
       v-model="selection" label="Selector">
-      </hhl-select>
-      <hhl-input readonly v-model="selection" label="Value"></hhl-input>
+      </H_select>
+      <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -98,16 +99,17 @@ Multi selections by adding `multi`
 <br>
 
 ## Hide filter
+
 Hide filter by adding `hide-filter`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-wrap gap-5 p-10"> 
-       <hhl-select hide-filter
+       <H_select hide-filter
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
-      </hhl-select>
-      <hhl-input readonly v-model="selection" label="Value"></hhl-input>
+      </H_select>
+      <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -120,16 +122,17 @@ Hide filter by adding `hide-filter`
 <br>
 
 ## Disabled
+
 Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-wrap gap-5 p-10"> 
-       <hhl-select disabled
+       <H_select disabled
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
-      </hhl-select>
-      <hhl-input readonly v-model="selection" label="Value"></hhl-input>
+      </H_select>
+      <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -142,16 +145,17 @@ Disabled by adding `disabled`
 <br>
 
 ## Readonly
+
 Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-wrap gap-5 p-10"> 
-       <hhl-select readonly
+       <H_select readonly
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
-      </hhl-select>
-      <hhl-input readonly v-model="selection" label="Value"></hhl-input>
+      </H_select>
+      <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -164,16 +168,17 @@ Readonly by adding `readonly`
 <br>
 
 ## Min Height
+
 Min Height by adding `min-height="value px"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-wrap gap-5 p-10"> 
-       <hhl-select min-height="500px"
+       <H_select min-height="500px"
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
-      </hhl-select>
-      <hhl-input readonly v-model="selection" label="Value"></hhl-input>
+      </H_select>
+      <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -186,16 +191,17 @@ Min Height by adding `min-height="value px"`
 <br>
 
 ## Max Height
+
 Max Height by adding `max-height="value px"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-wrap gap-5 p-10"> 
-       <hhl-select max-height="90px"
+       <H_select max-height="90px"
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
-      </hhl-select>
-      <hhl-input readonly v-model="selection" label="Value"></hhl-input>
+      </H_select>
+      <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -208,16 +214,17 @@ Max Height by adding `max-height="value px"`
 <br>
 
 ## Min Width
+
 Min width by adding `min-width="value px"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-wrap gap-5 p-10 flx-align-start"> 
-       <hhl-select min-width="600px"
+       <H_select min-width="600px"
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
-      </hhl-select>
-      <hhl-input readonly v-model="selection" label="Value"></hhl-input>
+      </H_select>
+      <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -230,16 +237,17 @@ Min width by adding `min-width="value px"`
 <br>
 
 ## Max Width
+
 Max width by adding `max-width="value px"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-wrap gap-5 p-10 flx-align-start"> 
-       <hhl-select max-width="90px"
+       <H_select max-width="90px"
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
-      </hhl-select>
-      <hhl-input readonly v-model="selection" label="Value"></hhl-input>
+      </H_select>
+      <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>

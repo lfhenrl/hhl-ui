@@ -25,7 +25,7 @@ const hhlCheckbox = defineComponent({
   },
   setup(props, { emit }) {
     const checkValue = computed({
-      get: () => props.modelValue as string | number,
+      get: () => props.modelValue as any,
       set: (val: any) => {
         emit("update:modelValue", val);
       }

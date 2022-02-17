@@ -1,7 +1,7 @@
 <template>
   <div class="datagrid">
     <hhl-btn @click="load" start-icon="zoom_out_map" end-icon="filter">Load</hhl-btn>
-    <hhl-datagrid :data="list" :groups="['val2', 'val3']">
+    <hhl-datagrid :data="list">
       <hhl-column field="id" title="Id" />
       <hhl-column field="val1" title="Value 1" />
       <hhl-column field="val2" title="Value 2" />

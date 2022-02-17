@@ -6,7 +6,7 @@
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-input v-model="txt" label="Text input"></hhl-input>
+            <H_input v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -25,7 +25,7 @@ Add input clear functionality by adding `clearable`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-input clearable v-model="txt" label="Text input"></hhl-input>
+            <H_input clearable v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -44,7 +44,7 @@ Disabled by adding `disabled`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-input disabled v-model="txt" label="Text input"></hhl-input>
+            <H_input disabled v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -63,7 +63,7 @@ Readonly by adding `readonly`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-input readonly v-model="txt" label="Text input"></hhl-input>
+            <H_input readonly v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -82,7 +82,7 @@ Readonly by adding `readonly`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-input placeholder="Type something." v-model="txt" label="Text input"></hhl-input>
+            <H_input placeholder="Type something." v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -101,7 +101,7 @@ Input Click by adding @input_click=""
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-input @input_click="click(txt)" v-model="txt" label="Text input"></hhl-input>
+            <H_input @input_click="click(txt)" v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -123,7 +123,7 @@ Start Icon by adding `start-icon="iconName"`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-input start-icon="mail"  v-model="txt" label="Text input"></hhl-input>
+            <H_input start-icon="mail"  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -145,7 +145,7 @@ Start Icon by adding `@start_icon_click=""`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-input @start_icon_click="click(txt)" start-icon="mail"  v-model="txt" label="Text input"></hhl-input>
+            <H_input @start_icon_click="click(txt)" start-icon="mail"  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -167,7 +167,7 @@ Start Icon by adding `end-icon="iconName"`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-input end-icon="mail"  v-model="txt" label="Text input"></hhl-input>
+            <H_input end-icon="mail"  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -190,7 +190,7 @@ Start Icon by adding `@end_icon_click=""`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-input @end_icon_click="click(txt)" end-icon="mail"  v-model="txt" label="Text input"></hhl-input>
+            <H_input @end_icon_click="click(txt)" end-icon="mail"  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -212,7 +212,7 @@ Hint text by adding `hint=""`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-align-center flx-justify-start gap-6 p-15">
-            <hhl-input hint="Please type something."  v-model="txt" label="Text input"></hhl-input>
+            <H_input hint="Please type something."  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -234,7 +234,7 @@ Character counter by adding `counter=""`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-row flx-align-center flx-justify-start gap-6 p-15">
-            <hhl-input counter="10"  v-model="txt" label="Text input"></hhl-input>
+            <H_input counter="10"  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -256,12 +256,12 @@ Validation by adding `validator=""`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flx-col flx-justify-start gap-8 p-15">
-            <hhl-input v-model="txt" label="required" :validator="[v.required]"></hhl-input>
-            <hhl-input v-model="txt" label="email" :validator="[v.email]"></hhl-input>
-            <hhl-input v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></hhl-input>
-            <hhl-input v-model="txt" label="strMax(8)" :validator="[v.strMax(8)]"></hhl-input>
-            <hhl-input v-model="nr" type="number" label="numMin(5)" :validator="[v.numMin(5)]"></hhl-input>
-            <hhl-input v-model="nr" type="number" label="numMax(12)" :validator="[v.numMax(12)]"></hhl-input>
+            <H_input v-model="txt" label="required" :validator="[v.required]"></H_input>
+            <H_input v-model="txt" label="email" :validator="[v.email]"></H_input>
+            <H_input v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></H_input>
+            <H_input v-model="txt" label="strMax(8)" :validator="[v.strMax(8)]"></H_input>
+            <H_input v-model="nr" type="number" label="numMin(5)" :validator="[v.numMin(5)]"></H_input>
+            <H_input v-model="nr" type="number" label="numMax(12)" :validator="[v.numMax(12)]"></H_input>
       </div>
       </template>
       <script>

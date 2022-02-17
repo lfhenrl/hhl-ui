@@ -1,11 +1,3 @@
-.comp-hover-bg:hover {
-  background-color: var(--comp-hover-bg);
-}
-
-.col-bg-transparent {
-  background-color: transparent !important;
-}
-
 .col-bg-0 {
   background-color: var(--col-bg-0);
 }
