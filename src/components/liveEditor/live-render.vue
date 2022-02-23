@@ -1,6 +1,6 @@
 <template>
-  <div class="live-render overflow-auto p-3">
-    <div :class="scope" class="live-render_content">
+  <div class="live-render p-1 flex-wrap">
+    <div :class="scope" class="live-render_content flex-wrap">
       <component :key="count" :is="render()" />
     </div>
   </div>

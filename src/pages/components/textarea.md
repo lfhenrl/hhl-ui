@@ -1,12 +1,11 @@
-
 # Textarea
 
 ## Data binding
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-textarea v-model="txt" label="Text input"></hhl-textarea>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_textarea v-model="txt" label="Text input"></H_textarea>
       </div>
       </template>
       <script>
@@ -24,8 +23,8 @@ Add input clear functionality by adding `clearable`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-textarea clearable v-model="txt" label="Text input"></hhl-textarea>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_textarea clearable v-model="txt" label="Text input"></H_textarea>
       </div>
       </template>
       <script>
@@ -43,8 +42,8 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-textarea disabled v-model="txt" label="Text input"></hhl-textarea>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_textarea disabled v-model="txt" label="Text input"></H_textarea>
       </div>
       </template>
       <script>
@@ -62,8 +61,8 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-textarea readonly v-model="txt" label="Text input"></hhl-textarea>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_textarea readonly v-model="txt" label="Text input"></H_textarea>
       </div>
       </template>
       <script>
@@ -77,12 +76,12 @@ Readonly by adding `readonly`
 
 ## Placeholder
 
- Placeholder by adding `placeholder="Type something."`
+Placeholder by adding `placeholder="Type something."`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-textarea placeholder="Type something." v-model="txt" label="Text input"></hhl-textarea>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_textarea placeholder="Type something." v-model="txt" label="Text input"></H_textarea>
       </div>
       </template>
       <script>
@@ -100,8 +99,8 @@ Input Click by adding @input_click=""
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-textarea @input_click="click(txt)" v-model="txt" label="Text input"></hhl-textarea>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_textarea @input_click="click(txt)" v-model="txt" label="Text input"></H_textarea>
       </div>
       </template>
       <script>
@@ -122,8 +121,8 @@ Start Icon by adding `start-icon="iconName"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-textarea start-icon="mail"  v-model="txt" label="Text input"></hhl-textarea>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_textarea start-icon="mail"  v-model="txt" label="Text input"></H_textarea>
       </div>
       </template>
       <script>
@@ -144,8 +143,8 @@ Start Icon by adding `@start_icon_click=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-textarea @start_icon_click="click(txt)" start-icon="mail"  v-model="txt" label="Text input"></hhl-textarea>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_textarea @start_icon_click="click(txt)" start-icon="mail"  v-model="txt" label="Text input"></H_textarea>
       </div>
       </template>
       <script>
@@ -166,8 +165,8 @@ Start Icon by adding `end-icon="iconName"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-textarea end-icon="mail"  v-model="txt" label="Text input"></hhl-textarea>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_textarea end-icon="mail"  v-model="txt" label="Text input"></H_textarea>
       </div>
       </template>
       <script>
@@ -182,15 +181,14 @@ Start Icon by adding `end-icon="iconName"`
 
 <br>
 
-
 ## End Icon Click
 
 Start Icon by adding `@end_icon_click=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-textarea @end_icon_click="click(txt)" end-icon="mail"  v-model="txt" label="Text input"></hhl-textarea>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_textarea @end_icon_click="click(txt)" end-icon="mail"  v-model="txt" label="Text input"></H_textarea>
       </div>
       </template>
       <script>
@@ -211,8 +209,8 @@ Hint text by adding `hint=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-15">
-            <hhl-textarea hint="Please type something."  v-model="txt" label="Text input"></hhl-textarea>
+      <div class="flex flex-wrap gap-2 p-3 items-center mb-3">
+            <H_textarea hint="Please type something."  v-model="txt" label="Text input"></H_textarea>
       </div>
       </template>
       <script>
@@ -233,8 +231,8 @@ Character counter by adding `counter=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-15">
-            <hhl-textarea counter="10"  v-model="txt" label="Text input"></hhl-textarea>
+      <div class="flex flex-wrap gap-2 p-3 items-center mb-3">
+            <H_textarea counter="10"  v-model="txt" label="Text input"></H_textarea>
       </div>
       </template>
       <script>
@@ -255,11 +253,11 @@ Validation by adding `validator=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-col flx-justify-start gap-8 p-15">
-            <hhl-textarea v-model="txt" label="required" :validator="[v.required]"></hhl-textarea>
-            <hhl-textarea v-model="txt" label="email" :validator="[v.email]"></hhl-textarea>
-            <hhl-textarea v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></hhl-textarea>
-            <hhl-textarea v-model="txt" label="strMax(8)" :validator="[v.strMax(8)]"></hhl-textarea>
+      <div class="flex flex-col gap-10 p-3 mb-3">
+            <H_textarea v-model="txt" label="required" :validator="[v.required]"></H_textarea>
+            <H_textarea v-model="txt" label="email" :validator="[v.email]"></H_textarea>
+            <H_textarea v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></H_textarea>
+            <H_textarea v-model="txt" label="strMax(8)" :validator="[v.strMax(8)]"></H_textarea>
       </div>
       </template>
       <script>
@@ -276,6 +274,3 @@ Validation by adding `validator=""`
 </hhl-live-editor>
 
 <br>
-
-
-

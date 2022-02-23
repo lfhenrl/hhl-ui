@@ -14,7 +14,7 @@ For different screen sizes it using css variable for defining the layout
 There are 2 ways to use the grid-system.
 
 - Adding the CSS class `gridBox`.
-- Use the Vue component `hhl-layout`.
+- Use the Vue component `H_layout`.
 
 ::: tip
 You can edit the code examples.
@@ -54,11 +54,11 @@ You can edit the code examples.
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-      <hhl-layout gap="10px" col="1fr auto 1fr">
+      <H_layout gap="10px" col="1fr auto 1fr">
         <div>1</div>
         <div>2</div>
         <div>3</div>
-      </hhl-layout>
+      </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -81,7 +81,7 @@ The following examples will only show the component version.
 :::
 
 ::: warning
-In the code examples the hhl-layout component will have a property `grid-lines` this is only for showing the grids row and columns lines.
+In the code examples the H_layout component will have a property `grid-lines` this is only for showing the grids row and columns lines.
 Remove this property and the gridlines will disappear.
 :::
 
@@ -110,12 +110,12 @@ Try to resize the window to see how it adjusting.<br>
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-        <hhl-layout grid-lines col="auto auto" col-lg="auto auto auto auto">
+        <H_layout grid-lines col="auto auto" col-lg="auto auto auto auto">
           <div>1</div>
           <div>2</div>
           <div>3</div>
           <div>3</div>
-        </hhl-layout>
+        </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -152,11 +152,11 @@ Set the size to 50px.<br/> **CSS Class: `--grid-row: 50px`** <br/> **Component: 
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-      <hhl-layout grid-lines row="50px">
+      <H_layout grid-lines row="50px">
         <div>1</div>
         <div>2</div>
         <div>3</div>
-      </hhl-layout>
+      </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -184,11 +184,11 @@ In this example the size on row 2 is 50px and then all row will be 50px because 
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-      <hhl-layout grid-lines row="minmax(max-content, 1fr)">
+      <H_layout grid-lines row="minmax(max-content, 1fr)">
         <div>1</div>
         <div style="height: 50px;">2</div>
         <div>3</div>
-      </hhl-layout>
+      </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -232,13 +232,13 @@ Try to resize the window to see how the columns adjust.
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-      <hhl-layout grid-lines col="auto auto auto auto">
+      <H_layout grid-lines col="auto auto auto auto">
         <div style="width:100px">1</div>
         <div>2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </hhl-layout>
+      </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -262,13 +262,13 @@ Try to resize the window to see how the columns adjust.
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-      <hhl-layout grid-lines col="auto 1fr 1fr auto">
+      <H_layout grid-lines col="auto 1fr 1fr auto">
         <div style="width:100px">1</div>
         <div>2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </hhl-layout>
+      </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -291,13 +291,13 @@ Try to resize the window to see how the columns adjust.
 **Component: `col="auto 1fr 1fr 150px"`**
 <hhl-live-editor title="" htmlCode='
     <template>
-    <hhl-layout grid-lines col="auto 1fr 1fr 150px">
+    <H_layout grid-lines col="auto 1fr 1fr 150px">
       <div style="width:100px">1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
-    </hhl-layout>
+    </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -322,13 +322,13 @@ With repeat you can make it more simpel to set the same size.
 **Component: `col="repeat(6, 1fr)"`**
 <hhl-live-editor title="" htmlCode='
     <template>
-    <hhl-layout grid-lines col="repeat(6, 1fr)">
+    <H_layout grid-lines col="repeat(6, 1fr)">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
-    </hhl-layout>
+    </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -353,13 +353,13 @@ With minMax you can specify the min size of the columns
 **Component: `col="repeat(3, minMax(100px, 1fr))"`**
 <hhl-live-editor title="" htmlCode='
     <template>
-    <hhl-layout grid-lines col="repeat(3, minMax(100px, 1fr))">
+    <H_layout grid-lines col="repeat(3, minMax(100px, 1fr))">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
-    </hhl-layout>
+    </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -385,13 +385,13 @@ It will remove columns when the size go under the min size (200px here).
 **Component: `col="autofit-200"`** syntax autofit-value (0-1000) in pixel.
 <hhl-live-editor title="" htmlCode='
     <template>
-    <hhl-layout grid-lines col="autofit-200">
+    <H_layout grid-lines col="autofit-200">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
-    </hhl-layout>
+    </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -425,13 +425,13 @@ Set the gap between rows and columns.<br/>
 **Component: `gap="10px"`**
 <hhl-live-editor title="" htmlCode='
     <template>
-    <hhl-layout grid-lines col="autofit-200" gap="10px">
+    <H_layout grid-lines col="autofit-200" gap="10px">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
-    </hhl-layout>
+    </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -454,13 +454,13 @@ Set the gap between rows and columns.<br/>
 **Component: `gap="30px 10px"`**
 <hhl-live-editor title="" htmlCode='
     <template>
-    <hhl-layout grid-lines col="autofit-200" gap="30px 10px">
+    <H_layout grid-lines col="autofit-200" gap="30px 10px">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
-    </hhl-layout>
+    </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -511,7 +511,7 @@ The Component do it automatically
 
 __The Component way.__
 ```html
-  <hhl-layout area="c1 c2 c3, c4 c5 c6">
+  <H_layout area="c1 c2 c3, c4 c5 c6">
     <div>1</div>
     <div>2</div>
     <div>3</div>
@@ -526,14 +526,14 @@ __CSS: `--grid-area: "c1 c2 c3" "c4 c5 c6";`__ <br/>
 __Component: `area="c1 c2 c3, c4 c5 c6"`__ 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <hhl-layout grid-lines area="c1 c2 c3, c4 c5 c6">
+    <H_layout grid-lines area="c1 c2 c3, c4 c5 c6">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
       <div>6</div>
-    </hhl-layout>
+    </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -555,14 +555,14 @@ __CSS: `--grid-area: "c6 c5 c4" "c3 c2 c1";`__ <br/>
 __Component: `area="c6 c5 c4, c3 c2 c1"`__ 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <hhl-layout grid-lines area="c6 c5 c4, c3 c2 c1">
+    <H_layout grid-lines area="c6 c5 c4, c3 c2 c1">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
       <div>6</div>
-    </hhl-layout>
+    </H_layout>
     </template>
     <xstyle>
       .gridBox {
@@ -584,14 +584,14 @@ __CSS: `--grid-area: "c1 c2 ." ". c3 c4" "c5 . c6";`__ <br/>
 __Component: `area="c1 c2 ., . c3 c4, c5 . c6"`__ 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <hhl-layout grid-lines area="c1 c2 ., . c3 c4, c5 . c6">
+    <H_layout grid-lines area="c1 c2 ., . c3 c4, c5 . c6">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
       <div>6</div>
-    </hhl-layout>
+    </H_layout>
     </template>
     <xstyle>
       .gridBox {

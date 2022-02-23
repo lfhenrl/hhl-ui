@@ -1,11 +1,10 @@
-
 # Input
 
 ## Data binding
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
+      <div class="flex flex-wrap gap-2 p-3 items-center">
             <H_input v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -24,7 +23,7 @@ Add input clear functionality by adding `clearable`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
+      <div class="flex flex-wrap gap-2 p-3 items-center">
             <H_input clearable v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -43,7 +42,7 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
+      <div class="flex flex-wrap gap-2 p-3 items-center">
             <H_input disabled v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -62,7 +61,7 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
+      <div class="flex flex-wrap gap-2 p-3 items-center">
             <H_input readonly v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -77,11 +76,11 @@ Readonly by adding `readonly`
 
 ## Placeholder
 
- Placeholder by adding `placeholder="Type something."`
+Placeholder by adding `placeholder="Type something."`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
+      <div class="flex flex-wrap gap-2 p-3 items-center">
             <H_input placeholder="Type something." v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -100,7 +99,7 @@ Input Click by adding @input_click=""
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
+      <div class="flex flex-wrap gap-2 p-3 items-center">
             <H_input @input_click="click(txt)" v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -122,7 +121,7 @@ Start Icon by adding `start-icon="iconName"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
+      <div class="flex flex-wrap gap-2 p-3 items-center">
             <H_input start-icon="mail"  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -144,7 +143,7 @@ Start Icon by adding `@start_icon_click=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
+      <div class="flex flex-wrap gap-2 p-3 items-center">
             <H_input @start_icon_click="click(txt)" start-icon="mail"  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -166,7 +165,7 @@ Start Icon by adding `end-icon="iconName"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
+      <div class="flex flex-wrap gap-2 p-3 items-center">
             <H_input end-icon="mail"  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -182,14 +181,13 @@ Start Icon by adding `end-icon="iconName"`
 
 <br>
 
-
 ## End Icon Click
 
 Start Icon by adding `@end_icon_click=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-10">
+      <div class="flex flex-wrap gap-2 p-3 items-center">
             <H_input @end_icon_click="click(txt)" end-icon="mail"  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -211,7 +209,7 @@ Hint text by adding `hint=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-15">
+      <div class="flex flex-wrap gap-2 p-3 items-center mb-3">
             <H_input hint="Please type something."  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -233,7 +231,7 @@ Character counter by adding `counter=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-align-center flx-justify-start gap-6 p-15">
+      <div class="flex flex-wrap gap-2 p-3 items-center mb-3">
             <H_input counter="10"  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -255,7 +253,7 @@ Validation by adding `validator=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-col flx-justify-start gap-8 p-15">
+      <div class="flex flex-col flex-wrap gap-10 p-3 mb-3">
             <H_input v-model="txt" label="required" :validator="[v.required]"></H_input>
             <H_input v-model="txt" label="email" :validator="[v.email]"></H_input>
             <H_input v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></H_input>
@@ -279,6 +277,3 @@ Validation by adding `validator=""`
 </hhl-live-editor>
 
 <br>
-
-
-

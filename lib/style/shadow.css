@@ -1,0 +1,40 @@
+:root {
+  --shadow-1: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2) !important;
+
+  --shadow-2: 0 0 4px 0 rgba(0, 0, 0, 0.14), 0 3px 5px 0 rgba(0, 0, 0, 0.12),
+    0 2px 4px 0 rgba(0, 0, 0, 0.2) !important;
+
+  --shadow-3: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
+    0 3px 4px 0 rgba(0, 0, 0, 0.2) !important;
+
+  --shadow-4: 0 8px 12px 2px rgba(0, 0, 0, 0.14), 0 5px 12px 4px rgba(0, 0, 0, 0.12),
+    0 3px 4px 0 rgba(0, 0, 0, 0.2) !important;
+
+  --shadow-5: 0 14px 18px 3px rgba(0, 0, 0, 0.14), 0 7px 16px 6px rgba(0, 0, 0, 0.12),
+    0 4px 5px 0 rgba(0, 0, 0, 0.2) !important;
+
+}
+
+.shadow-0 {
+  box-shadow: none;
+}
+
+.shadow-1 {
+  box-shadow: var(--shadow-1);
+}
+.shadow-2 {
+  box-shadow: var(--shadow-2);
+}
+
+.shadow-3 {
+  box-shadow: var(--shadow-3);
+}
+
+.shadow-4 {
+  box-shadow: var(--shadow-4);
+}
+
+.shadow-5 {
+  box-shadow: var(--shadow-5);
+}

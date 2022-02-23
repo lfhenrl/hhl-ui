@@ -1,5 +1,5 @@
 <template>
-  <hhl-btn
+  <H_btn
     @click="click"
     small
     round

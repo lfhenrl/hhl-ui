@@ -13,18 +13,17 @@
 <script lang="ts">
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { defineComponent, ref, watch } from "vue";
-import { Ioptions } from "./types";
 import { getSVGString, svgString2Image } from "./toPNG";
 export default defineComponent({
   name: "print",
-  setup({}, context) {
-    const iframe = ref<HTMLIFrameElement>({});
+  setup({}, context: any) {
+    const iframe = ref<HTMLIFrameElement>();
     const srcdoc = ref("");
     let containerDiv: HTMLElement;
     let svg: SVGElement;
     let _title = "Chart";
     const parent: any = context.parent ?? {};
-    const opt: Ioptions = parent.opt;
+    const opt: any = parent.opt;
 
     function print(title = "Chart") {
       _title = title;
@@ -40,7 +39,7 @@ export default defineComponent({
     function printOut() {
       if (srcdoc.value.length > 10) {
         setTimeout(async () => {
-          await iframe.value.contentWindow?.print();
+          await iframe.value?.contentWindow?.print();
           containerDiv.style.width = "";
         }, 10);
       }
@@ -51,7 +50,7 @@ export default defineComponent({
       const _svg = opt.containers.svg;
       const svgString = getSVGString(_svg?.node());
       console.log(svgString);
-      svgString2Image(svgString, opt.size.width, opt.size.height, "png", save);
+      svgString2Image(svgString, opt.size.width, opt.size.height, "png", null);
     }
 
  

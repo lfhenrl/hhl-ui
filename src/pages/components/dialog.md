@@ -1,30 +1,30 @@
-
 # Dialog
 
-The `hhl-dialog` is a styled version of hhl-modal all the properties from modal can be used.
+The `H_dialog` is a styled version of hhl-modal all the properties from modal can be used.
 
 ## Using
+
 The dialog have a "Header", "Body" and a "Footer"
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <div class="p-25">
-        <hhl-btn @click="modal = true">Open</hhl-btn>
-        <hhl-dialog v-model="modal">
+      <div class="p-5">
+        <H_btn @click="modal = true">Open</H_btn>
+        <H_dialog v-model="modal">
           <template #header>
             Here is the TITLE
           </template>
           Here is the BODY
           <template #footer>
             Here is the FOOTER
-            <hhl-btn @click="modal=false" class="ml-3 bg-ok">Ok</hhl-btn>
-            <hhl-btn @click="modal=false" class="ml-3">Cancel</hhl-btn>
+            <H_btn @click="modal=false" size="sm" class="ml-3 bg-ok">Ok</H_btn>
+            <H_btn @click="modal=false" size="sm" class="ml-3">Cancel</H_btn>
           </template>
-        </hhl-dialog>
+        </H_dialog>
       </div>
     </template>
     <script>
-      const modal = ref(true)
+      const modal = ref(false)
       return { modal }
     </script>
 '>

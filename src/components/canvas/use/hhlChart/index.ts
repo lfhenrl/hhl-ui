@@ -1,5 +1,5 @@
 import { Ref } from "vue";
-import { EventHandler } from "../../../utils/eventHandler";
+import { EventHandler } from "../../../../../lib/utils/eventHandler";
 import { MouseEvents } from "./mouseEvents";
 export type iHHLchart = InstanceType<typeof HHLchart>;
 

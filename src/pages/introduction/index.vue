@@ -2,8 +2,8 @@
   <div class="index">
     <h1>Introduction</h1>
     <p>This is how I setup my development</p>
-    <div class="flx-col gap-2 col-txt-ok">
-      <router-link v-for="route in links" :key="route.id" class="cursor-pointer borderColor-ok" :to="route.path"
+    <div class="flex flex-col col-txt-ok">
+      <router-link v-for="route in links" :key="route.id" class="cursor-pointer" :to="route.path"
         >-{{ route.name }}</router-link
       >
     </div>
@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
-import { getRouteData } from "../../mdHelp/plugins/routeData";
+import { getRouteData } from "../../components/routeData";
 
 const Index = defineComponent({
   name: "index",

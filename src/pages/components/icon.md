@@ -8,7 +8,7 @@ The default is `"24px"`.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flx-row flx-wrap flx-initial flx-align-center flx-justify-start gap-6 p-10">
+    <div class="flex flex-wrap gap-2 p-3 items-center">
         <H_icon icon="edit" size="14px"></H_icon>
         <H_icon icon="edit"></H_icon>
         <H_icon icon="edit" size="44px"></H_icon>
@@ -25,7 +25,7 @@ If you add the prop `btn` you will get a hover effect-
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flx-row flx-wrap flx-initial flx-align-center flx-justify-start gap-6 p-10">
+    <div class="flex flex-wrap gap-2 p-3 items-center">
         <H_icon btn icon="edit" size="14px"></H_icon>
         <H_icon btn icon="edit"></H_icon>
         <H_icon btn icon="edit" size="44px"></H_icon>
@@ -44,7 +44,7 @@ If you need a special color then just use `style="color: purple"`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flx-row flx-wrap flx-initial flx-align-center flx-justify-start gap-6 p-10">
+    <div class="flex flex-wrap gap-2 p-3 items-center">
         <H_icon icon="edit" class="col-txt-pri"></H_icon>
         <H_icon icon="edit" class="col-txt-sec"></H_icon>
         <H_icon icon="edit" class="col-txt-ok"></H_icon>

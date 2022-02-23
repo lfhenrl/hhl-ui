@@ -1,5 +1,5 @@
 <template>
-  <div class="hhl-code-editor h-100pr flx-1">
+  <div class="hhl-code-editor h-full flex-1 overflow-x-auto">
     <textarea ref="el" />
   </div>
 </template>
@@ -7,27 +7,28 @@
 <script lang="ts">
 import { defineComponent, onMounted, PropType, ref, watchEffect } from "vue";
 import "./css/codemirror.css";
-import { debounce } from "../utils/debounce";
+import { debounce } from "../../../lib/utils/debounce";
 
-const tabs = ["", " ", "  ", "   ", "    ", "     ", "      "]
+const tabs = ["", " ", "  ", "   ", "    ", "     ", "      "];
 
 function format(str: string) {
-  if (!str) return ""
- let tab = "  ";
+  if (!str) return "";
+  let tab = "  ";
   const lines = str.split("\n");
-  const formattet = lines.filter((item) => item !== "")
-  .map((line) => {    
-    if (line.includes("<template>")) {
-      const space = line.search(/\S/);
-      tab = tabs[space]
-      return line.trimStart();
-    }
-    if (line.includes("</template>")) return line.trimStart();
-    if (line.includes("script>")) return line.trimStart();
-    if (line.includes("style>")) return line.trimStart();
-    if (line !== "") return line.replace(tab, "");
-  });
-  return formattet.join("\n")
+  const formattet = lines
+    .filter((item) => item !== "")
+    .map((line) => {
+      if (line.includes("<template>")) {
+        const space = line.search(/\S/);
+        tab = tabs[space];
+        return line.trimStart();
+      }
+      if (line.includes("</template>")) return line.trimStart();
+      if (line.includes("script>")) return line.trimStart();
+      if (line.includes("style>")) return line.trimStart();
+      if (line !== "") return line.replace(tab, "");
+    });
+  return formattet.join("\n");
 }
 
 const hhlCodeEditor = defineComponent({

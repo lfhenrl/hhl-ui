@@ -1,9 +1,9 @@
 # Dialog Service
 
-If you add `<hhl-dialog-service/>` to your "app" page, you vill get a global dialog, Snack/Alert and a EventBus that can be used on all pages.
+If you add `<H_dialog-service/>` to your "app" page, you vill get a global dialog, Snack/Alert and a EventBus that can be used on all pages.
 
+## Add H_dialog-service
 
-## Add hhl-dialog-service
 ::: warning
 It is very important it's only added one time and in the main page (app.vue).
 :::
@@ -11,11 +11,10 @@ It is very important it's only added one time and in the main page (app.vue).
 ```html
 <template>
   <div class="app">
-
     <div class="app-toolbar">
-      <hhl-btn icon @click="$refs.drawer.menuOpen()">
-        <hhl-icon icon="menu" />
-      </hhl-btn>
+      <H_btn icon @click="menuOpen()">
+        <H_icon icon="menu" />
+      </H_btn>
     </div>
 
     <div class="app-menu">
@@ -23,23 +22,25 @@ It is very important it's only added one time and in the main page (app.vue).
       <router-link to="/page-somthing">Something</router-link>
     </div>
 
-    <router-view/>
+    <router-view />
 
-//// ADDED HERE
-    <hhl-dialog-service/>
+    //// ADDED HERE
+    <H_dialog-service />
   </div>
 </template>
 ```
+
 <br>
 
 ## Standard dialog
+
 The dialog is a simpel confirmation with a Title, Text and 2 buttons with "OK" and Cancel.<br>
 It return a promise with true (OK) or false (cancel).
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-btn @click="open">Dialog open</hhl-btn>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_btn @click="open">Dialog open</H_btn>
       </div>
       </template>
       <script>
@@ -60,6 +61,7 @@ It return a promise with true (OK) or false (cancel).
 <br>
 
 ## Dialog Text and Color on buttons
+
 By adding a "buttons" property to the dialog call, you can change the Text and Color of the buttons
 
 The syntax is:
@@ -69,8 +71,8 @@ The theme colors are `col-pri` `col-sec` `col-ok` `col-err` `col-warn` `col-info
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-btn @click="open">Dialog open</hhl-btn>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_btn @click="open">Dialog open</H_btn>
       </div>
       </template>
       <script>
@@ -93,6 +95,7 @@ The theme colors are `col-pri` `col-sec` `col-ok` `col-err` `col-warn` `col-info
 <br>
 
 ## Snack
+
 Snack have 4 properties: <br>
 type: "String " "err" | "warn" | "info". The type will change the Color and Icon.<br>
 title: "String" For the titel.<br>
@@ -103,20 +106,17 @@ timeout: "Number" the amount of millisecond the snack is open.<br>
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-btn @click="open(`info`)">Snack Info</hhl-btn>
-            <hhl-btn @click="open(`warn`)">Snack Warning</hhl-btn>
-            <hhl-btn @click="open(`err`)">Snack Error</hhl-btn>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_btn @click="open(`info`)">Snack Info</H_btn>
+            <H_btn @click="open(`warn`)">Snack Warning</H_btn>
+            <H_btn @click="open(`err`)">Snack Error</H_btn>
       </div>
       </template>
       <script>
-        hhl.event.$on("SomeUnikName", (payload) => {
-          alert(payload);
-        });
-        function send(val) {
-          hhl.event.emit("SomeUnikName", "Hello from event");
+        function open(val) {
+          hhl.alert(val, "TITLE", "Showing information");
           }
-          return { send }
+          return { open }
       </script>
 '>
 </hhl-live-editor>
@@ -124,12 +124,13 @@ timeout: "Number" the amount of millisecond the snack is open.<br>
 <br>
 
 ## Event bus
+
 The Event bus is a function to send a global Event that you can listen on in all VUE component.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap flx-align-center flx-justify-start gap-6 p-10">
-            <hhl-btn @click="send">Send event</hhl-btn>
+      <div class="flex flex-wrap gap-2 p-3 items-center">
+            <H_btn @click="send">Send event</H_btn>
       </div>
       </template>
       <script>

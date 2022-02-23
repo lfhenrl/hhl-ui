@@ -26,15 +26,15 @@ The default is stretch.
     <template>
     <div class="p-6">
       <div class="flx-row flx-align-center flx-wrap mb-15 gap-6 p-15 shadow-1">
-        <hhl-select v-model="val" :select-data="alignContentList" label="Align Content"></hhl-select>
+        <H_select v-model="val" :select-data="alignContentList" label="Align Content"></H_select>
       </div>
-      <hhl-layout grid-lines row="auto" col="auto auto auto" :align-content="val">
+      <H_layout grid-lines row="auto" col="auto auto auto" :align-content="val">
         <div>1</div>
         <div>2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </hhl-layout>
+      </H_layout>
     </div>
     </template>
     <script>
@@ -73,15 +73,15 @@ The default is stretch.
     <template>
     <div class="p-6">
       <div class="flx-row flx-align-center flx-wrap mb-15 gap-6 p-15 shadow-1">
-        <hhl-select v-model="val" :select-data="justifyContentList" label="Justify Content"></hhl-select>
+        <H_select v-model="val" :select-data="justifyContentList" label="Justify Content"></H_select>
       </div>
-      <hhl-layout grid-lines row="auto" col="auto auto auto" :justify-content="val">
+      <H_layout grid-lines row="auto" col="auto auto auto" :justify-content="val">
         <div>1</div>
         <div>2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </hhl-layout>
+      </H_layout>
     </div>
     </template>
     <script>
@@ -120,15 +120,15 @@ The default is stretch.
     <template>
     <div class="p-6">
       <div class="flx-row flx-align-center flx-wrap mb-15 gap-6 m-4 p-15 shadow-1">
-        <hhl-select v-model="val" :select-data="alignItemsList" label="Align items"></hhl-select>
+        <H_select v-model="val" :select-data="alignItemsList" label="Align items"></H_select>
       </div>
-      <hhl-layout grid-lines row="auto" col="auto auto auto" :align-items="val">
+      <H_layout grid-lines row="auto" col="auto auto auto" :align-items="val">
         <div>1</div>
         <div>2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </hhl-layout>
+      </H_layout>
     </div>
     </template>
     <script>
@@ -167,15 +167,15 @@ The default is stretch.
     <template>
     <div class="p-6">
       <div class="flx-row flx-align-center flx-wrap mb-15 gap-6 m-4 p-15 shadow-1">
-        <hhl-select v-model="val" :select-data="justItemsList" label="Justify items"></hhl-select>
+        <H_select v-model="val" :select-data="justItemsList" label="Justify items"></H_select>
       </div>
-      <hhl-layout grid-lines row="auto" col="auto auto auto" :justify-items="val">
+      <H_layout grid-lines row="auto" col="auto auto auto" :justify-items="val">
         <div>1</div>
         <div>2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </hhl-layout>
+      </H_layout>
     </div>
     </template>
     <script>
@@ -215,15 +215,15 @@ The selected `alignSelf` class is bound to box 2.
     <template>
     <div class="p-6">
       <div class="flx-row flx-align-center flx-wrap mb-15 gap-6 m-4 p-15 shadow-1">
-        <hhl-select v-model="val" :select-data="alignSelfList" label="Align self"></hhl-select>
+        <H_select v-model="val" :select-data="alignSelfList" label="Align self"></H_select>
       </div>
-      <hhl-layout grid-lines row="auto" col="auto auto auto">
+      <H_layout grid-lines row="auto" col="auto auto auto">
         <div>1</div>
         <div :class="val">2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </hhl-layout>
+      </H_layout>
     </div>
     </template>
     <script>
@@ -262,15 +262,15 @@ The selected `justSelf` class is bound to box 2.
     <template>
     <div class="p-6">
       <div class="flx-row flx-align-center flx-wrap mb-15 gap-6 m-4 p-15 shadow-1">
-        <hhl-select v-model="val" :select-data="justSelfList" label="Justify self"></hhl-select>
+        <H_select v-model="val" :select-data="justSelfList" label="Justify self"></H_select>
       </div>
-      <hhl-layout grid-lines row="auto" col="auto auto auto">
+      <H_layout grid-lines row="auto" col="auto auto auto">
         <div>1</div>
         <div :class="val">2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </hhl-layout>
+      </H_layout>
     </div>
     </template>
     <script>
@@ -307,14 +307,14 @@ The align & justfy self is bouend to box 2.
     <template>
     <div class="p-6">
       <div class= "flex-selectors flx-row flx-wrap flx-align-center flx-wrap mb-15 gap-6 m-4 p-15 shadow-1">
-        <hhl-select v-model="alignContentVal" :select-data="justList" label="Align-content"></hhl-select>
-        <hhl-select v-model="justContentVal" :select-data="justList" label="Justify-content"></hhl-select>
-        <hhl-select v-model="alignItemVal" :select-data="itemList" label="Align-items"></hhl-select>
-        <hhl-select v-model="justItemVal" :select-data="itemList" label="Justify-items"></hhl-select>
-        <hhl-select v-model="alignSelfVal" :select-data="alignSelfList" label="Align self"></hhl-select>
-        <hhl-select v-model="justSelfVal" :select-data="justSelfList" label="Justify self"></hhl-select>
+        <H_select v-model="alignContentVal" :select-data="justList" label="Align-content"></H_select>
+        <H_select v-model="justContentVal" :select-data="justList" label="Justify-content"></H_select>
+        <H_select v-model="alignItemVal" :select-data="itemList" label="Align-items"></H_select>
+        <H_select v-model="justItemVal" :select-data="itemList" label="Justify-items"></H_select>
+        <H_select v-model="alignSelfVal" :select-data="alignSelfList" label="Align self"></H_select>
+        <H_select v-model="justSelfVal" :select-data="justSelfList" label="Justify self"></H_select>
       </div>
-      <hhl-layout grid-lines row="auto" col="auto auto auto" col="auto auto auto" 
+      <H_layout grid-lines row="auto" col="auto auto auto" col="auto auto auto" 
                     :align-content="alignContentVal"
                     :justify-content="justContentVal"
                     :align-items="alignItemVal"
@@ -324,7 +324,7 @@ The align & justfy self is bouend to box 2.
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </hhl-layout>
+      </H_layout>
     </div>
     </template>
     <script>
@@ -364,7 +364,7 @@ The align & justfy self is bouend to box 2.
     }
     </script>
     <xstyle>
-      .flex-selectors > .hhl-select {
+      .flex-selectors > .H_select {
         min-width: 140px;
       }
       .gridBox {

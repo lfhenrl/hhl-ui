@@ -1,4 +1,3 @@
-
 # Tabs
 
 The `H_tabs` component gives you navigation with tabs.
@@ -6,11 +5,13 @@ Tabs are elements that help you organize and navigate multiple documents in a si
 
 <br>
 
-__The H_tabs component har 3 properties.__<br>
+**The H_tabs component har 3 properties.**<br>
+
 - `default-tab=""`: The name of the tab that should be active when page load.<br>
 - `willChange=""`: Event that trigger before change to a new tab, the function called shall return true for navigate to the new tab.
 
-__The H_tab component har 3 properties.__<br>
+**The H_tab component har 3 properties.**<br>
+
 - `label=""`: The text on the tab.<br>
 - `name=""`: The name of the tab.
 - `keep-alive`: By default the content of the tab will be destroyed or mounthed when navigating, when using `keep-alive` it will not.
@@ -51,7 +52,6 @@ You can add `disabled` to a tab<br>
 
 <br>
 
-
 ## WillChange event
 
 You can use a `will-change` event to do some work or validation before leaving the active tab<br>
@@ -68,8 +68,8 @@ You can use a `will-change` event to do some work or validation before leaving t
 		</template>
 		<script>
     function canChange(e) {
-      if (e==="tab1") {return true;}
-      if (confirm("Will you navigate to " + e)) {
+      if (e==="tab1" || e===undefined) {return true;}
+      if (confirm("Will you navigate away from " + e)) {
 					return true;
 				} else {
 					return false;
@@ -81,4 +81,3 @@ You can use a `will-change` event to do some work or validation before leaving t
 </hhl-live-editor>
 
 <br>
-

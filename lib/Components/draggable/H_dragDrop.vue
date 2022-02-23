@@ -1,0 +1,50 @@
+<template>
+  <div @dragover.prevent.stop="onDragOver">
+    <transition-group name="draggable-item-list">
+      <H_dragDropItem
+        v-for="(item, index) in items"
+        :key="item.id"
+        :item="item"
+        :maxItems="maxItems"
+        :containerId="id"
+        :position="index"
+        @itemDragOver="onItemDragOver"
+        @dragenter.prevent
+      >
+        <slot name="item" :item="item.data" :index="index"></slot>
+      </H_dragDropItem>
+    </transition-group>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed, toRefs, PropType } from "vue";
+import H_dragDropItem from "./H_dragDropItem.vue";
+import { useDraggableContainer } from "./composables/draggable";
+
+const props = defineProps({
+  modelValue: { type: Array as PropType<any> },
+  maxItems: { type: Number, default: 10000 },
+  transition: {
+    default: "200",
+    type: String
+  }
+});
+
+const emit = defineEmits(["update:modelValue", "itemDragOver"]);
+
+const context = {
+  emit
+};
+
+const { modelValue, maxItems } = toRefs(props);
+const { id, items, onDragOver, onItemDragOver } = useDraggableContainer(modelValue, context, props.maxItems);
+
+const transitionStyle = computed(() => `transform ${props.transition}ms`);
+</script>
+
+<style scoped>
+.draggable-item-list-move {
+  transition: v-bind(transitionStyle);
+}
+</style>

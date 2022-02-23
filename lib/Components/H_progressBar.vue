@@ -1,0 +1,44 @@
+<template>
+  <div class="H_progressBar" v-if="show">
+    <div class="H_progressBar-value"></div>
+  </div>
+</template>
+
+<script setup lang="ts">
+const props = defineProps({
+  show: {
+    type: Boolean,
+    default: false
+  },
+  size: String
+});
+</script>
+
+<style>
+.H_progressBar {
+  height: 4px;
+  background-color: rgba(5, 114, 206, 0.2);
+  width: 100%;
+  overflow: hidden;
+}
+
+.H_progressBar-value {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(5, 114, 206);
+  animation: indeterminateAnimation 1s infinite linear;
+  transform-origin: 0% 50%;
+}
+
+@keyframes indeterminateAnimation {
+  0% {
+    transform: translateX(0) scaleX(0);
+  }
+  40% {
+    transform: translateX(0) scaleX(0.4);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.5);
+  }
+}
+</style>

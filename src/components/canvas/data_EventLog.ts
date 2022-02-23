@@ -1,6 +1,6 @@
-import { HHLfetch } from "../utils/HHLfetch";
+import { hhlFetch } from "../../../lib/utils/hhlFetch";
 import { oEEkodes } from "./oeeKodes";
-const EventLogs = new HHLfetch("http://localhost:5000/eventlogs");
+const EventLogs = new hhlFetch("http://localhost:5000/eventlogs");
 
 const oee_cleaning = ["CL", "PCL"];
 const oee_ChangeOver = ["CO", "PCO"];

@@ -1,0 +1,24 @@
+{
+  "name": "hhl-ui-next",
+  "version": "0.0.17",
+  "description": "hhl-ui is a VUE library for personel use.",
+  "homepage": "https://github.com/lfhenrl/hhl-ui-next",
+  "author": {
+    "name": "Henrik Holte Larsen"
+  },
+  "type": "module",
+  "module": "index.ts",
+  "main": "index.ts",
+  "types": "index.d.ts",
+  "files": [
+    "Components/**/",
+    "style/**/",
+    "utils/**/",
+    "style.css",
+    "index.d.ts",
+    "index.ts"
+  ],
+  "dependencies": {
+    "@floating-ui/dom": "^0.2.0"
+  }
+}

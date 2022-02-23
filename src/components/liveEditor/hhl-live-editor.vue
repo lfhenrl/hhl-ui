@@ -1,44 +1,44 @@
 <template>
-  <div class="hhl-live-editor flx-col relative shadow-3" ref="el">
-    <div class="hhl-live-editor_errorPopup flx-col absolute overflow-auto z-5 bottom-1 right-1" v-show="showError" v-movable>
-      <div class="hhl-live-editor_errorPopup_title flx-row flx-align-center flx-justify-between pl-1" moveable-drag>
+  <div class="hhl-live-editor flex flex-col relative shadow-3" ref="el">
+    <div
+      class="hhl-live-editor_errorPopup flex flex-col absolute overflow-auto z-10 bottom-1 right-1"
+      v-show="showError"
+      v-movable
+    >
+      <div class="hhl-live-editor_errorPopup_title flex items-center flx-justify-between pl-1" moveable-drag>
         <div>Error</div>
-        <H_btn type="icon-text" icon="close" color="white" class="borderRadius-full" @click="hideError = !hideError" />
+        <H_btn type="icon-text" icon="close" color="white" round @click="hideError = !hideError" />
       </div>
 
       <span>{{ error }}</span>
     </div>
 
-    <div class="hhl-live-editor_toolbar flx-row flx-align-center flx-justify-between borderRadius-tr-4 borderRadius-tl-4">
+    <div class="hhl-live-editor_toolbar flex items-center justify-between rounded-t">
       <div>{{ title }}</div>
       <div class="flx-row">
         <H_btn
           title="Show Error."
           type="icon-text"
           icon="info"
+          round
           v-if="error !== '' && showCode"
           @click="hideError = !hideError"
-          class="col-err borderRadius-full"
+          class="col-err"
         />
-        <H_btn
-          title="Fullscreen."
-          type="icon-text"
-          icon="zoom_out_map"
-          @click="toggleFullScreen"
-          class="col-white borderRadius-full"
-        />
+        <H_btn title="Fullscreen." type="icon-text" icon="zoom_out_map" round @click="toggleFullScreen" class="col-white" />
         <H_btn
           title="Change Horisont or Vertical."
           type="icon-text"
           icon="split"
+          round
           :disabled="!showCode"
           @click="changeHorisont"
-          class="col-white borderRadius-full"
+          class="col-white"
         />
-        <H_btn title="Show Code." type="icon-text" icon="expand_down" @click="codeShow" class="col-white borderRadius-full" />
+        <H_btn title="Show Code." round type="icon-text" icon="expand_down" @click="codeShow" class="col-white" />
       </div>
     </div>
-    <div class="flx-row flx-1 relative" :class="{ 'flx-col': column }">
+    <div class="flex flex-1" :class="{ 'flex-col': column }">
       <div ref="renderBox" class="hhl-live-editor-content__render">
         <live-render :template="reactiv_htmlCode" @onError="errorHandler" :comp="comp" />
       </div>
@@ -61,8 +61,8 @@
 import { computed, defineComponent, ref } from "vue";
 import hhlCodeEditor from "./hhl-code-editor.vue";
 import liveRender from "./live-render.vue";
-import { movable } from "../utils/v-movable";
-import { splitpane } from "../utils/v-splitpane";
+import { movable } from "./v-movable";
+import { splitpane } from "./v-splitpane";
 
 export default defineComponent({
   name: "hhl-live-editor",

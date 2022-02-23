@@ -33,8 +33,8 @@ export default defineComponent({
     marginLeft: { type: Number, default: 5 },
     marginRight: { type: Number, default: 5 },
     marginBottom: { type: Number, default: 5 },
-    bandNames: { type: Array, default: ["Batch", "State", "larsen"] },
-    bandTitles: { type: Array, default: ["Batch", "State", "larsen"] }
+    bandNames: { type: Array, default: ["Henrik", "Holte", "Larsen"] },
+    bandTitles: { type: Array, default: ["Henrik", "Holte", "Larsen"] }
   },
   setup(props) {
     const ch = inject("ch") as iHHLchart;

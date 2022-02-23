@@ -1,15 +1,14 @@
-
 # Checkbox
 
 ## Data binding Boolean
 
-<hhl-live-editor title="" htmlCode='
+<hhl-live-editor title="" htmlCode=' 
     <template>
-    <div class="flx-row flx-wrap  flx-align-center flx-justify-start gap-6 p-10">
+    <div class="flex flex-wrap gap-2 p-3 items-center">
         <H_checkbox label="CheckBox 1" v-model="check"></H_checkbox>
         <H_checkbox label="CheckBox 2" v-model="check"></H_checkbox>    
         <H_checkbox label="CheckBox 3" v-model="check"></H_checkbox>
-        <hhl-input v-model="check" label="value"></hhl-input>
+        <H_input v-model="check" label="value"></H_input>
     </div>
     </template>
     <script>
@@ -25,11 +24,11 @@
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flx-row flx-wrap  flx-align-center flx-justify-start gap-6 p-10">
+    <div class="flex flex-wrap gap-2 p-3 items-center">
         <H_checkbox label="CheckBox 1" v-model="checkArray" value="value1"></H_checkbox>
         <H_checkbox label="CheckBox 2" v-model="checkArray" value="value2"></H_checkbox>    
         <H_checkbox label="CheckBox 3" v-model="checkArray" value="value3"></H_checkbox>
-        <hhl-input v-model="checkArray" label="value"></hhl-input>
+        <H_input v-model="checkArray" label="value"></H_input>
     </div>
     </template>
     <script>
@@ -47,9 +46,10 @@ You can change the label position to left by adding the prop `label-left`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flx-row flx-wrap  flx-align-center flx-justify-start gap-6 p-10">
+    <div class="flex flex-wrap gap-2 p-3 items-center">
         <H_checkbox label="label standard" v-model="check"></H_checkbox>
-        <H_checkbox label-left label="Label left" v-model="check"></H_checkbox>    
+        <H_checkbox label-left label="Label left" v-model="check"></H_checkbox>  
+        <H_spacer/>  
     </div>
     </template>
     <script>
@@ -62,15 +62,16 @@ You can change the label position to left by adding the prop `label-left`
 <br>
 
 ## Size
-You can change the size by the prop  `size=""`<br>
-The default is `"20px"`.
+
+You can change the size by the prop `size="/sm/md/lg"`<br>
+The default is `"md"`.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flx-row flx-wrap  flx-align-center flx-justify-start gap-6 p-10">
-        <H_checkbox size="15px" label="CheckBox 15px" v-model="check"></H_checkbox>
-        <H_checkbox label="CheckBox standard" v-model="check"></H_checkbox>    
-        <H_checkbox size="40px" label="CheckBox 40px" v-model="check"></H_checkbox>
+    <div class="flex flex-wrap gap-2 p-3 items-center">
+        <H_checkbox size="sm" label="CheckBox small (sm)" v-model="check"></H_checkbox>
+        <H_checkbox size="md"  label="CheckBox standard (md)" v-model="check"></H_checkbox>    
+        <H_checkbox size="lg" label="CheckBox large (lg)" v-model="check"></H_checkbox>
     </div>
     </template>
     <script>
@@ -91,7 +92,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flx-row flx-wrap  flx-align-center flx-justify-start gap-6 p-10">
+    <div class="flex flex-wrap gap-2 p-3 items-center">
         <H_checkbox class="col-pri" label="col-pri" v-model="check"></H_checkbox>
         <H_checkbox class="col-sec" label="col-sec" v-model="check"></H_checkbox>    
         <H_checkbox class="col-ok" label="col-ok" v-model="check"></H_checkbox>
@@ -118,7 +119,7 @@ You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-        <div class="flx-row flx-wrap  flx-align-center flx-justify-start gap-6 p-10">
+        <div class="flex flex-wrap gap-2 p-3 items-center">
             <H_checkbox disabled class="col-pri" label="col-pri" v-model="check"></H_checkbox>
             <H_checkbox disabled class="col-sec" label="col-sec" v-model="check"></H_checkbox>    
             <H_checkbox disabled class="col-ok" label="col-ok" v-model="check"></H_checkbox>

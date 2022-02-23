@@ -1,36 +1,12 @@
 <script lang="ts">
 import { defineComponent, inject } from "vue";
 import { iHHLchart } from "./use/hhlChart";
-import { DateAddSeconds } from "../utils/dateFunctions";
-import {  D_HHMM, D_01_dec, D_2021 } from "../utils/dateFormat";
+import { DateAddSeconds } from "../../../lib/utils/dateFunctions";
+import { D_HHMM, D_01_dec, D_2021 } from "../../../lib/utils/dateFormat";
 
 const timeArray = [
-  31536000,
-  25920000,
-  15552000,
-  10368000,
-  5184000,
-  2592000,
-  864000,
-  345600,
-  259200,
-  172800,
-  86400,
-  43200,
-  21600,
-  14400,
-  10800,
-  7200,
-  3600,
-  1800,
-  900,
-  600,
-  300,
-  120,
-  60,
-  30,
-  10,
-  1
+  31536000, 25920000, 15552000, 10368000, 5184000, 2592000, 864000, 345600, 259200, 172800, 86400, 43200, 21600, 14400, 10800,
+  7200, 3600, 1800, 900, 600, 300, 120, 60, 30, 10, 1
 ];
 
 export default defineComponent({

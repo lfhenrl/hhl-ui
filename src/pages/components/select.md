@@ -6,7 +6,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap gap-5 p-10 "> 
+      <div class="flex flex-wrap gap-2 p-3 items-center"> 
       <H_select
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
@@ -27,7 +27,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap gap-5 p-10"> 
+      <div class="flex flex-wrap gap-2 p-3 items-center"> 
       <H_select 
       :select-data="[
                     {value:`nr1`, label: `Number 1`},
@@ -54,7 +54,7 @@ Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap gap-5 p-10"> 
+      <div class="flex flex-wrap gap-2 p-3 items-center"> 
        <H_select multi
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
@@ -77,7 +77,7 @@ Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap gap-5 p-10"> 
+      <div class="flex flex-wrap gap-2 p-3 items-center"> 
       <H_select multi
       :select-data="[
                     {value:`nr1`, label: `Number 1`},
@@ -104,7 +104,7 @@ Hide filter by adding `hide-filter`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap gap-5 p-10"> 
+      <div class="flex flex-wrap gap-2 p-3 items-center"> 
        <H_select hide-filter
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
@@ -127,7 +127,7 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap gap-5 p-10"> 
+      <div class="flex flex-wrap gap-2 p-3 items-center"> 
        <H_select disabled
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
@@ -150,7 +150,7 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap gap-5 p-10"> 
+      <div class="flex flex-wrap gap-2 p-3 items-center"> 
        <H_select readonly
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
@@ -173,7 +173,7 @@ Min Height by adding `min-height="value px"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap gap-5 p-10"> 
+      <div class="flex flex-wrap gap-2 p-3 items-center"> 
        <H_select min-height="500px"
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
@@ -196,7 +196,7 @@ Max Height by adding `max-height="value px"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap gap-5 p-10"> 
+      <div class="flex flex-wrap gap-2 p-3 items-center"> 
        <H_select max-height="90px"
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
@@ -219,7 +219,7 @@ Min width by adding `min-width="value px"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap gap-5 p-10 flx-align-start"> 
+      <div class="flex flex-wrap gap-2 p-3 items-center"> 
        <H_select min-width="600px"
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
@@ -242,7 +242,7 @@ Max width by adding `max-width="value px"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flx-row flx-wrap gap-5 p-10 flx-align-start"> 
+      <div class="flex flex-wrap gap-2 p-3 items-center"> 
        <H_select max-width="90px"
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">

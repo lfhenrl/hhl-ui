@@ -1,5 +1,5 @@
 <template>
-  <main class="gridBox gridBox_autoName h-100vh w-100vw overflow-hidden" @click="showMenu = false">
+  <main class="gridBox gridBox_autoName h-screen w-screen overflow-hidden" @click="showMenu = false">
     <nav-bar :main-routes="mainRoutes" :active-route="activeMainPath" v-model="showMenu" :medium="medium" :small="small" />
     <menu-left
       :route-links="activeRouteLinks"
@@ -9,20 +9,20 @@
       :small="small"
     />
 
-    <div id="page-container" ref="page" class="overflow-auto h-100pr ml-25">
-      <router-view v-slot="{ Component, params }" class="flx-col p-25">
+    <div id="page-container" ref="page" class="overflow-auto h-100pr ml-5">
+      <router-view v-slot="{ Component, params }" class="flex flex-col p-5">
         <component :is="Component" v-bind="params" />
       </router-view>
     </div>
     <menu-right :view="page" v-show="!medium" />
   </main>
-  <hhl-dialog-service/>
+  <H_dialog-service />
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import { makeRouteList, getRouteData } from "./mdHelp/plugins/routeData";
+import { makeRouteList, getRouteData } from "./components/routeData";
 
 export default defineComponent({
   name: "App",
@@ -94,6 +94,47 @@ export default defineComponent({
 });
 </script>
 <style>
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  height: 100vh;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: inherit;
+  line-height: inherit;
+  font-family: "Roboto", sans-serif;
+  fill: var(--col-txt);
+  background-color: var(--col-body);
+  color: var(--col-txt-1);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  height: 100vh;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+pre {
+  padding: 10px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
 #page-container {
   scroll-behavior: smooth;
   padding-bottom: 400px;
