@@ -18,7 +18,8 @@ const app = createApp(App).use(router);
 
 import { validator } from "../lib/utils/validator";
 import * as dateFormat from "../lib/utils/dateFormat";
-window["fakeImport"] = { validator, dateFormat };
+import { getData } from "./testData/data";
+window["fakeImport"] = { validator, dateFormat, getData };
 
 const H_icon = defineAsyncComponent(() => import("../lib/Components/H_icon.vue"));
 const H_btn = defineAsyncComponent(() => import("../lib/Components/H_btn.vue"));
@@ -35,11 +36,12 @@ const H_datePicker = defineAsyncComponent(() => import("../lib/Components/date/H
 const H_modal = defineAsyncComponent(() => import("../lib/Components/popup/H_modal.vue"));
 const H_dialog = defineAsyncComponent(() => import("../lib/Components/popup/H_dialog.vue"));
 const H_spacer = defineAsyncComponent(() => import("../lib/Components/H_spacer.vue"));
-
 const H_dialogService = defineAsyncComponent(() => import("../lib/Components/dialogService/H_dialogService.vue"));
-
 const H_tabs = defineAsyncComponent(() => import("../lib/Components/navigation/H_tabs.vue"));
 const H_tab = defineAsyncComponent(() => import("../lib/Components/navigation/H_tab.vue"));
+const H_chartPie = defineAsyncComponent(() => import("../lib/Components/charts/H_chartPie.vue"));
+const H_virtualList = defineAsyncComponent(() => import("../lib/Components/virtualList/H_virtualList.vue"));
+const H_dragDrop = defineAsyncComponent(() => import("../lib/Components/draggable/H_dragDrop.vue"));
 
 app.component("H_icon", H_icon);
 app.component("H_btn", H_btn);
@@ -59,5 +61,8 @@ app.component("H_dialogService", H_dialogService);
 app.component("H_tab", H_tab);
 app.component("H_tabs", H_tabs);
 app.component("H_spacer", H_spacer);
+app.component("H_chartPie", H_chartPie);
+app.component("H_virtualList", H_virtualList);
+app.component("H_dragDrop", H_dragDrop);
 
 router.isReady().then(() => app.mount("#app"));

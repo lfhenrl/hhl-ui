@@ -33,9 +33,8 @@ export default defineConfig({
       extensions: ["vue", "md"]
     }),
     ViteComponents({
-      dirs: ["src/components", "lib/components", "src/mdHelp/components"],
+      dirs: ["src/components", "lib/Components", "src/mdHelp/components"],
       extensions: ["vue", "md"],
-
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/]
     }),

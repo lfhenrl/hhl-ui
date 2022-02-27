@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "npmPublish": "cd lib && npm version patch && npm publish"
   },
   "dependencies": {
     "@floating-ui/dom": "^0.2.0",

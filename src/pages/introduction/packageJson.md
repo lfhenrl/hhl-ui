@@ -1,29 +1,30 @@
-
 # Package.json
+
+This is my standard
 
 ```js
 {
-  "name": "hhl-ui",
+  "name": "test-hhl-ui",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.0.11",
-    "vue-router": "^4.0.5"
+    "hhl-ui": "^1.0.19",
+    "vue": "^3.2.31",
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^4.0.3",
-    "@vitejs/plugin-vue": "^1.2.1",
-    "@vue/compiler-sfc": "^3.0.11",
-    "rollup-plugin-visualizer": "^5.3.0",
-    "typescript": "^4.2.3",
-    "vite": "^2.1.5",
-    "vite-plugin-components": "^0.8.4",
-    "vite-plugin-voie": "^0.7.3",
-    "vue-tsc": "^0.0.18"
+    "@types/node": "^17.0.18",
+    "@vitejs/plugin-vue": "^2.2.2",
+    "typescript": "^4.5.5",
+    "vite": "^2.8.4",
+    "unplugin-vue-components": "^0.17.18",
+    "vite-plugin-pages": "^0.20.1",
+    "vite-plugin-windicss": "^1.7.1",
+    "windicss": "^3.4.3"
   }
 }
 ```

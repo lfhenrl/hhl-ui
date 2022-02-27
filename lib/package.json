@@ -1,8 +1,8 @@
 {
-  "name": "hhl-ui-next",
-  "version": "0.0.17",
+  "name": "hhl-ui",
+  "version": "1.0.19",
   "description": "hhl-ui is a VUE library for personel use.",
-  "homepage": "https://github.com/lfhenrl/hhl-ui-next",
+  "homepage": "https://github.com/lfhenrl/hhl-ui",
   "author": {
     "name": "Henrik Holte Larsen"
   },

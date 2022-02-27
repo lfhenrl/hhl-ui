@@ -54,6 +54,12 @@ export function DateDiffDays(date1: Date, date2: Date) {
   return Math.round(differenceMs / day);
 }
 
+export function getDaysInMonth(date: Date) {
+  var month = date.getMonth();
+  var year = date.getFullYear();
+  return new Date(year, month + 1, 0).getDate();
+}
+
 export function DateGetWeek(date: Date) {
   var date = new Date(date);
   date.setHours(0, 0, 0, 0);
@@ -66,10 +72,10 @@ export function DateGetWeek(date: Date) {
 }
 
 export function DateGetToday() {
-    const nDate = new Date();
-    nDate.setHours(0);
-    nDate.setMinutes(0);
-    nDate.setSeconds(0);
-    nDate.setMilliseconds(0);
-    return nDate;
+  const nDate = new Date();
+  nDate.setHours(0);
+  nDate.setMinutes(0);
+  nDate.setSeconds(0);
+  nDate.setMilliseconds(0);
+  return nDate;
 }

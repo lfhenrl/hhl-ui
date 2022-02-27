@@ -15,20 +15,21 @@
       >
         <slot :item="item" />
       </H_virtualListItem>
+      <slot name="absoluteItems" />
     </div>
 
     <div
       ref="shepherd"
       :style="{
         width: isHorizontal ? '0px' : '100%',
-        height: isHorizontal ? '100%' : '0px'
+        height: isHorizontal ? '0px' : '0px'
       }"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onActivated, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { onActivated, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import Virtual from "./virtual";
 import H_virtualListItem from "./H_virtualListItem.vue";
 
@@ -103,7 +104,7 @@ installVirtual();
 
 watch(
   () => props.dataSources,
-  (val: any) => {
+  () => {
     virtual.updateParam("uniqueIds", getUniqueIdFromDataSources());
     virtual.handleDataSourcesChange();
   }
@@ -234,7 +235,8 @@ function onItemResized(id: any, size: number) {
 function onRangeChanged(r: any) {
   range = r;
   paddingStyle.value = {
-    padding: isHorizontal ? `0px ${range.padBehind}px 0px ${range.padFront}px` : `${range.padFront}px 0px ${range.padBehind}px`
+    padding: isHorizontal ? `0px ${range.padBehind}px 0px ${range.padFront}px` : `${range.padFront}px 0px ${range.padBehind}px`,
+    "flex-direction": isHorizontal ? "row" : "column"
   };
   items.value = props.dataSources.slice(range.start, range.end) as any;
 }
@@ -277,7 +279,7 @@ function emitEvent(offset: number, clientSize: number, scrollSize: number, evt: 
 }
 .H_virtualList-scroller {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   margin-right: auto;
   border-right: solid 1px var(--col-bg-3);
 }
