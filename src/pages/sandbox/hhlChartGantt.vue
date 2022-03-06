@@ -1,34 +1,8 @@
 <template>
-  <div class="gantt relative">
-    <H_virtualList
-      data-key="id"
-      :data-sources="dataList"
-      direction="horizontal"
-      class="ganttList"
-      :keeps="99"
-    >
-      <template v-slot="data">
-        <GanttTimeItem :time-data="data.item" />
-      </template>
-      <template v-slot:absoluteItems>
-        <!-- <gantt_item :item="item" :global-start-time="dataList[0].id" :index="index" v-for="(item, index) in gData" /> -->
-        <canvas class="gantt_svg"> </canvas>
-      </template>
-    </H_virtualList>
-  </div>
+  <div class="gantt relative"><H_chartGantt /></div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-// import gantt_item from "./gantt_item.vue";
-import {
-  iGanttTimeItem,
-  makeTimelist,
-} from "../../../lib/Components/charts/gantt/scale/makeTimelist";
-const startDate = new Date(2021, 0, 0, 0);
-const endDate = new Date(2023, 1, 2);
-const dataList = ref<iGanttTimeItem[]>(makeTimelist(startDate, endDate));
-
 // const gData = [
 //   { id: 1, startTime: new Date(2019, 0, 2, 0), endTime: new Date(2019, 0, 3, 0) },
 //   { id: 2, startTime: new Date(2019, 1, 2, 0), endTime: new Date(2019, 1, 22, 0) },

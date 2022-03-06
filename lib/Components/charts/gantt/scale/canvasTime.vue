@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { DateDiffDays } from "../../../lib/utils/dateFunctions";
+import { DateDiffDays } from "../../../../utils/dateFunctions";
 const canvasTime = ref<HTMLCanvasElement>();
 let canvas: HTMLCanvasElement;
 let ctx: CanvasRenderingContext2D;

@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { PropType, ref } from "vue";
 import { iGanttTimeItem } from "./makeTimelist";
-import { getDaysInMonth } from "../../utils/dateFunctions";
+import { getDaysInMonth } from "../../../../utils/dateFunctions";
 
 const monthNames = [
   "January",
