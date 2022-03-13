@@ -95,7 +95,6 @@ const validate = computed(() => {
   font-family: var(--comp-font-family);
   line-height: 1em;
   align-items: flex-start;
-  line-height: 1em;
 }
 
 .H_inputBase__spacer {

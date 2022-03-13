@@ -1,14 +1,22 @@
 <template>
   <!-- {{ data.id }} -->
   <H_datagridRowCell
-    v-if="data.type === 'data'"
+    v-if="type === 'data'"
     v-for="(col, cellIndex) in columns"
     :key="String(cellIndex)"
     :column="col"
-    :data="data.data"
+    :data="data"
   />
-  <H_datagridMoreRows v-if="data.type === 'loader'" :data="data" />
-  <H_datagridGroupRow v-if="data.type === 'group'" :data="data" :expanded="expanded" />
+  <H_datagridMoreRows v-if="type === 'loader'" :data="data" />
+  <H_datagridGroupRow
+    v-if="type === 'group'"
+    :id="id"
+    :data="data"
+    :name="name"
+    :childRowsCount="childRowsCount"
+    :expanded="expanded"
+    :level="level"
+  />
 </template>
 
 <script setup lang="ts">
@@ -20,12 +28,14 @@ import H_datagridGroupRow from "./sub/H_datagridGroupRow.vue";
 
 const props = defineProps({
   id: { type: String, default: "" },
+  type: { type: String, default: "" },
   data: { type: Object as PropType<any>, default: () => {} },
   name: { type: String, default: "" },
-  count: { type: Number, default: 0 },
+  childRowsCount: { type: Number, default: 0 },
   level: { type: Number, default: 0 },
   expanded: { type: Boolean, default: false }
 });
+
 
 const dg = inject("dg") as iDatagrid;
 const columns = dg.Columns;

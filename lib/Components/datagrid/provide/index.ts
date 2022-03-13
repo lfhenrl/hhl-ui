@@ -18,6 +18,8 @@ export class Datagrid {
   public excelMaxRows = 5000;
   public isLoading = false;
 
+  public groupRowTemplate: Array<any> = []
+
   public DataHandler = {} as iDataHandler;
   public DataController = {} as iDataController;
   public OrgGroupBy = [] as string[];
@@ -45,7 +47,6 @@ export class Datagrid {
     this.MainContainer = this.mainDom.value;
     setTimeout(() => {
       this.Header = this.MainContainer.querySelector(".H_datagrid-header")! as HTMLElement;
-      window.addEventListener("resize", this.Resize.bind(this));
       this.resizeColSize();
     });
   }
@@ -62,6 +63,14 @@ export class Datagrid {
     this.isLoading = true;
     this.Event.emit("isLoading", true);
     this.DataController.moreRows(id);
+  }
+
+  getSlotsData(slots: Slots, name: string) {
+    if (!slots || !slots.default) return [];
+    const sl = slots.default().filter((vnode: any) => {
+      return vnode.type.name === name;
+    });
+    return sl;
   }
 
   async getSelectlist(field: string) {

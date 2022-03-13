@@ -5,7 +5,7 @@ import { iQueryObject } from "../../datagridTypes";
 export type iJsonData = InstanceType<typeof JsonData>;
 export class JsonData {
   private dataSource?: any[];
-  private dataStore?: any[];
+  // private dataStore?: any[];
 
   public async setDataSource(_dataSource: any[]) {
     this.dataSource = await _dataSource;

@@ -50,7 +50,7 @@ dg.Event.on("showDialog", (_column: icolumnData) => {
   show.value = true;
 });
 
-const canChange = (from: string, to: string) => {
+const canChange = (from: string, _to: string) => {
   if (from === "sorting") return sortingPopUp.value?.CanNavigate();
   if (from === "filter") return filterPopUp.value?.CanNavigate();
   if (from === "grouping") return groupingPopUp.value?.CanNavigate();

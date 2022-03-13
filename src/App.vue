@@ -14,7 +14,7 @@
         <component :is="Component" v-bind="params" />
       </router-view>
     </div>
-    <menu-right :view="page" v-show="!medium" />
+    <!-- <menu-right :view="page" v-show="!medium" /> -->
   </main>
   <H_dialog-service />
 </template>
@@ -59,6 +59,7 @@ export default defineComponent({
       } else {
         small.value = false;
       }
+      small.value = true;
     }
     watch(
       () => router.currentRoute.value.name,

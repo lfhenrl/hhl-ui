@@ -38,11 +38,15 @@
         <H_btn title="Show Code." round type="icon-text" icon="expand_down" @click="codeShow" class="col-white" />
       </div>
     </div>
+
     <div class="flex flex-1" :class="{ 'flex-col': column }">
+
       <div ref="renderBox" class="hhl-live-editor-content__render">
         <live-render :template="reactiv_htmlCode" @onError="errorHandler" :comp="comp" />
       </div>
+
       <div class="hhl-live-editor-splitLine" v-splitpane v-if="!column" />
+
       <transition name="hhl-live-editor_slide">
         <hhl-code-editor
           class="hhl-live-editor-content__editor"
@@ -53,7 +57,9 @@
           v-if="showCode"
         />
       </transition>
+      
     </div>
+
   </div>
 </template>
 

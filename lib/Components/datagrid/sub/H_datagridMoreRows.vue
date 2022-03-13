@@ -3,20 +3,20 @@
 </template>
 
 <script setup lang="ts">
-import { inject, onBeforeUnmount, onMounted, PropType, ref } from "vue";
+import { inject, onBeforeUnmount, onMounted, ref } from "vue";
 import { iDatagrid } from "../provide";
 
 const props = defineProps({
-  data: { type: Object as PropType<any>, default: () => {} }
+  id: { type: String, default: "" }
 });
 const dg = inject("dg") as iDatagrid;
 const moreRows = ref();
 let observer: any = {};
 
-function InView(entries: any, observer: any) {
+function InView(entries: any) {
   entries.forEach((entry: any) => {
     if (entry.isIntersecting) {
-      dg.MoreRows(props.data.id);
+      dg.MoreRows(props.id);
     } else {
     }
   });
@@ -32,7 +32,10 @@ onMounted(() => {
   observer.observe(moreRows.value);
 });
 
-onBeforeUnmount(() => {});
+onBeforeUnmount(() => {
+  observer.disconnect();
+  observer = null;
+});
 </script>
 
 <style>

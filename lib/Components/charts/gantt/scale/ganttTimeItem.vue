@@ -1,17 +1,17 @@
 <template>
-  <div class="ganttTimeItem">
-    <div class="ganttTimeItem__head">
-      {{ Header }}
-    </div>
-    <div class="ganttTimeItem__values">
-      <div class="ganttTimeItem__values_item" v-for="item in dayList">
-        {{ item }}
-      </div>
-    </div>
-    <div class="ganttTimeItem__valuesGrid">
-      <div class="ganttTimeItem__valuesgrid_item" :data-id="item" v-for="item in dayList"></div>
+  <!-- <div class="ganttTimeItem"> -->
+  <div class="ganttTimeItem__head">
+    {{ Header }}
+  </div>
+  <div class="ganttTimeItem__values">
+    <div class="ganttTimeItem__values_item" v-for="item in dayList">
+      {{ item }}
     </div>
   </div>
+  <div class="ganttTimeItem__valuesGrid">
+    <div class="ganttTimeItem__valuesgrid_item" :data-id="item" v-for="item in dayList"></div>
+  </div>
+  <!-- </div> -->
 </template>
 
 <script setup lang="ts">
@@ -63,45 +63,63 @@ MakeDayList();
 .ganttTimeItem {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--col-bg-5);
   font-size: 10px;
   text-align: center;
-  height: 100%;
+  height: calc(var(--gantt-chart-height) + var(--gantt-time-totalheight));
+  user-select: none;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
 }
 
 .ganttTimeItem__head {
+  text-align: center;
   border-right: 1px solid var(--col-bg-5);
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-all;
-  max-height: 16px;
-  min-height: 16px;
+  max-height: var(--gantt-time-height);
+  min-height: var(--gantt-time-height);
+  user-select: none;
+  pointer-events: none;
+  line-height: var(--gantt-time-height);
+  background-color: var(--col-bg-2);
 }
 
 .ganttTimeItem__values {
   display: flex;
   border-top: 1px solid var(--col-bg-5);
+  user-select: none;
+  pointer-events: none;
+  max-height: var(--gantt-time-height);
+  min-height: var(--gantt-time-height);
+  background-color: var(--col-bg-2);
 }
 
 .ganttTimeItem__values_item {
+  line-height: var(--gantt-time-height);
   border-right: 1px solid var(--col-bg-5);
-  text-align: center;
   min-width: 20px;
   max-width: 20px;
-  max-height: 16px;
-  min-height: 16px;
+  max-height: var(--gantt-time-height);
+  min-height: var(--gantt-time-height);
+  user-select: none;
+  pointer-events: none;
 }
 
 .ganttTimeItem__valuesGrid {
   height: 100%;
   display: flex;
+  user-select: none;
+  pointer-events: none;
 }
 
 .ganttTimeItem__valuesgrid_item {
   border-right: 1px solid var(--col-bg-5);
-  border-top: 1px solid var(--col-bg-5);
   min-width: 20px;
   max-width: 20px;
   height: 100%;
+  user-select: none;
+  pointer-events: none;
 }
 </style>

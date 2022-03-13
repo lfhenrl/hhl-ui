@@ -9,9 +9,10 @@ export class Columns {
   }
 
   loadColumns() {
-    if (this.slots && this.slots.default) {
+    const slotData = this.dg.getSlotsData(this.slots, "H_column");
+    if (slotData.length > 0) {
       const tempColumns: any = [];
-      const slotData = this.getSlotsData();
+
       slotData.forEach((item: any, index: number) => {
         const f_active = this.filterActive(
           item.props.filter_type,
@@ -21,17 +22,17 @@ export class Columns {
         );
         const className = `col-${index}`;
 
-        const sortObject = {
-          field: item.props.field,
-          index: this.getSortIndex(item),
-          sorting: item.props.sorting ?? "none",
-          no_sorting: item.props.no_sorting === "" ? true : false,
-          Organize: this.SortOrganize.bind(this),
-          count: this.getSortCount.bind(this)
-        };
+        // const sortObject = {
+        //   field: item.props.field,
+        //   index: this.getSortIndex(item),
+        //   sorting: item.props.sorting ?? "none",
+        //   no_sorting: item.props.no_sorting === "" ? true : false,
+        //   Organize: this.SortOrganize.bind(this),
+        //   count: this.getSortCount.bind(this)
+        // };
         const column: icolumnData = {
           dom: null,
-          visibel: true,
+          visibel: item.props.visibel ?? true,
           props: {
             field: item.props.field,
             title: item.props.title ?? item.props.field,
@@ -49,7 +50,7 @@ export class Columns {
             filter_condition: item.props.filter_condition ?? "none",
             filter_value1: item.props.filter_value1,
             filter_value2: item.props.filter_value2,
-            visibel: item.props.vivibel ?? true
+            visibel: item.props.visibel ?? true
           },
           slot: item.children,
           index: index,
@@ -99,27 +100,6 @@ export class Columns {
     }
   }
 
-  getSlotsData() {
-    const slData: any = [];
-    if (!this.slots || !this.slots.default) return slData;
-    const sl = this.slots.default().filter((vnode: any) => {
-      return vnode.type.name === "H_column";
-    });
-    sl.filter((item: any) => {
-      if (this.dg.OrgGroupBy.includes(item.props.title)) {
-        slData.push(item);
-        return true;
-      }
-    });
-    sl.filter((item: any) => {
-      if (!this.dg.OrgGroupBy.includes(item.props.title)) {
-        slData.push(item);
-        return true;
-      }
-    });
-    return slData;
-  }
-
   classInit(index: number) {
     this.dg.StyleSheet.insertRule(`.${this.dg.ClassGuid} .col-${index.toString()} { width: 0 }`);
   }
@@ -148,14 +128,14 @@ export class Columns {
     return this.columns.value.filter((item: icolumnData) => item.sort.index < 1000);
   }
 
-  filterActive(type: string = "none", value1: string = "", value2: string = "", condition = "none") {
+  filterActive(type: string = "none", _value1: string = "", _value2: string = "", condition = "none") {
     if (type === "none") return false;
-    if (value1 === "") return false;
+    if (_value1 === "") return false;
     if (condition === "none") return false;
-    if (type === "select" && value1 === "") return false;
-    if (type === "bool" && value1 === "") return false;
-    if (type === "date" && value1 === null) return false;
-    if (type === "dateTime" && value1 === null) return false;
+    if (type === "select" && _value1 === "") return false;
+    if (type === "bool" && _value1 === "") return false;
+    if (type === "date" && _value1 === null) return false;
+    if (type === "dateTime" && _value1 === null) return false;
     return true;
   }
 }

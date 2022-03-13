@@ -1,8 +1,10 @@
 <template>
-  <div class="H_datagridGroupRow">
+  <rend v-if="useTemplate" />
+
+  <div class="H_datagridGroupRow" v-else>
     <div class="H_datagridGroupRow__content" :style="style">
-      <H_icon :icon="expanded ? 'expand_down' : 'expand_right'" btn @click="click" />
-      {{ data.name }} <span class="H_datagridGroupRow__childCount"> ({{ data.childRowsCount }})</span>
+      <H_icon :icon="expanded ? 'expand_down' : 'expand_right'" btn @click="click" />{{ useTemplate }} {{ name }}
+      <span class="H_datagridGroupRow__childCount"> ({{ childRowsCount }})</span>
     </div>
     <div class="H_datagridGroupRow__spacing">
       <div v-for="column in columns" class="H_datagridGroupRow__spacingCell" :class="column.className" />
@@ -11,25 +13,40 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, ref, PropType } from "vue";
+import { computed, inject, PropType } from "vue";
 import { iDatagrid } from "../provide";
 import H_icon from "../../H_icon.vue";
 
 const props = defineProps({
-  data: { type: Object as PropType<any>, default: () => {} },
-  expanded: { type: Boolean, default: false }
+  name: { type: String, default: "" },
+  expanded: { type: Boolean, default: false },
+  childRowsCount: { type: Number, default: 0 },
+  id: { type: String, default: "" },
+  level: { type: Number, default: 0 },
+  data: { type: Object as PropType<any>, default: () => {} }
 });
+
+function rend() {
+  if (dg.groupRowTemplate.length > 0) {
+    return dg.groupRowTemplate[0].children.default({
+      props,
+      columns: columns.value,
+      click
+    });
+  }
+}
 
 const dg = inject("dg") as iDatagrid;
 const columns = dg.Columns;
+const useTemplate = dg.groupRowTemplate.length > 0;
 
 function click() {
-  dg.Event.emit("groupExpanded", { id: props.data.id, expanded: !props.expanded });
+  dg.Event.emit("groupExpanded", { id: props.id, expanded: !props.expanded });
 }
 
 const style = computed(() => {
   return {
-    marginLeft: props.data.level * 10 + "px"
+    marginLeft: props.level * 10 + "px"
   };
 });
 </script>

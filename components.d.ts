@@ -4,8 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    CanvasTime: typeof import('./lib/Components/charts/gantt/scale/canvasTime.vue')['default']
-    ChartGanttShapeBar: typeof import('./lib/Components/charts/gantt/chart/chartGanttShapeBar.ts')['default']
+    Gantt_datagrid: typeof import('./lib/Components/charts/gantt/chart/gantt_datagrid.vue')['default']
     Gantt_item: typeof import('./lib/Components/charts/gantt/chart/gantt_item.vue')['default']
     GanttTimeItem: typeof import('./lib/Components/charts/gantt/scale/ganttTimeItem.vue')['default']
     H_btn: typeof import('./lib/Components/H_btn.vue')['default']
@@ -13,6 +12,7 @@ declare module 'vue' {
     H_chartPie: typeof import('./lib/Components/charts/H_chartPie.vue')['default']
     H_checkbox: typeof import('./lib/Components/H_checkbox.vue')['default']
     H_column: typeof import('./lib/Components/datagrid/H_column.vue')['default']
+    'H_column copy': typeof import('./lib/Components/datagrid/H_groupRow.vue')['default']
     H_datagrid: typeof import('./lib/Components/datagrid/H_datagrid.vue')['default']
     H_datagridGroupRow: typeof import('./lib/Components/datagrid/sub/H_datagridGroupRow.vue')['default']
     H_datagridHeadCell: typeof import('./lib/Components/datagrid/sub/H_datagridHeadCell.vue')['default']
@@ -27,6 +27,7 @@ declare module 'vue' {
     H_dragDrop: typeof import('./lib/Components/draggable/H_dragDrop.vue')['default']
     H_dragDropItem: typeof import('./lib/Components/draggable/H_dragDropItem.vue')['default']
     H_gridlines: typeof import('./lib/Components/layout/H_gridlines.vue')['default']
+    H_groupRow: typeof import('./lib/Components/datagrid/H_groupRow.vue')['default']
     H_icon: typeof import('./lib/Components/H_icon.vue')['default']
     H_input: typeof import('./lib/Components/H_input.vue')['default']
     H_inputBase: typeof import('./lib/Components/H_inputBase.vue')['default']

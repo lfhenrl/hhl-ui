@@ -17,6 +17,7 @@ export default function handleData(
     dataStore[rec] = {
       id: rec,
       index: xIndex,
+      changeNr: 1,
       name: isGrouped ? item.id : rec,
       groupField: QueryObject.groupBy,
       expanded: false,

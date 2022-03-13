@@ -11,7 +11,7 @@ type iDataHandler = InstanceType<typeof dataHandler>;
 type iDataController = InstanceType<typeof dataController>;
 class dataController {
   private dg = {} as iDatagrid;
-  public setInternalData = (data: iReturnData) => {};
+  public setInternalData = (_data: iReturnData) => {};
   private dataStore: any = {};
   private totalCount = 0;
 
@@ -41,7 +41,7 @@ class dataController {
 
   private async groupExpanded(data: any) {
     this.dg.Event.emit("isLoading", true);
-    const { rootRow, actRow, index, filters } = getActRootNode(data.id, this.dataStore);
+    const { actRow, filters } = getActRootNode(data.id, this.dataStore);
     actRow.expanded = data.expanded;
     if (!actRow.haveExpandData) {
       actRow.haveExpandData = true;

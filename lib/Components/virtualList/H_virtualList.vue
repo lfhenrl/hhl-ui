@@ -83,7 +83,9 @@ defineExpose({
   scrollToIndex,
   scrollToOffset,
   getOffset,
-  getScrollSize
+  getScrollSize,
+  reset,
+  update
 });
 
 const root = ref(<HTMLElement | null>null);
@@ -98,9 +100,9 @@ let leftScroll = 0;
 
 installVirtual();
 
-// const widthStyle = computed(() => {
-//   return { width: root.value?.scrollWidth + "px" };
-// });
+function update() {
+  virtual.handleDataSourcesChange();
+}
 
 watch(
   () => props.dataSources,

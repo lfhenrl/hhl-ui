@@ -1,5 +1,5 @@
 <template>
-  <div ref="dom" class="H_datagrid" :class="classGuid">
+  <div ref="dom" class="H_datagrid" :class="classGuid" v-resize="onResize">
     <H_virtualList
       ref="virtualList"
       style="overflow-y: scroll; height: 100%; position: relative"
@@ -18,11 +18,19 @@
         </div>
       </template>
       <template v-slot="data">
-        <H_row :data="data.item" :expanded="data.item.expanded" />
+        <H_row
+          :id="data.item.id"
+          :data="data.item.data"
+          :type="data.item.type"
+          :level="data.item.level"
+          :name="data.item.name"
+          :child-rows-count="data.item.childRowsCount"
+          :expanded="data.item.expanded"
+        />
       </template>
     </H_virtualList>
     <H_progressBar class="H_virtualList-info" :show="isLoading" />
-    <div class="H_virtualList-footer">
+    <div class="H_virtualList-footer" v-if="!hideFooter">
       <H_btn size="sm" round type="icon-text" icon="refresh" title="Reload data" @click="reload" />
       <H_btn
         size="sm"
@@ -73,6 +81,7 @@ import H_spacer from "../H_spacer.vue";
 import { iReturnData } from "./datagridTypes";
 import { dataController, iDataHandler } from "./dataController";
 import H_progressBar from "../H_progressBar.vue";
+import vResize from "vue-resize-observer";
 
 const props = defineProps({
   dataKey: {
@@ -80,6 +89,7 @@ const props = defineProps({
     required: true
   },
   groups: { type: Array as PropType<string[]>, default: () => [] },
+  hideFooter: { type: Boolean, default: false },
   search: String,
   pageSize: { type: Number, default: 20 },
   excelMaxRows: { type: Number, default: 5000 },
@@ -94,6 +104,15 @@ const props = defineProps({
     required: true
   }
 });
+
+const emit = defineEmits(["rawdata"]);
+defineExpose({ update });
+
+function onResize() {
+  console.log("onResize");
+  dg.Resize();
+}
+
 const slots = useSlots();
 const selectedId = ref("");
 const dom = ref(<HTMLElement>{});
@@ -107,6 +126,7 @@ dg.searchFields = props.searchFields ?? [];
 dg.pageSize = props.pageSize;
 dg.excelMaxRows = props.excelMaxRows;
 const columnsHandler = new Columns(slots, dg);
+dg.groupRowTemplate = dg.getSlotsData(slots, "H_group-row");
 dg.Columns = columnsHandler.columns;
 const columns = dg.Columns;
 const classGuid = dg.ClassGuid;
@@ -120,6 +140,7 @@ dg.DataController = new dataController(dg);
 
 dg.DataController.setInternalData = (data: iReturnData) => {
   gridData.value = data.data;
+  emit("rawdata", data.data);
   rowCount.value = data.rowCount;
   rowCountTotal.value = data.totalCount;
   isLoading.value = false;
@@ -143,6 +164,10 @@ watch(
 onMounted(() => {
   dg.Init();
 });
+
+function update() {
+  virtualList.value.update();
+}
 
 function datagridClick(e: MouseEvent) {
   const ele = e.target as HTMLElement;
@@ -197,7 +222,6 @@ function toggleFullScreen() {
 
 <style>
 .H_datagrid {
-  margin-top: 5px;
   display: grid;
   grid-template-rows: 1fr auto;
   box-shadow: 0 0 1px 1px var(--col-bg-5);
@@ -263,7 +287,7 @@ function toggleFullScreen() {
 }
 
 .H_datagridHeadCell__content {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   display: inline-block;
   width: 100%;
