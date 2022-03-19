@@ -5,14 +5,12 @@
 declare module 'vue' {
   export interface GlobalComponents {
     Gantt_datagrid: typeof import('./lib/Components/charts/gantt/chart/gantt_datagrid.vue')['default']
-    Gantt_item: typeof import('./lib/Components/charts/gantt/chart/gantt_item.vue')['default']
     GanttTimeItem: typeof import('./lib/Components/charts/gantt/scale/ganttTimeItem.vue')['default']
     H_btn: typeof import('./lib/Components/H_btn.vue')['default']
     H_chartGantt: typeof import('./lib/Components/charts/gantt/H_chartGantt.vue')['default']
     H_chartPie: typeof import('./lib/Components/charts/H_chartPie.vue')['default']
     H_checkbox: typeof import('./lib/Components/H_checkbox.vue')['default']
     H_column: typeof import('./lib/Components/datagrid/H_column.vue')['default']
-    'H_column copy': typeof import('./lib/Components/datagrid/H_groupRow.vue')['default']
     H_datagrid: typeof import('./lib/Components/datagrid/H_datagrid.vue')['default']
     H_datagridGroupRow: typeof import('./lib/Components/datagrid/sub/H_datagridGroupRow.vue')['default']
     H_datagridHeadCell: typeof import('./lib/Components/datagrid/sub/H_datagridHeadCell.vue')['default']
