@@ -82,7 +82,6 @@ const sortIndex = computed({
 });
 
 const ok = () => {
-  const yy = getSortIndex();
   props.data.sorting = column.value.sorting ?? "none";
   props.data.index = getSortIndex();
   props.data.organize();
@@ -110,7 +109,6 @@ const getSortIndex = () => {
   if (column.value.sorting === "none") {
     return 1000;
   } else {
-    const valu = column.value.index + 1;
     if (props.data.index > column.value.index) {
       return column.value.index - 0.001;
     } else {

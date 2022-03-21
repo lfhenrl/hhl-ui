@@ -10,6 +10,8 @@ export class Datagrid {
   public MainContainer = {} as HTMLElement;
   public Header = {} as HTMLElement;
   public StyleSheet = {} as CSSStyleSheet;
+  public SelectClass: any;
+  public SelectClassName = "";
   public ClassGuid = "";
   public Columns = [] as any;
   public searchFields = [] as string[];
@@ -18,7 +20,7 @@ export class Datagrid {
   public excelMaxRows = 5000;
   public isLoading = false;
 
-  public groupRowTemplate: Array<any> = []
+  public groupRowTemplate: Array<any> = [];
 
   public DataHandler = {} as iDataHandler;
   public DataController = {} as iDataController;
@@ -45,10 +47,20 @@ export class Datagrid {
 
   Init() {
     this.MainContainer = this.mainDom.value;
+    this.SelectClassName = `Selector_${this.ClassGuid}`;
+    const style = document.createElement("style");
+    this.MainContainer.appendChild(style) as HTMLStyleElement;
+    const sh = style.sheet! as CSSStyleSheet;
+    sh.insertRule(`.${this.SelectClassName}[data-id="xx"]  { background-color: var(--col-bg-4); }`);
+    this.SelectClass = sh.cssRules[0];
     setTimeout(() => {
       this.Header = this.MainContainer.querySelector(".H_datagrid-header")! as HTMLElement;
       this.resizeColSize();
     });
+  }
+
+  selectChanged(id: string) {
+    this.SelectClass.selectorText = `.${this.SelectClassName}[data-id="${id}"]`;
   }
 
   async UpdateData() {

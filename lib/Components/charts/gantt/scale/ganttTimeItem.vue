@@ -4,18 +4,18 @@
     {{ Header }}
   </div>
   <div class="ganttTimeItem__values">
-    <div class="ganttTimeItem__values_item" v-for="item in dayList">
+    <div class="ganttTimeItem__values_item" :key="item" v-for="item in dayList">
       {{ item }}
     </div>
   </div>
-  <div class="ganttTimeItem__valuesGrid">
+  <!-- <div class="ganttTimeItem__valuesGrid">
     <div class="ganttTimeItem__valuesgrid_item" :data-id="item" v-for="item in dayList"></div>
-  </div>
+  </div> -->
   <!-- </div> -->
 </template>
 
 <script setup lang="ts">
-import { PropType, ref } from "vue";
+import { PropType, ref, watch } from "vue";
 import { iGanttTimeItem } from "./makeTimelist";
 import { getDaysInMonth } from "../../../../utils/dateFunctions";
 
@@ -39,18 +39,25 @@ const props = defineProps({
 });
 
 const dayList = ref<number[]>([]);
+const Header = ref("");
 
-const timeData = props.timeData;
-const Header = monthNames[timeData.month] + " " + timeData.year;
+watch(
+  () => props.timeData,
+  () => {
+    MakeDayList();
+  }
+);
 
 function MakeDayList() {
-  let days = getDaysInMonth(new Date(timeData.year, timeData.month, timeData.day));
-  let day = timeData.day;
-  if (timeData.last) {
+  Header.value = monthNames[props.timeData.month] + " " + props.timeData.year;
+  let days = getDaysInMonth(new Date(props.timeData.year, props.timeData.month, props.timeData.day));
+  let day = props.timeData.day;
+  if (props.timeData.last) {
     day = 1;
-    days = timeData.day;
+    days = props.timeData.day;
   }
   const _dayList: Array<number> = [];
+
   for (let i = day; i <= days; i++) {
     _dayList.push(i);
   }

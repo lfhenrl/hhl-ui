@@ -9,7 +9,7 @@
         <H_input v-model="seek" clearable placeholder="Search" endIcon="search" style="max-width: 200px" />
       </div>
 
-      <H_datagrid
+      <H_datagrid-vscroll
         data-key="rec_id"
         :groups="['State']"
         :search="seek"
@@ -23,7 +23,7 @@
         <H_column field="mode" title="Mode" type="string" filter_type="select" />
         <H_column field="state" title="State" type="string" filter_type="string" />
         <H_column field="is_planned" title="Planned" type="bool" filter_type="bool" />
-      </H_datagrid>
+      </H_datagrid-vscroll>
     </div>
   </div>
 </template>
@@ -40,15 +40,11 @@ const _fetch = new hhlFetch("http://localhost:5272/EventLog");
 
 const DataHandler = new dataHandler(getData, getCount, getSelectList);
 
-function formatDate(value: any, row: icolumnData) {
+function formatDate(value: any, _row: icolumnData) {
   return D_01_dec_2021_HHMM(new Date(value));
 }
 
-function styleCell(value: any, row: icolumnData) {
-  return {
-    color: "orange"
-  };
-}
+
 
 function load() {
   DataHandler.Load();

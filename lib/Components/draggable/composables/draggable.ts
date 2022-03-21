@@ -23,6 +23,7 @@ const useDraggableContainer = (originalItems: Ref<Array<any>>, context: any, max
     if (itemCurrentlyDragging.value !== null) {
       return;
     }
+    console.log("aaaa", itemCurrentlyDragging);
     context.emit("update:modelValue", toOriginalArray(items.value));
   });
 
@@ -93,6 +94,10 @@ const useDraggableItem = (item: Ref<any>, position: Ref<number>, containerId: Re
   };
 
   const onDragEnd = () => {
+    // console.log("wwwww", itemCurrentlyDragging.value!.data.id);
+    // itemCurrentlyDragging.value!.data.id = "_1_22";
+    // itemCurrentlyDragging.value!.data.name = "_1_22";
+    // itemCurrentlyDragging.value!.data.index = 12;
     itemCurrentlyDragging.value = null;
   };
 

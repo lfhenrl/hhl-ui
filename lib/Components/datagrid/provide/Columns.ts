@@ -22,14 +22,6 @@ export class Columns {
         );
         const className = `col-${index}`;
 
-        // const sortObject = {
-        //   field: item.props.field,
-        //   index: this.getSortIndex(item),
-        //   sorting: item.props.sorting ?? "none",
-        //   no_sorting: item.props.no_sorting === "" ? true : false,
-        //   Organize: this.SortOrganize.bind(this),
-        //   count: this.getSortCount.bind(this)
-        // };
         const column: icolumnData = {
           dom: null,
           visibel: item.props.visibel ?? true,

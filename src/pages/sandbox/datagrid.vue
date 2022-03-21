@@ -7,7 +7,7 @@
         <H_input v-model="seek" clearable placeholder="Search" endIcon="search" style="max-width: 200px" />
       </div>
 
-      <H_datagrid
+      <H_datagrid-vscroll
         data-key="id"
         :groups="['Value 2', 'Value 4']"
         :search="seek"
@@ -45,7 +45,7 @@
         <H_column field="val3" title="Value 3" type="string" :cell_style="styleCell" />
         <H_column field="val5" title="Value 5" type="bool" filter_type="bool" filter_condition="bool_list" />
         <H_column field="val4" title="Value 4" type="string" filter_type="select" />
-      </H_datagrid>
+      </H_datagrid-vscroll>
     </div>
   </div>
 </template>

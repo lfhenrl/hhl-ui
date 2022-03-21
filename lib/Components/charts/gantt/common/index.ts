@@ -3,15 +3,17 @@ import { iGanttConnectTool, ganttConnectTool } from "../chart/ganttConnectTool";
 import { iGanttItem } from "../chart/ganttItem";
 import { GanttData, iGanttData } from "./ganttData";
 import { ganttConnectRender } from "../chart/ganttConnectRender";
+import { iDatagrid } from "../../../datagrid/provide";
 
 export type iChartGantt = InstanceType<typeof chartGantt>;
 
 export class chartGantt {
   public Event = new EventHandler<
-    "setBarItems" | "setChartHeight" | "scrollTop" | "setTimeList" | "setGriddata" | "updateDgrid"
+    "setBarItems" | "setChartHeight" | "scrollTop" | "setTimeList" | "setGriddata" | "updateDgrid" | "ganttRowClicked"
   >();
   public ganttData: iGanttData;
   public chart!: HTMLElement;
+  public dg!: iDatagrid;
   public chartContent!: HTMLElement;
   public chartTime!: HTMLElement;
   public chartContainer!: HTMLElement;
@@ -79,7 +81,6 @@ export class chartGantt {
   drawConnectors(data: Array<string>, activeBars: Array<string>) {
     data.forEach((item: string) => {
       const idArr = item.split("@");
-      console.log("aaa", activeBars,idArr);
       if (!activeBars.includes(idArr[0])) return;
       if (!activeBars.includes(idArr[1])) return;
       const source = this.ganttData.dataStore[idArr[0]];
@@ -129,6 +130,7 @@ export class chartGantt {
       const data = ele.dataset;
       this.activeBar = this.ganttData.dataStore[data.id];
       this.activeBar?.mouseDown(e.x, e.y, typ);
+      this.Event.emit("ganttRowClicked", this.activeBar);
     }
   }
 

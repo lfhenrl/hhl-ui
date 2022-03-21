@@ -102,6 +102,7 @@ installVirtual();
 
 function update() {
   virtual.handleDataSourcesChange();
+  console.log("UPDATE");
 }
 
 watch(

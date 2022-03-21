@@ -45,15 +45,12 @@ export class ganttConnectTool {
     if (this.ganttItem?.itemType === "bar_connectRight") {
       const elem = document.elementFromPoint(x, y) as HTMLElement;
       if (elem.classList.contains("gantt__Item_bar_connectLeft")) {
-        console.log("mouseUp", elem);
         const data: any = elem?.dataset;
         if (data.id === this.ganttItem.id.toString()) return;
         const target = this.chart.ganttData.dataStore[data.id];
         const id = `${this.ganttItem.id}@${data.id}`;
         ganttConnectRender(this.chart, this.ganttItem, target, id);
-        this.chart.ganttData.connectorList.push(id)
-
-        console.log("Connect", this.ganttItem.toConnectors);
+        this.chart.ganttData.connectorList.push(id);
       }
     }
 

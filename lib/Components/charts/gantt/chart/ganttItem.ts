@@ -10,6 +10,7 @@ export class ganttItem {
   public chart: iChartGantt;
   public index: number;
   public id: number;
+  public tempId?: string;
   public l = 0;
   public w = 0;
   public t = 0;
@@ -49,22 +50,29 @@ export class ganttItem {
 
     const val = x - this.offSetBar;
     const diff = this.l - val;
+    let needUpdate = false;
 
     if (this.itemType === "bar_dragLeft") {
       this.l = val;
       this.w = this.w + diff;
+      needUpdate = true;
     }
 
     if (this.itemType === "bar_dragRight") {
       this.w = this.orgWidth - diff;
+      needUpdate = true;
     }
 
-    if (this.itemType === "bar") {
+    if (this.itemType === "bar" && this.data.type === "task") {
       this.l = val;
+      needUpdate = true;
     }
-    this.chart.ganttData.updateBarItem(this);
-    this.updateToConnectors();
-    this.updateFromConnectors();
+
+    if (needUpdate) {
+      this.chart.ganttData.updateBarItem(this);
+      this.updateToConnectors();
+      this.updateFromConnectors();
+    }
   }
 
   mouseUp(x: number, y: number) {
@@ -76,29 +84,26 @@ export class ganttItem {
   }
 
   updateToConnectors() {
-    if (this.itemType === "bar_dragRight" || this.itemType === "bar") {
-      for (const item in this.toConnectors) {
-        const s_id = Number(item.split("@")[0]);
-        const t_id = Number(item.split("@")[1]);
-        const source = this.chart.ganttData.dataStore[s_id];
-        const target = this.chart.ganttData.dataStore[t_id];
-        const line = this.toConnectors[item];
-        ganttConnectChange(line, source, target);
-      }
+    for (const item in this.toConnectors) {
+      const s_id = item.split("@")[0];
+      const t_id = item.split("@")[1];
+      const source = this.chart.ganttData.dataStore[s_id];
+      const target = this.chart.ganttData.dataStore[t_id];
+      const line = this.toConnectors[item];
+      ganttConnectChange(line, source, target);
     }
   }
 
   updateFromConnectors() {
-    if (this.itemType === "bar_dragLeft" || this.itemType === "bar") {
       for (const item in this.fromConnectors) {
-        const s_id = Number(item.split("@")[0]);
-        const t_id = Number(item.split("@")[1]);
+        const s_id = item.split("@")[0];
+        const t_id = item.split("@")[1];
         const source = this.chart.ganttData.dataStore[s_id];
         const target = this.chart.ganttData.dataStore[t_id];
         const line = this.fromConnectors[item];
         ganttConnectChange(line, source, target);
       }
-    }
+
   }
   connectRender() {}
 
@@ -118,13 +123,15 @@ export class ganttItem {
     const gantt__Item_bar_connectRight = document.createElement("div");
 
     gantt__Item.classList.add("gantt__Item");
+    gantt__Item.classList.add(this.chart.dg.SelectClassName);
     gantt__Item.style.top = this.t + "px";
+    gantt__Item.dataset.id = this.tempId;
 
+    this.bar.classList.add("gantt__Item_bar");
     if (this.data.type === "group") {
       this.bar.classList.add("gantt__Item_group");
     }
 
-    this.bar.classList.add("gantt__Item_bar");
     this.bar.dataset.id = this.id.toString();
     this.bar.style.left = this.l + "px";
     this.bar.style.width = this.w + "px";

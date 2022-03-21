@@ -10,14 +10,12 @@ export type iGanttTimeItem = {
 };
 
 export function makeTimelist(startTime: Date, endTime: Date, span: string = "month") {
-
-
-
   const AddingValue = getAddingValue(span);
   const DayValue = getDayValue(span);
   const HourValue = getHourValue(span);
   const timelist: Array<iGanttTimeItem> = [];
   for (var d = new Date(startTime); d <= endTime; AddingValue(d)) {
+    d.setDate(1);
     const rec: iGanttTimeItem = {
       id: d.valueOf(),
       year: d.getFullYear(),

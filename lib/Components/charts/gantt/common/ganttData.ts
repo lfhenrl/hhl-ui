@@ -1,13 +1,13 @@
 import { iChartGantt } from ".";
 import { ganttItem, iGanttItem } from "../chart/ganttItem";
 import { makeTimelist } from "../scale/makeTimelist";
-import { DateDiffDays } from "../../../../utils/dateFunctions";
+import { DateDiffDays, DateAddDays } from "../../../../utils/dateFunctions";
 
 export type iGanttData = InstanceType<typeof GanttData>;
 
 export class GanttData {
   public chart: iChartGantt;
-  public rawData?: Array<any>;
+  public rawData?: any;
   public dataStore = {};
   public barItems: Array<iGanttItem> = [];
   public gridItems: Array<any> = [];
@@ -18,13 +18,17 @@ export class GanttData {
     this.chart = _chart;
   }
 
-  newData(data: Array<any>) {
+  newData(data: any) {
     this.rawData = data;
-    this.makeTimeList();
+    this.connectorList = data.connectors;
     this.makeGridData();
     this.dataStore = {};
     let index = 0;
-    data.forEach((item: any) => {
+    let minDate = new Date(3300, 1, 1).valueOf();
+    let maxDate = new Date(0).valueOf();
+    data.data.forEach((item: any) => {
+      minDate = Math.min(item.startTime.valueOf(), minDate);
+      maxDate = Math.max(item.endTime.valueOf(), maxDate);
       const bar = new ganttItem(this.chart, item, index);
       index = index + 1;
       const gs = this.dataStore[item.group];
@@ -52,6 +56,9 @@ export class GanttData {
       bar.data.days = DateDiffDays(item.startTime, item.endTime);
       this.dataStore[item.id] = bar;
     });
+    this.chart.startDate = DateAddDays(new Date(minDate), -2);
+    this.chart.endDate = DateAddDays(new Date(maxDate), 2);
+    this.makeTimeList();
   }
 
   groupData(data: Array<any>) {
@@ -68,13 +75,14 @@ export class GanttData {
       const bar = this.dataStore[id];
       item.data.days = bar.data.days;
       bar.index = index;
-      item.index = index.toString();
+      bar.tempId = item.id;
+      // item.index = index.toString();
       this.barItems.push(bar);
       this.activeBars.push(id.toString());
     });
     this.chart.drawBarItems(this.barItems);
-    // console.log("hhhhhh", this.dataStore);
     this.chart.drawConnectors(this.connectorList, this.activeBars);
+    console.log("WWWWWWWWWWWWWWWWW", data);
   }
 
   makeTimeList() {
@@ -83,7 +91,7 @@ export class GanttData {
   }
 
   makeGridData() {
-    this.chart.Event.emit("setGriddata", this.rawData);
+    this.chart.Event.emit("setGriddata", this.rawData?.data);
   }
 
   updateBarItem(item: iGanttItem) {
@@ -105,6 +113,8 @@ export class GanttData {
     gBar.w = max - min;
     gBar.bar.style.left = gBar.l + "px";
     gBar.bar.style.width = gBar.w + "px";
+    gBar.updateToConnectors();
+    gBar.updateFromConnectors();
   }
 
   updateBarItemSave(item: iGanttItem) {
@@ -120,6 +130,18 @@ export class GanttData {
     gBar.data.startTime = gData.startTime;
     gBar.data.endTime = gData.endTime;
     gBar.data.days = gData.days;
+
+    if (gBar.data.endTime > this.chart.endDate) {
+      this.chart.endDate = DateAddDays(new Date(gBar.data.endTime), 2);
+      this.makeTimeList();
+    }
+
+    if (gBar.data.startTime < this.chart.startDate) {
+      this.chart.startDate = DateAddDays(new Date(gBar.data.startTime), -2);
+      this.makeTimeList();
+      this.chart.drawBarItems(this.barItems);
+      this.chart.drawConnectors(this.connectorList, this.activeBars);
+    }
 
     gBar.data = { ...gBar.data };
     gItem.data.days = gData.days;

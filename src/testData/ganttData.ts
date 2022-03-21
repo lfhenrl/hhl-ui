@@ -1,5 +1,4 @@
-
-const gData = [
+const data = [
   {
     id: 1,
     text: "Nummer 1",
@@ -130,4 +129,11 @@ const gData = [
   }
 ];
 
-export default gData
+const connectors = ["resource@milestone"];
+
+const gData = {
+  data,
+  connectors
+};
+
+export default gData;

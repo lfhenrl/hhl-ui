@@ -8,6 +8,7 @@
     @dragend.stop="onDragEnd"
     @dragenter.prevent
     ref="draggableItemEl"
+    role="listitem"
     :class="{ isDragging }"
   >
     <slot></slot>

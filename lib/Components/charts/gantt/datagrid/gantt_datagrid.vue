@@ -7,28 +7,28 @@
     :dataHandler="DataHandler"
     :page-size="100"
     hide-footer
+    @row-clicked="rowClicked"
     @rawdata="onData"
+    @loaded="loaded"
   >
     <H_column field="group" title="Group" type="string" filter_type="select" :width="100" :visibel="false" />
     <H_column field="text" title="Title" type="action" />
     <H_column field="days" title="Days" type="action" :width="40" />
     <H_group-row>
       <template v-slot="data">
-        <div class="gantt_datagrid_groupRow">
-          <div class="H_datagridRowCell" :class="[data.columns[1].className]">
-            <H_icon
-              class="gantt_datagrid_groupRowExpander"
-              :icon="data.props.expanded ? 'expand_down' : 'expand_right'"
-              btn
-              @click="data.click"
-            />
-            {{ data.props.name }}
-            <span class="H_datagridGroupRow__childCount"> ({{ data.props.childRowsCount }})</span>
-          </div>
+        <div class="H_datagridRowCell" :class="[data.columns[1].className]">
+          <H_icon
+            class="gantt_datagrid_groupRowExpander"
+            :icon="data.props.expanded ? 'expand_down' : 'expand_right'"
+            btn
+            @click="data.click"
+          />
+          {{ data.props.name }}
+          <span class="H_datagridGroupRow__childCount"> ({{ data.props.childRowsCount }})</span>
+        </div>
 
-          <div class="H_datagridRowCell" :class="[data.columns[2].className]">
-            {{ data.props.data.days }}
-          </div>
+        <div class="H_datagridRowCell" :class="[data.columns[2].className]">
+          {{ data.props.data.days }}
         </div>
       </template>
     </H_group-row>
@@ -46,7 +46,7 @@ const props = defineProps({
   timeHeight: { type: Number, default: 22 },
   scrollTop: { type: Number, default: 0 }
 });
-// const emit = defineEmits([]);
+const emit = defineEmits(["rowClicked", "loaded"]);
 defineExpose({ update });
 const json_data = new JsonData();
 const gantt = inject("gantt") as iChartGantt;
@@ -72,6 +72,14 @@ function update() {
 
 function onData(data: any) {
   gantt.ganttData.groupData(data);
+}
+
+function loaded(dg: any) {
+  emit("loaded", dg);
+}
+
+function rowClicked(data: any) {
+  emit("rowClicked", data);
 }
 
 const DataHandler = new dataHandler(
@@ -101,19 +109,23 @@ onMounted(() => {
 .gantt_datagrid .H_datagrid-header {
   min-height: calc(var(--gantt-time-totalheight) + 1px);
   max-height: calc(var(--gantt-time-totalheight) + 1px);
-  margin-bottom: .5px;
+  margin-bottom: 0.5px;
   font-size: 0.85em;
+  margin: 0;
 }
 
 .gantt_datagrid .H_datagridRow {
   max-height: var(--gantt-bar-height);
   min-height: var(--gantt-bar-height);
+  width: 100%;
+  flex: 1;
 }
 
 .gantt_datagrid .H_virtualList {
   overflow-y: hidden !important;
   overflow-x: scroll;
-  margin-right: -4px;
+  padding-bottom: 4px;
+  font-size: 0.85em;
 }
 
 .gantt_datagrid .H_virtualList-scroller {
@@ -124,10 +136,11 @@ onMounted(() => {
 .gantt_datagrid_groupRow {
   display: flex;
   background-color: var(--col-bg-3);
+  flex: 1;
 }
 
 .gantt_datagrid_groupRowExpander {
   margin-left: -3px;
-  margin-right: 6px;
+  min-width: 20px;
 }
 </style>

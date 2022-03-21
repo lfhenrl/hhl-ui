@@ -1,13 +1,15 @@
 <template>
-  <rend v-if="useTemplate" />
+  <div class="H_datagridGroupRow" data-field="text" data-orgindex="0">
+    <rend v-if="useTemplate" />
 
-  <div class="H_datagridGroupRow" v-else>
-    <div class="H_datagridGroupRow__content" :style="style">
-      <H_icon :icon="expanded ? 'expand_down' : 'expand_right'" btn @click="click" />{{ useTemplate }} {{ name }}
-      <span class="H_datagridGroupRow__childCount"> ({{ childRowsCount }})</span>
-    </div>
-    <div class="H_datagridGroupRow__spacing">
-      <div v-for="column in columns" class="H_datagridGroupRow__spacingCell" :class="column.className" />
+    <div class="H_datagridGroupRowDefault" v-else>
+      <div class="H_datagridGroupRow__content" :style="style">
+        <H_icon :icon="expanded ? 'expand_down' : 'expand_right'" btn @click="click" />{{ name }}
+        <span class="H_datagridGroupRow__childCount"> ({{ childRowsCount }})</span>
+      </div>
+      <div class="H_datagridGroupRow__spacing">
+        <div v-for="column in columns" class="H_datagridGroupRow__spacingCell" :class="column.className" />
+      </div>
     </div>
   </div>
 </template>
@@ -53,9 +55,12 @@ const style = computed(() => {
 <style>
 .H_datagridGroupRow {
   display: flex;
-  flex-direction: column;
   padding: 4px 0;
-  /* font-weight: bold; */
+}
+
+.H_datagridGroupRowDefault {
+  display: flex;
+  flex-direction: column;
 }
 
 .H_datagridGroupRow__content {

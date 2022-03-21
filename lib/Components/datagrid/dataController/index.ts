@@ -40,22 +40,23 @@ class dataController {
   }
 
   private async groupExpanded(data: any) {
+    console.log("this.dataStore", this.dataStore);
     this.dg.Event.emit("isLoading", true);
     const { actRow, filters } = getActRootNode(data.id, this.dataStore);
     actRow.expanded = data.expanded;
-    if (!actRow.haveExpandData) {
-      actRow.haveExpandData = true;
-      const QueryObject = buildQueryObject(this.dg, actRow.level + 1);
-      QueryObject.paging.page = 0;
+    // if (!actRow.haveExpandData) {
+    actRow.haveExpandData = true;
+    const QueryObject = buildQueryObject(this.dg, actRow.level + 1);
+    QueryObject.paging.page = 0;
 
-      filters.forEach((item) => {
-        QueryObject.filterList.push(item);
-      });
-      await this.getData(QueryObject, actRow.children, actRow.level + 1, 0, data.id + "_");
-    } else {
-      const FlatData = await makeFlatData(this.dataStore, []);
-      await this.returnData(FlatData);
-    }
+    filters.forEach((item) => {
+      QueryObject.filterList.push(item);
+    });
+    await this.getData(QueryObject, actRow.children, actRow.level + 1, 0, data.id + "_");
+    // } else {
+    //   const FlatData = await makeFlatData(this.dataStore, []);
+    //   await this.returnData(FlatData);
+    // }
   }
 
   public async moreRows(id: string) {

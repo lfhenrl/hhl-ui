@@ -1,11 +1,12 @@
 <template>
   <div class="H_chartGantt" ref="_gantt" :style="style">
     <div class="H_chartGantt_grid">
-      <gantt_datagrid ref="dGrid" class="H_chartGantt_dGrid" :scroll-top="scrollTop" />
+      <gantt_datagrid ref="dGrid" class="H_chartGantt_dGrid" :scroll-top="scrollTop" @loaded="dgLoaded" />
     </div>
     <div class="H_chartGantt-splitLine" v-splitpane="null" />
     <div class="H_chartGantt_box">
       <H_virtualList
+        ref="vList"
         data-key="id"
         :data-sources="timeList"
         direction="horizontal"
@@ -14,7 +15,7 @@
         :keeps="5"
       >
         <template v-slot="data">
-          <GanttTimeItem :time-data="data.item" />
+          <GanttTimeItem :time-data="data.item" :key="data.item.id" />
         </template>
         <template v-slot:absoluteItems>
           <div
@@ -66,13 +67,14 @@ import gantt_datagrid from "./datagrid/gantt_datagrid.vue";
 const props = defineProps({
   startDate: { type: Date, default: new Date() },
   endDate: { type: Date, default: new Date() },
-  data: { type: Array, default: [] },
+  data: { type: Object, default: {} },
   barHeight: { type: Number, default: 30 },
   timeHeight: { type: Number, default: 22 }
 });
 
 const _gantt = ref<HTMLElement>();
 const dGrid = ref();
+const vList = ref();
 const lineTool = ref();
 const timeList = ref<iGanttTimeItem[]>([]);
 const chartHeight = ref(0);
@@ -92,8 +94,17 @@ const style: any = computed(() => {
 
 gantt.Event.on("scrollTop", (val) => (scrollTop.value = val));
 gantt.Event.on("setChartHeight", (val: number) => (chartHeight.value = val));
-gantt.Event.on("setTimeList", (val) => (timeList.value = val));
+gantt.Event.on("setTimeList", (val) => {
+  timeList.value = val;
+});
 gantt.Event.on("updateDgrid", () => dGrid.value.update());
+gantt.Event.on("ganttRowClicked", (data: any) => {
+  gantt.dg.selectChanged(data.tempId);
+});
+
+function dgLoaded(dg: any) {
+  gantt.dg = dg;
+}
 
 watch(
   () => props.data,
@@ -109,7 +120,6 @@ onMounted(() => {
   gantt.barHeight = props.barHeight;
   gantt.timeHeight = props.timeHeight;
   gantt.ganttData.newData(props.data);
-  // gantt.loadBarItems(props.data);
 });
 
 onBeforeUnmount(() => {
@@ -255,10 +265,7 @@ onBeforeUnmount(() => {
 .gantt__Item_group {
   background-color: rgb(111, 111, 235);
   cursor: default;
-}
-
-.gantt__Item_bar:hover {
-  /* background-color: lime; */
+  /* pointer-events: none; */
 }
 
 .gantt__Item_bar_connectRight {
@@ -270,6 +277,7 @@ onBeforeUnmount(() => {
   right: calc(0px - var(--gantt-bar-height) / 2.2);
   opacity: 0;
   cursor: pointer;
+  pointer-events: all;
 }
 
 .gantt__Item_bar_connectRight:hover {
@@ -287,6 +295,7 @@ onBeforeUnmount(() => {
   user-select: none;
   cursor: pointer;
   visibility: hidden;
+  pointer-events: all;
 }
 
 .connectToolActive .gantt__Item_bar_connectLeft {
