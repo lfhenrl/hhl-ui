@@ -1,5 +1,6 @@
 import { iChartGantt } from "../common";
 import { ganttConnectChange } from "./ganttConnectRender";
+import { TimeToPixcel, PixcelToTime, MinMaxDatesFromArray } from "./utils/converter";
 
 export type iGanttItem = InstanceType<typeof ganttItem>;
 
@@ -28,6 +29,11 @@ export class ganttItem {
     this.index = _index;
     this.bar = document.createElement("div");
     this.top = 0;
+  }
+
+  setPosWidth() {
+    this.bar.style.left = this.l + "px";
+    this.bar.style.width = this.w + "px";
   }
 
   mouseDown(x: number, y: number, type: string) {
@@ -63,13 +69,13 @@ export class ganttItem {
       needUpdate = true;
     }
 
-    if (this.itemType === "bar" && this.data.type === "task") {
+    if (this.itemType === "bar" && this.data.type === "data") {
       this.l = val;
       needUpdate = true;
     }
 
     if (needUpdate) {
-      this.chart.ganttData.updateBarItem(this);
+      this.setPosWidth();
       this.updateToConnectors();
       this.updateFromConnectors();
     }
@@ -79,82 +85,61 @@ export class ganttItem {
     if (this.itemType === "bar_connectRight") {
       this.chart.lineTool.mouseUp(x, y);
     } else {
-      this.chart.ganttData.updateBarItemSave(this);
+      this.updateData();
+    }
+  }
+
+  update() {
+    if (this.data.children.length > 0) {
+      const { Min, Max } = MinMaxDatesFromArray(this.data.children);
+      this.l = TimeToPixcel(this.chart, Min);
+      this.w = TimeToPixcel(this.chart, Max) - this.l;
+      this.data.startTime = Min;
+      this.data.endTime = Max;
+      this.setPosWidth();
+    } else {
+      if (this.data.type === "group") {
+        this.data.endTime = new Date(this.data.startTime);
+        this.setPosWidth();
+      }
+    }
+  }
+
+  updateData() {
+    this.data.startTime = PixcelToTime(this.chart, this.l);
+    this.data.endTime = PixcelToTime(this.chart, this.l + this.w);
+    const parent = this.chart.ganttData.dataStore[this.data.pId].bar as iGanttItem;
+    parent.updateFromChild();
+    this.chart.ganttData.lightUpdateDatagrid();
+  }
+
+  updateFromChild() {
+    this.update();
+    if (this.data.children.length > 0 && this.data.type !== "root") {
+      const parent = this.chart.ganttData.dataStore[this.data.pId].bar as iGanttItem;
+      parent.updateFromChild();
+    }
+
+    if (this.data.type === "root") {
+      this.chart.ganttData.NeedTimeScaleAdjusted(this);
     }
   }
 
   updateToConnectors() {
     for (const item in this.toConnectors) {
-      const s_id = item.split("@")[0];
-      const t_id = item.split("@")[1];
-      const source = this.chart.ganttData.dataStore[s_id];
-      const target = this.chart.ganttData.dataStore[t_id];
-      const line = this.toConnectors[item];
-      ganttConnectChange(line, source, target);
+      const connector = this.toConnectors[item];
+      const source = this.chart.ganttData.dataStore[connector.from].bar;
+      const target = this.chart.ganttData.dataStore[connector.to].bar;
+      ganttConnectChange(connector.line, source, target);
     }
   }
 
   updateFromConnectors() {
-      for (const item in this.fromConnectors) {
-        const s_id = item.split("@")[0];
-        const t_id = item.split("@")[1];
-        const source = this.chart.ganttData.dataStore[s_id];
-        const target = this.chart.ganttData.dataStore[t_id];
-        const line = this.fromConnectors[item];
-        ganttConnectChange(line, source, target);
-      }
-
-  }
-  connectRender() {}
-
-  render() {
-    this.bar.innerHTML = "";
-    const { startDate, secPixcel, barHeight } = this.chart;
-    const timeLeft = (this.data.startTime.valueOf() - startDate.valueOf()) / 1000;
-    const timeWidth = (this.data.endTime.valueOf() - this.data.startTime.valueOf()) / 1000;
-    this.w = timeWidth * secPixcel;
-    this.l = timeLeft * secPixcel;
-    this.t = this.index * barHeight + this.top;
-
-    const gantt__Item = document.createElement("div");
-    const gantt__Item_bar_dragLeft = document.createElement("div");
-    const gantt__Item_bar_dragRight = document.createElement("div");
-    const gantt__Item_bar_connectLeft = document.createElement("div");
-    const gantt__Item_bar_connectRight = document.createElement("div");
-
-    gantt__Item.classList.add("gantt__Item");
-    gantt__Item.classList.add(this.chart.dg.SelectClassName);
-    gantt__Item.style.top = this.t + "px";
-    gantt__Item.dataset.id = this.tempId;
-
-    this.bar.classList.add("gantt__Item_bar");
-    if (this.data.type === "group") {
-      this.bar.classList.add("gantt__Item_group");
+    for (const item in this.fromConnectors) {
+      const connector = this.fromConnectors[item];
+      const source = this.chart.ganttData.dataStore[connector.from].bar;
+      const target = this.chart.ganttData.dataStore[connector.to].bar;
+      ganttConnectChange(connector.line, source, target);
     }
-
-    this.bar.dataset.id = this.id.toString();
-    this.bar.style.left = this.l + "px";
-    this.bar.style.width = this.w + "px";
-
-    if (this.data.type !== "group") {
-      gantt__Item_bar_dragLeft.classList.add("gantt__Item_bar_dragLeft");
-      gantt__Item_bar_dragLeft.dataset.id = this.id.toString();
-
-      gantt__Item_bar_dragRight.classList.add("gantt__Item_bar_dragRight");
-      gantt__Item_bar_dragRight.dataset.id = this.id.toString();
-    }
-
-    gantt__Item_bar_connectLeft.classList.add("gantt__Item_bar_connectLeft");
-    gantt__Item_bar_connectLeft.dataset.id = this.id.toString();
-
-    gantt__Item_bar_connectRight.classList.add("gantt__Item_bar_connectRight");
-    gantt__Item_bar_connectRight.dataset.id = this.id.toString();
-
-    this.bar.appendChild(gantt__Item_bar_dragLeft);
-    this.bar.appendChild(gantt__Item_bar_dragRight);
-    this.bar.appendChild(gantt__Item_bar_connectLeft);
-    this.bar.appendChild(gantt__Item_bar_connectRight);
-    gantt__Item.appendChild(this.bar);
-    return gantt__Item;
   }
 }

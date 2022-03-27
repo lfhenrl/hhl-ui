@@ -7,7 +7,7 @@
         <H_input v-model="seek" clearable placeholder="Search" endIcon="search" style="max-width: 200px" />
       </div>
 
-      <H_datagrid-vscroll
+      <H_datagridVscroll
         data-key="id"
         :groups="['Value 2', 'Value 4']"
         :search="seek"
@@ -45,7 +45,7 @@
         <H_column field="val3" title="Value 3" type="string" :cell_style="styleCell" />
         <H_column field="val5" title="Value 5" type="bool" filter_type="bool" filter_condition="bool_list" />
         <H_column field="val4" title="Value 4" type="string" filter_type="select" />
-      </H_datagrid-vscroll>
+      </H_datagridVscroll>
     </div>
   </div>
 </template>
@@ -53,7 +53,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { D_01_dec_2021_HHMM } from "../../../lib/utils/dateFormat";
-import { dataHandler } from "../../../lib/Components/datagrid/dataController";
+import { dataHandler } from "../../../lib/Components/datagrid/virtualScroll";
 import { JsonData } from "../../../lib/Components/datagrid/datahandlers/JsonData";
 import { getData } from "../../testData/data";
 

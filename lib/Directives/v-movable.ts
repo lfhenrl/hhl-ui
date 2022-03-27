@@ -1,4 +1,4 @@
-export const movable = {
+export const vMovable = {
   mounted(el: HTMLElement) {
     let pos1 = 0,
       pos2 = 0,

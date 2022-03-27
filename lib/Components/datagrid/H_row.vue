@@ -7,7 +7,7 @@
     :column="col"
     :data="data"
   />
-  <H_datagridMoreRows v-if="type === 'loader'" :data="data" />
+  <H_datagridMoreRows v-if="type === 'loader'" :id="id" />
   <H_datagridGroupRow
     v-if="type === 'group'"
     :id="id"

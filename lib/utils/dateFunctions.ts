@@ -23,16 +23,16 @@ export function DateAddHours(date: Date, hours: number) {
 }
 
 export function DateAddDays(date: Date, days: number) {
-  const d = days * day;
-  const newDate = new Date(date);
-  newDate.setTime(date.getTime() + d);
+  var newDate = new Date(date.valueOf());
+  newDate.setDate(newDate.getDate() + days);
   return newDate;
 }
 
 export function DateAddWeeks(date: Date, weeks: number) {
-  const w = weeks * day * 7;
-  const newDate = new Date(date);
-  newDate.setTime(date.getTime() + w);
+  const d = weeks * day * 7;
+  var newDate = new Date(date.valueOf());
+  newDate.setDate(newDate.getDate() + d);
+
   return newDate;
 }
 

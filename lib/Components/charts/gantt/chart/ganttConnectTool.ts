@@ -47,10 +47,9 @@ export class ganttConnectTool {
       if (elem.classList.contains("gantt__Item_bar_connectLeft")) {
         const data: any = elem?.dataset;
         if (data.id === this.ganttItem.id.toString()) return;
-        const target = this.chart.ganttData.dataStore[data.id];
-        const id = `${this.ganttItem.id}@${data.id}`;
-        ganttConnectRender(this.chart, this.ganttItem, target, id);
-        this.chart.ganttData.connectorList.push(id);
+        const target = this.chart.ganttData.dataStore[data.id].bar;
+        ganttConnectRender(this.chart, this.ganttItem, target, this.chart.ganttData.getGuid());
+      
       }
     }
 

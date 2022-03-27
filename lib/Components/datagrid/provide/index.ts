@@ -1,11 +1,12 @@
 import { Ref, Slots } from "vue";
 import { EventHandler } from "../../../utils/eventHandler";
 import { icolumnData } from "../datagridTypes";
-import { iDataController, iDataHandler } from "../dataController";
 export type iDatagrid = InstanceType<typeof Datagrid>;
 
 export class Datagrid {
-  public Event = new EventHandler<"groupExpanded" | "showDialog" | "isLoading">();
+  public Event = new EventHandler<
+    "groupExpanded" | "showDialog" | "isLoading" | "UpdateData" | "MoreRows" | "dragDrop" | "userAction"
+  >();
 
   public MainContainer = {} as HTMLElement;
   public Header = {} as HTMLElement;
@@ -19,11 +20,15 @@ export class Datagrid {
   public pageSize = 20;
   public excelMaxRows = 5000;
   public isLoading = false;
+  public loadSelectList: any;
+  public draggedItemId: any;
+  public draggedItemPid: any;
+  public draggedItemType: any;
 
   public groupRowTemplate: Array<any> = [];
 
-  public DataHandler = {} as iDataHandler;
-  public DataController = {} as iDataController;
+  // public DataHandler = {} as iDataHandler;
+  // public DataController = {} as iDataController;
   public OrgGroupBy = [] as string[];
   public GroupBy = [] as string[];
 
@@ -68,13 +73,13 @@ export class Datagrid {
     this.Event.emit("isLoading", true);
     const scroller: any = this.MainContainer.firstChild;
     scroller.scrollTop = 0;
-    this.DataController.reLoad();
+    this.Event.emit("UpdateData");
   }
 
   async MoreRows(id: string) {
     this.isLoading = true;
     this.Event.emit("isLoading", true);
-    this.DataController.moreRows(id);
+    this.Event.emit("MoreRows", id);
   }
 
   getSlotsData(slots: Slots, name: string) {
@@ -88,8 +93,9 @@ export class Datagrid {
   async getSelectlist(field: string) {
     this.isLoading = true;
     this.Event.emit("isLoading", true);
-    const data = await this.DataHandler.loadSelectList(field);
+    const data = await this.loadSelectList(field);
     this.Event.emit("isLoading", false);
+    console.log("getSelectlist", data);
     return data;
   }
 

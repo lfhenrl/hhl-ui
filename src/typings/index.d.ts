@@ -35,6 +35,7 @@ declare type hhl = {
   };
   alert(type: notifyType, title: string, text: string, timeout?: number): void;
   dialog(title: string, info: string, buttons?: dialogButtons): Promise<boolean>;
+  ignoreEmitPropErrors(x: any): void;
 };
 
 declare global {

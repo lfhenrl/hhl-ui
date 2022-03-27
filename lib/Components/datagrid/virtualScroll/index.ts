@@ -1,6 +1,6 @@
 import { iQueryObject, iReturnData } from "../datagridTypes";
 import { iDatagrid } from "../provide";
-import buildQueryObject from "./buildQueryObject";
+import buildQueryObject from "../provide/buildQueryObject";
 import getActRootNode from "./getActRootNode";
 import handleData from "./handleData";
 import makeFlatData from "./makeFlatData";
@@ -11,12 +11,14 @@ type iDataHandler = InstanceType<typeof dataHandler>;
 type iDataController = InstanceType<typeof dataController>;
 class dataController {
   private dg = {} as iDatagrid;
+  public DataHandler: iDataHandler;
   public setInternalData = (_data: iReturnData) => {};
-  private dataStore: any = {};
+  public dataStore: any = {};
   private totalCount = 0;
 
-  constructor(_dg: iDatagrid) {
+  constructor(_dg: iDatagrid, _DataHandler: iDataHandler) {
     this.dg = _dg;
+    this.DataHandler = _DataHandler;
     this.dg.Event.on("groupExpanded", this.groupExpanded.bind(this));
   }
 
@@ -24,12 +26,12 @@ class dataController {
     const QueryObject = buildQueryObject(this.dg, 1);
     QueryObject.paging.size = this.dg.excelMaxRows;
     QueryObject.groupBy = "";
-    const data = await this.dg.DataHandler.loadData(QueryObject);
+    const data = await this.DataHandler.loadData(QueryObject);
     return data.data;
   }
 
   private async getData(QueryObject: iQueryObject, dataStore: any, level: number, index: number, dataId: string = "_") {
-    const data = await this.dg.DataHandler.loadData(QueryObject);
+    const data = await this.DataHandler.loadData(QueryObject);
     if (!data.items) {
       this.returnData([]);
       return;
@@ -44,24 +46,25 @@ class dataController {
     this.dg.Event.emit("isLoading", true);
     const { actRow, filters } = getActRootNode(data.id, this.dataStore);
     actRow.expanded = data.expanded;
-    // if (!actRow.haveExpandData) {
-    actRow.haveExpandData = true;
-    const QueryObject = buildQueryObject(this.dg, actRow.level + 1);
-    QueryObject.paging.page = 0;
+    if (!actRow.haveExpandData) {
+      actRow.haveExpandData = true;
+      const QueryObject = buildQueryObject(this.dg, actRow.level + 1);
+      QueryObject.paging.page = 0;
 
-    filters.forEach((item) => {
-      QueryObject.filterList.push(item);
-    });
-    await this.getData(QueryObject, actRow.children, actRow.level + 1, 0, data.id + "_");
-    // } else {
-    //   const FlatData = await makeFlatData(this.dataStore, []);
-    //   await this.returnData(FlatData);
-    // }
+      filters.forEach((item) => {
+        QueryObject.filterList.push(item);
+      });
+      await this.getData(QueryObject, actRow.children, actRow.level + 1, 0, data.id + "_");
+    } else {
+      const FlatData = await makeFlatData(this.dataStore, []);
+      await this.returnData(FlatData);
+    }
   }
 
   public async moreRows(id: string) {
     const { rootRow, actRow, index, filters } = getActRootNode(id, this.dataStore);
     const QueryObject = buildQueryObject(this.dg, actRow.level);
+
     QueryObject.paging.page = index + 1;
     let dSource = this.dataStore;
     let frontId = "_";
@@ -90,7 +93,7 @@ class dataController {
   public async reLoad() {
     this.dataStore = {};
     const QueryObject = buildQueryObject(this.dg, 1);
-    this.totalCount = await this.dg.DataHandler.loadCount(QueryObject);
+    this.totalCount = await this.DataHandler.loadCount(QueryObject);
     QueryObject.paging.page = 0;
     await this.getData(QueryObject, this.dataStore, 1, 0);
     return;

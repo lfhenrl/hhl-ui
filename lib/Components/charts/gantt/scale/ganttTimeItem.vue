@@ -1,11 +1,13 @@
 <template>
   <!-- <div class="ganttTimeItem"> -->
   <div class="ganttTimeItem__head">
-    {{ Header }}
+    <div class="ganttTimeItem__head_value">
+      {{ Header }}
+    </div>
   </div>
   <div class="ganttTimeItem__values">
     <div class="ganttTimeItem__values_item" :key="item" v-for="item in dayList">
-      {{ item }}
+      <div class="ganttTimeItem__values_value">{{ item }}</div>
     </div>
   </div>
   <!-- <div class="ganttTimeItem__valuesGrid">
@@ -72,7 +74,7 @@ MakeDayList();
   flex-direction: column;
   font-size: 10px;
   text-align: center;
-  height: calc(var(--gantt-chart-height) + var(--gantt-time-totalheight));
+  height: calc(var(--gantt-chart-height) + calc(var(--gantt-time-totalheight) - 2px));
   user-select: none;
   pointer-events: none;
   position: relative;
@@ -80,27 +82,35 @@ MakeDayList();
 }
 
 .ganttTimeItem__head {
-  text-align: center;
-  border-right: 1px solid var(--col-bg-5);
   overflow: hidden;
-  text-overflow: ellipsis;
-  word-break: break-all;
-  max-height: var(--gantt-time-height);
-  min-height: var(--gantt-time-height);
+  text-align: center;
+  padding: 0 auto;
   user-select: none;
   pointer-events: none;
   line-height: var(--gantt-time-height);
   background-color: var(--col-bg-2);
+  border-bottom: 1px solid var(--col-bg-5);
+  border-right: 1px solid var(--col-bg-5);
+  max-height: var(--gantt-time-height);
+  min-height: var(--gantt-time-height);
+}
+
+.ganttTimeItem__head_value {
+  overflow: hidden;
+  text-align: center;
+  text-overflow: clip;
+  word-break: break-all;
+  max-height: var(--gantt-time-height);
+  min-height: var(--gantt-time-height);
+  max-width: fit-content;
+  margin: 0 auto;
 }
 
 .ganttTimeItem__values {
   display: flex;
-  border-top: 1px solid var(--col-bg-5);
   user-select: none;
   pointer-events: none;
-  max-height: var(--gantt-time-height);
-  min-height: var(--gantt-time-height);
-  background-color: var(--col-bg-2);
+  height: 100%;
 }
 
 .ganttTimeItem__values_item {
@@ -108,25 +118,16 @@ MakeDayList();
   border-right: 1px solid var(--col-bg-5);
   min-width: 20px;
   max-width: 20px;
-  max-height: var(--gantt-time-height);
-  min-height: var(--gantt-time-height);
-  user-select: none;
-  pointer-events: none;
-}
-
-.ganttTimeItem__valuesGrid {
   height: 100%;
-  display: flex;
   user-select: none;
   pointer-events: none;
 }
-
-.ganttTimeItem__valuesgrid_item {
-  border-right: 1px solid var(--col-bg-5);
+.ganttTimeItem__values_value {
   min-width: 20px;
   max-width: 20px;
-  height: 100%;
-  user-select: none;
-  pointer-events: none;
+  max-height: var(--gantt-time-height);
+  min-height: var(--gantt-time-height);
+  background-color: var(--col-bg-2);
+  border-right: 1px solid var(--col-bg-5);
 }
 </style>

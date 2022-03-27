@@ -1,7 +1,7 @@
 <template>
   <div class="H_chartGantt" ref="_gantt" :style="style">
     <div class="H_chartGantt_grid">
-      <gantt_datagrid ref="dGrid" class="H_chartGantt_dGrid" :scroll-top="scrollTop" @loaded="dgLoaded" />
+      <GanttDatagrid ref="dGrid" class="H_chartGantt_dGrid" :scroll-top="scrollTop" />
     </div>
     <div class="H_chartGantt-splitLine" v-splitpane="null" />
     <div class="H_chartGantt_box">
@@ -55,6 +55,7 @@
       <div class="H_chartGantt_scroll_bottom" />
     </div>
   </div>
+  <GanttEdit />
 </template>
 
 <script setup lang="ts">
@@ -62,7 +63,9 @@ import { computed, onBeforeUnmount, onMounted, provide, ref, watch } from "vue";
 import { chartGantt } from "./common";
 import { iGanttTimeItem } from "./scale/makeTimelist";
 import { vSplitpane } from "../../../Directives/v-splitpane";
-import gantt_datagrid from "./datagrid/gantt_datagrid.vue";
+import GanttDatagrid from "./datagrid/GanttDatagrid.vue";
+import GanttEdit from "./edit/ganttEdit.vue";
+
 
 const props = defineProps({
   startDate: { type: Date, default: new Date() },
@@ -98,13 +101,7 @@ gantt.Event.on("setTimeList", (val) => {
   timeList.value = val;
 });
 gantt.Event.on("updateDgrid", () => dGrid.value.update());
-gantt.Event.on("ganttRowClicked", (data: any) => {
-  gantt.dg.selectChanged(data.tempId);
-});
 
-function dgLoaded(dg: any) {
-  gantt.dg = dg;
-}
 
 watch(
   () => props.data,
@@ -144,8 +141,8 @@ onBeforeUnmount(() => {
   flex: 1;
 }
 .H_chartGantt_grid {
-  min-width: 100px;
-  width: 250px;
+  min-width: 290px;
+  width: 290px;
   display: grid;
   grid-template-rows: 1fr;
   z-index: 1;
@@ -262,11 +259,10 @@ onBeforeUnmount(() => {
   z-index: 200;
 }
 
-.gantt__Item_group {
+/* .gantt__Item_group {
   background-color: rgb(111, 111, 235);
   cursor: default;
-  /* pointer-events: none; */
-}
+} */
 
 .gantt__Item_bar_connectRight {
   position: absolute;

@@ -5,6 +5,7 @@
     :validator="validator"
     :disabled="disabled"
     :readonly="$attrs.readonly"
+    :label="label"
     @isValid="$emit('isValid', $event)"
     class="H_datePicker"
   >
@@ -131,7 +132,7 @@ watch(
 }
 
 .H_datePicker__inputcontainer .H_icon {
-  --H_icon-size: 1.5em;
+  --H_icon-size: 1.2em;
   opacity: 0.7;
 }
 

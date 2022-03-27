@@ -156,7 +156,7 @@ const validate = computed(() => {
   margin-left: 6px;
   height: 0;
   padding: 0 2px 0 0;
-  font-size: 0.9em;
+  font-size: 0.8em;
   font-weight: normal;
   color: var(--comp-label-color, rgba(0, 0, 0, 0.6));
   width: auto;

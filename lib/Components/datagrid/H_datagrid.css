@@ -118,10 +118,6 @@
   background-color: var(--col-bg-2);
 }
 
-/* .H_datagridRow[selected] {
-  background-color: var(--col-bg-4);
-} */
-
 .H_datagridRowCell {
   display: flex;
   align-items: center;

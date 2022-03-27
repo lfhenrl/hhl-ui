@@ -33,7 +33,7 @@ import { ref } from "vue";
 import { hhlFetch } from "../../../lib/utils/hhlFetch";
 import { D_01_dec_2021_HHMM } from "../../../lib/utils/dateFormat";
 import { icolumnData, iQueryObject } from "../../../lib/Components/datagrid/datagridTypes";
-import { dataHandler } from "../../../lib/Components/datagrid/dataController";
+import { dataHandler } from "../../../lib/Components/datagrid/virtualScroll";
 
 const seek = ref("");
 const _fetch = new hhlFetch("http://localhost:5272/EventLog");

@@ -14,8 +14,11 @@ export function ganttConnectRender(chart: iChartGantt, source: iGanttItem, targe
   const { sX, sY, eX, eY } = getStartPoints(source, target);
   const points = getPoints(sX, sY, eX, eY);
   const line = draw(chart.chartSvg, points, id);
-  source.toConnectors[id] = line;
-  target.fromConnectors[id] = line;
+  const d = { to: target.id, from: source.id };
+  const dd = { to: target.id, from: source.id, line: line };
+  source.toConnectors[id] = dd;
+  target.fromConnectors[id] = dd;
+  chart.ganttData.addConnector(id, d);
 }
 
 function getStartPoints(source: iGanttItem, target: iGanttItem) {

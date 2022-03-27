@@ -1,139 +1,154 @@
-const data = [
-  {
-    id: 1,
-    text: "Nummer 1",
-    type: "task",
-    group: "resource",
-    startTime: new Date(2019, 0, 2, 0),
-    endTime: new Date(2019, 0, 5, 0)
-  },
-  {
-    id: 2,
-    text: "Nummer 2",
-    type: "task",
-    group: "resource",
-    startTime: new Date(2019, 0, 2, 0),
-    endTime: new Date(2019, 0, 6, 0)
-  },
-  {
-    id: 3,
-    text: "Nummer 3",
-    type: "task",
-    group: "resource",
-    startTime: new Date(2019, 0, 2, 0),
-    endTime: new Date(2019, 0, 3, 0)
-  },
-  {
-    id: 4,
-    text: "Nummer 4",
-    type: "task",
-    group: "resource",
-    startTime: new Date(2019, 0, 2, 12),
-    endTime: new Date(2019, 0, 7, 0)
-  },
-  {
-    id: 5,
-    text: "Nummer 5",
-    type: "task",
-    group: "resource",
-    startTime: new Date(2019, 0, 2, 0),
-    endTime: new Date(2019, 0, 6, 0)
-  },
-  {
-    id: 6,
-    text: "Nummer 6",
-    type: "task",
-    group: "resource",
-    startTime: new Date(2019, 0, 2, 0),
-    endTime: new Date(2019, 0, 5, 0)
-  },
-  {
-    id: 7,
-    text: "Nummer 7",
-    type: "task",
-    group: "milestone",
-    startTime: new Date(2019, 0, 2, 0),
-    endTime: new Date(2019, 0, 22, 0)
-  },
-  {
-    id: 8,
-    text: "Nummer 8",
-    type: "task",
-    group: "milestone",
-    startTime: new Date(2019, 1, 2, 0),
-    endTime: new Date(2019, 1, 22, 0)
-  },
-  {
-    id: 9,
-    text: "Nummer 9",
-    type: "task",
-    group: "milestone",
-    startTime: new Date(2019, 0, 2, 0),
-    endTime: new Date(2019, 0, 22, 0)
-  },
-  {
-    id: 10,
-    text: "Nummer 10",
-    type: "task",
-    group: "milestone",
-    startTime: new Date(2019, 1, 2, 0),
-    endTime: new Date(2019, 1, 22, 0)
-  },
-  {
-    id: 11,
-    text: "Nummer 11",
-    type: "task",
-    group: "milestone",
-    startTime: new Date(2019, 0, 2, 0),
-    endTime: new Date(2019, 0, 22, 0)
-  },
-  {
-    id: 12,
-    text: "Nummer 12",
-    type: "task",
-    group: "milestone",
-    startTime: new Date(2019, 1, 2, 0),
-    endTime: new Date(2019, 1, 22, 0)
-  },
-  {
-    id: 13,
-    text: "Nummer 13",
-    type: "task",
-    group: "milestone",
-    startTime: new Date(2019, 0, 2, 0),
-    endTime: new Date(2019, 0, 22, 0)
-  },
-  {
-    id: 14,
-    text: "Nummer 14",
-    type: "task",
-    group: "milestone",
-    startTime: new Date(2019, 1, 2, 0),
-    endTime: new Date(2019, 1, 22, 0)
-  },
-  {
-    id: 15,
-    text: "Nummer 15",
-    type: "task",
-    group: "milestone",
-    startTime: new Date(2019, 0, 2, 0),
-    endTime: new Date(2019, 0, 22, 0)
-  },
-  {
-    id: 16,
-    text: "Nummer 16",
-    type: "task",
-    group: "milestone",
-    startTime: new Date(2019, 1, 2, 0),
-    endTime: new Date(2019, 1, 22, 0)
-  }
-];
-
-const connectors = ["resource@milestone"];
-
 const gData = {
-  data,
-  connectors
+  data: [
+    {
+      id: "0",
+      pId: "",
+      text: "root",
+      type: "root",
+      subType: "root",
+      workLoad: 100,
+      progress: 0,
+      level: 0,
+      expanded: false,
+      startTime: new Date(2019, 0, 2, 0),
+      endTime: new Date(2019, 0, 2, 0),
+      children: [
+        {
+          id: "1",
+          pId: "0",
+          text: "Resources",
+          type: "group",
+          subType: "rootFolder",
+          workLoad: 100,
+          progress: 0,
+          level: 0,
+          startTime: new Date(2019, 0, 2, 0),
+          endTime: new Date(2019, 0, 22, 0),
+          children: [
+            {
+              id: "1_1",
+              pId: "1",
+              text: "Resources 1",
+              type: "data",
+              subType: "Task",
+              workLoad: 100,
+              progress: 0,
+              level: 2,
+              expanded: false,
+              startTime: new Date(2019, 0, 2, 0),
+              endTime: new Date(2019, 0, 22, 0),
+              children: []
+            },
+            {
+              id: "1_2",
+              pId: "1",
+              text: "Resources 2",
+              type: "data",
+              subType: "Task",
+              workLoad: 100,
+              progress: 0,
+              level: 2,
+              expanded: false,
+              startTime: new Date(2019, 0, 2, 0),
+              endTime: new Date(2019, 0, 22, 0),
+              children: []
+            }
+          ]
+        },
+        {
+          id: "2",
+          pId: "0",
+          text: "Milestones",
+          type: "group",
+          subType: "Folder",
+          workLoad: 100,
+          progress: 0,
+          level: 1,
+          expanded: false,
+          startTime: new Date(2019, 0, 2, 0),
+          endTime: new Date(2019, 0, 22, 0),
+          children: [
+            {
+              id: "2_1",
+              pId: "2",
+              text: "Milestones 1",
+              type: "data",
+              subType: "Task",
+              workLoad: 100,
+              progress: 0,
+              level: 2,
+              expanded: false,
+              startTime: new Date(2019, 0, 2, 0),
+              endTime: new Date(2019, 0, 22, 0),
+              children: []
+            },
+            {
+              id: "2_2",
+              pId: "2",
+              text: "Milestones 2",
+              type: "data",
+              subType: "Task",
+              workLoad: 100,
+              progress: 0,
+              level: 2,
+              expanded: false,
+              startTime: new Date(2019, 0, 2, 0),
+              endTime: new Date(2019, 0, 22, 0),
+              children: []
+            },
+            {
+              id: "2_3",
+              pId: "2",
+              text: "Milestones 3",
+              type: "data",
+              subType: "Task",
+              workLoad: 100,
+              progress: 0,
+              level: 2,
+              expanded: false,
+              startTime: new Date(2019, 0, 2, 0),
+              endTime: new Date(2019, 0, 22, 0),
+              children: []
+            },
+            {
+              id: "2_4",
+              pId: "2",
+              text: "Milestones 4",
+              type: "data",
+              subType: "Task",
+              workLoad: 100,
+              progress: 0,
+              level: 2,
+              expanded: false,
+              startTime: new Date(2019, 0, 2, 0),
+              endTime: new Date(2019, 0, 22, 0),
+              children: []
+            }
+          ]
+        },
+        {
+          id: "3",
+          pId: "0",
+          text: "Snasker",
+          type: "group",
+          subType: "Folder",
+          workLoad: 100,
+          progress: 0,
+          level: 1,
+          expanded: false,
+          startTime: new Date(2019, 0, 2, 0),
+          endTime: new Date(2019, 0, 2, 0),
+          children: []
+        }
+      ]
+    }
+  ],
+  connectors: {
+    ttr1: {
+      from: "1_1",
+      to: "1_2"
+    }
+  }
 };
 
 export default gData;

@@ -1,5 +1,5 @@
 <template>
-  <svg viewBox="0 0 24 24" class="H_icon" :style="style">
+  <svg viewBox="0 0 24 24" class="H_icon" :style="style" >
     <path v-for="(val, index) in getPath()" :key="index" :d="val" />
   </svg>
 </template>

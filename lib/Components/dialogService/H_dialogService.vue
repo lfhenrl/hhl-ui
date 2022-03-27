@@ -3,13 +3,15 @@
     <H_dialog v-model="dialogPop">
       <template #header>{{ dialog.title }}</template>
       {{ dialog.info }}
-      <template #footer class="col-bg-black">
-        <H_btn size="sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
-          {{ dialog.buttons.ok.Text }}
-        </H_btn>
-        <H_btn size="sm" :class="dialog.buttons.cancel.Color" @click="dialogCancel">
-          {{ dialog.buttons.cancel.Text }}
-        </H_btn>
+      <template #footer>
+        <div class="H_dialogService__footer">
+          <H_btn size="sm" :class="dialog.buttons.cancel.Color" @click="dialogCancel">
+            {{ dialog.buttons.cancel.Text }}
+          </H_btn>
+          <H_btn size="sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
+            {{ dialog.buttons.ok.Text }}
+          </H_btn>
+        </div>
       </template>
     </H_dialog>
     <H_snack v-model="snackPop" :title="snack.title" :type="snack.type" :text="snack.text" @close="snackClose" />
@@ -128,6 +130,9 @@ const hhl = {
   },
   alert(type: string, title: string, text: string, timeout: number) {
     hhl.event.emit("hhl_alert", { type, title, text, timeout });
+  },
+  ignoreEmitPropErrors(_s: any) {
+    return;
   }
 };
 
@@ -145,13 +150,13 @@ function updateButtons(data: any) {
     data.buttons.cancel = {};
   }
   if (!but.ok.Text) {
-    data.buttons.ok.Text = "OK";
+    data.buttons.ok.Text = "Ok";
   }
   if (!but.ok.Color) {
     data.buttons.ok.Color = "col-pri";
   }
   if (!but.cancel.Text) {
-    data.buttons.cancel.Text = "CANCEL";
+    data.buttons.cancel.Text = "Cancel";
   }
   if (!but.cancel.Color) {
     data.buttons.cancel.Color = "col-sec";
@@ -159,3 +164,15 @@ function updateButtons(data: any) {
   return data;
 }
 </script>
+
+<style>
+.H_dialogService__footer {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.H_dialogService__footer .H_btn {
+  width: 70px;
+}
+</style>

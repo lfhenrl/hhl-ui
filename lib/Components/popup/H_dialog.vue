@@ -21,12 +21,13 @@
 <script setup lang="ts">
 import { PropType } from "vue";
 import H_modal from "./H_modal.vue";
+
 const props = defineProps({
   modelValue: { type: Boolean, default: false, required: true },
   showOverlay: { default: false, type: Boolean },
   noPersistent: { default: false, type: Boolean },
   noShake: { default: false, type: Boolean },
-  offset: { default: "20px", type: String },
+  offset: { default: "1px", type: String },
   placement: { type: String as PropType<"start" | "center" | "end">, default: "center" }
 });
 
@@ -43,6 +44,7 @@ const emit = defineEmits(["update:modelValue"]);
 }
 
 .H_dialog__header {
+  text-align: center;
   padding: 6px 12px;
   font-weight: bold;
 }
@@ -50,9 +52,9 @@ const emit = defineEmits(["update:modelValue"]);
   padding: 12px;
 }
 .H_dialog__footer {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
   padding: 12px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 }
 </style>

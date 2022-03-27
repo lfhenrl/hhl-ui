@@ -17,5 +17,5 @@ export { default as H_tabs } from "./Components/navigation/H_tabs.vue";
 export { default as H_tab } from "./Components/navigation/H_tab.vue";
 export { default as H_virtualList } from "./Components/virtualList/H_virtualList.vue";
 export { default as H_column } from "./Components/datagrid/H_column.vue";
-export { default as H_datagrid } from "./Components/datagrid/H_datagrid.vue";
+export { default as H_datagrid } from "./Components/charts/gantt/datagrid/H_datagrid.vue";
 export { default as H_dragDrop } from "./Components/draggable/H_dragDrop.vue";

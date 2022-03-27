@@ -6,7 +6,7 @@ export default defineComponent({
   props: {
     field: { type: String, default: "" },
     title: { type: String, default: "" },
-    type: { type: String as PropType<"number" | "string" | "date" | "bool" | "action">, required: true },
+    type: { type: String as PropType<"number" | "string" | "date" | "bool" | "action" | "userAction">, required: true },
     width: { type: Number, default: 0 },
     className: String,
     format: { type: Function, default: (v: any) => v },

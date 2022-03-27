@@ -34,7 +34,7 @@ function style(value: any) {
 }
 
 function format(value: any) {
-  return props.column.props.format?.(value, props.column) ?? value?.toString() ?? "";
+  return props.column.props.format?.(value, props.column, props.data) ?? value?.toString() ?? "";
 }
 </script>
 

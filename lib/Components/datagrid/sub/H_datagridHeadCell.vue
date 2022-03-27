@@ -23,7 +23,7 @@
         </div>
       </div>
       <H_icon icon="filter" size="17px" color="var(--col-pri-light)" v-if="column.filt.active" />
-      <H_icon icon="menu" size="18px" color="var(--col-pri-light)" v-if="!column.filt.active && column.sort.sorting === 'none'" />
+      <H_icon icon="menuSmall" color="var(--col-pri-light)" v-if="!column.filt.active && column.sort.sorting === 'none'" />
     </div>
     <div class="H_datagridHeadCell__resizer" @mousedown="resize" />
   </div>
@@ -50,7 +50,10 @@ function resize(e: MouseEvent) {
 }
 
 function showDialog() {
-  dg.Event.emit("showDialog", props.column);
+  if (props.column.props.type !== "userAction") {
+    dg.Event.emit("showDialog", props.column);
+  }
+   dg.Event.emit("userAction", props.column);
 }
 
 watch(

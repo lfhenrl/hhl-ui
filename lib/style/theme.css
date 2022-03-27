@@ -25,9 +25,9 @@
   --col-bg-4: hsl(0, 0%, 83%);
   --col-bg-5: hsl(0, 0%, 76%);
   --comp-label-color: var(--col-txt-2, red);
-  --comp-border-color: var(--col-txt-4);
+  --comp-border-color: var(--col-txt-5);
   --comp-border-color-focus: dodgerblue;
-  --comp-font-size: 15px;
+  --comp-font-size: 14px;
   --comp-font-family: Arial, Helvetica, sans-serif;
   --comp-shadow: 0 14px 18px 3px rgba(0, 0, 0, 0.14), 0 7px 16px 6px rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.2) !important;
 }

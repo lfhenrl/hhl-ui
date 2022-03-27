@@ -81,7 +81,7 @@ import H_datagridPopup from "./sub/popup/H_datagridPopup.vue";
 import H_btn from "../H_btn.vue";
 import H_spacer from "../H_spacer.vue";
 import { iReturnData } from "./datagridTypes";
-import { dataController, iDataHandler } from "./dataController";
+import { dataController, iDataHandler } from "./virtualScroll";
 import H_progressBar from "../H_progressBar.vue";
 import vResize from "vue-resize-observer";
 
@@ -136,11 +136,12 @@ const gridData = ref<any[]>([]);
 const rowCount = ref(0);
 const rowCountTotal = ref(0);
 
-dg.DataHandler = props.dataHandler;
-dg.DataHandler.setRefToDg(dg);
-dg.DataController = new dataController(dg);
+// dg.DataHandler = props.dataHandler;
+props.dataHandler.setRefToDg(dg);
+const DataController = new dataController(dg, props.dataHandler);
+dg.loadSelectList = props.dataHandler.loadSelectList;
 
-dg.DataController.setInternalData = (data: iReturnData) => {
+DataController.setInternalData = (data: iReturnData) => {
   gridData.value = data.data;
   emit("rawdata", data.data);
   rowCount.value = data.rowCount;
@@ -151,6 +152,15 @@ dg.DataController.setInternalData = (data: iReturnData) => {
 
 dg.Event.on("isLoading", (val: boolean) => {
   isLoading.value = val;
+});
+
+dg.Event.on("UpdateData", () => {
+  DataController.reLoad();
+});
+
+dg.Event.on("MoreRows", (id) => {
+  DataController.moreRows(id);
+  console.log("moreRows", id);
 });
 
 const debounceSearchString = debounce(() => {
@@ -207,7 +217,7 @@ function resizeColSize() {
 }
 
 async function downloadExcel() {
-  const data = await dg.DataController.getRawData();
+  const data = await DataController.getRawData();
   toExcel(data, dg.Columns.value, "GridData");
 }
 

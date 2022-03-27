@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType, ref, watch } from "vue";
+import { PropType, ref, watch } from "vue";
 const props = defineProps({
   modelValue: { type: Boolean, default: false, required: true },
   showOverlay: { default: false, type: Boolean },

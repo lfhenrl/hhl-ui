@@ -1,15 +1,25 @@
 import { EventHandler } from "../../../../utils/eventHandler";
 import { iGanttConnectTool, ganttConnectTool } from "../chart/ganttConnectTool";
 import { iGanttItem } from "../chart/ganttItem";
-import { GanttData, iGanttData } from "./ganttData";
+import { GanttData, iConnectors, iGanttData } from "./ganttData";
 import { ganttConnectRender } from "../chart/ganttConnectRender";
 import { iDatagrid } from "../../../datagrid/provide";
+import { ganttItemRender } from "../chart/ganttItemRender";
 
 export type iChartGantt = InstanceType<typeof chartGantt>;
 
 export class chartGantt {
   public Event = new EventHandler<
-    "setBarItems" | "setChartHeight" | "scrollTop" | "setTimeList" | "setGriddata" | "updateDgrid" | "ganttRowClicked"
+    | "setBarItems"
+    | "setChartHeight"
+    | "scrollTop"
+    | "setTimeList"
+    | "setGriddata"
+    | "updateDgrid"
+    | "ganttRowClicked"
+    | "gridRowExpanded"
+    | "LigtUpdateGriddata"
+    | "userAction"
   >();
   public ganttData: iGanttData;
   public chart!: HTMLElement;
@@ -64,6 +74,7 @@ export class chartGantt {
     this.chartContainer.style.top = this.offsetTop + "px";
     this.chartCanvas.style.height = this.chartHeight + "px";
     this.svg.style.height = this.chartHeight + "px";
+    this.chartTime.style.height = 200 + "px";
   }
 
   drawBarItems(data: Array<iGanttItem>) {
@@ -71,22 +82,23 @@ export class chartGantt {
     this.chartSvg.innerHTML = "";
     const fragment = document.createDocumentFragment();
     data.forEach((bar) => {
-      const _bar = bar.render();
+      bar.update();
+      const _bar = ganttItemRender(bar);
       fragment.appendChild(_bar);
     });
     this.setCanvasSize();
     this.chartCanvas.appendChild(fragment);
   }
 
-  drawConnectors(data: Array<string>, activeBars: Array<string>) {
-    data.forEach((item: string) => {
-      const idArr = item.split("@");
-      if (!activeBars.includes(idArr[0])) return;
-      if (!activeBars.includes(idArr[1])) return;
-      const source = this.ganttData.dataStore[idArr[0]];
-      const target = this.ganttData.dataStore[idArr[1]];
-      ganttConnectRender(this, source, target, item);
-    });
+  drawConnectors(activeBars: Array<string>, data?: iConnectors) {
+    for (let key in data) {
+      const connector = data[key];
+      if (!activeBars.includes(connector.to)) return;
+      if (!activeBars.includes(connector.from)) return;
+      const source = this.ganttData.dataStore[connector.from].bar;
+      const target = this.ganttData.dataStore[connector.to].bar;
+      ganttConnectRender(this, source, target, key);
+    }
   }
 
   public scrollBar(e: any) {
@@ -108,10 +120,10 @@ export class chartGantt {
       const id = ele.dataset.id;
       if (id?.includes("@")) {
         const idArray = id.split("@");
-        const s_id = Number(idArray[0]);
-        const t_id = Number(idArray[0]);
-        const source = this.ganttData.dataStore[s_id];
-        const target = this.ganttData.dataStore[t_id];
+        const s_id = idArray[0];
+        const t_id = idArray[1];
+        const source = this.ganttData.dataStore[s_id].bar;
+        const target = this.ganttData.dataStore[t_id].bar;
         delete source.toConnectors[id];
         delete target.fromConnectors[id];
         console.log("DELETE", id);
@@ -128,7 +140,7 @@ export class chartGantt {
     if (clName.startsWith("gantt__Item_bar")) {
       const typ = clName.replace("gantt__Item_bar", "bar") ?? "bar";
       const data = ele.dataset;
-      this.activeBar = this.ganttData.dataStore[data.id];
+      this.activeBar = this.ganttData.dataStore[data.id].bar;
       this.activeBar?.mouseDown(e.x, e.y, typ);
       this.Event.emit("ganttRowClicked", this.activeBar);
     }
