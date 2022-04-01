@@ -1,6 +1,6 @@
 import { iChartGantt } from "../common";
 import { ganttConnectChange } from "./ganttConnectRender";
-import { TimeToPixcel, PixcelToTime, MinMaxDatesFromArray } from "./utils/converter";
+import { TimeToPixcel, PixcelToTime, MinMaxDatesFromArray, measureText } from "./utils/converter";
 
 export type iGanttItem = InstanceType<typeof ganttItem>;
 
@@ -34,6 +34,7 @@ export class ganttItem {
   setPosWidth() {
     this.bar.style.left = this.l + "px";
     this.bar.style.width = this.w + "px";
+    this.updateTextWidth();
   }
 
   mouseDown(x: number, y: number, type: string) {
@@ -109,6 +110,7 @@ export class ganttItem {
     this.data.startTime = PixcelToTime(this.chart, this.l);
     this.data.endTime = PixcelToTime(this.chart, this.l + this.w);
     const parent = this.chart.ganttData.dataStore[this.data.pId].bar as iGanttItem;
+
     parent.updateFromChild();
     this.chart.ganttData.lightUpdateDatagrid();
   }
@@ -122,6 +124,15 @@ export class ganttItem {
 
     if (this.data.type === "root") {
       this.chart.ganttData.NeedTimeScaleAdjusted(this);
+    }
+  }
+
+  updateTextWidth() {
+    const tWidth = measureText(this.data.text, this.chart.chartContainer.style.font);
+    if (tWidth + 20 > this.w) {
+      this.bar.classList.add("gantt__Item_bar_textOverflow");
+    } else {
+      this.bar.classList.remove("gantt__Item_bar_textOverflow");
     }
   }
 

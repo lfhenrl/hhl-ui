@@ -1,10 +1,23 @@
 import { iChartGantt } from "../../common";
 import { iGanttItem } from "../ganttItem";
 
+let canvas: HTMLCanvasElement;
+let context: CanvasRenderingContext2D;
+
 export function TimeToPixcel(chart: iChartGantt, time: Date) {
   const { startDate, secPixcel } = chart;
   const seconds = (time.valueOf() - startDate.valueOf()) / 1000;
   return seconds * secPixcel;
+}
+
+export function measureText(text: string, font: any) {
+  if (!canvas) {
+    canvas = document.createElement("canvas");
+    context = canvas.getContext("2d")!;
+  }
+  context.font = font;
+  const { width } = context.measureText(text);
+  return width;
 }
 
 export function PixcelToTime(chart: iChartGantt, pixel: number) {

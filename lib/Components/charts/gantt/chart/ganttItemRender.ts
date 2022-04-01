@@ -1,5 +1,5 @@
 import { iGanttItem } from "./ganttItem";
-import { TimeToPixcel } from "./utils/converter";
+import { TimeToPixcel, measureText } from "./utils/converter";
 
 export function ganttItemRender(item: iGanttItem) {
   item.bar.innerHTML = "";
@@ -10,6 +10,7 @@ export function ganttItemRender(item: iGanttItem) {
   item.t = item.index * barHeight - 2;
 
   const gantt__Item = document.createElement("div");
+  const gantt__Item_bar_text = document.createElement("div");
   const gantt__Item_bar_dragLeft = document.createElement("div");
   const gantt__Item_bar_dragRight = document.createElement("div");
   const gantt__Item_bar_connectLeft = document.createElement("div");
@@ -37,12 +38,20 @@ export function ganttItemRender(item: iGanttItem) {
     gantt__Item_bar_dragRight.dataset.id = item.id.toString();
   }
 
+  const tWidth = measureText(item.data.text, item.chart.chartContainer.style.font);
+  gantt__Item_bar_text.classList.add("gantt__Item_bar_text");
+  gantt__Item_bar_text.textContent = item.data.text;
+  if (tWidth > item.w) {
+    item.bar.classList.add("gantt__Item_bar_textOverflow");
+  }
+
   gantt__Item_bar_connectLeft.classList.add("gantt__Item_bar_connectLeft");
   gantt__Item_bar_connectLeft.dataset.id = item.id.toString();
 
   gantt__Item_bar_connectRight.classList.add("gantt__Item_bar_connectRight");
   gantt__Item_bar_connectRight.dataset.id = item.id.toString();
 
+  item.bar.appendChild(gantt__Item_bar_text);
   item.bar.appendChild(gantt__Item_bar_dragLeft);
   item.bar.appendChild(gantt__Item_bar_dragRight);
   item.bar.appendChild(gantt__Item_bar_connectLeft);

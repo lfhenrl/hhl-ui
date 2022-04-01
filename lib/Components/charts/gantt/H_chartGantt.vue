@@ -12,7 +12,7 @@
         direction="horizontal"
         class="H_chartGantt__content"
         item-class="ganttTimeItem"
-        :keeps="5"
+        :keeps="10"
       >
         <template v-slot="data">
           <GanttTimeItem :time-data="data.item" :key="data.item.id" />
@@ -66,13 +66,12 @@ import { vSplitpane } from "../../../Directives/v-splitpane";
 import GanttDatagrid from "./datagrid/GanttDatagrid.vue";
 import GanttEdit from "./edit/ganttEdit.vue";
 
-
 const props = defineProps({
   startDate: { type: Date, default: new Date() },
   endDate: { type: Date, default: new Date() },
   data: { type: Object, default: {} },
   barHeight: { type: Number, default: 30 },
-  timeHeight: { type: Number, default: 22 }
+  timeHeight: { type: Number, default: 22 },
 });
 
 const _gantt = ref<HTMLElement>();
@@ -91,7 +90,7 @@ const style: any = computed(() => {
     "--gantt-time-height": props.timeHeight + "px",
     "--gantt-time-totalheight": props.timeHeight * 2 + "px",
     "--gantt-bar-height": props.barHeight + "px",
-    "--gantt-chart-height": chartHeight.value + "px"
+    "--gantt-chart-height": chartHeight.value + "px",
   };
 });
 
@@ -101,7 +100,6 @@ gantt.Event.on("setTimeList", (val) => {
   timeList.value = val;
 });
 gantt.Event.on("updateDgrid", () => dGrid.value.update());
-
 
 watch(
   () => props.data,
@@ -259,10 +257,21 @@ onBeforeUnmount(() => {
   z-index: 200;
 }
 
-/* .gantt__Item_group {
+.gantt__Item_group {
   background-color: rgb(111, 111, 235);
   cursor: default;
-} */
+}
+
+.gantt__Item_bar_text {
+  position: absolute;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.gantt__Item_bar_textOverflow .gantt__Item_bar_text {
+  left: 100%;
+  margin-left: 16px;
+}
 
 .gantt__Item_bar_connectRight {
   position: absolute;
@@ -313,6 +322,7 @@ onBeforeUnmount(() => {
   background-image: repeating-linear-gradient(45deg, black 25%, white 25%, white 75%, black 75%, black);
   background-position: 0;
   background-size: 1px 1px;
+  pointer-events: all;
 }
 
 .gantt__Item_bar_dragLeft:hover {
@@ -330,6 +340,7 @@ onBeforeUnmount(() => {
   background-size: 1px 1px;
   opacity: 0;
   border-radius: 0 var(--gantt-bar-height) var(--gantt-bar-height) 0;
+  pointer-events: all;
 }
 
 .gantt__Item_bar_dragRight:hover {

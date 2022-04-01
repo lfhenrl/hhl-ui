@@ -1,16 +1,22 @@
 <template>
-  <H_dialog :modelValue="show" class="gantt_edit" >
+  <H_dialog :modelValue="show" class="gantt_edit">
     <template #header>{{ data.subType }}</template>
     <div class="gantt_edit_container">
       <H_input label="Title" v-model="data.text" />
       <div class="gantt_edit_row" v-if="data.type !== 'group'">
         <H_datePicker label="Start time" v-model="data.startTime" type="date" />
-        <H_datePicker label="End time" v-model="data.endTime" type="date" />
+        <H_datePicker
+          label="End time"
+          v-model="data.endTime"
+          type="date"
+          :validator="[dateOk]"
+          @isValid="isValid_date = $event"
+        />
       </div>
       <div class="gantt_edit_row" v-if="data.type !== 'group'">
-        <H_input label="Work days" type="number" v-model="workload" />
-        <H_input label="Work load" type="number" v-model="data.workLoad" />
-        <H_input label="Progress" type="number" v-model="data.progress" />
+        <H_input label="Work days" type="number" v-model="workload" min="1" />
+        <H_input label="Work load" type="number" v-model="data.workLoad" max="100" min="0" />
+        <H_input label="Progress" type="number" v-model="data.progress" max="100" min="0" />
       </div>
     </div>
     <template #footer>
@@ -18,7 +24,7 @@
         <H_btn @click="remove" class="col-warn">Delete</H_btn>
         <H_spacer />
         <H_btn @click="cancel" class="col-sec">Cancel</H_btn>
-        <H_btn @click="save" :disabled="!isChanged">Save</H_btn>
+        <H_btn @click="save" :disabled="!isChanged || !isValid_date">Save</H_btn>
       </div>
     </template>
   </H_dialog>
@@ -33,13 +39,15 @@ import H_datePicker from "../../../date/H_datePicker.vue";
 
 const props = defineProps({
   activeId: { type: String, default: "" },
-  show: { type: Boolean, default: false }
+  show: { type: Boolean, default: false },
 });
 const emit = defineEmits(["close"]);
 
 const gantt = inject("gantt") as iChartGantt;
 const isChanged = ref(false);
+const isValid_date = ref(true);
 let item: any = {};
+let itemBar: any = {};
 
 const data = reactive({
   id: "",
@@ -50,7 +58,7 @@ const data = reactive({
   workLoad: 100,
   progress: 100,
   startTime: DateGetToday(),
-  endTime: DateAddDays(DateGetToday(), 11)
+  endTime: DateAddDays(DateGetToday(), 11),
 });
 
 watch(
@@ -64,6 +72,7 @@ watch(
 watch([() => props.activeId, () => props.show], () => {
   if (props.show === false) return;
   item = gantt.ganttData.dataStore[props.activeId].data;
+  itemBar = gantt.ganttData.dataStore[props.activeId].bar;
   data.id = item.id;
   data.text = item.text;
   data.workLoad = item.workLoad;
@@ -84,8 +93,13 @@ const workload = computed<number>({
   // setter
   set(newValue) {
     data.endTime = DateAddDays(data.startTime, parseInt(newValue.toString()));
-  }
+  },
 });
+
+function dateOk(value: Date) {
+  if (data.startTime < value) return true;
+  return "EndDate should be after startdate";
+}
 
 function cancel() {
   emit("close", "cancel");
@@ -99,6 +113,7 @@ function save() {
   item.subType = data.subType;
   item.startTime = data.startTime;
   item.endTime = data.endTime;
+  itemBar.updateTextWidth();
   gantt.ganttData.makeGridData();
   gantt.ganttData.groupData();
 }

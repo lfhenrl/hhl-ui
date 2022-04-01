@@ -202,7 +202,7 @@ onUnmounted(() => {
 .H_pop__content {
   font-size: var(--comp-font-size);
   font-family: var(--comp-font-family);
-  position: absolute;
+  position: fixed;
   transition: transform 0.2s ease-in-out;
   transform-origin: top;
   transform: scaleY(0);
