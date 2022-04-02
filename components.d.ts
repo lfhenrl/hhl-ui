@@ -29,6 +29,7 @@ declare module 'vue' {
     H_dPicker: typeof import('./lib/Components/date/H_dPicker.vue')['default']
     H_dragDrop: typeof import('./lib/Components/draggable/H_dragDrop.vue')['default']
     H_dragDropItem: typeof import('./lib/Components/draggable/H_dragDropItem.vue')['default']
+    H_form: typeof import('./lib/Components/H_form.vue')['default']
     H_gridlines: typeof import('./lib/Components/layout/H_gridlines.vue')['default']
     H_groupRow: typeof import('./lib/Components/datagrid/H_groupRow.vue')['default']
     H_icon: typeof import('./lib/Components/H_icon.vue')['default']

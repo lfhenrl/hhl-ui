@@ -54,7 +54,7 @@ const count = computed(() => (props.value ? props.value.toString().length : 0));
 const slotAttrs = ref({});
 const haveError = computed(() => {
   const valid = validate.value !== "" && !props.disabled;
-  emit("isValid", !valid);
+  emit("isValid", validate.value);
   return valid;
 });
 const haveEvent = (e: string) => ((slotAttrs.value as any)[e] === undefined ? null : "");
@@ -164,7 +164,6 @@ const validate = computed(() => {
 
 .H_inputBase__infoBox {
   position: absolute;
-  font-size: 0.6em;
   display: inline-flex;
   width: 100%;
   top: 3em;
