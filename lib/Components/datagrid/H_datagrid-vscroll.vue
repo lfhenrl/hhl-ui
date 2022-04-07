@@ -218,7 +218,7 @@ function resizeColSize() {
 
 async function downloadExcel() {
   const data = await DataController.getRawData();
-  toExcel(data, dg.Columns.value, "GridData");
+  toExcel(data.items, dg.Columns.value, "GridData");
 }
 
 function toggleFullScreen() {

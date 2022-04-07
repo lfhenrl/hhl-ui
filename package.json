@@ -11,6 +11,7 @@
     "@emmetio/codemirror-plugin": "^1.2.4",
     "@floating-ui/dom": "^0.4.2",
     "codemirror": "^5.65.2",
+    "firebase": "^9.6.10",
     "vue": "^3.2.31",
     "vue-resize-observer": "^2.0.16",
     "vue-router": "^4.0.14"

@@ -4,7 +4,7 @@
       <H_datagridHeadCell v-for="(col, index) in columns" :key="col.orgIndex" :column="col" :index="index" />
       <div class="H_datagridHeadCell__spacer" />
     </div>
-    <div class="H_virtualList" @click="datagridClick" :key="updates">
+    <div ref="vList" class="H_virtualList" @click="datagridClick" :key="updates">
       <H_rowGantt v-for="(item, index) in gridData" :key="item.id" :index="index" :id="item.id" :data="item" :type="item.type" />
     </div>
     <H_progressBar class="H_virtualList-info" :show="isLoading" />
@@ -48,6 +48,7 @@ function onResize() {
 const slots = useSlots();
 const selectedId = ref("");
 const dom = ref(<HTMLElement>{});
+const vList = ref(<HTMLElement>{});
 const dg = new Datagrid(dom, slots);
 const isLoading = ref(false);
 const updates = ref(0);
@@ -70,7 +71,7 @@ dg.Event.on("isLoading", (val: boolean) => {
 
 onMounted(() => {
   dg.Init();
-  emit("loaded", { dg, gridData });
+  emit("loaded", { dg, gridData, vList: vList });
 });
 
 function update() {
@@ -107,8 +108,6 @@ function rowClicked(data: any) {
 <style>
 .H_dataGridGantt {
   box-shadow: none;
-  overflow-y: hidden !important;
-  overflow-x: scroll;
 }
 
 .H_dataGridGantt .H_datagrid-header {
@@ -120,14 +119,11 @@ function rowClicked(data: any) {
 
 .H_dataGridGantt .H_virtualList {
   font-size: 0.85em;
+  overflow-y: hidden;
+  padding-bottom: 16px;
 }
 
-.H_dataGridGantt .H_virtualList-scroller {
-  margin-bottom: 4px;
-  font-size: 0.85em;
-}
-
-.oddEven.even {
+.gridRow:nth-child(even) {
   background-color: var(--col-bg-1);
 }
 </style>

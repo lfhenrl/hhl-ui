@@ -1,8 +1,8 @@
 <template>
   <div>
-    <H_modal v-model="show" class="H_datagridPopup" offset-top="5%" no-persistent>
+    <H_modal v-model="show" class="H_datagridPopup" offset="50%" no-persistent :movable="true">
       <div ref="draggableContainer" class="H_datagridPopup__container">
-        <div class="H_datagridPopup__title" @mousedown="dragMouseDown">
+        <div class="H_datagridPopup__title" moveable-drag>
           <div>{{ title }}</div>
           <H_icon btn class="col-txt-pri" size="1.9em" @click="show = false" />
         </div>
@@ -69,44 +69,44 @@ const filtTabClass = computed(() => {
 
 const draggableContainer = ref<HTMLElement>();
 
-const positions = ref({
-  clientX: 0,
-  clientY: 0,
-  movementX: 0,
-  movementY: 0
-});
+// const positions = ref({
+//   clientX: 0,
+//   clientY: 0,
+//   movementX: 0,
+//   movementY: 0
+// });
 
-function dragMouseDown(event: MouseEvent) {
-  event.preventDefault();
-  // get the mouse cursor position at startup:
-  positions.value.clientX = event.clientX;
-  positions.value.clientY = event.clientY;
-  document.onmousemove = elementDrag;
-  document.onmouseup = closeDragElement;
-}
+// function dragMouseDown(event: MouseEvent) {
+//   event.preventDefault();
+//   // get the mouse cursor position at startup:
+//   positions.value.clientX = event.clientX;
+//   positions.value.clientY = event.clientY;
+//   document.onmousemove = elementDrag;
+//   document.onmouseup = closeDragElement;
+// }
 
-function elementDrag(event: MouseEvent) {
-  event.preventDefault();
-  positions.value.movementX = positions.value.clientX - event.clientX;
-  positions.value.movementY = positions.value.clientY - event.clientY;
+// function elementDrag(event: MouseEvent) {
+//   event.preventDefault();
+//   positions.value.movementX = positions.value.clientX - event.clientX;
+//   positions.value.movementY = positions.value.clientY - event.clientY;
 
-  positions.value.clientX = event.clientX;
-  positions.value.clientY = event.clientY;
-  // set the element's new position:
-  draggableContainer.value!.style.top = draggableContainer.value!.offsetTop - positions.value.movementY + "px";
-  draggableContainer.value!.style.left = draggableContainer.value!.offsetLeft - positions.value.movementX + "px";
-}
+//   positions.value.clientX = event.clientX;
+//   positions.value.clientY = event.clientY;
+//   // set the element's new position:
+//   draggableContainer.value!.style.top = draggableContainer.value!.offsetTop - positions.value.movementY + "px";
+//   draggableContainer.value!.style.left = draggableContainer.value!.offsetLeft - positions.value.movementX + "px";
+// }
 
-function closeDragElement() {
-  document.onmouseup = null;
-  document.onmousemove = null;
-}
+// function closeDragElement() {
+//   document.onmouseup = null;
+//   document.onmousemove = null;
+// }
 </script>
 
 <style>
 .H_datagridPopup__container {
   display: grid;
-  position: absolute;
+  /* position: absolute; */
   grid-template-rows: auto 1fr auto;
   box-shadow: var(--comp-shadow);
   background-color: var(--col-bg-2);

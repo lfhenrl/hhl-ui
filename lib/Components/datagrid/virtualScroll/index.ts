@@ -27,7 +27,7 @@ class dataController {
     QueryObject.paging.size = this.dg.excelMaxRows;
     QueryObject.groupBy = "";
     const data = await this.DataHandler.loadData(QueryObject);
-    return data.data;
+    return data;
   }
 
   private async getData(QueryObject: iQueryObject, dataStore: any, level: number, index: number, dataId: string = "_") {

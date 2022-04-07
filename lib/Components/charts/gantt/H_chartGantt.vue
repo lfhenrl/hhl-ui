@@ -59,20 +59,23 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, provide, ref, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, provide, ref } from "vue";
 import { chartGantt } from "./common";
 import { iGanttTimeItem } from "./scale/makeTimelist";
 import { vSplitpane } from "../../../Directives/v-splitpane";
 import GanttDatagrid from "./datagrid/GanttDatagrid.vue";
 import GanttEdit from "./edit/ganttEdit.vue";
+import { iGanttData } from "./common/ganttData";
 
 const props = defineProps({
   startDate: { type: Date, default: new Date() },
   endDate: { type: Date, default: new Date() },
-  data: { type: Object, default: {} },
+  // data: { type: Object, default: {} },
   barHeight: { type: Number, default: 30 },
-  timeHeight: { type: Number, default: 22 },
+  timeHeight: { type: Number, default: 22 }
 });
+
+const emit = defineEmits(["loaded"]);
 
 const _gantt = ref<HTMLElement>();
 const dGrid = ref();
@@ -90,23 +93,25 @@ const style: any = computed(() => {
     "--gantt-time-height": props.timeHeight + "px",
     "--gantt-time-totalheight": props.timeHeight * 2 + "px",
     "--gantt-bar-height": props.barHeight + "px",
-    "--gantt-chart-height": chartHeight.value + "px",
+    "--gantt-chart-height": chartHeight.value + "px"
   };
 });
 
-gantt.Event.on("scrollTop", (val) => (scrollTop.value = val));
+gantt.Event.on("scrollTop", (val) => {
+  scrollTop.value = val;
+});
 gantt.Event.on("setChartHeight", (val: number) => (chartHeight.value = val));
 gantt.Event.on("setTimeList", (val) => {
   timeList.value = val;
 });
 gantt.Event.on("updateDgrid", () => dGrid.value.update());
 
-watch(
-  () => props.data,
-  () => {
-    gantt.ganttData.newData(props.data);
-  }
-);
+// watch(
+//   () => props.data,
+//   () => {
+//     gantt.ganttData.newData(props.data);
+//   }
+// );
 
 onMounted(() => {
   gantt.init(_gantt.value!, lineTool.value);
@@ -114,7 +119,11 @@ onMounted(() => {
   gantt.endDate = props.endDate;
   gantt.barHeight = props.barHeight;
   gantt.timeHeight = props.timeHeight;
-  gantt.ganttData.newData(props.data);
+  // gantt.ganttData.newData(props.data);
+  emit("loaded", {
+    dom: _gantt.value,
+    data: gantt.ganttData as iGanttData
+  });
 });
 
 onBeforeUnmount(() => {
@@ -125,9 +134,10 @@ onBeforeUnmount(() => {
 <style>
 .H_chartGantt-splitLine {
   cursor: ew-resize;
-  background-color: var(--col-bg-5);
-  min-width: 4px;
+  background-color: var(--col-bg-3);
+  width: 5px;
 }
+
 .H_chartGantt {
   position: relative;
   display: flex;
@@ -149,7 +159,8 @@ onBeforeUnmount(() => {
 .H_chartGantt_box {
   z-index: 0;
   width: 100%;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: auto;
   height: 100%;
 }
 .H_chartGantt_scroll {
@@ -164,8 +175,8 @@ onBeforeUnmount(() => {
 
 .H_chartGantt_scroll_top {
   min-height: 44px;
-  border-left: 1px solid var(--col-bg-5);
-  border-bottom: 1px solid var(--col-bg-5);
+  /* border-left: 1px solid var(--col-bg-5); */
+  /* border-bottom: 1px solid var(--col-bg-5); */
 }
 
 .H_chartGantt_scroll_bar {
@@ -188,21 +199,22 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   z-index: 1;
+  overflow: visible;
 }
 
 .H_chartGantt__content {
-  overflow: hidden;
-  overflow-x: auto;
+  overflow: visible;
   height: 100%;
+  width: 100%;
 }
 
 .H_chartGantt__chartContainer {
   position: absolute;
   overflow: hidden;
-  overflow-y: auto;
-  scrollbar-width: none;
+  overflow-y: visible;
   left: 0;
   top: 0;
+  flex: 1;
   width: 100%;
   height: 100%;
 }
@@ -218,6 +230,8 @@ onBeforeUnmount(() => {
 
 .H_chartGantt__content > .H_virtualList-scroller {
   position: relative;
+  min-width: 100%;
+  /* overflow: auto; */
 }
 
 .gantt__Item {
@@ -259,7 +273,12 @@ onBeforeUnmount(() => {
 
 .gantt__Item_group {
   background-color: rgb(111, 111, 235);
+  color: white;
   cursor: default;
+}
+
+.gantt__Item_group.gantt__Item_bar_textOverflow .gantt__Item_bar_text {
+  color: black;
 }
 
 .gantt__Item_bar_text {

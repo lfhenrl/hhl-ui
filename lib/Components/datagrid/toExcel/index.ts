@@ -1,7 +1,5 @@
-import { inject } from "vue";
-import { iDatagrid } from "../provide";
-import { icolumnData } from "../provide/Columns";
-import Excel from "./exportToExcel";
+import { icolumnData } from "../datagridTypes";
+import Excel from "../../../utils/exportToExcel";
 
 export function toExcel(data: any, Columns: any, name: string) {
   const fields: any = {};

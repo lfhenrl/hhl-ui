@@ -35,6 +35,8 @@ export class ganttItem {
     this.bar.style.left = this.l + "px";
     this.bar.style.width = this.w + "px";
     this.updateTextWidth();
+    this.updateToConnectors();
+    this.updateFromConnectors();
   }
 
   mouseDown(x: number, y: number, type: string) {
@@ -77,8 +79,6 @@ export class ganttItem {
 
     if (needUpdate) {
       this.setPosWidth();
-      this.updateToConnectors();
-      this.updateFromConnectors();
     }
   }
 

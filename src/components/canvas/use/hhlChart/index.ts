@@ -115,7 +115,7 @@ export class HHLchart {
   }
 
   Update() {
-    this.ColorListActive = Object.keys(this.ColorList).length === 0
+    this.ColorListActive = Object.keys(this.ColorList).length === 0;
     this.Clear();
 
     this.SetSize();
@@ -133,7 +133,7 @@ export class HHLchart {
     const rect = this.MainContainer.getBoundingClientRect();
     const scale = (1123 - 60) / window.innerWidth;
     this.MainContainer.style.width = rect.width + "px";
-    this.MainContainer.style.marginTop = -(rect.top - 40) + "px";
+    this.MainContainer.style.marginTop = -(rect.top - 30) + "px";
     this.MainContainer.style.height = this.MainContainer.scrollHeight + "px";
     this.MainContainer.style.transform = `scale(${scale})`;
 

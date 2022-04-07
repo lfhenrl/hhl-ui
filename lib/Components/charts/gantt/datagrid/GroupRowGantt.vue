@@ -1,6 +1,6 @@
 <template>
   <div
-    class="GroupRowGantt oddEven"
+    class="GroupRowGantt gridRow"
     draggable="true"
     :class="[dg.SelectClassName, dropStyle]"
     @dragstart="startDrag($event)"

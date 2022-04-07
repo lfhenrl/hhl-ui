@@ -7,7 +7,7 @@ export function ganttItemRender(item: iGanttItem) {
 
   item.l = TimeToPixcel(item.chart, item.data.startTime);
   item.w = TimeToPixcel(item.chart, item.data.endTime) - item.l;
-  item.t = item.index * barHeight - 2;
+  item.t = item.index * barHeight;
 
   const gantt__Item = document.createElement("div");
   const gantt__Item_bar_text = document.createElement("div");

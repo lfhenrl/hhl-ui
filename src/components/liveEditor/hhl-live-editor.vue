@@ -7,6 +7,7 @@
     >
       <div class="hhl-live-editor_errorPopup_title flex items-center flx-justify-between pl-1" moveable-drag>
         <div>Error</div>
+        <H_spacer/>
         <H_btn type="icon-text" icon="close" color="white" round @click="hideError = !hideError" />
       </div>
 

@@ -39,7 +39,7 @@ import H_datePicker from "../../../date/H_datePicker.vue";
 
 const props = defineProps({
   activeId: { type: String, default: "" },
-  show: { type: Boolean, default: false },
+  show: { type: Boolean, default: false }
 });
 const emit = defineEmits(["close"]);
 
@@ -58,7 +58,7 @@ const data = reactive({
   workLoad: 100,
   progress: 100,
   startTime: DateGetToday(),
-  endTime: DateAddDays(DateGetToday(), 11),
+  endTime: DateAddDays(DateGetToday(), 11)
 });
 
 watch(
@@ -93,7 +93,7 @@ const workload = computed<number>({
   // setter
   set(newValue) {
     data.endTime = DateAddDays(data.startTime, parseInt(newValue.toString()));
-  },
+  }
 });
 
 function dateOk(value: Date) {
@@ -127,9 +127,15 @@ function remove() {
       if (index < 0) return;
       parent.data.children.splice(index, 1);
       delete gantt.ganttData.dataStore[props.activeId];
+      const connectors = gantt.ganttData.connectors;
+      for (const c in connectors) {
+        const conn = connectors[c];
+        if (conn.to === props.activeId || conn.from === props.activeId) {
+          delete connectors[c];
+        }
+      }
       gantt.ganttData.makeGridData();
       gantt.ganttData.groupData();
-      console.log("remove", gantt.ganttData.dataStore, "nn");
       emit("close", "delete");
     })
     .catch(() => {

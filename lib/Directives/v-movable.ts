@@ -1,5 +1,6 @@
 export const vMovable = {
-  mounted(el: HTMLElement) {
+  mounted(el: HTMLElement, active: any) {
+    if (active.value !== true) return;
     let pos1 = 0,
       pos2 = 0,
       pos3 = 0,

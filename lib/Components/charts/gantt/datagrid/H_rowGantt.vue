@@ -2,7 +2,7 @@
   <div
     v-if="type === 'data'"
     :class="itemClass"
-    class="H_rowGantt_data oddEven"
+    class="H_rowGantt_data gridRow"
     draggable="true"
     :data-id="data.id"
     :data-type="data.type"

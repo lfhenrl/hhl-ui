@@ -167,6 +167,6 @@ const onClick = () => {
 }
 
 .H_select_item {
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 </style>

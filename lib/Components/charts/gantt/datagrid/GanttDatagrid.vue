@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch, inject } from "vue";
+import { ref, watch, inject } from "vue";
 import { DateDiffDays } from "../../../../utils/dateFunctions";
 import { iDatagrid } from "../../../datagrid/provide";
 import { iChartGantt } from "../common";
@@ -33,12 +33,12 @@ const dgrid = ref();
 
 let dg: iDatagrid;
 let gridData: any;
-let scroller: HTMLElement;
+let scroller: any;
 
 watch(
   () => props.scrollTop,
   () => {
-    scroller.scrollTop = props.scrollTop;
+    scroller.value.scrollTop = props.scrollTop;
   }
 );
 
@@ -52,7 +52,6 @@ gantt.Event.on("LigtUpdateGriddata", () => {
 });
 
 gantt.Event.on("gridRowExpanded", () => {
-  updateOddEven();
   gantt.ganttData.groupData();
 });
 
@@ -62,26 +61,12 @@ function getDays(_value: any, _props: any, _data: any) {
 
 function update() {
   dgrid.value.update();
-  updateOddEven();
-}
-
-function updateOddEven() {
-  setTimeout(() => {
-    const gg = dgrid.value.$el as HTMLElement;
-    const aa = gg.querySelectorAll(".oddEven");
-    let even = false;
-    aa.forEach((item: any) => {
-      if (even) {
-        item.classList.add("even");
-      }
-      even = !even;
-    });
-  }, 100);
 }
 
 function loaded(grid: any) {
   dg = grid.dg;
   gridData = grid.gridData;
+  scroller = grid.vList;
   emit("loaded", grid);
   gantt.dg = dg;
 
@@ -100,12 +85,6 @@ function rowClicked(data: any) {
     gantt.Event.emit("userAction", data.id);
   }
 }
-
-onMounted(() => {
-  setTimeout(() => {
-    scroller = dgrid.value.$el.querySelector(".H_virtualList") as HTMLElement;
-  });
-});
 </script>
 
 <style>
@@ -113,6 +92,9 @@ onMounted(() => {
   display: flex;
   flex: 1;
   align-items: center;
+}
+.gantt_datagrid__colTitle span {
+  flex: 1;
 }
 
 .gantt_datagrid__colTitle .H_icon {

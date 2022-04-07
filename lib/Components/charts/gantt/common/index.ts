@@ -69,12 +69,12 @@ export class chartGantt {
     this.chartHeight = this.ganttData.barItems.length * this.barHeight + 2;
     this.Event.emit("setChartHeight", this.chartHeight);
     this.scrollDummi.style.height = this.chartHeight + "px";
-    this.offsetTop = this.timeHeight * 2 + 2;
+    this.offsetTop = this.timeHeight * 2;
     this.chartContainer.style.height = this.chart.clientHeight - this.offsetTop - 11 + "px";
     this.chartContainer.style.top = this.offsetTop + "px";
     this.chartCanvas.style.height = this.chartHeight + "px";
     this.svg.style.height = this.chartHeight + "px";
-    this.chartTime.style.height = 200 + "px";
+    // this.chartTime.style.height = 200 + "px";
   }
 
   drawBarItems(data: Array<iGanttItem>) {
@@ -116,19 +116,23 @@ export class chartGantt {
 
   public mouseDblClick(e: MouseEvent) {
     const ele = e.target as HTMLElement;
+
     if (ele.classList.contains("ganttConnector")) {
-      const id = ele.dataset.id;
-      if (id?.includes("@")) {
-        const idArray = id.split("@");
-        const s_id = idArray[0];
-        const t_id = idArray[1];
-        const source = this.ganttData.dataStore[s_id].bar;
-        const target = this.ganttData.dataStore[t_id].bar;
-        delete source.toConnectors[id];
-        delete target.fromConnectors[id];
-        console.log("DELETE", id);
-        ele.remove();
-      }
+      hhl
+        .dialog("Delete", `Are you sure you will delete?...`)
+        .then(() => {
+          const id = ele.dataset.id ?? "";
+          const connector = this.ganttData.connectors[id];
+          const source = this.ganttData.dataStore[connector.from].bar;
+          const target = this.ganttData.dataStore[connector.to].bar;
+          delete source.toConnectors[id];
+          delete target.fromConnectors[id];
+          delete this.ganttData.connectors[id];
+          ele.remove();
+        })
+        .catch(() => {
+          return;
+        });
     }
   }
 

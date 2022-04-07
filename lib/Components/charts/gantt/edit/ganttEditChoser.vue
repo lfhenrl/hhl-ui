@@ -2,13 +2,13 @@
   <H_dialog :modelValue="show">
     <template #header>Action</template>
     <div class="gantt_datagrid_Dialog">
-      <H_btn type="outline" size="sm" @click="addFolder">Add folder</H_btn>
-      <H_btn type="outline" size="sm" @click="addTask">Add task</H_btn>
-      <H_btn type="outline" size="sm" @click="addMileStone">Add milestone</H_btn>
-      <H_btn type="outline" size="sm" @click="edit">Edit</H_btn>
+      <H_btn type="outline" @click="addFolder">Add folder</H_btn>
+      <H_btn type="outline" @click="addTask">Add task</H_btn>
+      <H_btn type="outline" @click="addMileStone">Add milestone</H_btn>
+      <H_btn type="outline" @click="edit">Edit</H_btn>
     </div>
     <template #footer>
-      <H_btn @click="cancel" type="outline" size="sm">Cancel</H_btn>
+      <H_btn @click="cancel" class="col-sec">Cancel</H_btn>
     </template>
   </H_dialog>
 </template>

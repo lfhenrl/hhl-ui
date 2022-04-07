@@ -1,20 +1,28 @@
 <template>
   <div v-if="overLayShow" @click="overlayClick" class="H_modal" :class="{ H_modal__showOverlay: showOverlay }">
-    <div class="H_modal-pop" @click.stop :class="{ 'H_modal-pop__open': popShow, 'H_modal-pop__shake': shake }">
+    <div
+      class="H_modal-pop"
+      ref="pop"
+      v-movable="movable"
+      @click.stop
+      :class="{ 'H_modal-pop__open': popShow, 'H_modal-pop__shake': shake }"
+    >
       <slot />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { PropType, ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
+import { vMovable } from "../../Directives/v-movable";
+
 const props = defineProps({
   modelValue: { type: Boolean, default: false, required: true },
   showOverlay: { default: false, type: Boolean },
   noPersistent: { default: false, type: Boolean },
   noShake: { default: false, type: Boolean },
-  placement: { type: String as PropType<"start" | "center" | "end">, default: "start" },
-  offset: { default: "10px", type: String }
+  movable: { default: false, type: Boolean },
+  offset: { default: "50%", type: String }
 });
 
 const emit = defineEmits(["update:modelValue"]);
@@ -22,6 +30,8 @@ const emit = defineEmits(["update:modelValue"]);
 const popShow = ref(false);
 const overLayShow = ref(false);
 const shake = ref(false);
+const pop = ref();
+const popHalfHeight = ref("100px");
 
 watch(
   () => props.modelValue,
@@ -30,6 +40,8 @@ watch(
       overLayShow.value = true;
       setTimeout(() => {
         popShow.value = true;
+        const p = pop.value;
+        popHalfHeight.value = p.clientHeight / 2 + "px";
       }, 10);
     } else {
       popShow.value = false;
@@ -53,13 +65,13 @@ function overlayClick() {
     }
   }
 }
+onMounted(() => {});
 </script>
 
 <style>
 .H_modal {
   display: flex;
   justify-content: center;
-  align-items: v-bind(placement);
   z-index: 50;
   position: fixed;
   width: 100vw;
@@ -77,8 +89,8 @@ function overlayClick() {
   font-size: var(--comp-font-size);
   font-family: var(--comp-font-family);
   transform: translateY(-100%);
-  transition: all 200ms ease-in;
-  margin: v-bind(offset) 0;
+  transition: transform 200ms ease-in;
+  top: calc(var(--H_modal-offset) - v-bind(popHalfHeight));
 }
 
 .H_modal-pop__open {

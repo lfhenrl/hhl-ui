@@ -20,6 +20,19 @@ export class GanttData {
   public connectors: iConnectors = {};
   public activeBars: Array<string> = [];
   public rootId = "";
+  public listFields = {
+    id: { type: "string", title: "ID" },
+    pId: { type: "string", title: "ParrentId" },
+    text: { type: "string", title: "Tile" },
+    type: { type: "string", title: "Type" },
+    subType: { type: "string", title: "SubType" },
+    workLoad: { type: "number", title: "Workload" },
+    progress: { type: "number", title: "Progress" },
+    level: { type: "number", title: "Level" },
+    startTime: { type: "date", title: "StartTime" },
+    endTime: { type: "date", title: "EndTime" },
+    children: { type: "number", title: "Children" }
+  };
   private minDate = new Date(3300, 1, 1).valueOf();
   private maxDate = new Date(0).valueOf();
   private runningIndex = 0;
@@ -29,13 +42,20 @@ export class GanttData {
   }
 
   newData(data: any) {
+    console.log("rawData", this.rawData)
+    // @ts-ignore structuredClone is a new function
+    const _data = structuredClone(data);
     this.dataStore = {};
-    this.connectors = data.connectors;
-    this.rawData = data.data;
-    this.rootId = data.data[0].id;
-    this.minDate = new Date(3300, 1, 1).valueOf();
-    this.maxDate = new Date(0).valueOf();
-    this.makeDataStore(data.data);
+    this.barItems = [];
+    this.activeBars = [];
+    this.connectors = _data.connectors;
+    this.rawData = _data.data;
+    this.rootId = _data.data[0].id;
+    const minDate = new Date(3300, 1, 1);
+    const maxDate = new Date(0);
+    this.minDate = new Date(minDate).valueOf();
+    this.maxDate = new Date(maxDate).valueOf();
+    this.makeDataStore(_data.data);
     this.chart.startDate = DateAddDays(new Date(this.minDate), -2);
     this.chart.endDate = DateAddDays(new Date(this.maxDate), 2);
     this.makeTimeList();
@@ -143,10 +163,19 @@ export class GanttData {
 
   addConnector(id: string, data: any) {
     this.connectors[id] = data;
-    console.log("addConnector", this.connectors);
   }
 
   getGuid() {
     return Math.floor(new Date().valueOf() * Math.random()).toString(36);
+  }
+
+  getFlatList() {
+    const data = [];
+    for (const key in this.dataStore) {
+      const item = { ...this.dataStore[key].data };
+      item.children = item.children.length;
+      data.push(item);
+    }
+    return data;
   }
 }

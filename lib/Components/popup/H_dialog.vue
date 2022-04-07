@@ -6,10 +6,10 @@
     :offset="offset"
     :show-overlay="showOverlay"
     :no-shake="noShake"
-    :placement="placement"
+    :movable="movable"
   >
     <div class="H_dialog col-bg-0">
-      <div class="H_dialog__header col-pri">
+      <div class="H_dialog__header col-pri" moveable-drag>
         <slot name="header" />
       </div>
       <div class="H_dialog__body"><slot /></div>
@@ -19,7 +19,6 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
 import H_modal from "./H_modal.vue";
 
 const props = defineProps({
@@ -27,8 +26,8 @@ const props = defineProps({
   showOverlay: { default: false, type: Boolean },
   noPersistent: { default: false, type: Boolean },
   noShake: { default: false, type: Boolean },
-  offset: { default: "1px", type: String },
-  placement: { type: String as PropType<"start" | "center" | "end">, default: "center" }
+  offset: { default: "50%", type: String },
+  movable: { default: true, type: Boolean },
 });
 
 const emit = defineEmits(["update:modelValue"]);
