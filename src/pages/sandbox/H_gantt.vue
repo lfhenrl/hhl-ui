@@ -1,8 +1,8 @@
 <template>
   <div ref="H_gantt" class="H_gantt">
     <div class="toolbar">
-      <H_btn @click="undo" type="icon-text" icon="undo" title="Undo all changes"></H_btn>
-      <H_btn @click="print" type="icon-text" icon="save" title="Save all changes"></H_btn>
+      <H_btn @click="undo" :disabled="!isDirty" type="icon-text" icon="undo" title="Undo all changes"></H_btn>
+      <H_btn @click="save" :disabled="!isDirty" type="icon-text" icon="save" title="Save all changes"></H_btn>
       <div class="toolbarSpacer" />
       <H_btn @click="print" type="icon-text" icon="print" title="Print Gantt"></H_btn>
       <H_btn @click="png" type="icon-text" icon="image" title="Download Gantt as PNG picture"></H_btn>
@@ -11,21 +11,20 @@
       <H_btn @click="toggleFullScreen" type="icon-text" icon="zoom_out_map" title="fullScreen"></H_btn>
       <div class="toolbarSpacer" />
       <div class="toolbarLabel">Resolution:</div>
-      <H_select v-model="timeSpan" :select-data="[`Day`, `Week`, `Month`]" hide-filter />
+      <H_select v-model="scale" :select-data="[`Day`, `Week`, `Month`]" hide-filter />
       <div class="toolbarSpacer" />
     </div>
-    <H_chartGantt @loaded="ganttLoaded" :start-date="new Date(2019, 0, 0, 0)" :end-date="new Date(2022, 0, 0, 0)" />
+    <H_chartGantt @loaded="ganttLoaded" :scale="scale"/>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import gData from "../../testData/ganttData";
+import { ref, watch } from "vue";
 import { printDom, savePng } from "../../../lib/utils/printAndPng";
 import { iH_chartGantt } from "../../../lib/Components/charts/gantt/H_chartGanttTypes";
 import Excel from "../../../lib/utils/exportToExcel";
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import { getFirestore, getDoc, doc, setDoc } from "firebase/firestore/lite";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDVLgsLMzFU58GDPXgsS_wiQGOtzOV5K3k",
@@ -39,23 +38,46 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const timeSpan = ref("Day");
+const scale = ref<any>("Day");
 const H_gantt = ref();
+const data = ref<any>({});
+const isDirty = ref(false);
 let gantt: iH_chartGantt;
+const fData = doc(db, "ganttData/1");
+
+watch(
+  data,
+  () => {
+    isDirty.value = true;
+  },
+  { deep: true }
+);
 
 async function ganttLoaded(d: any) {
   gantt = d;
-  const citiesCol = collection(db, "ganttData");
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map((doc) => doc.data());
-  console.log("cityList", cityList[0]);
+  getData();
+}
 
-  gantt.data.newData(cityList[0]);
+async function getData() {
+  const dataSnapShot = await getDoc(fData);
+  data.value = await dataSnapShot.data();
+  gantt.data.newData(data.value);
+  setTimeout(() => {
+    isDirty.value = false;
+  });
+}
+
+function save() {
+  setDoc(fData, data.value)
+    .then(() => hhl.alert("info", "Data Saved", ""))
+    .catch((reason: any) => hhl.alert("err", "Something went wrong!", reason));
+  setTimeout(() => {
+    isDirty.value = false;
+  },50);
 }
 
 function undo() {
-  console.log(gData);
-  gantt.data.newData(gData);
+  getData();
 }
 
 function print() {

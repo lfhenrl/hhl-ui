@@ -83,7 +83,6 @@ function setTime(e: any) {
   emit("update:time", new Date(newTimeNumber * 1000));
   if (props.type === "time") {
     emit("update:modelValue", new Date(0, 0, 0, e.hour, e.minute, e.second));
-
     emit("update:date", new Date(0, 0, 0));
   }
 }

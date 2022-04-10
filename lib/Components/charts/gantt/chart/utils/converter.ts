@@ -4,9 +4,9 @@ import { iGanttItem } from "../ganttItem";
 let canvas: HTMLCanvasElement;
 let context: CanvasRenderingContext2D;
 
-export function TimeToPixcel(chart: iChartGantt, time: Date) {
+export function TimeToPixcel(chart: iChartGantt, time: number) {
   const { startDate, secPixcel } = chart;
-  const seconds = (time.valueOf() - startDate.valueOf()) / 1000;
+  const seconds = time - startDate;
   return seconds * secPixcel;
 }
 
@@ -21,19 +21,31 @@ export function measureText(text: string, font: any) {
 }
 
 export function PixcelToTime(chart: iChartGantt, pixel: number) {
-  return new Date((pixel / chart.secPixcel) * 1000 + chart.startDate.valueOf());
+  return pixel / chart.secPixcel + chart.startDate;
+}
+
+export function adjustToHoleDay(chart: iChartGantt, pixel: number) {
+  return Math.round(pixel / chart.secPixcel / 86400) * 86400 * chart.secPixcel;
+}
+
+export function dateFromSeconds(seconds: number) {
+  return new Date(seconds * 1000);
+}
+
+export function secondsFromDate(date: Date) {
+  return date.valueOf() / 1000;
 }
 
 export function MinMaxDatesFromArray(arr: Array<iGanttItem>) {
-     let min = new Date(3300, 1, 1).valueOf();
-     let max = new Date(0).valueOf();
-     arr.forEach((item: any) => {
-       min = Math.min(min, item.startTime.valueOf());
-       max = Math.max(max, item.endTime.valueOf());
-     });
+  let min = 4112719200;
+  let max = 0;
+  arr.forEach((item: any) => {
+    min = Math.min(min, item.startTime);
+    max = Math.max(max, item.endTime);
+  });
 
-     return {
-       Min: new Date(min),
-       Max: new Date(max)
-     }
+  return {
+    Min: min,
+    Max: max
+  };
 }

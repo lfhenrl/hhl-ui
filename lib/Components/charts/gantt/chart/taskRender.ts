@@ -1,13 +1,14 @@
 import { iGanttItem } from "./ganttItem";
 import { TimeToPixcel, measureText } from "./utils/converter";
 
-export function ganttItemRender(item: iGanttItem) {
+export function taskRender(item: iGanttItem) {
   item.bar.innerHTML = "";
   const { barHeight } = item.chart;
 
   item.l = TimeToPixcel(item.chart, item.data.startTime);
   item.w = TimeToPixcel(item.chart, item.data.endTime) - item.l;
   item.t = item.index * barHeight;
+  item.updateTextWidth();
 
   const gantt__Item = document.createElement("div");
   const gantt__Item_bar_text = document.createElement("div");

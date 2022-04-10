@@ -12,10 +12,12 @@
         direction="horizontal"
         class="H_chartGantt__content"
         item-class="ganttTimeItem"
-        :keeps="10"
+        :keeps="13"
       >
         <template v-slot="data">
-          <GanttTimeItem :time-data="data.item" :key="data.item.id" />
+          <GanttMonthItem v-if="scale === 'Month'" :time-data="data.item" :key="data.item.id" />
+          <GanttWeekItem v-if="scale === 'Week'" :time-data="data.item" :key="data.item.id" />
+          <GanttDayItem v-if="scale === 'Day'" :time-data="data.item" :key="data.item.id" />
         </template>
         <template v-slot:absoluteItems>
           <div
@@ -59,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, provide, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, PropType, provide, ref, watch } from "vue";
 import { chartGantt } from "./common";
 import { iGanttTimeItem } from "./scale/makeTimelist";
 import { vSplitpane } from "../../../Directives/v-splitpane";
@@ -68,11 +70,9 @@ import GanttEdit from "./edit/ganttEdit.vue";
 import { iGanttData } from "./common/ganttData";
 
 const props = defineProps({
-  startDate: { type: Date, default: new Date() },
-  endDate: { type: Date, default: new Date() },
-  // data: { type: Object, default: {} },
   barHeight: { type: Number, default: 30 },
-  timeHeight: { type: Number, default: 22 }
+  timeHeight: { type: Number, default: 22 },
+  scale: { default: "Week", type: String as PropType<"Day" | "Week" | "Month"> }
 });
 
 const emit = defineEmits(["loaded"]);
@@ -88,6 +88,14 @@ const gantt = new chartGantt();
 
 provide("gantt", gantt);
 
+watch(
+  () => props.scale,
+  () => {
+    gantt.changeScale(props.scale);
+  },
+  { immediate: true }
+);
+
 const style: any = computed(() => {
   return {
     "--gantt-time-height": props.timeHeight + "px",
@@ -97,29 +105,16 @@ const style: any = computed(() => {
   };
 });
 
-gantt.Event.on("scrollTop", (val) => {
-  scrollTop.value = val;
-});
+gantt.Event.on("scrollTop", (val) => (scrollTop.value = val));
 gantt.Event.on("setChartHeight", (val: number) => (chartHeight.value = val));
-gantt.Event.on("setTimeList", (val) => {
-  timeList.value = val;
-});
+gantt.Event.on("setTimeList", (val) => (timeList.value = val));
 gantt.Event.on("updateDgrid", () => dGrid.value.update());
-
-// watch(
-//   () => props.data,
-//   () => {
-//     gantt.ganttData.newData(props.data);
-//   }
-// );
 
 onMounted(() => {
   gantt.init(_gantt.value!, lineTool.value);
-  gantt.startDate = props.startDate;
-  gantt.endDate = props.endDate;
   gantt.barHeight = props.barHeight;
   gantt.timeHeight = props.timeHeight;
-  // gantt.ganttData.newData(props.data);
+
   emit("loaded", {
     dom: _gantt.value,
     data: gantt.ganttData as iGanttData
@@ -203,7 +198,8 @@ onBeforeUnmount(() => {
 }
 
 .H_chartGantt__content {
-  overflow: visible;
+  overflow: hidden;
+  overflow-x: auto;
   height: 100%;
   width: 100%;
 }
@@ -211,7 +207,7 @@ onBeforeUnmount(() => {
 .H_chartGantt__chartContainer {
   position: absolute;
   overflow: hidden;
-  overflow-y: visible;
+  overflow-y: scroll;
   left: 0;
   top: 0;
   flex: 1;
@@ -231,7 +227,7 @@ onBeforeUnmount(() => {
 .H_chartGantt__content > .H_virtualList-scroller {
   position: relative;
   min-width: 100%;
-  /* overflow: auto; */
+  /* overflow: hidden; */
 }
 
 .gantt__Item {
@@ -269,6 +265,31 @@ onBeforeUnmount(() => {
   cursor: pointer;
   border-radius: 18px;
   z-index: 200;
+}
+
+.gantt__Item_bar.gantt__Item_milestone {
+  background-color: transparent;
+  border-radius: 0;
+  min-width: calc(var(--gantt-bar-height) / 1.1);
+  max-width: calc(var(--gantt-bar-height) / 1.1);
+}
+
+.gantt__Item_milestone_diamond {
+  min-height: calc(var(--gantt-bar-height) / 1.5);
+  max-height: calc(var(--gantt-bar-height) / 1.5);
+  min-width: calc(var(--gantt-bar-height) / 1.5);
+  max-width: calc(var(--gantt-bar-height) / 1.5);
+  pointer-events: none;
+  background-color: orange;
+  transform: rotate(45deg);
+}
+
+.gantt__Item_milestone_text {
+  position: absolute;
+  white-space: nowrap;
+  pointer-events: none;
+  margin-left: 16px;
+  left: 100%;
 }
 
 .gantt__Item_group {

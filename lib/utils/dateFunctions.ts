@@ -60,8 +60,16 @@ export function getDaysInMonth(date: Date) {
   return new Date(year, month + 1, 0).getDate();
 }
 
-export function DateGetWeek(date: Date) {
-  var date = new Date(date);
+export function getLastDayInMonth(date: Date) {
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+}
+
+export function getFirstDayInMonth(date: Date) {
+  return new Date(date.getFullYear(), date.getMonth(), 1);
+}
+
+export function DateGetWeek(_date: Date) {
+  var date = new Date(_date);
   date.setHours(0, 0, 0, 0);
   // Thursday in current week decides the year.
   date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));

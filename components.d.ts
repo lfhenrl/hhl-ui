@@ -5,10 +5,14 @@
 declare module 'vue' {
   export interface GlobalComponents {
     GanttDatagrid: typeof import('./lib/Components/charts/gantt/datagrid/GanttDatagrid.vue')['default']
+    GanttDayItem: typeof import('./lib/Components/charts/gantt/scale/ganttDayItem.vue')['default']
+    'GanttDayItem copy': typeof import('./lib/Components/charts/gantt/scale/ganttMonthItem.vue')['default']
     GanttEdit: typeof import('./lib/Components/charts/gantt/edit/ganttEdit.vue')['default']
     GanttEditChoser: typeof import('./lib/Components/charts/gantt/edit/ganttEditChoser.vue')['default']
     GanttEditEdit: typeof import('./lib/Components/charts/gantt/edit/ganttEditEdit.vue')['default']
+    GanttMonthItem: typeof import('./lib/Components/charts/gantt/scale/ganttMonthItem.vue')['default']
     GanttTimeItem: typeof import('./lib/Components/charts/gantt/scale/ganttTimeItem.vue')['default']
+    GanttWeekItem: typeof import('./lib/Components/charts/gantt/scale/ganttWeekItem.vue')['default']
     GroupRowGantt: typeof import('./lib/Components/charts/gantt/datagrid/GroupRowGantt.vue')['default']
     H_btn: typeof import('./lib/Components/H_btn.vue')['default']
     H_chartGantt: typeof import('./lib/Components/charts/gantt/H_chartGantt.vue')['default']

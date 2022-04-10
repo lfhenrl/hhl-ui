@@ -67,7 +67,7 @@ function expanded() {
 
 const style = computed(() => {
   return {
-    paddingLeft: (props.data.level - 1) * 15 + "px"
+    paddingLeft: props.data.level * 15 + "px"
   };
 });
 

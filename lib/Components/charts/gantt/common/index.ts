@@ -4,7 +4,8 @@ import { iGanttItem } from "../chart/ganttItem";
 import { GanttData, iConnectors, iGanttData } from "./ganttData";
 import { ganttConnectRender } from "../chart/ganttConnectRender";
 import { iDatagrid } from "../../../datagrid/provide";
-import { ganttItemRender } from "../chart/ganttItemRender";
+import { taskRender } from "../chart/taskRender";
+import { milestoneRender } from "../chart/milestoneRender";
 
 export type iChartGantt = InstanceType<typeof chartGantt>;
 
@@ -31,9 +32,9 @@ export class chartGantt {
   public scrollDummi!: HTMLElement;
   public svg!: SVGElement;
   public chartSvg!: SVGGElement;
-  public startDate = new Date();
-  public endDate = new Date(this.startDate);
-  public secPixcel = 20 / (24 * 60 * 60);
+  public startDate = 0;
+  public endDate = 0;
+  public secPixcel = 3 / (24 * 60 * 60);
   public activeBar?: iGanttItem;
   public isMouseDown = false;
   public lineTool!: iGanttConnectTool;
@@ -81,10 +82,22 @@ export class chartGantt {
     this.chartCanvas.innerHTML = "";
     this.chartSvg.innerHTML = "";
     const fragment = document.createDocumentFragment();
-    data.forEach((bar) => {
-      bar.update();
-      const _bar = ganttItemRender(bar);
-      fragment.appendChild(_bar);
+    data.forEach((item) => {
+      let _item: any;
+      switch (item.data.subType) {
+        case "Task":
+          _item = taskRender(item);
+          break;
+        case "Folder":
+          _item = taskRender(item);
+          break;
+        case "Milestone":
+          _item = milestoneRender(item);
+          break;
+      }
+
+      fragment.appendChild(_item);
+      item.update();
     });
     this.setCanvasSize();
     this.chartCanvas.appendChild(fragment);
@@ -93,11 +106,39 @@ export class chartGantt {
   drawConnectors(activeBars: Array<string>, data?: iConnectors) {
     for (let key in data) {
       const connector = data[key];
-      if (!activeBars.includes(connector.to)) return;
-      if (!activeBars.includes(connector.from)) return;
-      const source = this.ganttData.dataStore[connector.from].bar;
-      const target = this.ganttData.dataStore[connector.to].bar;
-      ganttConnectRender(this, source, target, key);
+      if (activeBars.includes(connector.to) && activeBars.includes(connector.from)) {
+        const source = this.ganttData.dataStore[connector.from].bar;
+        const target = this.ganttData.dataStore[connector.to].bar;
+        ganttConnectRender(this, source, target, key);
+      }
+    }
+  }
+
+  public changeScale(scale: string) {
+    const day = 24 * 60 * 60;
+    switch (scale) {
+      case "Day":
+        this.secPixcel = 20 / day;
+        this.ganttData.timeScale = "Day";
+        break;
+      case "Week":
+        this.secPixcel = 3 / day;
+        this.ganttData.timeScale = "Week";
+        break;
+      case "Month":
+        this.secPixcel = 1 / day;
+        this.ganttData.timeScale = "Month";
+        break;
+      default:
+        this.secPixcel = 3 / day;
+        this.ganttData.timeScale = "month";
+    }
+    if (this.ganttData.rootId !== "") {
+      const rootItem = this.ganttData.dataStore[this.ganttData.rootId].data;
+      this.ganttData.minDate = rootItem.startTime;
+      this.ganttData.maxDate = rootItem.endTime;
+      this.ganttData.makeTimeList();
+      this.ganttData.renderChart();
     }
   }
 

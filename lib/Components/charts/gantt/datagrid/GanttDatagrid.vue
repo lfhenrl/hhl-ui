@@ -16,7 +16,6 @@
 
 <script setup lang="ts">
 import { ref, watch, inject } from "vue";
-import { DateDiffDays } from "../../../../utils/dateFunctions";
 import { iDatagrid } from "../../../datagrid/provide";
 import { iChartGantt } from "../common";
 
@@ -52,11 +51,12 @@ gantt.Event.on("LigtUpdateGriddata", () => {
 });
 
 gantt.Event.on("gridRowExpanded", () => {
-  gantt.ganttData.groupData();
+  gantt.ganttData.renderChart();
 });
 
 function getDays(_value: any, _props: any, _data: any) {
-  return DateDiffDays(_data.startTime, _data.endTime);
+  // return DateDiffDays(_data.startTime, _data.endTime);
+  return (_data.endTime - _data.startTime) / gantt.ganttData.dayInSeconds;
 }
 
 function update() {

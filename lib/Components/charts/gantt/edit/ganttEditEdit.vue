@@ -4,11 +4,11 @@
     <div class="gantt_edit_container">
       <H_input label="Title" v-model="data.text" />
       <div class="gantt_edit_row" v-if="data.type !== 'group'">
-        <H_datePicker label="Start time" v-model="data.startTime" type="date" />
+        <H_datePicker label="Start time" v-model="data.startTime" type="dateTime" />
         <H_datePicker
           label="End time"
           v-model="data.endTime"
-          type="date"
+          type="dateTime"
           :validator="[dateOk]"
           @isValid="isValid_date = $event"
         />
@@ -24,7 +24,7 @@
         <H_btn @click="remove" class="col-warn">Delete</H_btn>
         <H_spacer />
         <H_btn @click="cancel" class="col-sec">Cancel</H_btn>
-        <H_btn @click="save" :disabled="!isChanged || !isValid_date">Save</H_btn>
+        <H_btn @click="save" :disabled="!isChanged && !isValid_date">Save</H_btn>
       </div>
     </template>
   </H_dialog>
@@ -36,6 +36,7 @@ import { DateDiffDays, DateAddDays, DateGetToday } from "../../../../utils/dateF
 import { iChartGantt } from "../common";
 import H_input from "../../../H_input.vue";
 import H_datePicker from "../../../date/H_datePicker.vue";
+import { dateFromSeconds, secondsFromDate } from "../chart/utils/converter";
 
 const props = defineProps({
   activeId: { type: String, default: "" },
@@ -62,7 +63,7 @@ const data = reactive({
 });
 
 watch(
-  data,
+  () => data,
   () => {
     isChanged.value = true;
   },
@@ -79,8 +80,8 @@ watch([() => props.activeId, () => props.show], () => {
   data.progress = item.progress;
   data.type = item.type;
   data.subType = item.subType;
-  data.startTime = item.startTime;
-  data.endTime = item.endTime;
+  data.startTime = dateFromSeconds(item.startTime);
+  data.endTime = dateFromSeconds(item.endTime);
   setTimeout(() => (isChanged.value = false));
 });
 
@@ -111,11 +112,11 @@ function save() {
   item.workLoad = data.workLoad;
   item.progress = data.progress;
   item.subType = data.subType;
-  item.startTime = data.startTime;
-  item.endTime = data.endTime;
+  item.startTime = secondsFromDate(data.startTime);
+  item.endTime = secondsFromDate(data.endTime);
   itemBar.updateTextWidth();
   gantt.ganttData.makeGridData();
-  gantt.ganttData.groupData();
+  gantt.ganttData.renderChart();
 }
 
 function remove() {
@@ -135,7 +136,7 @@ function remove() {
         }
       }
       gantt.ganttData.makeGridData();
-      gantt.ganttData.groupData();
+      gantt.ganttData.renderChart();
       emit("close", "delete");
     })
     .catch(() => {

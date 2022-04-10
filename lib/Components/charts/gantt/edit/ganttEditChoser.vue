@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { inject } from "vue";
 import H_dialog from "../../../popup/H_dialog.vue";
-import { DateAddDays } from "../../../../utils/dateFunctions";
+// import { DateAddDays } from "../../../../utils/dateFunctions";
 import { ganttItem } from "../chart/ganttItem";
 import { iChartGantt } from "../common";
 
@@ -43,7 +43,7 @@ function addTask() {
 }
 
 function addMileStone() {
-  add("data", "milestone", 0);
+  add("data", "Milestone", 1);
   emit("close", "addMileStone");
 }
 
@@ -60,10 +60,12 @@ function add(type: string, subType: string, duration: number) {
     text: "New " + subType,
     type: type,
     subType,
-    level: 0,
+    workLoad: 100,
+    progress: 0,
+    level: parent.data.level + 1,
     expanded: false,
-    startTime: new Date(parent.data.startTime),
-    endTime: new Date(DateAddDays(parent.data.startTime, duration)),
+    startTime: parent.data.startTime,
+    endTime: parent.data.startTime + duration * gantt.ganttData.dayInSeconds,
     children: []
   };
   const _bar = new ganttItem(gantt, item, 0);
@@ -73,8 +75,7 @@ function add(type: string, subType: string, duration: number) {
   parent.bar.updateFromChild();
   gantt.ganttData.makeGridData();
   console.log("xxxxxxxx", parent);
-  gantt.ganttData.groupData();
+  gantt.ganttData.renderChart();
 }
-
 // hhl.ignoreEmitPropErrors(props);
 </script>

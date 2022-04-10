@@ -1,8 +1,8 @@
 import { iChartGantt } from ".";
 import { ganttItem, iGanttItem } from "../chart/ganttItem";
 import { makeTimelist } from "../scale/makeTimelist";
-import { DateAddDays } from "../../../../utils/dateFunctions";
 import { debounce } from "../../../../utils/debounce";
+import { DateAddDays } from "../../../../utils/dateFunctions";
 
 export type iGanttData = InstanceType<typeof GanttData>;
 export type iConnectors = {
@@ -14,12 +14,13 @@ export type iConnectors = {
 
 export class GanttData {
   public chart: iChartGantt;
-  public rawData?: any;
+  // public rawData?: any;
   public dataStore = {};
   public barItems: Array<iGanttItem> = [];
   public connectors: iConnectors = {};
   public activeBars: Array<string> = [];
   public rootId = "";
+  public timeScale = "month";
   public listFields = {
     id: { type: "string", title: "ID" },
     pId: { type: "string", title: "ParrentId" },
@@ -33,8 +34,9 @@ export class GanttData {
     endTime: { type: "date", title: "EndTime" },
     children: { type: "number", title: "Children" }
   };
-  private minDate = new Date(3300, 1, 1).valueOf();
-  private maxDate = new Date(0).valueOf();
+  public dayInSeconds = 60 * 60 * 24;
+  public minDate = 0;
+  public maxDate = 0;
   private runningIndex = 0;
 
   constructor(_chart: iChartGantt) {
@@ -42,47 +44,41 @@ export class GanttData {
   }
 
   newData(data: any) {
-    console.log("rawData", this.rawData)
-    // @ts-ignore structuredClone is a new function
-    const _data = structuredClone(data);
     this.dataStore = {};
     this.barItems = [];
     this.activeBars = [];
-    this.connectors = _data.connectors;
-    this.rawData = _data.data;
-    this.rootId = _data.data[0].id;
-    const minDate = new Date(3300, 1, 1);
-    const maxDate = new Date(0);
-    this.minDate = new Date(minDate).valueOf();
-    this.maxDate = new Date(maxDate).valueOf();
-    this.makeDataStore(_data.data);
-    this.chart.startDate = DateAddDays(new Date(this.minDate), -2);
-    this.chart.endDate = DateAddDays(new Date(this.maxDate), 2);
+    this.connectors = {};
+    this.connectors = data.connectors;
+    this.rootId = data.data[0].id;
+    this.minDate = 4112719200;
+    this.maxDate = 0;
+    this.makeDataStore(data.data);
+    this.chart.startDate = this.minDate;
+    this.chart.endDate = this.maxDate;
     this.makeTimeList();
     this.makeGridData();
-    this.groupData();
+    this.renderChart();
   }
 
   makeDataStore(arr: Array<any>) {
     arr.forEach((item: any) => {
       const _bar = new ganttItem(this.chart, item, 0);
-      this.minDate = Math.min(item.startTime.valueOf(), this.minDate);
-      this.maxDate = Math.max(item.endTime.valueOf(), this.maxDate);
+      this.minDate = Math.min(item.startTime, this.minDate);
+      this.maxDate = Math.max(item.endTime, this.maxDate);
       this.dataStore[item.id] = { data: item, bar: _bar };
       this.makeDataStore(item.children);
     });
   }
 
-  groupData() {
+  renderChart() {
     this.barItems = [];
     this.activeBars = [];
     this.runningIndex = 0;
-    // this.barItems = this.groupDataMakeHeraki(this.rawData[0].children, this.barItems);
     this.barItems = this.groupDataMakeHeraki(this.dataStore[this.rootId].data.children, this.barItems);
-
-    // console.log("hhhhhhhhhhhhhhhhh", this.rawData);
     this.chart.drawBarItems(this.barItems);
-    this.chart.drawConnectors(this.activeBars, this.connectors);
+    setTimeout(() => {
+      this.chart.drawConnectors(this.activeBars, this.connectors);
+    }, 100);
   }
 
   groupDataMakeHeraki(arr: Array<any>, barItems: Array<any>) {
@@ -100,7 +96,35 @@ export class GanttData {
   }
 
   makeTimeList() {
-    const tList = makeTimelist(this.chart.startDate, this.chart.endDate);
+    let start = new Date(this.minDate * 1000);
+    let end = new Date(this.maxDate * 1000);
+    let listScale = "month";
+
+    switch (this.timeScale) {
+      case "Day":
+        start = DateAddDays(start, -5);
+        end = DateAddDays(end, 5);
+        listScale = "month";
+        break;
+      case "Week":
+        start = DateAddDays(start, -15);
+        end = DateAddDays(end, 15);
+        listScale = "month";
+        break;
+      case "Month":
+        start = DateAddDays(start, -30);
+        end = DateAddDays(end, 30);
+        listScale = "year";
+        break;
+      default:
+        start = DateAddDays(start, -5);
+        end = DateAddDays(end, 5);
+        listScale = "month";
+    }
+
+    const tList = makeTimelist(start, end, listScale);
+    this.chart.startDate = tList[0].dayFirst.valueOf() / 1000;
+    this.chart.endDate = tList.slice(-1)[0].dayFirst.valueOf() / 1000;
     this.chart.Event.emit("setTimeList", tList);
   }
 
@@ -115,6 +139,17 @@ export class GanttData {
   makeGridData() {
     const data = this.setGridDataLevels(this.dataStore[this.rootId].data.children, 0);
     this.chart.Event.emit("setGriddata", data);
+  }
+
+  validateConnectors() {
+    for (let key in this.dataStore) {
+      const connector = this.dataStore[key];
+      const source = this.dataStore[connector.from];
+      const target = this.dataStore[connector.to];
+      if (source && target) {
+        console.error("Connector with ID: ", key, " is missing source or target");
+      }
+    }
   }
 
   lightUpdateDatagrid = debounce(() => {
@@ -137,27 +172,26 @@ export class GanttData {
       targetItem.expanded = true;
       targetItem.children.push(sourceItem);
       this.makeGridData();
-      this.groupData();
+      this.renderChart();
       return;
     }
     const newIndex = data.pos === "after" ? tIndex + 1 : tIndex;
     sourceItem.pId = targetItem.pId;
     targetParent.children.splice(newIndex, 0, sourceItem);
     this.makeGridData();
-    this.groupData();
+    this.renderChart();
   }
 
   NeedTimeScaleAdjusted(rootItem: iGanttItem) {
-    if (rootItem.data.endTime > this.chart.endDate) {
-      this.chart.endDate = DateAddDays(new Date(rootItem.data.endTime), 2);
+    if (rootItem.data.endTime > this.maxDate) {
+      this.maxDate = rootItem.data.endTime;
       this.chart.ganttData.makeTimeList();
     }
-
-    if (rootItem.data.startTime < this.chart.startDate) {
-      this.chart.startDate = DateAddDays(new Date(rootItem.data.startTime), -2);
+    const startDiff = (rootItem.data.startTime - this.minDate) / this.dayInSeconds;
+    if (startDiff < 2) {
+      this.minDate = rootItem.data.startTime;
       this.chart.ganttData.makeTimeList();
-      this.chart.drawBarItems(this.chart.ganttData.barItems);
-      this.chart.drawConnectors(this.activeBars, this.connectors);
+      this.renderChart();
     }
   }
 

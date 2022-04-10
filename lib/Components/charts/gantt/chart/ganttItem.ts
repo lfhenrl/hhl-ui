@@ -1,6 +1,6 @@
 import { iChartGantt } from "../common";
 import { ganttConnectChange } from "./ganttConnectRender";
-import { TimeToPixcel, PixcelToTime, MinMaxDatesFromArray, measureText } from "./utils/converter";
+import { TimeToPixcel, PixcelToTime, MinMaxDatesFromArray, measureText, adjustToHoleDay } from "./utils/converter";
 
 export type iGanttItem = InstanceType<typeof ganttItem>;
 
@@ -100,13 +100,16 @@ export class ganttItem {
       this.setPosWidth();
     } else {
       if (this.data.type === "group") {
-        this.data.endTime = new Date(this.data.startTime);
+        this.data.endTime = this.data.startTime;
         this.setPosWidth();
       }
     }
   }
 
   updateData() {
+    this.l = adjustToHoleDay(this.chart, this.l);
+    this.w = adjustToHoleDay(this.chart, this.w);
+    this.setPosWidth();
     this.data.startTime = PixcelToTime(this.chart, this.l);
     this.data.endTime = PixcelToTime(this.chart, this.l + this.w);
     const parent = this.chart.ganttData.dataStore[this.data.pId].bar as iGanttItem;
