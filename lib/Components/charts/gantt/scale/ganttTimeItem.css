@@ -35,6 +35,8 @@
   margin: 0 auto;
 }
 
+
+
 .ganttTimeItem__values {
   display: flex;
   user-select: none;
@@ -88,4 +90,12 @@
   z-index: 999;
   right: 0;
 
+}
+
+.ganttTimeItem__values_item.ganttTimeItem__weekend {
+  background-color: rgba(230, 109, 109, 0.05);
+}
+
+.ganttTimeItem__weekend .ganttTimeItem__values_value {
+ background-color: rgba(230, 109, 109, 0.05);
 }

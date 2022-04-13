@@ -6,6 +6,7 @@
       <H_checkbox label="Valid" v-model="isValid" />
       <H_checkbox label="Dirty" v-model="isDirty" />
       <H_checkbox label="DirtyAndValid" v-model="isDirtyAndValid" />
+      <H_slider  v-model="data.duration" min="0" max="100" />
       <button type="submit">SAVE</button>
     </H_form>
   </div>
@@ -21,7 +22,8 @@ const isDirtyAndValid = ref(false);
 
 const data = reactive({
   navn: "",
-  city: ""
+  city: "",
+  duration: 10,
 });
 </script>
 

@@ -12,6 +12,7 @@ export function taskRender(item: iGanttItem) {
 
   const gantt__Item = document.createElement("div");
   const gantt__Item_bar_text = document.createElement("div");
+  const gantt__Item_bar_progress = document.createElement("div");
   const gantt__Item_bar_dragLeft = document.createElement("div");
   const gantt__Item_bar_dragRight = document.createElement("div");
   const gantt__Item_bar_connectLeft = document.createElement("div");
@@ -26,6 +27,9 @@ export function taskRender(item: iGanttItem) {
   if (item.data.type === "group") {
     item.bar.classList.add("gantt__Item_group");
   }
+
+  gantt__Item_bar_progress.classList.add("gantt__Item_bar_progress");
+  gantt__Item_bar_progress.style.width = 100 - item.data.progress + "%";
 
   item.bar.dataset.id = item.id.toString();
   item.bar.style.left = item.l + "px";
@@ -53,6 +57,7 @@ export function taskRender(item: iGanttItem) {
   gantt__Item_bar_connectRight.dataset.id = item.id.toString();
 
   item.bar.appendChild(gantt__Item_bar_text);
+  item.bar.appendChild(gantt__Item_bar_progress);
   item.bar.appendChild(gantt__Item_bar_dragLeft);
   item.bar.appendChild(gantt__Item_bar_dragRight);
   item.bar.appendChild(gantt__Item_bar_connectLeft);

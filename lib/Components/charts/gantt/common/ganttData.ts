@@ -32,7 +32,7 @@ export class GanttData {
     level: { type: "number", title: "Level" },
     startTime: { type: "date", title: "StartTime" },
     endTime: { type: "date", title: "EndTime" },
-    children: { type: "number", title: "Children" }
+    children: { type: "number", title: "Children" },
   };
   public dayInSeconds = 60 * 60 * 24;
   public minDate = 0;
@@ -76,6 +76,7 @@ export class GanttData {
     this.runningIndex = 0;
     this.barItems = this.groupDataMakeHeraki(this.dataStore[this.rootId].data.children, this.barItems);
     this.chart.drawBarItems(this.barItems);
+    this.chart.drawMarkers();
     setTimeout(() => {
       this.chart.drawConnectors(this.activeBars, this.connectors);
     }, 100);
@@ -142,12 +143,13 @@ export class GanttData {
   }
 
   validateConnectors() {
-    for (let key in this.dataStore) {
-      const connector = this.dataStore[key];
+    for (let key in this.connectors) {
+      const connector = this.connectors[key];
       const source = this.dataStore[connector.from];
       const target = this.dataStore[connector.to];
       if (source && target) {
-        console.error("Connector with ID: ", key, " is missing source or target");
+        console.error("Connector with ID: ", key, " is missing source or target and will be deleted");
+        delete this.connectors[key];
       }
     }
   }

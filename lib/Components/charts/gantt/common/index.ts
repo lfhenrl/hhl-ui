@@ -6,6 +6,7 @@ import { ganttConnectRender } from "../chart/ganttConnectRender";
 import { iDatagrid } from "../../../datagrid/provide";
 import { taskRender } from "../chart/taskRender";
 import { milestoneRender } from "../chart/milestoneRender";
+import { markerRender } from "../chart/markerRender";
 
 export type iChartGantt = InstanceType<typeof chartGantt>;
 
@@ -112,6 +113,10 @@ export class chartGantt {
         ganttConnectRender(this, source, target, key);
       }
     }
+  }
+
+  drawMarkers() {
+    this.chartCanvas.appendChild(markerRender(this, new Date(), "Today", "lime", "black"));
   }
 
   public changeScale(scale: string) {

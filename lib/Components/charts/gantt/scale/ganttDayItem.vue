@@ -6,8 +6,13 @@
     </div>
   </div>
   <div class="ganttTimeItem__values">
-    <div class="ganttTimeItem__values_item dayItem" :key="item" v-for="item in dayList">
-      <div class="ganttTimeItem__values_value">{{ item }}</div>
+    <div
+      class="ganttTimeItem__values_item dayItem"
+      :class="{ ganttTimeItem__weekend: item.weekend }"
+      :key="item"
+      v-for="item in dayList"
+    >
+      <div class="ganttTimeItem__values_value">{{ item.day }}</div>
     </div>
   </div>
 </template>
@@ -29,14 +34,14 @@ const monthNames = [
   "September",
   "October",
   "November",
-  "December"
+  "December",
 ];
 
 const props = defineProps({
-  timeData: { type: Object as PropType<iGanttTimeItem>, default: [] }
+  timeData: { type: Object as PropType<iGanttTimeItem>, default: [] },
 });
 
-const dayList = ref<number[]>([]);
+const dayList = ref<any[]>([]);
 const Header = ref("");
 
 watch(
@@ -48,9 +53,13 @@ watch(
 
 function MakeDayList() {
   Header.value = monthNames[props.timeData.month] + " " + props.timeData.year;
-  const _dayList: Array<number> = [];
+  const _dayList: Array<any> = [];
   for (var d = new Date(props.timeData.dayFirst); d <= props.timeData.dayLast; d.setDate(d.getDate() + 1)) {
-    _dayList.push(d.getDate());
+    const day = {
+      day: d.getDate(),
+      weekend: d.getDay() > 4 ? true : false,
+    };
+    _dayList.push(day);
   }
   dayList.value = _dayList;
 }

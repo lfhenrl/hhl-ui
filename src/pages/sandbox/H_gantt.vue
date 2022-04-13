@@ -14,7 +14,7 @@
       <H_select v-model="scale" :select-data="[`Day`, `Week`, `Month`]" hide-filter />
       <div class="toolbarSpacer" />
     </div>
-    <H_chartGantt @loaded="ganttLoaded" :scale="scale"/>
+    <H_chartGantt @loaded="ganttLoaded" :scale="scale" />
   </div>
 </template>
 
@@ -32,7 +32,7 @@ const firebaseConfig = {
   projectId: "style-guide-657d4",
   storageBucket: "style-guide-657d4.appspot.com",
   messagingSenderId: "558687596971",
-  appId: "1:558687596971:web:72ec63af8f3bb1eaa322ee"
+  appId: "1:558687596971:web:72ec63af8f3bb1eaa322ee",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -68,12 +68,13 @@ async function getData() {
 }
 
 function save() {
+  gantt.data.validateConnectors();
   setDoc(fData, data.value)
     .then(() => hhl.alert("info", "Data Saved", ""))
     .catch((reason: any) => hhl.alert("err", "Something went wrong!", reason));
   setTimeout(() => {
     isDirty.value = false;
-  },50);
+  }, 50);
 }
 
 function undo() {

@@ -64,6 +64,7 @@
 import { computed, onBeforeUnmount, onMounted, PropType, provide, ref, watch } from "vue";
 import { chartGantt } from "./common";
 import { iGanttTimeItem } from "./scale/makeTimelist";
+// @ts-ignore:next-line
 import { vSplitpane } from "../../../Directives/v-splitpane";
 import GanttDatagrid from "./datagrid/GanttDatagrid.vue";
 import GanttEdit from "./edit/ganttEdit.vue";
@@ -72,14 +73,13 @@ import { iGanttData } from "./common/ganttData";
 const props = defineProps({
   barHeight: { type: Number, default: 30 },
   timeHeight: { type: Number, default: 22 },
-  scale: { default: "Week", type: String as PropType<"Day" | "Week" | "Month"> }
+  scale: { default: "Week", type: String as PropType<"Day" | "Week" | "Month"> },
 });
 
 const emit = defineEmits(["loaded"]);
 
 const _gantt = ref<HTMLElement>();
 const dGrid = ref();
-const vList = ref();
 const lineTool = ref();
 const timeList = ref<iGanttTimeItem[]>([]);
 const chartHeight = ref(0);
@@ -101,7 +101,7 @@ const style: any = computed(() => {
     "--gantt-time-height": props.timeHeight + "px",
     "--gantt-time-totalheight": props.timeHeight * 2 + "px",
     "--gantt-bar-height": props.barHeight + "px",
-    "--gantt-chart-height": chartHeight.value + "px"
+    "--gantt-chart-height": chartHeight.value + "px",
   };
 });
 
@@ -117,7 +117,7 @@ onMounted(() => {
 
   emit("loaded", {
     dom: _gantt.value,
-    data: gantt.ganttData as iGanttData
+    data: gantt.ganttData as iGanttData,
   });
 });
 
@@ -264,7 +264,7 @@ onBeforeUnmount(() => {
   user-select: none;
   cursor: pointer;
   border-radius: 18px;
-  z-index: 200;
+  z-index: 2;
 }
 
 .gantt__Item_bar.gantt__Item_milestone {
@@ -284,12 +284,32 @@ onBeforeUnmount(() => {
   transform: rotate(45deg);
 }
 
+.gantt__Item_bar_progress {
+  position: absolute;
+  background-color: black;
+  height: 100%;
+  right: 0;
+  opacity: 0.1;
+}
+
 .gantt__Item_milestone_text {
   position: absolute;
   white-space: nowrap;
   pointer-events: none;
   margin-left: 16px;
   left: 100%;
+}
+
+.gantt__Item_marker {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  z-index: 99;
+}
+
+.gantt__Item_marker_text {
+  position: absolute;
+  padding: 0 5px;
 }
 
 .gantt__Item_group {

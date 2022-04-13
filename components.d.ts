@@ -2,16 +2,14 @@
 // We suggest you to commit this file into source control
 // Read more: https://github.com/vuejs/vue-next/pull/3399
 
-declare module 'vue' {
+declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     GanttDatagrid: typeof import('./lib/Components/charts/gantt/datagrid/GanttDatagrid.vue')['default']
     GanttDayItem: typeof import('./lib/Components/charts/gantt/scale/ganttDayItem.vue')['default']
-    'GanttDayItem copy': typeof import('./lib/Components/charts/gantt/scale/ganttMonthItem.vue')['default']
     GanttEdit: typeof import('./lib/Components/charts/gantt/edit/ganttEdit.vue')['default']
     GanttEditChoser: typeof import('./lib/Components/charts/gantt/edit/ganttEditChoser.vue')['default']
     GanttEditEdit: typeof import('./lib/Components/charts/gantt/edit/ganttEditEdit.vue')['default']
     GanttMonthItem: typeof import('./lib/Components/charts/gantt/scale/ganttMonthItem.vue')['default']
-    GanttTimeItem: typeof import('./lib/Components/charts/gantt/scale/ganttTimeItem.vue')['default']
     GanttWeekItem: typeof import('./lib/Components/charts/gantt/scale/ganttWeekItem.vue')['default']
     GroupRowGantt: typeof import('./lib/Components/charts/gantt/datagrid/GroupRowGantt.vue')['default']
     H_btn: typeof import('./lib/Components/H_btn.vue')['default']
@@ -48,6 +46,7 @@ declare module 'vue' {
     H_row: typeof import('./lib/Components/datagrid/H_row.vue')['default']
     H_rowGantt: typeof import('./lib/Components/charts/gantt/datagrid/H_rowGantt.vue')['default']
     H_select: typeof import('./lib/Components/H_select.vue')['default']
+    H_slider: typeof import('./lib/Components/H_slider.vue')['default']
     H_snack: typeof import('./lib/Components/dialogService/H_snack.vue')['default']
     H_spacer: typeof import('./lib/Components/H_spacer.vue')['default']
     H_switch: typeof import('./lib/Components/H_switch.vue')['default']
@@ -86,6 +85,8 @@ declare module 'vue' {
     PopupNoFilter: typeof import('./lib/Components/datagrid/sub/popup/filter/PopupNoFilter.vue')['default']
     PopupSorting: typeof import('./lib/Components/datagrid/sub/popup/sorting/PopupSorting.vue')['default']
     Print: typeof import('./src/components/canvas/print.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
   }
 }
 

@@ -16,8 +16,9 @@
       <div class="gantt_edit_row" v-if="data.type !== 'group'">
         <H_input label="Work days" type="number" v-model="workload" min="1" />
         <H_input label="Work load" type="number" v-model="data.workLoad" max="100" min="0" />
-        <H_input label="Progress" type="number" v-model="data.progress" max="100" min="0" />
+        <H_input label="Progress" type="range" v-model="data.progress" max="100" min="0" />
       </div>
+      <H_slider  v-model="data.progress" min="0" max="100" />Progress
     </div>
     <template #footer>
       <div class="gantt_edit_footer">
