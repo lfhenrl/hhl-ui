@@ -10,20 +10,20 @@
     </div>
     <div class="H_datagridHeadCell__menu" @click="showDialog" v-if="column.props.type !== 'action'">
       <div class="H_datagridHeadCell__sortIcons">
-        <H_icon icon="arrow_downward" size="17px" color="var(--col-pri-light)" v-if="column.sort.sorting === 'up'" />
-        <H_icon icon="arrow_upward" size="17px" color="var(--col-pri-light)" v-if="column.sort.sorting === 'down'" />
+        <H_icon icon="arrow_downward" size="17px" color="var(--col-pri)" v-if="column.sort.sorting === 'up'" />
+        <H_icon icon="arrow_upward" size="17px" color="var(--col-pri)" v-if="column.sort.sorting === 'down'" />
         <div
           class="H_datagridHeadCell__sortIndex"
           v-if="column.sort.index < 1000"
           :style="{
-            color: 'var(--col-pri-light)'
+            color: 'var(--col-pri)'
           }"
         >
           {{ column.sort.index + 1 }}
         </div>
       </div>
-      <H_icon icon="filter" size="17px" color="var(--col-pri-light)" v-if="column.filt.active" />
-      <H_icon icon="menuSmall" color="var(--col-pri-light)" v-if="!column.filt.active && column.sort.sorting === 'none'" />
+      <H_icon icon="filter" size="17px" color="var(--col-pri)" v-if="column.filt.active" />
+      <H_icon icon="menuSmall" color="var(--col-pri)" v-if="!column.filt.active && column.sort.sorting === 'none'" />
     </div>
     <div class="H_datagridHeadCell__resizer" @mousedown="resize" />
   </div>

@@ -4,16 +4,16 @@
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex flex-wrap gap-2 p-3 items-center">
+    <H_flex>
         <H_switch label="Switch 1" v-model="check"></H_switch>
         <H_switch label="Switch 2" v-model="check"></H_switch>    
         <H_switch label="Switch 3" v-model="check"></H_switch>
         <H_input v-model="check" label="value"></H_input>
-    </div>
+    </H_flex>
     </template>
     <script>
-    const check = ref(true);
-    return {check}
+        const check = ref(true);
+        return {check}
     </script>
 '>
 </hhl-live-editor>
@@ -24,16 +24,16 @@
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex flex-wrap gap-2 p-3 items-center">
+    <H_flex>
         <H_switch label="Switch 1" v-model="checkArray" value="value1"></H_switch>
         <H_switch label="Switch 2" v-model="checkArray" value="value2"></H_switch>    
         <H_switch label="Switch 3" v-model="checkArray" value="value3"></H_switch>
         <H_input v-model="checkArray" label="value"></H_input>
-    </div>
+    </H_flex>
     </template>
     <script>
-    const  checkArray = ref([]);
-    return {checkArray}
+        const  checkArray = ref([]);
+        return {checkArray}
     </script>
 '>
 </hhl-live-editor>
@@ -46,15 +46,15 @@ You can change the label position to left by adding the prop `label-left`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex flex-wrap gap-2 p-3 items-center">
+    <H_flex>
         <H_switch label="label standard" v-model="check"></H_switch>
         <H_switch label-left label="Label left" v-model="check"></H_switch>  
         <H_spacer/>  
-    </div>
+    </H_flex>
     </template>
     <script>
-    const check = ref(true);
-    return {check}
+        const check = ref(true);
+        return {check}
     </script>
 '>
 </hhl-live-editor>
@@ -68,15 +68,15 @@ The default is `"md"`.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex flex-wrap gap-2 p-3 items-center">
+    <H_flex>
         <H_switch size="sm" label="Switch small (sm)" v-model="check"></H_switch>
         <H_switch size="md"  label="Switch standard (md)" v-model="check"></H_switch>    
         <H_switch size="lg" label="Switch large (lg)" v-model="check"></H_switch>
-    </div>
+    </H_flex>
     </template>
     <script>
-    const check = ref(true);
-    return {check}
+        const check = ref(true);
+        return {check}
     </script>
 '>
 </hhl-live-editor>
@@ -92,7 +92,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex flex-wrap gap-2 p-3 items-center">
+    <H_flex>
         <H_switch class="col-pri" label="col-pri" v-model="check"></H_switch>
         <H_switch class="col-sec" label="col-sec" v-model="check"></H_switch>    
         <H_switch class="col-ok" label="col-ok" v-model="check"></H_switch>
@@ -102,11 +102,11 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
         <H_switch class="col-black" label="col-black" v-model="check"></H_switch>
         <H_switch class="col-white" label="col-white" v-model="check"></H_switch>
         <H_switch style="--current-bg-col: purple; color: white" label="purple" v-model="check"></H_switch>
-    </div>
+    </H_flex>
     </template>
     <script>
-    const check = ref(true);
-    return {check}
+        const check = ref(true);
+        return {check}
     </script>
 '>
 </hhl-live-editor>
@@ -119,7 +119,7 @@ You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-        <div class="flex flex-wrap gap-2 p-3 items-center">
+        <H_flex>
             <H_switch disabled class="col-pri" label="col-pri" v-model="check"></H_switch>
             <H_switch disabled class="col-sec" label="col-sec" v-model="check"></H_switch>    
             <H_switch disabled class="col-ok" label="col-ok" v-model="check"></H_switch>
@@ -129,11 +129,11 @@ You disable by adding the props `disabled`
             <H_switch disabled class="col-black" label="col-black" v-model="check"></H_switch>
             <H_switch disabled class="col-white" label="col-white" v-model="check"></H_switch>
             <H_switch disabled style="--current-bg-col: purple; color: white" label="purple" v-model="check"></H_switch>
-        </div>
+        </H_flex>
     </template>
     <script>
-    const check = ref(true);
-    return {check}
+        const check = ref(true);
+        return {check}
     </script>
 '>
 </hhl-live-editor>

@@ -147,6 +147,7 @@ watch(
   outline: none;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: currentColor;
 }
 
 .H_datePicker__popup {

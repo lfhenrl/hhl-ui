@@ -1,5 +1,12 @@
 <template>
-  <main class="gridBox gridBox_autoName h-screen w-screen overflow-hidden" @click="showMenu = false">
+  <H_grid
+    class="MainGridBox "
+    @click="showMenu = false"
+    grid_area="c1 c1 c1 ,c2 c3 c4"
+    grid_col="auto 1fr auto"
+    grid_row="44px 1fr"
+    grid_gap="0"
+  >
     <nav-bar :main-routes="mainRoutes" :active-route="activeMainPath" v-model="showMenu" :medium="medium" :small="small" />
     <menu-left
       :route-links="activeRouteLinks"
@@ -9,13 +16,11 @@
       :small="small"
     />
 
-    <div id="page-container" ref="page" class="overflow-auto h-100pr ml-5">
-      <router-view v-slot="{ Component, params }" class="flex flex-col p-5">
-        <component :is="Component" v-bind="params" />
-      </router-view>
+    <div id="page-container" ref="page">
+      <router-view class="page-container__routerView" />
     </div>
-    <!-- <menu-right :view="page" v-show="!medium" /> -->
-  </main>
+    <menu-right :view="page" v-show="!medium" />
+  </H_grid>
   <H_dialog-service />
 </template>
 
@@ -59,7 +64,6 @@ export default defineComponent({
       } else {
         small.value = false;
       }
-      small.value = true;
     }
     watch(
       () => router.currentRoute.value.name,
@@ -103,12 +107,10 @@ html {
 }
 
 body {
-  font-family: inherit;
   line-height: inherit;
   font-family: "Roboto", sans-serif;
   fill: var(--col-txt);
-  background-color: var(--col-body);
-  color: var(--col-txt-1);
+  background-color: var(--col-bg-0);
   overflow: hidden;
   margin: 0;
   padding: 0;
@@ -137,14 +139,22 @@ pre {
 }
 
 #page-container {
+  overflow: auto;
   scroll-behavior: smooth;
-  padding-bottom: 400px;
+  padding-bottom: 200px;
+  height: 100%;
+  padding: 0 15px;
 }
 
-main.gridBox {
-  --grid-area: "c1 c1 c1" "c2 c3 c4";
-  --grid-row: 44px 1fr;
-  --grid-col: auto 1fr auto;
-  gap: 0;
+.MainGridBox {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.page-container__routerView {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
 }
 </style>

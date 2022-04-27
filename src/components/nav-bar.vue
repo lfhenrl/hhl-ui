@@ -1,40 +1,42 @@
 <template>
-  <nav class="nav-bar col-bg-1 flex items-center pr-5 border-b-bg3 border border-solid">
-    <H_icon btn icon="menu" color="black" @click.stop="$emit('update:modelValue', !modelValue)" v-if="small" />
-    <router-link to="/" class="flex items-center">
-      <img src="/icon.svg" height="30" width="30" alt="Logo" class="ml-2" href="#" />
-      <div class="nav-bar-title ml-2">HHL-UI</div>
+  <nav class="nav-bar">
+    <H_icon btn icon="menu" @click.stop="$emit('update:modelValue', !modelValue)" v-if="small" />
+    <router-link to="/" class="goHome">
+      <img src="/icon.svg" height="30" width="32" alt="Logo" href="#" />
+      <div class="nav-bar-title">HHL-UI</div>
     </router-link>
 
-    <div class="flex-1"></div>
-    <div v-if="!small" class="flex items-center gap-8">
+    <H_spacer />
+    <div v-if="!small" class="mainMenu">
       <router-link
         v-for="route in mainRoutes"
         :key="route.id"
-        class="cursor-pointer border-b-ok"
+        class="mainMenu_item"
         :to="route.path"
-        :class="{ 'border-b-4': activeRoute === route.id }"
+        :class="{ mainMenu_itemActive: activeRoute === route.id }"
         >{{ route.name }}</router-link
       >
       <H_pop>
         <template v-slot:referance>
-          <div class="flex items-center cursor-pointer">External <H_icon icon="expand_down" /></div>
+          <div class="menuExternals">External <H_icon icon="expand_down" /></div>
         </template>
-        <div class="flex flex-col col-bg-0 p-3 shadow-2 gap-1">
+        <div class="menuExternals_list">
           <a href="https://v3.vuejs.org/guide/introduction.html" target="blank">Vue 3 Docs</a>
           <a href="https://vitejs.dev/" target="blank">Vite</a>
           <a href="https://materialdesignicons.com/" target="blank">Icons</a>
         </div>
       </H_pop>
     </div>
+    <H_switch v-model="dark" label="Dark" style="max-width: 65px; margin-left: 17px" />
   </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import H_pop from "../../lib/Components/popup/H_pop.vue";
+import { themeSelector } from "../../lib/utils/themeSelector";
 
-const NavBar = defineComponent({
+export default defineComponent({
   components: { H_pop },
   name: "nav-bar",
   props: {
@@ -45,25 +47,64 @@ const NavBar = defineComponent({
     small: { type: Boolean, default: false }
   },
   setup() {
-    return {};
+    const dark = themeSelector();
+    return { dark };
   }
 });
-
-declare global {
-  interface __VLS_GlobalComponents {
-    "nav-bar": typeof NavBar;
-  }
-}
-export type iNavBar = InstanceType<typeof NavBar>;
-export default NavBar;
 </script>
 
 <style>
 .nav-bar {
-  overflow: auto;
+  display: flex;
+  align-items: center;
+  padding: 0 10px 0 5px;
+  overflow: hidden;
+  background-color: var(--col-bg-3);
+}
+
+.goHome {
+  display: flex;
+  align-items: center;
+}
+
+.goHome img {
+  margin: 0 10px;
 }
 .nav-bar-title {
   font-weight: bold;
   font-size: 18px;
+  margin-left: 2px;
+}
+
+.mainMenu {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.mainMenu_item {
+  cursor: pointer;
+  border-bottom-style: solid;
+  border-bottom-color: var(--col-ok);
+  border-bottom-width: 0;
+}
+
+.mainMenu_itemActive {
+  border-bottom-width: 4px;
+}
+
+.menuExternals {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menuExternals_list {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--col-bg-0);
+  gap: 9px;
+  padding: 14px;
+  box-shadow: var(--shadow-2);
 }
 </style>

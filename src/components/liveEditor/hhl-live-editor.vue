@@ -1,47 +1,40 @@
 <template>
-  <div class="hhl-live-editor flex flex-col relative shadow-3" ref="el">
-    <div
-      class="hhl-live-editor_errorPopup flex flex-col absolute overflow-auto z-10 bottom-1 right-1"
-      v-show="showError"
-      v-movable
-    >
-      <div class="hhl-live-editor_errorPopup_title flex items-center flx-justify-between pl-1" moveable-drag>
+  <div class="hhl-live-editor" ref="el">
+    <div class="hhl-live-editor_errorPopup" v-show="showError" v-movable>
+      <div class="hhl-live-editor_errorPopup_title" moveable-drag>
         <div>Error</div>
-        <H_spacer/>
-        <H_btn type="icon-text" icon="close" color="white" round @click="hideError = !hideError" />
+        <H_spacer />
+        <H_icon btn icon="close" color="white" @click="hideError = !hideError" />
       </div>
 
       <span>{{ error }}</span>
     </div>
 
-    <div class="hhl-live-editor_toolbar flex items-center justify-between rounded-t">
+    <div class="hhl-live-editor_toolbar">
       <div>{{ title }}</div>
-      <div class="flx-row">
-        <H_btn
-          title="Show Error."
-          type="icon-text"
-          icon="info"
-          round
-          v-if="error !== '' && showCode"
-          @click="hideError = !hideError"
-          class="col-err"
-        />
-        <H_btn title="Fullscreen." type="icon-text" icon="zoom_out_map" round @click="toggleFullScreen" class="col-white" />
-        <H_btn
-          title="Change Horisont or Vertical."
-          type="icon-text"
-          icon="split"
-          round
-          :disabled="!showCode"
-          @click="changeHorisont"
-          class="col-white"
-        />
-        <H_btn title="Show Code." round type="icon-text" icon="expand_down" @click="codeShow" class="col-white" />
-      </div>
+      <H_spacer />
+      <H_btn
+        title="Show Error."
+        type="icon-text"
+        icon="info"
+        round
+        v-if="error !== '' && showCode"
+        @click="hideError = !hideError"
+        class="col-err"
+      />
+      <H_btn title="Fullscreen." type="icon-text" icon="zoom_out_map" round @click="toggleFullScreen" />
+      <H_btn
+        title="Change Horisont or Vertical."
+        type="icon-text"
+        icon="split"
+        round
+        :disabled="!showCode"
+        @click="changeHorisont"
+      />
+      <H_btn title="Show Code." round type="icon-text" icon="expand_down" @click="codeShow" />
     </div>
 
-    <div class="flex flex-1" :class="{ 'flex-col': column }">
-
+    <div class="hhl-live-editor-contentCode" :class="{ 'hhl-live-editor-contentCode_column': column }">
       <div ref="renderBox" class="hhl-live-editor-content__render">
         <live-render :template="reactiv_htmlCode" @onError="errorHandler" :comp="comp" />
       </div>
@@ -58,9 +51,7 @@
           v-if="showCode"
         />
       </transition>
-      
     </div>
-
   </div>
 </template>
 
@@ -146,15 +137,21 @@ export default defineComponent({
 </script>
 
 <style>
-.hhl-live-editor:-webkit-full-screen {
-  background-color: rgb(255, 255, 255);
+.hhl-live-editor {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-3);
 }
 
 .hhl-live-editor_toolbar {
-  background-color: var(--col-ok);
-  color: white;
+  display: flex;
+  align-items: center;
+  background-color: var(--col-bg-2);
   font-size: 16px;
   padding: 2px 1px 2px 9px;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
 }
 
 .hhl-live-editor-splitLine {
@@ -164,6 +161,13 @@ export default defineComponent({
 }
 
 .hhl-live-editor_errorPopup {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  z-index: 10;
+  bottom: -1px;
+  right: -1px;
   background: rgb(250, 218, 218);
   max-height: 200px;
   width: 200px;
@@ -176,13 +180,25 @@ export default defineComponent({
 }
 
 .hhl-live-editor_errorPopup_title {
-  color: white;
+  display: flex;
+  align-items: center;
   background-color: var(--col-err);
+  overflow: hidden;
   cursor: grab;
+  padding-left: 3px;
+}
+
+.hhl-live-editor-contentCode {
+  display: flex;
+  flex: 1;
+}
+
+.hhl-live-editor-contentCode_column {
+  flex-direction: column;
 }
 
 .hhl-live-editor-content__editor {
-  background-color: rgba(238, 238, 238, 0.479);
+  background-color: var(--col-bg-1);
   transform-origin: top;
   transition: transform 0.2s ease-out;
 }

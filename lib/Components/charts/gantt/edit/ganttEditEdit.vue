@@ -4,11 +4,11 @@
     <div class="gantt_edit_container">
       <H_input label="Title" v-model="data.text" />
       <div class="gantt_edit_row" v-if="data.type !== 'group'">
-        <H_datePicker label="Start time" v-model="data.startTime" type="dateTime" />
+        <H_datePicker label="Start time" v-model="data.startTime" type="date" />
         <H_datePicker
           label="End time"
           v-model="data.endTime"
-          type="dateTime"
+          type="date"
           :validator="[dateOk]"
           @isValid="isValid_date = $event"
         />
@@ -16,9 +16,8 @@
       <div class="gantt_edit_row" v-if="data.type !== 'group'">
         <H_input label="Work days" type="number" v-model="workload" min="1" />
         <H_input label="Work load" type="number" v-model="data.workLoad" max="100" min="0" />
-        <H_input label="Progress" type="range" v-model="data.progress" max="100" min="0" />
       </div>
-      <H_slider  v-model="data.progress" min="0" max="100" />Progress
+      <H_slider v-model="data.progress" min="0" max="100" />
     </div>
     <template #footer>
       <div class="gantt_edit_footer">
@@ -115,7 +114,7 @@ function save() {
   item.subType = data.subType;
   item.startTime = secondsFromDate(data.startTime);
   item.endTime = secondsFromDate(data.endTime);
-  itemBar.updateTextWidth();
+  itemBar.updateData();
   gantt.ganttData.makeGridData();
   gantt.ganttData.renderChart();
 }
@@ -149,7 +148,7 @@ function remove() {
 <style>
 .gantt_edit .H_dialog {
   background-color: var(--col-bg-1);
-  width: 400px;
+  /* width: 400px; */
 }
 
 .gantt_edit_container {

@@ -2,9 +2,9 @@
   <div class="index">
     <h1>Styles</h1>
     <p>This is the documentation for how to use the stylesheets</p>
-    <div class="flex flex-col col-txt-ok">
+    <H_flex flx_direction="column" flx_align="start" class="col-txt-ok">
       <router-link v-for="route in links" :key="route.id" class="cursor-pointer" :to="route.path">-{{ route.name }}</router-link>
-    </div>
+    </H_flex>
   </div>
 </template>
 

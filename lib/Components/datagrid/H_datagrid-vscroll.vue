@@ -38,7 +38,7 @@
         round
         type="icon-text"
         icon="expand_horizontal"
-        class="col-pri-light"
+        class="col-pri"
         title="Auto adjust columns"
         @click="resizeColSize"
       />
@@ -47,7 +47,7 @@
         round
         type="icon-text"
         icon="excel"
-        class="col-pri-light"
+        class="col-pri"
         title="Download to excel"
         @click="downloadExcel"
       />
@@ -56,7 +56,7 @@
         round
         type="icon-text"
         icon="zoom_out_map"
-        class="col-pri-light"
+        class="col-pri"
         title="fullScreen"
         @click="toggleFullScreen"
       />
@@ -83,6 +83,7 @@ import H_spacer from "../H_spacer.vue";
 import { iReturnData } from "./datagridTypes";
 import { dataController, iDataHandler } from "./virtualScroll";
 import H_progressBar from "../H_progressBar.vue";
+// @ts-ignore:next-line
 import vResize from "vue-resize-observer";
 
 const props = defineProps({

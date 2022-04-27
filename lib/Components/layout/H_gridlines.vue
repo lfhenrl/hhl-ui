@@ -1,5 +1,5 @@
 <template>
-  <div class="hhl-gridlines gridBox" :style="styl">
+  <div class="hhl-gridlines H_grid" :style="styl">
     <div class="hhl-gridlines_box" v-for="({}, index) in cells" :key="index" :title="'C' + (index + 1)"></div>
   </div>
 </template>

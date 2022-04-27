@@ -2,8 +2,8 @@
   <div class="index">
     <h1>Components</h1>
     <p>This is the documentation for the HHL-UI components</p>
-    <div class="flex flex-col col-txt-ok">
-      <router-link v-for="route in links" :key="route.id" class="cursor-pointer" :to="route.path">-{{ route.name }}</router-link>
+    <div class="routerLinks col-txt-ok">
+      <router-link v-for="route in links" :key="route.id" :to="route.path">-{{ route.name }}</router-link>
     </div>
   </div>
 </template>
@@ -42,5 +42,10 @@ export default Index;
 <style>
 .index {
   overflow: auto;
+}
+.routerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 </style>

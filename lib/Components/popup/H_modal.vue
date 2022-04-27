@@ -14,6 +14,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
+// @ts-ignore:next-line
 import { vMovable } from "../../Directives/v-movable";
 
 const props = defineProps({
@@ -26,6 +27,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["update:modelValue"]);
+
 
 const popShow = ref(false);
 const overLayShow = ref(false);

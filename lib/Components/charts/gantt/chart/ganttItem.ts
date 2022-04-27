@@ -1,6 +1,15 @@
 import { iChartGantt } from "../common";
 import { ganttConnectChange } from "./ganttConnectRender";
-import { TimeToPixcel, PixcelToTime, MinMaxDatesFromArray, measureText, adjustToHoleDay } from "./utils/converter";
+import {
+  TimeToPixcel,
+  PixcelToTime,
+  MinMaxDatesFromArray,
+  measureText,
+  adjustToHoleDay,
+  dateFromSeconds,
+  sumWorkDays
+} from "./utils/converter";
+import { DateWorkingDays } from "../../../../utils/dateFunctions";
 
 export type iGanttItem = InstanceType<typeof ganttItem>;
 
@@ -93,10 +102,14 @@ export class ganttItem {
   update() {
     if (this.data.children.length > 0) {
       const { Min, Max } = MinMaxDatesFromArray(this.data.children);
+      const { workDays, workDaysDone } = sumWorkDays(this.data.children);
       this.l = TimeToPixcel(this.chart, Min);
       this.w = TimeToPixcel(this.chart, Max) - this.l;
       this.data.startTime = Min;
       this.data.endTime = Max;
+      this.data.workDays = workDays;
+      this.data.workDaysDone = workDaysDone;
+      this.data.progress = Math.round((workDaysDone / workDays) * 100);
       this.setPosWidth();
     } else {
       if (this.data.type === "group") {
@@ -112,6 +125,8 @@ export class ganttItem {
     this.setPosWidth();
     this.data.startTime = PixcelToTime(this.chart, this.l);
     this.data.endTime = PixcelToTime(this.chart, this.l + this.w);
+    this.data.workDays = DateWorkingDays(dateFromSeconds(this.data.startTime), dateFromSeconds(this.data.endTime));
+    this.data.workDaysDone = (this.data.workDays / 100) * this.data.progress;
     const parent = this.chart.ganttData.dataStore[this.data.pId].bar as iGanttItem;
 
     parent.updateFromChild();

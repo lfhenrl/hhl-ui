@@ -10,9 +10,7 @@
   >
     <div class="H_slider col-pri">
       <div class="H_slider_scale">
-        <div class="H_slider_scale_inner">
-          <div class="H_slider_info" :style="{ left: posProcent }">{{ modelValue }}</div>
-        </div>
+        <div class="H_slider_info" :style="{ left: posProcent }">{{ modelValue }}</div>
       </div>
       <div class="H_slider_input">
         <input type="range" :value="modelValue" @input="changed" />
@@ -26,19 +24,21 @@ import { computed } from "vue";
 const props = defineProps({
   modelValue: {
     type: [Number, String],
-    default: "",
+    default: ""
   },
   min: {
     type: String,
-    default: "100",
+    default: "100"
   },
   max: {
     type: String,
-    default: "0",
+    default: "0"
   },
+  disabled: { type: Boolean, default: false },
+  validator: Array
 });
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "isValid"]);
 
 const posProcent = computed(() => {
   const faktor = (parseInt(props.max) - parseInt(props.min)) / 100;
@@ -55,52 +55,37 @@ function changed(e: any) {
   display: grid;
   font-size: var(--comp-font-size);
   font-family: var(--comp-font-family);
-  font-size: 0.9em;
   background-color: transparent;
   flex: 1;
   margin: 8px 0;
-  /* accent-color: pink; */
 }
 
 .H_slider_scale {
-  padding: 0 8px;
-  /* border: solid 1px red; */
-
+  position: relative;
+  display: flex;
+  margin: 0 7px;
+  align-items: center;
   order: -1;
 }
 
-.H_slider_scale_inner {
-  position: relative;
-
-  margin: 8px 0;
-  border: solid 1px red;
-}
-
 .H_slider .H_slider_input {
-  /* border: solid 1px lime; */
   max-height: 20px;
   min-height: 20px;
   display: flex;
   align-items: center;
 }
 
-.H_slider .H_slider_input input {
-}
-
 .H_slider_info {
-  position: absolute;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: var(--current-bg-col); */
-  /* color: currentColor; */
-  color: black;
+  color: var(--col-txt-1);
   min-width: 28px;
   max-width: 28px;
-  /* max-height: 28px;
-  min-height: 28px; */
   margin-left: -14px;
   border-radius: 4px;
+  line-height: 1;
 }
 
 .H_slider input[type="range"] {

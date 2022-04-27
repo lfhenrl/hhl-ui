@@ -5,27 +5,23 @@
   border-left: 0.5rem solid;
   padding: 0.1rem 1.5rem;
   overflow-x: auto;
+  background-color: var(--col-bg-2);
 }
 
 .custom-block.tip {
-  background-color: #f3f5f7;
   border-color: var(--col-ok);
 }
 
 .custom-block.warning {
-  border-color: #e7c000;
-  color: #6b5900;
-  background-color: rgba(255, 229, 100, 0.3);
+  border-color: orange;
 }
 
 .custom-block.warning .custom-block-title {
-  color: #b29400;
+  color: orange;
 }
 
 .custom-block.danger {
   border-color: #c00;
-  color: #4d0000;
-  background-color: #ffe6e6;
 }
 
 .custom-block.danger .custom-block-title {
@@ -38,7 +34,7 @@
   border-radius: 2px;
   margin: 1.6em 0;
   padding: 1.6em;
-  background-color: #eee;
+  background-color: red;
 }
 
 .custom-block.details h4 {

@@ -1,46 +1,50 @@
 ## Align and Justify GRID
 
 There are 3 main categories for placement.
-- __Content:__ This is how the group of cells are placed in the main container.
-- __Items:__ This is how each items is placed in each cell.
-- __Self:__ This is how single item is paced in a cell. 
+
+- **Content:** This is how the group of cells are placed in the main container.
+- **Items:** This is how each items is placed in each cell.
+- **Self:** This is how single item is paced in a cell.
 
 For each category the are 2 axis.
-- __Align:__ This is how the item is placed in the row axis (up-down).
-- __Justify:__ This is how the item is placed in the column axis (left-right).
+
+- **Align:** This is how the item is placed in the row axis (up-down).
+- **Justify:** This is how the item is placed in the column axis (left-right).
 
 So we end up with 6 CSS properties.
-- __align-content__
-- __justfy-content__
-- __align-items__
-- __justify-item__
-- __align-self__
-- __justify-self__
 
+- **align-content** _(grid_al_content)_
+- **justfy-content** _(grid_js_content)_
+- **align-items** _(grid_al_items)_
+- **justify-items** _(grid_js_items)_
+- **align-self**
+- **justify-self**
 
-### Align Content
-__CSS Class: `alignContent-start/center/end/between/around/evenly/stretch`__ <br/> 
-__Component: `align-content="start/center/end/space-between/space-around/space-evenly/stretch"`__ <br>
+You also have the possibilliy to add padding _(grid_padding)_
+
+## Align Content
+
+Placement in the row axis (up-down) in the main container.
+
+`grid_al_content="start/center/end/space-between/space-around/space-evenly/stretch"` <br>
 The default is stretch.
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="p-6">
-      <div class="flx-row flx-align-center flx-wrap mb-15 gap-6 p-15 shadow-1">
+      <H_flex flx_padding="0 0 20px 0">
         <H_select v-model="val" :select-data="alignContentList" label="Align Content"></H_select>
-      </div>
-      <H_layout grid-lines row="auto" col="auto auto auto" :align-content="val">
+      </H_flex>
+      <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" grid_padding="15px" :grid_al_content="val">
         <div>1</div>
         <div>2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </H_layout>
-    </div>
+      </H_grid>
     </template>
     <script>
-      const val = ref(" ");
+      const val = ref("");
       const alignContentList = ref([
-                    " ", "start", "center", "end", "space-between", "space-around", "space-evenly", "stretch"
+                    "", "start", "center", "end", "space-between", "space-around", "space-evenly", "stretch"
                     ]);
     return {
     val,
@@ -48,12 +52,11 @@ The default is stretch.
     }
     </script>
     <xstyle>
-      .gridBox {
-        padding: 15px;
-        height: 150px;
-        box-shadow: var(--shadow-1);
+      .H_grid {
+        height: 200px;
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
+      .H_grid > div {
         min-height: 25px;
         min-width: 25px;
         background-color: var(--col-pri);
@@ -65,29 +68,29 @@ The default is stretch.
 </hhl-live-editor>
 <br>
 
-### Justify Content
-__CSS Class: `justContent-start/center/end/between/around/evenly/stretch`__ <br/> 
-__Component: `justify-content="start/center/end/space-between/space-around/space-evenly/stretch"`__ <br>
+## Justify Content
+
+Placement in the column axis (left-right) in the main container.
+
+`grid_js_content="start/center/end/space-between/space-around/space-evenly/stretch"` <br>
 The default is stretch.
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="p-6">
-      <div class="flx-row flx-align-center flx-wrap mb-15 gap-6 p-15 shadow-1">
+      <H_flex flx_padding="0 0 20px 0">
         <H_select v-model="val" :select-data="justifyContentList" label="Justify Content"></H_select>
-      </div>
-      <H_layout grid-lines row="auto" col="auto auto auto" :justify-content="val">
+      </H_flex>
+      <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" grid_padding="15px" :grid_js_content="val">
         <div>1</div>
         <div>2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </H_layout>
-    </div>
+      </H_grid>
     </template>
     <script>
-      const val = ref(" ");
+      const val = ref("");
       const justifyContentList = ref([
-                    " ", "start", "center", "end", "space-between", "space-around", "space-evenly", "stretch"
+                    "", "start", "center", "end", "space-between", "space-around", "space-evenly", "stretch"
                     ]);
     return {
     val,
@@ -95,12 +98,11 @@ The default is stretch.
     }
     </script>
     <xstyle>
-      .gridBox {
-        padding: 15px;
-        height: 150px;
-        box-shadow: var(--shadow-1);
+      .H_grid {
+        height: 200px;
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
+      .H_grid > div {
         min-height: 25px;
         min-width: 25px;
         background-color: var(--col-pri);
@@ -112,29 +114,29 @@ The default is stretch.
 </hhl-live-editor>
 <br>
 
-### Align Items
-__CSS Class: `alignItems-start/center/end/stretch`__ <br/> 
-__Component: `align-items="start/center/end/stretch"`__ <br>
+## Align Items
+
+Placement in the row axis (up-down) in each cell.
+
+`grid_al_items="start/center/end/stretch"`<br>
 The default is stretch.
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="p-6">
-      <div class="flx-row flx-align-center flx-wrap mb-15 gap-6 m-4 p-15 shadow-1">
+      <H_flex flx_padding="0 0 20px 0">
         <H_select v-model="val" :select-data="alignItemsList" label="Align items"></H_select>
-      </div>
-      <H_layout grid-lines row="auto" col="auto auto auto" :align-items="val">
+      </H_flex>
+      <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" grid_padding="15px" :grid_al_items="val">
         <div>1</div>
         <div>2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </H_layout>
-    </div>
+      </H_grid>
     </template>
     <script>
-      const val = ref(" ");
+      const val = ref("");
       const alignItemsList = ref([
-                    " ", "start", "center", "end", "stretch"
+                    "", "start", "center", "end", "stretch"
                     ]);
     return {
     val,
@@ -142,12 +144,11 @@ The default is stretch.
     }
     </script>
     <xstyle>
-      .gridBox {
-        padding: 15px;
-        height: 150px;
-        box-shadow: var(--shadow-1);
+      .H_grid {
+        height: 200px;
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
+      .H_grid > div {
         min-height: 25px;
         min-width: 25px;
         background-color: var(--col-pri);
@@ -159,29 +160,29 @@ The default is stretch.
 </hhl-live-editor>
 <br>
 
-### Justify Items
-__CSS Class: `justItems-start/center/end/stretch`__ <br/> 
-__Component: `justify-items="start/center/end/stretch"`__ <br>
+## Justify Items
+
+Placement in the column axis (up-down) in each cell.
+
+`grid_js_items="start/center/end/stretch"` <br>
 The default is stretch.
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="p-6">
-      <div class="flx-row flx-align-center flx-wrap mb-15 gap-6 m-4 p-15 shadow-1">
+      <H_flex flx_padding="0 0 20px 0">
         <H_select v-model="val" :select-data="justItemsList" label="Justify items"></H_select>
-      </div>
-      <H_layout grid-lines row="auto" col="auto auto auto" :justify-items="val">
+      </H_flex>
+      <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" grid_padding="15px" :grid_js_items="val">
         <div>1</div>
         <div>2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </H_layout>
-    </div>
+      </H_grid>
     </template>
     <script>
-      const val = ref(" ");
+      const val = ref("");
       const justItemsList = ref([
-                    " ", "start", "center", "end", "stretch"
+                    "", "start", "center", "end", "stretch"
                     ]);
     return {
     val,
@@ -189,12 +190,11 @@ The default is stretch.
     }
     </script>
     <xstyle>
-      .gridBox {
-        padding: 15px;
-        height: 150px;
-        box-shadow: var(--shadow-1);
+      .H_grid {
+        height: 200px;
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
+      .H_grid > div {
         min-height: 25px;
         min-width: 25px;
         background-color: var(--col-pri);
@@ -206,30 +206,69 @@ The default is stretch.
 </hhl-live-editor>
 <br>
 
-### Align Self
-__CSS Class: `alignSelf-start/center/end/stretch`__ <br/>
+## padding
+
+`grid_padding="px/em/% etc."` <br>
+The default is 0.
+<hhl-live-editor title="" htmlCode='
+    <template>
+      <H_flex flx_padding="0 0 20px 0">
+        <H_input v-model="val"  label="Padding"></H_select>
+      </H_flex>
+      <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" :grid_padding="val">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+      </H_grid>
+    </template>
+    <script>
+      const val = ref("50px");
+    return {
+    val,
+    }
+    </script>
+    <xstyle>
+      .H_grid {
+        height: 200px;
+        box-shadow: var(--shadow-2);
+      }
+      .H_grid > div {
+        min-height: 25px;
+        min-width: 25px;
+        background-color: var(--col-pri);
+        color: white;
+        text-align: center;
+      }
+    </xstyle>
+'>
+</hhl-live-editor>
+<br>
+
+## Align Self
+
+**CSS Class: `alignSelf-start/alignSelf-center/alignSelf-end/alignSelf-stretch`** <br/>
 
 The default is stretch.<br/>
 The selected `alignSelf` class is bound to box 2.
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="p-6">
-      <div class="flx-row flx-align-center flx-wrap mb-15 gap-6 m-4 p-15 shadow-1">
+      <H_flex flx_padding="0 0 20px 0">
         <H_select v-model="val" :select-data="alignSelfList" label="Align self"></H_select>
-      </div>
-      <H_layout grid-lines row="auto" col="auto auto auto">
+      </H_flex>
+      <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" grid_padding="15px">
         <div>1</div>
         <div :class="val">2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </H_layout>
-    </div>
+      </H_grid>
     </template>
     <script>
-      const val = ref(" ");
+      const val = ref("");
       const alignSelfList = ref([
-                    " ", "alignSelf-start", "alignSelf-center", "alignSelf-end", "alignSelf-stretch"
+                    "", "alignSelf-start", "alignSelf-center", "alignSelf-end", "alignSelf-stretch"
                     ]);
     return {
     val,
@@ -237,12 +276,11 @@ The selected `alignSelf` class is bound to box 2.
     }
     </script>
     <xstyle>
-      .gridBox {
-        padding: 15px;
-        height: 150px;
-        box-shadow: var(--shadow-1);
+      .H_grid {
+        height: 200px;
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
+      .H_grid > div {
         min-height: 25px;
         min-width: 25px;
         background-color: var(--col-pri);
@@ -253,30 +291,44 @@ The selected `alignSelf` class is bound to box 2.
 '>
 </hhl-live-editor>
 <br>
+<br>
 
-### Justify Self
-__CSS Class: `justSelf-start/center/end/stretch`__ <br/> 
+## Align Self sizing
+
+The system gives you the possibility to gives different values depending on the screen size. It contains 3 levels of media breakpoints that are used for targeting specific screen sizes
+
+**CSS Class small: `alignSelf-start-sm/alignSelf-center-sm/alignSelf-end-sm/alignSelf-stretch-sm` > 400px** <br/>
+**CSS Class medium: `alignSelf-start-md/alignSelf-center-md/alignSelf-end-md/alignSelf-stretch-md` > 700px** <br/>
+**CSS Class large: `alignSelf-start-lg/alignSelf-center-lg/alignSelf-end-lg/alignSelf-stretch-lg` > 1100px** <br/>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Justify Self
+
+**CSS Class: `justSelf-start/justSelf-center/justSelf-end/justSelf-stretch`** <br/>
 The default is stretch.<br/>
 The selected `justSelf` class is bound to box 2.
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="p-6">
-      <div class="flx-row flx-align-center flx-wrap mb-15 gap-6 m-4 p-15 shadow-1">
+      <H_flex flx_padding="0 0 20px 0">
         <H_select v-model="val" :select-data="justSelfList" label="Justify self"></H_select>
-      </div>
-      <H_layout grid-lines row="auto" col="auto auto auto">
+      </H_flex>
+      <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" grid_padding="15px">
         <div>1</div>
         <div :class="val">2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </H_layout>
-    </div>
+      </H_grid>
     </template>
     <script>
-      const val = ref(" ");
+      const val = ref("");
         const justSelfList = ref([
-                    " ", "justSelf-start", "justSelf-center", "justSelf-end", "justSelf-stretch"
+                    "", "justSelf-start", "justSelf-center", "justSelf-end", "justSelf-stretch"
                     ]);
     return {
     val,
@@ -284,12 +336,11 @@ The selected `justSelf` class is bound to box 2.
     }
     </script>
     <xstyle>
-      .gridBox {
-        padding: 15px;
-        height: 150px;
-        box-shadow: var(--shadow-1);
+      .H_grid {
+        height: 200px;
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
+      .H_grid > div {
         min-height: 25px;
         min-width: 25px;
         background-color: var(--col-pri);
@@ -299,86 +350,42 @@ The selected `justSelf` class is bound to box 2.
     </xstyle>
 '>
 </hhl-live-editor>
+
+<br>
+<br>
 <br>
 
-## Align & Justify Sandbox
-The align & justfy self is bouend to box 2.
-<hhl-live-editor title="" htmlCode='
-    <template>
-    <div class="p-6">
-      <div class= "flex-selectors flx-row flx-wrap flx-align-center flx-wrap mb-15 gap-6 m-4 p-15 shadow-1">
-        <H_select v-model="alignContentVal" :select-data="justList" label="Align-content"></H_select>
-        <H_select v-model="justContentVal" :select-data="justList" label="Justify-content"></H_select>
-        <H_select v-model="alignItemVal" :select-data="itemList" label="Align-items"></H_select>
-        <H_select v-model="justItemVal" :select-data="itemList" label="Justify-items"></H_select>
-        <H_select v-model="alignSelfVal" :select-data="alignSelfList" label="Align self"></H_select>
-        <H_select v-model="justSelfVal" :select-data="justSelfList" label="Justify self"></H_select>
-      </div>
-      <H_layout grid-lines row="auto" col="auto auto auto" col="auto auto auto" 
-                    :align-content="alignContentVal"
-                    :justify-content="justContentVal"
-                    :align-items="alignItemVal"
-                    :justify-items="justItemVal">
-        <div>1</div>
-        <div :class="selfClass">2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
-      </H_layout>
-    </div>
-    </template>
-    <script>
-      const alignContentVal = ref("");
-      const justContentVal = ref("");
-      const alignItemVal = ref("");
-      const justItemVal = ref("");
-      const alignSelfVal = ref("");
-      const justSelfVal = ref("");
-      const itemList = ref([
-                    "", "start", "center", "end", "stretch"
-                    ]);
-      const justList = ref([
-                    "", "start", "center", "end", "space-between", "space-around", "space-evenly", "stretch"
-                    ]);
-      const alignSelfList = ref([
-                    "", "alignSelf-start", "alignSelf-center", "alignSelf-end", "alignSelf-stretch"
-                    ]);
-      const justSelfList = ref([
-                    "", "justSelf-start", "justSelf-center", "justSelf-end", "justSelf-stretch"
-                    ]);
-      const selfClass = computed(() => {
-          return `${alignSelfVal.value} ${justSelfVal.value}`
-        });
-    return {
-    alignContentVal,
-    justContentVal,
-    alignItemVal,
-    justItemVal,
-    alignSelfVal,
-    justSelfVal,
-    itemList,
-    justList,
-    alignSelfList,
-    justSelfList,
-    selfClass
-    }
-    </script>
-    <xstyle>
-      .flex-selectors > .H_select {
-        min-width: 140px;
-      }
-      .gridBox {
-        padding: 15px;
-        height: 150px;
-        box-shadow: var(--shadow-1);
-      }
-      .gridBox > div {
-        min-height: 25px;
-        min-width: 25px;
-        background-color: var(--col-pri);
-        color: white;
-        text-align: center;
-      }
-    <x/style>
-'>
-</hhl-live-editor>
+## Justify Self sizing
+
+The system gives you the possibility to gives different values depending on the screen size. It contains 3 levels of media breakpoints that are used for targeting specific screen sizes
+
+**CSS Class small: `justSelf-start-sm/justSelf-center-sm/justSelf-end-sm/justSelf-stretch-sm` > 400px** <br/>
+**CSS Class medium: `justSelf-start-md/justSelf-center-md/justSelf-end-md/justSelf-stretch-md` > 700px** <br/>
+**CSS Class large: `justSelf-start-lg/justSelf-center-lg/justSelf-end-lg/justSelf-stretch-lg` > 1100px** <br/>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+
+## hide Self
+
+**CSS Class: `hide`** <br/><br/>
+**CSS Class small: `hide-sm` > 400px** <br/>
+**CSS Class medium: `hide-md` > 700px** <br/>
+**CSS Class large: `hide-lg` > 1100px** <br/>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

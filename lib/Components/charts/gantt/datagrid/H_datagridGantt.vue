@@ -21,7 +21,7 @@ import H_rowGantt from "./H_rowGantt.vue";
 import H_datagridHeadCell from "../../../datagrid/sub/H_datagridHeadCell.vue";
 import H_datagridPopup from "../../../datagrid/sub/popup/H_datagridPopup.vue";
 import H_progressBar from "../../../H_progressBar.vue";
-
+// @ts-ignore:next-line
 import vResize from "vue-resize-observer";
 
 const props = defineProps({

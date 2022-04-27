@@ -1,5 +1,4 @@
 import { iChartGantt } from "../../common";
-import { iGanttItem } from "../ganttItem";
 
 let canvas: HTMLCanvasElement;
 let context: CanvasRenderingContext2D;
@@ -36,7 +35,20 @@ export function secondsFromDate(date: Date) {
   return date.valueOf() / 1000;
 }
 
-export function MinMaxDatesFromArray(arr: Array<iGanttItem>) {
+export function sumWorkDays(arr: any) {
+  let workDays = 0;
+  let workDaysDone = 0;
+  arr.forEach((item: any) => {
+    workDays = workDays + item.workDays;
+    workDaysDone = workDaysDone + item.workDaysDone;
+  });
+  return {
+    workDays,
+    workDaysDone
+  }
+}
+
+export function MinMaxDatesFromArray(arr: any) {
   let min = 4112719200;
   let max = 0;
   arr.forEach((item: any) => {

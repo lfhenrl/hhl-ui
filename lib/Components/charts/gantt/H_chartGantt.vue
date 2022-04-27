@@ -73,7 +73,7 @@ import { iGanttData } from "./common/ganttData";
 const props = defineProps({
   barHeight: { type: Number, default: 30 },
   timeHeight: { type: Number, default: 22 },
-  scale: { default: "Week", type: String as PropType<"Day" | "Week" | "Month"> },
+  scale: { default: "Week", type: String as PropType<"Day" | "Week" | "Month"> }
 });
 
 const emit = defineEmits(["loaded"]);
@@ -101,7 +101,7 @@ const style: any = computed(() => {
     "--gantt-time-height": props.timeHeight + "px",
     "--gantt-time-totalheight": props.timeHeight * 2 + "px",
     "--gantt-bar-height": props.barHeight + "px",
-    "--gantt-chart-height": chartHeight.value + "px",
+    "--gantt-chart-height": chartHeight.value + "px"
   };
 });
 
@@ -117,7 +117,7 @@ onMounted(() => {
 
   emit("loaded", {
     dom: _gantt.value,
-    data: gantt.ganttData as iGanttData,
+    data: gantt.ganttData as iGanttData
   });
 });
 
@@ -280,6 +280,7 @@ onBeforeUnmount(() => {
   min-width: calc(var(--gantt-bar-height) / 1.5);
   max-width: calc(var(--gantt-bar-height) / 1.5);
   pointer-events: none;
+  margin-right: calc(var(--gantt-bar-height) / 4);
   background-color: orange;
   transform: rotate(45deg);
 }
@@ -290,6 +291,8 @@ onBeforeUnmount(() => {
   height: 100%;
   right: 0;
   opacity: 0.1;
+  pointer-events: none;
+  user-select: none;
 }
 
 .gantt__Item_milestone_text {

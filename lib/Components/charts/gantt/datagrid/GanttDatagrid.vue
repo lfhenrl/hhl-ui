@@ -10,7 +10,7 @@
         </div>
       </template>
     </H_column>
-    <H_column field="startTime" title="Days" type="action" :width="40" :format="getDays" />
+    <H_column field="workDays" title="Days" type="action" :width="40"  />
   </H_datagridGantt>
 </template>
 
@@ -54,10 +54,6 @@ gantt.Event.on("gridRowExpanded", () => {
   gantt.ganttData.renderChart();
 });
 
-function getDays(_value: any, _props: any, _data: any) {
-  // return DateDiffDays(_data.startTime, _data.endTime);
-  return (_data.endTime - _data.startTime) / gantt.ganttData.dayInSeconds;
-}
 
 function update() {
   dgrid.value.update();
@@ -98,7 +94,7 @@ function rowClicked(data: any) {
 }
 
 .gantt_datagrid__colTitle .H_icon {
-  color: var(--col-pri-light);
+  color: var(--col-pri);
   margin-right: -1px;
 }
 

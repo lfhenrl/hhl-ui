@@ -21,16 +21,24 @@
 <script setup lang="ts">
 import H_modal from "./H_modal.vue";
 
+
+
+{/* @ts-ignore */}
+const emit = defineEmits(["update:modelValue"]);
+
+
+// @ts-ignore
 const props = defineProps({
   modelValue: { type: Boolean, default: false, required: true },
   showOverlay: { default: false, type: Boolean },
   noPersistent: { default: false, type: Boolean },
   noShake: { default: false, type: Boolean },
   offset: { default: "50%", type: String },
-  movable: { default: true, type: Boolean },
+  movable: { default: true, type: Boolean }
 });
 
-const emit = defineEmits(["update:modelValue"]);
+
+
 </script>
 
 <style>
@@ -54,6 +62,5 @@ const emit = defineEmits(["update:modelValue"]);
   padding: 12px;
   display: flex;
   width: 100%;
-  flex-direction: column;
 }
 </style>

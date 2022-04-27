@@ -4,16 +4,16 @@
 
 <hhl-live-editor title="" htmlCode=' 
     <template>
-    <div class="flex flex-wrap gap-2 p-3 items-center">
+    <H_flex>
         <H_checkbox label="CheckBox 1" v-model="check"></H_checkbox>
         <H_checkbox label="CheckBox 2" v-model="check"></H_checkbox>    
         <H_checkbox label="CheckBox 3" v-model="check"></H_checkbox>
         <H_input v-model="check" label="value"></H_input>
-    </div>
+    </H_flex>
     </template>
     <script>
-    const check = ref(true);
-    return {check}
+        const check = ref(true);
+        return {check}
     </script>
 '>
 </hhl-live-editor>
@@ -24,16 +24,16 @@
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex flex-wrap gap-2 p-3 items-center">
+    <H_flex>
         <H_checkbox label="CheckBox 1" v-model="checkArray" value="value1"></H_checkbox>
         <H_checkbox label="CheckBox 2" v-model="checkArray" value="value2"></H_checkbox>    
         <H_checkbox label="CheckBox 3" v-model="checkArray" value="value3"></H_checkbox>
         <H_input v-model="checkArray" label="value"></H_input>
-    </div>
+    </H_flex>
     </template>
     <script>
-    const  checkArray = ref([]);
-    return {checkArray}
+        const  checkArray = ref([]);
+        return {checkArray}
     </script>
 '>
 </hhl-live-editor>
@@ -46,15 +46,15 @@ You can change the label position to left by adding the prop `label-left`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex flex-wrap gap-2 p-3 items-center">
+    <H_flex>
         <H_checkbox label="label standard" v-model="check"></H_checkbox>
         <H_checkbox label-left label="Label left" v-model="check"></H_checkbox>  
         <H_spacer/>  
-    </div>
+    </H_flex>
     </template>
     <script>
-    const check = ref(true);
-    return {check}
+        const check = ref(true);
+        return {check}
     </script>
 '>
 </hhl-live-editor>
@@ -68,15 +68,15 @@ The default is `"md"`.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex flex-wrap gap-2 p-3 items-center">
+    <H_flex>
         <H_checkbox size="sm" label="CheckBox small (sm)" v-model="check"></H_checkbox>
         <H_checkbox size="md"  label="CheckBox standard (md)" v-model="check"></H_checkbox>    
         <H_checkbox size="lg" label="CheckBox large (lg)" v-model="check"></H_checkbox>
-    </div>
+    </H_flex>
     </template>
     <script>
-    const check = ref(true);
-    return {check}
+        const check = ref(true);
+        return {check}
     </script>
 '>
 </hhl-live-editor>
@@ -92,7 +92,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex flex-wrap gap-2 p-3 items-center">
+    <H_flex>
         <H_checkbox class="col-pri" label="col-pri" v-model="check"></H_checkbox>
         <H_checkbox class="col-sec" label="col-sec" v-model="check"></H_checkbox>    
         <H_checkbox class="col-ok" label="col-ok" v-model="check"></H_checkbox>
@@ -102,11 +102,11 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
         <H_checkbox class="col-black" label="col-black" v-model="check"></H_checkbox>
         <H_checkbox class="col-white" label="col-white" v-model="check"></H_checkbox>
         <H_checkbox style="--current-bg-col: purple; color: white" label="purple" v-model="check"></H_checkbox>
-    </div>
+    </H_flex>
     </template>
     <script>
-    const check = ref(true);
-    return {check}
+        const check = ref(true);
+        return {check}
     </script>
 '>
 </hhl-live-editor>
@@ -119,7 +119,7 @@ You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-        <div class="flex flex-wrap gap-2 p-3 items-center">
+        <H_flex>
             <H_checkbox disabled class="col-pri" label="col-pri" v-model="check"></H_checkbox>
             <H_checkbox disabled class="col-sec" label="col-sec" v-model="check"></H_checkbox>    
             <H_checkbox disabled class="col-ok" label="col-ok" v-model="check"></H_checkbox>
@@ -129,11 +129,11 @@ You disable by adding the props `disabled`
             <H_checkbox disabled class="col-black" label="col-black" v-model="check"></H_checkbox>
             <H_checkbox disabled class="col-white" label="col-white" v-model="check"></H_checkbox>
             <H_checkbox disabled style="--current-bg-col: purple; color: white" label="purple" v-model="check"></H_checkbox>
-        </div>
+        </H_flex>
     </template>
     <script>
-    const check = ref(true);
-    return {check}
+        const check = ref(true);
+        return {check}
     </script>
 '>
 </hhl-live-editor>

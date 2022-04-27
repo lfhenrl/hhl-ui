@@ -18,12 +18,12 @@ Where the total of values gives 100 (%) <br />
 
 <hhl-live-editor title="Data" htmlCode='
   <template>
-    <div class="flex p-10 items-center gap-10">
+    <H_flex>
     <div class="relative w-50">
         <H_chart-pie :data="list"/>
     </div>
     <H_btn @click="load">Load new data</H_btn>
-    </div>
+    </H_flex>
     </template>
     <script>
       const list = ref([
@@ -57,19 +57,19 @@ By the `"legend-placement"="bottom/center/top/right/left"` property you chose th
 
 <hhl-live-editor title="Legend" htmlCode='
     <template>
-      <div class="flex p-10 items-center gap-20">
-        <div class="relative w-50">
+      <H_flex>
+        <div>
           <H_chart-pie :data="list" 
             :hide-legend="hideLegend" 
             :legend-placement="placeMent" 
             :legend-stacked="legendStacked"/>
         </div>
-        <div class="flex flex-col gap-5">
+        <H_flex flx_direction="column" flx_padding="0 60px" flx_align="start" flx_gap="20px">
           <H_checkbox v-model="hideLegend" label="Hide legend."></H_checkbox>
           <H_checkbox v-model="legendStacked" label="legend-stacked."></H_checkbox>
           <H_select v-model="placeMent" label="placment" :select-data="placements"></H_select>
-        </div>
-      </div>
+        </H_flex>
+      </H_flex>
     </template>
     <script>
       const hideLegend = ref(false);
@@ -97,18 +97,15 @@ By the `"font-size"`=`"px/em/rem etc"` property you chose the font size of the l
 
 <hhl-live-editor title="Size" htmlCode='
     <template>
-      <div class="flex p-10 items-center gap-20">
+      <H_flex >
         <div class="relative w-50">
           <H_chart-pie :data="list" :font-size="fontSize" :pie-width="Number(pWidth)" legend-placement="bottom" />
         </div>
-        <div class="relative w-30">
-          <H_chart-pie :data="list" :font-size="fontSize" :pie-width="Number(pWidth)" legend-placement="bottom" />
-        </div>
-        <div class="flex flex-col gap-5">
+        <H_flex flx_direction="column" flx_padding="0 60px" flx_align="start">
           <H_input type="number" v-model="pWidth" label="Pie width." max="64" min="2"></H_input>
           <H_input type="number" v-model="fSize" label="Font size. (px)" max="30" min="4"></H_input>
-        </div>
-      </div>
+        </H_flex>
+      </H_flex>
     </template>
     <script>
       const pWidth = ref(20);

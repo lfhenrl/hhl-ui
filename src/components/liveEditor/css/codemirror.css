@@ -2,10 +2,10 @@
 /* purgecss start ignore */
 
 .CodeMirror {
-  --base: #545281;
+  --base: green;
   --comment: hsl(211, 35%, 53%);
-  --keyword: #af4ab1;
-  --variable: #0055d1;
+  --keyword: #00a9af;
+  --variable: rgb(253, 88, 239);
   --function: #c25205;
   --string: #2ba46d;
   --number: #c25205;
@@ -59,8 +59,7 @@
 
 .CodeMirror-foldmarker {
   color: #414141;
-  text-shadow: #ff9966 1px 1px 2px, #ff9966 -1px -1px 2px, #ff9966 1px -1px 2px,
-    #ff9966 -1px 1px 2px;
+  text-shadow: #ff9966 1px 1px 2px, #ff9966 -1px -1px 2px, #ff9966 1px -1px 2px, #ff9966 -1px 1px 2px;
   font-family: arial;
   line-height: 0.3;
   cursor: pointer;
@@ -90,7 +89,7 @@
 /* CURSOR */
 
 .CodeMirror-cursor {
-  border-left: 1px solid black;
+  border-left: 1px solid currentColor;
   border-right: none;
   width: 0;
 }
@@ -266,7 +265,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   background: rgba(255, 150, 0, 0.3);
 }
 .CodeMirror-activeline-background {
-  background: #e8f2ff;
+  background: var(--col-bg-2);
 }
 
 /* STOP */
@@ -480,7 +479,6 @@ div.CodeMirror-dragcursors {
 }
 
 .cm-searching {
-  background-color: #ffa;
   background-color: rgba(255, 255, 0, 0.4);
 }
 

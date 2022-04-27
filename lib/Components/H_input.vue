@@ -77,6 +77,7 @@ onMounted(() => {
   padding: 0.55em 0.1em 0.45em 0.2em;
   font-size: var(--comp-font-size);
   font-family: var(--comp-font-family);
+  color: var(--col-txt-1);
   vertical-align: bottom;
   background-color: transparent;
   border: none;

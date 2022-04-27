@@ -32,8 +32,8 @@ h3 {
 p,
 ol,
 ul {
-  margin: 5px 0;
-  line-height: 1.7;
+  margin: 7px 0;
+  line-height: 1.9em;
 }
 
 ul,
@@ -53,16 +53,16 @@ table {
 }
 
 tr {
-  border-top: 1px solid #dfe2e5;
+  border-top: 1px solid var(--col-bg-4);
 }
 
 tr:nth-child(2n) {
-  background-color: #f6f8fa;
+  background-color: var(--col-bg-2);
 }
 
 th,
 td {
-  border: 1px solid #dfe2e5;
+  border: 1px solid var(--col-bg-4);
   padding: 0.6em 1em;
 }
 

@@ -1,7 +1,6 @@
 <template>
-  <div class="menu-right col-bg-1 flex flex-col gap-1 p-2">
+  <div class="menu-right">
     <div
-      class="cursor-pointer"
       :hh="item.id"
       :dd="activeIndex"
       :selection="item.id === activeIndex"
@@ -109,12 +108,21 @@ export default MenuRight;
 
 <style>
 .menu-right {
+  display: flex;
+  flex-direction: column;
   overflow: auto;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--col-bg-1);
   font-size: 13px;
   min-width: 150px;
   max-width: 150px;
+  padding: 9px;
+  gap: 4px;
 }
+.menu-right div {
+  cursor: pointer;
+}
+
 .menu-right div[selection="true"] {
   color: var(--col-ok);
 }

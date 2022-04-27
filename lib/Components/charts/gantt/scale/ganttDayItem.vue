@@ -34,11 +34,11 @@ const monthNames = [
   "September",
   "October",
   "November",
-  "December",
+  "December"
 ];
 
 const props = defineProps({
-  timeData: { type: Object as PropType<iGanttTimeItem>, default: [] },
+  timeData: { type: Object as PropType<iGanttTimeItem>, default: [] }
 });
 
 const dayList = ref<any[]>([]);
@@ -55,9 +55,10 @@ function MakeDayList() {
   Header.value = monthNames[props.timeData.month] + " " + props.timeData.year;
   const _dayList: Array<any> = [];
   for (var d = new Date(props.timeData.dayFirst); d <= props.timeData.dayLast; d.setDate(d.getDate() + 1)) {
+    const dNr = d.getDay();
     const day = {
       day: d.getDate(),
-      weekend: d.getDay() > 4 ? true : false,
+      weekend: dNr === 0 || dNr === 6 ? true : false
     };
     _dayList.push(day);
   }

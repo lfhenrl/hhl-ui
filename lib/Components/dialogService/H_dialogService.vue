@@ -4,14 +4,12 @@
       <template #header>{{ dialog.title }}</template>
       {{ dialog.info }}
       <template #footer>
-        <div class="H_dialogService__footer">
-          <H_btn size="sm" :class="dialog.buttons.cancel.Color" @click="dialogCancel">
-            {{ dialog.buttons.cancel.Text }}
-          </H_btn>
-          <H_btn size="sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
-            {{ dialog.buttons.ok.Text }}
-          </H_btn>
-        </div>
+        <H_btn size="sm" :class="dialog.buttons.cancel.Color" @click="dialogCancel">
+          {{ dialog.buttons.cancel.Text }}
+        </H_btn>
+        <H_btn size="sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
+          {{ dialog.buttons.ok.Text }}
+        </H_btn>
       </template>
     </H_dialog>
     <H_snack v-model="snackPop" :title="snack.title" :type="snack.type" :text="snack.text" @close="snackClose" />
@@ -166,13 +164,13 @@ function updateButtons(data: any) {
 </script>
 
 <style>
-.H_dialogService__footer {
+.H_dialogService .H_dialog__footer {
   display: flex;
   gap: 10px;
-  justify-content: flex-end;
+  justify-content: end;
 }
 
-.H_dialogService__footer .H_btn {
+.H_dialogService .H_dialog__footer .H_btn {
   width: 70px;
 }
 </style>

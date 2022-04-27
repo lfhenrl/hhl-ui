@@ -5,7 +5,7 @@ It set the background-color and the color .
 
 <hhl-live-editor title="Theme colors" htmlCode='
     <template>
-    <div class="flx-row flx-wrap flx-align-center">
+    <H_flex>
       <div class="col-pri">col-pri</div>
       <div class="col-sec">col-sec</div>
       <div class="col-err">col-err</div>
@@ -14,7 +14,7 @@ It set the background-color and the color .
       <div class="col-info">col-info</div>
       <div class="col-black">col-black</div>
       <div class="col-white">col-white</div>
-    </div>
+    </H_flex>
     </template>
     <xstyle>
       div div {
@@ -35,7 +35,7 @@ This is the themes background colors that can be added by class.
 
 <hhl-live-editor title="Theme background colors" htmlCode='
     <template>
-    <div class="flx-row flx-wrap flx-align-center">
+    <H_flex>
       <div class="col-bg-pri">col-bg-pri</div>
       <div class="col-bg-sec">col-bg-sec</div>
       <div class="col-bg-err">col-bg-err</div>
@@ -44,7 +44,7 @@ This is the themes background colors that can be added by class.
       <div class="col-bg-info">col-bg-info</div>
       <div class="col-bg-black">col-bg-black</div>
       <div class="col-bg-white">col-bg-white</div>
-    </div>
+    </H_flex>
     </template>
     <xstyle>
       div div {
@@ -65,7 +65,7 @@ This is the themes text colors that can be added by class.
 
 <hhl-live-editor title="Theme text colors" htmlCode='
     <template>
-      <div class="flx-row flx-wrap flx-align-center gap-2">
+      <H_flex>
         <h3 class="col-txt-pri">col-txt-pri</h3>
         <h3 class="col-txt-sec">col-txt-sec</h3>
         <h3 class="col-txt-err">col-txt-err</h3>
@@ -74,7 +74,7 @@ This is the themes text colors that can be added by class.
         <h3 class="col-txt-info">col-txt-info</h3>
         <h3 class="col-txt-black">col-txt-black</h3>
         <h3 class="col-txt-white col-bg-black">col-txt-white</h3>
-      </div>
+      </H_flex>
     </template>
     <xstyle>
       h3 {

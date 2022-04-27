@@ -1,7 +1,7 @@
 ## The grid system
 
-The main idea in this grid system is to use the standard CSS grid by specifies named grid areas.
-For different screen sizes it using css variable for defining the layout
+The main idea in this grid system is to use the standard CSS grid and by properties setting grid areas, rows and columns.
+It is possible to set different values for screen sizes.
 
 #### Some links to the standard
 
@@ -9,63 +9,29 @@ For different screen sizes it using css variable for defining the layout
 [MDN Web Docs grid-template-areas](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas)<br/>
 [Learn CSS Grid](https://learncssgrid.com/)<br/>
 
-## CSS or Component
+## H_grid
 
-There are 2 ways to use the grid-system.
-
-- Adding the CSS class `gridBox`.
-- Use the Vue component `H_layout`.
+- Use the Vue component `H_grid`.
 
 ::: tip
 You can edit the code examples.
 :::
 
-### By Class.
-
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-      <div class="gridBox demoGrid">
+      <H_grid grid-lines grid_col="1fr auto 1fr" grid_padding="15px">
         <div>1</div>
         <div>2</div>
         <div>3</div>
-      </div>
+      </H_grid>
     </template>
     <xstyle>
-      .demoGrid {
-        padding: 20px 10px;
-        --grid-gap:10px;
-        --grid-col: 1fr auto 1fr
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
-        height: 25px;
-        min-width: 24px;
-        background-color: var(--col-pri);
-        color: white;
-        text-align: center;
-      }
-    </xstyle>
-'>
-</hhl-live-editor>
-<br/>
-
-### By Component.
-
-<br>
-<hhl-live-editor title="" htmlCode='
-    <template>
-      <H_layout gap="10px" col="1fr auto 1fr">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-      </H_layout>
-    </template>
-    <xstyle>
-      .gridBox {
-        padding: 20px 10px;
-      }
-      .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
         min-width: 24px;
         background-color: var(--col-pri);
         color: white;
@@ -77,11 +43,7 @@ You can edit the code examples.
 <br/>
 
 ::: warning
-The following examples will only show the component version.
-:::
-
-::: warning
-In the code examples the H_layout component will have a property `grid-lines` this is only for showing the grids row and columns lines.
+In the code examples the H_grid component will have a property `grid-lines` this is only for showing the grids row and columns lines.
 Remove this property and the gridlines will disappear.
 :::
 
@@ -90,39 +52,49 @@ Remove this property and the gridlines will disappear.
 The system gives you the possibility to gives different values depending on the screen size.
 It contains 4 types of media breakpoints that are used for targeting specific screen sizes or orientations.
 
-| Value | Describtion            |
-| ----- | ---------------------- |
-| `-sm` | Small: 600px > < 960px |
-| `-md` | Medium: 960px > < 1264 |
-| `-lg` | Large 1264 >           |
+| Value | Describtion     |
+| ----- | --------------- |
+| `_sm` | Small: > 400px  |
+| `_md` | Medium: > 700px |
+| `_lg` | Large > 1100px  |
 
-It can be used like this `col:"auto auto"` `col-md:"auto auto auto auto"` will gives you 4 columns for screens
-larger than 600px and 2 columns for smaller than 600px.
+You can use those selectors on the following.<br><br>
+**Rows (grid-auto-rows): `grid_row /grid_row_sm /grid_row_md/ grid_row_lg`**<br><br>
+**Columns (grid-template-columns): `grid_col /grid_col_sm /grid_col_md/ grid_col_lg`**<br><br>
+**Area (grid-template-areas)`: grid_area /grid_area_sm /grid_area_md/ grid_area_lg`**<br><br>
+**Gap (gap): `grid_gap /grid_gap_sm /grid_gap_md/ grid_gap_lg`**<br><br>
 
-::: warning
-Alwais start with `row` and `col` or the other properties and if needet add values for the other sizes.
-:::
+<br>
+So you end with having 4 size levels.
+<br>
+
+| Value                               | Describtion                             |
+| ----------------------------------- | --------------------------------------- |
+| `grid_col="auto"`                   | Exsta small: < 400px will give 1 column |
+| `grid_col_sm="auto auto"`           | Small: > 400px will give 2 column       |
+| `grid_col_md="auto auto auto"`      | Medium: > 700px will give 3 column      |
+| `grid_col_lg="auto auto auto auto"` | Large > 1100px will give 4 column       |
+
 <br>
 
 Try to resize the window to see how it adjusting.<br>
-**CSS Class: `--grid-col: auto auto` `--grid-col-md: auto auto auto auto`** <br>
-**Component: `col="auto auto"` `col-md="auto auto auto auto"`**
+**Properties: `grid_col="auto auto"` `grid_col_md="auto auto auto auto"`**
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-        <H_layout grid-lines col="auto auto" col-lg="auto auto auto auto">
+        <H_grid grid-lines grid_col="auto auto" grid_col_lg="auto auto auto auto" grid_padding="15px">
           <div>1</div>
           <div>2</div>
           <div>3</div>
           <div>3</div>
-        </H_layout>
+        </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
         min-width: 24px;
         background-color: var(--col-pri);
         color: white;
@@ -136,8 +108,7 @@ Try to resize the window to see how it adjusting.<br>
 ## Rows
 
 You control the rows by the<br>
-**CSS variable `--grid-row`/-sm/-md/-lg.**<br>
-**Component `row`/-sm/-md/-lg.**<br>
+**Properties `grid_row /grid_row_sm /grid_row_md /grid_row_lg `.**<br>
 by default the value is `auto`.
 
 | Value                      | Describtion                                                        |
@@ -148,22 +119,23 @@ by default the value is `auto`.
 
 ### Rows fixed size
 
-Set the size to 50px.<br/> **CSS Class: `--grid-row: 50px`** <br/> **Component: `row="50px"`**
+Set the size to 50px.<br/>
+**Properties: `grid_row="50px"`**
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_layout grid-lines row="50px">
+      <H_grid grid-lines grid_row="50px" grid_padding="15px">
         <div>1</div>
         <div>2</div>
         <div>3</div>
-      </H_layout>
+      </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-        .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
         min-width: 24px;
         background-color: var(--col-pri);
         color: white;
@@ -178,24 +150,23 @@ Set the size to 50px.<br/> **CSS Class: `--grid-row: 50px`** <br/> **Component: 
 
 Will set the row hight to the highest content.
 
-In this example the size on row 2 is 50px and then all row will be 50px because it is the highest<br/>
-**CSS Class: `--grid-row: minmax(max-content, 1fr)`** <br/>
-**Component: `row="minmax(max-content, 1fr)"`**
+In this example the size on row 2 is 50px and then all row will be 100px because it is the highest<br/>
+**Properties: `grid_row="minmax(max-content, 1fr)"`**
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_layout grid-lines row="minmax(max-content, 1fr)">
+      <H_grid grid-lines grid_row="minmax(max-content, 1fr)" grid_padding="15px">
         <div>1</div>
-        <div style="height: 50px;">2</div>
+        <div style="height: 100px;">2</div>
         <div>3</div>
-      </H_layout>
+      </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-        .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
         min-width: 24px;
         background-color: var(--col-pri);
         color: white;
@@ -209,8 +180,7 @@ In this example the size on row 2 is 50px and then all row will be 50px because 
 ## Columns
 
 You control the columns by the<br>
-**CSS variable `--grid-col`/-sm/-md/-lg..** <br>
-**Component `col`/-sm/-md/-lg..**<br>
+**Properties `grid_col /grid_col_sm /grid_col_md /grid_col_lg `.**<br>
 by default the value is `auto`.<br/>
 The property specifies the number (and the widths) of columns in a grid layout.
 The values are a space separated list, where each value specifies the size of the respective column.
@@ -227,25 +197,25 @@ Try to resize the window to see how the columns adjust.
 
 ### auto auto auto auto
 
-**CSS Class: `--grid-col: auto auto auto auto`** <br/>
-**Component: `col="auto auto auto auto"`**
+**Properties: `grid_col="auto auto auto auto"`**
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_layout grid-lines col="auto auto auto auto">
+      <H_grid grid-lines grid_col="auto auto auto auto" grid_padding="15px">
         <div style="width:100px">1</div>
         <div>2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </H_layout>
+      </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-        .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
+        min-width: 24px;
         background-color: var(--col-pri);
         color: white;
         text-align: center;
@@ -257,25 +227,25 @@ Try to resize the window to see how the columns adjust.
 
 ### auto 1fr 1fr auto
 
-**CSS Class: `--grid-col: auto 1fr 1fr auto`** <br/>
-**Component: `col="auto 1fr 1fr auto"`**
+**Properties: `grid_col="auto 1fr 1fr auto"`**
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_layout grid-lines col="auto 1fr 1fr auto">
+      <H_grid grid-lines grid_col="auto 1fr 1fr auto" grid_padding="15px">
         <div style="width:100px">1</div>
         <div>2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </H_layout>
+      </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
+        min-width: 24px;
         background-color: var(--col-pri);
         color: white;
         text-align: center;
@@ -287,24 +257,24 @@ Try to resize the window to see how the columns adjust.
 
 ### auto 1fr 1fr 150px
 
-**CSS Class: `--grid-col: auto 1fr 1fr 150px`** <br/>
-**Component: `col="auto 1fr 1fr 150px"`**
+**Properties: `grid_col="auto 1fr 1fr 150px"`**
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_layout grid-lines col="auto 1fr 1fr 150px">
+    <H_grid grid-lines grid_col="auto 1fr 1fr 150px" grid_padding="15px">
       <div style="width:100px">1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
-    </H_layout>
+    </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
+        min-width: 24px;
         background-color: var(--col-pri);
         color: white;
         text-align: center;
@@ -318,24 +288,24 @@ Try to resize the window to see how the columns adjust.
 
 With repeat you can make it more simpel to set the same size.
 
-**CSS Class: `--grid-col: repeat(6, 1fr)`** <br/>
-**Component: `col="repeat(6, 1fr)"`**
+**Properties: `grid_col="repeat(6, 1fr)"`**
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_layout grid-lines col="repeat(6, 1fr)">
+    <H_grid grid-lines grid_col="repeat(6, 1fr)" grid_padding="15px">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
-    </H_layout>
+    </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
+        min-width: 24px;
         background-color: var(--col-pri);
         color: white;
         text-align: center;
@@ -349,24 +319,24 @@ With repeat you can make it more simpel to set the same size.
 
 With minMax you can specify the min size of the columns
 
-**CSS Class: `--grid-col: repeat(3, minMax(100px, 1fr))`** <br/>
-**Component: `col="repeat(3, minMax(100px, 1fr))"`**
+**Properties: `grid_col="repeat(3, minMax(100px, 1fr))"`**
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_layout grid-lines col="repeat(3, minMax(100px, 1fr))">
+    <H_grid grid-lines grid_col="repeat(3, minMax(100px, 1fr))" grid_padding="15px">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
-    </H_layout>
+    </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
+        min-width: 24px;
         background-color: var(--col-pri);
         color: white;
         text-align: center;
@@ -381,24 +351,24 @@ With minMax you can specify the min size of the columns
 With the autofit the grid will automatic add rows and columns when the space is availble.
 It will remove columns when the size go under the min size (200px here).
 
-**CSS Class: `--grid-col: repeat(auto-fit, minMax(200px, 1fr))`** <br/>
-**Component: `col="autofit-200"`** syntax autofit-value (0-1000) in pixel.
+**Properties: `grid_col="autofit-200"`** syntax autofit-value (0-1000) in pixel.
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_layout grid-lines col="autofit-200">
+    <H_grid grid-lines grid_col="autofit-200" grid_padding="15px">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
-    </H_layout>
+    </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
+        min-width: 24px;
         background-color: var(--col-pri);
         color: white;
         text-align: center;
@@ -411,34 +381,33 @@ It will remove columns when the size go under the min size (200px here).
 ## Gaps
 
 You control the gap between rows and columns by the<br>
-**CSS variable `--gap`/-sm/-md/-lg.**<br>
-**Component `gap`/-sm/-md/-lg.**<br>
-The default value is `24px`.
+**Properties `grid_gap /grid_gap_sm /grid_gap_md /grid_gap_lg `.**<br>
+The default value is `10px`.
 Set the gap between rows and columns.<br/>
 
-- `gap="10px"` Set both rows and column gap to 10px;
-- `gap="24px 10px"` Set rows gap to 24px and column gap to 10px;
+- `grid_gap="10px"` Set both rows and column gap to 10px;
+- `grid_gap="24px 10px"` Set rows gap to 24px and column gap to 10px;
 
 ### gap 10px
 
-**CSS Class: `--grid-gap: 10px`** <br/>
-**Component: `gap="10px"`**
+**Properties: `grid_gap="10px"`**
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_layout grid-lines col="autofit-200" gap="10px">
+    <H_grid grid-lines grid_col="auto auto" grid_gap="10px" grid_padding="15px">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
-    </H_layout>
+    </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
+        min-width: 24px;
         background-color: var(--col-pri);
         color: white;
         text-align: center;
@@ -450,24 +419,24 @@ Set the gap between rows and columns.<br/>
 
 ### gap 30px 10px
 
-**CSS Class: `--grid-gap: 30px 10px`** <br/>
-**Component: `gap="30px 10px"`**
+**Properties: `grid_gap="30px 10px"`**
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_layout grid-lines col="autofit-200" gap="30px 10px">
+    <H_grid grid-lines grid_col="auto auto" grid_gap="30px 10px" grid_padding="15px">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
-    </H_layout>
+    </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
+        min-width: 24px;
         background-color: var(--col-pri);
         color: white;
         text-align: center;
@@ -478,69 +447,50 @@ Set the gap between rows and columns.<br/>
 <br/>
 
 ## Area
+
 Another powerful and intuitive way to define a grid layout is to use the grid area system.
-You control the column and rows layout by<br> 
-__CSS variable `--grid-area`/-sm/-md/-lg.__ You need to add the class `gridBox_autoName` to use it with in the CLASS way<br>
-__Component `area`/-sm/-md/-lg.__<br><br>
+
+**Properties `grid_area /grid_area_sm /grid_area_md /grid_area_lg `.**<br><br>
 All the child element in the grid will get a grid-area name from `c1` up to `c24` in the same order as the dom.<br>
 You then define how they should be presentet in the grid like this.<br>
-- `"c1 c2 c3" "c4 c5 c6"` It will give 2 rows with 3 columns.
-- `"c6 c5 c4" "c3 c2 c1"` It will give 2 rows with 3 columns but in the opisite order.
-- `"c1 c2 ." ". c3 c4" "c5 . c6` It will give 3 rows with 3 columns with 3 empty cells, the `.` mean an empty cell.
 
-__The CSS way.__
+- `"c1 c2 c3, c4 c5 c6"` It will give 2 rows with 3 columns.
+- `"c6 c5 c4, c3 c2 c1"` It will give 2 rows with 3 columns but in the opisite order.
+- `"c1 c2 ., . c3 c4, c5 . c6` It will give 3 rows with 3 columns with 3 empty cells, the `.` mean an empty cell.
+
 ```html
-  <div class="gridBox gridBox_autoName demoGrid">
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
-    <div>5</div>
-  </div>
-  <style>
-    .demoGrid {
-      --grid-area: "c1 c2 c3" "c4 c5 c6";
-    }
-</style>
+<H_grid grid_area="c1 c2 c3, c4 c5 c6">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</H_grid>
 ```
-::: warning
-It is very important to remember to add the css `gridBox autoName` when you use the CSS way.
-The Component do it automatically
-:::
-<br>
 
-__The Component way.__
-```html
-  <H_layout area="c1 c2 c3, c4 c5 c6">
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
-    <div>5</div>
-  </
-  ```
 <br>
 
 ### Area "c1 c2 c3, c4 c5 c6"
-__CSS: `--grid-area: "c1 c2 c3" "c4 c5 c6";`__ <br/> 
-__Component: `area="c1 c2 c3, c4 c5 c6"`__ 
+
+**Properties: `grid_area="c1 c2 c3, c4 c5 c6"`**
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_layout grid-lines area="c1 c2 c3, c4 c5 c6">
+    <H_grid grid-lines grid_area="c1 c2 c3, c4 c5 c6" grid_padding="15px">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
       <div>6</div>
-    </H_layout>
+    </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
+        min-width: 24px;
         background-color: var(--col-pri);
         color: white;
         text-align: center;
@@ -551,25 +501,26 @@ __Component: `area="c1 c2 c3, c4 c5 c6"`__
 <br>
 
 ### Area "c6 c5 c4, c3 c2 c1"
-__CSS: `--grid-area: "c6 c5 c4" "c3 c2 c1";`__ <br/> 
-__Component: `area="c6 c5 c4, c3 c2 c1"`__ 
+
+**Properties: `grid_area="c6 c5 c4, c3 c2 c1"`**
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_layout grid-lines area="c6 c5 c4, c3 c2 c1">
+    <H_grid grid-lines grid_area="c6 c5 c4, c3 c2 c1" grid_padding="15px">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
       <div>6</div>
-    </H_layout>
+    </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
+        min-width: 24px;
         background-color: var(--col-pri);
         color: white;
         text-align: center;
@@ -580,25 +531,26 @@ __Component: `area="c6 c5 c4, c3 c2 c1"`__
 <br>
 
 ### Area "c1 c2 ., . c3 c4, c5 . c6"
-__CSS: `--grid-area: "c1 c2 ." ". c3 c4" "c5 . c6";`__ <br/> 
-__Component: `area="c1 c2 ., . c3 c4, c5 . c6"`__ 
+
+**Properties: `grid_area="c1 c2 ., . c3 c4, c5 . c6"`**
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_layout grid-lines area="c1 c2 ., . c3 c4, c5 . c6">
+    <H_grid grid-lines grid_area="c1 c2 ., . c3 c4, c5 . c6" grid_padding="15px">
       <div>1</div>
       <div>2</div>
       <div>3</div>
       <div>4</div>
       <div>5</div>
       <div>6</div>
-    </H_layout>
+    </H_grid>
     </template>
     <xstyle>
-      .gridBox {
-        padding: 20px 10px;
+      .H_grid {
+        box-shadow: var(--shadow-2);
       }
-      .gridBox > div {
-        height: 25px;
+      .H_grid > div {
+        min-height: 25px;
+        min-width: 24px;
         background-color: var(--col-pri);
         color: white;
         text-align: center;
@@ -606,3 +558,9 @@ __Component: `area="c1 c2 ., . c3 c4, c5 . c6"`__
     </xstyle>
 '>
 </hhl-live-editor>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

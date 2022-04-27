@@ -4,13 +4,13 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_input v-model="txt" label="Text input"></H_input>
-      </div>
+      </H_flex>
       </template>
       <script>
-      const txt = ref("Data binding");
-      return {txt}
+            const txt = ref("Data binding");
+            return {txt}
       </script>
 '>
 </hhl-live-editor>
@@ -23,13 +23,13 @@ Add input clear functionality by adding `clearable`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_input clearable v-model="txt" label="Text input"></H_input>
-      </div>
+      </H_flex>
       </template>
       <script>
-      const txt = ref("clearable");
-      return {txt}
+            const txt = ref("clearable");
+            return {txt}
       </script>
 '>
 </hhl-live-editor>
@@ -42,13 +42,13 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_input disabled v-model="txt" label="Text input"></H_input>
-      </div>
+      </H_flex>
       </template>
       <script>
-      const txt = ref("disabled");
-      return {txt}
+            const txt = ref("disabled");
+            return {txt}
       </script>
 '>
 </hhl-live-editor>
@@ -61,13 +61,13 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_input readonly v-model="txt" label="Text input"></H_input>
-      </div>
+      </H_flex>
       </template>
       <script>
-      const txt = ref("disabled");
-      return {txt}
+            const txt = ref("disabled");
+            return {txt}
       </script>
 '>
 </hhl-live-editor>
@@ -80,13 +80,13 @@ Placeholder by adding `placeholder="Type something."`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_input placeholder="Type something." v-model="txt" label="Text input"></H_input>
-      </div>
+      </H_flex>
       </template>
       <script>
-      const txt = ref("");
-      return {txt}
+            const txt = ref("");
+            return {txt}
       </script>
 '>
 </hhl-live-editor>
@@ -99,16 +99,16 @@ Input Click by adding @input_click=""
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_input @input_click="click(txt)" v-model="txt" label="Text input"></H_input>
-      </div>
+      </H_flex>
       </template>
       <script>
-      const txt = ref("Input Click");
-      function click(e) {
-            alert(e);
-      }
-      return {txt, click}
+            const txt = ref("Input Click");
+            function click(e) {
+                  alert(e);
+            }
+            return {txt, click}
       </script>
 '>
 </hhl-live-editor>
@@ -121,16 +121,16 @@ Start Icon by adding `start-icon="iconName"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_input start-icon="mail"  v-model="txt" label="Text input"></H_input>
-      </div>
+      </H_flex>
       </template>
       <script>
-      const txt = ref("Start icon");
-      function click(e) {
-            alert(e);
-      }
-      return {txt, click}
+            const txt = ref("Start icon");
+            function click(e) {
+                  alert(e);
+            }
+            return {txt, click}
       </script>
 '>
 </hhl-live-editor>
@@ -143,16 +143,16 @@ Start Icon by adding `@start_icon_click=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_input @start_icon_click="click(txt)" start-icon="mail"  v-model="txt" label="Text input"></H_input>
-      </div>
+      </H_flex>
       </template>
       <script>
-      const txt = ref("Start icon click");
-      function click(e) {
-            alert(e);
-      }
-      return {txt, click}
+            const txt = ref("Start icon click");
+            function click(e) {
+                  alert(e);
+            }
+            return {txt, click}
       </script>
 '>
 </hhl-live-editor>
@@ -165,16 +165,16 @@ Start Icon by adding `end-icon="iconName"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_input end-icon="mail"  v-model="txt" label="Text input"></H_input>
-      </div>
+      </H_flex>
       </template>
       <script>
-      const txt = ref("End icon");
-      function click(e) {
-            alert(e);
-      }
-      return {txt, click}
+            const txt = ref("End icon");
+            function click(e) {
+                  alert(e);
+            }
+            return {txt, click}
       </script>
 '>
 </hhl-live-editor>
@@ -187,16 +187,16 @@ Start Icon by adding `@end_icon_click=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_input @end_icon_click="click(txt)" end-icon="mail"  v-model="txt" label="Text input"></H_input>
-      </div>
+      </H_flex>
       </template>
       <script>
-      const txt = ref("End icon click");
-      function click(e) {
-            alert(e);
-      }
-      return {txt, click}
+            const txt = ref("End icon click");
+            function click(e) {
+                  alert(e);
+            }
+            return {txt, click}
       </script>
 '>
 </hhl-live-editor>
@@ -209,16 +209,16 @@ Hint text by adding `hint=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center mb-3">
+      <H_flex>
             <H_input hint="Please type something."  v-model="txt" label="Text input"></H_input>
-      </div>
+      </H_flex>
       </template>
       <script>
-      const txt = ref("Hint");
-      function click(e) {
-            alert(e);
-      }
-      return {txt, click}
+            const txt = ref("Hint");
+            function click(e) {
+                  alert(e);
+            }
+            return {txt, click}
       </script>
 '>
 </hhl-live-editor>
@@ -231,16 +231,16 @@ Character counter by adding `counter=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center mb-3">
+      <H_flex>
             <H_input counter="10"  v-model="txt" label="Text input"></H_input>
-      </div>
+      </H_flex>
       </template>
       <script>
-      const txt = ref("Counter.");
-      function click(e) {
-            alert(e);
-      }
-      return {txt, click}
+            const txt = ref("Counter.");
+            function click(e) {
+                  alert(e);
+            }
+            return {txt, click}
       </script>
 '>
 </hhl-live-editor>
@@ -253,25 +253,25 @@ Validation by adding `validator=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-col flex-wrap gap-10 p-3 mb-3">
+      <H_flex flx_direction="column" flx_align="strech" flx_gap="30px">
             <H_input v-model="txt" label="required" :validator="[v.required]"></H_input>
             <H_input v-model="txt" label="email" :validator="[v.email]"></H_input>
             <H_input v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></H_input>
             <H_input v-model="txt" label="strMax(8)" :validator="[v.strMax(8)]"></H_input>
             <H_input v-model="nr" type="number" label="numMin(5)" :validator="[v.numMin(5)]"></H_input>
             <H_input v-model="nr" type="number" label="numMax(12)" :validator="[v.numMax(12)]"></H_input>
-      </div>
+      </H_flex>
       </template>
       <script>
-      // import { validator } from "components/utils/validator";
-      const {validator} = fakeImport;
-      const txt = ref("");
-      const nr = ref(0);
-      const v = validator;
-      function click(e) {
-            alert(e);
-      }
-      return {txt, nr, click, v}
+            // import { validator } from "components/utils/validator";
+            const {validator} = fakeImport;
+            const txt = ref("");
+            const nr = ref(0);
+            const v = validator;
+            function click(e) {
+                  alert(e);
+            }
+            return {txt, nr, click, v}
       </script>
 '>
 </hhl-live-editor>

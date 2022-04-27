@@ -10,6 +10,7 @@ declare module "*.md" {
   export default Component;
 }
 
+
 declare module "vue-resize-observer" {}
 
 type ListenerCallback = (...data: any) => void;

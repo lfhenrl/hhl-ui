@@ -4,32 +4,32 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex  gap-2 p-3">
-        <H_drag-drop v-model="list1" class="w-30 h-100 border border-bg4 flex flex-col items-center gap-1 p-3">
+      <H_flex>
+        <H_drag-drop v-model="list1" class="list">
           <template v-slot:item="{ item }">
             <!-- example -->
-            <div class="border border-bg4 flex flex-col items-center px-2">
+            <div class="item">
               {{ item.title }}
             </div>
             <!-- or your own template -->
           </template>
         </H_drag-drop>
-      <div class="w-40 bg-bg4">
-        {{ list1 }}
-      </div>
-        <H_drag-drop v-model="list2" class="w-30 h-100 border border-bg4 flex flex-col items-center gap-1 p-3" :max-items="3">
+        <div class="json">
+          {{ list1 }}
+        </div>
+        <H_drag-drop v-model="list2" class="list" :max-items="3">
           <template v-slot:item="{ item }">
             <!-- example -->
-            <div class="border border-bg4 flex flex-col items-center px-2">
+            <div class="item">
               {{ item.title }}
             </div>
             <!-- or your own template -->
           </template>
         </H_drag-drop>
-      <div class="w-40 bg-bg4">
-        {{ list2 }}
-      </div>
-      </div>
+        <div class="json">
+          {{ list2 }}
+        </div>
+      </H_flex>
       </template>
       <script>
       const list1 = ref([
@@ -45,6 +45,31 @@
       const list2 = ref([]);
       return {list1, list2}
       </script>
+      <style>
+      .list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 400px;
+        width: 140px;
+        gap: 5px;
+        border: solid 1px var(--col-bg-4);
+        padding: 5px;
+      }
+      .json {
+        padding: 8px;
+        height: 400px;
+        width: 200px;
+        background-color: var(--col-bg-4)
+      }
+      .item {
+        border: 1px solid var(--col-bg-4);
+        padding: 0 4px;
+        width: 100px;
+        text-align: center;
+        background-color: var(--col-pri)
+      }
+      </style>
 '>
 </hhl-live-editor>
 

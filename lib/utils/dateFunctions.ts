@@ -54,6 +54,24 @@ export function DateDiffDays(date1: Date, date2: Date) {
   return Math.round(differenceMs / day);
 }
 
+export function DateWorkingDays(date1: Date, date2: Date) {
+  // clone date to avoid messing up original date and time
+  var frD = new Date(date1.getTime()),
+    toD = new Date(date2.getTime()),
+    numOfWorkingDays = 0;
+
+  while (frD < toD) {
+    frD.setDate(frD.getDate() + 1);
+    var day = frD.getUTCDay();
+
+    if (day != 0 && day != 6) {
+      numOfWorkingDays++;
+      console.log("DAY", day);
+    }
+  }
+  return numOfWorkingDays;
+}
+
 export function getDaysInMonth(date: Date) {
   var month = date.getMonth();
   var year = date.getFullYear();

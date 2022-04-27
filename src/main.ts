@@ -4,10 +4,11 @@
 import { createApp, defineAsyncComponent } from "vue";
 import App from "./App.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
+import { createPinia } from "pinia";
 import routes from "~pages";
 // import "./style/main.css";
 // import "./style/index.css";
-import "virtual:windi.css";
+// import "virtual:windi.css";
 import "./components/mdStyle/index.css";
 import "../lib/style.css";
 
@@ -15,6 +16,7 @@ const history = createWebHashHistory();
 const router = createRouter({ history, routes });
 
 const app = createApp(App).use(router);
+app.use(createPinia());
 
 import { validator } from "../lib/utils/validator";
 import * as dateFormat from "../lib/utils/dateFormat";
@@ -30,7 +32,8 @@ const H_checkbox = defineAsyncComponent(() => import("../lib/Components/H_checkb
 const H_input = defineAsyncComponent(() => import("../lib/Components/H_input.vue"));
 const H_textarea = defineAsyncComponent(() => import("../lib/Components/H_textarea.vue"));
 const H_select = defineAsyncComponent(() => import("../lib/Components/H_select.vue"));
-const H_layout = defineAsyncComponent(() => import("../lib/Components/layout/H_layout.vue"));
+const H_grid = defineAsyncComponent(() => import("../lib/Components/layout/H_grid.vue"));
+const H_flex = defineAsyncComponent(() => import("../lib/Components/layout/H_flex.vue"));
 const iconList = defineAsyncComponent(() => import("./components/icon-list.vue"));
 const H_datePicker = defineAsyncComponent(() => import("../lib/Components/date/H_datePicker.vue"));
 const H_modal = defineAsyncComponent(() => import("../lib/Components/popup/H_modal.vue"));
@@ -52,7 +55,8 @@ app.component("H_checkbox", H_checkbox);
 app.component("H_input", H_input);
 app.component("H_textarea", H_textarea);
 app.component("H_select", H_select);
-app.component("H_layout", H_layout);
+app.component("H_grid", H_grid);
+app.component("H_flex", H_flex);
 app.component("icon-list", iconList);
 app.component("H_datePicker", H_datePicker);
 app.component("H_modal", H_modal);

@@ -1,6 +1,5 @@
 @import "./style/theme.css";
 @import "./style/color-theme.css";
-@import "./style/grid.css";
 @import "./style/shadow.css";
 
 *[disabled] {
@@ -8,5 +7,3 @@
   pointer-events: none;
   cursor: none;
 }
-
-

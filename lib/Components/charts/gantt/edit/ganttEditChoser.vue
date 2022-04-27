@@ -15,9 +15,11 @@
 
 <script setup lang="ts">
 import { inject } from "vue";
+import { DateWorkingDays } from "../../../../utils/dateFunctions";
 import H_dialog from "../../../popup/H_dialog.vue";
 // import { DateAddDays } from "../../../../utils/dateFunctions";
 import { ganttItem } from "../chart/ganttItem";
+import { dateFromSeconds } from "../chart/utils/converter";
 import { iChartGantt } from "../common";
 
 const props = defineProps({
@@ -54,6 +56,8 @@ function edit() {
 function add(type: string, subType: string, duration: number) {
   const ID = props.activeId === "root" ? gantt.ganttData.rootId : props.activeId;
   const parent = gantt.ganttData.dataStore[ID];
+  const st = parent.data.startTime;
+  const et = parent.data.startTime + duration * gantt.ganttData.dayInSeconds;
   const item = {
     id: gantt.ganttData.getGuid(),
     pId: parent.data.id,
@@ -61,11 +65,13 @@ function add(type: string, subType: string, duration: number) {
     type: type,
     subType,
     workLoad: 100,
+    workDays: DateWorkingDays(dateFromSeconds(st), dateFromSeconds(et)),
+    workDaysDone: 0,
     progress: 0,
     level: parent.data.level + 1,
     expanded: false,
-    startTime: parent.data.startTime,
-    endTime: parent.data.startTime + duration * gantt.ganttData.dayInSeconds,
+    startTime: st,
+    endTime: et,
     children: []
   };
   const _bar = new ganttItem(gantt, item, 0);

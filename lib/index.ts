@@ -12,7 +12,7 @@ export { default as H_dialog } from "./Components/popup/H_dialog.vue";
 export { default as H_dialogService } from "./Components/dialogService/H_dialogService.vue";
 export { default as H_select } from "./Components/H_select.vue";
 export { default as H_datePicker } from "./Components/date/H_datePicker.vue";
-export { default as H_layout } from "./Components/layout/H_layout.vue";
+export { default as H_grid } from "./Components/layout/H_grid.vue";
 export { default as H_tabs } from "./Components/navigation/H_tabs.vue";
 export { default as H_tab } from "./Components/navigation/H_tab.vue";
 export { default as H_virtualList } from "./Components/virtualList/H_virtualList.vue";

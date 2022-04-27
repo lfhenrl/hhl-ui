@@ -1,6 +1,6 @@
 <template>
-  <div class="live-render p-1 flex-wrap">
-    <div :class="scope" class="live-render_content flex-wrap">
+  <div class="live-render">
+    <div :class="scope" class="live-render_content">
       <component :key="count" :is="render()" />
     </div>
   </div>
@@ -102,4 +102,8 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.live-render_content {
+  padding: 20px 15px;
+}
+</style>

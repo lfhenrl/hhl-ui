@@ -1,5 +1,5 @@
 <template>
-  <div class="hhl-code-editor h-full flex-1 overflow-x-auto">
+  <div class="hhl-code-editor">
     <textarea ref="el" />
   </div>
 </template>
@@ -99,7 +99,8 @@ export default hhlCodeEditor;
 <style>
 .hhl-code-editor {
   font-family: "Source Code Pro", monospace;
-  font-size: 13px;
-  line-height: 1.4;
+  font-size: 14px;
+  flex: 1;
+  line-height: 1.6em;
 }
 </style>

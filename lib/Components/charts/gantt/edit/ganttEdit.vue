@@ -15,8 +15,15 @@ const showEdit = ref(false);
 const activeId = ref("");
 
 gantt.Event.on("userAction", (data: any) => {
-  activeId.value = data;
-  const item = gantt.ganttData.dataStore[data].data;
+  if (data === "root") {
+    activeId.value = gantt.ganttData.rootId;
+    showChoser.value = true;
+    return;
+  } else {
+    activeId.value = data;
+  }
+
+  const item = gantt.ganttData.dataStore[activeId.value].data;
   if (item.type === "group") {
     showChoser.value = true;
   } else {

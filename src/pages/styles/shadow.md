@@ -2,18 +2,18 @@
 
 <hhl-live-editor title="Shadow" htmlCode='
     <template>
-    <div class="flx-row flx-wrap flx-align-center gap-6 p-20">
+    <H_flex>
       <div class="shadow-0">shadow-0</div>
       <div class="shadow-1">shadow-1</div>
       <div class="shadow-2">shadow-2</div>
       <div class="shadow-3">shadow-3</div>
       <div class="shadow-4">shadow-4</div>
       <div class="shadow-5">shadow-5</div>
-    </div>
+    </H_flex>
     </template>
     <xstyle>
       div div {
-        padding: 20px 10px; 
+        padding: 20px; 
         text-align: center;
       }
     </xstyle>

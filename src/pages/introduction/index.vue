@@ -2,7 +2,7 @@
   <div class="index">
     <h1>Introduction</h1>
     <h2>Installation</h2>
-    <div class="bg-bg5 p-3">npm i hhl-ui</div>
+    <div class="col-bg-2 p-3">npm i hhl-ui</div>
     <p>This is how I setup my development</p>
     <div class="flex flex-col col-txt-ok">
       <router-link v-for="route in links" :key="route.id" class="cursor-pointer" :to="route.path">-{{ route.name }}</router-link>

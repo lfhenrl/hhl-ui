@@ -39,9 +39,9 @@ It return a promise with true (OK) or false (cancel).
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_btn @click="open">Dialog open</H_btn>
-      </div>
+      </H_flex>
       </template>
       <script>
       function open() {
@@ -71,9 +71,9 @@ The theme colors are `col-pri` `col-sec` `col-ok` `col-err` `col-warn` `col-info
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_btn @click="open">Dialog open</H_btn>
-      </div>
+      </H_flex>
       </template>
       <script>
       function open() {
@@ -106,11 +106,11 @@ timeout: "Number" the amount of millisecond the snack is open.<br>
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_btn @click="open(`info`)">Snack Info</H_btn>
             <H_btn @click="open(`warn`)">Snack Warning</H_btn>
             <H_btn @click="open(`err`)">Snack Error</H_btn>
-      </div>
+      </H_flex>
       </template>
       <script>
         function open(val) {
@@ -129,9 +129,9 @@ The Event bus is a function to send a global Event that you can listen on in all
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center">
+      <H_flex>
             <H_btn @click="send">Send event</H_btn>
-      </div>
+      </H_flex>
       </template>
       <script>
         hhl.event.on("SomeUnikName", (payload) => {

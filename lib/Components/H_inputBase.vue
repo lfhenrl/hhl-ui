@@ -88,9 +88,9 @@ const validate = computed(() => {
 <style>
 .H_inputBase {
   box-sizing: border-box;
-  display: inline-flex;
+  display: flex;
   flex: 1;
-  color: var(--col-txt-1);
+  color: currentColor;
   font-size: var(--comp-font-size);
   font-family: var(--comp-font-family);
   line-height: 1em;

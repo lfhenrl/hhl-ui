@@ -6,7 +6,20 @@
       <H_checkbox label="Valid" v-model="isValid" />
       <H_checkbox label="Dirty" v-model="isDirty" />
       <H_checkbox label="DirtyAndValid" v-model="isDirtyAndValid" />
-      <H_slider  v-model="data.duration" min="0" max="100" />
+      <H_slider v-model="data.duration" min="0" max="100" />
+      <H_grid col="auto auto auto" row="auto" grid_al_content="end" grid_al_items="center">
+        <div class="xBox">11111</div>
+        <div class="xBox">11111111111111111111111111111</div>
+        <div class="xBox">11111111111</div>
+        <div class="xBox">11111111111111111111111111111111111</div>
+        <div class="xBox">111111</div>
+      </H_grid>
+      <H_pop>
+        <template v-slot:referance>
+          <H_btn>default</H_btn>
+        </template>
+        <div class="col-bg-warn p-5 w-100pr">Hello</div>
+      </H_pop>
       <button type="submit">SAVE</button>
     </H_form>
   </div>
@@ -20,10 +33,11 @@ const isValid = ref(true);
 const isDirty = ref(false);
 const isDirtyAndValid = ref(false);
 
+
 const data = reactive({
   navn: "",
   city: "",
-  duration: 10,
+  duration: 10
 });
 </script>
 
@@ -35,5 +49,17 @@ const data = reactive({
 .H_form {
   border: 1px solid lime;
   padding: 30px;
+}
+
+.xGrid {
+  overflow: hidden;
+  border: 1px solid red;
+  flex-wrap: wrap;
+}
+
+.xBox {
+  padding: 10px;
+  background-color: aqua;
+  min-width: 100px;
 }
 </style>

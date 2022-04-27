@@ -1,6 +1,6 @@
 <template>
   <div class="H_select" :open="popupOpen">
-    <H_pop v-model="popupOpen" trigger="click" full-width class="H_select__pop">
+    <H_pop v-model="popupOpen" trigger="none" full-width class="H_select__pop">
       <template v-slot:referance>
         <H_input
           :model-value="modelValue"
@@ -96,7 +96,9 @@ const onClick = () => {
     popupOpen.value = false;
     return;
   }
+
   popupOpen.value = !popupOpen.value;
+  console.log("VIS", popupOpen.value);
 };
 </script>
 
@@ -108,7 +110,7 @@ const onClick = () => {
   padding: 0;
   font-size: var(--comp-font-size);
   font-family: var(--comp-font-family);
-  line-height: 1;
+  line-height: 1em;
 }
 
 .H_select__pop {
@@ -117,6 +119,8 @@ const onClick = () => {
 
 .H_select__pop > .H_pop__referance {
   display: block;
+  margin: 0;
+  padding: 0;
 }
 
 .H_select__input {

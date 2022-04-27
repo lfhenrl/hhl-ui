@@ -6,17 +6,17 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center"> 
+      <H_flex> 
       <H_select
             :select-data="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
       </H_select>
-      <H_input readonly v-model="selection" label="Value"></H_input>
-      </div>
+      <H_input readonly v-model="selection" label="Selector"></H_input>
+      </H_flex>
       </template>
       <script>
-      const selection = ref("");
-      return { selection }
+            const selection = ref("");
+            return { selection }
       </script>
 '>
 </hhl-live-editor>
@@ -27,21 +27,21 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center"> 
-      <H_select 
-      :select-data="[
-                    {value:`nr1`, label: `Number 1`},
-                    {value:`nr2`, label: `Number 2`},
-                    {value:`nr3`, label: `Number 3`}
-                    ]" 
-      v-model="selection" label="Selector">
-      </H_select>
-      <H_input readonly v-model="selection" label="Value"></H_input>
-      </div>
+      <H_flex> 
+            <H_select 
+            :select-data="[
+                        {value:`nr1`, label: `Number 1`},
+                        {value:`nr2`, label: `Number 2`},
+                        {value:`nr3`, label: `Number 3`}
+                        ]" 
+            v-model="selection" label="Selector">
+            </H_select>
+            <H_input readonly v-model="selection" label="Value"></H_input>
+      </H_flex>
       </template>
       <script>
-      const selection = ref("");
-      return { selection }
+            const selection = ref("");
+            return { selection }
       </script>
 '>
 </hhl-live-editor>
@@ -54,17 +54,17 @@ Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center"> 
-       <H_select multi
-            :select-data="[`nr1`, `nr2`, `nr3`]" 
-            v-model="selection" label="Selector">
-      </H_select>
-      <H_input readonly v-model="selection" label="Value"></H_input>
-      </div>
+      <H_flex> 
+            <H_select multi
+                  :select-data="[`nr1`, `nr2`, `nr3`]" 
+                  v-model="selection" label="Selector">
+            </H_select>
+            <H_input readonly v-model="selection" label="Value"></H_input>
+      </H_flex>
       </template>
       <script>
-      const selection = ref([]);
-      return { selection }
+            const selection = ref([]);
+            return { selection }
       </script>
 '>
 </hhl-live-editor>
@@ -77,21 +77,21 @@ Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center"> 
-      <H_select multi
-      :select-data="[
-                    {value:`nr1`, label: `Number 1`},
-                    {value:`nr2`, label: `Number 2`},
-                    {value:`nr3`, label: `Number 3`}
-                    ]" 
-      v-model="selection" label="Selector">
-      </H_select>
-      <H_input readonly v-model="selection" label="Value"></H_input>
-      </div>
+      <H_flex> 
+            <H_select multi
+            :select-data="[
+                        {value:`nr1`, label: `Number 1`},
+                        {value:`nr2`, label: `Number 2`},
+                        {value:`nr3`, label: `Number 3`}
+                        ]" 
+            v-model="selection" label="Selector">
+            </H_select>
+            <H_input readonly v-model="selection" label="Value"></H_input>
+      </H_flex>
       </template>
       <script>
-      const selection = ref([]);
-      return { selection }
+            const selection = ref([]);
+            return { selection }
       </script>
 '>
 </hhl-live-editor>
@@ -104,17 +104,17 @@ Hide filter by adding `hide-filter`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center"> 
-       <H_select hide-filter
-            :select-data="[`nr1`, `nr2`, `nr3`]" 
-            v-model="selection" label="Selector">
-      </H_select>
-      <H_input readonly v-model="selection" label="Value"></H_input>
-      </div>
+      <H_flex> 
+            <H_select hide-filter
+                  :select-data="[`nr1`, `nr2`, `nr3`]" 
+                  v-model="selection" label="Selector">
+            </H_select>
+            <H_input readonly v-model="selection" label="Value"></H_input>
+      </H_flex>
       </template>
       <script>
-      const selection = ref("");
-      return { selection }
+            const selection = ref("");
+            return { selection }
       </script>
 '>
 </hhl-live-editor>
@@ -127,17 +127,17 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center"> 
-       <H_select disabled
-            :select-data="[`nr1`, `nr2`, `nr3`]" 
-            v-model="selection" label="Selector">
-      </H_select>
-      <H_input readonly v-model="selection" label="Value"></H_input>
-      </div>
+      <H_flex> 
+            <H_select disabled
+                  :select-data="[`nr1`, `nr2`, `nr3`]" 
+                  v-model="selection" label="Selector">
+            </H_select>
+            <H_input readonly v-model="selection" label="Value"></H_input>
+      </H_flex>
       </template>
       <script>
-      const selection = ref("");
-      return { selection }
+            const selection = ref("");
+            return { selection }
       </script>
 '>
 </hhl-live-editor>
@@ -150,17 +150,17 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center"> 
-       <H_select readonly
-            :select-data="[`nr1`, `nr2`, `nr3`]" 
-            v-model="selection" label="Selector">
-      </H_select>
-      <H_input readonly v-model="selection" label="Value"></H_input>
-      </div>
+      <H_flex> 
+            <H_select readonly
+                  :select-data="[`nr1`, `nr2`, `nr3`]" 
+                  v-model="selection" label="Selector">
+            </H_select>
+            <H_input readonly v-model="selection" label="Value"></H_input>
+      </H_flex>
       </template>
       <script>
-      const selection = ref("nr2");
-      return { selection }
+            const selection = ref("nr2");
+            return { selection }
       </script>
 '>
 </hhl-live-editor>
@@ -173,17 +173,17 @@ Min Height by adding `min-height="value px"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center"> 
-       <H_select min-height="500px"
-            :select-data="[`nr1`, `nr2`, `nr3`]" 
-            v-model="selection" label="Selector">
-      </H_select>
-      <H_input readonly v-model="selection" label="Value"></H_input>
-      </div>
+      <H_flex> 
+            <H_select min-height="500px"
+                  :select-data="[`nr1`, `nr2`, `nr3`]" 
+                  v-model="selection" label="Selector">
+            </H_select>
+            <H_input readonly v-model="selection" label="Value"></H_input>
+      </H_flex>
       </template>
       <script>
-      const selection = ref("nr2");
-      return { selection }
+            const selection = ref("nr2");
+            return { selection }
       </script>
 '>
 </hhl-live-editor>
@@ -196,17 +196,17 @@ Max Height by adding `max-height="value px"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center"> 
-       <H_select max-height="90px"
-            :select-data="[`nr1`, `nr2`, `nr3`]" 
-            v-model="selection" label="Selector">
-      </H_select>
-      <H_input readonly v-model="selection" label="Value"></H_input>
-      </div>
+      <H_flex> 
+            <H_select max-height="90px"
+                  :select-data="[`nr1`, `nr2`, `nr3`]" 
+                  v-model="selection" label="Selector">
+            </H_select>
+            <H_input readonly v-model="selection" label="Value"></H_input>
+      </H_flex>
       </template>
       <script>
-      const selection = ref("nr2");
-      return { selection }
+            const selection = ref("nr2");
+            return { selection }
       </script>
 '>
 </hhl-live-editor>
@@ -219,17 +219,17 @@ Min width by adding `min-width="value px"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center"> 
-       <H_select min-width="600px"
-            :select-data="[`nr1`, `nr2`, `nr3`]" 
-            v-model="selection" label="Selector">
-      </H_select>
-      <H_input readonly v-model="selection" label="Value"></H_input>
-      </div>
+      <H_flex> 
+            <H_select min-width="600px"
+                  :select-data="[`nr1`, `nr2`, `nr3`]" 
+                  v-model="selection" label="Selector">
+            </H_select>
+            <H_input readonly v-model="selection" label="Value"></H_input>
+      </H_flex>
       </template>
       <script>
-      const selection = ref("nr2");
-      return { selection }
+            const selection = ref("nr2");
+            return { selection }
       </script>
 '>
 </hhl-live-editor>
@@ -242,17 +242,17 @@ Max width by adding `max-width="value px"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-wrap gap-2 p-3 items-center"> 
-       <H_select max-width="90px"
-            :select-data="[`nr1`, `nr2`, `nr3`]" 
-            v-model="selection" label="Selector">
-      </H_select>
-      <H_input readonly v-model="selection" label="Value"></H_input>
-      </div>
+      <H_flex> 
+            <H_select max-width="90px"
+                  :select-data="[`nr1`, `nr2`, `nr3`]" 
+                  v-model="selection" label="Selector">
+            </H_select>
+            <H_input readonly v-model="selection" label="Value"></H_input>
+      </H_flex>
       </template>
       <script>
-      const selection = ref("nr2");
-      return { selection }
+            const selection = ref("nr2");
+            return { selection }
       </script>
 '>
 </hhl-live-editor>

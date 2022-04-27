@@ -90,7 +90,6 @@ function dragOver(e: DragEvent) {
   }
   setDropStyle("dropGroup");
   dragOverActive = true;
-  // console.log("dragOver", "pos:", pos, "target:", props.id, "source:", dg.draggedItemId);
   e.preventDefault();
 }
 

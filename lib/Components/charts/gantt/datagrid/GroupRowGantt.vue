@@ -163,6 +163,6 @@ function getPosition(e: DragEvent) {
 .GroupRowGantt_Menu {
   min-width: 20px;
   margin-right: -1px;
-  color: var(--col-pri-light);
+  color: var(--col-pri);
 }
 </style>

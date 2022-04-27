@@ -1,6 +1,6 @@
 :root {
-  --col-pri: #007bff;
-  --col-pri-light: #007bffad;
+  --col-pri: #6594c5;
+  --col-pri-light: lime;
   --col-txt-on-pri: #fff;
   --col-sec: #6c757d;
   --col-txt-on-sec: #fff;
@@ -32,6 +32,26 @@
   --comp-shadow: 0 14px 18px 3px rgba(0, 0, 0, 0.14), 0 7px 16px 6px rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.2) !important;
 }
 
+.darkTheme {
+  --col-txt-0: rgb(255, 255, 255);
+  --col-txt-1: rgba(255, 255, 255, 0.87);
+  --col-txt-2: rgba(255, 255, 255, 0.6);
+  --col-txt-3: rgba(255, 255, 255, 0.45);
+  --col-txt-4: rgba(255, 255, 255, 0.3);
+  --col-txt-5: rgba(255, 255, 255, 0.2);
+  --col-bg-0: hsl(231, 12%, 20%);
+  --col-bg-1: hsl(231, 12%, 23%);
+  --col-bg-2: hsl(231, 12%, 26%);
+  --col-bg-3: hsl(231, 12%, 29%);
+  --col-bg-4: hsl(231, 12%, 32%);
+  --col-bg-5: hsl(231, 12%, 35%);
+  --comp-label-font-size: 13px;
+  --comp-label-color: var(--col-txt-2, red);
+  --comp-border-color: var(--col-txt-4);
+  --comp-border-color-focus: dodgerblue;
+  color: var(--col-txt-1);
+}
+
 :fullscreen {
   background-color: var(--col-bg-0);
 }
@@ -56,7 +76,7 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background-color: var(--col-pri-light);
+  background-color: var(--col-pri);
   /* border-radius: 0 3px 3px 0; */
 }
 
