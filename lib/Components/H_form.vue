@@ -24,6 +24,13 @@ watch(
   { deep: true }
 );
 
+watch(
+  () => props.dirty,
+  () => {
+    isvalid();
+  }
+);
+
 function _isvalid() {
   const w = hform.value;
   const errors = w.querySelectorAll("*[error=true]");

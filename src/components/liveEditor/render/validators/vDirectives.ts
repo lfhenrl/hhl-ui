@@ -27,6 +27,9 @@ export function vDirectives(node: iValidateNode) {
     if (a.startsWith("v-slot:")) {
       return true;
     }
+    if (a.startsWith("v-model:")) {
+      return true;
+    }
     if (a.startsWith("v-")) {
       return v_array.includes(a);
     }

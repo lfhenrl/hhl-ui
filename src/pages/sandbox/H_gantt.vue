@@ -23,27 +23,13 @@ import { ref, watch } from "vue";
 import { printDom, savePng } from "../../../lib/utils/printAndPng";
 import { iH_chartGantt } from "../../../lib/Components/charts/gantt/H_chartGanttTypes";
 import Excel from "../../../lib/utils/exportToExcel";
-import { initializeApp } from "firebase/app";
-import { getFirestore, getDoc, doc, setDoc } from "firebase/firestore/lite";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDVLgsLMzFU58GDPXgsS_wiQGOtzOV5K3k",
-  authDomain: "style-guide-657d4.firebaseapp.com",
-  projectId: "style-guide-657d4",
-  storageBucket: "style-guide-657d4.appspot.com",
-  messagingSenderId: "558687596971",
-  appId: "1:558687596971:web:72ec63af8f3bb1eaa322ee",
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { getGanttData, saveGanttData } from "../../testData/firebase";
 
 const scale = ref<any>("Day");
 const H_gantt = ref();
 const data = ref<any>({});
 const isDirty = ref(false);
 let gantt: iH_chartGantt;
-const fData = doc(db, "ganttData/1");
 
 watch(
   data,
@@ -59,19 +45,16 @@ async function ganttLoaded(d: any) {
 }
 
 async function getData() {
-  const dataSnapShot = await getDoc(fData);
-  data.value = await dataSnapShot.data();
+  data.value = await getGanttData();
   gantt.data.newData(data.value);
   setTimeout(() => {
     isDirty.value = false;
   });
 }
 
-function save() {
+async function save() {
   gantt.data.validateConnectors();
-  setDoc(fData, data.value)
-    .then(() => hhl.alert("info", "Data Saved", ""))
-    .catch((reason: any) => hhl.alert("err", "Something went wrong!", reason));
+  await saveGanttData(data.value);
   setTimeout(() => {
     isDirty.value = false;
   }, 50);

@@ -1,14 +1,14 @@
 <template>
   <H_inputBase
-    label="Progress"
+    :label="label"
     :validator="validator"
     :disabled="disabled"
     :readonly="$attrs.readonly"
     :value="modelValue"
     @isValid="$emit('isValid', $event)"
-    class="henrik"
+    class="H_slider col-pri"
   >
-    <div class="H_slider col-pri">
+    <div class="H_slider_inner">
       <div class="H_slider_scale">
         <div class="H_slider_info" :style="{ left: posProcent }">{{ modelValue }}</div>
       </div>
@@ -24,6 +24,10 @@ import { computed } from "vue";
 const props = defineProps({
   modelValue: {
     type: [Number, String],
+    default: ""
+  },
+  label: {
+    type: String,
     default: ""
   },
   min: {
@@ -52,10 +56,14 @@ function changed(e: any) {
 
 <style>
 .H_slider {
+  background-color: transparent !important;
+}
+
+.H_slider_inner {
   display: grid;
   font-size: var(--comp-font-size);
   font-family: var(--comp-font-family);
-  background-color: transparent;
+  background-color: transparent !important;
   flex: 1;
   margin: 8px 0;
 }

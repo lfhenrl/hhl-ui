@@ -45,6 +45,8 @@ const H_tab = defineAsyncComponent(() => import("../lib/Components/navigation/H_
 const H_chartPie = defineAsyncComponent(() => import("../lib/Components/charts/H_chartPie.vue"));
 const H_virtualList = defineAsyncComponent(() => import("../lib/Components/virtualList/H_virtualList.vue"));
 const H_dragDrop = defineAsyncComponent(() => import("../lib/Components/draggable/H_dragDrop.vue"));
+const H_slider = defineAsyncComponent(() => import("../lib/Components/H_slider.vue"));
+const H_form = defineAsyncComponent(() => import("../lib/Components/H_form.vue"));
 
 app.component("H_icon", H_icon);
 app.component("H_btn", H_btn);
@@ -68,5 +70,7 @@ app.component("H_spacer", H_spacer);
 app.component("H_chartPie", H_chartPie);
 app.component("H_virtualList", H_virtualList);
 app.component("H_dragDrop", H_dragDrop);
+app.component("H_slider", H_slider);
+app.component("H_form", H_form);
 
 router.isReady().then(() => app.mount("#app"));
