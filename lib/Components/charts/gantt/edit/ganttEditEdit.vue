@@ -36,11 +36,11 @@ import { DateDiffDays, DateAddDays, DateGetToday } from "../../../../utils/dateF
 import { iChartGantt } from "../common";
 import H_input from "../../../H_input.vue";
 import H_datePicker from "../../../date/H_datePicker.vue";
-import { dateFromSeconds, secondsFromDate } from "../chart/utils/converter";
+import { dateFromSeconds, secondsFromDate, TimeToPixcel } from "../chart/utils/converter";
 
 const props = defineProps({
   activeId: { type: String, default: "" },
-  show: { type: Boolean, default: false }
+  show: { type: Boolean, default: false },
 });
 const emit = defineEmits(["close"]);
 
@@ -59,7 +59,7 @@ const data = reactive({
   workLoad: 100,
   progress: 100,
   startTime: DateGetToday(),
-  endTime: DateAddDays(DateGetToday(), 11)
+  endTime: DateAddDays(DateGetToday(), 11),
 });
 
 watch(
@@ -88,13 +88,12 @@ watch([() => props.activeId, () => props.show], () => {
 const workload = computed<number>({
   get() {
     const t = DateDiffDays(data.startTime, data.endTime);
-    console.log("newValueGET", t);
     return t;
   },
   // setter
   set(newValue) {
     data.endTime = DateAddDays(data.startTime, parseInt(newValue.toString()));
-  }
+  },
 });
 
 function dateOk(value: Date) {
@@ -114,6 +113,8 @@ function save() {
   item.subType = data.subType;
   item.startTime = secondsFromDate(data.startTime);
   item.endTime = secondsFromDate(data.endTime);
+  itemBar.l = TimeToPixcel(itemBar.chart, item.startTime);
+  itemBar.w = TimeToPixcel(itemBar.chart, item.endTime) - itemBar.l;
   itemBar.updateData();
   gantt.ganttData.makeGridData();
   gantt.ganttData.renderChart();

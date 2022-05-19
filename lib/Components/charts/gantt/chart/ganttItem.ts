@@ -7,7 +7,7 @@ import {
   measureText,
   adjustToHoleDay,
   dateFromSeconds,
-  sumWorkDays
+  sumWorkDays,
 } from "./utils/converter";
 import { DateWorkingDays } from "../../../../utils/dateFunctions";
 
@@ -122,6 +122,7 @@ export class ganttItem {
   updateData() {
     this.l = adjustToHoleDay(this.chart, this.l);
     this.w = adjustToHoleDay(this.chart, this.w);
+    console.log("qq", dateFromSeconds(this.data.endTime));
     this.setPosWidth();
     this.data.startTime = PixcelToTime(this.chart, this.l);
     this.data.endTime = PixcelToTime(this.chart, this.l + this.w);

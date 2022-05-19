@@ -59,7 +59,6 @@ declare module '@vue/runtime-core' {
     H_tPicker: typeof import('./lib/Components/date/H_tPicker.vue')['default']
     H_virtualList: typeof import('./lib/Components/virtualList/H_virtualList.vue')['default']
     H_virtualListItem: typeof import('./lib/Components/virtualList/H_virtualListItem.vue')['default']
-    H_xscroller: typeof import('./lib/Components/H_xscroller.vue')['default']
     HhlChart: typeof import('./src/components/canvas/hhl-chart.vue')['default']
     HhlChartBtn: typeof import('./src/components/canvas/hhl-chart-btn.vue')['default']
     HhlChartHoverBox: typeof import('./src/components/canvas/hhl-chart-hover-box.vue')['default']
