@@ -2,8 +2,8 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Pages from "vite-plugin-pages";
 import mdAnchor from "markdown-it-anchor";
-import prism from "markdown-it-prism";
-import Markdown from "vite-plugin-md";
+// import prism from "markdown-it-prism";
+import Markdown from "vite-plugin-vue-markdown";
 import { containerPlugin } from "./src/components/containers";
 import WindiCSS from "vite-plugin-windicss";
 import ViteComponents from "unplugin-vue-components/vite";
@@ -25,7 +25,7 @@ export default defineConfig({
         // for example
         md.use(mdAnchor);
         md.use(containerPlugin);
-        md.use(prism);
+        md.use(require("markdown-it-prism"));
       }
     }),
     ,
