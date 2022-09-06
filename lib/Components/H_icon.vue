@@ -1,5 +1,5 @@
 <template>
-  <svg viewBox="0 0 24 24" class="H_icon" :style="style" >
+  <svg viewBox="0 0 24 24" class="H_icon" :style="style">
     <path v-for="(val, index) in getPath()" :key="index" :d="val" />
   </svg>
 </template>
@@ -10,17 +10,17 @@ import icons from "../utils/icons.json";
 const props = defineProps({
   icon: {
     type: String,
-    default: "close"
+    default: "close",
   },
-  size: String
+  size: String,
 });
 
 const getPath = () => (icons as any)[props.icon] as Array<any>;
 const getIconList = () => icons;
 
-const style: object = computed(() => {
+const style: any = computed(() => {
   return {
-    "--H_icon-size": props.size || null
+    "--H_icon-size": props.size || null,
   };
 });
 

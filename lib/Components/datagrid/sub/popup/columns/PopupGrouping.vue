@@ -33,7 +33,7 @@ import { iDatagrid } from "../../../provide";
 import PopupGroupingItem from "./PopupGroupingItem.vue";
 import { icolumnData } from "../../../datagridTypes";
 
-const props = defineProps({
+defineProps({
   groups: { type: Object as PropType<string[]>, default: ["id", "val1"] }
 });
 

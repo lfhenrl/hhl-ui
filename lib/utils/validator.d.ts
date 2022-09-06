@@ -1,6 +1,6 @@
 export declare const validator: {
   required: (v: string) => true | "Need input.";
-  dateRequired: (v: date) => true | "Need input.";
+  dateRequired: (v: Date) => true | "Need input.";
   email: (v: string) => string | true;
   strMin: (Length: number) => (v: string) => string | true;
   strMax: (Length: number) => (v: string) => string | true;

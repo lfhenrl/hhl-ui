@@ -40,7 +40,7 @@ const props = defineProps({
   index: { type: Number, default: 0 }
 });
 
-const dom = ref(<HTMLElement>{});
+const dom = ref<HTMLElement | any>({});
 const dg = inject("dg") as iDatagrid;
 props.column.index = props.index;
 

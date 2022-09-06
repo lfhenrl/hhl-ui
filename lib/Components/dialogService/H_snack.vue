@@ -18,7 +18,7 @@ const props = defineProps({
   modelValue: { type: Boolean, default: false, required: true },
   type: { default: "warn", type: String },
   title: { default: "Title", type: String },
-  text: { default: "Title", type: String }
+  text: { default: "Title", type: String },
 });
 
 const emit = defineEmits(["show", "close", "update:modelValue"]);
@@ -46,6 +46,7 @@ const icon = computed(() => {
 function close() {
   emit("show", false);
 }
+defineExpose({ close });
 </script>
 
 <style>

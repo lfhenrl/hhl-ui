@@ -23,7 +23,7 @@
       :aria-label="label"
       :placeholder="placeholder"
       size="1"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="$emit('update:modelValue', ($event.target as any).value)"
       @click="$emit('input_click')"
       @focus="handleFocus"
       @blur="handleBlur"
@@ -39,7 +39,7 @@ import H_inputBase from "./H_inputBase.vue";
 const props = defineProps({
   modelValue: {
     type: [String, Number, Array, Boolean],
-    default: ""
+    default: "",
   },
   label: { type: String, default: "" },
   placeholder: { type: String, default: "" },
@@ -49,7 +49,7 @@ const props = defineProps({
   disabled: { type: Boolean, default: false },
   setFocus: { type: Boolean, default: false },
   clearable: Boolean,
-  validator: Array
+  validator: Array,
 });
 
 const emit = defineEmits(["start_icon_click", "end_icon_click", "update:modelValue", "input_click", "isValid"]);
@@ -61,6 +61,7 @@ const focus = () => input.value?.focus();
 const handleFocus = () => (focused.value = true);
 const handleBlur = () => (focused.value = false);
 const handleClear = () => emit("update:modelValue", "");
+defineExpose({ focus });
 
 onMounted(() => {
   if (props.setFocus) {

@@ -6,7 +6,7 @@
 import { PropType } from "vue";
 import { icolumnData } from "../../../datagridTypes";
 
-const props = defineProps({
+defineProps({
   column: { type: Object as PropType<icolumnData>, default: null }
 });
 </script>

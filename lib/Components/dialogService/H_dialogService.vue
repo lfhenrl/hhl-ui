@@ -24,25 +24,25 @@ import H_snack from "../dialogService/H_snack.vue";
 
 const dialogPop = ref(false);
 const snackPop = ref(false);
-const dialogs = <any>[];
-const snacks = <any>[];
+const dialogs: any[] = [];
+const snacks: any[] = [];
 const dialog = ref({
   title: "Title",
   info: "Info",
   buttons: {
     ok: { Text: "Ok", Color: "bg-pri" },
-    cancel: { Text: "Cancel", Color: "bg-sec" }
+    cancel: { Text: "Cancel", Color: "bg-sec" },
   },
   callback(ok: boolean) {
     return ok;
-  }
+  },
 });
 let snackTimer: any = {};
 const snack = ref({
   type: "info",
   text: "Henrik",
   title: "Larsen",
-  timeout: 3000
+  timeout: 3000,
 });
 
 function dialogShow() {
@@ -131,7 +131,7 @@ const hhl = {
   },
   ignoreEmitPropErrors(_s: any) {
     return;
-  }
+  },
 };
 
 (window as any).hhl = hhl;

@@ -26,7 +26,7 @@ import H_datagridRowCell from "./sub/H_datagridRowCell.vue";
 import H_datagridMoreRows from "./sub/H_datagridMoreRows.vue";
 import H_datagridGroupRow from "./sub/H_datagridGroupRow.vue";
 
-const props = defineProps({
+defineProps({
   id: { type: String, default: "" },
   type: { type: String, default: "" },
   data: { type: Object as PropType<any>, default: () => {} },

@@ -23,25 +23,25 @@ import { computed, PropType } from "vue";
 const props = defineProps({
   modelValue: {
     type: [String, Number, Array],
-    default: ""
+    default: "",
   },
   value: {
-    type: [String, Number]
+    type: [String, Number],
   },
   label: { type: String, default: "" },
   labelLeft: { type: Boolean, default: false },
   size: {
     type: String as PropType<"lg" | "md" | "sm">,
-    default: "md"
-  }
+    default: "md",
+  },
 });
 
-const emit = defineEmits(["update:modelValue"]);
+defineEmits(["update:modelValue"]);
 
 const cl = computed(() => {
   return {
     "H_radio-lg": props.size.includes("lg"),
-    "H_radio-sm": props.size.includes("sm")
+    "H_radio-sm": props.size.includes("sm"),
   };
 });
 </script>

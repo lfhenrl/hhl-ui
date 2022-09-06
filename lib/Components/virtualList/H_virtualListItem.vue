@@ -32,7 +32,7 @@ const props = defineProps({
   }
 });
 
-const el = ref(<HTMLElement | null>null);
+const el = ref<HTMLElement | null>(null);
 const shapeKey = props.horizontal ? "offsetWidth" : "offsetHeight";
 let resizeObserver: any;
 

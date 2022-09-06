@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, PropType, provide, ref, useSlots, watch } from "vue";
+import { onMounted, PropType, provide, ref, useSlots, watch, defineEmits } from "vue";
 import "./H_datagrid.css";
 import { Datagrid } from "./provide";
 import { Columns } from "./provide/Columns";
@@ -89,7 +89,7 @@ import vResize from "vue-resize-observer";
 const props = defineProps({
   dataKey: {
     type: String,
-    required: true
+    required: true,
   },
   groups: { type: Array as PropType<string[]>, default: () => [] },
   hideFooter: { type: Boolean, default: false },
@@ -100,12 +100,12 @@ const props = defineProps({
     type: Array as PropType<string[]>,
     default() {
       return [];
-    }
+    },
   },
   dataHandler: {
     type: Object as PropType<iDataHandler>,
-    required: true
-  }
+    required: true,
+  },
 });
 
 const emit = defineEmits(["rawdata"]);
@@ -118,7 +118,7 @@ function onResize() {
 
 const slots = useSlots();
 const selectedId = ref("");
-const dom = ref(<HTMLElement>{});
+const dom = ref<HTMLElement | any>({});
 const dg = new Datagrid(dom, slots);
 const isLoading = ref(false);
 const virtualList = ref();
@@ -196,7 +196,7 @@ function tryGetRowClickData(ele?: HTMLElement) {
     return {
       orgindex: parseInt(ele.dataset.orgindex),
       field: ele.dataset.field,
-      id: ele.parentElement.dataset.id
+      id: ele.parentElement.dataset.id,
     };
   }
   return null;

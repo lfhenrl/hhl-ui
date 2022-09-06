@@ -28,13 +28,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType, ref, watch } from "vue";
+import { PropType, ref, watch } from "vue";
 import H_radio from "../../../../H_radio.vue";
 import H_input from "../../../../H_input.vue";
 import { icolumnFilterData } from "../../../datagridTypes";
 
 const props = defineProps({
-  data: { type: Object as PropType<icolumnFilterData>, default: null }
+  data: { type: Object as PropType<icolumnFilterData>, default: null },
 });
 
 const Val1Valid = ref(true);

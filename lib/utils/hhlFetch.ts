@@ -113,7 +113,7 @@ async function getReq(baseUrl: string, url: string, method: string, params?: any
         };
       }
     })
-    .catch((err) => {
+    .catch(() => {
       if (timeoutError) {
         return {
           data: null,

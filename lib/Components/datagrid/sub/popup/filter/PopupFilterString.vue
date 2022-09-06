@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType, ref, watch } from "vue";
+import { PropType, ref, watch } from "vue";
 import H_radio from "../../../../H_radio.vue";
 import H_input from "../../../../H_input.vue";
 import { icolumnFilterData } from "../../../datagridTypes";

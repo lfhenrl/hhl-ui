@@ -45,18 +45,20 @@ const props = defineProps({
   clearable: Boolean,
   validator: Array,
   rows: { type: String, default: "1" },
-  noGrow: { type: Boolean, default: false }
+  noGrow: { type: Boolean, default: false },
 });
 
 const emit = defineEmits(["start_icon_click", "end_icon_click", "update:modelValue", "input_click", "isValid"]);
 
 const focused = ref(false);
-const input = ref(<any>null);
+const input = ref<any>(null);
 
 const focus = () => input.value?.focus();
 const handleFocus = () => (focused.value = true);
 const handleBlur = () => (focused.value = false);
 const handleClear = () => emit("update:modelValue", "");
+
+defineExpose({ focus });
 
 watch(
   () => props.modelValue,

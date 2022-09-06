@@ -38,7 +38,7 @@ const props = defineProps({
 const slots = useSlots();
 const tabs = ref<any>([]);
 const show = ref(true);
-const chCount = ref(0);
+
 
 const tabData = {
   selected: ref(),

@@ -5,7 +5,14 @@
       <div class="H_datagridHeadCell__spacer" />
     </div>
     <div ref="vList" class="H_virtualList" @click="datagridClick" :key="updates">
-      <H_rowGantt v-for="(item, index) in gridData" :key="item.id" :index="index" :id="item.id" :data="item" :type="item.type" />
+      <H_rowGantt
+        v-for="(item, index) in gridData"
+        :key="item.id"
+        :index="index"
+        :id="item.id"
+        :data="item"
+        :type="item.type"
+      />
     </div>
     <H_progressBar class="H_virtualList-info" :show="isLoading" />
     <H_datagridPopup />
@@ -34,8 +41,8 @@ const props = defineProps({
     type: Array as PropType<string[]>,
     default() {
       return [];
-    }
-  }
+    },
+  },
 });
 
 const emit = defineEmits(["rawdata", "rowClicked", "loaded"]);
@@ -47,8 +54,8 @@ function onResize() {
 
 const slots = useSlots();
 const selectedId = ref("");
-const dom = ref(<HTMLElement>{});
-const vList = ref(<HTMLElement>{});
+const dom = ref<HTMLElement | any>({});
+const vList = ref<HTMLElement | any>({});
 const dg = new Datagrid(dom, slots);
 const isLoading = ref(false);
 const updates = ref(0);
@@ -92,7 +99,7 @@ function tryGetRowClickData(ele?: HTMLElement) {
     return {
       orgindex: parseInt(ele.dataset.orgindex),
       field: ele.dataset.field,
-      id: ele.dataset.id
+      id: ele.dataset.id,
     };
   }
   return null;

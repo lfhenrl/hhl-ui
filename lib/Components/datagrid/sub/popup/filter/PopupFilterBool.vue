@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType, ref, watch } from "vue";
+import { PropType, ref, watch } from "vue";
 import H_checkbox from "../../../../H_checkbox.vue";
 import { icolumnFilterData } from "../../../datagridTypes";
 

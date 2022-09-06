@@ -39,7 +39,7 @@ import H_dPicker from "./H_dPicker.vue";
 import H_tPicker from "./H_tPicker.vue";
 
 const props = defineProps({
-  modelValue: { type: Object as PropType<Date | null>, default: null },
+  modelValue: { type: Object as PropType<Date | undefined>, default: null },
   type: { type: String as PropType<"dateTime" | "date" | "time">, default: "dateTime" },
   hideIcon: { default: false, type: Boolean },
   readonly: { type: Boolean, default: false },

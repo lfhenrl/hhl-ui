@@ -88,9 +88,9 @@ defineExpose({
   update
 });
 
-const root = ref(<HTMLElement | null>null);
-const shepherd = ref(<HTMLElement | null>null);
-const items = ref(<any[]>[]);
+const root = ref<HTMLElement | null>(null);
+const shepherd = ref<HTMLElement | null>(null);
+const items = ref<any[]>([]);
 const paddingStyle = ref({});
 let virtual: any;
 let range: any = {};

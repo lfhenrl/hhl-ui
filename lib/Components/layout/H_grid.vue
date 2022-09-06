@@ -110,7 +110,7 @@ const areaMode = computed(() => {
   return props.grid_area || props.grid_area_sm || props.grid_area_md || props.grid_area_lg;
 });
 
-const style: object = computed(() => {
+const style: any = computed(() => {
   changeCount.value = changeCount.value + 1;
   return {
     gridTemplateColumns: getCols(columns.value),
