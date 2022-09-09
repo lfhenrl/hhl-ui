@@ -11,6 +11,16 @@ export class JsonData {
     this.dataSource = await _dataSource;
   }
 
+  public async getAll() {
+    const rawData = this.dataSource ?? [];
+    return rawData;
+  }
+
+  public async getByIndex(index: number) {
+    const rawData = this.dataSource ?? [];
+    return rawData[index];
+  }
+
   public async getCount(QueryObject: iQueryObject) {
     const rawData = this.dataSource ?? [];
     const filterData = await filtering(rawData, QueryObject);

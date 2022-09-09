@@ -1,12 +1,12 @@
 <template>
-  <div ref="dom" class="H_datagrid-vscroll" :class="classGuid" v-resize="onResize">
+  <div ref="dom" class="H_datagrid-vscroll" :class="classGuid">
     <H_virtualList
       ref="virtualList"
       style="overflow-y: scroll; height: 100%; position: relative"
       data-key="id"
       :data-sources="gridData"
-      :estimate-size="30"
-      :keeps="40"
+      :estimate-size="pageSize"
+      :keeps="pageSize"
       item-class="H_datagridRow"
       :selectedId="selectedId"
       role="listitem"
@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, PropType, provide, ref, useSlots, watch, defineEmits } from "vue";
+import { onMounted, PropType, provide, ref, useSlots, watch } from "vue";
 import "./H_datagrid.css";
 import { Datagrid } from "./provide";
 import { Columns } from "./provide/Columns";
@@ -83,8 +83,6 @@ import H_spacer from "../H_spacer.vue";
 import { iReturnData } from "./datagridTypes";
 import { dataController, iDataHandler } from "./virtualScroll";
 import H_progressBar from "../H_progressBar.vue";
-// @ts-ignore:next-line
-import vResize from "vue-resize-observer";
 
 const props = defineProps({
   dataKey: {
@@ -108,13 +106,8 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["rawdata"]);
+const emit = defineEmits(["rawdata", "rowClicked"]);
 defineExpose({ update });
-
-function onResize() {
-  console.log("onResize");
-  dg.Resize();
-}
 
 const slots = useSlots();
 const selectedId = ref("");
@@ -175,6 +168,12 @@ watch(
 );
 
 onMounted(() => {
+  const ro = new ResizeObserver((entries) => {
+    for (const _e of entries) {
+      dg.Resize();
+    }
+  });
+  ro?.observe(dom.value);
   dg.Init();
 });
 
@@ -204,6 +203,7 @@ function tryGetRowClickData(ele?: HTMLElement) {
 
 function rowClicked(data: any) {
   selectedId.value = data.id;
+  emit("rowClicked", data);
 }
 
 function reload() {

@@ -14,6 +14,7 @@
         :searchFields="['id', 'val1', 'val2', 'val4']"
         :dataHandler="DataHandler"
         :page-size="100"
+        @rowClicked="rowClicked"
       >
         <H_column field="id" title="Action" type="action" :width="80">
           <template v-slot="col">
@@ -39,7 +40,7 @@
             { label: 'G7', value: 'Group 7.' },
             { label: 'G8', value: 'Group 8.' },
             { label: 'G9', value: 'Group 9.' },
-            { label: 'G10', value: 'Group 10.' }
+            { label: 'G10', value: 'Group 10.' },
           ]"
         />
         <H_column field="val3" title="Value 3" type="string" :cell_style="styleCell" />
@@ -79,12 +80,16 @@ function formatDate(value: any) {
 
 function styleCell() {
   return {
-    color: "orange"
+    color: "orange",
   };
 }
 
 function load() {
   DataHandler.Load();
+}
+
+function rowClicked(e: any) {
+  console.log(e);
 }
 </script>
 

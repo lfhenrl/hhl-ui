@@ -11,7 +11,6 @@ declare module "*.md" {
 }
 
 
-declare module "vue-resize-observer" {}
 
 type ListenerCallback = (...data: any) => void;
 declare type notifyType = "err" | "warn" | "info";

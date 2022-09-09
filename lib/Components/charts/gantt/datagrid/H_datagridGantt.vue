@@ -1,5 +1,5 @@
 <template>
-  <div ref="dom" class="H_datagrid H_dataGridGantt" :class="classGuid" v-resize="onResize">
+  <div ref="dom" class="H_datagrid H_dataGridGantt" :class="classGuid">
     <div class="H_datagrid-header">
       <H_datagridHeadCell v-for="(col, index) in columns" :key="col.orgIndex" :column="col" :index="index" />
       <div class="H_datagridHeadCell__spacer" />
@@ -28,8 +28,6 @@ import H_rowGantt from "./H_rowGantt.vue";
 import H_datagridHeadCell from "../../../datagrid/sub/H_datagridHeadCell.vue";
 import H_datagridPopup from "../../../datagrid/sub/popup/H_datagridPopup.vue";
 import H_progressBar from "../../../H_progressBar.vue";
-// @ts-ignore:next-line
-import vResize from "vue-resize-observer";
 
 const props = defineProps({
   groups: { type: Array as PropType<string[]>, default: () => [] },
@@ -47,10 +45,6 @@ const props = defineProps({
 
 const emit = defineEmits(["rawdata", "rowClicked", "loaded"]);
 defineExpose({ update });
-
-function onResize() {
-  dg.Resize();
-}
 
 const slots = useSlots();
 const selectedId = ref("");
@@ -77,6 +71,12 @@ dg.Event.on("isLoading", (val: boolean) => {
 });
 
 onMounted(() => {
+  const ro = new ResizeObserver((entries) => {
+    for (const _e of entries) {
+      dg.Resize();
+    }
+  });
+  ro?.observe(dom.value);
   dg.Init();
   emit("loaded", { dg, gridData, vList: vList });
 });

@@ -1,6 +1,6 @@
 {
   "name": "hhl-ui",
-  "version": "1.0.20",
+  "version": "1.0.25",
   "description": "hhl-ui is a VUE library for personel use.",
   "homepage": "https://github.com/lfhenrl/hhl-ui",
   "author": {
@@ -14,13 +14,12 @@
     "Components/**/",
     "style/**/",
     "utils/**/",
-    "Directive/**/",
+    "Directives/**/",
     "style.css",
     "index.d.ts",
     "index.ts"
   ],
   "dependencies": {
-    "vue-resize-observer": "^2.0.16",
     "@floating-ui/dom": "^1.0.1"
   }
 }
