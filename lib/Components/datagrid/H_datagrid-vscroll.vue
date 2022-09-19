@@ -203,7 +203,9 @@ function tryGetRowClickData(ele?: HTMLElement) {
 
 function rowClicked(data: any) {
   selectedId.value = data.id;
-  emit("rowClicked", data);
+  const index = Number(data.id.replaceAll("_", ""));
+  const row = gridData.value[index];
+  emit("rowClicked", data, row);
 }
 
 function reload() {

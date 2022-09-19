@@ -19,7 +19,7 @@
     </div>
 
     <transition name="H_tabsFade" mode="out-in">
-      <div v-if="show" class="H_tabs-details">
+      <div class="H_tabs-details">
         <slot />
       </div>
     </transition>
@@ -32,19 +32,18 @@ import H_icon from "../H_icon.vue";
 
 const props = defineProps({
   defaultTab: { type: String, default: "" },
-  willChange: { type: Function, default: () => true }
+  willChange: { type: Function, default: () => true },
 });
 
 const slots = useSlots();
 const tabs = ref<any>([]);
 const show = ref(true);
 
-
 const tabData = {
   selected: ref(),
   changed() {
     tabs.value = slots.default?.();
-  }
+  },
 };
 
 provide("tabData", tabData);
