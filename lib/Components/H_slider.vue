@@ -1,103 +1,93 @@
 <template>
-  <H_inputBase
-    :label="label"
-    :validator="validator"
-    :disabled="disabled"
-    :readonly="$attrs.readonly"
-    :value="modelValue"
-    @isValid="$emit('isValid', $event)"
-    class="H_slider col-pri"
-  >
-    <div class="H_slider_inner">
-      <div class="H_slider_scale">
-        <div class="H_slider_info" :style="{ left: posProcent }">{{ modelValue }}</div>
+  <H_inputbase class="h_slider col-pri" :label="label" :movelabel="true">
+    <div class="h_slider_inner">
+      <div class="h_slider_innerBox">
+        <div class="h_slider_info" :style="{ left: posProcent }">{{ modelValue }}</div>
       </div>
-      <div class="H_slider_input">
-        <input type="range" :value="modelValue" @input="changed" />
-      </div>
+      <input type="range" :value="modelValue" @input="changed" />
     </div>
-  </H_inputBase>
+  </H_inputbase>
 </template>
+
 <script setup lang="ts">
+import H_inputbase from "./H_inputbase.vue";
 import { computed } from "vue";
 
-const props = defineProps({
+const P = defineProps({
   modelValue: {
-    type: [Number, String],
-    default: ""
+    type: String,
+    default: false,
   },
   label: {
     type: String,
-    default: ""
+    default: "",
   },
   min: {
     type: String,
-    default: "100"
+    default: "100",
   },
   max: {
     type: String,
-    default: "0"
+    default: "0",
   },
   disabled: { type: Boolean, default: false },
-  validator: Array
+  validator: Array,
 });
 
-const emit = defineEmits(["update:modelValue", "isValid"]);
+const E = defineEmits(["update:modelValue"]);
 
 const posProcent = computed(() => {
-  const faktor = (parseInt(props.max) - parseInt(props.min)) / 100;
-  return parseInt(props.modelValue.toString()) / faktor + "%";
+  const span = parseInt(P.max) - parseInt(P.min);
+  const faktor = span / 100;
+  return parseInt(P.modelValue.toString()) / faktor + "%";
 });
 
 function changed(e: any) {
-  emit("update:modelValue", e.target.value);
+  E("update:modelValue", e.target.value);
 }
 </script>
 
 <style>
-.H_slider {
+.h_slider {
   background-color: transparent !important;
 }
-
-.H_slider_inner {
+.h_slider_inner {
+  position: relative;
   display: grid;
   font-size: var(--comp-font-size);
   font-family: var(--comp-font-family);
   background-color: transparent !important;
   flex: 1;
-  margin: 8px 0;
-}
-
-.H_slider_scale {
-  position: relative;
-  display: flex;
-  margin: 0 7px;
-  align-items: center;
-  order: -1;
-}
-
-.H_slider .H_slider_input {
-  max-height: 20px;
-  min-height: 20px;
-  display: flex;
+  margin: 0 5px;
   align-items: center;
 }
 
-.H_slider_info {
-  position: relative;
+.h_slider_innerBox {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 26px;
+  pointer-events: none;
+}
+
+.h_slider_info {
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--col-txt-1);
-  min-width: 28px;
-  max-width: 28px;
-  margin-left: -14px;
+  height: 100%;
+  width: 27px;
   border-radius: 4px;
   line-height: 1;
+  pointer-events: none;
+  font-size: 11px;
+  margin-left: 1px;
 }
 
-.H_slider input[type="range"] {
+.h_slider input[type="range"] {
   -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: 5px;
   background: rgba(255, 255, 255, 0.6);
@@ -107,10 +97,10 @@ function changed(e: any) {
   background-repeat: no-repeat;
 }
 
-.H_slider input[type="range"]::-webkit-slider-thumb {
+.h_slider input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  height: 16px;
-  width: 16px;
+  height: 26px;
+  width: 26px;
   border-radius: 50%;
   background: var(--current-bg-col);
   cursor: pointer;
@@ -118,7 +108,7 @@ function changed(e: any) {
   transition: background 0.3s ease-in-out;
 }
 
-.H_slider input[type="range"]::-webkit-slider-runnable-track {
+.h_slider input[type="range"]::-webkit-slider-runnable-track {
   -webkit-appearance: none;
   box-shadow: none;
   border: none;

@@ -1,192 +1,170 @@
 <template>
-  <div class="H_inputBase" :disabled="disabled ? true : null" :no-label="$attrs.label == undefined" :title="validate">
-    <fieldset class="H_inputBase__fieldset" :focused="$attrs.focus" :have-label="$attrs.label !== undefined" :error="haveError">
-      <legend class="H_inputBase__legend" v-if="$attrs.label !== ''">{{ $attrs.label }}</legend>
+  <div
+    class="h_inputbase"
+    @click="Click"
+    :disabled="disabled ? true : undefined"
+    :error="ErrorMessage != '' ? true : undefined"
+  >
+    <label ref="_label" class="h_inputbase-label" :move="movelabel">{{ label }}</label>
+    <h_icon v-if="startIcon != ''" :icon="startIcon" class="h_inputbase-starticon" />
+    <h_icon v-if="endIcon != ''" :icon="endIcon" class="h_inputbase-endicon" />
+    <h_icon v-if="clearable" class="h_inputbase-clearicon" />
+    <div class="h_inputbase-slot"><slot /></div>
 
-      <div class="H_inputBase__body">
-        <H_icon
-          v-if="startIcon !== ''"
-          :icon="startIcon"
-          :btn="haveEvent('onStart_icon_click')"
-          class="H_inputBase__startIcon"
-          @click="$emit('start_icon_click')"
-        />
-        <slot />
-        <H_icon v-if="clearable && value !== ''" btn icon="close" class="H_inputBase__clearIcon" @click="$emit('clear')" />
-        <H_icon
-          v-if="endIcon !== ''"
-          :icon="endIcon"
-          :btn="haveEvent('onEnd_icon_click')"
-          class="H_inputBase__endIcon"
-          @click="$emit('end_icon_click')"
-        />
-      </div>
-
-      <div v-if="!$attrs['hide-info']" class="H_inputBase__infoBox">
-        <div v-if="$attrs.hint !== '' && !haveError" class="H_inputBase__infoBox_hint">
-          {{ $attrs.hint }}
-        </div>
-        <div v-if="haveError" class="H_inputBase__infoBox_error">
-          {{ validate }}
-        </div>
-        <div class="H_inputBase__spacer" />
-        <div v-if="$attrs.counter" class="H_inputBase__infoBox_counter">{{ count }}/{{ $attrs.counter }}</div>
-      </div>
-    </fieldset>
+    <div class="h_inputbase-HelpText">
+      <template v-if="ErrorMessage == ''">
+        <div>{{ HelpTextStart }}</div>
+        <div>{{ HelpTextEnd }}</div>
+      </template>
+      <template v-else>
+        <div class="text-err">{{ ErrorMessage }}</div>
+      </template>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, getCurrentInstance, ref } from "vue";
-import H_icon from "./H_icon.vue";
+import { onMounted, ref } from "vue";
+import { setBgColor } from "../utils/setBgColorElement";
 
-const props = defineProps({
-  value: [String, Number, Array, Date, Boolean],
+defineProps({
+  label: { type: String, default: "Label" },
+  movelabel: { type: Boolean, default: false },
+  disabled: { type: Boolean, default: false },
+  clearable: { type: Boolean, default: false },
   startIcon: { type: String, default: "" },
   endIcon: { type: String, default: "" },
-  disabled: { type: Boolean, default: false },
-  clearable: Boolean,
-  validator: Array
+  HelpTextStart: { type: String, default: "" },
+  HelpTextEnd: { type: String, default: "" },
+  ErrorMessage: { type: String, default: "" },
 });
 
-const emit = defineEmits(["start_icon_click", "end_icon_click", "clear", "isValid"]);
-const count = computed(() => (props.value ? props.value.toString().length : 0));
-const slotAttrs = ref({});
-const haveError = computed(() => {
-  const valid = validate.value !== "" && !props.disabled;
-  emit("isValid", validate.value);
-  return valid;
-});
-const haveEvent = (e: string) => ((slotAttrs.value as any)[e] === undefined ? null : "");
+const E = defineEmits(["ClearClick", "click", "StartIconClick", "EndIconClick"]);
+const _label: any = ref();
+
+function Click(e: MouseEvent) {
+  const ele = e.target as any;
+  if (!ele) return null;
+  let cl = ele.classList;
+  if (cl.length === 0) cl = ele.parentElement.classList;
+
+  if (cl.contains("h_inputbase-clearicon")) E("ClearClick");
+  else if (cl.contains("h_inputbase-starticon")) E("StartIconClick");
+  else if (cl.contains("h_inputbase-endicon")) E("EndIconClick");
+  else E("click");
+}
 
 onMounted(() => {
-  const instance = getCurrentInstance();
-  slotAttrs.value = { ...instance?.parent?.vnode.props };
-});
-
-const validate = computed(() => {
-  if (!props.validator) {
-    return "";
-  }
-  let returnValue = "";
-
-  props.validator.some((v) => {
-    const valid = typeof v === "function" ? v(props.value) : v;
-    if (typeof valid === "string") {
-      returnValue = valid;
-      return true;
-    } else if (typeof valid !== "boolean") {
-      console.log(`VALIDATION: Rules should return a string or boolean, received '${typeof valid}' instead`, this);
-      return true;
-    }
-    return false;
-  });
-  return returnValue;
+  setBgColor(_label.value);
 });
 </script>
 
 <style>
-.H_inputBase {
-  box-sizing: border-box;
-  display: flex;
-  flex: 1;
-  color: currentColor;
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  line-height: 1em;
-  align-items: flex-start;
-}
-
-.H_inputBase__spacer {
-  flex: 1;
-}
-
-.H_inputBase .H_inputBase__fieldset {
-  box-sizing: border-box;
-  display: flex;
-  flex: 1 1 auto;
+.h_inputbase {
+  display: inline-grid;
+  grid-template-columns: auto 1fr auto auto;
+  border: 1px solid red;
   position: relative;
-  min-width: 100px;
-  margin: 0;
-  padding: 0;
+  background-color: inherit;
   border-radius: 4px;
-  border: solid 1px var(--comp-border-color);
-  text-align: left;
+  gap: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 40px;
+  min-width: 200px;
+  --col-icon: var(--col-txt-3);
 }
 
-.H_inputBase__body {
-  font-size: var(--comp-font-size);
-  box-sizing: border-box;
-  display: inline-flex;
-  flex: 1;
-  align-items: center;
-  padding: 0 5px;
-}
-
-.H_inputBase__startIcon {
-  margin-right: 1px;
-}
-
-.H_inputBase__startIcon,
-.H_inputBase__clearIcon,
-.H_inputBase__endIcon {
-  --H_icon-size: 1.6em;
-  opacity: 0.7;
-}
-
-.H_inputBase .H_inputBase__fieldset[error="true"] {
+.h_inputbase[error] {
   border-color: var(--col-err);
 }
 
-.H_inputBase .H_inputBase__fieldset[focused="true"] {
-  border-color: var(--comp-border-color-focus);
-}
-
-.H_inputBase .H_inputBase__fieldset[focused="true"] .H_inputBase__legend {
-  color: var(--comp-border-color-focus);
-}
-
-.H_inputBase .H_inputBase__fieldset[error="true"] .H_inputBase__legend {
+.h_inputbase[error] .h_inputbase-label {
   color: var(--col-err);
 }
 
-.H_inputBase .H_inputBase__legend {
-  position: relative;
-  top: -0.66em;
-  margin-left: 6px;
-  height: 0;
-  padding: 0 2px 0 0;
-  font-size: 0.8em;
-  font-weight: normal;
-  color: var(--comp-label-color, rgba(0, 0, 0, 0.6));
-  width: auto;
-}
-
-.H_inputBase__infoBox {
+.h_inputbase-label {
+  display: inline;
   position: absolute;
-  display: inline-flex;
+  color: var(--col-txt-3);
+  top: 0;
+  left: 0;
+  padding: 0 5px;
+  line-height: 18px;
+  background-color: inherit;
+  pointer-events: none;
+  user-select: none;
+  transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  transform: translate(10px, 10px) scale(1);
+}
+
+.h_inputbase:focus-within {
+  border-color: var(--col-pri);
+  border-width: 1px;
+}
+
+.h_inputbase:focus-within .h_inputbase-label {
+  color: var(--col-pri);
+}
+
+.h_inputbase-slot {
+  display: flex;
+  flex-direction: column;
+  grid-row: 1;
+  grid-column: 2;
   width: 100%;
-  top: 3em;
-  padding-left: 5px;
-  line-height: 1em;
-  font-size: 0.8em;
 }
 
-.H_inputBase__infoBox_hint,
-.H_inputBase__infoBox_counter {
-  font-family: var(--comp-font-family);
-  color: var(--col-info);
+.h_inputbase-label[move="true"] {
+  transform: translate(7px, -8px) scale(0.75);
+  transform-origin: top left;
 }
 
-.H_inputBase__infoBox_counter {
-  flex: 1;
-  text-align: right;
-  padding-right: 4px;
+.h_inputbase-starticon {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: center;
+  width: 22px;
+  margin: 0;
+  padding: 0;
+  margin-left: 4px;
+  color: var(--col-icon);
 }
 
-.H_inputBase__infoBox_error {
-  color: var(--col-err);
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.h_inputbase-endicon {
+  grid-row: 1;
+  grid-column: 4;
+  align-self: center;
+  width: 22px;
+  margin: 0;
+  padding: 0;
+  margin-right: 4px;
+  color: var(--col-icon);
+}
+
+.h_inputbase-clearicon {
+  grid-row: 1;
+  grid-column: 3;
+  align-self: center;
+  width: 22px;
+  margin: 0;
+  padding: 0;
+  margin-right: 4px;
+  color: var(--col-icon);
+}
+
+.h_inputbase-HelpText {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  grid-row: 2;
+  grid-column: 1/5;
+  font-size: 0.7rem;
+  bottom: -17px;
+  right: 3px;
+  left: 3px;
+  justify-content: space-between;
+  color: var(--col-txt-2);
+  user-select: none;
 }
 </style>

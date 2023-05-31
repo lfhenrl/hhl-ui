@@ -39,8 +39,8 @@ const hhlCodeEditor = defineComponent({
     code: { type: String, default: "" },
     lang: {
       type: String as PropType<"htmlmixed" | "css" | "javascript">,
-      default: "xml"
-    }
+      default: "xml",
+    },
   },
   setup(props, { emit }) {
     const el = ref<HTMLTextAreaElement>();
@@ -72,7 +72,7 @@ const hhlCodeEditor = defineComponent({
           autoCloseTags: true,
           styleActiveLine: true,
           foldGutter: true,
-          gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+          gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
         });
 
         editor.on("change", debounce(updateCode, 600));
@@ -82,9 +82,9 @@ const hhlCodeEditor = defineComponent({
     });
 
     return {
-      el
+      el,
     };
-  }
+  },
 });
 
 declare global {

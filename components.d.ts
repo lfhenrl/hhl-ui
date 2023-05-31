@@ -43,6 +43,7 @@ declare module '@vue/runtime-core' {
     H_groupRow: typeof import('./lib/Components/datagrid/H_groupRow.vue')['default']
     H_icon: typeof import('./lib/Components/H_icon.vue')['default']
     H_input: typeof import('./lib/Components/H_input.vue')['default']
+    H_inputbase: typeof import('./lib/Components/H_inputbase.vue')['default']
     H_inputBase: typeof import('./lib/Components/H_inputBase.vue')['default']
     H_modal: typeof import('./lib/Components/popup/H_modal.vue')['default']
     H_monthTable: typeof import('./lib/Components/date/H_monthTable.vue')['default']
