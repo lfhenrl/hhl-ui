@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="h_inputbase"
-    @click="Click"
-    :disabled="disabled ? true : undefined"
-    :error="ErrorMessage != '' ? true : undefined"
-  >
+  <div class="h_inputbase " @click="Click" :disabled="disabled ? true : undefined" :error="ErrorMessage != '' ? true : undefined">
     <label ref="_label" class="h_inputbase-label" :move="movelabel">{{ label }}</label>
     <h_icon v-if="startIcon != ''" :icon="startIcon" class="h_inputbase-starticon" />
     <h_icon v-if="endIcon != ''" :icon="endIcon" class="h_inputbase-endicon" />
@@ -36,7 +31,7 @@ defineProps({
   endIcon: { type: String, default: "" },
   HelpTextStart: { type: String, default: "" },
   HelpTextEnd: { type: String, default: "" },
-  ErrorMessage: { type: String, default: "" },
+  ErrorMessage: { type: String, default: "" }
 });
 
 const E = defineEmits(["ClearClick", "click", "StartIconClick", "EndIconClick"]);
@@ -63,7 +58,7 @@ onMounted(() => {
 .h_inputbase {
   display: inline-grid;
   grid-template-columns: auto 1fr auto auto;
-  border: 1px solid red;
+  border: 1px solid var(--col-txt-5);
   position: relative;
   background-color: inherit;
   border-radius: 4px;

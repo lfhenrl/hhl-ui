@@ -6,9 +6,7 @@ import App from "./App.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 import { createPinia } from "pinia";
 import routes from "~pages";
-// import "./style/main.css";
-// import "./style/index.css";
-// import "virtual:windi.css";
+
 import "./components/mdStyle/index.css";
 import "../lib/style.css";
 
@@ -48,6 +46,11 @@ const H_dragDrop = defineAsyncComponent(() => import("../lib/Components/draggabl
 const H_slider = defineAsyncComponent(() => import("../lib/Components/H_slider.vue"));
 const H_form = defineAsyncComponent(() => import("../lib/Components/H_form.vue"));
 
+const navBar = defineAsyncComponent(() => import("./components/nav-bar.vue"));
+const menuLeft = defineAsyncComponent(() => import("./components/menu-left.vue"));
+const menuRight = defineAsyncComponent(() => import("./components/menu-right.vue"));
+const HhlLiveEditor = defineAsyncComponent(() => import("./components/liveEditor/hhl-live-editor.vue"));
+
 app.component("H_icon", H_icon);
 app.component("H_btn", H_btn);
 app.component("H_pop", H_pop);
@@ -72,5 +75,10 @@ app.component("H_virtualList", H_virtualList);
 app.component("H_dragDrop", H_dragDrop);
 app.component("H_slider", H_slider);
 app.component("H_form", H_form);
+
+app.component("nav-bar", navBar);
+app.component("menu-left", menuLeft);
+app.component("menu-right", menuRight);
+app.component("HhlLiveEditor", HhlLiveEditor);
 
 router.isReady().then(() => app.mount("#app"));

@@ -5,8 +5,7 @@ import mdAnchor from "markdown-it-anchor";
 // import prism from "markdown-it-prism";
 import Markdown from "vite-plugin-vue-markdown";
 import { containerPlugin } from "./src/components/containers";
-import WindiCSS from "vite-plugin-windicss";
-import ViteComponents from "unplugin-vue-components/vite";
+// import WindiCSS from "vite-plugin-windicss";
 import visualizer from "rollup-plugin-visualizer";
 
 export default defineConfig({
@@ -31,14 +30,7 @@ export default defineConfig({
     ,
     Pages({
       extensions: ["vue", "md"]
-    }),
-    ViteComponents({
-      dirs: ["src/components", "lib/Components", "src/mdHelp/components"],
-      extensions: ["vue", "md"],
-      // allow auto import and register components used in markdown
-      include: [/\.vue$/, /\.vue\?vue/, /\.md$/]
-    }),
-    WindiCSS()
+    })
   ],
   server: {
     open: true

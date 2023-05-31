@@ -9,7 +9,7 @@
 
       <H_datagridVscroll
         data-key="id"
-        :groups="['Value 2', 'Value 4']"
+        :groups="[]"
         :search="seek"
         :searchFields="['id', 'val1', 'val2', 'val4']"
         :dataHandler="DataHandler"
@@ -40,7 +40,7 @@
             { label: 'G7', value: 'Group 7.' },
             { label: 'G8', value: 'Group 8.' },
             { label: 'G9', value: 'Group 9.' },
-            { label: 'G10', value: 'Group 10.' },
+            { label: 'G10', value: 'Group 10.' }
           ]"
         />
         <H_column field="val3" title="Value 3" type="string" :cell_style="styleCell" />
@@ -56,6 +56,8 @@ import { ref } from "vue";
 import { D_01_dec_2021_HHMM } from "../../../lib/utils/dateFormat";
 import { dataHandler } from "../../../lib/Components/datagrid/virtualScroll";
 import { JsonData } from "../../../lib/Components/datagrid/datahandlers/JsonData";
+import H_datagridVscroll from "../../../lib/Components/datagrid/H_datagrid-vscroll.vue";
+import H_column from "../../../lib/Components/datagrid/H_column.vue";
 import { getData } from "../../testData/data";
 
 const seek = ref("");
@@ -80,7 +82,7 @@ function formatDate(value: any) {
 
 function styleCell() {
   return {
-    color: "orange",
+    color: "orange"
   };
 }
 

@@ -1,35 +1,36 @@
 :root {
   --col-pri: #6594c5;
-  --col-pri-light: lime;
-  --col-txt-on-pri: #fff;
+  --col-on-pri: #fff;
   --col-sec: #6c757d;
-  --col-txt-on-sec: #fff;
+  --col-on-sec: #fff;
   --col-ok: #28a745;
-  --col-txt-on-ok: #fff;
+  --col-on-ok: #fff;
   --col-err: #dc3545;
-  --col-txt-on-err: #fff;
+  --col-on-err: #fff;
   --col-warn: #ffc107;
-  --col-txt-on-warn: black;
+  --col-on-warn: black;
   --col-info: #17a2b8;
-  --col-txt-on-info: #fff;
-  --col-txt-0: rgb(0, 0, 0);
-  --col-txt-1: rgba(0, 0, 0, 0.87);
-  --col-txt-2: rgba(0, 0, 0, 0.6);
-  --col-txt-3: rgba(0, 0, 0, 0.45);
-  --col-txt-4: rgba(0, 0, 0, 0.3);
-  --col-txt-5: rgba(0, 0, 0, 0.2);
+  --col-on-info: #fff;
+  --col-txt-0: hsl(0, 0%, 0%);
+  --col-txt-1: hsl(0, 0%, 17%);
+  --col-txt-2: hsl(0, 0%, 27%);
+  --col-txt-3: hsl(0, 0%, 37%);
+  --col-txt-4: hsl(0, 0%, 47%);
+  --col-txt-5: hsl(0, 0%, 57%);
+  --col-txt-6: hsl(0, 0%, 67%);
+  --col-bg-drawer: #f3f3f3;
   --col-bg-0: hsl(0, 0%, 100%);
-  --col-bg-1: hsl(0, 0%, 97%);
-  --col-bg-2: hsl(0, 0%, 93%);
+  --col-bg-1: hsl(0, 0%, 96%);
+  --col-bg-2: hsl(0, 0%, 92%);
   --col-bg-3: hsl(0, 0%, 88%);
-  --col-bg-4: hsl(0, 0%, 83%);
-  --col-bg-5: hsl(0, 0%, 76%);
-  --comp-label-color: var(--col-txt-2, red);
-  --comp-border-color: var(--col-txt-5);
-  --comp-border-color-focus: dodgerblue;
+  --col-bg-4: hsl(0, 0%, 84%);
+  --col-bg-5: hsl(0, 0%, 80%);
+  --col-bg-6: hsl(0, 0%, 76%);
+  color: var(--col-txt-0);
+
   --comp-font-size: 14px;
-  --comp-font-family: Arial, Helvetica, sans-serif;
-  --comp-shadow: 0 14px 18px 3px rgba(0, 0, 0, 0.14), 0 7px 16px 6px rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.2) !important;
+  --comp-font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .darkTheme {
@@ -39,17 +40,17 @@
   --col-txt-3: rgba(255, 255, 255, 0.45);
   --col-txt-4: rgba(255, 255, 255, 0.3);
   --col-txt-5: rgba(255, 255, 255, 0.2);
+  --col-txt-6: rgba(255, 255, 255, 0.1);
+  --col-bg-drawer: #1f1f1f;
   --col-bg-0: hsl(231, 12%, 20%);
   --col-bg-1: hsl(231, 12%, 23%);
-  --col-bg-2: hsl(231, 12%, 26%);
-  --col-bg-3: hsl(231, 12%, 29%);
-  --col-bg-4: hsl(231, 12%, 32%);
-  --col-bg-5: hsl(231, 12%, 35%);
-  --comp-label-font-size: 13px;
-  --comp-label-color: var(--col-txt-2, red);
-  --comp-border-color: var(--col-txt-4);
-  --comp-border-color-focus: dodgerblue;
-  color: var(--col-txt-1);
+  --col-bg-2: hsl(231, 12%, 27%);
+  --col-bg-3: hsl(231, 12%, 32%);
+  --col-bg-4: hsl(231, 12%, 35%);
+  --col-bg-5: hsl(231, 12%, 39%);
+  --col-bg-6: hsl(231, 12%, 43%);
+  color-scheme: dark;
+  color: var(--col-txt-0);
 }
 
 :fullscreen {
@@ -89,4 +90,24 @@
 
 ::-webkit-scrollbar-corner {
   background-color: transparent;
+}
+
+*[disabled] {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: none;
+}
+
+[hidden] {
+  display: none;
+}
+/* Anthony's addition */
+.dark {
+  color-scheme: dark;
+}
+.dark ::-moz-selection {
+  background: #444;
+}
+.dark ::selection {
+  background: #444;
 }

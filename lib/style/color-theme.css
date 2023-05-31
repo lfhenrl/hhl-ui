@@ -2,54 +2,56 @@
   background-color: var(--col-pri);
   color: var(--col-txt-on-pri);
   --current-bg-col: var(--col-pri);
-}
-
-.col-pri-light {
-  background-color: var(--col-pri-light);
-  color: var(--col-txt-on-pri);
-  --current-bg-col: var(--col-pri-light);
+  --current-txt-col: var(--col-on-pri);
 }
 
 .col-sec {
   background-color: var(--col-sec);
   color: var(--col-txt-on-sec);
   --current-bg-col: var(--col-sec);
+  --current-txt-col: var(--col-on-sec);
 }
 
 .col-ok {
   background-color: var(--col-ok);
   color: var(--col-txt-on-ok);
   --current-bg-col: var(--col-ok);
+  --current-txt-col: var(--col-on-ok);
 }
 
 .col-err {
   background-color: var(--col-err);
   color: var(--col-txt-on-err);
   --current-bg-col: var(--col-err);
+  --current-txt-col: var(--col-on-err);
 }
 
 .col-warn {
   background-color: var(--col-warn);
   color: var(--col-txt-on-warn);
   --current-bg-col: var(--col-warn);
+  --current-txt-col: var(--col-on-warn);
 }
 
 .col-info {
   background-color: var(--col-info);
   color: var(--col-txt-on-info);
   --current-bg-col: var(--col-info);
+  --current-txt-col: var(--col-on-info);
 }
 
 .col-black {
   background-color: black;
   color: white;
   --current-bg-col: black;
+  --current-txt-col: white;
 }
 
 .col-white {
   background-color: white;
   color: black;
   --current-bg-col: white;
+  --current-txt-col: black;
 }
 
 .col-bg-0 {
@@ -70,6 +72,10 @@
 
 .col-bg-5 {
   background-color: var(--col-bg-5);
+}
+
+.col-bg-6 {
+  background-color: var(--col-bg-6);
 }
 
 .col-bg-pri {
@@ -122,6 +128,10 @@
 
 .col-txt-5 {
   color: var(--col-txt-5);
+}
+
+.col-txt-6 {
+  color: var(--col-txt-6);
 }
 
 .col-txt-pri {

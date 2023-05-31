@@ -34,7 +34,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_flex flx_direction="column" flx_align="stretch">
+    <H_flex flx_direction="column" flx_align="stretch" flx_gap="20px">
         <H_slider v-model="value" min="0" max="100" label="col-pri" class="col-pri"></H_slider>
         <H_slider v-model="value" min="0" max="100" label="col-sec" class="col-sec"></H_slider>
         <H_slider v-model="value" min="0" max="100" label="col-ok" class="col-ok"></H_slider>
