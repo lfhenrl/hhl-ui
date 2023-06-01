@@ -91,20 +91,20 @@ This is the themes text colors that can be added by class.
 
   <br/>
 
-| Name              | Color                                      | Describtion                   |
-| ----------------- | ------------------------------------------ | ----------------------------- |
-| --col-pri         | <div class="boxCssVar col-pri"></div>      | The primary color.            |
-| --col-txt-on-pri  | <div class="boxCssVar col-pri">TEXT</div>  | The text color for primary.   |
-| --col-sec         | <div class="boxCssVar col-sec"></div>      | The secondary color.          |
-| --col-txt-on-sec  | <div class="boxCssVar col-sec">TEXT</div>  | The text color for secondary. |
-| --col-ok          | <div class="boxCssVar col-ok"></div>       | The ok color.                 |
-| --col-txt-on-ok   | <div class="boxCssVar col-ok">TEXT</div>   | The text color for ok.        |
-| --col-err         | <div class="boxCssVar col-err"></div>      | The error color.              |
-| --col-txt-on-err  | <div class="boxCssVar col-err">TEXT</div>  | The text color for error.     |
-| --col-warn        | <div class="boxCssVar col-warn"></div>     | The warning color.            |
-| --col-txt-on-warn | <div class="boxCssVar col-warn">TEXT</div> | The text color for warning.   |
-| --col-info        | <div class="boxCssVar col-info"></div>     | The info color.               |
-| --col-txt-on-info | <div class="boxCssVar col-info">TEXT</div> | The text color for info.      |
+| Name          | Color                                      | Describtion                   |
+| ------------- | ------------------------------------------ | ----------------------------- |
+| --col-pri     | <div class="boxCssVar col-pri"></div>      | The primary color.            |
+| --col-on-pri  | <div class="boxCssVar col-pri">TEXT</div>  | The text color for primary.   |
+| --col-sec     | <div class="boxCssVar col-sec"></div>      | The secondary color.          |
+| --col-on-sec  | <div class="boxCssVar col-sec">TEXT</div>  | The text color for secondary. |
+| --col-ok      | <div class="boxCssVar col-ok"></div>       | The ok color.                 |
+| --col-on-ok   | <div class="boxCssVar col-ok">TEXT</div>   | The text color for ok.        |
+| --col-err     | <div class="boxCssVar col-err"></div>      | The error color.              |
+| --col-on-err  | <div class="boxCssVar col-err">TEXT</div>  | The text color for error.     |
+| --col-warn    | <div class="boxCssVar col-warn"></div>     | The warning color.            |
+| --col-on-warn | <div class="boxCssVar col-warn">TEXT</div> | The text color for warning.   |
+| --col-info    | <div class="boxCssVar col-info"></div>     | The info color.               |
+| --col-on-info | <div class="boxCssVar col-info">TEXT</div> | The text color for info.      |
 
 <br/>
 

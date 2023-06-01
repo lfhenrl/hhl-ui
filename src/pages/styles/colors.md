@@ -9,6 +9,7 @@
       <div class="col-bg-3">col-bg-3</div>
       <div class="col-bg-4">col-bg-4</div>
       <div class="col-bg-5">col-bg-5</div>
+      <div class="col-bg-6">col-bg-6</div>
     </H_flex>
     </template>
     <xstyle>
@@ -34,6 +35,7 @@
         <h3 class="col-txt-3">col-txt-3</h3>
         <h3 class="col-txt-4">col-txt-4</h3>
         <h3 class="col-txt-5">col-txt-5</h3>
+        <h3 class="col-txt-6">col-txt-6</h3>
       </H_flex>
     </template>
     <xstyle>
@@ -60,6 +62,7 @@
 | --col-bg-3 | <div class="boxCssVar col-bg-3"></div> | The bg-3 background color. |
 | --col-bg-4 | <div class="boxCssVar col-bg-4"></div> | The bg-4 background color. |
 | --col-bg-5 | <div class="boxCssVar col-bg-5"></div> | The bg-5 background color. |
+| --col-bg-6 | <div class="boxCssVar col-bg-6"></div> | The bg-6 background color. |
 
 <br/>
 
@@ -73,6 +76,7 @@
 | --col-txt-3 | <div class="boxCssVar" style="background-color: var(--col-txt-3)"></div> | The txt-3 color. |
 | --col-txt-4 | <div class="boxCssVar" style="background-color: var(--col-txt-4)"></div> | The txt-4 color. |
 | --col-txt-5 | <div class="boxCssVar" style="background-color: var(--col-txt-5)"></div> | The txt-5 color. |
+| --col-txt-6 | <div class="boxCssVar" style="background-color: var(--col-txt-6)"></div> | The txt-6 color. |
 
 <br/>
 
