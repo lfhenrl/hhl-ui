@@ -121,7 +121,7 @@ Sets the gaps (gutters) between rows and columns.
 <hhl-live-editor title="" htmlCode='
     <template>
     <H_row>
-     <H_input v-model="val" :select-data="alignContentList" label="Align Content"></H_input>
+     <H_inputText v-model="val" label="Gap"></H_inputText>
     </H_row>
     <H_row class="boxes" :gap="val">
         <div>1</div>
@@ -132,8 +132,7 @@ Sets the gaps (gutters) between rows and columns.
         <script>
       const val = ref("10px");
     return {
-    val,
-    alignContentList
+    val
     }
     </script>
     <xstyle>
