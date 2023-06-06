@@ -128,7 +128,7 @@ function setMultivalue(val: string) {
 .h_baseSelectList-radio__svg:focus-visible,
 .h_baseSelectList-item:hover .h_baseSelectList__checkbox,
 .h_baseSelectList-item:hover .h_baseSelectList-radio__svg {
-  outline: 3px solid var(--current-bg-col, var(--col-primary));
+  outline: 3px solid var(--current-bg-col, var(--col-pri));
   outline-offset: 2px;
   opacity: 0.5;
 }
@@ -159,7 +159,7 @@ function setMultivalue(val: string) {
 }
 
 .h_baseSelectList-radio__box_inner {
-  fill: var(--current-bg-col, var(--col-primary));
+  fill: var(--current-bg-col, var(--col-pri));
   transform: scale3d(0, 0, 0);
   transition: transform 0.3s;
   transform-origin: center;
@@ -168,9 +168,9 @@ function setMultivalue(val: string) {
 }
 
 .h_baseSelectList-item[selected="true"] .h_baseSelectList__checkbox {
-  border-color: var(--current-bg-col, var(--col-primary));
-  background-color: var(--current-bg-col, var(--col-primary));
-  fill: var(--current-txt-col, var(--col-on-primary));
+  border-color: var(--current-bg-col, var(--col-pri));
+  background-color: var(--current-bg-col, var(--col-pri));
+  fill: var(--current-txt-col, var(--col-on-pri));
 }
 
 .h_baseSelectList-item[selected="true"] .h_baseSelectList-radio__box_inner {
@@ -178,6 +178,6 @@ function setMultivalue(val: string) {
 }
 
 .h_baseSelectList-item[selected="true"] .h_baseSelectList-radio__box {
-  stroke: var(--current-bg-col, var(--col-primary));
+  stroke: var(--current-bg-col, var(--col-pri));
 }
 </style>

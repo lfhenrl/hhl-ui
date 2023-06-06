@@ -1,4 +1,4 @@
-## The row layout
+## The col layout
 
 The main idea in this row layout is to use the standard CSS flexbox and by properties setting aligment, justify, gap and padding.
 
@@ -8,9 +8,9 @@ The main idea in this row layout is to use the standard CSS flexbox and by prope
 <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">A Complete Guide to Flexbox</a><br>
 <a href="https://yoksel.github.io/flex-cheatsheet/" target="_blank">Flex Cheatsheet</a><br>
 
-## H_row
+## H_col
 
-- Use the Vue component `H_row`.
+- Use the Vue component `H_col`.
 
 ::: tip
 You can edit the code examples.
@@ -29,11 +29,11 @@ Placement in the row axis (up-down) in the container.
     <H_row>
      <H_select v-model="val" :list="alignList" label="Align"></H_select>
     </H_row>
-    <H_row class="boxes" :align="val">
+    <H_col class="boxes" :align="val">
         <div>1</div>
         <div>2</div>
         <div>3</div>
-    </H_row>
+    </H_col>
     </template>
         <script>
       const val = ref("stretch");
@@ -45,10 +45,9 @@ Placement in the row axis (up-down) in the container.
     </script>
     <xstyle>
     .boxes {
-        height: 200px;
+        height: 600px;
         border: 1px solid var(--col-txt-3);
         margin-top: 20px;
-        padding: 10px;
     }
       .boxes > div {
         display: flex;
@@ -76,11 +75,11 @@ Placement in the row axis (left-right) in the container.
     <H_row>
      <H_select v-model="val" :list="justifyList" label="Justify"></H_select>
     </H_row>
-    <H_row class="boxes" :justify="val">
+    <H_col class="boxes" :justify="val">
         <div>1</div>
         <div>2</div>
         <div>3</div>
-    </H_row>
+    </H_col>
     </template>
         <script>
       const val = ref("start");
@@ -92,7 +91,7 @@ Placement in the row axis (left-right) in the container.
     </script>
     <xstyle>
     .boxes {
-        height: 500px;
+        height: 600px;
         border: 1px solid var(--col-txt-3);
         margin-top: 20px;
         padding: 10px;
@@ -123,69 +122,24 @@ Sets the gaps (gutters) between rows and columns.
     <H_row>
      <H_inputText v-model="val" label="Gap"></H_inputText>
     </H_row>
-    <H_row class="boxes" :gap="val">
+    <H_col class="boxes" :gap="val">
         <div>1</div>
         <div>2</div>
         <div>3</div>
-    </H_row>
+    </H_col>
     </template>
         <script>
-      const val = ref("10px 44px");
+      const val = ref("44px");
     return {
     val
     }
     </script>
     <xstyle>
     .boxes {
-        height: 400px;
+        height: 600px;
         border: 1px solid var(--col-txt-3);
         margin-top: 20px;
         padding: 10px;
-    }
-      .boxes > div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100px;
-        min-width: 700px;
-        background-color: var(--col-pri);
-        color: white;
-      }
-    </xstyle>
-'>
-</hhl-live-editor>
-
-<br>
-
-<br>
-
-## No Wrap
-
- Sets whether flex items are forced onto one line or can wrap onto multiple lines..
- The default is wrap. But adding the property "no-wrap" will remove wrap.
-
-<hhl-live-editor title="" htmlCode='
-    <template>
-    <H_row>
-     <H_switch v-model="val" label="No Wrap"></H_switch>
-    </H_row>
-    <H_row class="boxes" gap="10px" :no-wrap="val">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-    </H_row>
-    </template>
-        <script>
-      const val = ref(false);
-    return {
-    val
-    }
-    </script>
-    <xstyle>
-    .boxes {
-        height: 400px;
-        border: 1px solid var(--col-txt-3);
-        margin-top: 20px;
     }
       .boxes > div {
         display: flex;
@@ -214,11 +168,11 @@ Sets the gaps (gutters) between rows and columns.
     <H_row>
       <H_inputText v-model="val" label="Padding"></H_inputText>
     </H_row>
-    <H_row class="boxes" gap="10px" :padding="val">
+    <H_col class="boxes" gap="10px" :padding="val">
         <div>1</div>
         <div>2</div>
         <div>3</div>
-    </H_row>
+    </H_col>
     </template>
         <script>
       const val = ref("50px 10px");
@@ -228,7 +182,7 @@ Sets the gaps (gutters) between rows and columns.
     </script>
     <xstyle>
     .boxes {
-        height: 400px;
+        height: 600px;
         border: 1px solid var(--col-txt-3);
         margin-top: 20px;
     }

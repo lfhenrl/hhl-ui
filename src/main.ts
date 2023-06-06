@@ -33,6 +33,7 @@ const H_textarea = defineAsyncComponent(() => import("../lib/Components/H_textar
 const H_select = defineAsyncComponent(() => import("../lib/Components/select/h_select.vue"));
 const H_grid = defineAsyncComponent(() => import("../lib/Components/layout/H_grid.vue"));
 const H_row = defineAsyncComponent(() => import("../lib/Components/layout/h_row.vue"));
+const H_col = defineAsyncComponent(() => import("../lib/Components/layout/h_col.vue"));
 const H_flex = defineAsyncComponent(() => import("../lib/Components/layout/H_flex.vue"));
 const iconList = defineAsyncComponent(() => import("./components/icon-list.vue"));
 const H_datePicker = defineAsyncComponent(() => import("../lib/Components/date/H_datePicker.vue"));
@@ -66,6 +67,7 @@ app.component("H_select", H_select);
 app.component("H_grid", H_grid);
 app.component("H_flex", H_flex);
 app.component("H_row", H_row);
+app.component("H_col", H_col);
 app.component("icon-list", iconList);
 app.component("H_datePicker", H_datePicker);
 app.component("H_modal", H_modal);

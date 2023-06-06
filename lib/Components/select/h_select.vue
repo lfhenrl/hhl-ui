@@ -1,5 +1,5 @@
 <template>
-  <h_pop v-model="isOpen">
+  <h_pop v-model="isOpen" full-width>
     <template v-slot:referance>
       <h_inputbase
         class="h_select"
@@ -114,6 +114,7 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
 }
 
 .h_select-list {
+  width: 100%;
   background-color: var(--col-bg-0);
   box-shadow: var(--elevation-4);
   border: 1px solid var(--col-txt-5);

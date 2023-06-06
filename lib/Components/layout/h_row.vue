@@ -3,9 +3,9 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
+import { PropType, computed } from "vue";
 
-defineProps({
+const P = defineProps({
   align: {
     type: String as PropType<"stretch" | "start" | "end" | "center" | "baseline">,
     default: "stretch",
@@ -20,7 +20,17 @@ defineProps({
     type: String,
     default: "20px",
   },
+  padding: {
+    type: String,
+    default: "20px",
+  },
+  noWrap: {type: Boolean, default: false}
 });
+
+const wrap = computed(() => {
+  return P.noWrap === true ? "nowrap" : "wrap"
+})
+
 </script>
 
 <style>
@@ -29,6 +39,8 @@ defineProps({
   flex-direction: row;
   align-items: v-bind(align);
   justify-content: v-bind(justify);
-  gap: v-bind(gap);
+  padding: v-bind(padding);
+  gap: v-bind(gap);  
+  flex-wrap: v-bind(wrap);
 }
 </style>

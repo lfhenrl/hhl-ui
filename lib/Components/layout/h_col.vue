@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
+import { PropType} from "vue";
 
 defineProps({
   align: {
@@ -20,7 +20,13 @@ defineProps({
     type: String,
     default: "30px",
   },
+  padding: {
+    type: String,
+    default: "20px",
+  }
 });
+
+
 </script>
 
 <style>
@@ -29,6 +35,7 @@ defineProps({
   flex-direction: column;
   align-items: v-bind(align);
   justify-content: v-bind(justify);
+  padding: v-bind(padding);
   gap: v-bind(gap);
 }
 </style>
