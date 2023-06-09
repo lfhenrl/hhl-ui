@@ -141,7 +141,7 @@ export const D_TimeAgo = (D: Date) => {
 
   const _diff = Math.abs(diff);
 
-  console.log("formatDiff", diff);
+
   if (_diff < 60) {
     return rtf.format(+diff.toFixed(1), "second");
   }

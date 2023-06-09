@@ -12,7 +12,7 @@
         <div>{{ HelpTextEnd }}</div>
       </template>
       <template v-else>
-        <div class="text-err">{{ ErrorMessage }}</div>
+        <div class="col-txt-err">{{ ErrorMessage }}</div>
       </template>
     </div>
   </div>
