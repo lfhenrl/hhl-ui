@@ -1,20 +1,20 @@
 <template>
-  <div class="h_monthTable">
-    <div class="h_monthTable__innerHeader">
+  <div class="H_monthTable">
+    <div class="H_datePicker__innerHeader">
       <H_btn icon="expand_left" type="icon-text" size="sm" @click="changeYear(-1)" round />
-      <div class="h_monthTable__innerHeaderValue">
+      <div class="H_datePicker__innerHeaderValue">
         {{ tempDato.toLocaleString("en-us", { year: "numeric" }) }}
       </div>
       <H_btn icon="expand_right" type="icon-text" size="sm" @click="changeYear(1)" round />
     </div>
-    <div class="h_monthTable__table" @click="itemClick">
+    <div class="H_monthTable__table" @click="itemClick">
       <div
         v-for="(item, index) in month"
         :key="index"
         :data-value="index"
-        class="h_monthTable__tableItem"
+        class="H_monthTable__tableItem"
         :class="{
-          h_monthTable__itemSelected: tempDato.getMonth() === index,
+          H_datePicker__itemSelected: tempDato.getMonth() === index
         }"
       >
         {{ item }}
@@ -25,11 +25,11 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { DateAddYears } from "../../utils/dateFunctions";
 import H_btn from "../../Components/H_btn.vue";
+import { DateAddYears } from "../../utils/dateFunctions";
 
 const props = defineProps({
-  modelValue: { type: Date, default: new Date() },
+  modelValue: { type: Date, default: new Date() }
 });
 
 const emit = defineEmits(["month-selected", "update:modelValue"]);
@@ -56,32 +56,11 @@ const changeYear = (val: number) => {
 </script>
 
 <style>
-.h_monthTable {
+.H_monthTable {
   font-size: var(--comp-font-size);
   font-family: var(--comp-font-family);
 }
-
-.h_monthTable__innerHeader {
-  display: flex;
-  flex-direction: row;
-  flex: auto;
-  align-items: center;
-  padding: 3px;
-  font-weight: bold;
-}
-
-.h_monthTable__innerHeader .h_btn.btn-icon .h_icon {
-  --h_icon-size: 1.2em;
-}
-
-.h_monthTable__innerHeaderValue {
-  cursor: pointer;
-  display: flex;
-  flex: 1;
-  justify-content: center;
-}
-
-.h_monthTable__table {
+.H_monthTable__table {
   display: grid;
   grid-template-columns: repeat(3, 72px);
   grid-template-rows: repeat(4, 36px);
@@ -90,7 +69,7 @@ const changeYear = (val: number) => {
   margin: 10px;
 }
 
-.h_monthTable__tableItem {
+.H_monthTable__tableItem {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,13 +77,8 @@ const changeYear = (val: number) => {
   cursor: pointer;
 }
 
-.h_monthTable__tableItem:hover {
+.H_monthTable__tableItem:hover {
   background-color: bisque;
   color: black;
-}
-
-.h_monthTable__itemSelected {
-  background-color: var(--col-pri);
-  color: var(--col-on-pri);
 }
 </style>

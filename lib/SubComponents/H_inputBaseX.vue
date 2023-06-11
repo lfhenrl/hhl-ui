@@ -1,11 +1,6 @@
 <template>
-  <fieldset
-    class="h_inputbase"
-    @click="Click"
-    :disabled="disabled ? true : undefined"
-    :error="ErrorMessage != '' ? true : undefined"
-  >
-    <legend ref="_label" class="h_inputbase-label" :move="movelabel">{{ label }}</legend>
+  <div class="h_inputbase" @click="Click" :disabled="disabled ? true : undefined" :error="ErrorMessage != '' ? true : undefined">
+    <label ref="_label" class="h_inputbase-label" :move="movelabel">{{ label }}</label>
     <H_icon v-if="startIcon != ''" :icon="startIcon" class="h_inputbase-starticon" />
     <H_icon v-if="endIcon != ''" :icon="endIcon" class="h_inputbase-endicon" />
     <H_icon v-if="clearable" class="h_inputbase-clearicon" />
@@ -20,13 +15,13 @@
         <div class="col-txt-err">{{ ErrorMessage }}</div>
       </template>
     </div>
-  </fieldset>
+  </div>
 </template>
 
 <script setup lang="ts">
 import H_icon from "../Components/H_icon.vue";
-import { onMounted, ref } from "vue";
-//import { setBgColor } from "../utils/setBgColorElement";
+import { onMounted, onUpdated, ref } from "vue";
+import { setBgColor } from "../utils/setBgColorElement";
 
 defineProps({
   label: { type: String, default: "Label" },
@@ -55,8 +50,12 @@ function Click(e: MouseEvent) {
   else E("click");
 }
 
+onUpdated(() => {
+  setBgColor(_label.value);
+});
+
 onMounted(() => {
-  //setBgColor(_label.value);
+  setBgColor(_label.value);
 });
 </script>
 
@@ -64,7 +63,7 @@ onMounted(() => {
 .h_inputbase {
   display: inline-grid;
   grid-template-columns: auto 1fr auto auto;
-  /* border: 1px solid var(--col-txt-5); */
+  border: 1px solid var(--col-txt-5);
   position: relative;
   background-color: inherit;
   border-radius: 4px;
@@ -85,18 +84,18 @@ onMounted(() => {
 }
 
 .h_inputbase-label {
-  /* display: inline; */
-  /* position: absolute; */
+  display: inline;
+  position: absolute;
   color: var(--col-txt-3);
-  /* top: 0;
-  left: 0; */
-  /* padding: 0 5px; */
-  /* line-height: 18px; */
-  /* background-color: inherit; */
+  top: 0;
+  left: 0;
+  padding: 0 5px;
+  line-height: 18px;
+  background-color: inherit;
   pointer-events: none;
   user-select: none;
   transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
-  transform: translate(20px, 20px) scale(1);
+  transform: translate(10px, 10px) scale(1);
 }
 
 .h_inputbase:focus-within {
@@ -117,8 +116,8 @@ onMounted(() => {
 }
 
 .h_inputbase-label[move="true"] {
-  /* transform: translate(7px, -8px) scale(0.75);
-  transform-origin: top left; */
+  transform: translate(7px, -8px) scale(0.75);
+  transform-origin: top left;
 }
 
 .h_inputbase-starticon {

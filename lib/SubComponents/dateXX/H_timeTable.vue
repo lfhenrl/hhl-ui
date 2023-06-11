@@ -1,48 +1,48 @@
 <template>
-  <div class="h_timetable__header">
+  <div class="H_datePicker__header">
     <div
-      class="h_timetable__headerValue"
+      class="H_datePicker__headerValue"
       @click="timeBase = 'hour'"
       :class="{
-        'col-pri': timeBase === 'hour',
+        'col-sec': timeBase === 'hour'
       }"
     >
       {{ getZeroInFront(value.hour) }}
     </div>
-    <div class="h_timetable__headerSemiColon">:</div>
+    :
     <div
-      class="h_timetable__headerValue"
+      class="H_datePicker__headerValue"
       @click="timeBase = 'minute'"
       :class="{
-        'col-pri': timeBase === 'minute',
+        'col-sec': timeBase === 'minute'
       }"
     >
       {{ getZeroInFront(value.minute) }}
     </div>
     <div v-show="showSeconds" class="flx-row-align-center">
-      <div class="h_timetable__headerSemiColon">:</div>
+      :
       <div
-        class="h_timetable__headerValue"
+        class="H_datePicker__headerValue"
         @click="timeBase = 'second'"
         :class="{
-          'col-pri': timeBase === 'second',
+          'col-sec': timeBase === 'second'
         }"
       >
         {{ getZeroInFront(value.second) }}
       </div>
     </div>
   </div>
-  <div class="h_timeTable__table">
+  <div class="H_timeTable__table">
     <div
       v-for="(item, index) in time"
       @click="itemClick(index)"
       :key="index"
       :data-value="index"
       :selected="selectedIndex === index"
-      class="h_timeTable__tableItem"
+      class="H_timeTable__tableItem"
       :class="{
-        h_timeTable__tableItemActive: (index < 24 && timeBase === 'hour') || timeBase !== 'hour',
-        h_datePicker__itemSelected: selectedIndex === index,
+        H_timeTable__tableItemActive: (index < 24 && timeBase === 'hour') || timeBase !== 'hour',
+        H_datePicker__itemSelected: selectedIndex === index
       }"
     >
       {{ item }}
@@ -51,11 +51,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-
+import { ref, computed } from "vue";
 const props = defineProps({
   modelValue: { type: Object, default: { hour: 0, minute: 0, second: 0 } },
-  showSeconds: { default: false, type: Boolean },
+  showSeconds: { default: false, type: Boolean }
 });
 
 const emit = defineEmits(["update:modelValue"]);
@@ -72,7 +71,7 @@ const value = computed({
   set: (val: any) => {
     timeBase.value = "hour";
     emit("update:modelValue", val);
-  },
+  }
 }) as any;
 
 const selectedIndex = computed(() => {
@@ -112,38 +111,7 @@ const itemClick = (index: number) => {
 </script>
 
 <style>
-.h_timetable__header {
-  font-family: var(--comp-font-family);
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  text-align: center;
-  justify-content: center;
-  font-size: 28px;
-  font-weight: bold;
-  background-color: var(--col-bg-3);
-  color: var(--col-txt-1);
-  height: 44px;
-}
-
-.h_timetable__headerValue {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2px;
-  cursor: pointer;
-}
-
-.h_timetable__headerSemiColon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 1px 5px 1px;
-}
-
-.h_timeTable__table {
+.H_timeTable__table {
   display: grid;
   grid-template-columns: repeat(8, 28px);
   grid-template-rows: repeat(8, 28px);
@@ -154,7 +122,7 @@ const itemClick = (index: number) => {
   font-family: var(--comp-font-family);
 }
 
-.h_timeTable__tableItem {
+.H_timeTable__tableItem {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,19 +132,14 @@ const itemClick = (index: number) => {
   pointer-events: none;
 }
 
-.h_timeTable__tableItemActive {
+.H_timeTable__tableItemActive {
   cursor: pointer;
   opacity: 1;
   pointer-events: all;
 }
 
-.h_timeTable__tableItem:hover {
+.H_timeTable__tableItem:hover {
   background-color: bisque;
   color: black;
-}
-
-.flx-row-align-center {
-  display: flex;
-  flex-direction: row;
 }
 </style>

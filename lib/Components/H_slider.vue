@@ -1,17 +1,17 @@
 <template>
-  <H_inputbase class="h_slider col-pri" :label="label" :movelabel="true">
+  <H_inputBase class="h_slider col-pri" :label="label" :movelabel="true">
     <div class="h_slider_inner">
       <div class="h_slider_innerBox">
         <div class="h_slider_info" :style="{ left: posProcent }">{{ modelValue }}</div>
       </div>
-      <input type="range" :value="modelValue" @input="changed" :disabled="disabled" />
+      <input type="range" :value="modelValue" @input="changed" />
     </div>
-  </H_inputbase>
+  </H_inputBase>
 </template>
 
 <script setup lang="ts">
-import H_inputbase from "./H_inputBase.vue";
 import { computed } from "vue";
+import H_inputBase from "../SubComponents/H_inputBase.vue";
 
 const P = defineProps({
   modelValue: {
@@ -54,6 +54,8 @@ function changed(e: any) {
 .h_slider_inner {
   position: relative;
   display: grid;
+  font-size: var(--comp-font-size);
+  font-family: var(--comp-font-family);
   background-color: transparent !important;
   flex: 1;
   margin: 0 5px;
@@ -75,13 +77,11 @@ function changed(e: any) {
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 27px;
+  width: 26px;
   border-radius: 4px;
   line-height: 1;
   pointer-events: none;
   font-size: 11px;
-  margin-left: 1px;
-  color: var(--current-txt-col);
 }
 
 .h_slider input[type="range"] {

@@ -1,20 +1,21 @@
 <template>
-  <div class="H_pop" ref="H_pop">
-    <div ref="referance" class="H_pop__referance">
-      <slot name="referance" />
-    </div>
-    <div ref="popup" class="H_pop__content">
+  <div block class="h_pop" ref="h_pop">
+    <div class="h_pop__referance" ref="reference"><slot name="referance" /></div>
+    <div ref="popup" class="h_pop__content" :isOpen="isOpen ? true : null">
       <slot />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, PropType, ref, watch } from "vue";
-import { computePosition, flip, shift, offset } from "@floating-ui/dom";
+import { computePosition, offset, flip, shift } from "@floating-ui/dom";
+import { PropType, onMounted, onUnmounted, ref, watch } from "vue";
 
-const props = defineProps({
-  modelValue: { type: Boolean, default: false },
+const P = defineProps({
+  modelValue: {
+    type: Boolean,
+    default: false
+  },
   placement: {
     type: String as PropType<
       | "top"
@@ -32,63 +33,109 @@ const props = defineProps({
     >,
     default: "bottom-start"
   },
+  offsetLeft: { type: Number, default: 0 },
+  offsetTop: { type: Number, default: 0 },
+  fullWidth: { type: Boolean, default: true },
+  position: { type: String as PropType<"absolute" | "fixed">, default: "absolute" },
+  inner: { type: Boolean, default: false },
   trigger: { type: String as PropType<"toggle" | "click" | "hover" | "none">, default: "toggle" },
   noOutsideClick: { type: Boolean, default: false },
   closePopupClick: { type: Boolean, default: false },
-  fullWidth: { type: Boolean, default: false },
-  inner: { type: Boolean, default: false },
-  offsetLeft: { type: Number, default: 0 },
-  offsetTop: { type: Number, default: 0 },
   delayOnMouseOver: { type: String, default: "100" },
   delayOnMouseOut: { type: String, default: "400" }
 });
 
-const emit = defineEmits(["update:modelValue"]);
-
-const referance = ref();
-const H_pop = ref();
-const popup = ref();
-let isOpen = false;
+const E = defineEmits(["update:modelValue"]);
+const h_pop: any = ref(null);
+const reference: any = ref(null);
+const popup: any = ref(null);
+const isOpen = ref(false);
 let mouseOvertimer = {} as any;
+let delayClick = false;
 
 function Click(e: MouseEvent) {
-  if (H_pop.value?.contains(e.target)) {
+  if (h_pop.value?.contains(e.target)) {
     e.stopPropagation;
-    if (referance.value?.contains(e.target)) referanceClick();
+    if (reference.value?.contains(e.target)) referenceClick();
     if (popup.value?.contains(e.target)) popupClick();
   } else {
-    if (isOpen) outsideClick();
+    if (isOpen.value) outsideClick();
   }
 }
 
 watch(
-  () => props.modelValue,
+  () => P.modelValue,
   (val: boolean) => {
     if (val === true) {
+      delayClick = true;
       open();
+      setTimeout(() => (delayClick = false));
     } else {
       close();
     }
   }
 );
 
-function open() {
-  if (isOpen === true) return;
-  isOpen = true;
-  addEvents();
-  (popup.value as HTMLElement).classList.remove("close");
-  (popup.value as HTMLElement).classList.add("open");
+function mouseOver() {
+  if (P.modelValue === false) {
+    clearTimeout(mouseOvertimer);
+    mouseOvertimer = setTimeout(() => {
+      open();
+    }, parseInt(P.delayOnMouseOver));
+  }
+}
 
-  update();
-  emit("update:modelValue", true);
+function mouseOut() {
+  console.log("mouseOut");
+  clearTimeout(mouseOvertimer);
+  mouseOvertimer = setTimeout(() => {
+    close();
+  }, parseInt(P.delayOnMouseOut));
+}
+
+function referenceClick() {
+  if (P.trigger === "click") triggerClick();
+  else if (P.trigger === "toggle") triggerToggle();
+}
+
+function popupClick() {
+  if (P.closePopupClick) {
+    close();
+  }
+}
+
+function outsideClick() {
+  if (!P.noOutsideClick && !delayClick) {
+    close();
+  }
+}
+
+function triggerClick() {
+  if (isOpen.value === false) {
+    open();
+  }
+}
+
+function triggerToggle() {
+  if (isOpen.value === false) {
+    open();
+  } else {
+    close();
+  }
+}
+
+function open() {
+  if (isOpen.value === true) return;
+  isOpen.value = true;
+  addEvents();
+  Update();
+  E("update:modelValue", true);
 }
 
 function close() {
-  if (isOpen === false) return;
-  isOpen = false;
-  (popup.value as HTMLElement).classList.remove("open");
-  (popup.value as HTMLElement).classList.add("close");
-  emit("update:modelValue", false);
+  if (isOpen.value === false) return;
+  isOpen.value = false;
+  E("update:modelValue", false);
   removeEvents();
 }
 
@@ -103,155 +150,115 @@ function removeEvents() {
 }
 
 function resize() {
-  update();
+  Update();
 }
 
 function scroll() {
-  close();
+  Update();
 }
 
-function referanceClick() {
-  if (props.trigger === "click") triggerClick();
-  if (props.trigger === "toggle") triggerToggle();
-}
-
-function popupClick() {
-  if (props.closePopupClick) {
-    close();
+function Update() {
+  let w = reference.value?.offsetWidth + "px";
+  let h = reference.value?.offsetHeight;
+  if (!P.fullWidth) {
+    w = "auto";
   }
-}
-
-function outsideClick() {
-  if (!props.noOutsideClick) {
-    close();
+  if (!P.inner) {
+    h = 0;
   }
-}
-
-function mouseOver() {
-  if (props.modelValue === false) {
-    clearTimeout(mouseOvertimer);
-    mouseOvertimer = setTimeout(() => {
-      open();
-    }, parseInt(props.delayOnMouseOver));
-  }
-}
-
-function mouseOut() {
-  console.log("mouseOut");
-  clearTimeout(mouseOvertimer);
-  mouseOvertimer = setTimeout(() => {
-    close();
-  }, parseInt(props.delayOnMouseOut));
-}
-
-function triggerClick() {
-  if (isOpen === false) {
-    open();
-  }
-}
-
-function triggerToggle() {
-  if (isOpen === false) {
-    open();
-  } else {
-    close();
-  }
-}
-
-function update() {
-  setTimeout(() => {
-    let w = referance.value.offsetWidth + "px";
-    console.log("WWW", w, referance.value.clientWidth);
-    let h = referance.value.offsetHeight;
-    if (!props.fullWidth) {
-      w = "auto";
-    }
-    if (!props.inner) {
-      h = 0;
-    }
-    computePosition(referance.value, popup.value, {
-      placement: props.placement,
-      middleware: [
-        offset({
-          mainAxis: props.offsetTop - h,
-          crossAxis: props.offsetLeft
-        }),
-        flip(),
-        shift()
-      ]
-    }).then(({ x, y, placement }) => {
-      Object.assign(popup.value.style, {
-        left: `${x}px`,
-        top: `${y}px`,
-        minWidth: w
-      });
-
-      if (placement.startsWith("top")) {
-        popup.value.classList.add("isTop");
-      } else {
-        popup.value.classList.remove("isTop");
-      }
+  computePosition(reference.value, popup.value, {
+    placement: P.placement,
+    strategy: P.position,
+    middleware: [
+      flip(),
+      shift(),
+      offset({
+        mainAxis: P.offsetTop - h,
+        crossAxis: P.offsetLeft
+      })
+    ]
+  }).then(({ x, y, placement }) => {
+    Object.assign(popup.value.style, {
+      left: `${x}px`,
+      top: `${y}px`,
+      minWidth: w
     });
+
+    if (placement.startsWith("top")) {
+      popup.value.classList.add("isTop");
+    } else {
+      popup.value.classList.remove("isTop");
+    }
   });
 }
 
 onMounted(() => {
-  if (props.trigger === "hover") {
-    H_pop.value.addEventListener("mouseover", mouseOver);
-    H_pop.value.addEventListener("mouseleave", mouseOut);
+  if (P.trigger === "hover") {
+    h_pop.value.addEventListener("mouseover", mouseOver);
+    h_pop.value.addEventListener("mouseleave", mouseOut);
   } else {
     document.addEventListener("click", Click);
   }
+  setTimeout(() => {
+    popup.value.classList.add("isloadet");
+  }, 400);
 });
 
 onUnmounted(() => {
-  document.removeEventListener("scroll", scroll, true);
-  document.removeEventListener("click", Click);
+  removeEvents();
+  if (P.trigger === "hover") {
+    h_pop.value.removeEventListener("mouseover", mouseOver);
+    h_pop.value.removeEventListener("mouseleave", mouseOut);
+  } else {
+    document.removeEventListener("click", Click);
+  }
 });
 </script>
 
 <style>
-.H_pop__referance {
-  z-index: 9;
+.h_pop {
+  background-color: inherit;
 }
 
-.H_pop__content {
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  position: fixed;
-  display: none;
+.h_pop__content {
+  background-color: var(--col-bg-0);
+  visibility: hidden;
+  position: v-bind(position);
+  width: max-content;
+  z-index: 11;
+  animation: scale-display--reversed 0.3s;
+  animation-fill-mode: forwards;
   transform-origin: top;
-  z-index: 99;
 }
 
-.H_pop__content.isTop {
-  transform-origin: bottom;
+.h_pop__content.isloadet {
+  visibility: visible;
 }
 
-.H_pop__content.open {
-  display: flex;
+.h_pop__content[isOpen] {
   animation: scale-display 0.3s;
   animation-fill-mode: forwards;
 }
 
-.H_pop__content.close {
-  display: flex;
-  animation: scale-display--reversed 0.3s;
-  animation-fill-mode: forwards;
+.h_pop__content.isTop {
+  transform-origin: bottom;
 }
 
 @keyframes scale-display {
   0% {
+    display: block;
     opacity: 0;
     transform: scaleY(0);
   }
 
   20% {
+    display: block;
     opacity: 1;
     transform: scaleY(0);
   }
 
   100% {
+    display: block;
     opacity: 1;
     transform: scaleY(1);
   }
@@ -259,29 +266,21 @@ onUnmounted(() => {
 
 @keyframes scale-display--reversed {
   0% {
-    display: flex;
+    display: block;
     opacity: 1;
     transform: scaleY(1);
   }
+
   99% {
-    display: flex;
+    display: block;
     opacity: 0;
     transform: scaleY(0);
   }
+
   100% {
     display: none;
     opacity: 0;
     transform: scaleY(0);
   }
 }
-
-/* .H_pop__background {
-  position: fixed;
-  width: 200vw;
-  height: 200vh;
-  top: -100vh;
-  left: -100vw;
-  z-index: -1;
-  background-color: rgba(0, 255, 255, 0.359);
-} */
 </style>

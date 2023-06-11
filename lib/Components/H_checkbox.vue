@@ -1,124 +1,81 @@
 <template>
-  <label class="H_checkbox col-pri" :class="cl">
-    <input v-bind="$attrs" type="checkbox" class="H_checkbox__input" v-model="checkValue" :value="value" />
-    <svg viewBox="0 0 24 24" class="H_checkbox__box">
-      <path d="M1.73,12.91 8.1,19.28 22.79,4.59" stroke-width="3" />
-    </svg>
-    <span class="H_checkbox__label" v-if="label" :label-left="labelLeft">{{ label }}</span>
-    <div class="H_checkbox__spacer" @click.prevent></div>
-  </label>
+  <div class="h_checkbox col-primary">
+    <div
+      class="h_checkbox-container"
+      @click="Click"
+      @keyup.space="Click"
+      @keyup.enter="Click"
+      :checked="modelValue"
+      :label-left="labelLeft"
+    >
+      <svg viewBox="0 0 24 24" class="h_checkbox__box" tabindex="0">
+        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"></path>
+      </svg>
+      <span class="text-txtCol-2 select-none">{{ label }}</span>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed, PropType } from "vue";
-
-const props = defineProps({
+const P = defineProps({
   modelValue: {
     type: [String, Number, Boolean, Array],
     default: false
   },
   label: { type: String, default: "" },
-  value: { type: String, default: "" },
-  labelLeft: { type: Boolean, default: false },
-  size: {
-    type: String as PropType<"lg" | "md" | "sm">,
-    default: "md"
-  }
+  labelGap: { type: String, default: "10px" },
+  labelLeft: { type: Boolean, default: false }
 });
+const E = defineEmits(["update:modelValue", "changed"]);
 
-const emit = defineEmits(["update:modelValue", "changed"]);
-
-const cl = computed(() => {
-  return {
-    "H_checkbox-lg": props.size.includes("lg"),
-    "H_checkbox-sm": props.size.includes("sm")
-  };
-});
-
-const checkValue = computed({
-  get: () => props.modelValue as any,
-  set: (val: any) => {
-    emit("update:modelValue", val);
-  }
-});
+function Click() {
+  const val = !P.modelValue;
+  E("update:modelValue", val);
+}
 </script>
 
 <style>
-.H_checkbox {
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  box-sizing: border-box;
+.h_checkbox {
   display: inline-flex;
-  flex: 1;
-  height: 2.2em;
+  align-items: start;
+  justify-content: start;
+  background-color: transparent;
+}
+
+.h_checkbox-container {
+  display: inline-flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: start;
+  gap: v-bind(labelGap);
   cursor: pointer;
-  background-color: transparent !important;
 }
 
-.H_checkbox-sm {
-  font-size: 0.82em;
-}
-
-.H_checkbox-lg {
-  font-size: 1.2em;
-}
-
-.H_checkbox__box {
-  border: solid 2px var(--comp-border-color, rgba(0, 0, 0, 0.3));
+.h_checkbox__box {
+  border: solid 2px var(--col-txt-5, red);
   height: 1.2em;
   fill: transparent;
-  stroke-dasharray: 30;
-  stroke-dashoffset: 30;
-  stroke-width: 3;
   transition: all linear 200ms;
   line-height: 1rem;
   border-radius: 4px;
   margin-top: 0;
-  cursor: pointer;
   white-space: nowrap;
 }
 
-.H_checkbox .H_checkbox__input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
+.h_checkbox__box:focus-visible,
+.h_checkbox-container:hover .h_checkbox__box {
+  outline: 3px solid var(--current-bg-col);
+  outline-offset: 2px;
+  opacity: 0.5;
 }
 
-.H_checkbox .H_checkbox__input:checked + .H_checkbox__box {
+.h_checkbox-container[checked="true"] .h_checkbox__box {
   border-color: var(--current-bg-col);
   background-color: var(--current-bg-col);
-  stroke: currentColor;
-  stroke-dashoffset: 0;
+  fill: currentColor;
 }
 
-.H_checkbox .H_checkbox__label {
-  margin-left: 5px;
-  color: var(--comp-label-color, rgba(0, 0, 0, 0.6));
-  font-size: 1em;
-  font-weight: normal;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  width: auto;
-  white-space: nowrap;
-  line-height: 0.9em;
-}
-
-.H_checkbox .H_checkbox__spacer {
-  align-self: stretch;
-  flex: 1;
-  cursor: default;
-  top: 0;
-  bottom: 0;
-}
-
-.H_checkbox .H_checkbox__label[label-left="true"] {
-  order: -1;
-  margin-right: 5px;
-}
-
-.H_checkbox .H_checkbox__input:focus + .H_checkbox__box {
-  box-shadow: 0px 0px 5px 1px var(--comp-border-color-focus, dodgerblue);
+.h_checkbox-container[label-left="true"] {
+  flex-direction: row-reverse;
 }
 </style>

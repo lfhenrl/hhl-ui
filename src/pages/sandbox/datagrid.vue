@@ -3,8 +3,13 @@
     <div class="datagrid_localdata__box">
       <div class="Datagrid__toolbar">
         <H_btn @click="load" start-icon="zoom_out_map" end-icon="filter">Load</H_btn>
+        <H_inputText help-text-start="Please." label="Text input"></H_inputText>
         <H_spacer />
-        <H_inputText v-model="seek" clearable placeholder="Search" endIcon="search" style="max-width: 200px" />
+        <fieldset>
+          <legend>Personalia:</legend>
+          <label>First name:</label>
+        </fieldset>
+        <H_inputText v-model="seek" clearable endIcon="search" style="max-width: 200px" />
       </div>
 
       <H_datagridVscroll
@@ -54,12 +59,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { D_01_dec_2021_HHMM } from "../../../lib/utils/dateFormat";
-// import { dataHandler } from "../../../lib/Components/datagrid/virtualScroll";
-// import { JsonData } from "../../../lib/Components/datagrid/datahandlers/JsonData";
-import {JsonData, dataHandler } from "../../../lib/Components/datagrid"
+import { JsonData, dataHandler } from "../../../lib/Components/datagrid";
 import H_datagridVscroll from "../../../lib/Components/datagrid/H_datagrid-vscroll.vue";
 import H_column from "../../../lib/Components/datagrid/H_column.vue";
 import H_btn from "../../../lib/Components/H_btn.vue";
+import H_inputText from "../../../lib/Components/H_inputText.vue";
 import { getData } from "../../testData/data";
 
 const seek = ref("");

@@ -8,7 +8,7 @@ const HHL_holyDayNames = [
 ];
 
 // tslint:disable-next-line:variable-name
-const HHL_holyDays: any = {
+const HHL_holyDays = {
   // ********** fixed ****************************
   "5/6": "Constitution Day (Grundlovsdag)",
   "24/12": "Christmas Day",
@@ -16,6 +16,14 @@ const HHL_holyDays: any = {
   "26/12": "2nd Christmas Day",
   "31/12": "New Years Eve",
   "1/1": "New Years Day",
+
+  // ********* 2020 *****************************
+  "9/4/2020": HHL_holyDayNames[0], // SkærTorsdag
+  "10/4/2020": HHL_holyDayNames[1], // Langfredag
+  "13/4/2020": HHL_holyDayNames[2], // Påske
+  "8/5/2020": HHL_holyDayNames[3], // Store Bededag
+  "21/5/2020": HHL_holyDayNames[4], // Kristi Himmelfart
+  "1/6/2020": HHL_holyDayNames[5], // 2. Pinsedag
 
   // ********* 2021 *****************************
   "01/04/2021": HHL_holyDayNames[0], // SkærTorsdag

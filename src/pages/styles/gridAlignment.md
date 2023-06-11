@@ -30,9 +30,9 @@ Placement in the row axis (up-down) in the main container.
 The default is stretch.
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex flx_padding="0 0 20px 0">
-        <H_select v-model="val" :select-data="alignContentList" label="Align Content"></H_select>
-      </H_flex>
+      <H_row padding="0 0 20px 0">
+        <H_select v-model="val" :list="alignContentList" label="Align Content"></H_select>
+      </H_row>
       <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" grid_padding="15px" :grid_al_content="val">
         <div>1</div>
         <div>2</div>
@@ -76,9 +76,9 @@ Placement in the column axis (left-right) in the main container.
 The default is stretch.
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex flx_padding="0 0 20px 0">
-        <H_select v-model="val" :select-data="justifyContentList" label="Justify Content"></H_select>
-      </H_flex>
+      <H_row padding="0 0 20px 0">
+        <H_select v-model="val" :list="justifyContentList" label="Justify Content"></H_select>
+      </H_row>
       <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" grid_padding="15px" :grid_js_content="val">
         <div>1</div>
         <div>2</div>
@@ -122,16 +122,16 @@ Placement in the row axis (up-down) in each cell.
 The default is stretch.
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex flx_padding="0 0 20px 0">
-        <H_select v-model="val" :select-data="alignItemsList" label="Align items"></H_select>
-      </H_flex>
+      <H_row padding="0 0 20px 0">
+        <H_select v-model="val" :list="alignItemsList" label="Align items"></H_select>
+      </H_row>
       <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" grid_padding="15px" :grid_al_items="val">
         <div>1</div>
         <div>2</div>
         <div>3</div>
         <div>4</div>
         <div>5</div>
-      </H_grid>
+      </H_row>
     </template>
     <script>
       const val = ref("");
@@ -168,9 +168,9 @@ Placement in the column axis (up-down) in each cell.
 The default is stretch.
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex flx_padding="0 0 20px 0">
-        <H_select v-model="val" :select-data="justItemsList" label="Justify items"></H_select>
-      </H_flex>
+      <H_row padding="0 0 20px 0">
+        <H_select v-model="val" :list="justItemsList" label="Justify items"></H_select>
+      </H_row>
       <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" grid_padding="15px" :grid_js_items="val">
         <div>1</div>
         <div>2</div>
@@ -212,9 +212,9 @@ The default is stretch.
 The default is 0.
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex flx_padding="0 0 20px 0">
-        <H_input v-model="val"  label="Padding"></H_select>
-      </H_flex>
+      <H_row padding="0 0 20px 0">
+        <H_inputText v-model="val"  label="Padding"></H_inputText>
+      </H_row>
       <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" :grid_padding="val">
         <div>1</div>
         <div>2</div>
@@ -254,9 +254,9 @@ The default is stretch.<br/>
 The selected `alignSelf` class is bound to box 2.
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex flx_padding="0 0 20px 0">
-        <H_select v-model="val" :select-data="alignSelfList" label="Align self"></H_select>
-      </H_flex>
+      <H_row padding="0 0 20px 0">
+        <H_select v-model="val" :list="alignSelfList" label="Align self"></H_select>
+      </H_row>
       <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" grid_padding="15px">
         <div>1</div>
         <div :class="val">2</div>
@@ -314,9 +314,9 @@ The default is stretch.<br/>
 The selected `justSelf` class is bound to box 2.
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex flx_padding="0 0 20px 0">
-        <H_select v-model="val" :select-data="justSelfList" label="Justify self"></H_select>
-      </H_flex>
+      <H_row padding="0 0 20px 0">
+        <H_select v-model="val" :list="justSelfList" label="Justify self"></H_select>
+      </H_row>
       <H_grid grid-lines grid_row="auto" grid_col="auto auto auto" grid_padding="15px">
         <div>1</div>
         <div :class="val">2</div>

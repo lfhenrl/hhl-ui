@@ -92,7 +92,7 @@ Placement in the row axis (left-right) in the container.
     </script>
     <xstyle>
     .boxes {
-        height: 500px;
+        height: 200px;
         border: 1px solid var(--col-txt-3);
         margin-top: 20px;
         padding: 10px;
@@ -147,7 +147,7 @@ Sets the gaps (gutters) between rows and columns.
         align-items: center;
         justify-content: center;
         min-height: 100px;
-        min-width: 700px;
+        min-width: 33%;
         background-color: var(--col-pri);
         color: white;
       }
@@ -161,8 +161,8 @@ Sets the gaps (gutters) between rows and columns.
 
 ## No Wrap
 
- Sets whether flex items are forced onto one line or can wrap onto multiple lines..
- The default is wrap. But adding the property "no-wrap" will remove wrap.
+Sets whether flex items are forced onto one line or can wrap onto multiple lines..
+The default is wrap. But adding the property "no-wrap" will remove wrap.
 
 <hhl-live-editor title="" htmlCode='
     <template>
@@ -192,7 +192,7 @@ Sets the gaps (gutters) between rows and columns.
         align-items: center;
         justify-content: center;
         min-height: 100px;
-        min-width: 700px;
+        min-width: 33%;
         background-color: var(--col-pri);
         color: white;
       }
@@ -206,8 +206,8 @@ Sets the gaps (gutters) between rows and columns.
 
 ## Padding
 
- Sets the padding for the box;
- The default is 10px.
+Sets the padding for the box;
+The default is 10px.
 
 <hhl-live-editor title="" htmlCode='
     <template>
@@ -237,7 +237,7 @@ Sets the gaps (gutters) between rows and columns.
         align-items: center;
         justify-content: center;
         min-height: 100px;
-        min-width: 700px;
+        min-width: 33%;
         background-color: var(--col-pri);
         color: white;
       }

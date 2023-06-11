@@ -1,26 +1,27 @@
 <template>
-  <button class="H_btn col-pri" type="button" :class="cl"><H_icon v-if="icon !== ''" :icon="icon"></H_icon><slot></slot></button>
+  <button class="h_btn col-pri" type="button" :class="cl">
+    <H_icon v-if="icon !== ''" :icon="icon"></H_icon><slot></slot>
+  </button>
 </template>
 
 <script setup lang="ts">
-import { computed, PropType } from "vue";
-import H_icon from "./H_icon.vue";
+import { PropType, computed } from 'vue';
 
 const props = defineProps({
   type: {
     type: String as PropType<"standard" | "outline" | "text" | "icon" | "icon-outline" | "icon-text">,
-    default: "standard"
+    default: "standard",
   },
   round: {
     type: Boolean,
-    default: false
+    default: false,
   },
   size: {
     type: String as PropType<"lg" | "md" | "sm">,
-    default: "md"
+    default: "md",
   },
   icon: { type: String, default: "" },
-  iconRight: { type: Boolean, default: false }
+  iconRight: { type: Boolean, default: false },
 });
 
 const cl = computed(() => {
@@ -31,13 +32,13 @@ const cl = computed(() => {
     "btn-lg": props.size.includes("lg"),
     "btn-sm": props.size.includes("sm"),
     "btn-round": props.round,
-    "btn-icon-right": props.iconRight
+    "btn-icon-right": props.iconRight,
   };
 });
 </script>
 
 <style>
-.H_btn {
+.h_btn {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -57,72 +58,73 @@ const cl = computed(() => {
   font-family: var(--comp-font-family);
 }
 
-.H_btn:hover {
+.h_btn:hover {
   transform: scale(1.04);
 }
 
-.H_btn.btn-text:hover {
+.h_btn.btn-text:hover {
   background-color: var(--col-bg-2);
   color: var(--col-txt-2);
 }
 
-.H_btn:active {
-  transform: scale(0.93);
+.h_btn:active {
+  transform: scale(0.97);
 }
 
-.H_btn:focus {
-  box-shadow: 0px 0px 5px 1px var(--comp-border-color-focus, dodgerblue);
+.h_btn:focus {
+  box-shadow: 0px 0px 5px 1px var(--col-pri, dodgerblue);
 }
 
-.H_btn.btn-round {
+.h_btn.btn-round {
   border-radius: 50%;
 }
 
-.H_btn.btn-lg {
+.h_btn.btn-lg {
   --btn-size: 2em;
   --btn-icon-size: 1.3em;
   font-size: calc(var(--comp-font-size) * 1.5);
   line-height: calc(var(--comp-font-size) * 2.5);
 }
 
-.H_btn.btn-sm {
+.h_btn.btn-sm {
   --btn-size: 2em;
   --btn-icon-size: 1.3em;
   font-size: calc(var(--comp-font-size) * 0.9);
-  line-height: calc(var(--comp-font-size) * 1.5);
+  line-height: calc(var(--comp-font-size) * 1);
+  padding-bottom: 1px;
 }
 
-.H_btn.btn-outline {
+.h_btn.btn-outline {
   background-color: transparent;
   color: var(--current-bg-col);
   border: 1px solid var(--current-bg-col);
 }
 
-.H_btn.btn-text {
+.h_btn.btn-text {
   background-color: transparent;
   color: var(--current-bg-col);
   border-color: transparent;
 }
 
-.H_btn.btn-text.btn-icon {
+.h_btn.btn-text.btn-icon {
   color: var(--current-bg-col);
 }
 
-.H_btn.btn-icon {
+.h_btn.btn-icon {
   padding: 0;
   width: var(--btn-size);
 }
 
-.H_btn .H_icon {
-  --H_icon-size: var(--btn-icon-size);
+.h_btn .h_icon {
+  --h_icon-size: var(--btn-icon-size);
 }
 
-.H_btn.btn-icon-right .H_icon {
+.h_btn.btn-icon-right .h_icon {
   order: 1;
 }
 
-.H_btn.btn-icon .H_icon {
+.h_btn.btn-icon .h_icon {
   color: currentColor;
-  --H_icon-size: calc(var(--btn-icon-size) * 1.3);
+  --h_icon-size: calc(var(--btn-icon-size) * 1.3);
 }
 </style>
