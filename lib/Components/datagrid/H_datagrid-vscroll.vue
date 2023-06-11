@@ -19,7 +19,7 @@
         </div>
       </template>
       <template v-slot="data">
-        <H_row
+        <H_datagridRow
           :id="data.item.id"
           :data="data.item.data"
           :type="data.item.type"
@@ -42,24 +42,8 @@
         title="Auto adjust columns"
         @click="resizeColSize"
       />
-      <H_btn
-        size="sm"
-        round
-        type="icon-text"
-        icon="excel"
-        class="col-pri"
-        title="Download to excel"
-        @click="downloadExcel"
-      />
-      <H_btn
-        size="sm"
-        round
-        type="icon-text"
-        icon="zoom_out_map"
-        class="col-pri"
-        title="fullScreen"
-        @click="toggleFullScreen"
-      />
+      <H_btn size="sm" round type="icon-text" icon="excel" class="col-pri" title="Download to excel" @click="downloadExcel" />
+      <H_btn size="sm" round type="icon-text" icon="zoom_out_map" class="col-pri" title="fullScreen" @click="toggleFullScreen" />
       <H_spacer />
       <div class="H_datagrid__rowcount">{{ rowCount }} Loaded of {{ rowCountTotal }} Rows.</div>
     </div>
@@ -69,25 +53,25 @@
 
 <script setup lang="ts">
 import { onMounted, PropType, provide, ref, useSlots, watch } from "vue";
-import "./H_datagrid.css";
-import { Datagrid } from "./provide";
-import { Columns } from "./provide/Columns";
-import { toExcel } from "./toExcel";
+import "../../SubComponents/datagrid/H_datagrid.css";
+import { Datagrid } from "../../SubComponents/datagrid/provide";
+import { Columns } from "../../SubComponents/datagrid/provide/Columns";
+import { toExcel } from "../../SubComponents/datagrid/toExcel";
 import { debounce } from "../../utils/debounce";
-import H_row from "./H_row.vue";
-import H_virtualList from "../virtualList/H_virtualList.vue";
-import H_datagridHeadCell from "./sub/H_datagridHeadCell.vue";
-import H_datagridPopup from "./sub/popup/H_datagridPopup.vue";
+import H_datagridRow from "../../SubComponents/datagrid/H_datagridRow.vue";
+import H_virtualList from "../H_virtualList.vue";
+import H_datagridHeadCell from "../../SubComponents/datagrid/sub/H_datagridHeadCell.vue";
+import H_datagridPopup from "../../SubComponents/datagrid/sub/popup/H_datagridPopup.vue";
 import H_btn from "../H_btn.vue";
 import H_spacer from "../H_spacer.vue";
-import { iReturnData } from "./datagridTypes";
-import { dataController, iDataHandler } from "./virtualScroll";
+import { iReturnData } from "../../SubComponents/datagrid/datagridTypes";
+import { dataController, iDataHandler } from "../../SubComponents/datagrid/virtualScroll";
 import H_progressBar from "../H_progressBar.vue";
 
 const props = defineProps({
   dataKey: {
     type: String,
-    required: true,
+    required: true
   },
   groups: { type: Array as PropType<string[]>, default: () => [] },
   hideFooter: { type: Boolean, default: false },
@@ -98,12 +82,12 @@ const props = defineProps({
     type: Array as PropType<string[]>,
     default() {
       return [];
-    },
+    }
   },
   dataHandler: {
     type: Object as PropType<iDataHandler>,
-    required: true,
-  },
+    required: true
+  }
 });
 
 const emit = defineEmits(["rawdata", "rowClicked"]);
@@ -195,7 +179,7 @@ function tryGetRowClickData(ele?: HTMLElement) {
     return {
       orgindex: parseInt(ele.dataset.orgindex),
       field: ele.dataset.field,
-      id: ele.parentElement.dataset.id,
+      id: ele.parentElement.dataset.id
     };
   }
   return null;

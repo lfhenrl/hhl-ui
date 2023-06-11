@@ -4,7 +4,7 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_flex>
+      <H_row>
         <H_drag-drop v-model="list1" class="list">
           <template v-slot:item="{ item }">
             <!-- example -->
@@ -29,7 +29,7 @@
         <div class="json">
           {{ list2 }}
         </div>
-      </H_flex>
+      </H_row>
       </template>
       <script>
       const list1 = ref([

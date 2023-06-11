@@ -27,7 +27,6 @@ export default defineConfig({
         md.use(require("markdown-it-prism"));
       }
     }),
-    ,
     Pages({
       extensions: ["vue", "md"]
     })

@@ -34,12 +34,12 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import H_inputBase from "./H_inputBase.vue";
+import H_inputBase from "../SubComponents/H_inputBase.vue";
 
 const props = defineProps({
   modelValue: {
     type: [String, Number, Array, Boolean],
-    default: "",
+    default: ""
   },
   label: { type: String, default: "" },
   placeholder: { type: String, default: "" },
@@ -49,7 +49,7 @@ const props = defineProps({
   disabled: { type: Boolean, default: false },
   setFocus: { type: Boolean, default: false },
   clearable: Boolean,
-  validator: Array,
+  validator: Array
 });
 
 const emit = defineEmits(["start_icon_click", "end_icon_click", "update:modelValue", "input_click", "isValid"]);

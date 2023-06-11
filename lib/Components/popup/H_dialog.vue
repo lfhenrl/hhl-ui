@@ -8,7 +8,7 @@
     :no-shake="noShake"
     :movable="movable"
   >
-    <div class="H_dialog col-bg-0">
+    <div class="H_dialog col-bg-0 shadow-4">
       <div class="H_dialog__header col-pri" moveable-drag>
         <slot name="header" />
       </div>
@@ -21,11 +21,10 @@
 <script setup lang="ts">
 import H_modal from "./H_modal.vue";
 
-
-
-{/* @ts-ignore */}
-const emit = defineEmits(["update:modelValue"]);
-
+{
+  /* @ts-ignore */
+}
+defineEmits(["update:modelValue"]);
 
 // @ts-ignore
 const props = defineProps({
@@ -36,18 +35,12 @@ const props = defineProps({
   offset: { default: "50%", type: String },
   movable: { default: true, type: Boolean }
 });
-
-
-
 </script>
 
 <style>
 .H_dialog {
   overflow: auto;
   border-radius: 4px;
-  box-shadow: var(--comp-shadow);
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
 }
 
 .H_dialog__header {

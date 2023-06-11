@@ -1,7 +1,7 @@
 <template>
   <h_pop v-model="isOpen" full-width>
     <template v-slot:referance>
-      <h_inputbase
+      <H_inputbase
         class="h_select"
         :label="label"
         :start-icon="startIcon"
@@ -23,7 +23,7 @@
           @blur="focused = false"
           readonly
         />
-      </h_inputbase>
+      </H_inputbase>
     </template>
     <div class="h_select-list">
       <div row class="h_select-filter">
@@ -31,7 +31,7 @@
         <input type="text" class="h_select-filter-input" :maxlength="counter" :value="filter" @input="onInput" />
         <h_icon btn v-if="filter != ''" icon="close" class="text-txtCol-3" @click.stop="filter = ''" />
       </div>
-      <h_baseSelectList
+      <H_baseSelectList
         :modelValue="modelValue"
         @update:modelValue="$emit('update:modelValue', $event)"
         listGap="3px"
@@ -46,8 +46,8 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import h_baseSelectList from "./h_baseSelectList.vue";
-import h_inputbase from "../H_inputBase.vue";
+import H_baseSelectList from "../../SubComponents/H_baseSelectList.vue";
+import H_inputbase from "../../SubComponents/H_inputBase.vue";
 import { debounce } from "../../utils/debounce";
 import { validateFunc } from "../../utils/validateFunc";
 

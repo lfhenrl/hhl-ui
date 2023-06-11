@@ -1,6 +1,6 @@
 {
   "name": "hhl-ui",
-  "version": "1.0.27",
+  "version": "1.0.30",
   "description": "hhl-ui is a VUE library for personel use.",
   "homepage": "https://github.com/lfhenrl/hhl-ui",
   "author": {
@@ -11,15 +11,15 @@
   "main": "index.ts",
   "types": "index.d.ts",
   "files": [
-    "Components/**/",
-    "style/**/",
-    "utils/**/",
-    "Directives/**/",
+    "Components/*",
+    "style/*",
+    "utils/*",
+    "Directives/*",
     "style.css",
     "index.d.ts",
     "index.ts"
   ],
   "dependencies": {
-    "@floating-ui/dom": "^1.0.1"
+    "@floating-ui/dom": "^1.2.8"
   }
 }

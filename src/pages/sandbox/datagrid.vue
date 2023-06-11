@@ -4,7 +4,7 @@
       <div class="Datagrid__toolbar">
         <H_btn @click="load" start-icon="zoom_out_map" end-icon="filter">Load</H_btn>
         <H_spacer />
-        <H_input v-model="seek" clearable placeholder="Search" endIcon="search" style="max-width: 200px" />
+        <H_inputText v-model="seek" clearable placeholder="Search" endIcon="search" style="max-width: 200px" />
       </div>
 
       <H_datagridVscroll
@@ -13,7 +13,7 @@
         :search="seek"
         :searchFields="['id', 'val1', 'val2', 'val4']"
         :dataHandler="DataHandler"
-        :page-size="100"
+        :page-size="50"
         @rowClicked="rowClicked"
       >
         <H_column field="id" title="Action" type="action" :width="80">
@@ -54,10 +54,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { D_01_dec_2021_HHMM } from "../../../lib/utils/dateFormat";
-import { dataHandler } from "../../../lib/Components/datagrid/virtualScroll";
-import { JsonData } from "../../../lib/Components/datagrid/datahandlers/JsonData";
+// import { dataHandler } from "../../../lib/Components/datagrid/virtualScroll";
+// import { JsonData } from "../../../lib/Components/datagrid/datahandlers/JsonData";
+import {JsonData, dataHandler } from "../../../lib/Components/datagrid"
 import H_datagridVscroll from "../../../lib/Components/datagrid/H_datagrid-vscroll.vue";
 import H_column from "../../../lib/Components/datagrid/H_column.vue";
+import H_btn from "../../../lib/Components/H_btn.vue";
 import { getData } from "../../testData/data";
 
 const seek = ref("");

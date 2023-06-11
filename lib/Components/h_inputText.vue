@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import H_inputBase from "./H_inputBase.vue";
+import H_inputBase from "../SubComponents/H_inputBase.vue";
 import { debounce } from "../utils/debounce";
 import { validateFunc } from "../utils/validateFunc";
 

@@ -1,5 +1,5 @@
 <template>
-  <h_inputbase
+  <H_inputbase
     class="h_selectBox"
     :label="label"
     :HelpTextStart="HelpTextStart"
@@ -10,7 +10,7 @@
     :err_text="validate"
     :err_label="label"
   >
-    <h_baseSelectList
+    <H_baseSelectList
       row
       :modelValue="modelValue"
       @update:modelValue="$emit('update:modelValue', $event)"
@@ -21,10 +21,12 @@
       :multi="multi"
       :list="list"
     />
-  </h_inputbase>
+  </H_inputbase>
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
+import H_baseSelectList from "../../SubComponents/H_baseSelectList.vue";
 import { validateFunc } from "../../utils/validateFunc";
 
 const P = defineProps({
@@ -44,7 +46,7 @@ const P = defineProps({
   list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] },
   validator: Array
 });
-const E = defineEmits(["update:modelValue"]);
+defineEmits(["update:modelValue"]);
 
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>

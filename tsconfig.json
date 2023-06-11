@@ -21,7 +21,6 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "components.d.ts",
     "lib/**/*.vue",
     "lib/**/*.ts",
     "lib/**/*.d.ts"
