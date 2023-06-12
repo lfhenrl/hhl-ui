@@ -47,7 +47,8 @@ export default defineComponent({
     small: { type: Boolean, default: false }
   },
   setup() {
-    const dark = themeSelector();
+    const dark = themeSelector().darkTheme;
+
     return { dark };
   }
 });

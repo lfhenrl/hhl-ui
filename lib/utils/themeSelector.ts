@@ -2,6 +2,7 @@ import { ref, watch } from "vue";
 
 export function themeSelector() {
   const darkTheme = ref(false);
+  const loadTheme = ref(false);
 
   const storageTheme = localStorage.getItem("hhlThemeDark");
   if (storageTheme) {
@@ -9,7 +10,16 @@ export function themeSelector() {
     setTheme();
   }
 
-  watch(darkTheme, () => setTheme());
+  watch(darkTheme, () => {
+    loadTheme.value=false;
+    console.log("LOAD: ", loadTheme.value);
+    setTheme();
+    setTimeout(() => {
+      loadTheme.value=true;
+      console.log("LOAD: ", loadTheme.value);
+    },2000)
+   
+  });
 
   function setTheme() {
     if (darkTheme.value === true) {
@@ -19,7 +29,8 @@ export function themeSelector() {
       localStorage.setItem("hhlThemeDark", "false");
       document.body.classList.remove("darkTheme");
     }
+
   }
 
-  return darkTheme;
+  return {darkTheme,loadTheme};
 }

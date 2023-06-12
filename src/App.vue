@@ -1,5 +1,6 @@
 <template>
   <H_grid
+  v-if="ts.loadTheme"
     class="MainGridBox "
     @click="showMenu = false"
     grid_area="c1 c1 c1 ,c2 c3 c4"
@@ -20,6 +21,7 @@
       <router-view class="page-container__routerView" />
     </div>
     <menu-right :view="page" v-show="!medium" />
+    {{ ts.darkTheme }}
   </H_grid>
   <H_dialog-service />
 </template>
@@ -28,6 +30,7 @@
 import { defineComponent, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { makeRouteList, getRouteData } from "./components/routeData";
+import { themeSelector } from "../lib/utils/themeSelector";
 
 export default defineComponent({
   name: "App",
@@ -41,6 +44,8 @@ export default defineComponent({
     const small = ref(false);
     const page = ref({});
     const mainRoutes = ref();
+    const ts = themeSelector();
+
 
     function routeChanged() {
       const val = router.currentRoute.value.name as string;
@@ -93,7 +98,8 @@ export default defineComponent({
       mainRoutes,
       showMenu,
       medium,
-      small
+      small,
+      ts
     };
   }
 });
@@ -104,6 +110,7 @@ html {
   -webkit-text-size-adjust: 100%;
   height: 100vh;
   scroll-behavior: smooth;
+  background-color: var(--col-bg-0);
 }
 
 body {
@@ -146,8 +153,9 @@ pre {
   padding: 0 15px;
 }
 
-.MainGridBox {
+.MainGridBox { 
   overflow: hidden;
+  background-color: var(--col-bg-0);
   width: 100vw;
   height: 100vh;
 }

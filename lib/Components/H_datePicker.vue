@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import { PropType, ref, watch, computed } from "vue";
 import { validateFunc } from "../utils/validateFunc";
-import H_inputBase from "../SubComponents/H_inputBase.vue";
+import H_inputBase from "../SubComponents/H_inputBaseYY.vue";
 import H_baseDatePicker from "../SubComponents/date/H_baseDatePicker.vue";
 import H_baseTimePicker from "../SubComponents/date/H_baseTimePicker.vue";
 

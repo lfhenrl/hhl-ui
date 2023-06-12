@@ -47,7 +47,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import H_baseSelectList from "../../SubComponents/H_baseSelectList.vue";
-import H_inputbase from "../../SubComponents/H_inputBase.vue";
+import H_inputbase from "../../SubComponents/H_inputBaseYY.vue";
 import { debounce } from "../../utils/debounce";
 import { validateFunc } from "../../utils/validateFunc";
 

@@ -3,7 +3,7 @@
     <div class="datagrid_localdata__box">
       <div class="Datagrid__toolbar">
         <H_btn @click="load" start-icon="zoom_out_map" end-icon="filter">Load</H_btn>
-        <H_inputText help-text-start="Please." label="Text input"></H_inputText>
+        <H_inputText help-text-start="Please." label="Text input" v-model="seek"></H_inputText>
         <H_spacer />
         <fieldset>
           <legend>Personalia:</legend>
@@ -66,7 +66,7 @@ import H_btn from "../../../lib/Components/H_btn.vue";
 import H_inputText from "../../../lib/Components/H_inputText.vue";
 import { getData } from "../../testData/data";
 
-const seek = ref("");
+const seek = ref("seek");
 const json_data = new JsonData();
 json_data.setDataSource(getData(100000));
 
