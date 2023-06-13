@@ -5,39 +5,45 @@
     :clearable="clearable"
     :start-icon="startIcon"
     :end-icon="endIcon"
-    :HelpTextStart="HelpTextStart"
-    :HelpTextEnd="stringCounter"
+    :HelpTextStart="hintStart"
+    :HelpTextEnd="hintEnd"
     :disabled="disabled"
     :movelabel="move_label"
     :ErrorMessage="validate"
     :err_text="validate"
     :err_label="label"
+    :stBtn="onStartIconClick !== null"
+    :endBtn="onEndIconClick !== null"
+    @clearClick="$emit('update:modelValue', 0)"
+    @startIconClick="$emit('startIconClick')"
+    @endIconClick="$emit('endIconClick')"
   >
     <div class="h_inputNumber-container">
       <input
         type="number"
         class="h_inputNumber-input"
-        :maxlength="counter"
         :value="modelValue"
         inputmode="numeric"
         @input="onInput"
         @focus="focused = true"
         @blur="focused = false"
-        :readonly="readOnly"
+        @click="$emit('inputClick')"
+        :readonly="readonly"
+        :aria-label="label"
       />
       <div class="h_inputNumber-icons">
-        <H_icon btn @click.stop="CountUp" icon="expand_up" class="h_inputNumber-iconup text-txtCol-3" />
-        <H_icon btn @click.passive="CountDown" icon="expand_down" class="h_inputNumber-icondown text-txtCol-3" />
+        <H_icon btn @click.stop="CountUp" :disabled="readonly ? true : null" icon="expand_up" class="h_inputNumber-iconup text-txtCol-3" />
+        <H_icon btn @click.passive="CountDown" :disabled="readonly ? true : null" icon="expand_down" class="h_inputNumber-icondown text-txtCol-3" />
       </div>
     </div>
   </H_inputBase>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref} from "vue";
 import { debounce } from "../utils/debounce";
 import { validateFunc } from "../utils/validateFunc";
-import H_inputBase from "../SubComponents/H_inputBaseYY.vue";
+import H_inputBase from "../SubComponents/H_inputBase.vue";
 import H_icon from "./H_icon.vue";
 
 const P = defineProps({
@@ -48,18 +54,21 @@ const P = defineProps({
   label: { type: String, default: "" },
   clearable: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
-  readOnly: { type: Boolean, default: false },
+  readonly: { type: Boolean, default: false },
   startIcon: { type: String, default: "" },
   endIcon: { type: String, default: "" },
-  HelpTextStart: { type: String, default: "" },
-  HelpTextEnd: { type: String, default: "" },
+  hintStart: { type: String, default: "" },
+  hintEnd: { type: String, default: "" },
   step: { type: Number, default: 1 },
-  counter: { type: String, default: "" },
   debounce: { type: Number, default: 200 },
-  validator: { type: Array, default: [] }
+  validator: { type: Array, default: [] },
+  onStartIconClick: { type: Function, default: null },
+  onEndIconClick: { type: Function, default: null },
 });
-const E = defineEmits(["update:modelValue"]);
+
+const E = defineEmits(["update:modelValue","inputClick"]);
 const focused = ref(false);
+
 
 const move_label = computed(() => {
   if (P.startIcon != "") return true;
@@ -68,14 +77,9 @@ const move_label = computed(() => {
   return false;
 });
 
-const stringCounter = computed(() => {
-  if (P.counter == "") return P.HelpTextEnd;
-  let c = P.modelValue.toString().length;
-  return c.toString() + "/" + P.counter;
-});
 
 const debouncedUpdate = debounce(function (val: string) {
-  E("update:modelValue", val);
+  E("update:modelValue", parseFloat(val));
 }, P.debounce);
 
 const onInput = (e: any) => debouncedUpdate(e.target.value ?? "");
@@ -115,6 +119,8 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
 }
 
 .h_inputNumber-icons {
+  display: flex;
+  flex-direction: column;
   margin: -3px 0 -4px 0;
 }
 

@@ -4,10 +4,10 @@
 
 <hhl-live-editor title="" style="overflow:none" htmlCode='
     <template>
-    <H_flex> 
+    <H_row> 
           <H_date-picker label="Date" v-model="dato"></H_date-picker>
           <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
-    </H_flex>
+    </H_row>
     </template>
     <script>
       // import { * as dateFormat } from "components/utils/dateFormat";
@@ -31,11 +31,11 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_flex> 
+      <H_row> 
             <H_date-picker v-model="dato"/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
-      </H_flex>
+      </H_row>
       </template>
       <script>
             // import { * as dateFormat } from "components/utils/dateFormat";
@@ -61,11 +61,11 @@ By adding the property `long-date` you will get the week day name incluted
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_flex> 
+      <H_row> 
             <H_date-picker v-model="dato" long-date/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
-      </H_flex>
+      </H_row>
       </template>
       <script>
             // import { * as dateFormat } from "components/utils/dateFormat";
@@ -91,11 +91,11 @@ By adding the property `show-seconds`.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_flex> 
+      <H_row> 
             <H_date-picker v-model="dato" show-seconds/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
-      </H_flex>
+      </H_row>
       </template>
       <script>
             // import { * as dateFormat } from "components/utils/dateFormat";
@@ -122,11 +122,11 @@ You can select "datetime" (default) "date" or "time"
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_flex> 
+      <H_row> 
             <H_date-picker label="Date" v-model="dato" type="date"/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
-      </H_flex>
+      </H_row>
       </template>
       <script>
             // import { * as dateFormat } from "components/utils/dateFormat";
@@ -153,11 +153,11 @@ You can select "datetime" (default) "date" or "time"
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_flex> 
+      <H_row> 
             <H_date-picker label="Date" v-model="dato" type="time"/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
-      </H_flex>
+      </H_row>
       </template>
       <script>
             // import { * as dateFormat } from "components/utils/dateFormat";
@@ -183,11 +183,11 @@ By adding the property `hide-icon` you will remove the icon.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_flex> 
+      <H_row> 
             <H_date-picker label="Date" v-model="dato" hide-icon/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
-      </H_flex>
+      </H_row>
       </template>
       <script>
             // import { * as dateFormat } from "components/utils/dateFormat";
@@ -213,11 +213,11 @@ By adding the attribute `no-outside-click` you will prevent the popup to close w
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_flex> 
+      <H_row> 
             <H_date-picker label="Date" v-model="dato" no-outside-click/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
-      </H_flex>
+      </H_row>
       </template>
       <script>
             // import { * as dateFormat } from "components/utils/dateFormat";
@@ -243,11 +243,11 @@ By adding the attribute `disabled` you will disable the dateTime-picker
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_flex> 
+      <H_row> 
             <H_date-picker label="Date" v-model="dato" disabled/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
-      </H_flex>
+      </H_row>
       </template>
       <script>
             // import { * as dateFormat } from "components/utils/dateFormat";
@@ -273,11 +273,11 @@ By adding the attribute `readonly` it will be in readonly mode.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_flex> 
+      <H_row> 
             <H_date-picker label="Date" v-model="dato" readonly/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
-      </H_flex>
+      </H_row>
       </template>
       <script>
             // import { * as dateFormat } from "components/utils/dateFormat";
@@ -299,15 +299,15 @@ By adding the attribute `readonly` it will be in readonly mode.
 
 ## Hint Text
 
-You can show a hint text at the bottom of the datepicker by the `hint="Hint text"` property
+You can show a hint text at the bottom of the datepicker by adding `hint-start=""` and `hint-end=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_flex> 
-            <H_date-picker label="Date" v-model="dato" hint="Select a start date and time"/>
+      <H_row> 
+            <H_date-picker label="Date" v-model="dato" hint-start="hint-start." hint-end="hint-end."/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
-      </H_flex>
+      </H_row>
       </template>
       <script>
             // import { * as dateFormat } from "components/utils/dateFormat";
@@ -333,11 +333,11 @@ Validation by adding `validator=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_flex> 
+      <H_row> 
             <H_date-picker label="Date" v-model="dato" :validator="[v.dateRequired]"/>
             </H_date-picker>
             <H_input :model-value="formatDate(dato)" label="Value" ></H_input>
-      </H_flex>
+      </H_row>
       </template>
       <script>
             // import { * as dateFormat } from "components/utils/dateFormat";

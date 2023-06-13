@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import H_inputBase from "../SubComponents/H_inputBaseYY.vue";
+import H_inputBase from "../SubComponents/H_inputBase.vue";
 
 const props = defineProps({
   modelValue: {

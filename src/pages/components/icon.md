@@ -8,11 +8,11 @@ The default is `"24px"`.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_flex>
+    <H_row>
         <H_icon icon="edit" size="14px"></H_icon>
         <H_icon icon="edit"></H_icon>
         <H_icon icon="edit" size="44px"></H_icon>
-    </H_flex>
+    </H_row>
     </template>
 '>
 </hhl-live-editor>
@@ -25,11 +25,11 @@ If you add the prop `btn` you will get a hover effect-
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_flex>
+    <H_row>
         <H_icon btn icon="edit" size="14px"></H_icon>
         <H_icon btn icon="edit"></H_icon>
         <H_icon btn icon="edit" size="44px"></H_icon>
-    </H_flex>
+    </H_row>
     </template>
 '>
 </hhl-live-editor>
@@ -44,7 +44,7 @@ If you need a special color then just use `style="color: purple"`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_flex>
+    <H_row>
         <H_icon icon="edit" class="col-txt-pri"></H_icon>
         <H_icon icon="edit" class="col-txt-sec"></H_icon>
         <H_icon icon="edit" class="col-txt-ok"></H_icon>
@@ -54,7 +54,7 @@ If you need a special color then just use `style="color: purple"`
         <H_icon icon="edit" class="col-txt-black"></H_icon>
         <H_icon icon="edit" class="col-txt-white"></H_icon>
         <H_icon icon="edit" style="color: purple"></H_icon>
-    </H_flex>
+    </H_row>
     </template>
 '>
 </hhl-live-editor>

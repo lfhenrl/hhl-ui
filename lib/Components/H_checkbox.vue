@@ -1,5 +1,5 @@
 <template>
-  <div class="h_checkbox col-primary">
+  <div class="h_checkbox col-pri">
     <div
       class="h_checkbox-container"
       @click="Click"
@@ -8,7 +8,7 @@
       :checked="modelValue"
       :label-left="labelLeft"
     >
-      <svg viewBox="0 0 24 24" class="h_checkbox__box" tabindex="0">
+      <svg viewBox="0 0 24 24" class="h_checkbox__box" tabindex="0" :class="cl">
         <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"></path>
       </svg>
       <span class="text-txtCol-2 select-none">{{ label }}</span>
@@ -16,7 +16,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts">import { PropType, computed } from 'vue';
+
 const P = defineProps({
   modelValue: {
     type: [String, Number, Boolean, Array],
@@ -24,9 +25,20 @@ const P = defineProps({
   },
   label: { type: String, default: "" },
   labelGap: { type: String, default: "10px" },
-  labelLeft: { type: Boolean, default: false }
+  labelLeft: { type: Boolean, default: false },
+  size: {
+    type: String as PropType<"lg" | "md" | "sm">,
+    default: "md"
+  }
 });
 const E = defineEmits(["update:modelValue", "changed"]);
+
+const cl = computed(() => {
+  return {
+    "H_switch-lg": P.size.includes("lg"),
+    "H_switch-sm": P.size.includes("sm")
+  };
+});
 
 function Click() {
   const val = !P.modelValue;
@@ -53,13 +65,21 @@ function Click() {
 
 .h_checkbox__box {
   border: solid 2px var(--col-txt-5, red);
-  height: 1.2em;
+  height: 20px;
   fill: transparent;
   transition: all linear 200ms;
   line-height: 1rem;
   border-radius: 4px;
   margin-top: 0;
   white-space: nowrap;
+}
+
+.h_checkbox__box.H_switch-sm {
+  height: 14px;
+}
+
+.h_checkbox__box.H_switch-lg {
+  height: 26px;
 }
 
 .h_checkbox__box:focus-visible,

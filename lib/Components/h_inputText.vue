@@ -12,6 +12,8 @@
     :ErrorMessage="validate"
     :err_text="validate"
     :err_label="label"
+    :stBtn="onStartIconClick !== null"
+    :endBtn="onEndIconClick !== null"
     @clearClick="$emit('update:modelValue', '')"
     @startIconClick="$emit('startIconClick')"
     @endIconClick="$emit('endIconClick')"
@@ -51,9 +53,11 @@ const P = defineProps({
   hintEnd: { type: String, default: "" },
   counter: { type: String, default: "" },
   debounce: { type: Number, default: 200 },
-  validator: Array
+  validator: Array,
+  onStartIconClick: { type: Function, default: null },
+  onEndIconClick: { type: Function, default: null },
 });
-const E = defineEmits(["update:modelValue", "inputClick", "startIconClick", "endIconClick"]);
+const E = defineEmits(["update:modelValue", "inputClick"]);
 const focused = ref(false);
 
 const move_label = computed(() => {

@@ -27,7 +27,7 @@
         </div>
       </H_pop>
     </div>
-    <H_switch v-model="dark" label="Dark" style="max-width: 65px; margin-left: 17px" />
+    <H_switch v-model="dark" label="Dark" style="max-width: 65px; margin-left: 17px; margin-right: 10px" />
   </nav>
 </template>
 

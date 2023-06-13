@@ -1,9 +1,9 @@
 <template>
   <div class="h_inputbase" @click="Click" :disabled="disabled ? true : undefined" :error="ErrorMessage != '' ? true : undefined">
     <label ref="_label" class="h_inputbase-label" :move="movelabel">{{ label }}</label>
-    <H_icon v-if="startIcon != ''" :icon="startIcon" class="h_inputbase-starticon" />
-    <H_icon v-if="endIcon != ''" :icon="endIcon" class="h_inputbase-endicon" />
-    <H_icon v-if="clearable" class="h_inputbase-clearicon" />
+    <H_icon v-if="startIcon != ''" :icon="startIcon" class="h_inputbase-starticon" :btn="stBtn ? true : null"/>
+    <H_icon v-if="endIcon != ''" :icon="endIcon" class="h_inputbase-endicon" :btn="endBtn ? true : null"/>
+    <H_icon btn v-if="clearable" class="h_inputbase-clearicon" />
     <div class="h_inputbase-slot"><slot /></div>
 
     <div class="h_inputbase-HelpText">
@@ -32,12 +32,13 @@ defineProps({
   endIcon: { type: String, default: "" },
   HelpTextStart: { type: String, default: "" },
   HelpTextEnd: { type: String, default: "" },
-  ErrorMessage: { type: String, default: "" }
+  ErrorMessage: { type: String, default: "" },
+  stBtn: { type: Boolean, default: false },
+  endBtn: { type: Boolean, default: false },
 });
 
 const E = defineEmits(["ClearClick", "click", "StartIconClick", "EndIconClick"]);
 const _label: any = ref();
-
 function Click(e: MouseEvent) {
   const ele = e.target as any;
   if (!ele) return null;
@@ -53,7 +54,7 @@ function Click(e: MouseEvent) {
 onMounted(() => {
   setTimeout(() => {
   setBgColor(_label.value);
-}, 200)
+}, 20)
 });
 </script>
 
@@ -69,6 +70,7 @@ onMounted(() => {
   padding: 0;
   width: 100%;
   min-height: 40px;
+  height: 40px;
   min-width: 200px;
   --col-icon: var(--col-txt-3);
 }

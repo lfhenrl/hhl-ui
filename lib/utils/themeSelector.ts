@@ -1,8 +1,10 @@
 import { ref, watch } from "vue";
 
+const darkTheme = ref(false);
+const loadTheme = ref(false);
+
 export function themeSelector() {
-  const darkTheme = ref(false);
-  const loadTheme = ref(false);
+
 
   const storageTheme = localStorage.getItem("hhlThemeDark");
   if (storageTheme) {
@@ -11,13 +13,13 @@ export function themeSelector() {
   }
 
   watch(darkTheme, () => {
-    loadTheme.value=false;
+    loadTheme.value=true;
     console.log("LOAD: ", loadTheme.value);
     setTheme();
     setTimeout(() => {
-      loadTheme.value=true;
+      loadTheme.value=false;
       console.log("LOAD: ", loadTheme.value);
-    },2000)
+    })
    
   });
 

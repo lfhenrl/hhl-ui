@@ -28,6 +28,7 @@ const H_radio = defineAsyncComponent(() => import("../lib/Components/H_radio.vue
 const H_switch = defineAsyncComponent(() => import("../lib/Components/H_switch.vue"));
 const H_checkbox = defineAsyncComponent(() => import("../lib/Components/H_checkbox.vue"));
 const H_inputText = defineAsyncComponent(() => import("../lib/Components/H_inputText.vue"));
+const H_inputNumber = defineAsyncComponent(() => import("../lib/Components/H_inputNumber.vue"));
 const H_textarea = defineAsyncComponent(() => import("../lib/Components/H_textarea.vue"));
 const H_select = defineAsyncComponent(() => import("../lib/Components/select/H_select.vue"));
 const H_grid = defineAsyncComponent(() => import("../lib/Components/layout/H_grid.vue"));
@@ -60,6 +61,7 @@ app.component("H_radio", H_radio);
 app.component("H_switch", H_switch);
 app.component("H_checkbox", H_checkbox);
 app.component("H_inputtext", H_inputText);
+app.component("H_inputnumber", H_inputNumber);
 app.component("H_textarea", H_textarea);
 app.component("H_select", H_select);
 app.component("H_grid", H_grid);

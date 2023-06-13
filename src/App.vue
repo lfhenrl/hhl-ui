@@ -1,6 +1,6 @@
 <template>
   <H_grid
-  v-if="ts.loadTheme"
+  v-if="!loadTheme"
     class="MainGridBox "
     @click="showMenu = false"
     grid_area="c1 c1 c1 ,c2 c3 c4"
@@ -21,7 +21,6 @@
       <router-view class="page-container__routerView" />
     </div>
     <menu-right :view="page" v-show="!medium" />
-    {{ ts.darkTheme }}
   </H_grid>
   <H_dialog-service />
 </template>
@@ -44,7 +43,7 @@ export default defineComponent({
     const small = ref(false);
     const page = ref({});
     const mainRoutes = ref();
-    const ts = themeSelector();
+    const loadTheme = themeSelector().loadTheme;
 
 
     function routeChanged() {
@@ -99,7 +98,7 @@ export default defineComponent({
       showMenu,
       medium,
       small,
-      ts
+      loadTheme
     };
   }
 });
@@ -107,8 +106,8 @@ export default defineComponent({
 <style>
 html {
   line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
   height: 100vh;
+  width: 100vw;
   scroll-behavior: smooth;
   background-color: var(--col-bg-0);
 }
@@ -121,10 +120,9 @@ body {
   overflow: hidden;
   margin: 0;
   padding: 0;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   height: 100vh;
+  width: 100vw;
 }
 
 ol,

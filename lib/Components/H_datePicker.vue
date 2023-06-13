@@ -6,6 +6,8 @@
     :disabled="disabled"
     :readonly="$attrs.readonly"
     :label="label"
+    :HelpTextStart="hintStart"
+    :HelpTextEnd="hintEnd"
     :ErrorMessage="validate"
     @isValid="$emit('isValid', $event)"
     class="h_datePicker"
@@ -36,7 +38,7 @@
 <script setup lang="ts">
 import { PropType, ref, watch, computed } from "vue";
 import { validateFunc } from "../utils/validateFunc";
-import H_inputBase from "../SubComponents/H_inputBaseYY.vue";
+import H_inputBase from "../SubComponents/H_inputBase.vue";
 import H_baseDatePicker from "../SubComponents/date/H_baseDatePicker.vue";
 import H_baseTimePicker from "../SubComponents/date/H_baseTimePicker.vue";
 
@@ -46,6 +48,8 @@ const P = defineProps({
   hideIcon: { default: false, type: Boolean },
   readonly: { type: Boolean, default: false },
   longDate: { default: false, type: Boolean },
+  hintStart: { type: String, default: "" },
+  hintEnd: { type: String, default: "" },
   showSeconds: { default: false, type: Boolean },
   noOutsideClick: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
