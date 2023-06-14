@@ -13,17 +13,17 @@ You control open and close by the v-model as boolean.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
         <H_btn @click="modal = true">Modal</H_btn>
         <H_modal v-model="modal">
-          <H_flex flx_direction="column" flx_padding="10px" class="col-bg-1 shadow-2">
+          <H_col class="col-bg-1 shadow-2">
             <div>----- This is the content. -----</div>
             <H_btn size="sm" @click="modal = false">
             CLOSE
             </H_btn>
-          </H_flex>
+          </H_col>
         </H_modal>
-      </H_flex>
+      </H_row>
     </template>
     <script>
       const modal = ref(false)
@@ -40,19 +40,19 @@ By adding the property `no-shake` You can remove the shaking.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
         <H_btn @click="modal = true">Modal</H_btn>
         <H_modal v-model="modal" no-shake>
-         <H_flex flx_direction="column" flx_padding="10px" class="col-bg-1 shadow-2">
+         <H_col  class="col-bg-1 shadow-2">
             <div>----- This is the content. -----</div>
             <H_btn size="sm" 
               @click="modal = false" 
               class="flx-self-align-end mt-25 col-ok" >
             CLOSE
             </H_btn>
-          </H_flex>
+          </H_col>
         </H_modal>
-      </H_flex>
+      </H_row>
     </template>
     <script>
       const modal = ref(false)
@@ -69,19 +69,19 @@ By adding the property `show-overlay` the background will be dimmed to indicate 
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
         <H_btn @click="modal = true">Modal</H_btn>
         <H_modal v-model="modal" show-overlay>
-          <H_flex flx_direction="column" flx_padding="10px" class="col-bg-1 shadow-2">
+          <H_col class="col-bg-1 shadow-2">
             <div>----- This is the content. -----</div>
             <H_btn size="sm" 
               @click="modal = false" 
               class="flx-self-align-end mt-25 col-ok" >
             CLOSE
             </H_btn>
-          </H_flex>
+          </H_col>
         </H_modal>
-      </H_flex>
+      </H_row>
     </template>
     <script>
       const modal = ref(false)
@@ -98,19 +98,19 @@ By adding the property `no-persistent` clicking outside will close the popup.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
         <H_btn @click="modal = true">Modal</H_btn>
         <H_modal v-model="modal" no-persistent>
-          <H_flex flx_direction="column" flx_padding="10px" class="col-bg-1 shadow-2">
+          <H_col class="col-bg-1 shadow-2">
             <div>----- This is the content. -----</div>
             <H_btn size="sm" 
               @click="modal = false" 
               class="flx-self-align-end mt-25 col-ok" >
             CLOSE
             </H_btn>
-          </H_flex>
+          </H_col>
         </H_modal>
-      </H_flex>
+      </H_row>
     </template>
     <script>
       const modal = ref(false)
@@ -128,20 +128,20 @@ The default is 50%.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
         <H_btn @click="open(`start`)">offSet ({{offset}})</H_btn>
         <H_modal v-model="modal" :offset="offset">
-          <H_flex flx_direction="column" flx_padding="10px" class="col-bg-1 shadow-2">
+          <H_col class="col-bg-1 shadow-2">
             <div>----- This is the content. -----</div>
             <H_btn size="sm" 
               @click="modal = false" 
               class="flx-self-align-end mt-25 col-ok" >
             CLOSE
             </H_btn>
-          </H_flex>
+          </H_col>
         </H_modal>
-        <H_input label="OffSet." v-model="offset"/>
-      </H_flex>
+        <H_inputText label="OffSet." v-model="offset"/>
+      </H_row>
     </template>
     <script>
       const modal = ref(false);

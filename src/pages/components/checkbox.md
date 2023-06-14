@@ -8,32 +8,12 @@
         <H_checkbox label="CheckBox 1" v-model="check"></H_checkbox>
         <H_checkbox label="CheckBox 2" v-model="check"></H_checkbox>    
         <H_checkbox label="CheckBox 3" v-model="check"></H_checkbox>
-        <H_input v-model="check" label="value"></H_input>
+        <H_inputText :model-value="check ? `true` : `false`" label="value"></H_inputText>
     </H_row>
     </template>
     <script>
         const check = ref(true);
         return {check}
-    </script>
-'>
-</hhl-live-editor>
-
-<br>
-
-## Data binding Array
-
-<hhl-live-editor title="" htmlCode='
-    <template>
-    <H_row>
-        <H_checkbox label="CheckBox 1" v-model="checkArray" value="value1"></H_checkbox>
-        <H_checkbox label="CheckBox 2" v-model="checkArray" value="value2"></H_checkbox>    
-        <H_checkbox label="CheckBox 3" v-model="checkArray" value="value3"></H_checkbox>
-        <H_input v-model="checkArray" label="value"></H_input>
-    </H_row>
-    </template>
-    <script>
-        const  checkArray = ref([]);
-        return {checkArray}
     </script>
 '>
 </hhl-live-editor>
@@ -48,7 +28,7 @@ You can change the label position to left by adding the prop `label-left`
     <template>
     <H_row>
         <H_checkbox label="label standard" v-model="check"></H_checkbox>
-        <H_checkbox label-left label="Label left" v-model="check"></H_checkbox>  
+        <H_checkbox label-left label="Label left" :value="check"></H_checkbox>  
         <H_spacer/>  
     </H_row>
     </template>

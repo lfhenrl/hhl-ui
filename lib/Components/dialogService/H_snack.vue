@@ -64,7 +64,7 @@ defineExpose({ close });
   z-index: 999;
   background-color: var(--col-bg-0);
   color: var(--col-txt-0);
-  box-shadow: var(--comp-shadow);
+  box-shadow: var(--shadow-5);
 }
 
 .H_snack__icon {

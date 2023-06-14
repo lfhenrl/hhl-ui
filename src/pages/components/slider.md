@@ -7,13 +7,13 @@ here the values are: `min="0"` and `min="100"`
 
 <hhl-live-editor title="" htmlCode=' 
     <template>
-    <H_flex>
+    <H_row>
         <H_slider v-model="value" min="0" max="100" label="Slider Label" class="col-err"></H_slider>
-        <H_input type="number" v-model="value" label="value"></H_input>
-    </H_flex>
+        <H_inputText type="number" v-model="value" label="Slider value"></H_inputText>
+    </H_row>
     </template>
     <script>
-        const value = ref(33);
+        const value = ref("33");
         return {value}
     </script>
 '>
@@ -34,7 +34,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_flex flx_direction="column" flx_align="stretch" flx_gap="20px">
+    <H_col>
         <H_slider v-model="value" min="0" max="100" label="col-pri" class="col-pri"></H_slider>
         <H_slider v-model="value" min="0" max="100" label="col-sec" class="col-sec"></H_slider>
         <H_slider v-model="value" min="0" max="100" label="col-ok" class="col-ok"></H_slider>
@@ -44,7 +44,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
         <H_slider v-model="value" min="0" max="100" label="col-black" class="col-black"></H_slider>
         <H_slider v-model="value" min="0" max="100" label="col-white" class="col-white"></H_slider>
         <H_slider v-model="value" min="0" max="100" label="special color" style="--current-bg-col: purple; color: white" label="purple"></H_slider>
-    </H_flex>
+    </H_col>
     </template>
     <script>
         const value = ref(33);
@@ -61,7 +61,7 @@ You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-        <H_flex flx_direction="column" flx_align="stretch">
+        <H_col>
             <H_slider disabled v-model="value" min="0" max="100" label="col-pri" class="col-pri"></H_slider>
             <H_slider disabled v-model="value" min="0" max="100" label="col-sec" class="col-sec"></H_slider>
             <H_slider disabled v-model="value" min="0" max="100" label="col-ok" class="col-ok"></H_slider>
@@ -71,7 +71,7 @@ You disable by adding the props `disabled`
             <H_slider disabled v-model="value" min="0" max="100" label="col-black" class="col-black"></H_slider>
             <H_slider disabled v-model="value" min="0" max="100" label="col-white" class="col-white"></H_slider>
             <H_slider disabled v-model="value" min="0" max="100" label="special color" style="--current-bg-col: purple; color: white" label="purple"></H_slider>
-        </H_flex>
+        </H_col>
     </template>
     <script>
         const value = ref(33);

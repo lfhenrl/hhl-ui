@@ -8,7 +8,7 @@
         <H_drag-drop v-model="list1" class="list">
           <template v-slot:item="{ item }">
             <!-- example -->
-            <div class="item">
+            <div class="item col-pri shadow-2">
               {{ item.title }}
             </div>
             <!-- or your own template -->
@@ -20,7 +20,7 @@
         <H_drag-drop v-model="list2" class="list" :max-items="3">
           <template v-slot:item="{ item }">
             <!-- example -->
-            <div class="item">
+            <div class="item col-pri shadow-2">
               {{ item.title }}
             </div>
             <!-- or your own template -->
@@ -52,7 +52,7 @@
         align-items: center;
         height: 400px;
         width: 140px;
-        gap: 5px;
+        gap: 8px;
         border: solid 1px var(--col-bg-4);
         padding: 5px;
       }
@@ -63,11 +63,10 @@
         background-color: var(--col-bg-4)
       }
       .item {
-        border: 1px solid var(--col-bg-4);
-        padding: 0 4px;
+        padding: 4px;
         width: 100px;
         text-align: center;
-        background-color: var(--col-pri)
+        border-radius: 4px;
       }
       </style>
 '>

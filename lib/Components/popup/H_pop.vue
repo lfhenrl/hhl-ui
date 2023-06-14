@@ -1,5 +1,5 @@
 <template>
-  <div block class="h_pop" ref="h_pop">
+  <div class="h_pop" ref="h_pop">
     <div class="h_pop__referance" ref="reference"><slot name="referance" /></div>
     <div ref="popup" class="h_pop__content" :isOpen="isOpen ? true : null">
       <slot />
@@ -42,7 +42,8 @@ const P = defineProps({
   noOutsideClick: { type: Boolean, default: false },
   closePopupClick: { type: Boolean, default: false },
   delayOnMouseOver: { type: String, default: "100" },
-  delayOnMouseOut: { type: String, default: "400" }
+  delayOnMouseOut: { type: String, default: "400" },
+  readonly: { type: Boolean, default: false }
 });
 
 const E = defineEmits(["update:modelValue"]);
@@ -126,6 +127,7 @@ function triggerToggle() {
 
 function open() {
   if (isOpen.value === true) return;
+  if (P.readonly === true) return;
   isOpen.value = true;
   addEvents();
   Update();

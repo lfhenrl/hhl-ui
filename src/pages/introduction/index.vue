@@ -2,11 +2,11 @@
   <div class="index">
     <h1>Introduction</h1>
     <h2>Installation</h2>
-    <div class="col-bg-2 p-3">npm i hhl-ui</div>
+    <div class="col-bg-2" style="padding: 5px">npm i hhl-ui</div>
     <p>This is how I setup my development</p>
-    <div class="flex flex-col col-txt-ok">
+    <H_col gap="6px" class="col-txt-ok">
       <router-link v-for="route in links" :key="route.id" class="cursor-pointer" :to="route.path">-{{ route.name }}</router-link>
-    </div>
+    </H_col>
   </div>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
   <div class="h_inputbase" @click="Click" :disabled="disabled ? true : undefined" :error="ErrorMessage != '' ? true : undefined">
     <label ref="_label" class="h_inputbase-label" :move="movelabel">{{ label }}</label>
-    <H_icon v-if="startIcon != ''" :icon="startIcon" class="h_inputbase-starticon" :btn="stBtn ? true : null"/>
-    <H_icon v-if="endIcon != ''" :icon="endIcon" class="h_inputbase-endicon" :btn="endBtn ? true : null"/>
+    <H_icon v-if="startIcon != ''" :icon="startIcon" class="h_inputbase-starticon" :btn="stBtn ? true : null" />
+    <H_icon v-if="endIcon != ''" :icon="endIcon" class="h_inputbase-endicon" :btn="endBtn ? true : null" />
     <H_icon btn v-if="clearable" class="h_inputbase-clearicon" />
     <div class="h_inputbase-slot"><slot /></div>
 
@@ -34,7 +34,7 @@ defineProps({
   HelpTextEnd: { type: String, default: "" },
   ErrorMessage: { type: String, default: "" },
   stBtn: { type: Boolean, default: false },
-  endBtn: { type: Boolean, default: false },
+  endBtn: { type: Boolean, default: false }
 });
 
 const E = defineEmits(["ClearClick", "click", "StartIconClick", "EndIconClick"]);
@@ -53,8 +53,8 @@ function Click(e: MouseEvent) {
 
 onMounted(() => {
   setTimeout(() => {
-  setBgColor(_label.value);
-}, 20)
+    setBgColor(_label.value);
+  }, 20);
 });
 </script>
 
@@ -68,9 +68,7 @@ onMounted(() => {
   border-radius: 4px;
   gap: 0;
   padding: 0;
-  width: 100%;
   min-height: 40px;
-  height: 40px;
   min-width: 200px;
   --col-icon: var(--col-txt-3);
 }

@@ -54,6 +54,7 @@ const props = defineProps({
 .H_dialog__footer {
   padding: 12px;
   display: flex;
+  gap: 10px;
   width: 100%;
 }
 </style>

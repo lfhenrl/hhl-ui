@@ -11,12 +11,13 @@
       <svg viewBox="0 0 24 24" class="h_checkbox__box" tabindex="0" :class="cl">
         <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"></path>
       </svg>
-      <span class="text-txtCol-2 select-none">{{ label }}</span>
+      <span class="col-txt-2 select-none">{{ label }}</span>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">import { PropType, computed } from 'vue';
+<script setup lang="ts">
+import { PropType, computed } from "vue";
 
 const P = defineProps({
   modelValue: {
@@ -49,7 +50,7 @@ function Click() {
 <style>
 .h_checkbox {
   display: inline-flex;
-  align-items: start;
+  align-items: center;
   justify-content: start;
   background-color: transparent;
 }
@@ -70,8 +71,9 @@ function Click() {
   transition: all linear 200ms;
   line-height: 1rem;
   border-radius: 4px;
-  margin-top: 0;
+  margin-top: 1px;
   white-space: nowrap;
+  outline: none;
 }
 
 .h_checkbox__box.H_switch-sm {
@@ -92,7 +94,7 @@ function Click() {
 .h_checkbox-container[checked="true"] .h_checkbox__box {
   border-color: var(--current-bg-col);
   background-color: var(--current-bg-col);
-  fill: currentColor;
+  fill: var(--current-txt-col);
 }
 
 .h_checkbox-container[label-left="true"] {

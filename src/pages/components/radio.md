@@ -8,7 +8,7 @@
         <H_radio label="Radio 1" v-model="radioVal" value="val1"></H_radio>
         <H_radio label="Radio 2" v-model="radioVal" value="val2"></H_radio>    
         <H_radio label="Radio 3" v-model="radioVal" value="val3"></H_radio>
-        <H_input v-model="radioVal" label="value"></H_input>
+        <H_inputText v-model="radioVal" label="value"></H_inputText>
     </H_row>
     </template>
     <script>

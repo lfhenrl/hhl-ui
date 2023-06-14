@@ -16,7 +16,7 @@ The other options are.<br>
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
           <H_pop>
             <template v-slot:referance>
               <H_btn>default (trigger)</H_btn>
@@ -41,12 +41,12 @@ The other options are.<br>
             </template>
             <div class="col-bg-warn box">Hello</div>
           </H_pop>
-        </H_flex> 
+        </H_row> 
     </template>
     <style>
       .box {
-        padding: 30px;
         width:100%;
+        padding: 30px;
       }
     </style>  
 '>
@@ -60,7 +60,7 @@ You can also use the v-model to control the open/close of the popup.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row align="center">
         <H_pop v-model="open">
          <template v-slot:referance>
               <H_btn>v-model</H_btn>
@@ -68,7 +68,7 @@ You can also use the v-model to control the open/close of the popup.
           <div class="col-bg-warn box">Hello</div>
         </H_pop>
         <H_checkbox v-model="open" label="open">
-      </H_flex>
+      </H_row>
     </template>
     <script>
     const open = ref(false)
@@ -91,14 +91,14 @@ The default is 100.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
         <H_pop trigger="hover" delay-on-mouse-over="1000">
           <template v-slot:referance>
               <H_btn>trigger="hover" + delay-on-mouse-over="1000"</H_btn>
           </template>
           <div class="col-bg-warn box">Hello</div>
         </H_pop>
-      </H_flex>
+      </H_row>
     </template>
 '>
 </hhl-live-editor>
@@ -112,13 +112,13 @@ The default is 300.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
         <H_pop trigger="hover" delay-on-mouse-out="1000">
           <template v-slot:referance>
               <H_btn>trigger="hover" + delay-on-mouse-out="1000"</H_btn>
           </template>
           <div class="col-bg-warn box">Hello</div>
-        </H_pop>
+        </H_row>
       </H_flex>
     </template>
 '>
@@ -132,14 +132,14 @@ By adding the attribute `close-popup-click` the popup will close when you click 
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
         <H_pop close-popup-click>
           <template v-slot:referance>
               <H_btn>close-popup-click"</H_btn>
           </template>
           <div class="col-bg-warn box">Hello</div>
         </H_pop>
-      </H_flex>
+      </H_row>
     </template>
     <script>
       const popup = ref(false);
@@ -156,7 +156,7 @@ By adding the attribute `no-outside-click` you will prevent the popup to close w
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
         <H_pop no-outside-click>
           <template v-slot:referance>
               <H_btn>no-outside-click"</H_btn>
@@ -169,7 +169,7 @@ By adding the attribute `no-outside-click` you will prevent the popup to close w
         </template>
         <div class="col-bg-warn box"><H_btn @click="popup=false">Close"</H_btn></div>
       </H_pop>
-      </H_flex>
+      </H_row>
     </template>
     <script>
       const popup = ref(false);
@@ -188,16 +188,16 @@ The default is `bottom-start`.<br>
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
         <H_pop :placement="placement">
           <template v-slot:referance>
               <H_btn>Open</H_btn>
           </template>
           <div class="col-bg-warn box">Hello</div>
         </H_pop>
-      <H_select :select-data="selectData" v-model="placement" label="Placement">
+      <H_select :list="selectData" v-model="placement" label="Placement">
       </H_select>
-    </H_flex>
+    </H_row>
     </template>
     <script>
       const placement = ref("bottom-start");
@@ -220,33 +220,13 @@ The default is `bottom-start`.<br>
 
 <br/>
 
-## Adjust component (referance) to the full width og the parent.
-
-By adding the property full-width the width of the popup will as minium be the same as the component (referance).
-
-<hhl-live-editor title="" htmlCode='
-    <template>
-      <H_flex>
-        <H_pop full-width>
-          <template v-slot:referance>
-              <H_btn>Open popup</H_btn>
-          </template>
-          <div class="col-bg-warn box">Hello</div>
-        </H_pop>
-    </H_flex>
-    </template>
-'>
-</hhl-live-editor>
-
-<br/>
-
 ## Adjust to the inner of the component (referance).
 
 By adding the property `inner` it will adjust the position to the inner boundaries.<br>
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
         <H_pop inner :placement="top===true ? `top-start` : `bottom-start`">
           <template v-slot:referance>
               <H_btn>Open popup</H_btn>
@@ -254,7 +234,7 @@ By adding the property `inner` it will adjust the position to the inner boundari
           <div class="col-bg-warn box">Hello</div>
         </H_pop>
         <H_checkbox label="Top" v-model="top"></hhl-checkbox>
-    </H_flex>
+    </H_frow>
     </template>
     <script>
       const top = ref(false);
@@ -271,7 +251,7 @@ By adding the property `offset-top` it will adjust the top position with the val
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
       <H_pop :offset-top="20" :placement="top===true ? `top-start` : `bottom-start`">
       <template v-slot:referance >
       <H_btn>Open popup</H_btn>
@@ -279,7 +259,7 @@ By adding the property `offset-top` it will adjust the top position with the val
       <div class="col-bg-warn box">Hello</div>
       </H_pop>
       <H_checkbox label="Top" v-model="top"></hhl-checkbox>
-      </H_flex>
+      </H_row>
     </template>
     <script>
         const top = ref(false);
@@ -296,14 +276,14 @@ By adding the property `offset-left` it will adjust the left position with the v
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_flex>
+      <H_row>
         <H_pop :offset-left="30">
           <template v-slot:referance>
               <H_btn>Open popup</H_btn>
           </template>
           <div class="col-bg-warn box">Hello</div>
         </H_pop>
-    </H_flex>
+    </H_row>
     </template>
 '>
 </hhl-live-editor>

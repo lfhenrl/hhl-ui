@@ -63,7 +63,7 @@ Multi selections by adding `multi`
       </H_row>
       </template>
       <script>
-            const selection = ref([]);
+            const selection = ref("");
             return { selection }
       </script>
 '>
@@ -90,7 +90,7 @@ Multi selections by adding `multi`
       </H_row>
       </template>
       <script>
-            const selection = ref([]);
+            const selection = ref("");
             return { selection }
       </script>
 '>
@@ -166,93 +166,3 @@ Readonly by adding `readonly`
 </hhl-live-editor>
 
 <br>
-
-## Min Height
-
-Min Height by adding `min-height="value px"`
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-      <H_row> 
-            <H_select min-height="500px"
-                  :list="[`nr1`, `nr2`, `nr3`]" 
-                  v-model="selection" label="Selector">
-            </H_select>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
-      </H_row>
-      </template>
-      <script>
-            const selection = ref("nr2");
-            return { selection }
-      </script>
-'>
-</hhl-live-editor>
-
-<br>
-
-## Max Height
-
-Max Height by adding `max-height="value px"`
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-      <H_row> 
-            <H_select max-height="90px"
-                  :list="[`nr1`, `nr2`, `nr3`]" 
-                  v-model="selection" label="Selector">
-            </H_select>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
-      </H_row>
-      </template>
-      <script>
-            const selection = ref("nr2");
-            return { selection }
-      </script>
-'>
-</hhl-live-editor>
-
-<br>
-
-## Min Width
-
-Min width by adding `min-width="value px"`
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-      <H_row> 
-            <H_select min-width="600px"
-                  :list="[`nr1`, `nr2`, `nr3`]" 
-                  v-model="selection" label="Selector">
-            </H_select>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
-      </H_row>
-      </template>
-      <script>
-            const selection = ref("nr2");
-            return { selection }
-      </script>
-'>
-</hhl-live-editor>
-
-<br>
-
-## Max Width
-
-Max width by adding `max-width="value px"`
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-      <H_row> 
-            <H_select max-width="90px"
-                  :list="[`nr1`, `nr2`, `nr3`]" 
-                  v-model="selection" label="Selector">
-            </H_select>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
-      </H_row>
-      </template>
-      <script>
-            const selection = ref("nr2");
-            return { selection }
-      </script>
-'>
-</hhl-live-editor>

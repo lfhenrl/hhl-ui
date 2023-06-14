@@ -4,7 +4,7 @@
       <div class="h_slider_innerBox">
         <div class="h_slider_info" :style="{ left: posProcent }">{{ modelValue }}</div>
       </div>
-      <input type="range" :value="modelValue" @input="changed" />
+      <input type="range" :value="modelValue" @input="changed" :aria-label="label" :name="label" />
     </div>
   </H_inputBase>
 </template>
@@ -50,6 +50,8 @@ function changed(e: any) {
 <style>
 .h_slider {
   background-color: transparent !important;
+  flex: 1 1 200px;
+  max-height: 40px;
 }
 .h_slider_inner {
   position: relative;
@@ -82,6 +84,7 @@ function changed(e: any) {
   line-height: 1;
   pointer-events: none;
   font-size: 11px;
+  padding-left: 2px;
 }
 
 .h_slider input[type="range"] {

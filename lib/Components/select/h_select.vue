@@ -1,5 +1,5 @@
 <template>
-  <h_pop v-model="isOpen" full-width>
+  <h_pop class="h_selectPop" v-model="isOpen" full-width :disabled="disabled ? 'true' : null" :readonly="readonly">
     <template v-slot:referance>
       <H_inputbase
         class="h_select"
@@ -26,7 +26,7 @@
       </H_inputbase>
     </template>
     <div class="h_select-list">
-      <div row class="h_select-filter">
+      <div class="h_select-filter" v-if="!hideFilter">
         <h_icon icon="search" class="text-txtCol-3" />
         <input type="text" class="h_select-filter-input" :maxlength="counter" :value="filter" @input="onInput" />
         <h_icon btn v-if="filter != ''" icon="close" class="text-txtCol-3" @click.stop="filter = ''" />
@@ -58,7 +58,8 @@ const P = defineProps({
   },
   label: { type: String, default: "" },
   disabled: { type: Boolean, default: false },
-  readOnly: { type: Boolean, default: false },
+  readonly: { type: Boolean, default: false },
+  hideFilter: { type: Boolean, default: false },
   startIcon: { type: String, default: "" },
   HelpTextStart: { type: String, default: "" },
   HelpTextEnd: { type: String, default: "" },
@@ -89,9 +90,21 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
 
 <style>
-.h_select {
+.h_inputbase.h_select {
   position: relative;
   background-color: inherit;
+  flex: 1 1 200px;
+  max-height: 40px;
+}
+
+.h_selectPop {
+  display: flex;
+  flex: 1 1 200px;
+}
+
+.h_selectPop .h_pop__referance {
+  display: flex;
+  flex: 1 1 200px;
 }
 
 .h_select-input {

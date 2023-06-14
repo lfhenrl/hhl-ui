@@ -28,6 +28,8 @@
       @blur="focused = false"
       @click="$emit('inputClick')"
       :readonly="readonly"
+      :aria-label="label"
+      :name="label"
     />
   </H_inputBase>
 </template>
@@ -55,7 +57,7 @@ const P = defineProps({
   debounce: { type: Number, default: 200 },
   validator: Array,
   onStartIconClick: { type: Function, default: null },
-  onEndIconClick: { type: Function, default: null },
+  onEndIconClick: { type: Function, default: null }
 });
 const E = defineEmits(["update:modelValue", "inputClick"]);
 const focused = ref(false);
@@ -82,6 +84,11 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
 
 <style>
+.h_inputbase.h_inputText {
+  flex: 1 1 40px;
+  max-height: 40px;
+}
+
 .h_inputText-input {
   display: inline-block;
   box-sizing: border-box;
