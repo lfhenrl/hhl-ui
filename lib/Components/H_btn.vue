@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import { PropType, computed } from 'vue';
+import H_icon from "./H_icon.vue"
 
 const props = defineProps({
   type: {

@@ -39,5 +39,6 @@ const wrap = computed(() => {
   padding: v-bind(padding);
   gap: v-bind(gap);
   flex-wrap: v-bind(wrap);
+  width: 100%;
 }
 </style>
