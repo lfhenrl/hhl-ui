@@ -65,10 +65,14 @@ import { computed, onBeforeUnmount, onMounted, PropType, provide, ref, watch } f
 import { chartGantt } from "../../SubComponents/charts/gantt/common";
 import { iGanttTimeItem } from "../../SubComponents/charts/gantt/scale/makeTimelist";
 // @ts-ignore:next-line
-import { vSplitpane } from "../../../Directives/v-splitpane";
+import { vSplitpane } from "../../Directives/v-splitpane";
 import GanttDatagrid from "../../SubComponents/charts/gantt/datagrid/GanttDatagrid.vue";
 import GanttEdit from "../../SubComponents/charts/gantt/edit/ganttEdit.vue";
 import { iGanttData } from "../../SubComponents/charts/gantt/common/ganttData";
+import H_virtualList from "../../Components/H_virtualList.vue"
+import GanttMonthItem from "../../SubComponents/charts/gantt/scale/ganttMonthItem.vue";
+import GanttWeekItem from "../../SubComponents/charts/gantt/scale/ganttWeekItem.vue";
+import GanttDayItem from "../../SubComponents/charts/gantt/scale/ganttDayItem.vue";
 
 const props = defineProps({
   barHeight: { type: Number, default: 30 },

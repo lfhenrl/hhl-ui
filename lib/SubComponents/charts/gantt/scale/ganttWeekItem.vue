@@ -59,7 +59,7 @@ watch(
 
 function MakeDayList() {
   Header.value = monthNames[props.timeData.month] + " " + props.timeData.year;
-  const list = {};
+  const list:any = {};
   let index = 0;
 
   for (var d = new Date(props.timeData.dayFirst); d <= props.timeData.dayLast; d.setDate(d.getDate() + 1)) {

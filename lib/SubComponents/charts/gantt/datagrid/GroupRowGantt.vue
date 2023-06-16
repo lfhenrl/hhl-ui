@@ -40,8 +40,10 @@
 import { computed, inject, PropType, ref } from "vue";
 import { debounce } from "../../../../utils/debounce";
 import { iDatagrid } from "../../../datagrid/provide";
-import H_icon from "../../../H_icon.vue";
+import H_icon from "../../../../Components/H_icon.vue";
 import { iChartGantt } from "../common";
+import H_datagridRowCell from "../../../datagrid/sub/H_datagridRowCell.vue"
+import H_rowGantt from "../datagrid/H_rowGantt.vue"
 // import H_rowGantt from "./H_rowGantt.vue";
 
 const props = defineProps({

@@ -1,7 +1,8 @@
 <template>
-  <div class="h_baseSelectList" @click="Click" @keyup.space="Click" @keyup.enter="Click" :row="row">
+  <div class="h_baseSelectList" @click="Click" @keyup.space="Click" @keyup.enter="Click"  :row="row ? 'true': null">
+    <div v-if="!row" style="height: 2px;"></div>
     <div
-      row
+     
       class="h_baseSelectList-item"
       v-for="item in filterList"
       :key="(item.value as string)"
@@ -26,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref, watch } from "vue";
 
 const P = defineProps({
   modelValue: {
@@ -42,7 +43,7 @@ const P = defineProps({
   list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] }
 });
 const E = defineEmits(["update:modelValue"]);
-let valueList: any = P.modelValue.split(",");
+const valueList: any = ref(P.modelValue.split(","))
 
 const optionlist = computed(() => {
   return P.list.map((ele: any) => {
@@ -53,12 +54,17 @@ const optionlist = computed(() => {
   });
 });
 
+watch(()=> P.modelValue, () =>{
+console.log("CHANGED");
+valueList.value = P.modelValue.split(",");
+})
+
 const filterFunc = (item: any) => item.label.toLowerCase().includes(P.filter.toLowerCase());
 const filterList = computed(() => optionlist.value.filter(filterFunc));
 
 function selected(item: any) {
   if (P.multi) {
-    return valueList.includes(item);
+    return valueList.value.includes(item);
   } else {
     return item === P.modelValue ? true : null;
   }
@@ -80,14 +86,20 @@ function Click(e: any) {
 }
 
 function setMultivalue(val: string) {
-  valueList = P.modelValue.split(",");
-  if (valueList.includes(val)) {
-    const index = valueList.indexOf(val);
-    valueList.splice(index, 1);
-  } else {
-    valueList.push(val);
+  if (P.modelValue==="") {   
+    valueList.value = [];
+    valueList.value.push(val);
+    E("update:modelValue", val);
+    return;
   }
-  E("update:modelValue", valueList.toString());
+  valueList.value = P.modelValue.split(",");
+  if (valueList.value.includes(val)) {
+    const index = valueList.value.indexOf(val);
+    valueList.value.splice(index, 1);
+  } else {
+    valueList.value.push(val);
+  }
+  E("update:modelValue", valueList.value.toString());
 }
 </script>
 

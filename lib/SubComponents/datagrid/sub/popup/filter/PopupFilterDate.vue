@@ -6,8 +6,9 @@
     <H_radio label="Greater than." v-model="data.condition" value="greater" />
     <H_radio label="Less than." v-model="data.condition" value="less" />
     <H_radio label="Between." v-model="data.condition" value="between" />
-    {{ test }}
+  
     <H_datePicker
+    style="margin-top: 12px"
       label="Date"
       v-model="date1"
       :validator="[validator1]"
@@ -16,6 +17,7 @@
       :disabled="data.condition === 'none'"
     />
     <H_datePicker
+    style="margin-top: 12px"
       v-show="data.condition === 'between'"
       v-model="date2"
       :validator="[validator2]"
@@ -26,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType, ref, watch } from "vue";
+import { PropType, ref, watch } from "vue";
 import H_radio from "../../../../../Components/H_radio.vue";
 import H_datePicker from "../../../../../Components/H_datePicker.vue";
 import { icolumnFilterData } from "../../../datagridTypes";
@@ -41,9 +43,6 @@ const Val2Valid = ref(true);
 const date1 = ref<any>(null);
 const date2 = ref<any>(null);
 
-const test = computed(() => {
-  return date1.value?.toJSON() ?? "null";
-});
 
 const dType: any = props.data.type === "date" ? "date" : "dateTime";
 

@@ -1,14 +1,14 @@
 <template>
   <div class="PopupFilterSelect">
-    <H_input v-model="searchValue" placeholder="Search" end-icon="search" type="text" clearable />
+    <H_inputText v-model="searchValue" placeholder="Search" end-icon="search" type="text" clearable />
     <div class="PopupFilterSelect__mainSelect">
-      <H_checkbox label="Select all." v-model="selectAll" />
+      <H_checkbox size="sm" label="Select all." v-model="selectAll" />
       <div style="flex: 1" />
-      <H_checkbox label="No filter." v-model="nofilter" />
+      <H_checkbox size="sm" label="No filter." v-model="nofilter" />
     </div>
 
     <div class="PopupFilterSelect__selectList" v-if="dataReady">
-      <H_checkbox :label="item.label" class="selectSize" v-model="selectedItems" :value="item.value" v-for="item in filter" />
+      <H_checkbox size="sm" :label="item.label" v-model="selectedItems" :value="item.value" v-for="item in filter" />
     </div>
     <div class="PopupFilterSelect____error" v-if="!data.isValid">All selected!! Same as no filter.</div>
   </div>
@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { computed, inject, onMounted, PropType, ref, watch } from "vue";
 import H_checkbox from "../../../../../Components/H_checkbox.vue";
-import H_input from "../../../../../Components/H_input.vue";
+import H_inputText from "../../../../../Components/H_inputText.vue";
 import { icolumnFilterData } from "../../../datagridTypes";
 import { iDatagrid } from "../../../provide";
 
@@ -143,8 +143,9 @@ watch(
   grid-auto-rows: min-content;
   overflow: auto;
   max-height: 260px;
+  gap:4px;
   height: 260px;
-  border: solid 1px var(--comp-border-color);
+  border: solid 1px var(--col-txt-6);
   padding: 3px 0 3px 3px;
 }
 
@@ -156,11 +157,9 @@ watch(
 
 .PopupFilterSelect > .PopupFilterSelect__mainSelect {
   display: flex;
+  margin: 4px 10px 4px 3px;
 }
 
-.PopupFilterSelect > .PopupFilterSelect__selectList > .H_checkbox {
-  height: 20px;
-}
 
 .PopupFilterSelect____error {
   font-size: 0.8em;

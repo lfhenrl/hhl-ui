@@ -84,7 +84,7 @@ onMounted(() => {
 .h_inputbase-label {
   display: block;
   position: absolute;
-  color: var(--col-txt-3);
+  color: var(--col-txt-2);
   top: 0;
   left: 0;
   padding: 0 5px;

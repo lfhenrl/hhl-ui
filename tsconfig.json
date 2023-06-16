@@ -20,7 +20,7 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
+    "src/**/*.vue",    
     "lib/**/*.vue",
     "lib/**/*.ts",
     "lib/**/*.d.ts"

@@ -75,25 +75,6 @@ Readonly by adding `readonly`
 
 <br>
 
-## Placeholder
-
-Placeholder by adding `placeholder="Type something."`
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-      <H_row>
-            <H_textarea placeholder="Type something." v-model="txt" label="Text input"></H_textarea>
-      </H_row>
-      </template>
-      <script>
-            const txt = ref("");
-            return {txt}
-      </script>
-'>
-</hhl-live-editor>
-
-<br>
-
 ## Input Click
 
 Input Click by adding @input_click=""
@@ -142,7 +123,7 @@ Start Icon by adding `@start_icon_click=""`
 <hhl-live-editor title="" htmlCode='
       <template>
       <H_row>
-            <H_textarea @start_icon_click="click(txt)" start-icon="mail"  v-model="txt" label="Text input"></H_textarea>
+            <H_textarea @start-icon-click="click(txt)" start-icon="mail"  v-model="txt" label="Text input"></H_textarea>
       </H_row>
       </template>
       <script>
@@ -178,12 +159,12 @@ Start Icon by adding `end-icon="iconName"`
 
 ## End Icon Click
 
-Start Icon by adding `@end_icon_click=""`
+End Icon by adding `@end_icon_click=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <H_row>
-            <H_textarea @end_icon_click="click(txt)" end-icon="mail"  v-model="txt" label="Text input"></H_textarea>
+            <H_textarea @end-icon-click="click(txt)" end-icon="mail"  v-model="txt" label="Text input"></H_textarea>
       </H_row>
       </template>
       <script>
@@ -200,12 +181,12 @@ Start Icon by adding `@end_icon_click=""`
 
 ## Hint text
 
-Hint text by adding `hint=""`
+Hint text by adding `hint-start=""` and `hint-end=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <H_row>
-            <H_textarea hint="Please type something."  v-model="txt" label="Text input"></H_textarea>
+            <H_textarea  hint-start="hint-start." hint-end="hint-end."  v-model="txt" label="Text input"></H_textarea>
       </H_row>
       </template>
       <script>

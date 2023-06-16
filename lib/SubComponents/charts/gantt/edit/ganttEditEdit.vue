@@ -2,7 +2,7 @@
   <H_dialog :modelValue="show" class="gantt_edit">
     <template #header>{{ data.subType }}</template>
     <div class="gantt_edit_container">
-      <H_input label="Title" v-model="data.text" />
+      <H_inputText label="Title" v-model="data.text" />
       <div class="gantt_edit_row" v-if="data.type !== 'group'">
         <H_datePicker label="Start time" v-model="data.startTime" type="date" />
         <H_datePicker
@@ -14,8 +14,8 @@
         />
       </div>
       <div class="gantt_edit_row" v-if="data.type !== 'group'">
-        <H_input label="Work days" type="number" v-model="workload" min="1" />
-        <H_input label="Work load" type="number" v-model="data.workLoad" max="100" min="0" />
+        <H_inputNumber label="Work days"  v-model="workload" min="1" />
+        <H_inputNumber label="Work load"  v-model="data.workLoad" max="100" min="0" />
       </div>
       <H_slider v-model="data.progress" min="0" max="100" />
     </div>
@@ -34,8 +34,11 @@
 import { computed, inject, reactive, ref, watch } from "vue";
 import { DateDiffDays, DateAddDays, DateGetToday } from "../../../../utils/dateFunctions";
 import { iChartGantt } from "../common";
-import H_input from "../../../H_input.vue";
-import H_datePicker from "../../../date/H_datePicker.vue";
+import H_inputText from "../../../../Components/H_inputText.vue";
+import H_inputNumber from "../../../../Components/H_inputNumber.vue";
+import H_btn from "../../../../Components/H_btn.vue";
+import H_spacer from "../../../../Components/H_spacer.vue";
+import H_datePicker from "../../../../Components/H_datePicker.vue";
 import { dateFromSeconds, secondsFromDate, TimeToPixcel } from "../chart/utils/converter";
 
 const props = defineProps({

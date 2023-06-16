@@ -142,7 +142,7 @@ Start Icon by adding `@start-icon-click=""`
 
 ## End Icon
 
-Start Icon by adding `end-icon="iconName"`
+End Icon by adding `end-icon="iconName"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
@@ -164,7 +164,7 @@ Start Icon by adding `end-icon="iconName"`
 
 ## End Icon Click
 
-Start Icon by adding `@end-icon-click=""`
+End Icon by adding `@end-icon-click=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>

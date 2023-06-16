@@ -1,6 +1,5 @@
 export default async function makeFlatData(dataObj: any, newData: any[]) {
   let LastElement: any = {};
-  console.log("dataObj", dataObj);
   for (const key in dataObj) {
     if (Object.prototype.hasOwnProperty.call(dataObj, key)) {
       LastElement = dataObj[key];

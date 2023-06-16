@@ -16,7 +16,8 @@
 <script setup lang="ts">
 import { inject } from "vue";
 import { DateWorkingDays } from "../../../../utils/dateFunctions";
-import H_dialog from "../../../popup/H_dialog.vue";
+import H_dialog from "../../../../Components/popup/H_dialog.vue";
+import H_btn from "../../../../Components/H_btn.vue";
 // import { DateAddDays } from "../../../../utils/dateFunctions";
 import { ganttItem } from "../chart/ganttItem";
 import { dateFromSeconds } from "../chart/utils/converter";

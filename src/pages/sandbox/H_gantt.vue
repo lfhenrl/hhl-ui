@@ -11,7 +11,7 @@
       <H_btn @click="toggleFullScreen" type="icon-text" icon="zoom_out_map" title="fullScreen"></H_btn>
       <div class="toolbarSpacer" />
       <div class="toolbarLabel">Resolution:</div>
-      <H_select v-model="scale" :select-data="[`Day`, `Week`, `Month`]" hide-filter />
+      <H_select v-model="scale" :list="[`Day`, `Week`, `Month`]" hide-filter />
       <div class="toolbarSpacer" />
     </div>
     <H_chartGantt @loaded="ganttLoaded" :scale="scale" />
@@ -21,9 +21,14 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { printDom, savePng } from "../../../lib/utils/printAndPng";
-import { iH_chartGantt } from "../../../lib/Components/charts/gantt/H_chartGanttTypes";
+import H_chartGantt from "../../../lib/Components/charts/H_chartGantt.vue"
+import { iH_chartGantt } from "../../../lib/SubComponents/charts/gantt/H_chartGanttTypes";
 import Excel from "../../../lib/utils/exportToExcel";
 import { getGanttData, saveGanttData } from "../../testData/firebase";
+import H_btn from "../../../lib/Components/H_btn.vue"
+import H_select from "../../../lib/Components/select/H_select.vue"
+
+
 
 const scale = ref<any>("Day");
 const H_gantt = ref();

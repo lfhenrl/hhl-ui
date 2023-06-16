@@ -15,7 +15,7 @@ export type iConnectors = {
 export class GanttData {
   public chart: iChartGantt;
   // public rawData?: any;
-  public dataStore = {};
+  public dataStore: any = {};
   public barItems: Array<iGanttItem> = [];
   public connectors: iConnectors = {};
   public activeBars: Array<string> = [];

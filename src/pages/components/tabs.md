@@ -20,13 +20,13 @@ Tabs are elements that help you organize and navigate multiple documents in a si
 
 <hhl-live-editor title="" htmlCode='
 		<template>
-			<H_flex>
+			<H_row>
 				<H_tabs>
-					<H_tab name="tab1" label="Tab 1."><H_flex flx_padding="20px">This is TAB 1...</H_flex></H_tab>
-					<H_tab name="tab2" label="Tab 2."><H_flex flx_padding="20px">This is TAB 2...</H_flex></H_tab>
-					<H_tab name="tab3" label="Tab 3."><H_flex flx_padding="20px">This is TAB 3...</H_flex></H_tab>
+					<H_tab name="tab1" label="Tab 1."><H_row>This is TAB 1...</H_row></H_tab>
+					<H_tab name="tab2" label="Tab 2."><H_row>This is TAB 2...</H_row></H_tab>
+					<H_tab name="tab3" label="Tab 3."><H_row>This is TAB 3...</H_row></H_tab>
 				</H_tabs>
-			</H_flex>
+			</H_row>
 		</template>
 '>
 </hhl-live-editor>
@@ -39,13 +39,13 @@ You can add `disabled` to a tab<br>
 
 <hhl-live-editor title="" htmlCode='
 		<template>
-			<H_flex>
+			<H_row>
 				<H_tabs>
-					<H_tab name="tab1" label="Tab 1."><H_flex flx_padding="20px">This is TAB 1...</H_flex></H_tab>
-					<H_tab disabled name="tab2" label="Tab 2."><H_flex flx_padding="20px">This is TAB 2...</H_flex></H_tab>
-					<H_tab name="tab3" label="Tab 3."><H_flex flx_padding="20px">This is TAB 3...</H_flex></H_tab>
+					<H_tab name="tab1" label="Tab 1."><H_row>This is TAB 1...</H_row></H_tab>
+					<H_tab disabled name="tab2" label="Tab 2."><H_row>This is TAB 2...</H_row></H_tab>
+					<H_tab name="tab3" label="Tab 3."><H_row>This is TAB 3...</H_row></H_tab>
 				</H_tabs>
-			</H_flex>
+			</H_row>
 		</template>
 '>
 </hhl-live-editor>
@@ -58,13 +58,13 @@ You can use a `will-change` event to do some work or validation before leaving t
 
 <hhl-live-editor title="" htmlCode='
 		<template>
-			<H_flex>
+			<H_row>
 				<H_tabs :will-change="canChange">
-					<H_tab name="tab1" label="Tab 1."><H_flex flx_padding="20px">This is TAB 1...</H_flex></H_tab>
-					<H_tab name="tab2" label="Tab 2."><H_flex flx_padding="20px">This is TAB 2...</H_flex></H_tab>
-					<H_tab name="tab3" label="Tab 3."><H_flex flx_padding="20px">This is TAB 3...</H_flex></H_tab>
+					<H_tab name="tab1" label="Tab 1."><H_row>This is TAB 1...</H_row></H_tab>
+					<H_tab name="tab2" label="Tab 2."><H_row>This is TAB 2...</H_row></H_tab>
+					<H_tab name="tab3" label="Tab 3."><H_row>This is TAB 3...</H_row></H_tab>
 				</H_tabs>
-			</H_flex>
+			</H_row>
 		</template>
 		<script>
     function canChange(e) {

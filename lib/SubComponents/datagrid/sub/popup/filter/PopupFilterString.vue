@@ -5,7 +5,7 @@
     <H_radio label="Equal to." v-model="data.condition" value="equal" />
     <H_radio label="Starts with." v-model="data.condition" value="startswith" />
     <H_radio label="Ends with." v-model="data.condition" value="endswith" />
-    <H_input
+    <H_inputText
       label="String"
       v-model="data.value1"
       type="text"
@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import { PropType, ref, watch } from "vue";
 import H_radio from "../../../../../Components/H_radio.vue";
-import H_input from "../../../../../Components/H_input.vue";
+import H_inputText from "../../../../../Components/H_inputText.vue";
 import { icolumnFilterData } from "../../../datagridTypes";
 
 const props = defineProps({

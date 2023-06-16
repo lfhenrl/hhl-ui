@@ -18,6 +18,9 @@
 import { ref, watch, inject } from "vue";
 import { iDatagrid } from "../../../datagrid/provide";
 import { iChartGantt } from "../common";
+import H_datagridGantt from "./H_datagridGantt.vue"
+import H_column from "../../../../Components/datagrid/H_column.vue"
+
 
 const props = defineProps({
   barHeight: { type: Number, default: 30 },

@@ -11,7 +11,7 @@
     :err_label="label"
   >
     <H_baseSelectList
-      row
+      :row="row"
       :modelValue="modelValue"
       @update:modelValue="$emit('update:modelValue', $event)"
       :filter="filter"
@@ -27,6 +27,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import H_baseSelectList from "../../SubComponents/H_baseSelectList.vue";
+import H_inputbase from "../../SubComponents/H_inputBase.vue"
 import { validateFunc } from "../../utils/validateFunc";
 
 const P = defineProps({
@@ -35,6 +36,7 @@ const P = defineProps({
     default: ""
   },
   label: { type: String, default: "" },
+  row: { type: Boolean, default: false },
   HelpTextStart: { type: String, default: "" },
   HelpTextEnd: { type: String, default: "" },
   disabled: { type: Boolean, default: false },

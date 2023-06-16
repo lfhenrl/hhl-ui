@@ -82,7 +82,7 @@ const cl = computed(() => {
 }
 
 .H_radio__box {
-  stroke: var(--comp-border-color, red);
+  stroke: var(--col-txt-5, red);
   cursor: pointer;
 }
 
@@ -104,7 +104,7 @@ const cl = computed(() => {
 
 .H_radio .H_radio__label {
   margin-left: 5px;
-  color: var(--comp-label-color, rgba(0, 0, 0, 0.6));
+  color: var(--col-txt-2, rgba(0, 0, 0, 0.6));
   font-size: 1em;
   font-weight: normal;
   cursor: pointer;

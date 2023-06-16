@@ -6,7 +6,7 @@
     <H_radio label="Greater than." v-model="data.condition" value="greater" />
     <H_radio label="Less than." v-model="data.condition" value="less" />
     <H_radio label="Between." v-model="data.condition" value="between" />
-    <H_input
+    <H_inputText
       label="Number"
       v-model="data.value1"
       type="number"
@@ -15,7 +15,7 @@
       @isValid="Val1Valid = $event"
       :disabled="data.condition === 'none'"
     />
-    <H_input
+    <H_inputText
       v-show="data.condition === 'between'"
       label="Number"
       v-model="data.value2"
@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { PropType, ref, watch } from "vue";
 import H_radio from "../../../../../Components/H_radio.vue";
-import H_input from "../../../../../Components/H_input.vue";
+import H_inputText from "../../../../../Components/H_inputText.vue";
 import { icolumnFilterData } from "../../../datagridTypes";
 
 const props = defineProps({

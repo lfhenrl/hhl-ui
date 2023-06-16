@@ -1,18 +1,21 @@
 <template>
   <H_inputBase
-    :label="label"
+  :label="label"
+    :clearable="clearable"
     :start-icon="startIcon"
     :end-icon="endIcon"
-    :movelabel="true"
-    :clearable="clearable"
-    :validator="validator"
+    :HelpTextStart="hintStart"
+    :HelpTextEnd="stringCounter"
     :disabled="disabled"
-    :readonly="$attrs.readonly"
-    :focus="focused"
-    :value="modelValue"
+    :movelabel="move_label"
+    :ErrorMessage="validate"
+    :err_text="validate"
+    :err_label="label"
+    :stBtn="onStartIconClick !== null"
+    :endBtn="onEndIconClick !== null"
     @clearClick="$emit('update:modelValue', '')"
-    @end_icon_click="$emit('end_icon_click')"
-    @start_icon_click="$emit('start_icon_click')"
+    @startIconClick="$emit('startIconClick')"
+    @endIconClick="$emit('endIconClick')"
     class="H_textarea"
   >
     <textarea
@@ -21,9 +24,9 @@
       :value="modelValue"
       :rows="Number(rows)"
       :aria-label="label"
-      :placeholder="placeholder"
+      :name="label"
       :class="{ H_textarea_autoGrow: !noGrow }"
-      @input="$emit('update:modelValue', Object($event.target).value)"
+      @input="onInput"
       @click="$emit('input_click')"
       @focus="handleFocus"
       @blur="handleBlur"
@@ -33,41 +36,68 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, computed } from "vue";
 import H_inputBase from "../SubComponents/H_inputBase.vue";
+import { debounce } from "../utils/debounce";
+import { validateFunc } from "../utils/validateFunc";
 
-const props = defineProps({
+const P = defineProps({
   modelValue: { type: String, default: "" },
   label: { type: String, default: "" },
-  placeholder: { type: String, default: "" },
   startIcon: { type: String, default: "" },
   endIcon: { type: String, default: "" },
+  clearable: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
-  clearable: Boolean,
+  readonly: { type: Boolean, default: false },
+  hintStart: { type: String, default: "" },
+  hintEnd: { type: String, default: "" },
+  counter: { type: String, default: "" },
+  debounce: { type: Number, default: 200 },
   validator: Array,
   rows: { type: String, default: "1" },
-  noGrow: { type: Boolean, default: false }
+  noGrow: { type: Boolean, default: false },
+  onStartIconClick: { type: Function, default: null },
+  onEndIconClick: { type: Function, default: null }
 });
 
-defineEmits(["start_icon_click", "end_icon_click", "update:modelValue", "input_click", "isValid"]);
+const E = defineEmits([ "update:modelValue", "input_click"]);
 
 const focused = ref(false);
 const input = ref<any>(null);
+const onInput = (e: any) => debouncedUpdate(e.target.value ?? "");
+const validate = computed(() => validateFunc(P.validator, P.modelValue));
 
 const focus = () => input.value?.focus();
 const handleFocus = () => (focused.value = true);
 const handleBlur = () => (focused.value = false);
 
+const move_label = computed(() => {
+  if (P.startIcon != "") return true;
+  if (P.modelValue != "") return true;
+  if (focused.value) return true;
+  return false;
+});
+
+const stringCounter = computed(() => {
+  if (P.counter == "") return P.hintEnd;
+  let c = P.modelValue.toString().length;
+  return c.toString() + "/" + P.counter;
+});
+
+const debouncedUpdate = debounce(function (val: string) {
+  E("update:modelValue", val);
+}, P.debounce);
+
 defineExpose({ focus });
 
 watch(
-  () => props.modelValue,
+  () => P.modelValue,
   () => calculateInputHeight()
 );
 onMounted(() => calculateInputHeight());
 
 function calculateInputHeight() {
-  if (input.value && !props.noGrow) {
+  if (input.value && !P.noGrow) {
     input.value.style.height = "0";
     const scrollHeight = input.value.scrollHeight;
     input.value.style.height = scrollHeight + "px";

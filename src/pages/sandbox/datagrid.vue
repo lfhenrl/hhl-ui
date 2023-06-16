@@ -1,14 +1,10 @@
 <template>
   <div class="datagrid_localdata">
     <div class="datagrid_localdata__box">
-      <div class="Datagrid__toolbar">
+      <div class="Datagrid__toolbar" style="margin-bottom: 16px;">
         <H_btn @click="load" start-icon="zoom_out_map" end-icon="filter">Load</H_btn>
-        <H_inputText help-text-start="Please." label="Text input" v-model="seek"></H_inputText>
+        <H_inputText label="Text input" v-model="seek"></H_inputText>
         <H_spacer />
-        <fieldset>
-          <legend>Personalia:</legend>
-          <label>First name:</label>
-        </fieldset>
         <H_inputText v-model="seek" clearable endIcon="search" style="max-width: 200px" />
       </div>
 
@@ -123,6 +119,7 @@ function rowClicked(e: any) {
   display: flex;
   align-items: center;
   padding: 4px;
+  gap: 10px;
 }
 
 .datagrid_localdata .box .box__headline {

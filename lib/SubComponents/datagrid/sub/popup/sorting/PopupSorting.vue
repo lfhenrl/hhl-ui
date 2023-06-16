@@ -3,10 +3,9 @@
     <H_radio label="None" v-model="column.sorting" value="none" />
     <H_radio label="Up" v-model="column.sorting" value="up" />
     <H_radio label="Down" v-model="column.sorting" value="down" />
-    <H_input
+    <H_inputNumber
       label="priority"
       v-model="sortIndex"
-      type="number"
       min="1"
       :max="maxSorting"
       v-show="sortIndex < 1000"
@@ -29,7 +28,7 @@
 <script setup lang="ts">
 import { computed, PropType, ref, inject } from "vue";
 import H_radio from "../../../../../Components/H_radio.vue";
-import H_input from "../../../../../Components/H_input.vue";
+import H_inputNumber from "../../../../../Components/H_inputNumber.vue";
 import H_btn from "../../../../../Components/H_btn.vue";
 import { validator as v } from "../../../../../utils/validator";
 import { deepClone } from "../../../../../utils/deepClone";
