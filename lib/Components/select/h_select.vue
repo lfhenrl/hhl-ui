@@ -1,5 +1,5 @@
 <template>
-  <h_pop class="h_selectPop" v-model="isOpen" full-width :disabled="disabled ? 'true' : null" :readonly="readonly">
+  <H_pop class="h_selectPop" v-model="isOpen" full-width :disabled="disabled ? 'true' : null" :readonly="readonly">
     <template v-slot:referance>
       <H_inputbase
         class="h_select"
@@ -41,7 +41,7 @@
         :filter="filter"
       />
     </div>
-  </h_pop>
+  </H_pop>
 </template>
 
 <script setup lang="ts">
@@ -50,6 +50,8 @@ import H_baseSelectList from "../../SubComponents/H_baseSelectList.vue";
 import H_inputbase from "../../SubComponents/H_inputBase.vue";
 import { debounce } from "../../utils/debounce";
 import { validateFunc } from "../../utils/validateFunc";
+import H_icon from "../H_icon.vue";
+import H_pop from "../popup/H_pop.vue";
 
 const P = defineProps({
   modelValue: {
@@ -95,11 +97,6 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
   background-color: inherit;
   flex: 1 1 200px;
   max-height: 40px;
-}
-
-.h_selectPop {
-  display: flex;
-  flex: 1 1 200px;
 }
 
 .h_selectPop .h_pop__referance {
