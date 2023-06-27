@@ -37,7 +37,6 @@ const H_col = defineAsyncComponent(() => import("../lib/Components/layout/H_col.
 
 const iconList = defineAsyncComponent(() => import("./components/icon-list.vue"));
 const H_datePicker = defineAsyncComponent(() => import("../lib/Components/H_datePicker.vue"));
-const H_modal = defineAsyncComponent(() => import("../lib/Components/popup/H_modal.vue"));
 const H_dialog = defineAsyncComponent(() => import("../lib/Components/popup/H_dialog.vue"));
 const H_spacer = defineAsyncComponent(() => import("../lib/Components/H_spacer.vue"));
 const H_dialogService = defineAsyncComponent(() => import("../lib/Components/dialogService/H_dialogService.vue"));
@@ -69,7 +68,6 @@ app.component("H_row", H_row);
 app.component("H_col", H_col);
 app.component("icon-list", iconList);
 app.component("H_datePicker", H_datePicker);
-app.component("H_modal", H_modal);
 app.component("H_dialog", H_dialog);
 app.component("H_dialogService", H_dialogService);
 app.component("H_tab", H_tab);

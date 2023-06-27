@@ -27,9 +27,9 @@
     </template>
     <div class="h_select-list">
       <div class="h_select-filter" v-if="!hideFilter">
-        <h_icon icon="search" class="text-txtCol-3" />
+        <H_icon icon="search" class="text-txtCol-3" />
         <input type="text" class="h_select-filter-input" :maxlength="counter" :value="filter" @input="onInput" />
-        <h_icon btn v-if="filter != ''" icon="close" class="text-txtCol-3" @click.stop="filter = ''" />
+        <H_icon btn v-if="filter != ''" icon="close" class="text-txtCol-3" @click.stop="filter = ''" />
       </div>
       <H_baseSelectList
         :modelValue="modelValue"
@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import H_baseSelectList from "../../SubComponents/H_baseSelectList.vue";
 import H_inputbase from "../../SubComponents/H_inputBase.vue";
 import { debounce } from "../../utils/debounce";
@@ -71,7 +71,9 @@ const P = defineProps({
   list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] },
   validator: Array
 });
+
 defineEmits(["update:modelValue"]);
+
 const focused = ref(false);
 const filter = ref("");
 const isOpen = ref(false);
@@ -82,6 +84,13 @@ const move_label = computed(() => {
   if (focused.value) return true;
   return false;
 });
+
+watch(
+  () => P.modelValue,
+  () => {
+    if (!P.multi) isOpen.value = false;
+  }
+);
 
 const debouncedUpdate = debounce(function (val: string) {
   filter.value = val;

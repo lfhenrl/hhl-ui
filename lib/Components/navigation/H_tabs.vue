@@ -11,7 +11,7 @@
         @click="changeTab(tab.props.name)"
       >
         <div class="H_tabs__tab_label">
-          <h_icon :icon="tab.props.icon" size="1.5em" v-if="tab.props.icon" btn />
+          <H_icon :icon="tab.props.icon" size="1.5em" v-if="tab.props.icon" btn />
           {{ tab.props.label }}
         </div>
       </div>
@@ -32,7 +32,7 @@ import H_icon from "../H_icon.vue";
 
 const props = defineProps({
   defaultTab: { type: String, default: "" },
-  willChange: { type: Function, default: () => true },
+  willChange: { type: Function, default: () => true }
 });
 
 const slots = useSlots();
@@ -43,7 +43,7 @@ const tabData = {
   selected: ref(),
   changed() {
     tabs.value = slots.default?.();
-  },
+  }
 };
 
 provide("tabData", tabData);
