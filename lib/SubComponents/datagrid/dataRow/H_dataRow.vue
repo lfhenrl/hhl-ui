@@ -1,9 +1,16 @@
 <template>
   <rendRowTemplate v-if="Columns.haveDataRowTemplate" />
   <template v-else>
-    <H_dataGroupRow v-if="row.___type === 'group'" :row="row" />
+    <H_dataGroupRow v-if="row._type === 'group'" :row="row" />
     <template v-else v-for="(col, index) in Columns.columns">
-      <div v-if="col.visibel.value" class="H_dataRow-Cell" :class="col.className" :data-index="index" data-type="rowcell">
+      <div
+        v-if="col.visibel.value"
+        class="H_dataRow-Cell"
+        :class="[col.className, col.props.className]"
+        :style="cellStyle(col)"
+        :data-index="index"
+        data-type="rowcell"
+      >
         <rend :col="col" :row="row" />
       </div>
     </template>
@@ -33,6 +40,11 @@ function rend(data: any) {
   } else {
     return format(value, data.col, data.row);
   }
+}
+
+function cellStyle(col: any) {
+  const value = P.row[col.props.field];
+  return col.props.cell_style?.(value, P.row) ?? "";
 }
 
 function rendRowTemplate() {

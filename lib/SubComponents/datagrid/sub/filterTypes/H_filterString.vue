@@ -82,7 +82,6 @@ function open() {
   value1.value = col.filter.value1;
   value2.value = col.filter.value2;
   logical.value = col.filter.logical;
-  console.log("xxxx222 ", col.filter.condition1);
 }
 
 function close() {}
@@ -90,7 +89,6 @@ function close() {}
 onMounted(() => {
   col.filter.condition1 = col.filter.condition1 === "" ? "contain" : col.filter.condition1;
   col.filter.condition2 = col.filter.condition2 === "" ? "contain" : col.filter.condition2;
-  console.log("xxxx ", col.filter.condition1);
 });
 
 defineExpose({ save, clear, open, close, canSave });

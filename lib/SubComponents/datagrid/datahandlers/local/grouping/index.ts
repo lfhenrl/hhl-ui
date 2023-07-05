@@ -1,9 +1,7 @@
 export async function grouping(arr: any[], groupList: string[], expandList: string[]) {
-  // const expData: string[] = ["Group 2.", "Group 2./SubGroup 2.", "Group 2./SubGroup 2./SubxxGroup 2."];
   let result: any = [];
   const level0 = groupBy(groupList[0], arr);
   result = level1Data(level0, result, arr, groupList, expandList);
-  // console.log("groupData", result);
   return result;
 }
 
@@ -71,7 +69,7 @@ function groupBy(property: any, data: any) {
   const objArr = data.reduce((acc: any, obj: any) => {
     let key = obj[property];
     if (!acc[key]) {
-      acc[key] = { id: key, count: 0, ___type: "group", level: 0, title: key, parent: "root" };
+      acc[key] = { id: key, count: 0, _type: "group", level: 0, title: key, parent: "root" };
     }
     acc[key].count++;
 

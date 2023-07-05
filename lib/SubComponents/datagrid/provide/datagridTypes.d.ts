@@ -44,7 +44,6 @@ export type icolumnData = {
     className: string;
     format: Function;
     cell_style: Function;
-    row_style: Function;
     select_list: [];
     no_sorting: boolean;
     sorting: string;

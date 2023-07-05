@@ -12,6 +12,7 @@
       :keeps="20"
       :class="guid"
       :selectedId="selectedId"
+      :item_style="row_style"
       @click="datagridClick"
     >
       <template v-slot:header>
@@ -33,6 +34,7 @@
       <H_headerRow role="headitem" />
       <div
         class="H_dataRow"
+        :style="rowStyle(row)"
         v-for="row in dataHandler.rows.value"
         :data-id="row[dataKey]"
         role="listitem"
@@ -81,11 +83,15 @@ const P = defineProps({
     required: true
   },
   virtualscroll: { type: Boolean, default: false },
+  row_style: { type: Function, default: null },
   dataHandler: {
     type: Object as PropType<any>,
     required: true
   }
 });
+
+const E = defineEmits(["rowClick", "headClick"]);
+
 const guid = `g${new Date().getTime().toString()}`;
 const slots = useSlots();
 const selectedId = ref("");
@@ -98,6 +104,7 @@ const ClickHandler = new datagridClickHandler(P.dataHandler.rows, P.dataKey, col
 provide("Columns", columns);
 
 columns.dataHandler = P.dataHandler;
+columns.rowStyle = P.row_style;
 columns.dataHandler.newDataEvent = () => {
   ClickHandler.newData(columns.dataHandler.rows.value);
   if (scrollPos > 0) {
@@ -114,9 +121,14 @@ columns.dataHandler.newDataEvent = () => {
 
 columns.loadColumns(slots, guid, H_datagridRef);
 
+function rowStyle(row: any) {
+  return columns.rowStyle?.(row) ?? "";
+}
+
 function datagridClick(e: MouseEvent) {
   const data = ClickHandler.click(e);
-  console.log("click ", data);
+  if (data && data.type.startsWith("row")) E("rowClick", data);
+  if (data && data.type.startsWith("head")) E("headClick", data);
   selectedId.value = data?.dataId ?? "";
 }
 

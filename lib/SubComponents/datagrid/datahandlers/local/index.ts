@@ -23,7 +23,6 @@ export class localData {
     const filterData = await filtering(this.dataSource, this.filterArray);
     const sortData = await Sorting.Sort(this.sortArray, filterData);
     const groupData = await grouping(sortData, this.groupList, this.expandList);
-    console.log("groupData ", groupData);
     this.rowsCount.value = sortData.length;
     this.rows.value = groupData;
     this.newDataEvent();

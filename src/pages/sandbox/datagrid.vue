@@ -8,13 +8,20 @@
         <H_inputText v-model="seek" clearable endIcon="search" style="max-width: 200px" />
       </div>
 
-      <H_datagrid data-key="id" :dataHandler="lData">
+      <H_datagrid
+        data-key="id"
+        :dataHandler="lData"
+        :row_style="rowStyle"
+        virtualscroll
+        @row-click="rowClick"
+        @head-click="headClick"
+      >
         <H_column field="id" title="Action" type="action">
           <template v-slot="col">
             <H_btn size="sm">{{ col.row.id }}</H_btn>
           </template>
         </H_column>
-        <H_column field="id" title="Id" type="number" filter_type="number" />
+        <H_column field="id" title="Id" type="number" filter_type="number" cell-class="sofus" />
         <H_column field="val1" title="Value 1" type="string" filter_type="string" class="sofus" />
         <H_column field="val6" title="Value 6" type="date" filter_type="datetime" :format="formatDate" />
         <H_column
@@ -62,10 +69,28 @@ function formatDate(value: any) {
   return D_01_dec_2021_HHMM(value);
 }
 
-function styleCell() {
-  return {
-    color: "orange"
-  };
+function headClick(data: any) {
+  console.log("headClick :", data);
+}
+
+function rowClick(data: any) {
+  console.log("rowClick :", data);
+}
+
+function rowStyle(row: any) {
+  if (row._type !== "row") return;
+  if (row.id > 5) {
+    return {
+      color: "orange"
+    };
+  }
+}
+
+function styleCell(val: string) {
+  if (val === "Row 4 cell 3.")
+    return {
+      color: "orange"
+    };
 }
 
 function load() {

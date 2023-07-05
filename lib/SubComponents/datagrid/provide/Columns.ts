@@ -16,7 +16,9 @@ export class Columns {
   public haveDataRowTemplate = false;
   public changeCounter = ref(0);
   public expandList: string[] = [];
-  public groupList: string[] = ["val2", "val3", "val4"];
+  // public groupList: string[] = ["val2", "val3", "val4"];
+  public groupList: string[] = [];
+  public rowStyle?: Function = undefined;
 
   loadColumns(slots: Slots, guid: string, H_datagridRef: any) {
     this.H_datagridRef = H_datagridRef;
@@ -33,7 +35,7 @@ export class Columns {
       const cssList = Array.from(this.StyleSheet.cssRules);
       const column: icolumnData = {
         dom: null,
-        className,
+        className: className,
         cssRule: cssList[0] as CSSStyleRule,
         visibel: ref(item.props.visibel ?? true),
         props: {
@@ -44,7 +46,6 @@ export class Columns {
           className: item.props.className,
           format: item.props.format,
           cell_style: item.props.cell_style,
-          row_style: item.props.row_style,
           select_list: item.props.select_list,
           no_sorting: item.props.no_sorting ?? false,
           sorting: item.props.sorting,

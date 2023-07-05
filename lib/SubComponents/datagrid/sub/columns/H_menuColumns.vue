@@ -59,13 +59,11 @@ let orgGroupArrayString = "";
 
 const sourceColumnsString = computed(() => {
   const x = sourceColumns.value.map((item: any) => item.orgIndex + "-" + item.visibel).toString();
-  console.log("sourceColumns: ", x);
   return x;
 });
 
 const groupColumnsString = computed(() => {
   const x = groupColumns.value.map((item: any) => item.orgIndex + "-" + item.visibel).toString();
-  console.log("groupColumns: ", x);
   return x;
 });
 

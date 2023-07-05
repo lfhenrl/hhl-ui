@@ -8,6 +8,7 @@
         :uniqueKey="item[dataKey]"
         :horizontal="isHorizontal"
         :setSize="onItemResized"
+        :item_style="item_style"
         :data="item"
         :data-id="item[dataKey]"
         :itemClass="itemClass"
@@ -38,6 +39,7 @@ const props = defineProps({
     type: [String, Number],
     required: true
   },
+  item_style: { type: Function, default: null },
   dataSources: {
     type: Array,
     required: true

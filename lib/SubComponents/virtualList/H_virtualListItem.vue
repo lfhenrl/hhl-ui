@@ -1,6 +1,6 @@
 <template>
   <transition appear name="fade">
-    <div ref="el" role="listitem" :class="itemClass">
+    <div ref="el" role="listitem" :class="itemClass" :style="itemStyle(data)">
       <slot />
     </div>
   </transition>
@@ -14,6 +14,7 @@ const props = defineProps({
     type: Function,
     default: {}
   },
+  item_style: { type: Function, default: null },
   horizontal: {
     type: Boolean
   },
@@ -53,6 +54,10 @@ onBeforeUnmount(() => {
     resizeObserver = null;
   }
 });
+
+function itemStyle(item: any) {
+  return props.item_style?.(item) ?? "";
+}
 
 function getCurrentSize() {
   return el.value ? el.value[shapeKey] : 0;
