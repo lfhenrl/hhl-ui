@@ -18,7 +18,7 @@
           type="text"
           class="h_select-input"
           :maxlength="counter"
-          :value="modelValue"
+          :value="labelValue"
           @focus="focused = true"
           @blur="focused = false"
           readonly
@@ -33,8 +33,9 @@
       </div>
       <H_baseSelectList
         :modelValue="modelValue"
+        v-model:labelValue="labelValue"
         @update:modelValue="$emit('update:modelValue', $event)"
-        listGap="3px"
+        listGap="5px"
         labelGap="10px"
         :multi="multi"
         :list="list"
@@ -77,6 +78,15 @@ defineEmits(["update:modelValue"]);
 const focused = ref(false);
 const filter = ref("");
 const isOpen = ref(false);
+const labelValue = ref("");
+
+// const LabelValue = computed(() => {
+//   if (P.multi) {
+//     return P.list.includes(P.modelValue);
+//   } else {
+//     return P.list.includes(P.modelValue);
+//   }
+// });
 
 const move_label = computed(() => {
   if (P.startIcon != "") return true;
@@ -135,13 +145,13 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
 .h_select-list {
   width: 100%;
   background-color: var(--col-bg-0);
-  box-shadow: var(--elevation-4);
+  box-shadow: var(--shadow-4);
   border: 1px solid var(--col-txt-5);
   border-radius: 4px;
 }
 
 .h_select-list .h_baseSelectList {
-  margin: 10px;
+  margin-bottom: 10px;
 }
 
 .h_select-filter {

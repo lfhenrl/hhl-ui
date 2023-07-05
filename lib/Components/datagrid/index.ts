@@ -1,2 +1,1 @@
-export { dataHandler } from "../../SubComponents/datagrid/virtualScroll";
-export { JsonData } from "../../SubComponents/datagrid/datahandlers/JsonData";
+export { localData } from "../../SubComponents/datagrid/datahandlers/local";

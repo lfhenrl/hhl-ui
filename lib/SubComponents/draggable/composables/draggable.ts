@@ -113,7 +113,7 @@ const useDraggableItem = (item: Ref<any>, position: Ref<number>, containerId: Re
 
     const offset = middleY.value ?? 0 - e.clientY;
     context.emit("itemDragOver", {
-      position: offset > 0 ? position.value : position.value + 1
+      position: (offset as number) > 0 ? position.value : position.value + 1
     });
   }, 50);
 

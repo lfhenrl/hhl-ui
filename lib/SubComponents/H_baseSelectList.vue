@@ -1,8 +1,7 @@
 <template>
-  <div class="h_baseSelectList" @click="Click" @keyup.space="Click" @keyup.enter="Click"  :row="row ? 'true': null">
-    <div v-if="!row" style="height: 2px;"></div>
+  <div class="h_baseSelectList" @click="Click" @keyup.space="Click" @keyup.enter="Click" :row="row ? 'true' : null">
+    <div v-if="!row" style="height: 2px"></div>
     <div
-     
       class="h_baseSelectList-item"
       v-for="item in filterList"
       :key="(item.value as string)"
@@ -34,6 +33,10 @@ const P = defineProps({
     type: String,
     default: ""
   },
+  labelValue: {
+    type: String,
+    default: ""
+  },
   filter: { type: String, default: "" },
   labelGap: { type: String, default: "10px" },
   listGap: { type: String, default: "10px" },
@@ -42,8 +45,9 @@ const P = defineProps({
   multi: { type: Boolean, default: false },
   list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] }
 });
-const E = defineEmits(["update:modelValue"]);
-const valueList: any = ref(P.modelValue.split(","))
+const E = defineEmits(["update:modelValue", "update:labelValue"]);
+const valueList: any = ref(P.modelValue.split(","));
+const sortAlphaNum = (a: any, b: any) => a.localeCompare(b, "en", { numeric: true });
 
 const optionlist = computed(() => {
   return P.list.map((ele: any) => {
@@ -54,10 +58,20 @@ const optionlist = computed(() => {
   });
 });
 
-watch(()=> P.modelValue, () =>{
-console.log("CHANGED");
-valueList.value = P.modelValue.split(",");
-})
+watch(
+  () => P.modelValue,
+  () => {
+    valueList.value = P.modelValue.split(",");
+    const val = optionlist.value
+      .filter((ele: any) => {
+        return valueList.value.includes(ele.value);
+      })
+      .map((ele: any) => ele.label)
+      .toString();
+    E("update:labelValue", val);
+  },
+  { immediate: true }
+);
 
 const filterFunc = (item: any) => item.label.toLowerCase().includes(P.filter.toLowerCase());
 const filterList = computed(() => optionlist.value.filter(filterFunc));
@@ -86,7 +100,7 @@ function Click(e: any) {
 }
 
 function setMultivalue(val: string) {
-  if (P.modelValue==="") {   
+  if (P.modelValue === "") {
     valueList.value = [];
     valueList.value.push(val);
     E("update:modelValue", val);
@@ -99,7 +113,8 @@ function setMultivalue(val: string) {
   } else {
     valueList.value.push(val);
   }
-  E("update:modelValue", valueList.value.toString());
+  const valSort = valueList.value.sort(sortAlphaNum) ?? [];
+  E("update:modelValue", valSort.toString());
 }
 </script>
 
@@ -111,6 +126,8 @@ function setMultivalue(val: string) {
   /* border: 1px solid red; */
   align-items: flex-start;
   flex-wrap: wrap;
+  font-size: var(--comp-font-size);
+  font-family: var(--comp-font-family);
 }
 
 .h_baseSelectList[row="true"] {
@@ -130,6 +147,8 @@ function setMultivalue(val: string) {
 
 .h_baseSelectList-icon {
   pointer-events: none;
+  display: flex;
+  align-items: center;
 }
 
 .h_baseSelectList-label {
@@ -157,8 +176,8 @@ function setMultivalue(val: string) {
 }
 
 .h_baseSelectList-radio__svg {
-  height: 1.4em;
-  width: 1.4em;
+  height: 1.2em;
+  width: 1.2em;
   border-radius: 50%;
   pointer-events: none;
   cursor: pointer;

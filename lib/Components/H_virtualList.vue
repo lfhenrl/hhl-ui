@@ -102,7 +102,6 @@ installVirtual();
 
 function update() {
   virtual.handleDataSourcesChange();
-  console.log("UPDATE");
 }
 
 watch(
@@ -283,7 +282,7 @@ function emitEvent(offset: number, clientSize: number, scrollSize: number, evt: 
 .H_virtualList-scroller {
   display: flex;
   /* flex-direction: column; */
-  margin-right: auto;
   border-right: solid 1px var(--col-bg-3);
+  width: 100%;
 }
 </style>

@@ -7,7 +7,7 @@
     :class="{ 'H_modal-pop__shake': shake }"
     v-movable="movable"
   >
-    <div class="H_dialog__header col-pri" moveable-drag>
+    <div class="H_dialog__header col-pri" moveable-drag :class="{ canDragg: movable }">
       <slot name="header" />
     </div>
     <div class="H_dialog__body"><slot /></div>
@@ -23,11 +23,12 @@ const P = defineProps({
   modelValue: { type: Boolean, default: false },
   noPersistent: { default: true, type: Boolean },
   noShake: { default: false, type: Boolean },
-  margin: { default: "auto auto auto auto", type: String },
+  offsetTop: { default: "0", type: String },
+  offsetLeft: { default: "0", type: String },
   movable: { default: true, type: Boolean }
 });
 
-const E = defineEmits(["update:modelValue"]);
+const E = defineEmits(["update:modelValue", "open", "close"]);
 
 const dialogRef = ref();
 const shake = ref(false);
@@ -37,8 +38,10 @@ watch(
   () => {
     if (P.modelValue) {
       dialogRef.value.showModal();
+      E("open");
     } else {
       dialogRef.value.close();
+      E("close");
     }
   }
 );
@@ -46,7 +49,6 @@ watch(
 function click(e: any) {
   const NodeName = e.target.nodeName;
   if (!NodeName) return;
-  console.log(NodeName);
   if (NodeName === "DIALOG") overlayClick();
 }
 
@@ -60,7 +62,6 @@ function overlayClick() {
   } else {
     if (!P.noShake && !P.noPersistent) {
       shake.value = true;
-      console.log("shake");
       setTimeout(() => {
         shake.value = false;
       }, 800);
@@ -75,11 +76,16 @@ function overlayClick() {
   border-radius: 4px;
   padding: 0;
   border: none;
-  margin: v-bind(margin);
+  top: v-bind(offsetTop);
+  left: v-bind(offsetLeft);
 }
 
 .H_dialog[open] {
   animation: fadein 0.2s ease-in;
+}
+
+.H_dialog .canDragg {
+  cursor: move;
 }
 
 .H_dialog__header {

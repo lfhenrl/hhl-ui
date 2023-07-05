@@ -222,6 +222,10 @@ onUnmounted(() => {
   background-color: inherit;
 }
 
+.h_pop__referance {
+  height: 100%;
+}
+
 .h_pop__content {
   background-color: var(--col-bg-0);
   visibility: hidden;

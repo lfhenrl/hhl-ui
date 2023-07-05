@@ -61,7 +61,7 @@ import H_icon from "./H_icon.vue";
 
 const P = defineProps({
   modelValue: {
-    type: [Number || null || undefined],
+    type: [Number, String],
     default: 0
   },
   label: { type: String, default: "" },
@@ -101,7 +101,6 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
 
 <style>
 .h_inputNumber.h_select {
-
   flex: 1 1 200px;
   max-height: 40px;
 }
@@ -139,6 +138,7 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
   display: flex;
   flex-direction: column;
   margin: -3px 0 -4px 0;
+  color: var(--col-txt-3);
 }
 
 .h_inputNumber-iconup {

@@ -1,25 +1,17 @@
 <template>
   <div class="datagrid_localdata">
     <div class="datagrid_localdata__box">
-      <div class="Datagrid__toolbar" style="margin-bottom: 16px;">
+      <div class="Datagrid__toolbar" style="margin-bottom: 16px">
         <H_btn @click="load" start-icon="zoom_out_map" end-icon="filter">Load</H_btn>
         <H_inputText label="Text input" v-model="seek"></H_inputText>
         <H_spacer />
         <H_inputText v-model="seek" clearable endIcon="search" style="max-width: 200px" />
       </div>
 
-      <H_datagridVscroll
-        data-key="id"
-        :groups="[]"
-        :search="seek"
-        :searchFields="['id', 'val1', 'val2', 'val4']"
-        :dataHandler="DataHandler"
-        :page-size="50"
-        @rowClicked="rowClicked"
-      >
-        <H_column field="id" title="Action" type="action" :width="80">
+      <H_datagrid data-key="id" :dataHandler="lData">
+        <H_column field="id" title="Action" type="action">
           <template v-slot="col">
-            <H_btn size="sm">{{ col.data.id }}</H_btn>
+            <H_btn size="sm">{{ col.row.id }}</H_btn>
           </template>
         </H_column>
         <H_column field="id" title="Id" type="number" filter_type="number" />
@@ -47,7 +39,7 @@
         <H_column field="val3" title="Value 3" type="string" :cell_style="styleCell" />
         <H_column field="val5" title="Value 5" type="bool" filter_type="bool" filter_condition="bool_list" />
         <H_column field="val4" title="Value 4" type="string" filter_type="select" />
-      </H_datagridVscroll>
+      </H_datagrid>
     </div>
   </div>
 </template>
@@ -55,28 +47,16 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { D_01_dec_2021_HHMM } from "../../../lib/utils/dateFormat";
-import { JsonData, dataHandler } from "../../../lib/Components/datagrid";
-import H_datagridVscroll from "../../../lib/Components/datagrid/H_datagrid-vscroll.vue";
+import { localData } from "../../../lib/Components/datagrid";
+import H_datagrid from "../../../lib/Components/datagrid/H_datagrid.vue";
 import H_column from "../../../lib/Components/datagrid/H_column.vue";
 import H_btn from "../../../lib/Components/H_btn.vue";
 import H_inputText from "../../../lib/Components/H_inputText.vue";
 import { getData } from "../../testData/data";
 
 const seek = ref("seek");
-const json_data = new JsonData();
-json_data.setDataSource(getData(100000));
-
-const DataHandler = new dataHandler(
-  async (QueryObject?) => {
-    return await json_data.getData(QueryObject);
-  },
-  async (QueryObject?) => {
-    return await json_data.getCount(QueryObject);
-  },
-  async (field: string) => {
-    return json_data.getSelectList(field);
-  }
-);
+const lData = new localData();
+lData.setDataSource(getData(1000));
 
 function formatDate(value: any) {
   return D_01_dec_2021_HHMM(value);
@@ -89,11 +69,7 @@ function styleCell() {
 }
 
 function load() {
-  DataHandler.Load();
-}
-
-function rowClicked(e: any) {
-  console.log(e);
+  lData.loadData();
 }
 </script>
 

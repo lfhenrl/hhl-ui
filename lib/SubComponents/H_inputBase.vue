@@ -62,6 +62,9 @@ onMounted(() => {
 .h_inputbase {
   display: inline-grid;
   grid-template-columns: auto 1fr auto auto;
+  font-size: var(--comp-font-size);
+  font-family: var(--comp-font-family);
+  font-weight: normal;
   border: 1px solid var(--col-txt-5);
   position: relative;
   background-color: inherit;

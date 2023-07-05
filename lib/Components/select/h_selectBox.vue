@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import H_baseSelectList from "../../SubComponents/H_baseSelectList.vue";
-import H_inputbase from "../../SubComponents/H_inputBase.vue"
+import H_inputbase from "../../SubComponents/H_inputBase.vue";
 import { validateFunc } from "../../utils/validateFunc";
 
 const P = defineProps({
@@ -50,13 +50,20 @@ const P = defineProps({
 });
 defineEmits(["update:modelValue"]);
 
+const align = computed(() => {
+  if (P.row) {
+    return "center";
+  } else {
+    return "start";
+  }
+});
+
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
 
 <style>
 .h_selectBox {
-  align-items: center;
+  align-items: v-bind(align);
   margin: 0;
-  padding: 8px 15px 5px 15px !important;
 }
 </style>

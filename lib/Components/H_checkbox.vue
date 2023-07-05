@@ -77,7 +77,7 @@ function Click() {
 }
 
 .h_checkbox__box.H_switch-sm {
-  height: 18px;
+  height: 16px;
 }
 
 .h_checkbox__box.H_switch-lg {

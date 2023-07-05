@@ -112,7 +112,7 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
 
 <style>
-.h_datePicker.h_select {
+.h_inputbase.h_datePicker {
   flex: 1 1 200px;
   max-height: 40px;
 }
