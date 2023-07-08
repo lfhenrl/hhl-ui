@@ -8,6 +8,7 @@ export default defineComponent({
     title: { type: String, default: "" },
     type: { type: String as PropType<"number" | "string" | "date" | "bool" | "action" | "userAction">, required: true },
     width: { type: String, default: "auto" },
+    autoHeight: { type: Boolean, default: false },
     cellClass: String,
     format: { type: Function, default: (v: any) => v },
     cell_style: { type: Function, default: null },

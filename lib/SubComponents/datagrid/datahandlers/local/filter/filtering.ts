@@ -1,9 +1,7 @@
 import getFilterFunctions from "./getFilterFunctions";
 import { iFilterData } from "../../../provide/datagridTypes";
 
-export async function filtering(arr: any[], filterList: iFilterData[]) {
-  const seekFilterList = ["id"];
-  let seekFilterString = "3";
+export async function filtering(arr: any[], filterList: iFilterData[], seekFilterList: string[], seekFilterString: string) {
   const filtFuncs = getFilterFunctions(filterList);
   const filterData: any = [];
   await arr.forEach((item: any) => {

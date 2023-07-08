@@ -7,6 +7,8 @@ import { debounce } from "../../../../utils/debounce";
 import Excel from "../../../../utils/exportToExcel";
 import { icolumnData } from "../../provide/datagridTypes";
 
+export type iDatahandler = InstanceType<typeof localData>;
+
 export class localData {
   public rows = ref<any[]>([]);
   public rowsCount = ref(0);
@@ -16,11 +18,13 @@ export class localData {
   private filterArray: iFilterData[] = [];
   private expandList: string[] = [];
   private groupList: string[] = [];
-  private newDataEvent: any;
+  private seekFilterList: string[] = [];
+  private seekFilterString: string = "";
+  public newDataEvent: any;
 
   debouncedUpdate = debounce(async () => {
     if (this.dataSource.length < 1) return;
-    const filterData = await filtering(this.dataSource, this.filterArray);
+    const filterData = await filtering(this.dataSource, this.filterArray, this.seekFilterList, this.seekFilterString);
     const sortData = await Sorting.Sort(this.sortArray, filterData);
     const groupData = await grouping(sortData, this.groupList, this.expandList);
     this.rowsCount.value = sortData.length;
@@ -37,15 +41,14 @@ export class localData {
     this.debouncedUpdate();
   }
 
-  public async setSorting(_sortArray: iSortData[], _expandList: string[]) {
+  public async setSorting(_sortArray: iSortData[]) {
     this.sortArray = _sortArray;
-    this.expandList = _expandList;
     this.loadData();
   }
 
-  public setFilter(_filterArray: iFilterData[], _expandList: string[]) {
+  public setFilter(_filterArray: iFilterData[]) {
     this.filterArray = _filterArray;
-    this.expandList = _expandList;
+    this.expandList = [];
     this.loadData();
   }
 
@@ -56,6 +59,16 @@ export class localData {
 
   public setExpanding(_expandList: string[]) {
     this.expandList = _expandList;
+    this.loadData();
+  }
+
+  public setSeekFilterList(_seekFilterList: string[]) {
+    this.seekFilterList = _seekFilterList;
+    this.loadData();
+  }
+
+  public setseekFilterString(_seekFilterString: string) {
+    this.seekFilterString = _seekFilterString;
     this.loadData();
   }
 

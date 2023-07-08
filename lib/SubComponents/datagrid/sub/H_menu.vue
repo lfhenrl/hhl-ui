@@ -72,7 +72,7 @@ function updateSortArray(sort: string) {
       sortArray.value.push({ field: col.props.field, direction: sort });
     }
   }
-  Columns.dataHandler.setSorting(sortArray.value);
+  Columns.dataHandler?.setSorting(sortArray.value);
 }
 
 function menuClick(e: MouseEvent) {
@@ -116,6 +116,7 @@ function menuClick(e: MouseEvent) {
   justify-content: center;
   align-items: center;
   color: var(--col-pri);
+  overflow: hidden;
 }
 
 .H_menu:hover {
@@ -127,7 +128,7 @@ function menuClick(e: MouseEvent) {
   justify-content: center;
   height: 100%;
   flex-direction: column;
-  padding: 0 4px;
+  padding: 0;
 }
 
 .H_HeadCell-sorting {

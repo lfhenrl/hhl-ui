@@ -11,6 +11,7 @@ export class datagridClickHandler {
     this.dataKey = dataKey;
     this.columns = columns;
   }
+
   newData(rows: any) {
     this.dataRows = rows;
   }

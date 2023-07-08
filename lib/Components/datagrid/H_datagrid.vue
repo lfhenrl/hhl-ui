@@ -1,5 +1,9 @@
 <template>
-  <div class="H_datagrid" ref="H_datagridRef">
+  <div
+    class="H_datagrid"
+    ref="H_datagridRef"
+    :class="{ 'row-size-fit': row_sizing === 'fit', 'row-size-auto': row_sizing === 'auto' }"
+  >
     <H_virtualList
       ref="H_datagridVirtualRef"
       :key="columns.changeCounter.value"
@@ -8,8 +12,8 @@
       :data-sources="dataHandler.rows.value"
       item-class="H_dataRow"
       class="H_datagrid-table"
-      :estimate-size="28"
-      :keeps="20"
+      :estimate-size="50"
+      :keeps="30"
       :class="guid"
       :selectedId="selectedId"
       :item_style="row_style"
@@ -37,6 +41,7 @@
         :style="rowStyle(row)"
         v-for="row in dataHandler.rows.value"
         :data-id="row[dataKey]"
+        :key="row[dataKey]"
         role="listitem"
         :selected="selectedId == row[dataKey] ? true : null"
       >
@@ -58,7 +63,7 @@
       <H_btn size="sm" round type="icon-text" icon="zoom_out_map" title="fullScreen" @click="fullScreen" />
       <H_spacer />
       <div class="H_datagrid__rowcount">
-        {{ columns.dataHandler.rowsCount }} Loaded of {{ columns.dataHandler.rowsCountTotal }} Rows.
+        {{ columns.dataHandler?.rowsCount }} Loaded of {{ columns.dataHandler?.rowsCountTotal }} Rows.
       </div>
     </div>
   </div>
@@ -66,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, provide, ref, useSlots } from "vue";
+import { PropType, onMounted, provide, ref, useSlots, watch } from "vue";
 // import H_headerRow from "./headerRow/H_headerRow.vue";
 import H_headerRow from "../../SubComponents/datagrid/headerRow/H_headerRow.vue";
 import H_dataRow from "../../SubComponents/datagrid/dataRow/H_dataRow.vue";
@@ -76,18 +81,22 @@ import H_spacer from "../../Components/H_spacer.vue";
 import { Columns } from "../../SubComponents/datagrid/provide/Columns";
 import H_virtualList from "../../Components/H_virtualList.vue";
 import { datagridClickHandler } from "../../SubComponents/datagrid/provide/datagridClickHandler";
+import { ColumnsResizing } from "../../SubComponents/datagrid/provide/columnsSizing";
 
 const P = defineProps({
   dataKey: {
     type: [String, Number],
     required: true
   },
-  virtualscroll: { type: Boolean, default: false },
   row_style: { type: Function, default: null },
   dataHandler: {
     type: Object as PropType<any>,
     required: true
-  }
+  },
+  virtualscroll: { type: Boolean, default: false },
+  row_sizing: { type: String as PropType<"fit" | "auto">, default: "fit" },
+  filterList: { type: Array as PropType<string[]>, default: [] },
+  filterstring: { type: String, default: "" }
 });
 
 const E = defineEmits(["rowClick", "headClick"]);
@@ -101,25 +110,45 @@ let scrollPos = 0;
 const menuColumnsRef = ref();
 const columns = new Columns();
 const ClickHandler = new datagridClickHandler(P.dataHandler.rows, P.dataKey, columns);
+const adjustColumns = new ColumnsResizing(columns, P.row_sizing);
+
 provide("Columns", columns);
 
 columns.dataHandler = P.dataHandler;
 columns.rowStyle = P.row_style;
-columns.dataHandler.newDataEvent = () => {
-  ClickHandler.newData(columns.dataHandler.rows.value);
-  if (scrollPos > 0) {
-    if (P.virtualscroll) {
-      H_datagridVirtualRef.value.scrollToOffset(scrollPos);
-    } else {
-      H_datagridVirtualRef.value.scrollTop = scrollPos;
+
+if (columns.dataHandler !== undefined) {
+  columns.dataHandler.newDataEvent = () => {
+    ClickHandler.newData(columns.dataHandler?.rows.value);
+    if (scrollPos > 0) {
+      if (P.virtualscroll) {
+        H_datagridVirtualRef.value.scrollToOffset(scrollPos);
+      } else {
+        H_datagridVirtualRef.value.scrollTop = scrollPos;
+      }
     }
-  }
-  setTimeout(() => {
-    scrollPos = 0;
-  }, 100);
-};
+
+    setTimeout(() => {
+      scrollPos = 0;
+    }, 100);
+  };
+}
+
+onMounted(() => {
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      adjustColumns.adjust();
+    }, 50);
+  });
+});
 
 columns.loadColumns(slots, guid, H_datagridRef);
+columns.updateSeekFilterList(P.filterList);
+
+watch(
+  () => P.filterstring,
+  () => columns.updateSeekFilterString(P.filterstring)
+);
 
 function rowStyle(row: any) {
   return columns.rowStyle?.(row) ?? "";
@@ -137,21 +166,24 @@ function editColumns() {
     scrollPos = H_datagridVirtualRef.value.getOffset();
   } else {
     scrollPos = H_datagridVirtualRef.value.scrollTop;
-    console.log("aaaaaaaaaaa ", H_datagridVirtualRef.value.scrollTop);
   }
 
   menuColumnsRef.value.columnsOpen();
 }
 
 function autoAdjustColumns() {
-  columns.columns.forEach((col) => {
-    col.cssRule.style.minWidth = "";
+  columns.getVisibelColumns().forEach((col) => {
     col.cssRule.style.maxWidth = "";
+    col.cssRule.style.minWidth = "";
+  });
+
+  setTimeout(() => {
+    adjustColumns.adjust();
   });
 }
 
 function excel() {
-  columns.dataHandler.toExcel(columns.columns);
+  columns.dataHandler?.toExcel(columns.columns);
 }
 
 function fullScreen() {
@@ -168,7 +200,7 @@ function fullScreen() {
 <style>
 .H_datagrid {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
   max-height: 100%;
   border: 1px var(--col-bg-3) solid;
   border-radius: 4px;
@@ -180,12 +212,16 @@ function fullScreen() {
   display: grid;
   grid-template-rows: auto 1fr;
   max-height: 100%;
+  height: 100%;
   min-height: 59px;
-  overflow: auto;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: scroll;
 }
 
 .H_datagrid-footer {
   display: flex;
+  height: 33px;
   align-items: center;
   flex-wrap: wrap;
   padding: 3px;

@@ -42,5 +42,6 @@ function expand() {
   align-items: center;
   padding: 2px 0;
   flex: 1;
+  border-bottom: solid 1px lightgray;
 }
 </style>

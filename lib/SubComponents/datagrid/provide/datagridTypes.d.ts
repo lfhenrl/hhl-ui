@@ -41,6 +41,7 @@ export type icolumnData = {
     title: string;
     type: string;
     width: string;
+    autoHeight: boolean;
     className: string;
     format: Function;
     cell_style: Function;

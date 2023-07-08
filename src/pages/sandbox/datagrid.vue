@@ -3,22 +3,25 @@
     <div class="datagrid_localdata__box">
       <div class="Datagrid__toolbar" style="margin-bottom: 16px">
         <H_btn @click="load" start-icon="zoom_out_map" end-icon="filter">Load</H_btn>
-        <H_inputText label="Text input" v-model="seek"></H_inputText>
         <H_spacer />
-        <H_inputText v-model="seek" clearable endIcon="search" style="max-width: 200px" />
+        <H_inputText v-model="seek" :debounce="300" clearable endIcon="search" style="max-width: 200px" />
       </div>
 
       <H_datagrid
         data-key="id"
         :dataHandler="lData"
-        :row_style="rowStyle"
+        :filter-list="['id']"
+        :filterstring="seek"
         virtualscroll
+        :row_style="rowStyle"
         @row-click="rowClick"
         @head-click="headClick"
       >
         <H_column field="id" title="Action" type="action">
           <template v-slot="col">
-            <H_btn size="sm">{{ col.row.id }}</H_btn>
+            <div class="slotBtn">
+              <H_btn size="sm">{{ col.row.id }}</H_btn>
+            </div>
           </template>
         </H_column>
         <H_column field="id" title="Id" type="number" filter_type="number" cell-class="sofus" />
@@ -61,9 +64,12 @@ import H_btn from "../../../lib/Components/H_btn.vue";
 import H_inputText from "../../../lib/Components/H_inputText.vue";
 import { getData } from "../../testData/data";
 
-const seek = ref("seek");
+const seek = ref("");
 const lData = new localData();
-lData.setDataSource(getData(1000));
+
+async function loadData() {
+  await lData.setDataSource(getData(100000));
+}
 
 function formatDate(value: any) {
   return D_01_dec_2021_HHMM(value);
@@ -93,7 +99,8 @@ function styleCell(val: string) {
     };
 }
 
-function load() {
+async function load() {
+  await loadData();
   lData.loadData();
 }
 </script>
@@ -101,6 +108,12 @@ function load() {
 <style>
 .sofus {
   color: red;
+}
+
+.slotBtn {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 .datagrid_localdata {
   display: grid;

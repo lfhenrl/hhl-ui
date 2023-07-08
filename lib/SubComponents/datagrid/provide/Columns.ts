@@ -1,5 +1,6 @@
 import { Slots, ref, reactive } from "vue";
 import { iSortData, icolumnData, iFilterData } from "./datagridTypes";
+import { iDatahandler } from "../datahandlers/local";
 
 export type iColumns = InstanceType<typeof Columns>;
 
@@ -10,7 +11,7 @@ export class Columns {
   public columns: icolumnData[] = [];
   public sortArray = ref<iSortData[]>([]);
   public filterArray: iFilterData[] = [];
-  public dataHandler: any = {};
+  public dataHandler?: iDatahandler;
   public H_datagridRef: any = {};
   public dataRowTemplate: any = null;
   public haveDataRowTemplate = false;
@@ -43,6 +44,7 @@ export class Columns {
           title: item.props.title ?? item.props.field,
           type: item.props.type,
           width: item.props.width,
+          autoHeight: item.props["auto-height"] === "" ? true : false,
           className: item.props.className,
           format: item.props.format,
           cell_style: item.props.cell_style,
@@ -85,6 +87,10 @@ export class Columns {
     this.updateGroupList(this.groupList);
   }
 
+  getVisibelColumns() {
+    return this.columns.filter((item) => item.visibel);
+  }
+
   getSlotsData(slots: Slots, name: string) {
     if (!slots || !slots.default) return [];
     this.dataRowTemplate = slots.dataRow;
@@ -111,7 +117,7 @@ export class Columns {
     sArray.sort((a, b) => a.index - b.index).map((item) => ({ field: item.field, direction: item.direction }));
 
     this.sortArray.value = sArray;
-    this.dataHandler.setSorting(this.sortArray.value);
+    this.dataHandler?.setSorting(this.sortArray.value);
   }
 
   updateFilterArray() {
@@ -123,15 +129,23 @@ export class Columns {
     });
     this.filterArray = sArray;
     this.expandList = [];
-    this.dataHandler.setFilter(this.filterArray, this.expandList);
+    this.dataHandler?.setFilter(this.filterArray);
   }
 
   updateGroupList(groupList: string[]) {
     this.groupList = groupList;
-    this.dataHandler.setGrouping(groupList);
+    this.dataHandler?.setGrouping(groupList);
   }
 
   updateExpandList() {
-    this.dataHandler.setExpanding(this.expandList);
+    this.dataHandler?.setExpanding(this.expandList);
+  }
+
+  updateSeekFilterList(_seekFilterList: string[]) {
+    this.dataHandler?.setSeekFilterList(_seekFilterList);
+  }
+
+  updateSeekFilterString(_seekFilterString: string) {
+    this.dataHandler?.setseekFilterString(_seekFilterString);
   }
 }

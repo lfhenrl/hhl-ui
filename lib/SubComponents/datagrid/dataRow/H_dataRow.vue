@@ -2,11 +2,11 @@
   <rendRowTemplate v-if="Columns.haveDataRowTemplate" />
   <template v-else>
     <H_dataGroupRow v-if="row._type === 'group'" :row="row" />
-    <template v-else v-for="(col, index) in Columns.columns">
+    <template v-else>
       <div
-        v-if="col.visibel.value"
+        v-for="(col, index) in Columns.getVisibelColumns()"
         class="H_dataRow-Cell"
-        :class="[col.className, col.props.className]"
+        :class="[col.className, col.props.className, slotClass(col), autoHieght(col)]"
         :style="cellStyle(col)"
         :data-index="index"
         data-type="rowcell"
@@ -27,6 +27,14 @@ const P = defineProps({
 });
 
 const Columns = inject("Columns") as iColumns;
+
+function slotClass(col: any) {
+  if (col.slot?.default) return "H_dataRow-slotCell";
+}
+
+function autoHieght(col: any) {
+  if (col.props.autoHeight === true) return "H_dataRow-CellAutoHeight";
+}
 
 function rend(data: any) {
   const value = data.row[data.col.props.field];
@@ -63,6 +71,9 @@ function format(value: any, col: any, data: any) {
 .H_dataRow {
   display: flex;
   height: min-content;
+  /* width: min-content; */
+  white-space: nowrap;
+  background-color: bisque;
 }
 
 .H_dataRow:nth-child(odd) {
@@ -77,10 +88,16 @@ function format(value: any, col: any, data: any) {
   border-right: solid 1px lightgray;
   border-bottom: solid 1px lightgray;
   padding: 4px 8px;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  flex: 1;
-  /* min-width: 200px; */
+  /* flex: 1; */
+}
+
+.H_dataRow-Cell.H_dataRow-CellAutoHeight {
+  white-space: break-spaces;
+}
+
+.H_dataRow-Cell.H_dataRow-slotCell {
+  padding: 0 8px;
 }
 </style>
