@@ -4,7 +4,7 @@ export class ColumnsResizing {
   private sizeMode = "fit";
   // private changeTracker = -1;
   private Columns: iColumns;
-  private Cols: any = [];
+  private Cols: any[] = [];
 
   constructor(_Columns: iColumns, _sizeMode: string) {
     this.Columns = _Columns;
@@ -13,7 +13,11 @@ export class ColumnsResizing {
 
   public adjust() {
     this.makeCols();
-    this.Cols.forEach((item: any) => {
+    const l = this.Cols.length;
+    this.Cols.forEach((item: any, index: number) => {
+      if (l === index + 1) {
+        item.width = item.width - 1;
+      }
       this.setWidth(item.width ?? 0, item.style);
     });
   }
