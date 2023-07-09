@@ -1,26 +1,19 @@
-// export type iReturnData = {
-//   rowCount: number;
-//   totalCount: number;
-//   data: any[];
-// };
-
-// export type iDataHandler
+export type iClickData = {
+  type: string;
+  colIndex: number;
+  colOrgIndex: number;
+  subType: string;
+  dataId: string;
+  dataItem: any;
+  column: icolumnData;
+  field: string;
+};
 
 export type iSortData = {
   field: string;
   direction: string;
 };
 
-// export type icolumnSortData = {
-//   field: string;
-//   index: number;
-//   sorting: string;
-//   default_index: number;
-//   default_sorting: string;
-//   no_sorting: boolean;
-//   organize: any;
-//   count: any;
-// };
 export type iFilterData = {
   active: boolean;
   field: string;

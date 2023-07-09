@@ -23,10 +23,15 @@ const col: icolumnData = Columns.columns[P.index];
 
 function resize(e: MouseEvent) {
   ColResize(col, e);
+  // Columns.adjustColumns?.adjust();
 }
 
 onMounted(() => {
   col.dom = headCellRef.value;
+  if (col.props.width && col.dom) {
+    col.dom.style.maxWidth = col.props.width;
+    col.dom.style.minWidth = col.props.width;
+  }
 });
 </script>
 
@@ -41,8 +46,8 @@ onMounted(() => {
   flex: 1 1 min-content;
   /* 
   overflow: hidden; */
-  border-right: solid 1px lightgray;
-  border-bottom: solid 1px lightgray;
+  border-right: solid 1px var(--col-bg-3);
+  border-bottom: solid 1px var(--col-bg-3);
 }
 
 .H_HeadCell-text {

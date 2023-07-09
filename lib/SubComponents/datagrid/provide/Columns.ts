@@ -1,6 +1,7 @@
 import { Slots, ref, reactive } from "vue";
 import { iSortData, icolumnData, iFilterData } from "./datagridTypes";
 import { iDatahandler } from "../datahandlers/local";
+import { iColumnsResizing } from "./columnsSizing";
 
 export type iColumns = InstanceType<typeof Columns>;
 
@@ -20,6 +21,7 @@ export class Columns {
   // public groupList: string[] = ["val2", "val3", "val4"];
   public groupList: string[] = [];
   public rowStyle?: Function = undefined;
+  public adjustColumns?: iColumnsResizing;
 
   loadColumns(slots: Slots, guid: string, H_datagridRef: any) {
     this.H_datagridRef = H_datagridRef;
@@ -76,6 +78,7 @@ export class Columns {
       };
 
       column.cssRule.style.minWidth = column.props.width;
+      column.cssRule.style.whiteSpace = column.props.autoHeight === true ? "break-spaces" : "nowrap";
       column.filter.active = column.filter.value1 !== "";
       tempColumns.push(column);
     });
@@ -108,7 +111,7 @@ export class Columns {
   updateSortArray() {
     const sArray: any[] = [];
     this.columns.forEach((item: icolumnData) => {
-      if (item.props.sorting) {
+      if (item.props.sorting && item.props.sorting !== "none") {
         sArray.push({ field: item.props.field, direction: item.props.sorting, index: item.props.sortIndex });
       }
     });

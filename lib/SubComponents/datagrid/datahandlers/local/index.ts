@@ -12,6 +12,7 @@ export type iDatahandler = InstanceType<typeof localData>;
 export class localData {
   public rows = ref<any[]>([]);
   public rowsCount = ref(0);
+  public rowsLoading = ref(false);
   public rowsCountTotal = ref(0);
   private dataSource: any[] = [];
   private sortArray: iSortData[] = [];
@@ -23,13 +24,18 @@ export class localData {
   public newDataEvent: any;
 
   debouncedUpdate = debounce(async () => {
-    if (this.dataSource.length < 1) return;
+    if (this.dataSource.length < 1) {
+      this.rowsLoading.value = false;
+      return;
+    }
+
     const filterData = await filtering(this.dataSource, this.filterArray, this.seekFilterList, this.seekFilterString);
     const sortData = await Sorting.Sort(this.sortArray, filterData);
     const groupData = await grouping(sortData, this.groupList, this.expandList);
     this.rowsCount.value = sortData.length;
     this.rows.value = groupData;
     this.newDataEvent();
+    this.rowsLoading.value = false;
   }, 50);
 
   public async setDataSource(_dataSource: any[]) {
@@ -38,6 +44,7 @@ export class localData {
   }
 
   public loadData() {
+    this.rowsLoading.value = true;
     this.debouncedUpdate();
   }
 

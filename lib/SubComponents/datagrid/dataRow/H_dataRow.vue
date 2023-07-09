@@ -6,7 +6,7 @@
       <div
         v-for="(col, index) in Columns.getVisibelColumns()"
         class="H_dataRow-Cell"
-        :class="[col.className, col.props.className, slotClass(col), autoHieght(col)]"
+        :class="[col.className, col.props.className, slotClass(col)]"
         :style="cellStyle(col)"
         :data-index="index"
         data-type="rowcell"
@@ -30,10 +30,6 @@ const Columns = inject("Columns") as iColumns;
 
 function slotClass(col: any) {
   if (col.slot?.default) return "H_dataRow-slotCell";
-}
-
-function autoHieght(col: any) {
-  if (col.props.autoHeight === true) return "H_dataRow-CellAutoHeight";
 }
 
 function rend(data: any) {
@@ -71,25 +67,32 @@ function format(value: any, col: any, data: any) {
 .H_dataRow {
   display: flex;
   height: min-content;
-  /* width: min-content; */
-  white-space: nowrap;
-  background-color: bisque;
 }
 
 .H_dataRow:nth-child(odd) {
-  background: rgba(138, 153, 157, 0.05);
+  background: var(--col-bg-1);
 }
 
 .H_dataRow[selected="true"] {
-  background-color: aqua;
+  background-color: var(--col-bg-4);
+}
+
+.H_dataRow:hover {
+  background-color: var(--col-bg-2);
+}
+
+.H_dataRow[selected="true"]:hover {
+  background-color: var(--col-bg-5);
 }
 
 .H_dataRow-Cell {
-  border-right: solid 1px lightgray;
-  border-bottom: solid 1px lightgray;
+  border-right: solid 1px var(--col-bg-3);
+  border-bottom: solid 1px var(--col-bg-3);
   padding: 4px 8px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+
   /* flex: 1; */
 }
 

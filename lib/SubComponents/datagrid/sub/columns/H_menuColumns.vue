@@ -77,6 +77,7 @@ function columnsOpen() {
   const sArray: string[] = [];
   const gArray: string[] = [];
   Columns.columns.forEach((item, index) => {
+    if (item.props.type === "action") return;
     const it = {
       field: item.props.field,
       title: item.props.title,
@@ -96,8 +97,6 @@ function columnsOpen() {
   });
   orgSourceArrayString = sArray.toString();
   orgGroupArrayString = gArray.toString();
-  console.log("orgSourceArrayString: ", orgSourceArrayString, sourceColumns.value);
-  console.log("orgGroupArrayString: ", orgGroupArrayString);
   open.value = true;
 }
 

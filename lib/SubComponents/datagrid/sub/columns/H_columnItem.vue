@@ -41,7 +41,7 @@ const data = ref<iGroupdata>(props.item);
   padding: 0;
   margin: 0;
   margin-bottom: 4px;
-  color: var(--comp-label-color, rgba(0, 0, 0, 0.6));
+  color: var(--col-txt-1);
   font-size: 0.9em;
   font-weight: normal;
   font-family: var(--comp-font-family);

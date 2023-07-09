@@ -20,9 +20,6 @@ const Columns = inject("Columns") as iColumns;
 <style>
 .H_headerRow {
   display: flex;
-  position: sticky;
-  top: 0;
-  z-index: 1;
   background-color: var(--col-bg-2);
   flex: 1;
 }

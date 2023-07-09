@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="H_datagrid"
-    ref="H_datagridRef"
-    :class="{ 'row-size-fit': row_sizing === 'fit', 'row-size-auto': row_sizing === 'auto' }"
-  >
+  <div class="H_datagrid" ref="H_datagridRef">
     <H_virtualList
       ref="H_datagridVirtualRef"
       :key="columns.changeCounter.value"
@@ -12,15 +8,18 @@
       :data-sources="dataHandler.rows.value"
       item-class="H_dataRow"
       class="H_datagrid-table"
-      :estimate-size="50"
-      :keeps="30"
+      :estimate-size="virtualscroll_rowheight"
+      :keeps="virtualscroll_keeps"
       :class="guid"
       :selectedId="selectedId"
       :item_style="row_style"
       @click="datagridClick"
     >
       <template v-slot:header>
-        <H_headerRow role="headitem" />
+        <div class="H_datagrid-head">
+          <H_headerRow role="headitem" />
+          <H_progressBar :show="columns.dataHandler?.rowsLoading.value" />
+        </div>
       </template>
       <template v-slot="data">
         <H_dataRow :row="data.item" />
@@ -35,7 +34,10 @@
       :class="guid"
       @click="datagridClick"
     >
-      <H_headerRow role="headitem" />
+      <div class="H_datagrid-head">
+        <H_headerRow role="headitem" />
+        <H_progressBar :show="columns.dataHandler?.rowsLoading.value" />
+      </div>
       <div
         class="H_dataRow"
         :style="rowStyle(row)"
@@ -77,11 +79,13 @@ import H_headerRow from "../../SubComponents/datagrid/headerRow/H_headerRow.vue"
 import H_dataRow from "../../SubComponents/datagrid/dataRow/H_dataRow.vue";
 import H_menuColumns from "../../SubComponents/datagrid/sub/columns/H_menuColumns.vue";
 import H_btn from "../../Components/H_btn.vue";
+import H_progressBar from "../H_progressBar.vue";
 import H_spacer from "../../Components/H_spacer.vue";
 import { Columns } from "../../SubComponents/datagrid/provide/Columns";
 import H_virtualList from "../../Components/H_virtualList.vue";
 import { datagridClickHandler } from "../../SubComponents/datagrid/provide/datagridClickHandler";
 import { ColumnsResizing } from "../../SubComponents/datagrid/provide/columnsSizing";
+import { iClickData } from "../../SubComponents/datagrid/provide/datagridTypes";
 
 const P = defineProps({
   dataKey: {
@@ -94,12 +98,16 @@ const P = defineProps({
     required: true
   },
   virtualscroll: { type: Boolean, default: false },
-  row_sizing: { type: String as PropType<"fit" | "auto">, default: "fit" },
+  virtualscroll_keeps: { type: Number, default: 50 },
+  virtualscroll_rowheight: { type: Number, default: 50 },
   filterList: { type: Array as PropType<string[]>, default: [] },
   filterstring: { type: String, default: "" }
 });
 
-const E = defineEmits(["rowClick", "headClick"]);
+const E = defineEmits<{
+  rowClick: [data: iClickData];
+  headClick: [data: iClickData];
+}>();
 
 const guid = `g${new Date().getTime().toString()}`;
 const slots = useSlots();
@@ -110,11 +118,12 @@ let scrollPos = 0;
 const menuColumnsRef = ref();
 const columns = new Columns();
 const ClickHandler = new datagridClickHandler(P.dataHandler.rows, P.dataKey, columns);
-const adjustColumns = new ColumnsResizing(columns, P.row_sizing);
+const adjustColumns = new ColumnsResizing(columns);
 
 provide("Columns", columns);
 
 columns.dataHandler = P.dataHandler;
+columns.adjustColumns = adjustColumns;
 columns.rowStyle = P.row_style;
 
 if (columns.dataHandler !== undefined) {
@@ -127,7 +136,6 @@ if (columns.dataHandler !== undefined) {
         H_datagridVirtualRef.value.scrollTop = scrollPos;
       }
     }
-
     setTimeout(() => {
       scrollPos = 0;
     }, 100);
@@ -171,15 +179,8 @@ function editColumns() {
   menuColumnsRef.value.columnsOpen();
 }
 
-function autoAdjustColumns() {
-  columns.getVisibelColumns().forEach((col) => {
-    col.cssRule.style.maxWidth = "";
-    col.cssRule.style.minWidth = "";
-  });
-
-  setTimeout(() => {
-    adjustColumns.adjust();
-  });
+async function autoAdjustColumns() {
+  adjustColumns.autoColumns();
 }
 
 function excel() {
@@ -202,7 +203,7 @@ function fullScreen() {
   display: grid;
   grid-template-rows: 1fr auto;
   max-height: 100%;
-  border: 1px var(--col-bg-3) solid;
+  border: 1px var(--col-bg-5) solid;
   border-radius: 4px;
   font-family: var(--comp-font-family);
   font-size: var(--comp-font-size);
@@ -217,6 +218,12 @@ function fullScreen() {
   width: 100%;
   overflow-x: auto;
   overflow-y: scroll;
+}
+
+.H_datagrid-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .H_datagrid-footer {

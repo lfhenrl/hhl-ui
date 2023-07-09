@@ -12,15 +12,15 @@
         </div>
       </template>
       <div class="H_menu-popup shadow-2" @click="menuClick">
-        <div class="H_menu-popup-item" data-action="asc" :selected="sort === 'asc'">
+        <div class="H_menu-popup-item" data-action="asc" :selected="sort === 'asc'" v-if="col.props.sorting !== 'none'">
           <H_icon class="H_menu-popup-item-noMouseEvent" btn icon="arrow_upward" size="18px" />
           <div class="H_menu-popup-item-noMouseEvent">Sort Ascending</div>
         </div>
-        <div class="H_menu-popup-item" data-action="desc" :selected="sort === 'desc'">
+        <div class="H_menu-popup-item" data-action="desc" :selected="sort === 'desc'" v-if="col.props.sorting !== 'none'">
           <H_icon class="H_menu-popup-item-noMouseEvent" btn icon="arrow_downward" size="18px" />
           <div class="H_menu-popup-item-noMouseEvent">Sort Descending</div>
         </div>
-        <div class="H_menu-popup-item" data-action="filter">
+        <div class="H_menu-popup-item" data-action="filter" v-if="col.filter.type !== 'none'">
           <H_icon class="H_menu-popup-item-noMouseEvent" btn icon="filter" size="18px" />
           <div class="H_menu-popup-item-noMouseEvent">Filter</div>
         </div>
@@ -103,8 +103,18 @@ function menuClick(e: MouseEvent) {
   }
 
   if (action === "autoSize") {
-    col.cssRule.style.minWidth = "";
-    col.cssRule.style.maxWidth = "";
+    let oldSpace = "";
+    if (col.dom) {
+      // col.dom.style.whiteSpace = "nowrap";
+      oldSpace = col.cssRule.style.whiteSpace;
+      col.cssRule.style.whiteSpace = "nowrap";
+    }
+    setTimeout(() => {
+      Columns.adjustColumns?.autoColumn(col, true);
+      setTimeout(() => {
+        col.cssRule.style.whiteSpace = oldSpace;
+      });
+    });
   }
 }
 </script>

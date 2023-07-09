@@ -13,11 +13,13 @@
         :filter-list="['id']"
         :filterstring="seek"
         virtualscroll
+        :virtualscroll_keeps="55"
+        :virtualscroll_rowheight="44"
         :row_style="rowStyle"
         @row-click="rowClick"
         @head-click="headClick"
       >
-        <H_column field="id" title="Action" type="action">
+        <H_column field="id" title="Action" type="action" sorting="none">
           <template v-slot="col">
             <div class="slotBtn">
               <H_btn size="sm">{{ col.row.id }}</H_btn>
@@ -26,7 +28,7 @@
         </H_column>
         <H_column field="id" title="Id" type="number" filter_type="number" cell-class="sofus" />
         <H_column field="val1" title="Value 1" type="string" filter_type="string" class="sofus" />
-        <H_column field="val6" title="Value 6" type="date" filter_type="datetime" :format="formatDate" />
+        <H_column field="val6" title="Value 6" auto-height type="date" filter_type="datetime" :format="formatDate" />
         <H_column
           field="val2"
           title="Value 2"
@@ -63,6 +65,7 @@ import H_column from "../../../lib/Components/datagrid/H_column.vue";
 import H_btn from "../../../lib/Components/H_btn.vue";
 import H_inputText from "../../../lib/Components/H_inputText.vue";
 import { getData } from "../../testData/data";
+import { iClickData } from "../../../lib/SubComponents/datagrid/provide/datagridTypes";
 
 const seek = ref("");
 const lData = new localData();
@@ -75,11 +78,11 @@ function formatDate(value: any) {
   return D_01_dec_2021_HHMM(value);
 }
 
-function headClick(data: any) {
+function headClick(data: iClickData) {
   console.log("headClick :", data);
 }
 
-function rowClick(data: any) {
+function rowClick(data: iClickData) {
   console.log("rowClick :", data);
 }
 
@@ -95,13 +98,16 @@ function rowStyle(row: any) {
 function styleCell(val: string) {
   if (val === "Row 4 cell 3.")
     return {
-      color: "orange"
+      color: "red"
     };
 }
 
 async function load() {
-  await loadData();
-  lData.loadData();
+  lData.rowsLoading.value = true;
+  setTimeout(async () => {
+    await loadData();
+    lData.loadData();
+  }, 20);
 }
 </script>
 

@@ -10,7 +10,7 @@ export function getData(rowsCount: number = 1000) {
       id: i + 1,
       val1: `Row ${i + 1} cell 1.`,
       val2: `Group ${count20}.`,
-      val3: `Row ${i + 1} cell 3.`,
+      val3: `Row ${i + 1} cell 3. 123456789 123456789`,
       val4: `SubGroup ${count5}.`,
       val5: count5 > 3 ? true : count5 > 2 ? null : false,
       val6: DateAddDays(dato, i)
