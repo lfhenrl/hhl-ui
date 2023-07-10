@@ -92,8 +92,8 @@ onMounted(() => {
 .H_HeadCell-space {
   padding: 0 10px;
   width: min-content;
-  opacity: 0;
-  height: 0;
+/*   opacity: 0;
+  height: 0; */
 
 }
 

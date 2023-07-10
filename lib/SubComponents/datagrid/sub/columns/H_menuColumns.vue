@@ -77,7 +77,6 @@ function columnsOpen() {
   const sArray: string[] = [];
   const gArray: string[] = [];
   Columns.columns.forEach((item, index) => {
-    if (item.props.type === "action") return;
     const it = {
       field: item.props.field,
       title: item.props.title,

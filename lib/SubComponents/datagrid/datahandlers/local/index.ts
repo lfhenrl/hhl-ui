@@ -14,7 +14,9 @@ export class localData {
   public rowsCount = ref(0);
   public rowsLoading = ref(false);
   public rowsCountTotal = ref(0);
-  public MaxSizeRow:any = ref();
+  public MaxSizeRow: any = ref();
+  public _MaxSizeRow:any = {};
+  private SizeStore: any = {};
   public dataSource: any[] = [];
   private sortArray: iSortData[] = [];
   public filterArray: iFilterData[] = [];
@@ -34,46 +36,49 @@ export class localData {
     const sortData = await Sorting.Sort(this.sortArray, filterData);
     const groupData = await grouping(sortData, this.groupList, this.expandList);
     this.rowsCount.value = sortData.length;
+    this.makeCalcMaxRowSize(groupData);
+
+    console.log("groupData", groupData)
     this.rows.value = groupData;
     this.newDataEvent();
     this.rowsLoading.value = false;
   }, 50);
 
+
+
   public async setDataSource(_dataSource: any[]) {
     this.dataSource = (await _dataSource) ?? [];
     this.rowsCountTotal.value = _dataSource.length;
-    this.makeCalcMaxRowSize();
-    
-
+    this.makeMaxRowStore();
   }
 
-  private makeCalcMaxRowSize() {
-
+  private makeMaxRowStore() {
     if (this.rowsCountTotal.value>0) {
-      const SizeStore:any = {};
-      const MaxSizeRow = structuredClone(this.dataSource[0])
+      this.SizeStore = {};
+      this._MaxSizeRow = structuredClone(this.dataSource[0])
 
-      for (const key in MaxSizeRow) {
-        SizeStore[key] = 1;      
+      for (const key in this._MaxSizeRow) {
+        this.SizeStore[key] = 1;      
       }
+  }
+}
 
-    const slicedArray = this.dataSource.slice(0, 100);
+  private makeCalcMaxRowSize(data:any[]) {
+    const slicedArray = data.slice(0, 100);
     slicedArray.forEach((item:any) => {
+      if (item._type === "group") return
       for (const key in item) {
             const val = item[key];
             const valStr:string = val?.toString() ?? "";
-            if(valStr && SizeStore[key] < valStr.length) {
-             SizeStore[key] = valStr.length;
-              MaxSizeRow[key] = val
-
+            if(valStr && this.SizeStore[key] < valStr.length) {
+             this.SizeStore[key] = valStr.length;
+              this._MaxSizeRow[key] = val
             }  
-      }        
-        
+      }           
     })
-    console.log(SizeStore,MaxSizeRow)
-    this.MaxSizeRow.value = MaxSizeRow;
-    }
-
+    console.log(this.SizeStore,this._MaxSizeRow)
+    this.MaxSizeRow.value = null;
+    this.MaxSizeRow.value = this._MaxSizeRow;
   }
 
   public loadData() {

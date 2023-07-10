@@ -156,10 +156,10 @@ watch(
   () => {
     console.log("adjustColumns.adjust()")
     setTimeout(()=> {
-      adjustColumns.adjust();
-    })
+      adjustColumns.autoColumns();
+    },100)
     
-  }
+  },{deep: true}
 );
 
 function rowStyle(row: any) {
