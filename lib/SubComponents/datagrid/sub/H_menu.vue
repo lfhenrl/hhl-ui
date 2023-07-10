@@ -110,7 +110,7 @@ function menuClick(e: MouseEvent) {
       col.cssRule.style.whiteSpace = "nowrap";
     }
     setTimeout(() => {
-      Columns.adjustColumns?.autoColumn(col, true);
+      Columns.adjustColumns?.autoColumn(col);
       setTimeout(() => {
         col.cssRule.style.whiteSpace = oldSpace;
       });

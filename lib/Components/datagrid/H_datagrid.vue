@@ -73,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, onMounted, provide, ref, useSlots, watch } from "vue";
+import { PropType, provide, ref, useSlots, watch } from "vue";
 // import H_headerRow from "./headerRow/H_headerRow.vue";
 import H_headerRow from "../../SubComponents/datagrid/headerRow/H_headerRow.vue";
 import H_dataRow from "../../SubComponents/datagrid/dataRow/H_dataRow.vue";
@@ -142,13 +142,6 @@ if (columns.dataHandler !== undefined) {
   };
 }
 
-onMounted(() => {
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      adjustColumns.adjust();
-    }, 50);
-  });
-});
 
 columns.loadColumns(slots, guid, H_datagridRef);
 columns.updateSeekFilterList(P.filterList);
@@ -156,6 +149,17 @@ columns.updateSeekFilterList(P.filterList);
 watch(
   () => P.filterstring,
   () => columns.updateSeekFilterString(P.filterstring)
+);
+
+watch(
+  () => columns.dataHandler?.MaxSizeRow.value,
+  () => {
+    console.log("adjustColumns.adjust()")
+    setTimeout(()=> {
+      adjustColumns.adjust();
+    })
+    
+  }
 );
 
 function rowStyle(row: any) {

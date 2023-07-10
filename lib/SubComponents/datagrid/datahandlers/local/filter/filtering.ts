@@ -1,24 +1,34 @@
 import getFilterFunctions from "./getFilterFunctions";
-import { iFilterData } from "../../../provide/datagridTypes";
+import { iDatahandler } from "..";
 
-export async function filtering(arr: any[], filterList: iFilterData[], seekFilterList: string[], seekFilterString: string) {
-  const filtFuncs = getFilterFunctions(filterList);
+
+export async function filtering(DH:iDatahandler) {
+  const filtFuncs = getFilterFunctions(DH.filterArray);
   const filterData: any = [];
-  await arr.forEach((item: any) => {
+  const haveFilter = Object.keys(filtFuncs).length > 0 ? true : false
+  if (DH.dataSource.length > 0) {
+
+  await DH.dataSource.forEach((item: any) => {
     let inclute = true;
     let seekInclute = true;
     item._type = "row";
+    
+    if (haveFilter) {
     inclute = Object.keys(filtFuncs).every((key: any) => {
       const val = item[key];
       const v = filtFuncs[key](val);
       return v;
     });
-    if (seekFilterList && seekFilterList.length > 0 && seekFilterString !== "") {
-      seekInclute = seekFilter(seekFilterList, seekFilterString, item);
+  }
+
+    if (DH.seekFilterList && DH.seekFilterList.length > 0 && DH.seekFilterString !== "") {
+      seekInclute = seekFilter(DH.seekFilterList, DH.seekFilterString, item);
     }
 
     if (inclute && seekInclute) filterData.push(Object.assign({}, item));
+
   });
+}
 
   return filterData;
 }

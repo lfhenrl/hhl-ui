@@ -1,8 +1,11 @@
 <template>
   <div class="H_HeaderCell" ref="headCellRef" :data-index="index" data-type="headcell" :class="col.className">
+    <div class="H_HeaderCell-inner">
     <div class="H_HeadCell-text" data-subtype="title">{{ col.props.title }}</div>
     <H_menu data-subtype="menu" :index="index" />
     <div class="H_HeadCell-resize" @mousedown="resize" data-subtype="resize"></div>
+  </div>
+  <div class="H_HeadCell-text H_HeadCell-space"><rend :col="col" :row="Columns.dataHandler?.MaxSizeRow" /></div>
   </div>
 </template>
 
@@ -23,7 +26,25 @@ const col: icolumnData = Columns.columns[P.index];
 
 function resize(e: MouseEvent) {
   ColResize(col, e);
-  // Columns.adjustColumns?.adjust();
+}
+
+function rend(data: any) {
+  if (!data.row.value) return
+  const value = data.row.value[data.col.props.field];
+  if (data.col.slot) {
+    const rowData = {
+      row: data.row.value,
+      col: data.col,
+      value
+    };
+    return data.col.slot?.default(rowData);
+  } else {
+    return format(value, data.col, data.row.value);
+  }
+}
+
+function format(value: any, col: any, data: any) {
+  return col.props.format?.(value, col, data) ?? value?.toString() ?? "";
 }
 
 onMounted(() => {
@@ -38,16 +59,25 @@ onMounted(() => {
 <style>
 .H_HeaderCell {
   display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  min-height: 33px;
+  border-right: solid 1px var(--col-bg-3);
+  border-bottom: solid 1px var(--col-bg-3);
+}
+
+.H_HeaderCell-inner {
+  display: flex;
   align-items: center;
   font-weight: bold;
   padding: 0;
   margin: 0;
   min-height: 33px;
-  flex: 1 1 min-content;
+  width: 100%;
+ 
   /* 
   overflow: hidden; */
-  border-right: solid 1px var(--col-bg-3);
-  border-bottom: solid 1px var(--col-bg-3);
 }
 
 .H_HeadCell-text {
@@ -56,6 +86,15 @@ onMounted(() => {
   text-overflow: ellipsis;
   overflow: hidden;
   width: 100%;
+
+}
+
+.H_HeadCell-space {
+  padding: 0 10px;
+  width: min-content;
+  opacity: 0;
+  height: 0;
+
 }
 
 .H_HeadCell-resize {
@@ -65,7 +104,7 @@ onMounted(() => {
   /* margin-right: -4px; */
   overflow: visible;
   height: 100%;
-  /* background-color: aqua; */
+/*   background-color: aqua; */
   z-index: 2;
 }
 </style>

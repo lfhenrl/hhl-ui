@@ -9,27 +9,25 @@ export class ColumnsResizing {
     this.Columns = _Columns;
   }
 
-  public async autoColumns() {
-    const delay = () => new Promise((resolve) => setTimeout(resolve, 1));
-
+  public autoColumns() {
     for (const col of this.Columns.getVisibelColumns()) {
-      await this.autoColumn(col);
-      await delay();
+      this.autoColumn(col);
     }
+    setTimeout(() => {
+      this.adjust();
+      return;
+    });
   }
 
-  public autoColumn(col: any, incluteDom: boolean = false) {
-    if (col.dom && incluteDom) {
+  public autoColumn(col: any) {
+    if (col.dom) {
       col.dom.style.maxWidth = "";
       col.dom.style.minWidth = "";
     }
     col.cssRule.style.maxWidth = "";
     col.cssRule.style.minWidth = "";
     col.cssRule.style.width = "auto";
-    setTimeout(() => {
-      this.adjust();
-      return;
-    });
+
   }
 
   public adjust() {

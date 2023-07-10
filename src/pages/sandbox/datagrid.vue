@@ -28,7 +28,7 @@
         </H_column>
         <H_column field="id" title="Id" type="number" filter_type="number" cell-class="sofus" />
         <H_column field="val1" title="Value 1" type="string" filter_type="string" class="sofus" />
-        <H_column field="val6" title="Value 6" auto-height type="date" filter_type="datetime" :format="formatDate" />
+        <H_column field="val6" title="Value 6"  type="date" filter_type="datetime" :format="formatDate" />
         <H_column
           field="val2"
           title="Value 2"
