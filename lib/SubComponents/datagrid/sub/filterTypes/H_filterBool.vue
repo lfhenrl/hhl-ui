@@ -68,7 +68,6 @@ defineExpose({ save, clear, open, close, canSave });
 
 .H_filtercomponent.filterBool .h_selectBox .h_inputbase-slot {
   gap: 10px;
-  padding: 0 0 14px 0;
   align-items: start;
 }
 </style>

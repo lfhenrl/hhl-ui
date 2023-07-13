@@ -25,7 +25,7 @@ const P = defineProps({
   noShake: { default: false, type: Boolean },
   offsetTop: { default: "0", type: String },
   offsetLeft: { default: "0", type: String },
-  movable: { default: true, type: Boolean }
+  movable: { default: false, type: Boolean }
 });
 
 const E = defineEmits(["update:modelValue", "open", "close"]);

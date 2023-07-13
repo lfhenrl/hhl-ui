@@ -156,7 +156,7 @@ watch(
   () => {
     console.log("adjustColumns.adjust()")
     setTimeout(()=> {
-      adjustColumns.autoColumns();
+      adjustColumns.adjust();
     },100)
     
   },{deep: true}

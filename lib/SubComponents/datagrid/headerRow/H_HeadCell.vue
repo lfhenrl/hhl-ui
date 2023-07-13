@@ -1,11 +1,13 @@
 <template>
   <div class="H_HeaderCell" ref="headCellRef" :data-index="index" data-type="headcell" :class="col.className">
     <div class="H_HeaderCell-inner">
-    <div class="H_HeadCell-text" data-subtype="title">{{ col.props.title }}</div>
-    <H_menu data-subtype="menu" :index="index" />
-    <div class="H_HeadCell-resize" @mousedown="resize" data-subtype="resize"></div>
-  </div>
-  <div class="H_HeadCell-text H_HeadCell-space"><rend :col="col" :row="Columns.dataHandler?.MaxSizeRow" /></div>
+      <div class="H_HeadCell-text" data-subtype="title">{{ col.props.title }}</div>
+      <H_menu data-subtype="menu" :index="index" />
+      <div class="H_HeadCell-resize" @mousedown="resize" data-subtype="resize"></div>
+    </div>
+    <div class="H_HeadCell-text H_HeadCell-space">
+      <rend :col="col" :row="Columns.dataHandler?.MaxSizeRow" />
+    </div>
   </div>
 </template>
 
@@ -75,9 +77,6 @@ onMounted(() => {
   margin: 0;
   min-height: 33px;
   width: 100%;
- 
-  /* 
-  overflow: hidden; */
 }
 
 .H_HeadCell-text {
@@ -92,8 +91,8 @@ onMounted(() => {
 .H_HeadCell-space {
   padding: 0 10px;
   width: min-content;
-/*   opacity: 0;
-  height: 0; */
+  opacity: 0;
+  height: 0;
 
 }
 
@@ -101,10 +100,9 @@ onMounted(() => {
   cursor: col-resize;
   width: 6px;
   min-width: 6px;
-  /* margin-right: -4px; */
   overflow: visible;
   height: 100%;
-/*   background-color: aqua; */
+  /*   background-color: red; */
   z-index: 2;
 }
 </style>

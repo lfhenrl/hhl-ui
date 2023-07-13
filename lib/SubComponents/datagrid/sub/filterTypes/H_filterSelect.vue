@@ -21,7 +21,7 @@ const P = defineProps({
 const Columns = inject("Columns") as iColumns;
 const col: icolumnData = Columns.columns[P.index];
 
-const list = ref([]);
+const list = ref<any>([]);
 const value1 = ref<any>();
 
 const searchValue = ref("");
@@ -81,7 +81,7 @@ function clear() {
 }
 
 async function open() {
-  list.value = await Columns.dataHandler.getSelectList(col.props.field);
+  list.value = await Columns.dataHandler?.getSelectList(col.props.field);
   if (col.filter.value1 === "") {
     value1.value = list.value.toString();
   } else {
@@ -97,7 +97,7 @@ async function open() {
   }
 }
 
-function close() {}
+function close() { }
 
 onMounted(() => {
   col.filter.condition1 = col.filter.condition1 === "" ? "equal" : col.filter.condition1;
@@ -110,27 +110,26 @@ defineExpose({ save, clear, open, close, canSave });
 </script>
 <style>
 .H_filtercomponent.filterSelect {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 50vh;
-  max-height: 50vh;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  height: 100%;
+  overflow: hidden;
+
 }
 
 .H_filtercomponent.filterSelect .h_selectBox {
   border: 1px solid var(--col-txt-5);
   overflow: auto;
-  flex: 1;
+  height: 300px;
+
+
 }
 
-.H_filtercomponent.filterSelect .h_baseSelectList {
-  flex: 1;
-}
+.H_filtercomponent.filterSelect .h_baseSelectList {}
 
 .H_filtercomponent.filterSelect .h_selectBox .h_inputbase-slot {
   gap: 10px;
-  padding: 0 0 14px 0;
   align-items: start;
-  flex: 1;
+
 }
 </style>

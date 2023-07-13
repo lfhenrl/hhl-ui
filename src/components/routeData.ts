@@ -14,7 +14,16 @@ function jsUcfirst(string: string) {
 
 export function makeRouteList(router: any) {
   const list = router.getRoutes();
-  list.forEach((item: any) => {
+  const sortList = list.sort((a: any, b: any) => {
+    if (a.path > b.path) {
+      return 1;
+    }
+    if (a.path < b.path) {
+      return -1;
+    }
+    return 0;
+  });
+  sortList.forEach((item: any) => {
     const linkArr = item.name.split("-");
     const del1 = linkArr[0];
     const del2 = linkArr[1] || "na";

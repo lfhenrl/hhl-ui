@@ -29,8 +29,8 @@ export const vMovable = {
       } else {
         const pageContainer = document.querySelector("#page-container") as HTMLElement;
         if (pageContainer) {
-          maxRight = pageContainer.offsetWidth;
-          maxBottom = pageContainer.offsetHeight;
+          maxRight = pageContainer.offsetWidth + pageContainer.offsetLeft;
+          maxBottom = pageContainer.offsetHeight+ pageContainer.offsetTop;
         } else {
           maxRight = document.body.offsetWidth;
           maxBottom = document.body.clientHeight;
@@ -57,26 +57,18 @@ export const vMovable = {
 
       if (top < 0) {
         top = 0;
-        el.style.top = top + "px";
-        closeDragElement();
       }
 
       if (left < 0) {
         left = 0;
-        el.style.left = left + "px";
-        closeDragElement();
       }
 
       if (right > 0) {
         left = maxRight - el.offsetWidth - 2;
-        el.style.left = left + "px";
-        closeDragElement();
       }
 
       if (bottom > 0) {
         top = maxBottom - el.offsetHeight - 2;
-        el.style.top = top + "px";
-        closeDragElement();
       }
 
       el.style.top = top + "px";

@@ -1,7 +1,7 @@
 <template>
   <div class="h_pop" ref="h_pop">
     <div class="h_pop__referance" ref="reference"><slot name="referance" /></div>
-    <div ref="popup" class="h_pop__content" :isOpen="isOpen ? true : null">
+    <div ref="popup" class="h_pop__content" :isOpen="isOpen ? true : null" v-movable="movable">
       <slot />
     </div>
   </div>
@@ -10,6 +10,7 @@
 <script setup lang="ts">
 import { computePosition, offset, flip, shift } from "@floating-ui/dom";
 import { PropType, onMounted, onUnmounted, ref, watch } from "vue";
+import { vMovable } from "../../Directives/v-movable";
 
 const P = defineProps({
   modelValue: {
@@ -43,7 +44,8 @@ const P = defineProps({
   closePopupClick: { type: Boolean, default: false },
   delayOnMouseOver: { type: String, default: "100" },
   delayOnMouseOut: { type: String, default: "400" },
-  readonly: { type: Boolean, default: false }
+  readonly: { type: Boolean, default: false },
+  movable: { default: false, type: Boolean }
 });
 
 const E = defineEmits(["update:modelValue"]);

@@ -30,15 +30,16 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { hhlFetch } from "../../../lib/utils/hhlFetch";
+/* import { hhlFetch } from "../../../lib/utils/hhlFetch"; */
 import { D_01_dec_2021_HHMM } from "../../../lib/utils/dateFormat";
-import { icolumnData, iQueryObject } from "../../../lib/SubComponents/datagrid/datagridTypes";
-import { dataHandler } from "../../../lib/SubComponents/datagrid/virtualScroll";
+import { icolumnData } from "../../../lib/SubComponents/datagrid/provide/datagridTypes";
+import { localData } from "../../../lib/SubComponents/datagrid/datahandlers/local";
 
 const seek = ref("");
-const _fetch = new hhlFetch("http://localhost:5272/EventLog");
+/* const _fetch = new hhlFetch("http://localhost:5272/EventLog"); */
 
-const DataHandler = new dataHandler(getData, getCount, getSelectList);
+/* const DataHandler = new dataHandler(getData, getCount, getSelectList); */
+const DataHandler = new localData();
 
 function formatDate(value: any, _row: icolumnData) {
   return D_01_dec_2021_HHMM(new Date(value));
@@ -47,10 +48,10 @@ function formatDate(value: any, _row: icolumnData) {
 
 
 function load() {
-  DataHandler.Load();
+ /*  DataHandler.Load(); */
 }
 
-async function getSelectList(field: string): Promise<string[]> {
+/* async function getSelectList(field: string): Promise<string[]> {
   const d = await _fetch.get("/selectlist", { field: field });
   if (d.ok) {
     return d.data;
@@ -58,9 +59,9 @@ async function getSelectList(field: string): Promise<string[]> {
     hhl.alert("err", "API Error", d.message);
     return [];
   }
-}
+} */
 
-async function getCount(QueryObject: iQueryObject): Promise<number> {
+/* async function getCount(QueryObject: iQueryObject): Promise<number> {
   const d = await _fetch.post("/count", QueryObject);
   if (d.ok) {
     return d.data;
@@ -68,9 +69,9 @@ async function getCount(QueryObject: iQueryObject): Promise<number> {
     hhl.alert("err", "API Error", d.message);
     return 0;
   }
-}
+} */
 
-async function getData(QueryObject: iQueryObject): Promise<any[]> {
+/* async function getData(QueryObject: iQueryObject): Promise<any[]> {
   const d = await _fetch.post("", QueryObject);
   if (d.ok) {
     return d.data;
@@ -78,7 +79,7 @@ async function getData(QueryObject: iQueryObject): Promise<any[]> {
     hhl.alert("err", "API Error", d.message);
     return [];
   }
-}
+} */
 </script>
 
 <style>

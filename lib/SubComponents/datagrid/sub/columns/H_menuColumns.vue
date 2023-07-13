@@ -1,5 +1,5 @@
 <template>
-  <H_dialog v-model="open" top="-20%" class="h_menuColumns">
+  <H_dialog v-model="open" offsetTop="-20px" class="h_menuColumns" movable>
     <template #header>
       <H_row padding="0" align="center">
         <div style="width: 25px"></div>
@@ -122,7 +122,7 @@ function columnsSave() {
 .h_menuColumns-body {
   display: grid;
   grid-template-rows: auto 1fr;
-  min-height: 50vh;
+  min-height: 400px;
   max-height: 50vh;
   gap: 20px;
 }

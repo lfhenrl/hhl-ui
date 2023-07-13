@@ -1,4 +1,5 @@
 import { iColumns } from "./Columns";
+import { icolumnData } from "./datagridTypes";
 
 export type iColumnsResizing = InstanceType<typeof ColumnsResizing>;
 
@@ -11,7 +12,9 @@ export class ColumnsResizing {
 
   public autoColumns() {
     for (const col of this.Columns.getVisibelColumns()) {
-      this.autoColumn(col);
+
+        this.autoColumn(col);
+       
     }
     setTimeout(() => {
       this.adjust();
@@ -19,7 +22,7 @@ export class ColumnsResizing {
     });
   }
 
-  public autoColumn(col: any) {
+  private autoColumn(col: icolumnData) {
     if (col.dom) {
       col.dom.style.maxWidth = "";
       col.dom.style.minWidth = "";
@@ -43,6 +46,11 @@ export class ColumnsResizing {
     cols.forEach((item: any) => {
       this.setWidth(item.width ?? 0, item.style);
     });
+  }
+
+  public adjustColumn(column: icolumnData) {
+    this.autoColumn(column)
+    this.setWidth(column.dom?.offsetWidth ?? 0, column.cssRule.style);
   }
 
   private setWidth(w: number, s: any) {

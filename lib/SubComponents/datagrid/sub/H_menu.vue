@@ -1,5 +1,6 @@
 <template>
   <div class="H_menu">
+
     <H_pop class="H_menu" :offset-top="2" :offset-left="2" close-popup-click position="fixed">
       <template v-slot:referance>
         <div class="H_HeadCell-Icon" data-subtype="menu">
@@ -24,13 +25,17 @@
           <H_icon class="H_menu-popup-item-noMouseEvent" btn icon="filter" size="18px" />
           <div class="H_menu-popup-item-noMouseEvent">Filter</div>
         </div>
-        <div class="H_menu-popup-item" data-action="autoSize" v-if="col.cssRule.style.minWidth !== ''">
+
+
+        <div class="H_menu-popup-item" data-action="autoSize" >
           <H_icon class="H_menu-popup-item-noMouseEvent" btn icon="expand_horizontal" size="18px" />
           <div class="H_menu-popup-item-noMouseEvent">Auto size</div>
         </div>
       </div>
     </H_pop>
     <H_menuFilter :index="index" ref="menuFilterRef" data-subtype="menu" />
+
+
   </div>
 </template>
 
@@ -103,17 +108,8 @@ function menuClick(e: MouseEvent) {
   }
 
   if (action === "autoSize") {
-    let oldSpace = "";
-    if (col.dom) {
-      // col.dom.style.whiteSpace = "nowrap";
-      oldSpace = col.cssRule.style.whiteSpace;
-      col.cssRule.style.whiteSpace = "nowrap";
-    }
+    Columns.adjustColumns?.adjustColumn(col);
     setTimeout(() => {
-      Columns.adjustColumns?.autoColumn(col);
-      setTimeout(() => {
-        col.cssRule.style.whiteSpace = oldSpace;
-      });
     });
   }
 }
@@ -136,9 +132,12 @@ function menuClick(e: MouseEvent) {
 .H_HeadCell-Icon {
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 100%;
   flex-direction: column;
   padding: 0;
+  overflow: visible;
+  min-width: 30px;
 }
 
 .H_HeadCell-sorting {
@@ -150,7 +149,9 @@ function menuClick(e: MouseEvent) {
   display: flex;
   flex: 1;
   align-items: center;
+  justify-items: center;
   line-height: 16px;
+  overflow: visible;
 }
 
 .H_menu-popup {

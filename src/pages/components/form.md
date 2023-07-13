@@ -11,8 +11,8 @@ The event: `@dirty-valid=""` is true when all is valid and the data have changes
 <hhl-live-editor title="" htmlCode=' 
     <template>
     <H_form :data="data" v-model:dirty="isDirty" @valid="isValid = $event"  @dirty-valid="isDirtyAndValid = $event">
-      <H_input label="Navn" v-model="data.navn" :validator="[validator.required]"></H_input>
-      <H_input label="City" v-model="data.city" :validator="[validator.required]" ></H_input>
+      <H_inputText label="Navn" v-model="data.navn" :validator="[validator.required]"></H_inputText>
+      <H_inputText label="City" v-model="data.city" :validator="[validator.required]" ></H_inputText>
       <H_checkbox label="Valid" v-model="isValid"></H_checkbox>
       <H_checkbox label="Dirty" v-model="isDirty" ></H_checkbox>
       <H_checkbox label="DirtyAndValid" v-model="isDirtyAndValid" ></H_checkbox>

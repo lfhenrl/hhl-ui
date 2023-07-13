@@ -48,7 +48,7 @@
             { label: 'G10', value: 'Group 10.' }
           ]"
         />
-        <H_column field="val3" title="Value 3" type="string" :cell_style="styleCell" />
+        <H_column field="val3" title="Value 3" auto-height width="200px" type="string" :cell_style="styleCell" />
         <H_column field="val5" title="Value 5" type="bool" filter_type="bool" filter_condition="bool_list" />
         <H_column field="val4" title="Value 4" type="string" filter_type="select" />
       </H_datagrid>
@@ -71,7 +71,8 @@ const seek = ref("");
 const lData = new localData();
 
 async function loadData() {
-  await lData.setDataSource(getData(100000));
+  await lData.setDataSource(getData(10));
+  
 }
 
 function formatDate(value: any) {
@@ -112,6 +113,7 @@ async function load() {
 </script>
 
 <style>
+
 .sofus {
   color: red;
 }

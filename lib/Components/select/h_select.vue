@@ -150,9 +150,6 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
   border-radius: 4px;
 }
 
-.h_select-list .h_baseSelectList {
-  margin-bottom: 10px;
-}
 
 .h_select-filter {
   display: flex;

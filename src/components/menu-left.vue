@@ -41,11 +41,6 @@ const MenuLeft = defineComponent({
   }
 });
 
-declare global {
-  interface __VLS_GlobalComponents {
-    "menu-left": typeof MenuLeft;
-  }
-}
 export type iMenuLeft = InstanceType<typeof MenuLeft>;
 export default MenuLeft;
 </script>

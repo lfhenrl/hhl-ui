@@ -1,6 +1,5 @@
 <template>
   <div class="h_baseSelectList" @click="Click" @keyup.space="Click" @keyup.enter="Click" :row="row ? 'true' : null">
-    <div v-if="!row" style="height: 2px"></div>
     <div
       class="h_baseSelectList-item"
       v-for="item in filterList"
@@ -128,6 +127,7 @@ function setMultivalue(val: string) {
   flex-wrap: wrap;
   font-size: var(--comp-font-size);
   font-family: var(--comp-font-family);
+  padding: 10px;
 }
 
 .h_baseSelectList[row="true"] {
