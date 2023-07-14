@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, onMounted, ref, watch } from "vue";
+import { PropType, onMounted, onUnmounted, ref, watch } from "vue";
 import { PopPos } from "./PopPos";
 
 const P = defineProps({
@@ -32,9 +32,11 @@ const P = defineProps({
       | "left-end"
       | "center"
     >,
-    default: "bottom-start"
+    default: "top"
   },
-  offsetTop: { type: Number, default: 0 }
+  offsetTop: { type: Number, default: 0 },
+  offsetLeft: { type: Number, default: 0 },
+  inner: { type: Boolean, default: false }
 });
 const E = defineEmits(["open", "close"]);
 
@@ -62,11 +64,36 @@ function toggle(e: any) {
 function refClick() {
   isOpen.value = !isOpen.value;
 }
+let ticking = false;
+function resize() {
+ 
+  console.log("resize")
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      dialogPos.getPos();
+      ticking = false;
+      console.log("requestAnimationFrame")
+    });
+
+    ticking = true;
+}
+}
+
+function scroll() {
+  dialogPos.getPos();
+  console.log("scroll")
+}
 
 onMounted(() => {
-  dialogPos.init(referance.value, dialogRef.value, P.placement, P.container);
-  dialogRef.value.popovertarget = referance.value;
+  dialogPos.init(referance.value, dialogRef.value, P);
+  window.addEventListener("resize", resize, { passive: true });
+  document.addEventListener("scroll", scroll, { passive: true });
 });
+
+onUnmounted(()=> {
+  window.removeEventListener("resize", resize);
+  document.removeEventListener("scroll", scroll);
+})
 </script>
 
 <style>

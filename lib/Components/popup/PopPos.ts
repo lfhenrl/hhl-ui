@@ -1,3 +1,4 @@
+import { watch } from "vue";
 import { screenPos } from "./screenPos";
 
 export type iPosPop = InstanceType<typeof PopPos>;
@@ -15,6 +16,7 @@ export class PopPos {
   public diaRect?: DOMRect;
   public offsetTop: number = 0;
   public offsetLeft: number = 0;
+  public inner: boolean = false;
   public container: "screen" | "parent" | "refElement" = "refElement";
   public placement:
     | "center"
@@ -29,17 +31,34 @@ export class PopPos {
     | "bottom-end"
     | "left"
     | "left-start"
-    | "left-end" = "bottom-start";
+    | "left-end" = "top-start";
 
-  init(ref: HTMLElement, dia: HTMLDialogElement, _placement: any, _container: any) {
+  init(ref: HTMLElement, dia: HTMLDialogElement, props: any) {
     this.referance = ref;
     this.dialog = dia;
-    this.placement = _placement;
-    this.container = _container;
+    this.placement = props.placement;
+    this.container = props.container;
+    this.inner = props.inner;
+    this.offsetTop = props.offsetTop
+    this.offsetLeft = props.offsetLeft
+
+    watch(props, () => {
+      console.log("PROPS")
+      this.placement = props.placement;
+      this.container = props.container;
+      this.inner = props.inner;
+      this.offsetTop = props.offsetTop
+      this.offsetLeft = props.offsetLeft
+    }
+    )
   }
 
+
+
   getPos() {
-    this.refRect = this.referance?.getBoundingClientRect() ?? undefined;
+    const ddd = this.dialog?.closest(".testForms")
+    this.refRect = ddd?.getBoundingClientRect() ?? undefined;
+    /*     this.refRect = this.referance?.getBoundingClientRect() ?? undefined; */
     this.diaRect = this.dialog?.getBoundingClientRect() ?? undefined;
     if (this.refRect && this.diaRect && this.dialog) {
       this.wWidth = window.innerWidth;
