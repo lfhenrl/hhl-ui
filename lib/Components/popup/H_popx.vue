@@ -1,21 +1,22 @@
 <template>
-  <div class="H_pop">
-    <div class="H_pop-referance" ref="referance" @click="refClick">
+  <div class="H_pop" ref="H_popRef">
+    <div class="H_pop-referance">
       <slot name="referance" />
     </div>
-    <dialog popover class="H_pop-dialog" ref="dialogRef" @toggle="toggle"><slot /></dialog>
+    <div popover="manual" class="H_pop-dialog"><slot /></div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { PropType, onMounted, onUnmounted, ref, watch } from "vue";
-import { PopPos } from "./PopPos";
+import { Pop } from "./Pop";
 
 const P = defineProps({
   container: {
-    type: String as PropType<"screen" | "parent" | "refElement">,
-    default: "refElement"
+    type: String as PropType<"box" | "slotElement">,
+    default: "slotElement"
   },
+  querySelector: { type: String, default: "body" },
   placement: {
     type: String as PropType<
       | "top"
@@ -36,68 +37,109 @@ const P = defineProps({
   },
   offsetTop: { type: Number, default: 0 },
   offsetLeft: { type: Number, default: 0 },
-  inner: { type: Boolean, default: false }
+  inner: { type: Boolean, default: false },
+  modal: { type: Boolean, default: false }
 });
 const E = defineEmits(["open", "close"]);
 
-const referance = ref();
-const dialogRef = ref();
+const H_popRef = ref();
 const isOpen = ref(false);
+let refBox: HTMLElement;
+let dialogBox: any;
+let opserveTimer: any = null;
 
-const dialogPos = new PopPos();
+const dialogPos = new Pop();
 
 watch(isOpen, () => {
   if (isOpen.value) {
-    dialogRef.value.showPopover();
-    // dialogRef.value.showModal();
-    dialogPos.getPos();
+    diaOpen();
     E("open");
   } else {
-    dialogRef.value.close();
+    diaClose();
     E("close");
   }
 });
-function toggle(e: any) {
-  console.log("ggg ", e);
-  isOpen.value = e.newValue;
+
+function diaOpen() {
+  dialogBox.showPopover();
+  setTimeout(() => {
+    dialogPos.getPos();
+    startOpserve();
+  });
 }
+
+function diaClose() {
+  dialogBox.hidePopover();
+  stopOpserve();
+}
+
 function refClick() {
   isOpen.value = !isOpen.value;
-}
-let ticking = false;
-function resize() {
- 
-  console.log("resize")
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      dialogPos.getPos();
-      ticking = false;
-      console.log("requestAnimationFrame")
-    });
-
-    ticking = true;
-}
+  console.log("refClick");
 }
 
-function scroll() {
-  dialogPos.getPos();
-  console.log("scroll")
+function popupClick() {
+  console.log("popupClick");
+}
+
+function outsideClick() {
+  console.log("outsideClick");
+  isOpen.value = false;
+}
+
+function docClick(e: any) {
+  if (!e.target) return;
+  if (H_popRef.value?.contains(e.target)) {
+    e.stopPropagation;
+    if (refBox?.contains(e.target)) refClick();
+    if (dialogBox.contains(e.target)) popupClick();
+  } else {
+    if (isOpen.value) outsideClick();
+  }
+}
+
+function startOpserve() {
+  if (!opserveTimer) {
+    opserveTimer = setInterval(onOpserve, 20);
+  }
+}
+function stopOpserve() {
+  clearInterval(opserveTimer);
+  opserveTimer = null;
+}
+
+function onOpserve() {
+  if (dialogPos.hasResized()) {
+    dialogPos.getPos();
+    return;
+  }
+  if (dialogPos.hasScrolled()) {
+    dialogPos.getPos();
+    return;
+  }
 }
 
 onMounted(() => {
-  dialogPos.init(referance.value, dialogRef.value, P);
-  window.addEventListener("resize", resize, { passive: true });
-  document.addEventListener("scroll", scroll, { passive: true });
+  if (H_popRef.value) {
+    dialogBox = H_popRef.value.children[1];
+    if (P.container === "box") {
+      refBox = dialogBox.closest(P.querySelector);
+    } else {
+      refBox = H_popRef.value.children[0];
+    }
+  }
+  dialogPos.init(refBox, dialogBox, P);
+  document.addEventListener("click", docClick);
 });
 
-onUnmounted(()=> {
-  window.removeEventListener("resize", resize);
-  document.removeEventListener("scroll", scroll);
-})
+onUnmounted(() => {
+  document.removeEventListener("click", docClick);
+});
 </script>
 
 <style>
 .H_pop {
+  position: relative;
 }
 .H_pop-referance {
   background-color: bisque;
@@ -105,6 +147,12 @@ onUnmounted(()=> {
 .H_pop-dialog {
   padding: 0;
   border: none;
+  overflow: auto;
   /* inset: auto; */
+}
+
+.H_pop [popover]:popover-open::backdrop {
+  background: rgba(0, 0, 0, 0.1);
+  position: absolute;
 }
 </style>

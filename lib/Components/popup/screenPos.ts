@@ -1,158 +1,197 @@
-import { PopPos } from "./PopPos";
+import { iPop } from "./Pop";
 
-export function screenPos(PosPop: PopPos) {
-  const oT = PosPop.offsetTop;
-  const oL = PosPop.offsetLeft;
-  let refW = PosPop.refRect!.width;
-  let refH = PosPop.refRect!.height;
-  let refL = PosPop.refRect!.left;
-  let refT = PosPop.refRect!.top;
-  const refW_halv = refW / 2;
-  const refH_halv = refH / 2;
-  const diaW = PosPop.diaRect!.width;
-  const diaH = PosPop.diaRect!.height;
-  const diaW_halv = diaW / 2;
-  const diaH_halv = diaH / 2;
-  const inner = PosPop.inner;
+export function screenPos(Pop: iPop) {
+  const oT = Pop.offsetTop;
+  const oL = Pop.offsetLeft;
+  const inner = Pop.inner;
+  let top = 0;
+  let bottom = 0;
+  let left = 0;
+  let right = 0;
+  let maxHeight = "";
 
-  if (PosPop.placement.startsWith("top")) {
-    const top = inner === true ? refT = refT + oT : refT - diaH - oT;
-    const bottom = top + refH;
-    let left = 0;
-    switch (PosPop.placement) {
+  function getScreenPos(placement: string) {
+    const ref = Pop.refRect!;
+    const dia = Pop.diaRect!;
 
-      case "top-start":
-        left = refL + oL;
-        return {
-          top,
-          left,
-          bottom,
-          right: left + diaW
-        }
-      case "top-end":
-        left = refW - diaW + refL - oL;
-        return {
-          top,
-          left,
-          bottom,
-          right: left + diaW
-        }
-      default:
-        left = refW_halv - diaW_halv + refL + oL;
-        return {
-          top,
-          left,
-          bottom,
-          right: left + diaW
-        }
-    }
-  }
+    if (placement.startsWith("top")) {
+      if (inner === true) {
+        top = ref.top + oT;
+      } else {
+        top = ref.top - dia.height - oT;
+      }
 
-  if (PosPop.placement.startsWith("bottom")) {
-    const top = inner ? refT = refT + refH - diaH - oT : refT + refH + oT;
-    const bottom = top + refH;
-    let left = 0;
-    switch (PosPop.placement) {
-      case "bottom-start":
-        left = refL + oL;
-        return {
-          top,
-          left,
-          bottom,
-          right: left + diaW
-        }
-      case "bottom-end":
-        left = refW - diaW + refL - oL;
-        return {
-          top,
-          left,
-          bottom,
-          right: left + diaW
-        }
-      default:
-        left = refW_halv - diaW_halv + refL + oL;
-        return {
-          top,
-          left,
-          bottom,
-          right: left + diaW
-        }
+      bottom = Pop.wHeight - (top + ref.height);
+      maxHeight = ref.top - oT - 5 + "px";
+      switch (placement) {
+        case "top-start":
+          left = ref.left + oL;
+          return {
+            top,
+            left,
+            bottom,
+            right: left + dia.width,
+            width: dia.width,
+            height: dia.height,
+            maxHeight
+          };
+        case "top-end":
+          left = ref.width - dia.width + ref.left - oL;
+          return {
+            top,
+            left,
+            bottom,
+            right: left + dia.width,
+            width: dia.width,
+            height: dia.height,
+            maxHeight
+          };
+        default:
+          left = ref.width / 2 - dia.width / 2 + ref.left + oL;
+          return {
+            top,
+            left,
+            bottom,
+            right: left + dia.width,
+            width: dia.width,
+            height: dia.height,
+            maxHeight
+          };
+      }
     }
 
-  }
-
-  if (PosPop.placement.startsWith("left")) {
-    const left = inner ? refL = refL + oL : refL - diaW - oL;
-    const right = left + diaW;
-    let top = 0;
-    switch (PosPop.placement) {
-      case "left-start":
-        top = refT + oT;
-        return {
-          top,
-          left,
-          bottom: top + diaH,
-          right
-        }
-      case "left-end":
-        top = refH - diaH + refT - oT;
-        return {
-          top,
-          left,
-          bottom: top + diaH,
-          right
-        }
-      default:
-        top = refH_halv - diaH_halv + refT  + oT;
-        return {
-          top,
-          left,
-          bottom: top + diaH,
-          right
-        }
+    if (placement.startsWith("bottom")) {
+      top = inner ? ref.top + ref.height - dia.height - oT : ref.top + ref.height + oT;
+      bottom = top + ref.height;
+      switch (placement) {
+        case "bottom-start":
+          left = ref.left + oL;
+          return {
+            top,
+            left,
+            bottom,
+            right: left + dia.width,
+            width: dia.width,
+            height: dia.height,
+            maxHeight: ""
+          };
+        case "bottom-end":
+          left = ref.width - dia.width + ref.left - oL;
+          return {
+            top,
+            left,
+            bottom,
+            right: left + dia.width,
+            width: dia.width,
+            height: dia.height,
+            maxHeight: ""
+          };
+        default:
+          left = ref.width / 2 - dia.width / 2 + ref.left + oL;
+          return {
+            top,
+            left,
+            bottom,
+            right: left + dia.width,
+            width: dia.width,
+            height: dia.height,
+            maxHeight: ref.bottom - oT - 5 + "px"
+          };
+      }
     }
-  }
 
-  if (PosPop.placement.startsWith("right")) {
-    const left = inner ? refL + refW - diaW - oL : refL = refL + refW + oL;
-    const right = left + diaW;
-    let top = 0;
-    switch (PosPop.placement) {
-      case "right-start":
-        top = refT + oT;
-        return {
-          top,
-          left,
-          bottom: top + diaH,
-          right
-        }
-      case "right-end":
-        top = refH - diaH + refT - oT;
-        return {
-          top,
-          left,
-          bottom: top + diaH,
-          right
-        }
-      default:
-        top = refH_halv - diaH_halv + refT + oT;
-        return {
-          top,
-          left,
-          bottom: top + diaH,
-          right
-        }
+    if (placement.startsWith("left")) {
+      left = inner ? ref.left + oL : ref.left - dia.width - oL;
+      right = left + dia.width;
+      switch (placement) {
+        case "left-start":
+          top = ref.top + oT;
+          return {
+            top,
+            left,
+            bottom: top + dia.height,
+            right,
+            width: dia.width,
+            height: dia.height,
+            maxHeight: ""
+          };
+        case "left-end":
+          top = ref.height - dia.height + ref.top - oT;
+          return {
+            top,
+            left,
+            bottom: top + dia.height,
+            right,
+            width: dia.width,
+            height: dia.height,
+            maxHeight: ""
+          };
+        default:
+          top = ref.height / 2 - dia.height / 2 + ref.top + oT;
+          return {
+            top,
+            left,
+            bottom: top + dia.height,
+            right,
+            width: dia.width,
+            height: dia.height,
+            maxHeight: ""
+          };
+      }
     }
+
+    if (placement.startsWith("right")) {
+      left = inner ? ref.left + ref.width - dia.width - oL : ref.left + ref.width + oL;
+      right = left + dia.width;
+      switch (placement) {
+        case "right-start":
+          top = ref.top + oT;
+          return {
+            top,
+            left,
+            bottom: top + dia.height,
+            right,
+            width: dia.width,
+            height: dia.height,
+            maxHeight: ""
+          };
+        case "right-end":
+          top = ref.height - dia.height + ref.top - oT;
+          return {
+            top,
+            left,
+            bottom: top + dia.height,
+            right,
+            width: dia.width,
+            height: dia.height,
+            maxHeight: ""
+          };
+        default:
+          top = ref.height / 2 - dia.height / 2 + ref.top + oT;
+          return {
+            top,
+            left,
+            bottom: top + dia.height,
+            right,
+            width: dia.width,
+            height: dia.height,
+            maxHeight: ""
+          };
+      }
+    }
+
+    top = ref.height / 2 - dia.height / 2 + ref.top + oT;
+    left = ref.width / 2 - dia.width / 2 + ref.left + oL;
+
+    return {
+      top,
+      left,
+      bottom: top + dia.height,
+      right: left + dia.width,
+      width: dia.width,
+      height: dia.height,
+      maxHeight: ""
+    };
   }
-
-
-  const top = refH_halv - diaH_halv + refT + oT;
-  const left = refW_halv - diaW_halv + refL + oL;
-
-  return {
-    top,
-    left,
-    bottom: top + diaH,
-    right: left + diaW
-  };
+  return getScreenPos;
 }
