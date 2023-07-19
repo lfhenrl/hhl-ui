@@ -11,10 +11,11 @@ export type ipos = {
   width: number;
   height: number;
   maxHeight: string;
+  pos: string;
 };
 
 export class Pop {
-  private loaded = false;
+  private oldPosClass = "NA";
   public wWidth: number = 0;
   public wHeight: number = 0;
   public referance?: HTMLElement;
@@ -88,22 +89,44 @@ export class Pop {
       bottom,
       width: R.width,
       height: R.height,
-      maxHeight: ""
+      maxHeight: "",
+      pos: ""
     };
+  }
+
+  startPos() {
+    this.diaRect = this.dialog?.getBoundingClientRect() ?? undefined;
+    this.dialog?.classList.add("open")
+    this.dialog?.classList.remove("close", "top","bottom")
+    this.getPos();
+  }
+
+  endPos() {
+    if (this.dialog) {
+
+      Object.assign(this.dialog.style, {
+        maxHeight: "none"
+      });
+      this.dialog?.classList.remove("open")
+      this.oldPosClass = "NA";
+      this.dialog?.classList.add("close")
+
+    }
   }
 
   getPos() {
     this.wWidth = window.innerWidth;
     this.wHeight = window.innerHeight;
     this.refRect = this.getRefRect();
-    if (!this.loaded) {
-      this.diaRect = this.dialog?.getBoundingClientRect() ?? undefined;
-      this.loaded = true;
-    }
 
     if (this.refRect && this.diaRect && this.dialog) {
       const posi: ipos = this.screen_pos(this.placement);
       const posiFlip: ipos = flip(this, posi);
+      if (this.oldPosClass !== posiFlip.pos) {
+        this.dialog.classList.remove(this.oldPosClass)
+        this.dialog.classList.add(posiFlip.pos)
+        this.oldPosClass = posiFlip.pos;
+      }
       Object.assign(this.dialog.style, {
         left: `${posiFlip.left}px`,
         top: `${posiFlip.top}px`,

@@ -33,7 +33,8 @@ export function screenPos(Pop: iPop) {
             right: left + dia.width,
             width: dia.width,
             height: dia.height,
-            maxHeight
+            maxHeight,
+            pos: "top"
           };
         case "top-end":
           left = ref.width - dia.width + ref.left - oL;
@@ -44,7 +45,8 @@ export function screenPos(Pop: iPop) {
             right: left + dia.width,
             width: dia.width,
             height: dia.height,
-            maxHeight
+            maxHeight,
+            pos: "top"
           };
         default:
           left = ref.width / 2 - dia.width / 2 + ref.left + oL;
@@ -55,7 +57,8 @@ export function screenPos(Pop: iPop) {
             right: left + dia.width,
             width: dia.width,
             height: dia.height,
-            maxHeight
+            maxHeight,
+            pos: "top"
           };
       }
     }
@@ -73,7 +76,8 @@ export function screenPos(Pop: iPop) {
             right: left + dia.width,
             width: dia.width,
             height: dia.height,
-            maxHeight: ""
+            maxHeight: "",
+            pos: "bottom"
           };
         case "bottom-end":
           left = ref.width - dia.width + ref.left - oL;
@@ -84,7 +88,8 @@ export function screenPos(Pop: iPop) {
             right: left + dia.width,
             width: dia.width,
             height: dia.height,
-            maxHeight: ""
+            maxHeight: "",
+            pos: "bottom"
           };
         default:
           left = ref.width / 2 - dia.width / 2 + ref.left + oL;
@@ -95,7 +100,8 @@ export function screenPos(Pop: iPop) {
             right: left + dia.width,
             width: dia.width,
             height: dia.height,
-            maxHeight: ref.bottom - oT - 5 + "px"
+            maxHeight: ref.bottom - oT - 5 + "px",
+            pos: "bottom"
           };
       }
     }
@@ -113,7 +119,8 @@ export function screenPos(Pop: iPop) {
             right,
             width: dia.width,
             height: dia.height,
-            maxHeight: ""
+            maxHeight: "",
+            pos: "left-start"
           };
         case "left-end":
           top = ref.height - dia.height + ref.top - oT;
@@ -124,7 +131,8 @@ export function screenPos(Pop: iPop) {
             right,
             width: dia.width,
             height: dia.height,
-            maxHeight: ""
+            maxHeight: "",
+            pos: "left-end"
           };
         default:
           top = ref.height / 2 - dia.height / 2 + ref.top + oT;
@@ -135,7 +143,8 @@ export function screenPos(Pop: iPop) {
             right,
             width: dia.width,
             height: dia.height,
-            maxHeight: ""
+            maxHeight: "",
+            pos: "left"
           };
       }
     }
@@ -153,7 +162,8 @@ export function screenPos(Pop: iPop) {
             right,
             width: dia.width,
             height: dia.height,
-            maxHeight: ""
+            maxHeight: "",
+            pos: "right-start"
           };
         case "right-end":
           top = ref.height - dia.height + ref.top - oT;
@@ -164,7 +174,8 @@ export function screenPos(Pop: iPop) {
             right,
             width: dia.width,
             height: dia.height,
-            maxHeight: ""
+            maxHeight: "",
+            pos: "right-end"
           };
         default:
           top = ref.height / 2 - dia.height / 2 + ref.top + oT;
@@ -175,7 +186,8 @@ export function screenPos(Pop: iPop) {
             right,
             width: dia.width,
             height: dia.height,
-            maxHeight: ""
+            maxHeight: "",
+            pos: "right"
           };
       }
     }
@@ -190,7 +202,8 @@ export function screenPos(Pop: iPop) {
       right: left + dia.width,
       width: dia.width,
       height: dia.height,
-      maxHeight: ""
+      maxHeight: "",
+      pos: "center"
     };
   }
   return getScreenPos;

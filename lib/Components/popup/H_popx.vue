@@ -62,15 +62,21 @@ watch(isOpen, () => {
 
 function diaOpen() {
   dialogBox.showPopover();
+  dialogPos.startPos();
   setTimeout(() => {
-    dialogPos.getPos();
+
     startOpserve();
   });
 }
 
 function diaClose() {
-  dialogBox.hidePopover();
+  dialogPos.endPos();
   stopOpserve();
+  setTimeout(()=> {
+    dialogBox.hidePopover();
+  },400)
+ 
+ 
 }
 
 function refClick() {
@@ -138,21 +144,66 @@ onUnmounted(() => {
 </script>
 
 <style>
-.H_pop {
-  position: relative;
-}
-.H_pop-referance {
-  background-color: bisque;
-}
+
 .H_pop-dialog {
   padding: 0;
   border: none;
   overflow: auto;
-  /* inset: auto; */
+  opacity: 0;
+  transform-origin: top;
+  opacity: 0;
 }
 
-.H_pop [popover]:popover-open::backdrop {
+.H_pop-dialog.open {
+  animation: scale-display 0.3s forwards; 
+
+}
+
+.H_pop-dialog.close {
+  animation: scale-display--reversed 0.3s forwards; ; 
+}
+
+.H_pop-dialog.top {
+  transform-origin: bottom;
+}
+
+
+
+/* .H_pop [popover]:popover-open::backdrop {
   background: rgba(0, 0, 0, 0.1);
   position: absolute;
+} */
+
+@keyframes scale-display {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes scale-display--reversed {  0% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  50% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
 }
 </style>
