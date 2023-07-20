@@ -65,7 +65,7 @@ export function screenPos(Pop: iPop) {
 
     if (placement.startsWith("bottom")) {
       top = inner ? ref.top + ref.height - dia.height - oT : ref.top + ref.height + oT;
-      bottom = top + ref.height;
+      bottom = Pop.wHeight - (top + dia.height);
       switch (placement) {
         case "bottom-start":
           left = ref.left + oL;

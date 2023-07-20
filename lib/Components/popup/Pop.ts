@@ -1,4 +1,4 @@
-import { watch } from "vue";
+import { Ref, watch } from "vue";
 import { screenPos } from "./screenPos";
 import { flip } from "./flip";
 
@@ -16,6 +16,7 @@ export type ipos = {
 
 export class Pop {
   private oldPosClass = "NA";
+  private isOpen?: Ref;
   public wWidth: number = 0;
   public wHeight: number = 0;
   public referance?: HTMLElement;
@@ -42,7 +43,7 @@ export class Pop {
     | "left-start"
     | "left-end" = "top-start";
 
-  init(ref: HTMLElement, dia: HTMLElement, props: any) {
+  init(ref: HTMLElement, dia: HTMLElement, props: any, _isOpen: Ref) {
     this.referance = ref;
     this.dialog = dia;
     this.placement = props.placement;
@@ -51,6 +52,7 @@ export class Pop {
     this.offsetTop = props.offsetTop;
     this.offsetLeft = props.offsetLeft;
     this.screen_pos = screenPos(this);
+    this.isOpen = _isOpen;
 
     watch(props, () => {
       this.placement = props.placement;
@@ -96,35 +98,41 @@ export class Pop {
 
   startPos() {
     this.diaRect = this.dialog?.getBoundingClientRect() ?? undefined;
-    this.dialog?.classList.add("open")
-    this.dialog?.classList.remove("close", "top","bottom")
+    this.dialog?.classList.add("open");
+    this.dialog?.classList.remove("close", "top", "bottom");
     this.getPos();
   }
 
   endPos() {
     if (this.dialog) {
-
-      Object.assign(this.dialog.style, {
-        maxHeight: "none"
-      });
-      this.dialog?.classList.remove("open")
+      this.dialog?.classList.remove("open");
       this.oldPosClass = "NA";
-      this.dialog?.classList.add("close")
-
+      this.dialog?.classList.add("close");
     }
+  }
+
+  refRectOutSide() {
+    if (!this.refRect) return true;
+    if (this.refRect.top + this.refRect?.height < 0) return true;
+    if (this.refRect.top > this.wHeight) return true;
+    return false;
   }
 
   getPos() {
     this.wWidth = window.innerWidth;
     this.wHeight = window.innerHeight;
     this.refRect = this.getRefRect();
+    if (this.refRectOutSide()) {
+      this.isOpen!.value = false;
+      return;
+    }
 
     if (this.refRect && this.diaRect && this.dialog) {
       const posi: ipos = this.screen_pos(this.placement);
       const posiFlip: ipos = flip(this, posi);
       if (this.oldPosClass !== posiFlip.pos) {
-        this.dialog.classList.remove(this.oldPosClass)
-        this.dialog.classList.add(posiFlip.pos)
+        this.dialog.classList.remove(this.oldPosClass);
+        this.dialog.classList.add(posiFlip.pos);
         this.oldPosClass = posiFlip.pos;
       }
       Object.assign(this.dialog.style, {

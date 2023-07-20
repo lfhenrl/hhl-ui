@@ -1,16 +1,15 @@
 import { iPop, ipos } from "./Pop";
 
-export function flipTop(Pop: iPop, rect: ipos) {
+export function flipBottom(Pop: iPop, rect: ipos) {
   const refBox = Pop.refRect;
   if (refBox) {
-    if (rect.top < 2 && refBox.top < refBox.bottom) {
-      const pl = Pop.placement.replace("top", "bottom");
-     
+    if (rect.bottom < 2 && refBox.bottom < refBox.top) {
+      const pl = Pop.placement.replace("bottom", "top");
       rect = Pop.screen_pos(pl);
-    } else {
       if (rect.top < 2) {
         rect.top = 2;
       }
+    } else {
     }
   }
   return rect;

@@ -1,7 +1,8 @@
 <template>
   <div class="testForms">
-    <div style="min-height: 1000px" />
-    <H_row>
+    <div style="min-height: 500px" />
+    <H_row style="min-width: 1500px">
+      <div style="min-width: 500px" />
       <H_popx :placement="placement" :inner="inner" :offset-left="offsetLeft" :offset-top="offsetTop" query-selector=".testForms">
         <template v-slot:referance>
           <H_btn>Open</H_btn>
@@ -31,7 +32,7 @@
       <H_inputNumber label="OffsetTop" v-model="offsetTop" />
       <H_inputNumber label="OffsetLeft" v-model="offsetLeft" />
     </H_row>
-    <div style="min-height: 1000px" />
+    <div style="min-height: 500px" />
   </div>
 </template>
 
@@ -51,12 +52,13 @@ const offsetLeft = ref(0);
 
 <style>
 .testForms {
-  margin: 30px;
+  margin: 10px;
   border: 1px solid red;
+  width: 100%;
 }
 
 .popup {
-  padding: 390px 50px;
+  padding: 290px 100px;
   background-color: aqua;
 }
 </style>

@@ -5,7 +5,7 @@ export function flipTop(Pop: iPop, rect: ipos) {
   if (refBox) {
     if (rect.top < 2 && refBox.top < refBox.bottom) {
       const pl = Pop.placement.replace("top", "bottom");
-     
+
       rect = Pop.screen_pos(pl);
     } else {
       if (rect.top < 2) {

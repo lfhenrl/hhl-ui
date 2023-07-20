@@ -64,7 +64,6 @@ function diaOpen() {
   dialogBox.showPopover();
   dialogPos.startPos();
   setTimeout(() => {
-
     startOpserve();
   });
 }
@@ -72,11 +71,12 @@ function diaOpen() {
 function diaClose() {
   dialogPos.endPos();
   stopOpserve();
-  setTimeout(()=> {
+  setTimeout(() => {
     dialogBox.hidePopover();
-  },400)
- 
- 
+    Object.assign(dialogBox.style, {
+      maxHeight: "none"
+    });
+  }, 400);
 }
 
 function refClick() {
@@ -134,7 +134,7 @@ onMounted(() => {
       refBox = H_popRef.value.children[0];
     }
   }
-  dialogPos.init(refBox, dialogBox, P);
+  dialogPos.init(refBox, dialogBox, P, isOpen);
   document.addEventListener("click", docClick);
 });
 
@@ -144,30 +144,25 @@ onUnmounted(() => {
 </script>
 
 <style>
-
 .H_pop-dialog {
   padding: 0;
   border: none;
   overflow: auto;
-  opacity: 0;
   transform-origin: top;
   opacity: 0;
 }
 
 .H_pop-dialog.open {
-  animation: scale-display 0.3s forwards; 
-
+  animation: scale-display 0.3s forwards;
 }
 
 .H_pop-dialog.close {
-  animation: scale-display--reversed 0.3s forwards; ; 
+  animation: scale-display--reversed 0.3s forwards;
 }
 
 .H_pop-dialog.top {
   transform-origin: bottom;
 }
-
-
 
 /* .H_pop [popover]:popover-open::backdrop {
   background: rgba(0, 0, 0, 0.1);
@@ -191,7 +186,8 @@ onUnmounted(() => {
   }
 }
 
-@keyframes scale-display--reversed {  0% {
+@keyframes scale-display--reversed {
+  0% {
     opacity: 1;
     transform: scaleY(1);
   }
