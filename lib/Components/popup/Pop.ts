@@ -10,13 +10,13 @@ export type ipos = {
   right: number;
   width: number;
   height: number;
-  maxHeight: string;
+  maxHeight: number;
   pos: string;
 };
 
 export class Pop {
-  private oldPosClass = "NA";
   private isOpen?: Ref;
+  private pos?: Ref;
   public wWidth: number = 0;
   public wHeight: number = 0;
   public referance?: HTMLElement;
@@ -25,6 +25,7 @@ export class Pop {
   public diaRect?: DOMRect;
   public offsetTop: number = 0;
   public offsetLeft: number = 0;
+  public padding: number = 10;
   public inner: boolean = false;
   public screen_pos: any;
   public container: "screen" | "parent" | "refElement" = "refElement";
@@ -43,7 +44,7 @@ export class Pop {
     | "left-start"
     | "left-end" = "top-start";
 
-  init(ref: HTMLElement, dia: HTMLElement, props: any, _isOpen: Ref) {
+  init(ref: HTMLElement, dia: HTMLElement, props: any, _isOpen: Ref, _pos: Ref) {
     this.referance = ref;
     this.dialog = dia;
     this.placement = props.placement;
@@ -51,8 +52,10 @@ export class Pop {
     this.inner = props.inner;
     this.offsetTop = props.offsetTop;
     this.offsetLeft = props.offsetLeft;
+    this.padding = props.padding;
     this.screen_pos = screenPos(this);
     this.isOpen = _isOpen;
+    this.pos = _pos;
 
     watch(props, () => {
       this.placement = props.placement;
@@ -60,6 +63,7 @@ export class Pop {
       this.inner = props.inner;
       this.offsetTop = props.offsetTop;
       this.offsetLeft = props.offsetLeft;
+      this.padding = props.padding;
       this.screen_pos = screenPos(this);
     });
   }
@@ -91,7 +95,7 @@ export class Pop {
       bottom,
       width: R.width,
       height: R.height,
-      maxHeight: "",
+      maxHeight: 0,
       pos: ""
     };
   }
@@ -106,7 +110,6 @@ export class Pop {
   endPos() {
     if (this.dialog) {
       this.dialog?.classList.remove("open");
-      this.oldPosClass = "NA";
       this.dialog?.classList.add("close");
     }
   }
@@ -115,6 +118,8 @@ export class Pop {
     if (!this.refRect) return true;
     if (this.refRect.top + this.refRect?.height < 0) return true;
     if (this.refRect.top > this.wHeight) return true;
+    if (this.refRect.left + this.refRect.width < 0) return true;
+    if (this.refRect.right + this.refRect.width < 10) return true;
     return false;
   }
 
@@ -130,17 +135,14 @@ export class Pop {
     if (this.refRect && this.diaRect && this.dialog) {
       const posi: ipos = this.screen_pos(this.placement);
       const posiFlip: ipos = flip(this, posi);
-      if (this.oldPosClass !== posiFlip.pos) {
-        this.dialog.classList.remove(this.oldPosClass);
-        this.dialog.classList.add(posiFlip.pos);
-        this.oldPosClass = posiFlip.pos;
-      }
+      this.pos!.value = posiFlip.pos;
+
       Object.assign(this.dialog.style, {
         left: `${posiFlip.left}px`,
         top: `${posiFlip.top}px`,
         bottom: "auto",
         right: "auto",
-        maxHeight: posiFlip.maxHeight
+        maxHeight: `${posiFlip.maxHeight}px`
       });
       // console.log("www ", posiFlip);
     }

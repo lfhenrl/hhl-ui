@@ -3,7 +3,7 @@
     <div class="H_pop-referance">
       <slot name="referance" />
     </div>
-    <div popover="manual" class="H_pop-dialog"><slot /></div>
+    <div popover="manual" :pos="pos" class="H_pop-dialog"><slot /></div>
   </div>
 </template>
 
@@ -37,6 +37,7 @@ const P = defineProps({
   },
   offsetTop: { type: Number, default: 0 },
   offsetLeft: { type: Number, default: 0 },
+  padding: { type: Number, default: 20 },
   inner: { type: Boolean, default: false },
   modal: { type: Boolean, default: false }
 });
@@ -44,6 +45,7 @@ const E = defineEmits(["open", "close"]);
 
 const H_popRef = ref();
 const isOpen = ref(false);
+const pos = ref("NA");
 let refBox: HTMLElement;
 let dialogBox: any;
 let opserveTimer: any = null;
@@ -134,7 +136,7 @@ onMounted(() => {
       refBox = H_popRef.value.children[0];
     }
   }
-  dialogPos.init(refBox, dialogBox, P, isOpen);
+  dialogPos.init(refBox, dialogBox, P, isOpen, pos);
   document.addEventListener("click", docClick);
 });
 
@@ -152,16 +154,54 @@ onUnmounted(() => {
   opacity: 0;
 }
 
-.H_pop-dialog.open {
-  animation: scale-display 0.3s forwards;
+.H_pop-dialog.open[pos="bottom"] {
+  animation: scaleY-display 0.3s forwards;
+  transform-origin: top;
 }
 
-.H_pop-dialog.close {
-  animation: scale-display--reversed 0.3s forwards;
-}
-
-.H_pop-dialog.top {
+.H_pop-dialog.open[pos="top"] {
+  animation: scaleY-display 0.3s forwards;
   transform-origin: bottom;
+}
+
+.H_pop-dialog.open[pos="left"] {
+  animation: scaleX-display 0.3s forwards;
+  transform-origin: right;
+}
+
+.H_pop-dialog.open[pos="right"] {
+  animation: scaleX-display 0.3s forwards;
+  transform-origin: left;
+}
+
+.H_pop-dialog.open[pos="center"] {
+  animation: scaleX-display 0.3s forwards;
+  transform-origin: center;
+}
+
+.H_pop-dialog.close[pos="bottom"] {
+  animation: scaleY-display--reversed 0.3s forwards;
+  transform-origin: top;
+}
+
+.H_pop-dialog.close[pos="top"] {
+  animation: scaleY-display--reversed 0.3s forwards;
+  transform-origin: bottom;
+}
+
+.H_pop-dialog.close[pos="left"] {
+  animation: scaleX-display--reversed 0.3s forwards;
+  transform-origin: right;
+}
+
+.H_pop-dialog.close[pos="right"] {
+  animation: scaleX-display--reversed 0.3s forwards;
+  transform-origin: left;
+}
+
+.H_pop-dialog.close[pos="center"] {
+  animation: scaleX-display--reversed 0.3s forwards;
+  transform-origin: center;
 }
 
 /* .H_pop [popover]:popover-open::backdrop {
@@ -169,7 +209,7 @@ onUnmounted(() => {
   position: absolute;
 } */
 
-@keyframes scale-display {
+@keyframes scaleY-display {
   0% {
     opacity: 0;
     transform: scaleY(0);
@@ -186,7 +226,41 @@ onUnmounted(() => {
   }
 }
 
-@keyframes scale-display--reversed {
+@keyframes scaleX-display--reversed {
+  0% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  50% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+@keyframes scaleX-display {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleX(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes scaleY-display--reversed {
   0% {
     opacity: 1;
     transform: scaleY(1);
