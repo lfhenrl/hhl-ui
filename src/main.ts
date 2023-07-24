@@ -24,6 +24,7 @@ import { getData } from "./testData/data";
 const H_icon = defineAsyncComponent(() => import("../lib/Components/H_icon.vue"));
 const H_btn = defineAsyncComponent(() => import("../lib/Components/H_btn.vue"));
 const H_pop = defineAsyncComponent(() => import("../lib/Components/popup/H_pop.vue"));
+/* const H_popx = defineAsyncComponent(() => import("../lib/Components/popup/H_popx.vue")); */
 const H_radio = defineAsyncComponent(() => import("../lib/Components/H_radio.vue"));
 const H_switch = defineAsyncComponent(() => import("../lib/Components/H_switch.vue"));
 const H_checkbox = defineAsyncComponent(() => import("../lib/Components/H_checkbox.vue"));
@@ -57,6 +58,7 @@ const HhlLiveEditor = defineAsyncComponent(() => import("./components/liveEditor
 app.component("H_icon", H_icon);
 app.component("H_btn", H_btn);
 app.component("H_pop", H_pop);
+/* app.component("H_popx", H_popx); */
 app.component("H_radio", H_radio);
 app.component("H_switch", H_switch);
 app.component("H_checkbox", H_checkbox);

@@ -3,12 +3,16 @@
     <div style="min-height: 500px" />
     <H_row style="min-width: 1500px">
       <div style="min-width: 700px" />
-      <H_popx :placement="placement" :inner="inner" :offset-left="offsetLeft" :offset-top="offsetTop">
+      <H_pop :placement="placement" :inner="inner" :offset-left="offsetLeft" :offset-top="offsetTop">
         <template v-slot:referance>
           <H_btn>Open</H_btn>
         </template>
-        <div class="popup">Hej</div>
-      </H_popx>
+        <H_col class="popup">
+
+          <H_row moveable-drag>TITLE</H_row>
+
+        </H_col>
+      </H_pop>
       <H_select
         label="Placement"
         v-model="placement"
@@ -37,14 +41,15 @@
 </template>
 
 <script setup lang="ts">
-import H_popx from "../../../lib/Components/popup/H_popx.vue";
+import H_pop from "../../../lib/Components/popup/H_pop.vue";
 import H_row from "../../../lib/Components/layout/H_row.vue";
+import H_col from "../../../lib/Components/layout/H_col.vue";
 import H_select from "../../../lib/Components/select/H_select.vue";
 import H_switch from "../../../lib/Components/H_switch.vue";
 import H_inputNumber from "../../../lib/Components/H_inputNumber.vue";
 import { ref } from "vue";
 
-const placement: any = ref("top");
+const placement: any = ref("bottom");
 const inner = ref(false);
 const offsetTop = ref(0);
 const offsetLeft = ref(0);
@@ -61,7 +66,9 @@ const offsetLeft = ref(0);
   padding: 100px 100px;
   background-color: aqua;
   border-radius: 4px;
-  resize: both;
-  overflow: auto;
+}
+
+.popup .h_row {
+  background-color: bisque;
 }
 </style>

@@ -25,6 +25,8 @@ export class Pop {
   public diaRect?: DOMRect;
   public offsetTop: number = 0;
   public offsetLeft: number = 0;
+  public minWidth: string = "auto";
+  public widthAsRef: boolean = true;
   public padding: number = 10;
   public inner: boolean = false;
   public screen_pos: any;
@@ -52,6 +54,7 @@ export class Pop {
     this.inner = props.inner;
     this.offsetTop = props.offsetTop;
     this.offsetLeft = props.offsetLeft;
+    this.widthAsRef = props.widthAsRef;
     this.padding = props.padding;
     this.screen_pos = screenPos(this);
     this.isOpen = _isOpen;
@@ -63,6 +66,7 @@ export class Pop {
       this.inner = props.inner;
       this.offsetTop = props.offsetTop;
       this.offsetLeft = props.offsetLeft;
+      this.widthAsRef = props.widthAsRef;
       this.padding = props.padding;
       this.screen_pos = screenPos(this);
     });
@@ -104,6 +108,12 @@ export class Pop {
     this.diaRect = this.dialog?.getBoundingClientRect() ?? undefined;
     this.dialog?.classList.add("open");
     this.dialog?.classList.remove("close", "top", "bottom");
+    this.refRect = this.getRefRect();
+    if (this.widthAsRef) {
+      this.minWidth = this.refRect?.width + "px";
+    } else {
+      this.minWidth = "auto";
+    }
     this.getPos();
   }
 
@@ -131,7 +141,6 @@ export class Pop {
       this.isOpen!.value = false;
       return;
     }
-
     if (this.refRect && this.diaRect && this.dialog) {
       const posi: ipos = this.screen_pos(this.placement);
       const posiFlip: ipos = flip(this, posi);
@@ -142,7 +151,8 @@ export class Pop {
         top: `${posiFlip.top}px`,
         bottom: "auto",
         right: "auto",
-        maxHeight: `${posiFlip.maxHeight}px`
+        maxHeight: `${posiFlip.maxHeight}px`,
+        minWidth: this.minWidth
       });
       // console.log("www ", posiFlip);
     }

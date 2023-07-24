@@ -17,9 +17,9 @@ export function screenPos(Pop: iPop) {
 
     if (placement.startsWith("top")) {
       if (inner === true) {
-        top = padding + oT;
+        top = ref.top - oT;
       } else {
-        top = ref.top - dia.height;
+        top = ref.top - dia.height - oT;
       }
 
       bottom = Pop.wHeight - (top + ref.height);
@@ -69,7 +69,7 @@ export function screenPos(Pop: iPop) {
 
     if (placement.startsWith("bottom")) {
       if (inner === true) {
-        top = Pop.wHeight - dia.height - oT - padding;
+        top = ref.top + ref.height - dia.height + oT;
       } else {
         top = ref.top + ref.height + oT;
       }

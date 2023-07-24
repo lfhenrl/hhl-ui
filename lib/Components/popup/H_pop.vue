@@ -1,22 +1,29 @@
 <template>
-  <div class="h_pop" ref="h_pop">
-    <div class="h_pop__referance" ref="reference"><slot name="referance" /></div>
-    <div ref="popup" class="h_pop__content" :isOpen="isOpen ? true : null" v-movable="movable">
+  <div class="H_pop" ref="H_popRef">
+    <div class="H_pop-referance">
+      <slot name="referance" />
+    </div>
+    <div popover="manual" v-movable="movable" :pos="pos" :modal="modal" class="H_pop-dialog" :class="{ 'shake': shake }">
       <slot />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computePosition, offset, flip, shift } from "@floating-ui/dom";
 import { PropType, onMounted, onUnmounted, ref, watch } from "vue";
 import { vMovable } from "../../Directives/v-movable";
+import { Pop } from "./Pop";
 
 const P = defineProps({
   modelValue: {
     type: Boolean,
     default: false
   },
+  container: {
+    type: String as PropType<"box" | "slotElement">,
+    default: "slotElement"
+  },
+  querySelector: { type: String, default: "body" },
   placement: {
     type: String as PropType<
       | "top"
@@ -31,262 +38,346 @@ const P = defineProps({
       | "left"
       | "left-start"
       | "left-end"
+      | "center"
     >,
     default: "bottom-start"
   },
-  offsetLeft: { type: Number, default: 0 },
-  offsetTop: { type: Number, default: 0 },
-  fullWidth: { type: Boolean, default: true },
-  position: { type: String as PropType<"absolute" | "fixed">, default: "absolute" },
-  inner: { type: Boolean, default: false },
   trigger: { type: String as PropType<"toggle" | "click" | "hover" | "none">, default: "toggle" },
-  noOutsideClick: { type: Boolean, default: false },
+  readonly: { type: Boolean, default: false },
+  offsetTop: { type: Number, default: 0 },
+  offsetLeft: { type: Number, default: 0 },
+  padding: { type: Number, default: 20 },
+  widthAsRef: { type: Boolean, default: true },
+  inner: { type: Boolean, default: false },
+  modal: { type: Boolean, default: false },
+  noShake: { default: false, type: Boolean },
+  movable: { default: true, type: Boolean },
   closePopupClick: { type: Boolean, default: false },
   delayOnMouseOver: { type: String, default: "100" },
   delayOnMouseOut: { type: String, default: "400" },
-  readonly: { type: Boolean, default: false },
-  movable: { default: false, type: Boolean }
 });
+const E = defineEmits(["open", "close", "update:modelValue"]);
 
-const E = defineEmits(["update:modelValue"]);
-const h_pop: any = ref(null);
-const reference: any = ref(null);
-const popup: any = ref(null);
+const H_popRef = ref();
 const isOpen = ref(false);
+const pos = ref("NA");
+const shake = ref(false);
+let refBox: HTMLElement;
+let dialogBox: any;
+let opserveTimer: any = null;
+let ModelValueDelay = false
 let mouseOvertimer = {} as any;
-let delayClick = false;
 
-function Click(e: MouseEvent) {
-  if (h_pop.value?.contains(e.target)) {
-    e.stopPropagation;
-    if (reference.value?.contains(e.target)) referenceClick();
-    if (popup.value?.contains(e.target)) popupClick();
-  } else {
-    if (isOpen.value) outsideClick();
-  }
-}
+const dialogPos = new Pop();
 
 watch(
   () => P.modelValue,
   (val: boolean) => {
     if (val === true) {
-      delayClick = true;
-      open();
-      setTimeout(() => (delayClick = false));
+      ModelValueDelay = true;
+      isOpen.value = true
+      setTimeout(() => {
+        ModelValueDelay = false;
+      });
     } else {
-      close();
+      isOpen.value = false
     }
   }
 );
 
+watch(isOpen, () => {
+  if (isOpen.value) {
+    if (P.readonly === true) return;
+    diaOpen();
+    E("open");
+  } else {
+    diaClose();
+    E("close");
+  }
+});
+
+function diaOpen() {
+  dialogBox.showPopover();
+  dialogPos.startPos();
+
+  setTimeout(() => {
+    startOpserve();
+    E("update:modelValue", true);
+  });
+}
+
+function diaClose() {
+  dialogPos.endPos();
+  stopOpserve();
+  E("update:modelValue", false);
+  setTimeout(() => {
+    dialogBox.hidePopover();
+    Object.assign(dialogBox.style, {
+      maxHeight: "none"
+    });   
+  }, 400);
+}
+
+function refClick() {
+  if (P.trigger === "toggle") {
+    isOpen.value = !isOpen.value;
+  }
+
+  if (P.trigger === "click") {
+    isOpen.value = true;
+  }
+}
+
 function mouseOver() {
-  if (P.modelValue === false) {
+  if (isOpen.value === false) {
     clearTimeout(mouseOvertimer);
     mouseOvertimer = setTimeout(() => {
-      open();
+      isOpen.value = true;
     }, parseInt(P.delayOnMouseOver));
   }
 }
 
 function mouseOut() {
-  console.log("mouseOut");
   clearTimeout(mouseOvertimer);
   mouseOvertimer = setTimeout(() => {
-    close();
+    isOpen.value = false;
   }, parseInt(P.delayOnMouseOut));
-}
-
-function referenceClick() {
-  if (P.trigger === "click") triggerClick();
-  else if (P.trigger === "toggle") triggerToggle();
 }
 
 function popupClick() {
   if (P.closePopupClick) {
-    close();
+    isOpen.value = false;
   }
 }
 
 function outsideClick() {
-  if (!P.noOutsideClick && !delayClick) {
-    close();
-  }
-}
-
-function triggerClick() {
-  if (isOpen.value === false) {
-    open();
-  }
-}
-
-function triggerToggle() {
-  if (isOpen.value === false) {
-    open();
-  } else {
-    close();
-  }
-}
-
-function open() {
-  if (isOpen.value === true) return;
-  if (P.readonly === true) return;
-  isOpen.value = true;
-  addEvents();
-  Update();
-  E("update:modelValue", true);
-}
-
-function close() {
-  if (isOpen.value === false) return;
-  isOpen.value = false;
-  E("update:modelValue", false);
-  removeEvents();
-}
-
-function addEvents() {
-  document.addEventListener("scroll", scroll, true);
-  window.addEventListener("resize", resize, true);
-}
-
-function removeEvents() {
-  document.removeEventListener("scroll", scroll, true);
-  window.removeEventListener("resize", resize, true);
-}
-
-function resize() {
-  Update();
-}
-
-function scroll() {
-  Update();
-}
-
-function Update() {
-  let w = reference.value?.offsetWidth + "px";
-  let h = reference.value?.offsetHeight;
-  if (!P.fullWidth) {
-    w = "auto";
-  }
-  if (!P.inner) {
-    h = 0;
-  }
-  computePosition(reference.value, popup.value, {
-    placement: P.placement,
-    strategy: P.position,
-    middleware: [
-      flip(),
-      shift(),
-      offset({
-        mainAxis: P.offsetTop - h,
-        crossAxis: P.offsetLeft
-      })
-    ]
-  }).then(({ x, y, placement }) => {
-    Object.assign(popup.value.style, {
-      left: `${x}px`,
-      top: `${y}px`,
-      minWidth: w
-    });
-
-    if (placement.startsWith("top")) {
-      popup.value.classList.add("isTop");
-    } else {
-      popup.value.classList.remove("isTop");
+  if (ModelValueDelay) return;
+  if (P.modal) {
+    if (!P.noShake) {
+      shake.value = true;
+      setTimeout(() => {
+        shake.value = false;
+      }, 800);
     }
-  });
+    return;
+  }
+/*   isOpen.value = false; */
+}
+
+function docClick(e: any) {
+  if (!e.target) return;
+  if (H_popRef.value?.contains(e.target)) {
+    e.stopPropagation;
+    if (refBox?.contains(e.target)) refClick();
+    if (dialogBox.contains(e.target)) popupClick();
+  } else {
+    if (isOpen.value) outsideClick();
+  }
+}
+
+function startOpserve() {
+  if (!opserveTimer) {
+    opserveTimer = setInterval(onOpserve, 20);
+  }
+}
+function stopOpserve() {
+  clearInterval(opserveTimer);
+  opserveTimer = null;
+}
+
+function onOpserve() {
+  if (dialogPos.hasResized()) {
+    dialogPos.getPos();
+    return;
+  }
+  if (dialogPos.hasScrolled()) {
+    dialogPos.getPos();
+    return;
+  }
 }
 
 onMounted(() => {
-  if (P.trigger === "hover") {
-    h_pop.value.addEventListener("mouseover", mouseOver);
-    h_pop.value.addEventListener("mouseleave", mouseOut);
-  } else {
-    document.addEventListener("click", Click);
+  if (H_popRef.value) {
+    dialogBox = H_popRef.value.children[1];
+    if (P.container === "box") {
+      refBox = dialogBox.closest(P.querySelector);
+    } else {
+      refBox = H_popRef.value.children[0];
+    }
   }
-  setTimeout(() => {
-    popup.value.classList.add("isloadet");
-  }, 400);
+  dialogPos.init(refBox, dialogBox, P, isOpen, pos);
+
+  if (P.trigger === "hover") {
+    refBox.addEventListener("mouseover", mouseOver);
+    refBox.addEventListener("mouseleave", mouseOut);
+  } else {
+    document.addEventListener("click", docClick);
+  }
+  document.addEventListener("click", docClick);
 });
 
 onUnmounted(() => {
-  removeEvents();
-  if (P.trigger === "hover") {
-    h_pop.value.removeEventListener("mouseover", mouseOver);
-    h_pop.value.removeEventListener("mouseleave", mouseOut);
-  } else {
-    document.removeEventListener("click", Click);
-  }
+  refBox.removeEventListener("mouseover", mouseOver);
+  refBox.removeEventListener("mouseleave", mouseOut);
+  document.removeEventListener("click", docClick);
 });
 </script>
 
 <style>
-.h_pop {
-  background-color: inherit;
-}
-
-.h_pop__referance {
-  height: 100%;
-}
-
-.h_pop__content {
-  background-color: var(--col-bg-0);
-  visibility: hidden;
-  position: v-bind(position);
+.H_pop-dialog {
+  padding: 0;
+  border: none;
+  overflow: auto;
+  transform-origin: top;
+  opacity: 0;
   width: max-content;
-  z-index: 11;
-  animation: scale-display--reversed 0.3s;
-  animation-fill-mode: forwards;
+}
+
+.H_pop-dialog.open[pos="bottom"] {
+  animation: scaleY-display 0.3s forwards;
   transform-origin: top;
 }
 
-.h_pop__content.isloadet {
-  visibility: visible;
-}
-
-.h_pop__content[isOpen] {
-  animation: scale-display 0.3s;
-  animation-fill-mode: forwards;
-}
-
-.h_pop__content.isTop {
+.H_pop-dialog.open[pos="top"] {
+  animation: scaleY-display 0.3s forwards;
   transform-origin: bottom;
 }
 
-@keyframes scale-display {
+.H_pop-dialog.open[pos="left"] {
+  animation: scaleX-display 0.3s forwards;
+  transform-origin: right;
+}
+
+.H_pop-dialog.open[pos="right"] {
+  animation: scaleX-display 0.3s forwards;
+  transform-origin: left;
+}
+
+.H_pop-dialog.open[pos="center"] {
+  animation: scaleX-display 0.3s forwards;
+  transform-origin: center;
+}
+
+.H_pop-dialog.close[pos="bottom"] {
+  animation: scaleY-display--reversed 0.3s forwards;
+  transform-origin: top;
+}
+
+.H_pop-dialog.close[pos="top"] {
+  animation: scaleY-display--reversed 0.3s forwards;
+  transform-origin: bottom;
+}
+
+.H_pop-dialog.close[pos="left"] {
+  animation: scaleX-display--reversed 0.3s forwards;
+  transform-origin: right;
+}
+
+.H_pop-dialog.close[pos="right"] {
+  animation: scaleX-display--reversed 0.3s forwards;
+  transform-origin: left;
+}
+
+.H_pop-dialog.close[pos="center"] {
+  animation: scaleX-display--reversed 0.3s forwards;
+  transform-origin: center;
+}
+
+.H_pop-dialog div[moveable-drag] {
+  background-color: brown;
+  cursor: move;
+}
+
+.H_pop-dialog.open.shake {
+  animation: shake 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: rotate(-1deg) translateY(10%);
+  }
+
+  20%,
+  80% {
+    transform: rotate(1deg) translateY(10%);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: rotate(-1deg) translateY(10%);
+  }
+
+  40%,
+  60% {
+    transform: rotate(1deg) translateY(10%);
+  }
+}
+
+@keyframes scaleY-display {
   0% {
-    display: block;
     opacity: 0;
     transform: scaleY(0);
   }
 
-  20% {
-    display: block;
+  50% {
     opacity: 1;
-    transform: scaleY(0);
+    transform: scaleY(1);
   }
 
   100% {
-    display: block;
     opacity: 1;
     transform: scaleY(1);
   }
 }
 
-@keyframes scale-display--reversed {
+@keyframes scaleX-display--reversed {
   0% {
-    display: block;
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  50% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+@keyframes scaleX-display {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleX(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes scaleY-display--reversed {
+  0% {
     opacity: 1;
     transform: scaleY(1);
   }
 
-  99% {
-    display: block;
+  50% {
     opacity: 0;
     transform: scaleY(0);
   }
 
   100% {
-    display: none;
     opacity: 0;
     transform: scaleY(0);
   }

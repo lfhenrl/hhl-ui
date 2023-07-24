@@ -10,6 +10,9 @@ export function flipBottom(Pop: iPop, rect: ipos) {
         rect.top = Pop.padding;
       }
     } else {
+      if (rect.bottom < Pop.padding) {
+        rect.top = rect.top - Pop.padding;
+      }
     }
   }
   return rect;

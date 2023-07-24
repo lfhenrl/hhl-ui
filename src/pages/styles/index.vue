@@ -30,11 +30,6 @@ const Index = defineComponent({
   }
 });
 
-declare global {
-  interface __VLS_GlobalComponents {
-    index: typeof Index;
-  }
-}
 export type iIndex = InstanceType<typeof Index>;
 export default Index;
 </script>

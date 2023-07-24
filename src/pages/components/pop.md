@@ -152,20 +152,20 @@ By adding the attribute `close-popup-click` the popup will close when you click 
 
 ## Prevent closing.
 
-By adding the attribute `no-outside-click` you will prevent the popup to close when you click outside the popup.<br>
+By adding the attribute `modal` you will prevent the popup to close when you click outside the popup.<br>
 
 <hhl-live-editor title="" htmlCode='
     <template>
       <H_row>
-        <H_pop no-outside-click>
+        <H_pop modal>
           <template v-slot:referance>
-              <H_btn>no-outside-click"</H_btn>
+              <H_btn>modal"</H_btn>
           </template>
           <div class="col-bg-warn box">Hello</div>
         </H_pop>
-      <H_pop no-outside-click trigger="click" v-model="popup">
+      <H_pop modal trigger="click" v-model="popup">
         <template v-slot:referance>
-            <H_btn>no-outside-click + trigger="click"</H_btn>
+            <H_btn>modal + trigger="click"</H_btn>
         </template>
         <div class="col-bg-warn box"><H_btn @click="popup=false">Close"</H_btn></div>
       </H_pop>
@@ -212,7 +212,8 @@ The default is `bottom-start`.<br>
         , "bottom-end"
         , "left"
         , "left-start"
-        , "left-end"]
+        , "left-end"
+        , "center"]
       return { placement, selectData }
     </script>
 '>
