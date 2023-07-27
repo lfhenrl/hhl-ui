@@ -1,16 +1,14 @@
 <template>
   <div class="testForms">
-    <div style="min-height: 500px" />
-    <H_row style="min-width: 1500px">
-      <div style="min-width: 700px" />
-      <H_pop :placement="placement" :inner="inner" :offset-left="offsetLeft" :offset-top="offsetTop">
+    <div style="min-height: 100px" />
+    <H_row style="min-width: 100px">
+      <div style="min-width: 100px" />
+      <H_pop :placement="placement" modal :inner="inner" :offset-left="offsetLeft" :offset-top="offsetTop">
         <template v-slot:referance>
           <H_btn>Open</H_btn>
         </template>
-        <H_col class="popup">
-
-          <H_row moveable-drag>TITLE</H_row>
-
+        <H_col class="popup col-bg-1">
+          <H_row moveable-drag pop-close>TITLE</H_row>
         </H_col>
       </H_pop>
       <H_select
@@ -64,7 +62,6 @@ const offsetLeft = ref(0);
 
 .popup {
   padding: 100px 100px;
-  background-color: aqua;
   border-radius: 4px;
 }
 

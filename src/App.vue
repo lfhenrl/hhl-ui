@@ -1,7 +1,7 @@
 <template>
   <H_grid
-  v-if="!loadTheme"
-    class="MainGridBox "
+    v-if="!loadTheme"
+    class="MainGridBox"
     @click="showMenu = false"
     grid_area="c1 c1 c1 ,c2 c3 c4"
     grid_col="auto 1fr auto"
@@ -18,7 +18,11 @@
     />
 
     <div id="page-container" ref="page">
-      <router-view class="page-container__routerView" />
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </div>
     <menu-right :view="page" v-show="!medium" />
   </H_grid>
@@ -44,7 +48,6 @@ export default defineComponent({
     const page = ref({});
     const mainRoutes = ref();
     const loadTheme = themeSelector().loadTheme;
-
 
     function routeChanged() {
       const val = router.currentRoute.value.name as string;
@@ -150,7 +153,7 @@ pre {
   padding: 0 15px;
 }
 
-.MainGridBox { 
+.MainGridBox {
   overflow: hidden;
   background-color: var(--col-bg-0);
   width: 100vw;

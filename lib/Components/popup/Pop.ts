@@ -115,11 +115,14 @@ export class Pop {
       this.minWidth = "auto";
     }
     this.getPos();
+    setTimeout(() => {
+      this.dialog?.classList.add("open-end");
+    }, 800);
   }
 
   endPos() {
     if (this.dialog) {
-      this.dialog?.classList.remove("open");
+      this.dialog?.classList.remove("open", "open-end");
       this.dialog?.classList.add("close");
     }
   }

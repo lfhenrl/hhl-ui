@@ -3,9 +3,10 @@
     <div class="H_pop-referance">
       <slot name="referance" />
     </div>
-    <div popover="manual" v-movable="movable" :pos="pos" :modal="modal" class="H_pop-dialog" :class="{ 'shake': shake }">
+    <dialog popover="manual" v-movable="movable" :pos="pos" :modal="modal" class="H_pop-dialog shadow-3" :shake="shake">
       <slot />
-    </div>
+    </dialog>
+    <div class="bg"></div>
   </div>
 </template>
 
@@ -54,7 +55,7 @@ const P = defineProps({
   movable: { default: true, type: Boolean },
   closePopupClick: { type: Boolean, default: false },
   delayOnMouseOver: { type: String, default: "100" },
-  delayOnMouseOut: { type: String, default: "400" },
+  delayOnMouseOut: { type: String, default: "400" }
 });
 const E = defineEmits(["open", "close", "update:modelValue"]);
 
@@ -65,7 +66,7 @@ const shake = ref(false);
 let refBox: HTMLElement;
 let dialogBox: any;
 let opserveTimer: any = null;
-let ModelValueDelay = false
+let ModelValueDelay = false;
 let mouseOvertimer = {} as any;
 
 const dialogPos = new Pop();
@@ -75,12 +76,12 @@ watch(
   (val: boolean) => {
     if (val === true) {
       ModelValueDelay = true;
-      isOpen.value = true
+      isOpen.value = true;
       setTimeout(() => {
         ModelValueDelay = false;
       });
     } else {
-      isOpen.value = false
+      isOpen.value = false;
     }
   }
 );
@@ -97,7 +98,12 @@ watch(isOpen, () => {
 });
 
 function diaOpen() {
-  dialogBox.showPopover();
+  if (P.modal) {
+    dialogBox.showModal();
+  } else {
+    dialogBox.showPopover();
+  }
+
   dialogPos.startPos();
 
   setTimeout(() => {
@@ -111,10 +117,14 @@ function diaClose() {
   stopOpserve();
   E("update:modelValue", false);
   setTimeout(() => {
-    dialogBox.hidePopover();
+    if (P.modal) {
+      dialogBox.close();
+    } else {
+      dialogBox.hidePopover();
+    }
     Object.assign(dialogBox.style, {
       maxHeight: "none"
-    });   
+    });
   }, 400);
 }
 
@@ -152,6 +162,7 @@ function popupClick() {
 
 function outsideClick() {
   if (ModelValueDelay) return;
+
   if (P.modal) {
     if (!P.noShake) {
       shake.value = true;
@@ -161,13 +172,29 @@ function outsideClick() {
     }
     return;
   }
-/*   isOpen.value = false; */
+  isOpen.value = false;
+}
+
+function keyCancel(event: any) {
+  event.preventDefault();
 }
 
 function docClick(e: any) {
   if (!e.target) return;
   if (H_popRef.value?.contains(e.target)) {
     e.stopPropagation;
+    if (e.target.getAttribute("pop-close") !== null) {
+      isOpen.value = false;
+    }
+
+    if (P.modal && isOpen.value) {
+      if (e.target.contains(dialogBox)) {
+        outsideClick();
+        return;
+      }
+      if (dialogBox.contains(e.target)) popupClick();
+      return;
+    }
     if (refBox?.contains(e.target)) refClick();
     if (dialogBox.contains(e.target)) popupClick();
   } else {
@@ -212,14 +239,17 @@ onMounted(() => {
     refBox.addEventListener("mouseleave", mouseOut);
   } else {
     document.addEventListener("click", docClick);
+    if (P.modal) {
+      dialogBox.addEventListener("cancel", keyCancel);
+    }
   }
-  document.addEventListener("click", docClick);
 });
 
 onUnmounted(() => {
   refBox.removeEventListener("mouseover", mouseOver);
   refBox.removeEventListener("mouseleave", mouseOut);
   document.removeEventListener("click", docClick);
+  dialogBox.removeEventListener("cancel", keyCancel);
 });
 </script>
 
@@ -231,29 +261,34 @@ onUnmounted(() => {
   transform-origin: top;
   opacity: 0;
   width: max-content;
+  background-color: transparent;
 }
 
-.H_pop-dialog.open[pos="bottom"] {
+.H_pop-dialog.open-end {
+  opacity: 1;
+}
+
+.H_pop-dialog.open[pos="bottom"]:not(.open-end) {
   animation: scaleY-display 0.3s forwards;
   transform-origin: top;
 }
 
-.H_pop-dialog.open[pos="top"] {
+.H_pop-dialog.open[pos="top"]:not(.open-end) {
   animation: scaleY-display 0.3s forwards;
   transform-origin: bottom;
 }
 
-.H_pop-dialog.open[pos="left"] {
+.H_pop-dialog.open[pos="left"]:not(.open-end) {
   animation: scaleX-display 0.3s forwards;
   transform-origin: right;
 }
 
-.H_pop-dialog.open[pos="right"] {
+.H_pop-dialog.open[pos="right"]:not(.open-end) {
   animation: scaleX-display 0.3s forwards;
   transform-origin: left;
 }
 
-.H_pop-dialog.open[pos="center"] {
+.H_pop-dialog.open[pos="center"]:not(.open-end) {
   animation: scaleX-display 0.3s forwards;
   transform-origin: center;
 }
@@ -284,34 +319,34 @@ onUnmounted(() => {
 }
 
 .H_pop-dialog div[moveable-drag] {
-  background-color: brown;
   cursor: move;
 }
 
-.H_pop-dialog.open.shake {
-  animation: shake 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+.H_pop-dialog[shake="true"] {
+  animation: shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important;
+  opacity: 1;
 }
 
-@keyframes shake {
+@keyframes shaking {
   10%,
   90% {
-    transform: rotate(-1deg) translateY(10%);
+    transform: rotate(-1deg);
   }
 
   20%,
   80% {
-    transform: rotate(1deg) translateY(10%);
+    transform: rotate(1deg);
   }
 
   30%,
   50%,
   70% {
-    transform: rotate(-1deg) translateY(10%);
+    transform: rotate(-1deg);
   }
 
   40%,
   60% {
-    transform: rotate(1deg) translateY(10%);
+    transform: rotate(1deg);
   }
 }
 

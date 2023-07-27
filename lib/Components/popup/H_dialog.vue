@@ -21,7 +21,7 @@ import { vMovable } from "../../Directives/v-movable";
 
 const P = defineProps({
   modelValue: { type: Boolean, default: false },
-  noPersistent: { default: true, type: Boolean },
+  noPersistent: { default: false, type: Boolean },
   noShake: { default: false, type: Boolean },
   offsetTop: { default: "0", type: String },
   offsetLeft: { default: "0", type: String },
