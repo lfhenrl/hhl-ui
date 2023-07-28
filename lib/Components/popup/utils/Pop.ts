@@ -109,6 +109,7 @@ export class Pop {
     this.dialog?.classList.add("open");
     this.dialog?.classList.remove("close", "top", "bottom");
     this.refRect = this.getRefRect();
+    
     if (this.widthAsRef && this.container === "slotElement") {
       this.minWidth = this.refRect?.width + "px";
     } else {
@@ -140,6 +141,7 @@ export class Pop {
     this.wWidth = window.innerWidth;
     this.wHeight = window.innerHeight;
     this.refRect = this.getRefRect();
+    console.log("rect ",this.refRect,this.referance?.offsetTop)
     if (this.refRectOutSide()) {
       this.isOpen!.value = false;
       return;
@@ -157,6 +159,7 @@ export class Pop {
         maxHeight: `${posiFlip.maxHeight}px`,
         minWidth: this.minWidth
       });
+      console.log("dia ",posiFlip,this.referance?.offsetTop)
       // console.log("www ", posiFlip);
     }
   }
