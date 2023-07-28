@@ -150,9 +150,43 @@ By adding the attribute `close-popup-click` the popup will close when you click 
 
 <br/>
 
-## Prevent closing.
+<br/>
+
+## Close on special attribute on HTML element i the PopUp dialog.
+
+By adding the attribute `pop-close` to an element in the PopUp dialog a click on it will close the dialog.<br>
+
+<hhl-live-editor title="" htmlCode='
+    <template>
+      <H_row>
+        <H_pop>
+          <template v-slot:referance>
+              <H_btn>close-popup-click"</H_btn>
+          </template>
+          <div class="col-bg-warn box">
+          <div>Hello</div>
+          <div pop-close style="border: 1px red solid; margin: 10px 0">close</div>
+          </div>
+        </H_pop>
+      </H_row>
+    </template>
+    <script>
+      const popup = ref(false);
+      return { popup }
+    </script>
+'>
+</hhl-live-editor>
+
+<br/>
+
+## Modal Prevent closing.
 
 By adding the attribute `modal` you will prevent the popup to close when you click outside the popup.<br>
+
+::: warning
+It is important that you implement a way to close the Popup.
+:::
+<br/>
 
 <hhl-live-editor title="" htmlCode='
     <template>
@@ -161,7 +195,10 @@ By adding the attribute `modal` you will prevent the popup to close when you cli
           <template v-slot:referance>
               <H_btn>modal"</H_btn>
           </template>
-          <div class="col-bg-warn box">Hello</div>
+          <div class="col-bg-warn box">
+            <div>Hello</div>
+            <div pop-close style="border: 1px red solid; margin: 10px 0">close</div>
+          </div>
         </H_pop>
       <H_pop modal trigger="click" v-model="popup">
         <template v-slot:referance>
@@ -188,19 +225,24 @@ The default is `bottom-start`.<br>
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_row>
-        <H_pop :placement="placement">
+      <H_row class="thisContainer" padding="100px 10px">
+        <H_pop :placement="placement" :inner="inner" :container="container" :query-selector="querySelector">      
           <template v-slot:referance>
               <H_btn>Open</H_btn>
           </template>
           <div class="col-bg-warn box">Hello</div>
         </H_pop>
-      <H_select :list="selectData" v-model="placement" label="Placement">
-      </H_select>
+      <H_select hide-filter :list="selectData" v-model="placement" label="Placement" style="max-width:150px"></H_select>
+        <H_switch label="Inner" v-model="inner"></H_switch>
+        <H_select hide-filter :list="conType" v-model="container" label="container" style="max-width:150px"></H_select>
+         <H_select hide-filter :list="queryType" v-model="querySelector" label="querySelector" style="max-width:150px"></H_select>
     </H_row>
     </template>
     <script>
       const placement = ref("bottom-start");
+      const inner = ref(false);
+      const container = ref("box");
+      const querySelector = ref("body");
       const selectData = ["top"
         , "top-start"
         , "top-end"
@@ -213,8 +255,16 @@ The default is `bottom-start`.<br>
         , "left"
         , "left-start"
         , "left-end"
-        , "center"]
-      return { placement, selectData }
+        , "center"];
+      const conType = [
+          "slotElement"
+        , "box"];
+      const queryType = [
+          "body"
+        , "#page-container"  
+        , ".markdown-body"
+        , ".thisContainer"];
+      return { placement,inner, selectData, container, conType, querySelector, queryType }
     </script>
 '>
 </hhl-live-editor>

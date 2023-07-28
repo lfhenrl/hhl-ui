@@ -17,7 +17,10 @@ export default defineConfig({
   },
   plugins: [
     vue({
-      include: [/\.vue$/, /\.md$/] // <--
+      include: [/\.vue$/, /\.md$/],
+      script: {
+        defineModel: true
+      }
     }),
     Markdown({
       markdownItSetup(md) {

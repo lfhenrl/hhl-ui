@@ -1,13 +1,7 @@
 <template>
   <div class="h_baseSelectList" @click="Click" @keyup.space="Click" @keyup.enter="Click" :row="row ? 'true' : null">
-    <div
-      class="h_baseSelectList-item"
-      v-for="item in filterList"
-      :key="(item.value as string)"
-      :selected="selected(item.value)"
-      :data-value="item.value"
-      :label-left="labelLeft"
-    >
+    <div class="h_baseSelectList-item" v-for="item in filterList" :key="(item.value as string)"
+      :selected="selected(item.value)" :data-value="item.value" :label-left="labelLeft">
       <div class="h_baseSelectList-icon">
         <svg v-if="multi" viewBox="0 0 24 24" class="h_baseSelectList__checkbox" tabindex="0">
           <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"></path>
@@ -118,6 +112,10 @@ function setMultivalue(val: string) {
 </script>
 
 <style>
+svg:focus {
+  outline: none;
+}
+
 .h_baseSelectList {
   display: flex;
   flex-direction: column;

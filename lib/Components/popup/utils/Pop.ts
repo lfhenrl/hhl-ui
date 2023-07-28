@@ -30,7 +30,7 @@ export class Pop {
   public padding: number = 10;
   public inner: boolean = false;
   public screen_pos: any;
-  public container: "screen" | "parent" | "refElement" = "refElement";
+  public container: "box" | "slotElement" = "slotElement";
   public placement:
     | "center"
     | "top"
@@ -109,7 +109,7 @@ export class Pop {
     this.dialog?.classList.add("open");
     this.dialog?.classList.remove("close", "top", "bottom");
     this.refRect = this.getRefRect();
-    if (this.widthAsRef) {
+    if (this.widthAsRef && this.container === "slotElement") {
       this.minWidth = this.refRect?.width + "px";
     } else {
       this.minWidth = "auto";

@@ -5,6 +5,14 @@
       <div style="min-width: 100px" />
       <H_pop :placement="placement" modal :inner="inner" :offset-left="offsetLeft" :offset-top="offsetTop">
         <template v-slot:referance>
+          <H_btn>Open-modal</H_btn>
+        </template>
+        <H_col class="popup col-bg-1">
+          <H_row moveable-drag pop-close>TITLE</H_row>
+        </H_col>
+      </H_pop>
+      <H_pop :placement="placement" :inner="inner" :offset-left="offsetLeft" :offset-top="offsetTop">
+        <template v-slot:referance>
           <H_btn>Open</H_btn>
         </template>
         <H_col class="popup col-bg-1">

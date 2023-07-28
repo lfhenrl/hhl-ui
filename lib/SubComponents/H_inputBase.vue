@@ -72,7 +72,7 @@ onMounted(() => {
   gap: 0;
   padding: 0;
   min-height: 40px;
-  min-width: 200px;
+  min-width: 100px;
   --col-icon: var(--col-txt-3);
 }
 

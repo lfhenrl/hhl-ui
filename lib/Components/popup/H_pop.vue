@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { PropType, onMounted, onUnmounted, ref, watch } from "vue";
 import { vMovable } from "../../Directives/v-movable";
-import { Pop } from "./Pop";
+import { Pop } from "./utils/Pop";
 
 const P = defineProps({
   modelValue: {
@@ -52,15 +52,14 @@ const P = defineProps({
   inner: { type: Boolean, default: false },
   modal: { type: Boolean, default: false },
   noShake: { default: false, type: Boolean },
-  movable: { default: true, type: Boolean },
+  movable: { default: false, type: Boolean },
   closePopupClick: { type: Boolean, default: false },
   delayOnMouseOver: { type: String, default: "100" },
   delayOnMouseOut: { type: String, default: "400" }
 });
-const E = defineEmits(["open", "close", "update:modelValue"]);
+const E = defineEmits(["open", "close"]);
 
 const H_popRef = ref();
-const isOpen = ref(false);
 const pos = ref("NA");
 const shake = ref(false);
 let refBox: HTMLElement;
@@ -68,54 +67,60 @@ let dialogBox: any;
 let opserveTimer: any = null;
 let ModelValueDelay = false;
 let mouseOvertimer = {} as any;
-
 const dialogPos = new Pop();
+const modelValue = defineModel<boolean>({ local: true, default: false })
 
 watch(
-  () => P.modelValue,
+  modelValue,
   (val: boolean) => {
     if (val === true) {
+      if (P.readonly === true) {
+        modelValue.value = false;
+        return;
+      }
+      diaOpen();
+      E("open");
       ModelValueDelay = true;
-      isOpen.value = true;
       setTimeout(() => {
         ModelValueDelay = false;
       });
     } else {
-      isOpen.value = false;
+      diaClose();
+      E("close");
     }
   }
 );
 
-watch(isOpen, () => {
-  if (isOpen.value) {
-    if (P.readonly === true) return;
-    diaOpen();
-    E("open");
-  } else {
-    diaClose();
-    E("close");
+watch(
+  [() => P.container, () => P.querySelector],
+  () => {
+    if (P.container === "box") {
+      refBox = dialogBox.closest(P.querySelector);
+
+    } else {
+      refBox = H_popRef.value.children[0];
+    }
+    dialogPos.referance = refBox;
   }
-});
+);
 
 function diaOpen() {
+  modelValue.value = true;
   if (P.modal) {
     dialogBox.showModal();
   } else {
     dialogBox.showPopover();
   }
-
   dialogPos.startPos();
-
   setTimeout(() => {
-    startOpserve();
-    E("update:modelValue", true);
+    if (!P.modal) startOpserve();
   });
 }
 
 function diaClose() {
   dialogPos.endPos();
+  modelValue.value = false;
   stopOpserve();
-  E("update:modelValue", false);
   setTimeout(() => {
     if (P.modal) {
       dialogBox.close();
@@ -130,19 +135,19 @@ function diaClose() {
 
 function refClick() {
   if (P.trigger === "toggle") {
-    isOpen.value = !isOpen.value;
+    modelValue.value = !modelValue.value;
   }
 
   if (P.trigger === "click") {
-    isOpen.value = true;
+    modelValue.value = true;
   }
 }
 
 function mouseOver() {
-  if (isOpen.value === false) {
+  if (modelValue.value === false) {
     clearTimeout(mouseOvertimer);
     mouseOvertimer = setTimeout(() => {
-      isOpen.value = true;
+      modelValue.value = true;
     }, parseInt(P.delayOnMouseOver));
   }
 }
@@ -150,13 +155,13 @@ function mouseOver() {
 function mouseOut() {
   clearTimeout(mouseOvertimer);
   mouseOvertimer = setTimeout(() => {
-    isOpen.value = false;
+    modelValue.value = false;
   }, parseInt(P.delayOnMouseOut));
 }
 
 function popupClick() {
   if (P.closePopupClick) {
-    isOpen.value = false;
+    modelValue.value = false;
   }
 }
 
@@ -172,7 +177,7 @@ function outsideClick() {
     }
     return;
   }
-  isOpen.value = false;
+  modelValue.value = false;
 }
 
 function keyCancel(event: any) {
@@ -184,10 +189,10 @@ function docClick(e: any) {
   if (H_popRef.value?.contains(e.target)) {
     e.stopPropagation;
     if (e.target.getAttribute("pop-close") !== null) {
-      isOpen.value = false;
+      modelValue.value = false;
     }
 
-    if (P.modal && isOpen.value) {
+    if (P.modal && modelValue.value) {
       if (e.target.contains(dialogBox)) {
         outsideClick();
         return;
@@ -198,7 +203,7 @@ function docClick(e: any) {
     if (refBox?.contains(e.target)) refClick();
     if (dialogBox.contains(e.target)) popupClick();
   } else {
-    if (isOpen.value) outsideClick();
+    if (modelValue.value) outsideClick();
   }
 }
 
@@ -232,7 +237,7 @@ onMounted(() => {
       refBox = H_popRef.value.children[0];
     }
   }
-  dialogPos.init(refBox, dialogBox, P, isOpen, pos);
+  dialogPos.init(refBox, dialogBox, P, modelValue, pos);
 
   if (P.trigger === "hover") {
     refBox.addEventListener("mouseover", mouseOver);
@@ -294,27 +299,27 @@ onUnmounted(() => {
 }
 
 .H_pop-dialog.close[pos="bottom"] {
-  animation: scaleY-display--reversed 0.3s forwards;
+  animation: scaleY-display--reversed 0.5s forwards;
   transform-origin: top;
 }
 
 .H_pop-dialog.close[pos="top"] {
-  animation: scaleY-display--reversed 0.3s forwards;
+  animation: scaleY-display--reversed 0.5s forwards;
   transform-origin: bottom;
 }
 
 .H_pop-dialog.close[pos="left"] {
-  animation: scaleX-display--reversed 0.3s forwards;
+  animation: scaleX-display--reversed 0.5s forwards;
   transform-origin: right;
 }
 
 .H_pop-dialog.close[pos="right"] {
-  animation: scaleX-display--reversed 0.3s forwards;
+  animation: scaleX-display--reversed 0.5s forwards;
   transform-origin: left;
 }
 
 .H_pop-dialog.close[pos="center"] {
-  animation: scaleX-display--reversed 0.3s forwards;
+  animation: scaleX-display--reversed 0.5s forwards;
   transform-origin: center;
 }
 
@@ -327,7 +332,19 @@ onUnmounted(() => {
   opacity: 1;
 }
 
+dialog.H_pop-dialog:modal::backdrop {
+  position: fixed;
+  inset: 0px;
+  background: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+}
+
+dialog.H_pop-dialog:modal.open::backdrop {
+  opacity: 1;
+}
+
 @keyframes shaking {
+
   10%,
   90% {
     transform: rotate(-1deg);
@@ -418,3 +435,4 @@ onUnmounted(() => {
   }
 }
 </style>
+./utils/Pop
