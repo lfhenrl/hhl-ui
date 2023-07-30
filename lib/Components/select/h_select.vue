@@ -111,17 +111,14 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
 
 <style>
-
 .h_inputbase.h_select {
   position: relative;
   background-color: inherit;
-
   max-height: 40px;
 }
 
 .h_selectPop .h_pop__referance {
   display: flex;
-
 }
 
 .h_select-input {
@@ -150,7 +147,6 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
   border: 1px solid var(--col-txt-5);
   border-radius: 4px;
 }
-
 
 .h_select-filter {
   display: flex;

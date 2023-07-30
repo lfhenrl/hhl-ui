@@ -188,10 +188,15 @@ It is important that you implement a way to close the Popup.
 :::
 <br/>
 
+### noShake.
+
+By default when attribute is `modal` the Popup will shake when you clik outside the Popup<br>
+You can disable this by adding the attribute `no-shake`
+
 <hhl-live-editor title="" htmlCode='
     <template>
       <H_row>
-        <H_pop modal>
+        <H_pop modal :no-shake="shake">
           <template v-slot:referance>
               <H_btn>modal"</H_btn>
           </template>
@@ -200,17 +205,19 @@ It is important that you implement a way to close the Popup.
             <div pop-close style="border: 1px red solid; margin: 10px 0">close</div>
           </div>
         </H_pop>
-      <H_pop modal trigger="click" v-model="popup">
+      <H_pop modal trigger="click" v-model="popup" :no-shake="shake" >
         <template v-slot:referance>
             <H_btn>modal + trigger="click"</H_btn>
         </template>
         <div class="col-bg-warn box"><H_btn @click="popup=false">Close"</H_btn></div>
       </H_pop>
+      <H_switch label="no-shake" v-model="shake"></H_switch>
       </H_row>
     </template>
     <script>
       const popup = ref(false);
-      return { popup }
+      const shake = ref(false);
+      return { popup, shake }
     </script>
 '>
 </hhl-live-editor>
@@ -219,30 +226,83 @@ It is important that you implement a way to close the Popup.
 
 ## PopUp placement.
 
+### Placement.
+
 By adding the property `placement` you can change the position of the popup.<br>
-The values are `top, top-start, top-end, right, right-start, right-end, bottom, bottom-start, bottom-end, left, left-start, left-end` .<br>
+The values are `top, top-start, top-end, right, right-start, right-end, bottom, bottom-start, bottom-end, left, left-start, left-end, center` .<br>
 The default is `bottom-start`.<br>
 
+### Inner.
+
+By adding the property `inner` the position is calculated from the inner of the ref element.<br>
+
+### Container.
+
+By adding the property `container` you can define the container that the Popup calc the position from.<br>
+The values are `slotElement` or `box` the default is `slotElement` <br>
+When `slotElement` is chosed the positions will be from element in slot (referance).
+When `box` is chosed the positions will be from element in the property `query-selector`.
+
+### querySelector.
+
+By adding the property `query-selector` you can define the element that the Popup calc the position from.<br>
+The default is `body` it is only active when `container` property is `box`
+
+### Padding.
+
+By adding the property `padding` you can define the padding as a number of pixcel for the outer border of the Popup container.<br>
+The default is `20` that will adjust the placement 20px from the body when the property `container = "slotElement"` (default)
+<br>
+When `container = "box"` the padding wil be from the element you have specified in `query-selector.
+<br>
+
+### Offset Top.
+
+By adding the property `offset-top` it will adjust the top position with the value. It can be positive or negative.<br>
+
+### Offset left.
+
+By adding the property `offset-left` it will adjust the left position with the value. It can be positive or negative.<br>
+<br>
+<br>
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_row class="thisContainer" padding="100px 10px">
-        <H_pop :placement="placement" :inner="inner" :container="container" :query-selector="querySelector">      
-          <template v-slot:referance>
+      <H_col class="thisContainer" padding="20px" style="border: solid 1px gray">
+      <H_row padding="10px 0 0 0" >
+        <H_pop  :placement="placement" 
+                :inner="inner" 
+                :container="container" 
+                :query-selector="querySelector" 
+                :padding="padding"
+                :offset-top="offsetTop"
+                :offset-left="offsetLeft">      
+            <template v-slot:referance>
               <H_btn>Open</H_btn>
-          </template>
+            </template>
           <div class="col-bg-warn box">Hello</div>
         </H_pop>
-      <H_select hide-filter :list="selectData" v-model="placement" label="Placement" style="max-width:150px"></H_select>
+      </H_row>
+      <H_row padding="0">
+        <H_select hide-filter :list="selectData" v-model="placement" label="Placement" style="max-width:150px"></H_select>
         <H_switch label="Inner" v-model="inner"></H_switch>
         <H_select hide-filter :list="conType" v-model="container" label="container" style="max-width:150px"></H_select>
          <H_select hide-filter :list="queryType" v-model="querySelector" label="querySelector" style="max-width:150px"></H_select>
-    </H_row>
+      </H_row>
+      <H_row padding="0">
+         <H_inputNumber v-model="padding" label="padding" style="max-width:150px"></H_inputNumber>
+         <H_inputNumber v-model="offsetTop" label="offset-top" style="max-width:150px"></H_inputNumber>
+         <H_inputNumber v-model="offsetLeft" label="offset-left" style="max-width:150px"></H_inputNumber>
+      </H_row>
+    </H_col>
     </template>
     <script>
       const placement = ref("bottom-start");
       const inner = ref(false);
-      const container = ref("box");
+      const container = ref("slotElement");
       const querySelector = ref("body");
+      const padding = ref(0);
+      const offsetTop = ref(0);
+      const offsetLeft = ref(0);
       const selectData = ["top"
         , "top-start"
         , "top-end"
@@ -262,79 +322,13 @@ The default is `bottom-start`.<br>
       const queryType = [
           "body"
         , "#page-container"  
-        , ".markdown-body"
         , ".thisContainer"];
-      return { placement,inner, selectData, container, conType, querySelector, queryType }
+      return { placement,inner, selectData, container, conType, querySelector, queryType,padding,offsetTop,offsetLeft }
     </script>
 '>
 </hhl-live-editor>
 
 <br/>
-
-## Adjust to the inner of the component (referance).
-
-By adding the property `inner` it will adjust the position to the inner boundaries.<br>
-
-<hhl-live-editor title="" htmlCode='
-    <template>
-      <H_row>
-        <H_pop inner :placement="top===true ? `top-start` : `bottom-start`">
-          <template v-slot:referance>
-              <H_btn>Open popup</H_btn>
-          </template>
-          <div class="col-bg-warn box">Hello</div>
-        </H_pop>
-        <H_checkbox label="Top" v-model="top"></hhl-checkbox>
-    </H_frow>
-    </template>
-    <script>
-      const top = ref(false);
-      return { top }
-    </script>
-'>
-</hhl-live-editor>
-
 <br/>
-
-## Offset Top.
-
-By adding the property `offset-top` it will adjust the top position with the value. It can be positive or negative.<br>
-
-<hhl-live-editor title="" htmlCode='
-    <template>
-      <H_row>
-      <H_pop :offset-top="20" :placement="top===true ? `top-start` : `bottom-start`">
-      <template v-slot:referance >
-      <H_btn>Open popup</H_btn>
-      </template>
-      <div class="col-bg-warn box">Hello</div>
-      </H_pop>
-      <H_checkbox label="Top" v-model="top"></hhl-checkbox>
-      </H_row>
-    </template>
-    <script>
-        const top = ref(false);
-        return { top }
-    </script>
-'>
-</hhl-live-editor>
-
-<br>
-
-## Offset left.
-
-By adding the property `offset-left` it will adjust the left position with the value. It can be positive or negative.<br>
-
-<hhl-live-editor title="" htmlCode='
-    <template>
-      <H_row>
-        <H_pop :offset-left="30">
-          <template v-slot:referance>
-              <H_btn>Open popup</H_btn>
-          </template>
-          <div class="col-bg-warn box">Hello</div>
-        </H_pop>
-    </H_row>
-    </template>
-'>
-</hhl-live-editor>
+<br/>
+<br/>

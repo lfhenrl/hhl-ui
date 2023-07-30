@@ -1,6 +1,5 @@
 <template>
   <div class="H_menu">
-
     <H_pop class="H_menu" :offset-top="2" :offset-left="2" close-popup-click position="fixed">
       <template v-slot:referance>
         <div class="H_HeadCell-Icon" data-subtype="menu">
@@ -26,16 +25,13 @@
           <div class="H_menu-popup-item-noMouseEvent">Filter</div>
         </div>
 
-
-        <div class="H_menu-popup-item" data-action="autoSize" >
+        <div class="H_menu-popup-item" data-action="autoSize">
           <H_icon class="H_menu-popup-item-noMouseEvent" btn icon="expand_horizontal" size="18px" />
           <div class="H_menu-popup-item-noMouseEvent">Auto size</div>
         </div>
       </div>
     </H_pop>
     <H_menuFilter :index="index" ref="menuFilterRef" data-subtype="menu" />
-
-
   </div>
 </template>
 
@@ -109,8 +105,7 @@ function menuClick(e: MouseEvent) {
 
   if (action === "autoSize") {
     Columns.adjustColumns?.adjustColumn(col);
-    setTimeout(() => {
-    });
+    setTimeout(() => {});
   }
 }
 </script>
@@ -160,6 +155,7 @@ function menuClick(e: MouseEvent) {
   font-size: 13px;
   font-weight: normal;
   padding-top: 4px;
+  background-color: var(--col-bg-0);
 }
 
 .H_menu-popup-item {

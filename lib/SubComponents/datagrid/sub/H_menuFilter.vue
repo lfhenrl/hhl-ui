@@ -1,24 +1,24 @@
 <template>
-    <H_pop :offset-top="20" :offset-left="-20" v-model="isOpen" position="fixed" movable>
-        <div class="H_menuFilter shadow-4 col-txt-1">
-            <H_row padding="0" align="center" moveable-drag class="col-pri H_menuFilter-head">
-                <div style="width: 25px"></div>
-                <div class="H_menuFilter-head-title">{{ col.props.title }}</div>
-                <div style="width: 25px">
-                    <H_icon btn @click="isOpen = false" />
-                </div>
-            </H_row>
-
-                <component ref="filterCompRef" :is="filtComponent" :index="index" />
-
-            <H_row justify="end">
-                <H_btn @click="filterSave" class="ml-3 bg-ok" :disabled="!filterCompRef?.canSave">OK</H_btn>
-                <H_btn @click="filterClear" class="ml-3" :disabled="!col.filter.active">CLEAR</H_btn>
-            </H_row>
+  <H_pop :offset-top="20" :offset-left="-20" v-model="isOpen" movable>
+    <div class="H_menuFilter shadow-4 col-txt-1 col-bg-0">
+      <H_row padding="0" align="center" moveable-drag class="col-pri H_menuFilter-head">
+        <div style="width: 25px"></div>
+        <div class="H_menuFilter-head-title">{{ col.props.title }}</div>
+        <div style="width: 25px">
+          <H_icon btn @click="isOpen = false" />
         </div>
-    </H_pop>
+      </H_row>
+
+      <component ref="filterCompRef" :is="filtComponent" :index="index" />
+
+      <H_row justify="end">
+        <H_btn @click="filterSave" class="ml-3 bg-ok" :disabled="!filterCompRef?.canSave">OK</H_btn>
+        <H_btn @click="filterClear" class="ml-3" :disabled="!col.filter.active">CLEAR</H_btn>
+      </H_row>
+    </div>
+  </H_pop>
 </template>
-  
+
 <script setup lang="ts">
 import { computed, inject, ref } from "vue";
 import H_pop from "../../../Components/popup/H_pop.vue";
@@ -33,7 +33,7 @@ import { iColumns } from "../provide/Columns";
 import { icolumnData } from "../provide/datagridTypes";
 
 const P = defineProps({
-    index: { type: Number, default: 0 }
+  index: { type: Number, default: 0 }
 });
 
 defineExpose({ filterOpen });
@@ -45,84 +45,77 @@ const isOpen = ref(false);
 const filterCompRef = ref<any>();
 
 function filterOpen() {
-    isOpen.value = true;
-    filterCompRef.value.open();
+  isOpen.value = true;
+  filterCompRef.value.open();
 }
 
-
 function filterSave() {
-    filterCompRef.value.save();
-    Columns.updateFilterArray();
-    isOpen.value = false;
+  filterCompRef.value.save();
+  Columns.updateFilterArray();
+  isOpen.value = false;
 }
 
 function filterClear() {
-    filterCompRef.value.clear();
-    Columns.updateFilterArray();
-    isOpen.value = false;
+  filterCompRef.value.clear();
+  Columns.updateFilterArray();
+  isOpen.value = false;
 }
 
 const filtComponent = computed(() => {
-    switch (col.filter.type) {
-        case "string":
-            return H_filterString;
-        case "number":
-            return H_filterNumber;
-        case "date":
-            return H_filterDate;
-        case "datetime":
-            return H_filterDate;
-        case "bool":
-            return H_filterBool;
-        case "select":
-            return H_filterSelect;
-        default:
-            return H_filterNone;
-    }
+  switch (col.filter.type) {
+    case "string":
+      return H_filterString;
+    case "number":
+      return H_filterNumber;
+    case "date":
+      return H_filterDate;
+    case "datetime":
+      return H_filterDate;
+    case "bool":
+      return H_filterBool;
+    case "select":
+      return H_filterSelect;
+    default:
+      return H_filterNone;
+  }
 });
-
-
 </script>
-  
+
 <style>
 .H_menuFilter {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    border-radius: 4px;
-    resize: vertical;
-    overflow: hidden;
-    max-height: 90vh;
-
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  border-radius: 4px;
+  resize: vertical;
+  overflow: hidden;
+  max-height: 90vh;
 }
 
-
 .H_menuFilter-head {
-    cursor: move;
-    border-radius: 4px 4px 0 0;
+  cursor: move;
+  border-radius: 4px 4px 0 0;
 }
 
 .H_menuFilter-head-title {
-    flex: 1;
-    padding: 9px;
-    text-align: center;
+  flex: 1;
+  padding: 9px;
+  text-align: center;
 }
 
 .H_filtercomponent {
-    display: flex;
-    flex-direction: column;
-    font-weight: normal;
-    gap: 10px;
-    padding:20px 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+  font-weight: normal;
+  gap: 10px;
+  padding: 20px 20px 0 20px;
 }
 
-
 .H_filtercomponent .h_selectBox {
-    border: none;
+  border: none;
 }
 
 .H_filtercomponent .h_selectBox .h_inputbase-slot {
-    align-items: center;
-    gap: 20px;
+  align-items: center;
+  gap: 20px;
 }
 </style>
-  

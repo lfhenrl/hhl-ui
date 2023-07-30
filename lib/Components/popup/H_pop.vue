@@ -68,41 +68,34 @@ let opserveTimer: any = null;
 let ModelValueDelay = false;
 let mouseOvertimer = {} as any;
 const dialogPos = new Pop();
-const modelValue = defineModel<boolean>({ local: true, default: false })
+const modelValue = defineModel<boolean>({ local: true, default: false });
 
-watch(
-  modelValue,
-  (val: boolean) => {
-    if (val === true) {
-      if (P.readonly === true) {
-        modelValue.value = false;
-        return;
-      }
-      diaOpen();
-      E("open");
-      ModelValueDelay = true;
-      setTimeout(() => {
-        ModelValueDelay = false;
-      });
-    } else {
-      diaClose();
-      E("close");
+watch(modelValue, (val: boolean) => {
+  if (val === true) {
+    if (P.readonly === true) {
+      modelValue.value = false;
+      return;
     }
+    diaOpen();
+    E("open");
+    ModelValueDelay = true;
+    setTimeout(() => {
+      ModelValueDelay = false;
+    });
+  } else {
+    diaClose();
+    E("close");
   }
-);
+});
 
-watch(
-  [() => P.container, () => P.querySelector],
-  () => {
-    if (P.container === "box") {
-      refBox = dialogBox.closest(P.querySelector);
-
-    } else {
-      refBox = H_popRef.value.children[0];
-    }
-    dialogPos.referance = refBox;
+watch([() => P.container, () => P.querySelector], () => {
+  if (P.container === "box") {
+    refBox = dialogBox.closest(P.querySelector);
+  } else {
+    refBox = H_popRef.value.children[0];
   }
-);
+  dialogPos.referance = refBox;
+});
 
 function diaOpen() {
   modelValue.value = true;
@@ -344,7 +337,6 @@ dialog.H_pop-dialog:modal.open::backdrop {
 }
 
 @keyframes shaking {
-
   10%,
   90% {
     transform: rotate(-1deg);

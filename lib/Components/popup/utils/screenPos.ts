@@ -5,6 +5,7 @@ export function screenPos(Pop: iPop) {
   const oL = Pop.offsetLeft;
   const inner = Pop.inner;
   const padding = Pop.padding;
+
   let top = 0;
   let bottom = 0;
   let left = 0;
@@ -14,19 +15,32 @@ export function screenPos(Pop: iPop) {
   function getScreenPos(placement: string) {
     const ref = Pop.refRect!;
     const dia = Pop.diaRect!;
+    const container = Pop.container;
+    let pad = container === "slotElement" ? 0 : padding;
 
     if (placement.startsWith("top")) {
       if (inner === true) {
-        top = ref.top - oT;
+        if (container === "slotElement") {
+          top = ref.top + oT;
+          maxHeight = Pop.wHeight - padding - top;
+        } else {
+          top = ref.top + oT + padding;
+          maxHeight = ref.top + ref.height - top - padding;
+        }
       } else {
         top = ref.top - dia.height - oT;
+        maxHeight = ref.top - padding;
       }
 
       bottom = Pop.wHeight - (top + ref.height);
-      maxHeight = ref.top - padding;
+
       switch (placement) {
         case "top-start":
-          left = ref.left + oL;
+          if (inner === true) {
+            left = ref.left + oL + pad;
+          } else {
+            left = ref.left + oL;
+          }
           right = Pop.wWidth - (left + dia.width);
           return {
             top,
@@ -39,7 +53,11 @@ export function screenPos(Pop: iPop) {
             pos: inner ? "bottom" : "top"
           };
         case "top-end":
-          left = ref.width - dia.width + ref.left - oL;
+          if (inner === true) {
+            left = ref.width - dia.width + ref.left - oL - pad;
+          } else {
+            left = ref.width - dia.width + ref.left - oL;
+          }
           right = Pop.wWidth - (left + dia.width);
           return {
             top,
@@ -69,15 +87,27 @@ export function screenPos(Pop: iPop) {
 
     if (placement.startsWith("bottom")) {
       if (inner === true) {
-        top = ref.top + ref.height - dia.height + oT;
+        top = ref.top + ref.height - dia.height - oT - pad;
+
+        if (container === "slotElement") {
+          maxHeight = ref.top - padding - oT;
+          if (top < padding) top = padding;
+        } else {
+          maxHeight = ref.bottom - oT - padding;
+        }
       } else {
         top = ref.top + ref.height + oT;
+        maxHeight = ref.bottom - oT - padding;
       }
       bottom = Pop.wHeight - (top + dia.height);
-      maxHeight = ref.bottom - oT - padding;
+
       switch (placement) {
         case "bottom-start":
-          left = ref.left + oL;
+          if (inner === true) {
+            left = ref.left + oL + pad;
+          } else {
+            left = ref.left + oL;
+          }
           right = Pop.wWidth - (left + dia.width);
           return {
             top,
@@ -90,7 +120,11 @@ export function screenPos(Pop: iPop) {
             pos: inner ? "top" : "bottom"
           };
         case "bottom-end":
-          left = ref.width - dia.width + ref.left - oL;
+          if (inner === true) {
+            left = ref.width - dia.width + ref.left - oL - pad;
+          } else {
+            left = ref.width - dia.width + ref.left - oL;
+          }
           right = Pop.wWidth - (left + dia.width);
           return {
             top,

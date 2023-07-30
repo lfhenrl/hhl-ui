@@ -1,8 +1,8 @@
 <template>
   <div class="testForms">
-    <div style="min-height: 100px" />
-    <H_row style="min-width: 100px">
-      <div style="min-width: 100px" />
+    <div style="min-height: 400px" />
+    <H_row style="min-width: 400px">
+      <div style="min-width: 400px" />
       <H_pop :placement="placement" modal :inner="inner" :offset-left="offsetLeft" :offset-top="offsetTop">
         <template v-slot:referance>
           <H_btn>Open-modal</H_btn>
