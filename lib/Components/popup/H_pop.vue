@@ -258,7 +258,7 @@ onUnmounted(() => {
   overflow: auto;
   transform-origin: top;
   opacity: 0;
-  width: max-content;
+
   background-color: transparent;
 }
 
