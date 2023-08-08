@@ -67,6 +67,7 @@ function format(value: any, col: any, data: any) {
 .H_dataRow {
   display: flex;
   height: min-content;
+  min-height: 25px;
 }
 
 .H_dataRow:nth-child(odd) {

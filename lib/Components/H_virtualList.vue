@@ -50,7 +50,7 @@ const props = defineProps({
   },
   estimateSize: {
     type: Number,
-    default: 50
+    default: 25
   },
 
   direction: {
@@ -242,6 +242,7 @@ function onRangeChanged(r: any) {
     padding: isHorizontal ? `0px ${range.padBehind}px 0px ${range.padFront}px` : `${range.padFront}px 0px ${range.padBehind}px`,
     "flex-direction": isHorizontal ? "row" : "column"
   };
+  console.log("onRangeChanged ", range.start, range.end);
   items.value = props.dataSources.slice(range.start, range.end) as any;
 }
 
