@@ -126,9 +126,29 @@ The default is 300.
 
 <br/>
 
+## Read only.
+
+By adding the property `readonly` the Popup will not open.<br>
+
+<hhl-live-editor title="" htmlCode='
+    <template>
+      <H_row>
+        <H_pop readonly>
+          <template v-slot:referance>
+              <H_btn>readonly</H_btn>
+          </template>
+          <div class="col-bg-warn box">Hello</div>
+        </H_row>
+      </H_flex>
+    </template>
+'>
+</hhl-live-editor>
+
+<br/>
+
 ## Close on popup click.
 
-By adding the attribute `close-popup-click` the popup will close when you click inside the popup.<br>
+By adding the property `close-popup-click` the popup will close when you click inside the popup.<br>
 
 <hhl-live-editor title="" htmlCode='
     <template>
@@ -154,7 +174,7 @@ By adding the attribute `close-popup-click` the popup will close when you click 
 
 ## Close on special attribute on HTML element i the PopUp dialog.
 
-By adding the attribute `pop-close` to an element in the PopUp dialog a click on it will close the dialog.<br>
+By adding the property `pop-close` to an element in the PopUp dialog a click on it will close the dialog.<br>
 
 <hhl-live-editor title="" htmlCode='
     <template>
@@ -181,7 +201,7 @@ By adding the attribute `pop-close` to an element in the PopUp dialog a click on
 
 ## Modal Prevent closing.
 
-By adding the attribute `modal` you will prevent the popup to close when you click outside the popup.<br>
+By adding the property `modal` you will prevent the popup to close when you click outside the popup.<br>
 
 ::: warning
 It is important that you implement a way to close the Popup.
@@ -190,8 +210,8 @@ It is important that you implement a way to close the Popup.
 
 ### noShake.
 
-By default when attribute is `modal` the Popup will shake when you clik outside the Popup<br>
-You can disable this by adding the attribute `no-shake`
+By default when property is `modal` the Popup will shake when you clik outside the Popup<br>
+You can disable this by adding the property `no-shake`
 
 <hhl-live-editor title="" htmlCode='
     <template>
@@ -327,6 +347,74 @@ By adding the property `offset-left` it will adjust the left position with the v
     </script>
 '>
 </hhl-live-editor>
+
+<br/>
+
+## Movable.
+
+By adding the property `movable` it will be possible to move the Popup.<br>
+The Popup will move back to the original position when you scroll og resize.<br>
+By adding the property `moveable-drag` to one element in the Popup it will be here you can move the Popup .<br>
+
+<hhl-live-editor title="" htmlCode='
+    <template>
+      <H_row>
+        <H_pop movable>
+          <template v-slot:referance>
+              <H_btn>Drag</H_btn>
+          </template>
+          <div class="col-bg-warn box">
+          <div>Hello</div>
+          </div>
+        </H_pop>
+          <H_pop movable>
+          <template v-slot:referance>
+              <H_btn>Drag by element"</H_btn>
+          </template>
+          <H_col padding="0"  class="box col-bg-warn" style="width:100%; height: 100px">
+          <div moveable-drag style="background-color: lime; text-align: center; padding: 10px">dragme</div>
+          <div>Hello</div>
+          </H_col>
+        </H_pop>
+      </H_row>
+    </template>
+    <script>
+      const popup = ref(false);
+      return { popup }
+    </script>
+'>
+</hhl-live-editor>
+
+<br/>
+
+
+## Adjust component (referance) to the full width og the parent.
+
+By adding the property `widthAsRef` the width of the popup will as minium be the same as the component (referance), only when `container="slotElement"`<br>
+This is the default to disable add `:width-as-ref="false"`
+
+<hhl-live-editor title="" htmlCode='
+    <template>
+      <H_row>
+        <H_pop :width-as-ref="false">
+          <template v-slot:referance>
+              <H_btn>width-as-ref="false" .......</H_btn>
+          </template>
+          <div class="col-bg-warn box">
+          <div>Hello</div>
+          </div>
+        </H_pop>         
+      </H_row>
+    </template>
+    <script>
+      const popup = ref(false);
+      return { popup }
+    </script>
+'>
+</hhl-live-editor>
+
+<br/>
+
 
 <br/>
 <br/>

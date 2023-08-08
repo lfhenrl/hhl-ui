@@ -93,7 +93,7 @@ export function screenPos(Pop: iPop) {
           maxHeight = ref.top - padding - oT;
           if (top < padding) top = padding;
         } else {
-          maxHeight = ref.bottom - oT - padding;
+          maxHeight = ref.height - oT - padding;
         }
       } else {
         top = ref.top + ref.height + oT;
