@@ -36,9 +36,9 @@ export class odata {
     //   this.rowsLoading.value = false;
     //   return;
     // }
-    const groupData = new Array(1000).fill({});
+
     const data = await this.odataFetch.get(this.Url);
-    groupData.splice(0, data.data.value.length, ...data.data.value);
+    const groupData = data.data.value;
 
     this.rowsCount.value = 100;
     this.makeCalcMaxRowSize(groupData);
@@ -90,33 +90,28 @@ export class odata {
 
   public async setSorting(_sortArray: iSortData[]) {
     this.sortArray = _sortArray;
-    this.loadData();
+    // this.loadData();
   }
 
   public setFilter(_filterArray: iFilterData[]) {
     this.filterArray = _filterArray;
     this.expandList = [];
-    this.loadData();
+    // this.loadData();
   }
 
   public setGrouping(_groupList: string[]) {
     this.groupList = _groupList;
-    this.loadData();
+    // this.loadData();
   }
 
   public setExpanding(_expandList: string[]) {
     this.expandList = _expandList;
-    this.loadData();
+    // this.loadData();
   }
 
   public setSeekFilterList(_seekFilterList: string[]) {
     this.seekFilterList = _seekFilterList;
-    this.loadData();
-  }
-
-  public setseekFilterString(_seekFilterString: string) {
-    this.seekFilterString = _seekFilterString;
-    this.loadData();
+    //this.loadData();
   }
 
   public toExcel(Columns: any) {
