@@ -142,7 +142,6 @@ if (columns.dataHandler !== undefined) {
   };
 }
 
-
 columns.loadColumns(slots, guid, H_datagridRef);
 columns.updateSeekFilterList(P.filterList);
 
@@ -154,12 +153,12 @@ watch(
 watch(
   () => columns.dataHandler?.MaxSizeRow.value,
   () => {
-    console.log("adjustColumns.adjust()")
-    setTimeout(()=> {
+    console.log("adjustColumns.adjust()");
+    setTimeout(() => {
       adjustColumns.adjust();
-    },100)
-    
-  },{deep: true}
+    }, 100);
+  },
+  { deep: true }
 );
 
 function rowStyle(row: any) {

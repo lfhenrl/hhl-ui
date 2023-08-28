@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { iSortData, iFilterData } from "../../provide/datagridTypes";
+import { getFilterList } from "./filter/getFilterList";
 import { debounce } from "../../../../utils/debounce";
 import Excel from "../../../../utils/exportToExcel";
 import { icolumnData } from "../../provide/datagridTypes";
@@ -16,19 +17,28 @@ export class odata {
   public _MaxSizeRow: any = {};
   private SizeStore: any = {};
   public dataSource: any[] = [];
-  private sortArray: iSortData[] = [];
-  public filterArray: iFilterData[] = [];
+  public groupData: any[] = [];
+  // public filterArray: iFilterData[] = [];
   private expandList: string[] = [];
   private groupList: string[] = [];
   public seekFilterList: string[] = [];
   public seekFilterString: string = "";
   public newDataEvent: any;
+
   public Url: string = "";
-  public odataFetch: hhlFetch;
+  private dataFetch: hhlFetch;
+  private Qpara: any = {
+    Take: 100,
+    Skip: 0
+  };
+
+  private CountPara: any = {
+    Select: ["Count(*) as count"]
+  };
 
   constructor(_Url: string) {
     this.Url = _Url;
-    this.odataFetch = new hhlFetch(_Url);
+    this.dataFetch = new hhlFetch(_Url);
   }
 
   debouncedUpdate = debounce(async () => {
@@ -37,14 +47,20 @@ export class odata {
     //   return;
     // }
 
-    const data = await this.odataFetch.get(this.Url);
-    const groupData = data.data.value;
+    const count: any = await this.dataFetch.post("", this.CountPara);
+    this.rowsCountTotal.value = count.data[0].count;
 
-    this.rowsCount.value = 100;
-    this.makeCalcMaxRowSize(groupData);
+    const data: any = await this.dataFetch.post("", this.Qpara);
 
-    console.log("groupData", groupData);
-    this.rows.value = groupData;
+    this.groupData = data.data;
+    console.log("odata: ", data.data);
+    this.groupData.push({ _type: "loadmore", nextPage: 100, level: 0, root: [] });
+
+    this.makeCalcMaxRowSize(this.groupData);
+
+    console.log("groupData", this.groupData);
+    this.rows.value = this.groupData;
+    this.rowsCount.value = this.rows.value.length - 1;
     this.newDataEvent();
     this.rowsLoading.value = false;
   }, 50);
@@ -52,6 +68,18 @@ export class odata {
   public async setDataSource() {
     this.makeMaxRowStore();
     this.debouncedUpdate();
+  }
+
+  public async moreRows(row: any) {
+    this.groupData.pop();
+    this.Qpara.Skip = this.Qpara.Skip + this.Qpara.Take;
+    const data: any = await this.dataFetch.post("", this.Qpara);
+
+    this.groupData = this.groupData.concat(data.data);
+    this.groupData.push({ _type: "loadmore", nextPage: 200, level: 0, root: [] });
+    console.log("groupData", this.groupData);
+    this.rows.value = this.groupData;
+    this.rowsCount.value = this.rows.value.length - 1;
   }
 
   private makeMaxRowStore() {
@@ -89,14 +117,19 @@ export class odata {
   }
 
   public async setSorting(_sortArray: iSortData[]) {
-    this.sortArray = _sortArray;
-    // this.loadData();
+    this.Qpara.Order = _sortArray.map((item: iSortData) => {
+      return { field: item.field, desc: item.direction === "up" ? false : true };
+    });
+
+    this.loadData();
   }
 
   public setFilter(_filterArray: iFilterData[]) {
-    this.filterArray = _filterArray;
+    const filter = getFilterList(_filterArray);
+    this.Qpara.Filter = filter;
+    this.CountPara.Filter = filter;
     this.expandList = [];
-    // this.loadData();
+    this.loadData();
   }
 
   public setGrouping(_groupList: string[]) {

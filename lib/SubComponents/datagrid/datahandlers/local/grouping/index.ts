@@ -64,12 +64,15 @@ function itemData(item: any, OutData: any[], indData: any[], groupList: string[]
   });
 }
 
-function groupBy(property: any, data: any) {
+export async function groupBy(property: any, data: any, level: number, root: string[]) {
   if (!property) return data;
   const objArr = data.reduce((acc: any, obj: any) => {
     let key = obj[property];
     if (!acc[key]) {
-      acc[key] = { id: key, count: 0, _type: "group", level: 0, title: key, parent: "root" };
+      const newRoot = [...root];
+      newRoot.push(key);
+      const id = newRoot.toString().replaceAll(",", "/");
+      acc[key] = { id, count: 0, _type: "group", level: level, title: key, root: newRoot, expanded: false };
     }
     acc[key].count++;
 

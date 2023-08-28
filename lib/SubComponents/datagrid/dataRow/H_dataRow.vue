@@ -2,6 +2,7 @@
   <rendRowTemplate v-if="Columns.haveDataRowTemplate" />
   <template v-else>
     <H_dataGroupRow v-if="row._type === 'group'" :row="row" />
+    <H_loadMoreRow v-else-if="row._type === 'loadmore'" :row="row" />
     <template v-else>
       <div
         v-for="(col, index) in Columns.getVisibelColumns()"
@@ -21,6 +22,7 @@
 import { inject } from "vue";
 import { iColumns } from "../provide/Columns";
 import H_dataGroupRow from "./H_dataGroupRow.vue";
+import H_loadMoreRow from "./H_loadMoreRow.vue";
 
 const P = defineProps({
   row: { type: Object, default: {} }

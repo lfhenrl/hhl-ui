@@ -13,7 +13,7 @@
         :filter-list="['id']"
         :filterstring="seek"
         virtualscroll
-        :virtualscroll_keeps="55"
+        :virtualscroll_keeps="50"
         :virtualscroll_rowheight="44"
         :row_style="rowStyle"
         @row-click="rowClick"
@@ -48,9 +48,10 @@
             { label: 'G10', value: 'Group 10.' }
           ]"
         />
-        <H_column field="val3" title="Value 3" auto-height width="200px" type="string" :cell_style="styleCell" />
+        <H_column field="val3" title="Value 3" auto-height type="string" :cell_style="styleCell" />
         <H_column field="val5" title="Value 5" type="bool" filter_type="bool" filter_condition="bool_list" />
         <H_column field="val4" title="Value 4" type="string" filter_type="select" />
+        <H_column field="val7" title="Value 7" type="string" filter_type="select" />
       </H_datagrid>
     </div>
   </div>
@@ -71,7 +72,7 @@ const seek = ref("");
 const lData = new localData();
 
 async function loadData() {
-  await lData.setDataSource(getData(10000));
+  await lData.setDataSource(getData(400));
 }
 
 function formatDate(value: any) {

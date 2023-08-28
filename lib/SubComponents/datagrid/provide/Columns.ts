@@ -22,6 +22,7 @@ export class Columns {
   public groupList: string[] = [];
   public rowStyle?: Function = undefined;
   public adjustColumns?: iColumnsResizing;
+  public insObserver?: IntersectionObserver;
 
   loadColumns(slots: Slots, guid: string, H_datagridRef: any) {
     this.H_datagridRef = H_datagridRef;
@@ -88,10 +89,11 @@ export class Columns {
     this.updateFilterArray();
     this.updateExpandList();
     this.updateGroupList(this.groupList);
+    this.createObserver();
   }
 
   getVisibelColumns() {
-    return this.columns.filter((item) => item.visibel);
+    return this.columns.filter((item) => item.visibel.value);
   }
 
   getSlotsData(slots: Slots, name: string) {
@@ -103,6 +105,29 @@ export class Columns {
     });
     return sl;
   }
+
+  createObserver() {
+    let options = {
+      root: null
+    };
+
+    this.insObserver = new IntersectionObserver(this.handleIntersect, options);
+  }
+
+  handleIntersect = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+    entries.forEach((entry: IntersectionObserverEntry) => {
+      if (entry.isIntersecting) {
+        const s = entry.target as HTMLElement;
+        if (s.dataset.row) {
+          const row = JSON.parse(s.dataset.row);
+          console.log("OPSERVES ", row);
+          this.dataHandler?.moreRows(row);
+        }
+
+        observer.unobserve(entry.target);
+      }
+    });
+  };
 
   columnsChange() {
     this.changeCounter.value++;
@@ -138,6 +163,15 @@ export class Columns {
   updateGroupList(groupList: string[]) {
     this.groupList = groupList;
     this.dataHandler?.setGrouping(groupList);
+  }
+
+  expandRow(row: any) {
+    console.log("Expand", row);
+    this.dataHandler?.expanding(row);
+  }
+
+  moreRows(row: any) {
+    this.dataHandler?.moreRows(row);
   }
 
   updateExpandList() {

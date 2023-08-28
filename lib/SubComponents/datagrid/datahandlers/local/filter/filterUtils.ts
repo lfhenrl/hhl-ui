@@ -5,7 +5,7 @@ function filterCondition(condition: string, compareValue: any) {
     equal: `val === ${compareValue}`,
     not_equal: `val !== ${compareValue}`,
     greater: `val > ${compareValue}`,
-    greaterOrEqual: `val <= ${compareValue}`,
+    greaterOrEqual: `val >= ${compareValue}`,
     less: `val < ${compareValue}`,
     lessOrEqual: `val <= ${compareValue}`,
     contain: `val.includes("${compareValue}")`,

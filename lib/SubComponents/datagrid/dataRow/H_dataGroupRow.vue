@@ -6,8 +6,8 @@
     data-type="rowgroup"
     :row-level="row.level"
   >
-    <H_icon :icon="isExpanded() ? 'expand_down' : 'expand_right'" btn @click="expand" />
-    {{ row.title }} ({{ row.count }})
+    <H_icon :icon="row.expanded ? 'expand_down' : 'expand_right'" btn @click="expand" />
+    {{ row.title }} ({{ row.count }}) ---- {{ row.root }}
   </div>
 </template>
 
@@ -26,13 +26,14 @@ function isExpanded() {
 }
 
 function expand() {
+  Columns.expandRow(P.row);
   if (isExpanded()) {
-    const index = Columns.expandList.indexOf(P.row.id);
-    Columns.expandList.splice(index, 1);
+    // const index = Columns.expandList.indexOf(P.row.id);
+    // Columns.expandList.splice(index, 1);
   } else {
-    Columns.expandList.push(P.row.id);
+    // Columns.expandList.push(P.row.id);
   }
-  Columns.updateExpandList();
+  // Columns.updateExpandList();
 }
 </script>
 

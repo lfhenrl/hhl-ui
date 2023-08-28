@@ -102,16 +102,17 @@ function columnsOpen() {
 function columnsSave() {
   open.value = false;
   const newColumns: any = [];
-  sourceColumns.value.forEach((item: any) => {
-    const orgCol: any = Columns.columns.find((it) => it.index === item.orgIndex);
-    orgCol.visibel.value = item.visibel;
-    newColumns.push(orgCol);
-  });
   groupColumns.value.forEach((item: any) => {
     const orgCol: any = Columns.columns.find((it) => it.index === item.orgIndex);
     orgCol.visibel.value = item.visibel;
     newColumns.push(orgCol);
   });
+  sourceColumns.value.forEach((item: any) => {
+    const orgCol: any = Columns.columns.find((it) => it.index === item.orgIndex);
+    orgCol.visibel.value = item.visibel;
+    newColumns.push(orgCol);
+  });
+
   Columns.updateGroupList(groupColumns.value.map((item: any) => item.field));
   Columns.columns = newColumns;
   Columns.columnsChange();

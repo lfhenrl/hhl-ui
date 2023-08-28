@@ -1,8 +1,8 @@
-import { ref } from "vue";
+import { ref, toRaw } from "vue";
 import { iSortData, iFilterData } from "../../provide/datagridTypes";
 import Sorting from "./sorting/sorting";
 import { filtering } from "./filter/filtering";
-import { grouping } from "./grouping";
+import { groupBy } from "./grouping";
 import { debounce } from "../../../../utils/debounce";
 import Excel from "../../../../utils/exportToExcel";
 import { icolumnData } from "../../provide/datagridTypes";
@@ -15,9 +15,11 @@ export class localData {
   public rowsLoading = ref(false);
   public rowsCountTotal = ref(0);
   public MaxSizeRow: any = ref();
-  public _MaxSizeRow:any = {};
+  public _MaxSizeRow: any = {};
   private SizeStore: any = {};
   public dataSource: any[] = [];
+  public sortData: any[] = [];
+  public groupData: any[] = [];
   private sortArray: iSortData[] = [];
   public filterArray: iFilterData[] = [];
   private expandList: string[] = [];
@@ -33,18 +35,33 @@ export class localData {
     }
 
     const filterData = await filtering(this);
-    const sortData = await Sorting.Sort(this.sortArray, filterData);
-    const groupData = await grouping(sortData, this.groupList, this.expandList);
-    this.rowsCount.value = sortData.length;
-    this.makeCalcMaxRowSize(groupData);
+    this.sortData = await Sorting.Sort(this.sortArray, filterData);
+    // const groupData = await grouping(sortData, this.groupList, this.expandList);
+    if (this.groupList.length > 0) {
+      this.groupData = await groupBy(this.groupList[0], this.sortData, 0, []);
+    } else {
+      // this.groupData = this.sortData;
+      this.groupData = this.sortData.slice((1 - 1) * 100, 1 * 100);
+      this.groupData.push({ _type: "loadmore", nextPage: 2, level: 0, root: [] });
+    }
 
-    console.log("groupData", groupData)
-    this.rows.value = groupData;
+    this.rowsCount.value = this.sortData.length;
+    this.makeCalcMaxRowSize(this.groupData);
+
+    console.log("groupData", this.groupData);
+    this.rows.value = this.groupData;
     this.newDataEvent();
     this.rowsLoading.value = false;
   }, 50);
 
-
+  public moreRows(row: any) {
+    this.groupData.pop();
+    const nData = this.sortData.slice((row.nextPage - 1) * 100, row.nextPage * 100);
+    this.groupData = this.groupData.concat(nData);
+    this.groupData.push({ _type: "loadmore", nextPage: row.nextPage + 1, level: 0, root: [] });
+    console.log("groupData", this.groupData);
+    this.rows.value = this.groupData;
+  }
 
   public async setDataSource(_dataSource: any[]) {
     this.dataSource = (await _dataSource) ?? [];
@@ -53,30 +70,30 @@ export class localData {
   }
 
   private makeMaxRowStore() {
-    if (this.rowsCountTotal.value>0) {
+    if (this.rowsCountTotal.value > 0) {
       this.SizeStore = {};
-      this._MaxSizeRow = structuredClone(this.dataSource[0])
+      this._MaxSizeRow = structuredClone(this.dataSource[0]);
 
       for (const key in this._MaxSizeRow) {
-        this.SizeStore[key] = 1;      
+        this.SizeStore[key] = 1;
       }
+    }
   }
-}
 
-  private makeCalcMaxRowSize(data:any[]) {
+  private makeCalcMaxRowSize(data: any[]) {
     const slicedArray = data.slice(0, 100);
-    slicedArray.forEach((item:any) => {
-      if (item._type === "group") return
+    slicedArray.forEach((item: any) => {
+      if (item._type === "group") return;
       for (const key in item) {
-            const val = item[key];
-            const valStr:string = val?.toString() ?? "";
-            if(valStr && this.SizeStore[key] < valStr.length) {
-             this.SizeStore[key] = valStr.length;
-              this._MaxSizeRow[key] = val
-            }  
-      }           
-    })
-    console.log(this.SizeStore,this._MaxSizeRow)
+        const val = item[key];
+        const valStr: string = val?.toString() ?? "";
+        if (valStr && this.SizeStore[key] < valStr.length) {
+          this.SizeStore[key] = valStr.length;
+          this._MaxSizeRow[key] = val;
+        }
+      }
+    });
+    console.log(this.SizeStore, this._MaxSizeRow);
     this.MaxSizeRow.value = null;
     this.MaxSizeRow.value = this._MaxSizeRow;
   }
@@ -100,6 +117,37 @@ export class localData {
   public setGrouping(_groupList: string[]) {
     this.groupList = _groupList;
     this.loadData();
+  }
+
+  public async expanding(row: any) {
+    const index = this.groupData.indexOf(toRaw(row));
+
+    if (row.expanded) {
+      this.groupData.splice(index + 1, row.count);
+      row.expanded = false;
+    } else {
+      const raw = this.sortData.filter((item) => {
+        for (let i = 0; i < row.level + 1; i++) {
+          if (item[this.groupList[i]] !== row.root[i]) {
+            return false;
+          }
+        }
+        return true;
+      });
+
+      if (this.groupList.length > row.level + 1) {
+        const GroupProp = this.groupList[row.level + 1];
+        const rr = await groupBy(GroupProp, raw, row.level + 1, row.root);
+        this.groupData.splice(index + 1, 0, ...rr);
+      } else {
+        this.groupData.splice(index + 1, 0, ...raw);
+      }
+
+      this.rows.value = this.groupData;
+      row.expanded = true;
+
+      console.log("RRRR ", index);
+    }
   }
 
   public setExpanding(_expandList: string[]) {

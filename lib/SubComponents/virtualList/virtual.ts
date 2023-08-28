@@ -245,6 +245,7 @@ export default class Virtual {
   getLastIndex() {
     // return this.param.uniqueIds.length - 1; HENRIK
     return this.param.uniqueIds.length;
+    // return 200000;
   }
 
   // in some conditions range is broke, we need correct it
