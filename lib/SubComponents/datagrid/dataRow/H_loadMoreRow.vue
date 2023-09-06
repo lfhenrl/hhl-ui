@@ -1,6 +1,6 @@
 <template>
   <div ref="loadmore" class="H_loadMoreRow" :data-row="JSON.stringify(row)">
-    <H_btn @click="LoadMore" class="H_loadMoreRow_btn" size="sm" type="outline">Load more..</H_btn>
+    <H_btn @click="LoadMore" class="H_loadMoreRow_btn" size="sm" type="outline">Load more..{{ row }}</H_btn>
   </div>
 </template>
 

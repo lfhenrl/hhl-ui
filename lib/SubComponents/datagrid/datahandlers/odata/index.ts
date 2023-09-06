@@ -1,6 +1,12 @@
 import { ref } from "vue";
 import { iSortData, iFilterData } from "../../provide/datagridTypes";
-import { getFilterList } from "./filter/getFilterList";
+import { getFilterList } from "./getFilterList";
+import { setCounters } from "./setCounters";
+import { setGroupList } from "./setGroupList";
+import { setFlatList } from "./setFlatList";
+import { setMoreRows } from "./setMoreRows";
+import { setFlatListExpand } from "./setFlatListExpand";
+import { setGroupListExpand } from "./setGroupListExpand";
 import { debounce } from "../../../../utils/debounce";
 import Excel from "../../../../utils/exportToExcel";
 import { icolumnData } from "../../provide/datagridTypes";
@@ -11,30 +17,24 @@ export type iDatahandler = InstanceType<typeof odata>;
 export class odata {
   public rows = ref<any[]>([]);
   public rowsCount = ref(0);
+  public rowsLevel0_Count = 0;
   public rowsLoading = ref(false);
   public rowsCountTotal = ref(0);
   public MaxSizeRow: any = ref();
   public _MaxSizeRow: any = {};
   private SizeStore: any = {};
   public dataSource: any[] = [];
-  public groupData: any[] = [];
-  // public filterArray: iFilterData[] = [];
+  public filterArray: any[] = [];
+  public OrderArray: any[] = [];
   private expandList: string[] = [];
-  private groupList: string[] = [];
+  public groupList: string[] = [];
   public seekFilterList: string[] = [];
   public seekFilterString: string = "";
   public newDataEvent: any;
 
   public Url: string = "";
-  private dataFetch: hhlFetch;
-  private Qpara: any = {
-    Take: 100,
-    Skip: 0
-  };
-
-  private CountPara: any = {
-    Select: ["Count(*) as count"]
-  };
+  public dataFetch: hhlFetch;
+  public pageSize = 25;
 
   constructor(_Url: string) {
     this.Url = _Url;
@@ -42,25 +42,16 @@ export class odata {
   }
 
   debouncedUpdate = debounce(async () => {
-    // if (this.dataSource.length < 1) {
-    //   this.rowsLoading.value = false;
-    //   return;
-    // }
+    await setCounters(this);
 
-    const count: any = await this.dataFetch.post("", this.CountPara);
-    this.rowsCountTotal.value = count.data[0].count;
+    if (this.groupList.length > 0) {
+      await setGroupList(this);
+    } else {
+      await setFlatList(this);
+    }
 
-    const data: any = await this.dataFetch.post("", this.Qpara);
+    this.makeCalcMaxRowSize(this.rows.value);
 
-    this.groupData = data.data;
-    console.log("odata: ", data.data);
-    this.groupData.push({ _type: "loadmore", nextPage: 100, level: 0, root: [] });
-
-    this.makeCalcMaxRowSize(this.groupData);
-
-    console.log("groupData", this.groupData);
-    this.rows.value = this.groupData;
-    this.rowsCount.value = this.rows.value.length - 1;
     this.newDataEvent();
     this.rowsLoading.value = false;
   }, 50);
@@ -71,15 +62,27 @@ export class odata {
   }
 
   public async moreRows(row: any) {
-    this.groupData.pop();
-    this.Qpara.Skip = this.Qpara.Skip + this.Qpara.Take;
-    const data: any = await this.dataFetch.post("", this.Qpara);
+    const index = this.rows.value.findIndex((item) => item.id === row.id);
+    await setMoreRows(this, row, index);
+  }
 
-    this.groupData = this.groupData.concat(data.data);
-    this.groupData.push({ _type: "loadmore", nextPage: 200, level: 0, root: [] });
-    console.log("groupData", this.groupData);
-    this.rows.value = this.groupData;
-    this.rowsCount.value = this.rows.value.length - 1;
+  public async expanding(row: any) {
+    const index = this.rows.value.findIndex((item) => item.id === row.id);
+    if (row.expanded) {
+      const moreRowsIndex = this.rows.value.findIndex((item) => item.Pid === row.id);
+      if (moreRowsIndex) this.rows.value.splice(moreRowsIndex, 1);
+      this.rows.value.splice(index + 1, row.rowsLoaded);
+      row.rowsLoaded = 0;
+      row.expanded = false;
+    } else {
+      if (this.groupList.length > row.level + 1) {
+        await setGroupListExpand(this, row, index);
+      } else {
+        await setFlatListExpand(this, row, index);
+      }
+
+      row.expanded = true;
+    }
   }
 
   private makeMaxRowStore() {
@@ -117,7 +120,7 @@ export class odata {
   }
 
   public async setSorting(_sortArray: iSortData[]) {
-    this.Qpara.Order = _sortArray.map((item: iSortData) => {
+    this.OrderArray = _sortArray.map((item: iSortData) => {
       return { field: item.field, desc: item.direction === "up" ? false : true };
     });
 
@@ -125,9 +128,7 @@ export class odata {
   }
 
   public setFilter(_filterArray: iFilterData[]) {
-    const filter = getFilterList(_filterArray);
-    this.Qpara.Filter = filter;
-    this.CountPara.Filter = filter;
+    this.filterArray = getFilterList(_filterArray);
     this.expandList = [];
     this.loadData();
   }
