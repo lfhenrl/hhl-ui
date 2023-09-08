@@ -72,7 +72,7 @@ const seek = ref("");
 const lData = new localData();
 
 async function loadData() {
-  await lData.setDataSource(getData(400));
+  await lData.setDataSource(getData(40000));
 }
 
 function formatDate(value: any) {

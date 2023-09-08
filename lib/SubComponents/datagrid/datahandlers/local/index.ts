@@ -22,7 +22,6 @@ export class localData {
   public groupData: any[] = [];
   private sortArray: iSortData[] = [];
   public filterArray: iFilterData[] = [];
-  private expandList: string[] = [];
   private groupList: string[] = [];
   public seekFilterList: string[] = [];
   public seekFilterString: string = "";
@@ -36,13 +35,10 @@ export class localData {
 
     const filterData = await filtering(this);
     this.sortData = await Sorting.Sort(this.sortArray, filterData);
-    // const groupData = await grouping(sortData, this.groupList, this.expandList);
     if (this.groupList.length > 0) {
-      this.groupData = await groupBy(this.groupList[0], this.sortData, 0, []);
+      this.groupData = await groupBy(this.groupList[0], this.sortData, 0, "");
     } else {
-      // this.groupData = this.sortData;
-      this.groupData = this.sortData.slice((1 - 1) * 100, 1 * 100);
-      this.groupData.push({ _type: "loadmore", nextPage: 2, level: 0, root: [] });
+      this.groupData = this.sortData;
     }
 
     this.rowsCount.value = this.sortData.length;
@@ -54,14 +50,6 @@ export class localData {
     this.rowsLoading.value = false;
   }, 50);
 
-  public moreRows(row: any) {
-    this.groupData.pop();
-    const nData = this.sortData.slice((row.nextPage - 1) * 100, row.nextPage * 100);
-    this.groupData = this.groupData.concat(nData);
-    this.groupData.push({ _type: "loadmore", nextPage: row.nextPage + 1, level: 0, root: [] });
-    console.log("groupData", this.groupData);
-    this.rows.value = this.groupData;
-  }
 
   public async setDataSource(_dataSource: any[]) {
     this.dataSource = (await _dataSource) ?? [];
@@ -110,7 +98,6 @@ export class localData {
 
   public setFilter(_filterArray: iFilterData[]) {
     this.filterArray = _filterArray;
-    this.expandList = [];
     this.loadData();
   }
 
@@ -126,9 +113,10 @@ export class localData {
       this.groupData.splice(index + 1, row.count);
       row.expanded = false;
     } else {
+      const parentArr = row.id.split("/");
       const raw = this.sortData.filter((item) => {
         for (let i = 0; i < row.level + 1; i++) {
-          if (item[this.groupList[i]] !== row.root[i]) {
+          if (item[this.groupList[i]] !== parentArr[i]) {
             return false;
           }
         }
@@ -137,7 +125,8 @@ export class localData {
 
       if (this.groupList.length > row.level + 1) {
         const GroupProp = this.groupList[row.level + 1];
-        const rr = await groupBy(GroupProp, raw, row.level + 1, row.root);
+        const rr = await groupBy(GroupProp, raw, row.level + 1, row.id);
+        row.count = rr.length;
         this.groupData.splice(index + 1, 0, ...rr);
       } else {
         this.groupData.splice(index + 1, 0, ...raw);
@@ -151,7 +140,6 @@ export class localData {
   }
 
   public setExpanding(_expandList: string[]) {
-    this.expandList = _expandList;
     this.loadData();
   }
 
