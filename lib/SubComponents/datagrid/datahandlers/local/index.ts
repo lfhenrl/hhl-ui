@@ -44,7 +44,6 @@ export class localData {
     this.rowsCount.value = this.sortData.length;
     this.makeCalcMaxRowSize(this.groupData);
 
-    console.log("groupData", this.groupData);
     this.rows.value = this.groupData;
     this.newDataEvent();
     this.rowsLoading.value = false;
@@ -81,7 +80,6 @@ export class localData {
         }
       }
     });
-    console.log(this.SizeStore, this._MaxSizeRow);
     this.MaxSizeRow.value = null;
     this.MaxSizeRow.value = this._MaxSizeRow;
   }
@@ -134,8 +132,6 @@ export class localData {
 
       this.rows.value = this.groupData;
       row.expanded = true;
-
-      console.log("RRRR ", index);
     }
   }
 
