@@ -21,19 +21,9 @@ const P = defineProps({
 
 const Columns = inject("Columns") as iColumns;
 
-function isExpanded() {
-  return Columns.expandList.includes(P.row.id);
-}
 
 function expand() {
   Columns.expandRow(P.row);
-  if (isExpanded()) {
-    // const index = Columns.expandList.indexOf(P.row.id);
-    // Columns.expandList.splice(index, 1);
-  } else {
-    // Columns.expandList.push(P.row.id);
-  }
-  // Columns.updateExpandList();
 }
 onMounted(() => {});
 </script>

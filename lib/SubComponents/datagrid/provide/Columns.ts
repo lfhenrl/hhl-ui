@@ -1,6 +1,6 @@
 import { Slots, ref, reactive } from "vue";
 import { iSortData, icolumnData, iFilterData } from "./datagridTypes";
-import { iDatahandler } from "../datahandlers/local";
+import { iDatahandler } from "../datahandlers/odata";
 import { iColumnsResizing } from "./columnsSizing";
 
 export type iColumns = InstanceType<typeof Columns>;
@@ -29,7 +29,10 @@ export class Columns {
     const style = document.createElement("style");
     document.body.appendChild(style) as HTMLStyleElement;
     this.StyleSheet = style.sheet! as CSSStyleSheet;
-
+   const tempColumnsObject: any = {};
+   this.groupList.forEach((item)=> {
+    tempColumnsObject[item]= {}
+   })
     const slotData = this.getSlotsData(slots, "H_column");
     if (slotData.length < 1) return;
     const tempColumns: any = [];
@@ -82,14 +85,29 @@ export class Columns {
       column.cssRule.style.whiteSpace = column.props.autoHeight === true ? "break-spaces" : "nowrap";
       column.filter.active = column.filter.value1 !== "";
       tempColumns.push(column);
-    });
 
-    this.columns = tempColumns;
+        tempColumnsObject[column.props.field] = column;
+
+    });
+   
+    console.log("OrderColumn ",Object.values(tempColumnsObject))
+    this.columns = Object.values(tempColumnsObject);
+
     this.updateSortArray();
     this.updateFilterArray();
     this.updateExpandList();
     this.updateGroupList(this.groupList);
     this.createObserver();
+  }
+
+  sortColumns() {
+    const newColumns: any = [];
+    this.groupList.forEach((item: any) => {
+      const orgCol: any = this.columns.find((it) => it.index === item.orgIndex);
+      newColumns.push(orgCol);
+    });
+
+    this.columns = newColumns;
   }
 
   getVisibelColumns() {
