@@ -1,28 +1,26 @@
 <template>
-  <button class="h_btn col-pri" type="button" :class="cl">
-    <H_icon v-if="icon !== ''" :icon="icon"></H_icon><slot></slot>
-  </button>
+  <button class="h_btn col-pri" type="button" :class="cl"><H_icon v-if="icon !== ''" :icon="icon"></H_icon><slot></slot></button>
 </template>
 
 <script setup lang="ts">
-import { PropType, computed } from 'vue';
-import H_icon from "./H_icon.vue"
+import { PropType, computed } from "vue";
+import H_icon from "./H_icon.vue";
 
 const props = defineProps({
   type: {
     type: String as PropType<"standard" | "outline" | "text" | "icon" | "icon-outline" | "icon-text">,
-    default: "standard",
+    default: "standard"
   },
   round: {
     type: Boolean,
-    default: false,
+    default: false
   },
   size: {
     type: String as PropType<"lg" | "md" | "sm">,
-    default: "md",
+    default: "md"
   },
   icon: { type: String, default: "" },
-  iconRight: { type: Boolean, default: false },
+  iconRight: { type: Boolean, default: false }
 });
 
 const cl = computed(() => {
@@ -33,7 +31,7 @@ const cl = computed(() => {
     "btn-lg": props.size.includes("lg"),
     "btn-sm": props.size.includes("sm"),
     "btn-round": props.round,
-    "btn-icon-right": props.iconRight,
+    "btn-icon-right": props.iconRight
   };
 });
 </script>
@@ -57,6 +55,7 @@ const cl = computed(() => {
   line-height: calc(var(--comp-font-size) * 2);
   font-size: var(--comp-font-size);
   font-family: var(--comp-font-family);
+  background-color: var(--current-bg-col);
 }
 
 .h_btn:hover {

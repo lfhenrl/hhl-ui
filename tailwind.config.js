@@ -1,12 +1,14 @@
-import { defineConfig } from "vite-plugin-windicss";
-
-export default defineConfig({
-  preflight: true,
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx,md}",
+    "./lib/**/*.{vue,js,ts,jsx,tsx}",
+  ],
   theme: {
     colors: {
       pri: "var(--col-pri)",
       priTxt: "var(--col-txt-on-pri)",
-      priLight: "var(--col-pri-light)",
       sec: "var(--col-sec)",
       secTxt: "var(--col-txt-on-sec)",
       ok: "var(--col-ok)",
@@ -23,14 +25,17 @@ export default defineConfig({
       txt3: "var(--col-txt-3)",
       txt4: "var(--col-txt-4)",
       txt5: "var(--col-txt-5)",
+      txt6: "var(--col-txt-6)",
       bg0: "var(--col-bg-0)",
       bg1: "var(--col-bg-1)",
       bg2: "var(--col-bg-2)",
       bg3: "var(--col-bg-3)",
       bg4: "var(--col-bg-4)",
       bg5: "var(--col-bg-5)",
+      bg6: "var(--col-bg-6)",
       black: "black",
-      white: "white"
-    }
-  }
-});
+      white: "white",
+    },
+  },
+  plugins: [],
+};

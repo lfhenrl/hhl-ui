@@ -8,7 +8,13 @@
     grid_row="44px 1fr"
     grid_gap="0"
   >
-    <nav-bar :main-routes="mainRoutes" :active-route="activeMainPath" v-model="showMenu" :medium="medium" :small="small" />
+    <nav-bar
+      :main-routes="mainRoutes"
+      :active-route="activeMainPath"
+      v-model="showMenu"
+      :medium="medium"
+      :small="small"
+    />
     <menu-left
       :route-links="activeRouteLinks"
       :main-routes="mainRoutes"
@@ -76,7 +82,7 @@ export default defineComponent({
       () => router.currentRoute.value.name,
       async () => {
         routeChanged();
-      }
+      },
     );
 
     onMounted(() => {
@@ -101,9 +107,9 @@ export default defineComponent({
       showMenu,
       medium,
       small,
-      loadTheme
+      loadTheme,
     };
-  }
+  },
 });
 </script>
 <style>
@@ -127,7 +133,19 @@ body {
   width: 100vw;
 }
 
-ol,
+.markdown-body h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 10px 2px;
+}
+
+.markdown-body h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 10px 2px;
+}
+
+/* ol,
 ul {
   list-style: none;
   margin: 0;
@@ -143,7 +161,7 @@ pre {
   padding: 10px;
   font-size: 14px;
   line-height: 20px;
-}
+} */
 
 #page-container {
   overflow: auto;

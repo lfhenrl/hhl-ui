@@ -2,10 +2,8 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Pages from "vite-plugin-pages";
 import mdAnchor from "markdown-it-anchor";
-// import prism from "markdown-it-prism";
 import Markdown from "vite-plugin-vue-markdown";
 import { containerPlugin } from "./src/components/containers";
-// import WindiCSS from "vite-plugin-windicss";
 import visualizer from "rollup-plugin-visualizer";
 
 export default defineConfig({

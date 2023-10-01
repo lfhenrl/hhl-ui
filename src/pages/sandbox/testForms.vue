@@ -1,9 +1,15 @@
 <template>
-  <div class="testForms">
+  <div class="testForms flex bg-bg0">
     <div style="min-height: 400px" />
     <H_row style="min-width: 400px">
       <div style="min-width: 400px" />
-      <H_pop :placement="placement" modal :inner="inner" :offset-left="offsetLeft" :offset-top="offsetTop">
+      <H_pop
+        :placement="placement"
+        modal
+        :inner="inner"
+        :offset-left="offsetLeft"
+        :offset-top="offsetTop"
+      >
         <template v-slot:referance>
           <H_btn>Open-modal</H_btn>
         </template>
@@ -11,7 +17,12 @@
           <H_row moveable-drag pop-close>TITLE</H_row>
         </H_col>
       </H_pop>
-      <H_pop :placement="placement" :inner="inner" :offset-left="offsetLeft" :offset-top="offsetTop">
+      <H_pop
+        :placement="placement"
+        :inner="inner"
+        :offset-left="offsetLeft"
+        :offset-top="offsetTop"
+      >
         <template v-slot:referance>
           <H_btn>Open</H_btn>
         </template>
@@ -35,7 +46,7 @@
           'right',
           'right-start',
           'right-end',
-          'center'
+          'center',
         ]"
       />
       <H_switch label="Inner" v-model="inner" />
