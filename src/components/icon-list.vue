@@ -1,8 +1,8 @@
 <template>
-  <div class="icon-list">
+  <div class="">
     <div class="page-icons__content">
       <H_icon ref="icon" v-show="false"></H_icon>
-      <div class="grid page-icons_list">
+      <div class="flex flex-wrap">
         <div :name="key" v-for="({}, key) in iconList" :key="key" class="iconListItem">
           <H_icon :icon="String(key)"></H_icon>
           <div>{{ key }}</div>
@@ -34,21 +34,16 @@ const IconList = defineComponent({
   }
 });
 
-declare global {
-  interface __VLS_GlobalComponents {
-    "icon-list": typeof IconList;
-  }
-}
 export type iIconList = InstanceType<typeof IconList>;
 export default IconList;
 </script>
 
 <style>
 .page-icons_list {
-  display: grid;
+/*   display: grid;
   justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
+  gap: 10px; */
 }
 .iconListItem {
   display: flex;

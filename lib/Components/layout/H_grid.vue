@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import { computed, onMounted, PropType, ref } from "vue";
 import H_gridlines from "./H_gridlines.vue";
-import "./self_just_align.css";
+
 
 const props = defineProps({
   gridLines: { type: Boolean, default: false },

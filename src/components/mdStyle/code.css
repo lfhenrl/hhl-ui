@@ -1,4 +1,4 @@
-code {
+.markdown-body code {
   margin: 0;
   border-radius: 3px;
   padding: 0.25rem 0.5rem;
@@ -10,7 +10,7 @@ code {
   line-height: 0.9em;
 }
 
-pre {
+.markdown-body pre {
   max-width: 100%;
   height: 100%;
   margin:0;
@@ -21,7 +21,7 @@ pre {
   background-color: rgb(65, 65, 65);
 }
 
-pre code {
+.markdown-body pre code {
   background-color: transparent;
   color: white;
   font-size: 14px;

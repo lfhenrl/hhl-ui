@@ -1,14 +1,11 @@
 <template>
-  <H_grid
+  <div
     v-if="!loadTheme"
-    class="MainGridBox"
+    class="grid grid-cols-[auto_1fr_auto] grid-rows-[44px_1fr] w-screen h-screen overflow-hidden bg-bg0"
     @click="showMenu = false"
-    grid_area="c1 c1 c1 ,c2 c3 c4"
-    grid_col="auto 1fr auto"
-    grid_row="44px 1fr"
-    grid_gap="0"
   >
     <nav-bar
+    class="col-span-3"
       :main-routes="mainRoutes"
       :active-route="activeMainPath"
       v-model="showMenu"
@@ -23,15 +20,15 @@
       :small="small"
     />
 
-    <div id="page-container" ref="page">
-      <router-view v-slot="{ Component }">
+    <div id="page-container" ref="page" class="overflow-auto scroll-smooth h-full pb-32 px-8">
+      <router-view v-slot="{ Component }" class="flex flex-col p-1">
         <keep-alive>
           <component :is="Component" />
         </keep-alive>
       </router-view>
     </div>
     <menu-right :view="page" v-show="!medium" />
-  </H_grid>
+  </div>
   <H_dialog-service />
 </template>
 
@@ -112,75 +109,4 @@ export default defineComponent({
   },
 });
 </script>
-<style>
-html {
-  line-height: 1.15;
-  height: 100vh;
-  width: 100vw;
-  scroll-behavior: smooth;
-  background-color: var(--col-bg-0);
-}
 
-body {
-  line-height: inherit;
-  font-family: "Roboto", sans-serif;
-  fill: var(--col-txt);
-  background-color: var(--col-bg-0);
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-}
-
-.markdown-body h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  padding: 10px 2px;
-}
-
-.markdown-body h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  padding: 10px 2px;
-}
-
-/* ol,
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-pre {
-  padding: 10px;
-  font-size: 14px;
-  line-height: 20px;
-} */
-
-#page-container {
-  overflow: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 200px;
-  height: 100%;
-  padding: 0 15px;
-}
-
-.MainGridBox {
-  overflow: hidden;
-  background-color: var(--col-bg-0);
-  width: 100vw;
-  height: 100vh;
-}
-
-.page-container__routerView {
-  display: flex;
-  flex-direction: column;
-  padding: 5px;
-}
-</style>

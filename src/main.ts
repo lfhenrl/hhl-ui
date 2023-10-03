@@ -33,7 +33,7 @@ const H_inputNumber = defineAsyncComponent(() => import("../lib/Components/H_inp
 const H_textarea = defineAsyncComponent(() => import("../lib/Components/H_textarea.vue"));
 const H_select = defineAsyncComponent(() => import("../lib/Components/select/H_select.vue"));
 const H_selectBox = defineAsyncComponent(() => import("../lib/Components/select/H_selectBox.vue"));
-const H_grid = defineAsyncComponent(() => import("../lib/Components/layout/H_grid.vue"));
+/* const H_grid = defineAsyncComponent(() => import("../lib/Components/layout/H_grid.vue")); */
 const H_row = defineAsyncComponent(() => import("../lib/Components/layout/H_row.vue"));
 const H_col = defineAsyncComponent(() => import("../lib/Components/layout/H_col.vue"));
 
@@ -67,7 +67,7 @@ app.component("H_inputnumber", H_inputNumber);
 app.component("H_textarea", H_textarea);
 app.component("H_select", H_select);
 app.component("H_selectbox", H_selectBox);
-app.component("H_grid", H_grid);
+/* app.component("H_grid", H_grid); */
 app.component("H_row", H_row);
 app.component("H_col", H_col);
 app.component("icon-list", iconList);

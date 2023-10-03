@@ -6,62 +6,62 @@ a:hover {
   text-decoration: underline;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5 {
   margin-bottom: 2px;
 }
 
-h1 {
+.markdown-body h1 {
   font-size: 2rem;
   font-weight: bold;
 }
 
-h2 {
+.markdown-body h2 {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-h3 {
+.markdown-body h3 {
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-p,
-ol,
-ul {
+.markdown-body p,
+.markdown-body ol,
+.markdown-body ul {
   margin: 7px 0;
   line-height: 1.9em;
 }
 
-ul,
-ol {
+.markdown-body ul,
+.markdown-body ol {
   padding-left: 1.25em;
 }
 
-li > ul,
-li > ol {
+.markdown-body li > ul,
+.markdown-body li > ol {
   margin: 0;
 }
 
-table {
+.markdown-body table {
   border-collapse: collapse;
   margin: 1rem 0;
   overflow-x: auto;
 }
 
-tr {
+.markdown-body tr {
   border-top: 1px solid var(--col-bg-4);
 }
 
-tr:nth-child(2n) {
+.markdown-body tr:nth-child(2n) {
   background-color: var(--col-bg-2);
 }
 
-th,
-td {
+.markdown-body th,
+.markdown-body td {
   border: 1px solid var(--col-bg-4);
   padding: 0.6em 1em;
 }
