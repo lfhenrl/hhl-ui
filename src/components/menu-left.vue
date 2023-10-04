@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
-    <nav class="absolute flex flex-col flex-1 h-full overflow-auto  min-w-[160px] max-w-[160px] border-r border-r-bg4 -translate-x-40 duration-500 bg-bg1 z-10" :class="{ show: showMenu }">
-      <div class="menu-left_small_list">
+    <nav class="absolute flex flex-col flex-1 h-full overflow-auto  min-w-[160px] max-w-[160px] border-r border-r-bg4 -translate-x-40 duration-500 bg-bg1 z-10" :class="{ 'translate-x-0': showMenu }">
+      <div class="flex flex-col bg-bg1 p-2">
         <router-link
           v-for="route in mainRoutes"
           :key="route.id"
@@ -10,14 +10,13 @@
           >{{ route.name }}</router-link
         >
       </div>
-      <div class="menu-left_small_list bg-bg1">
+      <div class="flex flex-col bg-bg1 p-2">
         <router-link active-class="text-ok" v-for="link in routeLinks" :key="link.name" :to="link.path">{{
           link.name
         }}</router-link>
       </div>
     </nav>
     <nav class="flex flex-col flex-1 h-full overflow-auto min-w-[160px] max-w-[160px] p-2 text-base border-r border-r-bg4 bg-bg1" v-if="!small">
-      asfd
       <router-link active-class="text-ok" v-for="link in routeLinks" :key="link.name" :to="link.path">{{
         link.name
       }}</router-link>
@@ -46,15 +45,3 @@ export type iMenuLeft = InstanceType<typeof MenuLeft>;
 export default MenuLeft;
 </script>
 
-<style>
-
-.menu-left_small_list {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 7px;
-}
-
-.show {
-  transform: translateX(0px);
-}
-</style>

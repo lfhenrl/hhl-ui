@@ -1,9 +1,10 @@
 <template>
-  <div class="menu-right">
+  <div class="flex flex-col overflow-auto bg-bg1 p-2 text-sm min-w-[160px] max-w-[160px]">
     <div
+    class="cursor-pointer"
+    :class="{'text-ok' : item.id === activeIndex}"
       :hh="item.id"
       :dd="activeIndex"
-      :selection="item.id === activeIndex"
       v-for="item in indexList"
       @click="linkClick(item.id)"
     >
@@ -97,33 +98,7 @@ const MenuRight = defineComponent({
   }
 });
 
-declare global {
-  interface __VLS_GlobalComponents {
-    "menu-right": typeof MenuRight;
-  }
-}
 export type iMenuRight = InstanceType<typeof MenuRight>;
 export default MenuRight;
 </script>
 
-<style>
-.menu-right {
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--col-bg-1);
-  font-size: 13px;
-  min-width: 150px;
-  max-width: 150px;
-  padding: 9px;
-  gap: 4px;
-}
-.menu-right div {
-  cursor: pointer;
-}
-
-.menu-right div[selection="true"] {
-  color: var(--col-ok);
-}
-</style>

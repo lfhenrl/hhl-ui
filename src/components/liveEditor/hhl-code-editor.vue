@@ -87,11 +87,6 @@ const hhlCodeEditor = defineComponent({
   },
 });
 
-declare global {
-  interface __VLS_GlobalComponents {
-    "hhl-code-editor": typeof hhlCodeEditor;
-  }
-}
 export type ihhlCodeEditor = InstanceType<typeof hhlCodeEditor>;
 export default hhlCodeEditor;
 </script>

@@ -1,26 +1,26 @@
 <template>
-  <nav class="nav-bar">
+  <nav class="flex items-center overflow-hidden bg-bg3 pr-8 pl-2">
     <H_icon btn icon="menu" @click.stop="$emit('update:modelValue', !modelValue)" v-if="small" />
-    <router-link to="/" class="goHome">
+    <router-link to="/" class="flex items-center">
       <img src="/icon.svg" height="30" width="32" alt="Logo" href="#" />
-      <div class="nav-bar-title">HHL-UI</div>
+      <div class="font-bold text-lg ml-1 flex">HHL-UI</div>
     </router-link>
 
     <H_spacer />
-    <div v-if="!small" class="mainMenu">
+    <div v-if="!small" class="flex items-center gap-8">
       <router-link
         v-for="route in mainRoutes"
         :key="route.id"
-        class="mainMenu_item"
+        class="cursor-pointer border-b-0 border-b-ok"
         :to="route.path"
-        :class="{ mainMenu_itemActive: activeRoute === route.id }"
+        :class="{ 'border-b-4': activeRoute === route.id }"
         >{{ route.name }}</router-link
       >
       <H_pop>
         <template v-slot:referance>
-          <div class="menuExternals">External <H_icon icon="expand_down" /></div>
+          <div class="flex items-center cursor-pointer">External <H_icon icon="expand_down" /></div>
         </template>
-        <div class="menuExternals_list">
+        <div class="flex flex-col bg-bg0 gap-4 p-3 shadow">
           <a href="https://v3.vuejs.org/guide/introduction.html" target="blank">Vue 3 Docs</a>
           <a href="https://vitejs.dev/" target="blank">Vite</a>
           <a href="https://materialdesignicons.com/" target="blank">Icons</a>
@@ -53,59 +53,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<style>
-.nav-bar {
-  display: flex;
-  align-items: center;
-  padding: 0 10px 0 5px;
-  overflow: hidden;
-  background-color: var(--col-bg-3);
-}
-
-.goHome {
-  display: flex;
-  align-items: center;
-}
-
-.goHome img {
-  margin: 0 10px;
-}
-.nav-bar-title {
-  font-weight: bold;
-  font-size: 18px;
-  margin-left: 2px;
-}
-
-.mainMenu {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.mainMenu_item {
-  cursor: pointer;
-  border-bottom-style: solid;
-  border-bottom-color: var(--col-ok);
-  border-bottom-width: 0;
-}
-
-.mainMenu_itemActive {
-  border-bottom-width: 4px;
-}
-
-.menuExternals {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.menuExternals_list {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--col-bg-0);
-  gap: 9px;
-  padding: 14px;
-  box-shadow: var(--shadow-2);
-}
-</style>
