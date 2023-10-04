@@ -1,15 +1,11 @@
 <template>
-  <div class="">
-    <div class="page-icons__content">
       <H_icon ref="icon" v-show="false"></H_icon>
-      <div class="flex flex-wrap">
-        <div :name="key" v-for="({}, key) in iconList" :key="key" class="iconListItem">
+      <div class="flex flex-wrap gap-3 pt-5">
+        <div :name="key" v-for="({}, key) in iconList" :key="key" class="flex flex-col items-center shadow-md p-1 w-36">
           <H_icon :icon="String(key)"></H_icon>
           <div>{{ key }}</div>
         </div>
       </div>
-    </div>
-  </div>
 </template>
 
 <script lang="ts">
@@ -38,19 +34,3 @@ export type iIconList = InstanceType<typeof IconList>;
 export default IconList;
 </script>
 
-<style>
-.page-icons_list {
-/*   display: grid;
-  justify-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px; */
-}
-.iconListItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 150px;
-  padding: 3px;
-  box-shadow: var(--shadow-1);
-}
-</style>

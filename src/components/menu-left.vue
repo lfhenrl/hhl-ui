@@ -1,23 +1,24 @@
 <template>
-  <div class="menu-left">
-    <nav class="menu-left_small col-bg-1" :class="{ show: showMenu }">
+  <div class="flex">
+    <nav class="absolute flex flex-col flex-1 h-full overflow-auto  min-w-[160px] max-w-[160px] border-r border-r-bg4 -translate-x-40 duration-500 bg-bg1 z-10" :class="{ show: showMenu }">
       <div class="menu-left_small_list">
         <router-link
           v-for="route in mainRoutes"
           :key="route.id"
           :to="route.path"
-          :class="{ 'col-txt-ok': activeRoute === route.id }"
+          :class="{ 'text-ok': activeRoute === route.id }"
           >{{ route.name }}</router-link
         >
       </div>
-      <div class="menu-left_small_list col-bg-1">
-        <router-link active-class="col-txt-ok" v-for="link in routeLinks" :key="link.name" :to="link.path">{{
+      <div class="menu-left_small_list bg-bg1">
+        <router-link active-class="text-ok" v-for="link in routeLinks" :key="link.name" :to="link.path">{{
           link.name
         }}</router-link>
       </div>
     </nav>
-    <nav class="menu-left_normal col-bg-1" v-if="!small">
-      <router-link active-class="col-txt-ok" v-for="link in routeLinks" :key="link.name" :to="link.path">{{
+    <nav class="flex flex-col flex-1 h-full overflow-auto min-w-[160px] max-w-[160px] p-2 text-base border-r border-r-bg4 bg-bg1" v-if="!small">
+      asfd
+      <router-link active-class="text-ok" v-for="link in routeLinks" :key="link.name" :to="link.path">{{
         link.name
       }}</router-link>
     </nav>
@@ -46,39 +47,6 @@ export default MenuLeft;
 </script>
 
 <style>
-.menu-left {
-  display: flex;
-}
-.menu-left_normal {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  height: 100%;
-  overflow: auto;
-  font-size: 14px;
-  min-width: 160px;
-  max-width: 160px;
-  line-height: 1.4;
-  padding: 5px;
-  border-right: solid var(--col-bg-4) 1px;
-}
-
-.menu-left_small {
-  position: absolute;
-  line-height: 1.4;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  height: 100%;
-  z-index: 999;
-  overflow: auto;
-  font-size: 14px;
-  min-width: 200px;
-  max-width: 200px;
-  transform: translateX(-200px);
-  transition-duration: 500ms;
-  border-right: solid var(--col-bg-4) 2px;
-}
 
 .menu-left_small_list {
   display: flex;
@@ -86,7 +54,7 @@ export default MenuLeft;
   padding: 10px 7px;
 }
 
-.menu-left_small.show {
+.show {
   transform: translateX(0px);
 }
 </style>

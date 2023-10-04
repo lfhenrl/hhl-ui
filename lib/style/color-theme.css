@@ -54,7 +54,7 @@
   --current-txt-col: black;
 }
 
-/* .col-bg-0 {
+ .col-bg-0 {
   background-color: var(--col-bg-0);
 }
 .col-bg-1 {
@@ -164,4 +164,4 @@
 
 .col-txt-white {
   color: white;
-} */
+} 
