@@ -1,18 +1,17 @@
-
 # Icon
 
 ## Size
 
-You can change the size by the prop  `size=""`<br>
+You can change the size by the prop `size=""`<br>
 The default is `"24px"`.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_row>
+    <div class="flex items-center gap-4">
         <H_icon icon="edit" size="14px"></H_icon>
         <H_icon icon="edit"></H_icon>
         <H_icon icon="edit" size="44px"></H_icon>
-    </H_row>
+    </div>
     </template>
 '>
 </hhl-live-editor>
@@ -25,11 +24,11 @@ If you add the prop `btn` you will get a hover effect-
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_row>
+    <div class="flex items-center gap-4">
         <H_icon btn icon="edit" size="14px"></H_icon>
         <H_icon btn icon="edit"></H_icon>
         <H_icon btn icon="edit" size="44px"></H_icon>
-    </H_row>
+    </div>
     </template>
 '>
 </hhl-live-editor>
@@ -37,6 +36,7 @@ If you add the prop `btn` you will get a hover effect-
 <br>
 
 ## Color
+
 You can change the color by adding one of the theme color classes<br>
 `col-txt-pri` `col-txt-sec` `col-txt-ok` `col-txt-err` `col-txt-warn` `col-txt-info` `col-txt-black` `col-txt-white`<br>
 The default is `currentcolor`.<br>
@@ -44,7 +44,7 @@ If you need a special color then just use `style="color: purple"`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_row>
+    <div class="flex items-center gap-4">
         <H_icon icon="edit" class="col-txt-pri"></H_icon>
         <H_icon icon="edit" class="col-txt-sec"></H_icon>
         <H_icon icon="edit" class="col-txt-ok"></H_icon>
@@ -54,7 +54,7 @@ If you need a special color then just use `style="color: purple"`
         <H_icon icon="edit" class="col-txt-black"></H_icon>
         <H_icon icon="edit" class="col-txt-white"></H_icon>
         <H_icon icon="edit" style="color: purple"></H_icon>
-    </H_row>
+    </div>
     </template>
 '>
 </hhl-live-editor>

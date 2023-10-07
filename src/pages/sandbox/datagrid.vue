@@ -1,11 +1,11 @@
 <template>
-  <div class="datagrid_localdata">
-    <div class="datagrid_localdata__box">
-      <div class="Datagrid__toolbar text-err" style="margin-bottom: 16px">
+  <div class="grid h-[80vh] grid-cols-1 overflow-hidden">
+    <div class="grid grid-rows-[auto_1fr] overflow-hidden p-1">
+      <div class="flex items-center" style="margin-bottom: 16px">
         <H_btn @click="load" start-icon="zoom_out_map" end-icon="filter"
           >Load</H_btn
         >
-        <H_spacer />
+        <div class="flex-1" />
         <H_inputText
           v-model="seek"
           :debounce="300"
@@ -28,7 +28,7 @@
       >
         <H_column field="id" title="Action" type="action" sorting="none">
           <template v-slot="col">
-            <div class="slotBtn">
+            <div class="flex h-full items-center">
               <H_btn size="sm">{{ col.row.id }}</H_btn>
             </div>
           </template>
@@ -134,15 +134,6 @@ function rowClick(data: iClickData) {
   console.log("rowClick :", data);
 }
 
-function rowStyle(row: any) {
-  if (row._type !== "row") return;
-  if (row.id > 5) {
-    return {
-      color: "orange",
-    };
-  }
-}
-
 function styleCell(val: string) {
   if (val === "Row 4 cell 3.")
     return {
@@ -158,37 +149,3 @@ async function load() {
   }, 20);
 }
 </script>
-
-<style>
-.slotBtn {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-.datagrid_localdata {
-  display: grid;
-  grid-template-rows: 1fr;
-  overflow: hidden;
-  height: 80vh;
-}
-
-.datagrid_localdata__box {
-  display: grid;
-  padding: 4px;
-  grid-template-rows: auto 1fr;
-  overflow: hidden;
-}
-
-.datagrid_localdata .Datagrid__toolbar {
-  display: flex;
-  align-items: center;
-  padding: 4px;
-  gap: 10px;
-}
-
-.datagrid_localdata .box .box__headline {
-  width: 150px;
-  font-size: 18px;
-  font-weight: bold;
-}
-</style>

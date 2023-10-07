@@ -9,9 +9,11 @@
       :label-left="labelLeft"
     >
       <svg viewBox="0 0 24 24" class="h_checkbox__box" tabindex="0" :class="cl">
-        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"></path>
+        <path
+          d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"
+        ></path>
       </svg>
-      <span class="col-txt-2 select-none">{{ label }}</span>
+      <span class="select-none leading-4 text-txt2">{{ label }}</span>
     </div>
   </div>
 </template>
@@ -22,22 +24,22 @@ import { PropType, computed } from "vue";
 const P = defineProps({
   modelValue: {
     type: [String, Number, Boolean, Array],
-    default: false
+    default: false,
   },
   label: { type: String, default: "" },
   labelGap: { type: String, default: "10px" },
   labelLeft: { type: Boolean, default: false },
   size: {
     type: String as PropType<"lg" | "md" | "sm">,
-    default: "md"
-  }
+    default: "md",
+  },
 });
 const E = defineEmits(["update:modelValue", "changed"]);
 
 const cl = computed(() => {
   return {
     "H_switch-lg": P.size.includes("lg"),
-    "H_switch-sm": P.size.includes("sm")
+    "H_switch-sm": P.size.includes("sm"),
   };
 });
 
@@ -67,6 +69,8 @@ function Click() {
 .h_checkbox__box {
   border: solid 2px var(--col-txt-5, red);
   height: 20px;
+  width: 20px;
+  min-width: 20px;
   fill: transparent;
   transition: all linear 200ms;
   line-height: 1rem;

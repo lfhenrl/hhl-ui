@@ -7,10 +7,10 @@ here the values are: `min="0"` and `min="100"`
 
 <hhl-live-editor title="" htmlCode=' 
     <template>
-    <H_row>
+    <div class="flex items-center gap-4 px-4">
         <H_slider v-model="value" min="0" max="100" label="Slider Label" class="col-err"></H_slider>
         <H_inputText type="number" v-model="value" label="Slider value"></H_inputText>
-    </H_row>
+    </div>
     </template>
     <script>
         const value = ref("33");
@@ -34,7 +34,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_col>
+    <div class="flex flex-col gap-4 px-4">
         <H_slider v-model="value" min="0" max="100" label="col-pri" class="col-pri"></H_slider>
         <H_slider v-model="value" min="0" max="100" label="col-sec" class="col-sec"></H_slider>
         <H_slider v-model="value" min="0" max="100" label="col-ok" class="col-ok"></H_slider>
@@ -44,7 +44,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
         <H_slider v-model="value" min="0" max="100" label="col-black" class="col-black"></H_slider>
         <H_slider v-model="value" min="0" max="100" label="col-white" class="col-white"></H_slider>
         <H_slider v-model="value" min="0" max="100" label="special color" style="--current-bg-col: purple; color: white" label="purple"></H_slider>
-    </H_col>
+    </div>
     </template>
     <script>
         const value = ref(33);
@@ -61,7 +61,7 @@ You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-        <H_col>
+        <div class="flex flex-col gap-4 px-4">
             <H_slider disabled v-model="value" min="0" max="100" label="col-pri" class="col-pri"></H_slider>
             <H_slider disabled v-model="value" min="0" max="100" label="col-sec" class="col-sec"></H_slider>
             <H_slider disabled v-model="value" min="0" max="100" label="col-ok" class="col-ok"></H_slider>
@@ -71,7 +71,7 @@ You disable by adding the props `disabled`
             <H_slider disabled v-model="value" min="0" max="100" label="col-black" class="col-black"></H_slider>
             <H_slider disabled v-model="value" min="0" max="100" label="col-white" class="col-white"></H_slider>
             <H_slider disabled v-model="value" min="0" max="100" label="special color" style="--current-bg-col: purple; color: white" label="purple"></H_slider>
-        </H_col>
+        </div>
     </template>
     <script>
         const value = ref(33);

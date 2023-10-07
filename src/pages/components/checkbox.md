@@ -4,12 +4,12 @@
 
 <hhl-live-editor title="" htmlCode=' 
     <template>
-    <H_row>
+     <div class="flex items-center gap-4">
         <H_checkbox label="CheckBox 1" v-model="check"></H_checkbox>
         <H_checkbox label="CheckBox 2" v-model="check"></H_checkbox>    
         <H_checkbox label="CheckBox 3" v-model="check"></H_checkbox>
         <H_inputText :model-value="check ? `true` : `false`" label="value"></H_inputText>
-    </H_row>
+    </div>
     </template>
     <script>
         const check = ref(true);
@@ -26,11 +26,11 @@ You can change the label position to left by adding the prop `label-left`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_row>
+     <div class="flex items-center gap-4">
         <H_checkbox label="label standard" v-model="check"></H_checkbox>
         <H_checkbox label-left label="Label left" :value="check"></H_checkbox>  
         <H_spacer/>  
-    </H_row>
+    </div>
     </template>
     <script>
         const check = ref(true);
@@ -48,11 +48,11 @@ The default is `"md"`.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_row>
+     <div class="flex items-center gap-4">
         <H_checkbox size="sm" label="CheckBox small (sm)" v-model="check"></H_checkbox>
         <H_checkbox size="md"  label="CheckBox standard (md)" v-model="check"></H_checkbox>    
         <H_checkbox size="lg" label="CheckBox large (lg)" v-model="check"></H_checkbox>
-    </H_row>
+    </div>
     </template>
     <script>
         const check = ref(true);
@@ -72,7 +72,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_row>
+     <div class="flex items-center gap-4">
         <H_checkbox class="col-pri" label="col-pri" v-model="check"></H_checkbox>
         <H_checkbox class="col-sec" label="col-sec" v-model="check"></H_checkbox>    
         <H_checkbox class="col-ok" label="col-ok" v-model="check"></H_checkbox>
@@ -82,7 +82,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
         <H_checkbox class="col-black" label="col-black" v-model="check"></H_checkbox>
         <H_checkbox class="col-white" label="col-white" v-model="check"></H_checkbox>
         <H_checkbox style="--current-bg-col: purple; color: white" label="purple" v-model="check"></H_checkbox>
-    </H_row>
+    </div>
     </template>
     <script>
         const check = ref(true);
@@ -99,7 +99,7 @@ You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-        <H_row>
+         <div class="flex items-center gap-4">
             <H_checkbox disabled class="col-pri" label="col-pri" v-model="check"></H_checkbox>
             <H_checkbox disabled class="col-sec" label="col-sec" v-model="check"></H_checkbox>    
             <H_checkbox disabled class="col-ok" label="col-ok" v-model="check"></H_checkbox>
@@ -109,7 +109,7 @@ You disable by adding the props `disabled`
             <H_checkbox disabled class="col-black" label="col-black" v-model="check"></H_checkbox>
             <H_checkbox disabled class="col-white" label="col-white" v-model="check"></H_checkbox>
             <H_checkbox disabled style="--current-bg-col: purple; color: white" label="purple" v-model="check"></H_checkbox>
-        </H_row>
+        </div>
     </template>
     <script>
         const check = ref(true);

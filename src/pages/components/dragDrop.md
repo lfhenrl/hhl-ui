@@ -4,32 +4,32 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
-        <H_drag-drop v-model="list1" class="list">
+     <div class="flex items-center gap-4">
+        <H_drag-drop v-model="list1" class="flex flex-col h-96 w-36 items-center border border-bg5 rounded p-4 gap-3">
           <template v-slot:item="{ item }">
             <!-- example -->
-            <div class="item col-pri shadow-2">
+            <div class="px-3 py-1 rounded col-pri shadow-2">
               {{ item.title }}
             </div>
             <!-- or your own template -->
           </template>
         </H_drag-drop>
-        <div class="json">
+        <div class="h-96 w-48 border border-bg5 rounded p-4">
           {{ list1 }}
         </div>
-        <H_drag-drop v-model="list2" class="list" :max-items="3">
+        <H_drag-drop v-model="list2" class="flex flex-col h-96 w-36 items-center border border-bg5 rounded p-4 gap-3" :max-items="3">
           <template v-slot:item="{ item }">
             <!-- example -->
-            <div class="item col-pri shadow-2">
+            <div class="px-3 py-1 rounded col-pri shadow-2">
               {{ item.title }}
             </div>
             <!-- or your own template -->
           </template>
         </H_drag-drop>
-        <div class="json">
+        <div class="h-96 w-48 border border-bg5 rounded p-4">
           {{ list2 }}
         </div>
-      </H_row>
+      </div>
       </template>
       <script>
       const list1 = ref([
@@ -45,30 +45,6 @@
       const list2 = ref([]);
       return {list1, list2}
       </script>
-      <style>
-      .list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 400px;
-        width: 140px;
-        gap: 8px;
-        border: solid 1px var(--col-bg-4);
-        padding: 5px;
-      }
-      .json {
-        padding: 8px;
-        height: 400px;
-        width: 200px;
-        background-color: var(--col-bg-4)
-      }
-      .item {
-        padding: 4px;
-        width: 100px;
-        text-align: center;
-        border-radius: 4px;
-      }
-      </style>
 '>
 </hhl-live-editor>
 

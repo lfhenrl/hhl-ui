@@ -8,7 +8,7 @@ The dialog have a "Header", "Body" and a "Footer"
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_row>
+      <div class="flex items-center gap-4">
         <H_btn @click="modal = !modal">Open</H_btn>
         <H_dialog v-model="modal" margin="10% 10% auto auto">
           <template #header>
@@ -16,14 +16,14 @@ The dialog have a "Header", "Body" and a "Footer"
           </template>
           Here is the BODY
           <template #footer>
-          <H_row justify="end" padding="0">
+          <div class="flex items-center gap-4">
             Here is the FOOTER
             <H_btn @click="modal=false" size="sm" class="col-bg-ok">Ok</H_btn>
             <H_btn @click="modal=false" size="sm" >Cancel</H_btn>
-            </H_row>
+            </div>
           </template>
           <H_dialog/>
-        </H_row>
+        </div>
     </template>
     <script>
       const modal = ref(false)

@@ -4,10 +4,10 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4 p-4">
             <H_textarea v-model="txt" label="Text input"></H_textarea>
             <H_inputText v-model="txt" label="Text input"></H_inputText>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("Data binding");
@@ -24,9 +24,9 @@ Add input clear functionality by adding `clearable`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4 p-4">
             <H_textarea clearable v-model="txt" label="Text input"></H_textarea>
-      </H_row>
+      </div>
       </template>
       <script>
       const txt = ref("clearable");
@@ -43,9 +43,9 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4 p-4">
             <H_textarea disabled v-model="txt" label="Text input"></H_textarea>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("disabled");
@@ -62,9 +62,9 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4 p-4">
             <H_textarea readonly v-model="txt" label="Text input"></H_textarea>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("disabled");
@@ -81,9 +81,9 @@ Input Click by adding @input_click=""
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4 p-4">
             <H_textarea @input_click="click(txt)" v-model="txt" label="Text input"></H_textarea>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("Input Click");
@@ -103,9 +103,9 @@ Start Icon by adding `start-icon="iconName"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4 p-4">
             <H_textarea start-icon="mail"  v-model="txt" label="Text input"></H_textarea>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("Start icon");
@@ -122,9 +122,9 @@ Start Icon by adding `@start_icon_click=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4 p-4">
             <H_textarea @start-icon-click="click(txt)" start-icon="mail"  v-model="txt" label="Text input"></H_textarea>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("Start icon click");
@@ -144,9 +144,9 @@ Start Icon by adding `end-icon="iconName"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4 p-4">
             <H_textarea end-icon="mail"  v-model="txt" label="Text input"></H_textarea>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("End icon");
@@ -163,9 +163,9 @@ End Icon by adding `@end_icon_click=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4 p-4">
             <H_textarea @end-icon-click="click(txt)" end-icon="mail"  v-model="txt" label="Text input"></H_textarea>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("End icon click");
@@ -185,9 +185,9 @@ Hint text by adding `hint-start=""` and `hint-end=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4 p-4">
             <H_textarea  hint-start="hint-start." hint-end="hint-end."  v-model="txt" label="Text input"></H_textarea>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("Hint");
@@ -204,9 +204,9 @@ Character counter by adding `counter=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4 p-4">
             <H_textarea counter="10" v-model="txt" label="Text input"></H_textarea>
-      </H_row>
+      </div>
       </template>
       <script>
       const txt = ref("Counter.");
@@ -223,7 +223,7 @@ Validation by adding `validator=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_col>
+      <div class="flex flex-col gap-6 p-4">
             <H_textarea v-model="txt" label="required" :validator="[v.required]"></H_textarea>
             <H_textarea v-model="txt" label="email" :validator="[v.email]"></H_textarea>
             <H_textarea v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></H_textarea>

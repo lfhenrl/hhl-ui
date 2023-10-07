@@ -1,5 +1,11 @@
 <template>
-  <H_pop class="h_selectPop" v-model="isOpen" full-width :disabled="disabled ? 'true' : null" :readonly="readonly">
+  <H_pop
+    class="h_selectPop"
+    v-model="isOpen"
+    full-width
+    :disabled="disabled ? 'true' : null"
+    :readonly="readonly"
+  >
     <template v-slot:referance>
       <H_inputbase
         class="h_select"
@@ -28,8 +34,20 @@
     <div class="h_select-list">
       <div class="h_select-filter" v-if="!hideFilter">
         <H_icon icon="search" class="text-txtCol-3" />
-        <input type="text" class="h_select-filter-input" :maxlength="counter" :value="filter" @input="onInput" />
-        <H_icon btn v-if="filter != ''" icon="close" class="text-txtCol-3" @click.stop="filter = ''" />
+        <input
+          type="text"
+          class="h_select-filter-input"
+          :maxlength="counter"
+          :value="filter"
+          @input="onInput"
+        />
+        <H_icon
+          btn
+          v-if="filter != ''"
+          icon="close"
+          class="text-txtCol-3"
+          @click.stop="filter = ''"
+        />
       </div>
       <H_baseSelectList
         :modelValue="modelValue"
@@ -57,7 +75,7 @@ import H_pop from "../popup/H_pop.vue";
 const P = defineProps({
   modelValue: {
     type: String,
-    default: ""
+    default: "",
   },
   label: { type: String, default: "" },
   disabled: { type: Boolean, default: false },
@@ -70,7 +88,7 @@ const P = defineProps({
   debounce: { type: Number, default: 200 },
   multi: { type: Boolean, default: false },
   list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] },
-  validator: Array
+  validator: Array,
 });
 
 defineEmits(["update:modelValue"]);
@@ -99,7 +117,7 @@ watch(
   () => P.modelValue,
   () => {
     if (!P.multi) isOpen.value = false;
-  }
+  },
 );
 
 const debouncedUpdate = debounce(function (val: string) {

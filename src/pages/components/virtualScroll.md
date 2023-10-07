@@ -4,15 +4,15 @@
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <H_col align="center">
+    <div class="flex flex-col items-center gap-4 px-4 ">
     <H_btn @click="load">Load</H_btn>
-    <H_col>
-      <H_virtual-list data-key="id" :data-sources="list" class="list">
+     <div class="flex flex-col items-center gap-4 px-4">
+      <H_virtual-list data-key="id" :data-sources="list" class="border border-bg3 max-h-96 overflow-auto">
         <template v-slot:header>
           <div>Headline..</div>
         </template>
         <template v-slot="data">
-          <div class="item col-pri shadow-2">
+          <div class="flex border border-bg3 gap-2 p-1 m-1 col-pri shadow-2">
             <span>Id: {{ data.item.id }}</span>
             <span>Row: {{ data.item.val1 }}</span>
             <span>Group: {{ data.item.val2 }}</span>
@@ -21,8 +21,8 @@
           </div>
         </template>
       </H_virtual-list>
-    </H_col>
-    </H_col>
+    </div>
+    </div>
     </template>
     <script>
     // import { getData } from "dataSource";
@@ -36,11 +36,6 @@
     return {list, load}
     </script>
     <style>
-    .list {
-      max-height: 400px;
-      border: solid 1px var(--col-bg-3);
-      overflow: auto;
-    }      
     .item {
       display:flex;
       border: solid 1px var(--col-bg-3);

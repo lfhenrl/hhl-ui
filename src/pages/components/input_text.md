@@ -4,9 +4,9 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4">
             <H_inputText v-model="txt" label="Text input"></H_inputText>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("Data binding");
@@ -23,9 +23,9 @@ Add input clear functionality by adding `clearable`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4">
             <H_inputText clearable v-model="txt" label="Text input"></H_inputText>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("clearable");
@@ -42,9 +42,9 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4">
             <H_inputText disabled v-model="txt" label="Text input"></H_inputText>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("disabled");
@@ -61,9 +61,9 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4">
             <H_inputText readonly v-model="txt" label="Text input"></H_inputText>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("Readonly");
@@ -80,9 +80,9 @@ Input Click by adding @input-click=""
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4">
             <H_inputText @input-click="click(txt)" v-model="txt" label="Text input"></H_inputText>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("Input Click");
@@ -102,9 +102,9 @@ Start Icon by adding `start-icon="iconName"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4">
             <H_inputText start-icon="mail"  v-model="txt" label="Text input"></H_inputText>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("Start icon");
@@ -124,9 +124,9 @@ Start Icon by adding `@start-icon-click=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4">
             <H_inputText @start-icon-click="click(txt)" start-icon="mail"  v-model="txt" label="Text input"></H_inputText>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("Start icon click");
@@ -146,9 +146,9 @@ End Icon by adding `end-icon="iconName"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4">
             <H_inputText end-icon="mail"  v-model="txt" label="Text input"></H_inputText>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("End icon");
@@ -168,9 +168,9 @@ End Icon by adding `@end-icon-click=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4">
             <H_inputText @end-icon-click="click(txt)" end-icon="mail"  v-model="txt" label="Text input"></H_inputText>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("End icon click");
@@ -190,9 +190,9 @@ Hint text by adding `hint-start=""` and `hint-end=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4">
             <H_inputText hint-start="hint-start." hint-end="hint-end."  v-model="txt" label="Text input"></H_inputText>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("Hint");
@@ -209,9 +209,9 @@ Character counter by adding `counter=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_row>
+      <div class="flex items-center gap-4">
             <H_inputText counter="10"  v-model="txt" label="Text input"></H_inputText>
-      </H_row>
+      </div>
       </template>
       <script>
             const txt = ref("Counter.");
@@ -231,12 +231,12 @@ Validation by adding `validator=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <H_col align="strech" gap="30px">
+      <div class="flex flex-col  gap-6">
       <H_inputText v-model="txt" label="required" :validator="[v.required]"></H_inputText>
       <H_inputText v-model="txt" label="email" :validator="[v.email]"></H_inputText>
       <H_inputText v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></H_inputText>
       <H_inputText v-model="txt" label="strMax(8)" :validator="[v.strMax(8)]"></H_inputText>
-      </H_col>
+      </div>
       </template>
       <script>
       // import { validator } from "components/utils/validator";

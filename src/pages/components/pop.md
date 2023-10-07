@@ -16,39 +16,33 @@ The other options are.<br>
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_row>
+     <div class="flex items-center gap-4">
           <H_pop>
             <template v-slot:referance>
               <H_btn>default (trigger)</H_btn>
             </template>
-            <div class="col-bg-warn box">Hello</div>
+            <div class="col-bg-warn p-5">Hello</div>
           </H_pop>
           <H_pop trigger="click">
             <template v-slot:referance>
               <H_btn>click</H_btn>
             </template>
-            <div class="col-bg-warn box">Hello</div>
+            <div class="col-bg-warn p-5">Hello</div>
           </H_pop>
           <H_pop trigger="hover">
             <template v-slot:referance>
                 <H_btn>trigger="hover"</H_btn>
             </template>
-            <div class="col-bg-warn box">Hello</div>
+            <div class="col-bg-warn p-5">Hello</div>
           </H_pop>
           <H_pop trigger="none">
             <template v-slot:referance>
                 <H_btn>trigger="none""</H_btn>
             </template>
-            <div class="col-bg-warn box">Hello</div>
+            <div class="col-bg-warn p-5">Hello</div>
           </H_pop>
-        </H_row> 
+        </div> 
     </template>
-    <style>
-      .box {
-        width:100%;
-        padding: 30px;
-      }
-    </style>  
 '>
 </hhl-live-editor>
 
@@ -60,25 +54,20 @@ You can also use the v-model to control the open/close of the popup.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_row align="center">
+     <div class="flex items-center gap-4">
         <H_pop v-model="open">
          <template v-slot:referance>
               <H_btn>v-model</H_btn>
           </template>
-          <div class="col-bg-warn box">Hello</div>
+          <div class="col-bg-warn p-5">Hello</div>
         </H_pop>
         <H_checkbox v-model="open" label="open">
-      </H_row>
+      </div>
     </template>
     <script>
     const open = ref(false)
     return {open}
     </script>
-    <style>
-      .box {
-        padding: 30px;
-      }
-    </style> 
 '>
 </hhl-live-editor>
 
@@ -91,14 +80,14 @@ The default is 100.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_row>
+       <div class="flex items-center gap-4">
         <H_pop trigger="hover" delay-on-mouse-over="1000">
           <template v-slot:referance>
               <H_btn>trigger="hover" + delay-on-mouse-over="1000"</H_btn>
           </template>
-          <div class="col-bg-warn box">Hello</div>
+          <div class="col-bg-warn p-5">Hello</div>
         </H_pop>
-      </H_row>
+      </div>
     </template>
 '>
 </hhl-live-editor>
@@ -112,14 +101,14 @@ The default is 300.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_row>
+       <div class="flex items-center gap-4">
         <H_pop trigger="hover" delay-on-mouse-out="1000">
           <template v-slot:referance>
               <H_btn>trigger="hover" + delay-on-mouse-out="1000"</H_btn>
           </template>
-          <div class="col-bg-warn box">Hello</div>
-        </H_row>
-      </H_flex>
+          <div class="col-bg-warn p-5">Hello</div>
+        </H_pop>
+      </div>
     </template>
 '>
 </hhl-live-editor>
@@ -132,14 +121,14 @@ By adding the property `readonly` the Popup will not open.<br>
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_row>
+       <div class="flex items-center gap-4">
         <H_pop readonly>
           <template v-slot:referance>
               <H_btn>readonly</H_btn>
           </template>
-          <div class="col-bg-warn box">Hello</div>
-        </H_row>
-      </H_flex>
+          <div class="col-bg-warn p-5">Hello</div>
+        </H_pop>
+      </div>
     </template>
 '>
 </hhl-live-editor>
@@ -152,14 +141,14 @@ By adding the property `close-popup-click` the popup will close when you click i
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_row>
+       <div class="flex items-center gap-4">
         <H_pop close-popup-click>
           <template v-slot:referance>
               <H_btn>close-popup-click"</H_btn>
           </template>
-          <div class="col-bg-warn box">Hello</div>
+          <div class="col-bg-warn p-5">Hello</div>
         </H_pop>
-      </H_row>
+      </div>
     </template>
     <script>
       const popup = ref(false);
@@ -178,17 +167,17 @@ By adding the property `pop-close` to an element in the PopUp dialog a click on 
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_row>
+       <div class="flex items-center gap-4">
         <H_pop>
           <template v-slot:referance>
               <H_btn>close-popup-click"</H_btn>
           </template>
-          <div class="col-bg-warn box">
+          <div class="col-bg-warn p-5">
           <div>Hello</div>
           <div pop-close style="border: 1px red solid; margin: 10px 0">close</div>
           </div>
         </H_pop>
-      </H_row>
+      </div>
     </template>
     <script>
       const popup = ref(false);
@@ -215,12 +204,12 @@ You can disable this by adding the property `no-shake`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_row>
+       <div class="flex items-center gap-4">
         <H_pop modal :no-shake="shake">
           <template v-slot:referance>
               <H_btn>modal"</H_btn>
           </template>
-          <div class="col-bg-warn box">
+          <div class="col-bg-warn p-5">
             <div>Hello</div>
             <div pop-close style="border: 1px red solid; margin: 10px 0">close</div>
           </div>
@@ -229,10 +218,10 @@ You can disable this by adding the property `no-shake`
         <template v-slot:referance>
             <H_btn>modal + trigger="click"</H_btn>
         </template>
-        <div class="col-bg-warn box"><H_btn @click="popup=false">Close"</H_btn></div>
+        <div class="col-bg-warn p-5"><H_btn @click="popup=false">Close"</H_btn></div>
       </H_pop>
       <H_switch label="no-shake" v-model="shake"></H_switch>
-      </H_row>
+      </div>
     </template>
     <script>
       const popup = ref(false);
@@ -287,8 +276,8 @@ By adding the property `offset-left` it will adjust the left position with the v
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_col class="thisContainer" padding="20px" style="border: solid 1px gray">
-      <H_row padding="10px 0 0 0" >
+      <div class="flex flex-col gap-4">
+       <div class="flex gap-4">
         <H_pop  :placement="placement" 
                 :inner="inner" 
                 :container="container" 
@@ -299,21 +288,21 @@ By adding the property `offset-left` it will adjust the left position with the v
             <template v-slot:referance>
               <H_btn>Open</H_btn>
             </template>
-          <div class="col-bg-warn box">Hello</div>
+          <div class="col-bg-warn p-5">Hello</div>
         </H_pop>
-      </H_row>
-      <H_row padding="0">
+      </div>
+     <div class="flex items-center gap-4">
         <H_select hide-filter :list="selectData" v-model="placement" label="Placement" style="max-width:150px"></H_select>
         <H_switch label="Inner" v-model="inner"></H_switch>
         <H_select hide-filter :list="conType" v-model="container" label="container" style="max-width:150px"></H_select>
          <H_select hide-filter :list="queryType" v-model="querySelector" label="querySelector" style="max-width:150px"></H_select>
-      </H_row>
-      <H_row padding="0">
+      </div>
+     <div class="flex items-center gap-4">
          <H_inputNumber v-model="padding" label="padding" style="max-width:150px"></H_inputNumber>
          <H_inputNumber v-model="offsetTop" label="offset-top" style="max-width:150px"></H_inputNumber>
          <H_inputNumber v-model="offsetLeft" label="offset-left" style="max-width:150px"></H_inputNumber>
-      </H_row>
-    </H_col>
+      </div>
+    </div>
     </template>
     <script>
       const placement = ref("bottom-start");
@@ -358,12 +347,12 @@ By adding the property `moveable-drag` to one element in the Popup it will be he
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_row>
+      <div class="flex items-center gap-4">
         <H_pop movable>
           <template v-slot:referance>
               <H_btn>Drag</H_btn>
           </template>
-          <div class="col-bg-warn box">
+          <div class="col-bg-warn p-4">
           <div>Hello</div>
           </div>
         </H_pop>
@@ -371,12 +360,12 @@ By adding the property `moveable-drag` to one element in the Popup it will be he
           <template v-slot:referance>
               <H_btn>Drag by element"</H_btn>
           </template>
-          <H_col padding="0"  class="box col-bg-warn" style="width:100%; height: 100px">
+          <div class="flex flex-col col-bg-warn items-center gap-4">
           <div moveable-drag style="background-color: lime; text-align: center; padding: 10px">dragme</div>
           <div>Hello</div>
-          </H_col>
+          </div>
         </H_pop>
-      </H_row>
+      </div>
     </template>
     <script>
       const popup = ref(false);
@@ -386,7 +375,6 @@ By adding the property `moveable-drag` to one element in the Popup it will be he
 </hhl-live-editor>
 
 <br/>
-
 
 ## Adjust component (referance) to the full width og the parent.
 
@@ -395,16 +383,16 @@ This is the default to disable add `:width-as-ref="false"`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <H_row>
+       <div class="flex items-center gap-4">
         <H_pop :width-as-ref="false">
           <template v-slot:referance>
               <H_btn>width-as-ref="false" .......</H_btn>
           </template>
-          <div class="col-bg-warn box">
+          <div class="col-bg-warn p-5">
           <div>Hello</div>
           </div>
         </H_pop>         
-      </H_row>
+      </div>
     </template>
     <script>
       const popup = ref(false);
@@ -414,7 +402,6 @@ This is the default to disable add `:width-as-ref="false"`
 </hhl-live-editor>
 
 <br/>
-
 
 <br/>
 <br/>
