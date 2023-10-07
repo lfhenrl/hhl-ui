@@ -1,8 +1,8 @@
 <template>
-  <div class="index">
+  <div class="markdown-body overflow-auto">
     <h1>Styles</h1>
     <p>This is the documentation for how to use the stylesheets</p>
-    <H_col gap="7px" class="col-txt-ok">
+    <div class="flex flex-col text-ok">
       <router-link
         v-for="route in links"
         :key="route.id"
@@ -10,7 +10,7 @@
         :to="route.path"
         >-{{ route.name }}</router-link
       >
-    </H_col>
+    </div>
   </div>
 </template>
 
@@ -39,9 +39,3 @@ const Index = defineComponent({
 export type iIndex = InstanceType<typeof Index>;
 export default Index;
 </script>
-
-<style>
-.index {
-  overflow: auto;
-}
-</style>

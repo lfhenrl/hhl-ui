@@ -1,9 +1,11 @@
 <template>
-  <div class="index">
+  <div class="markdown-body overflow-auto">
     <h1>Components</h1>
     <p>This is the documentation for the HHL-UI components</p>
-    <div class="routerLinks col-txt-ok">
-      <router-link v-for="route in links" :key="route.id" :to="route.path">-{{ route.name }}</router-link>
+    <div class="flex flex-col text-ok">
+      <router-link v-for="route in links" :key="route.id" :to="route.path"
+        >-{{ route.name }}</router-link
+      >
     </div>
   </div>
 </template>
@@ -15,7 +17,7 @@ import { getRouteData } from "../../components/routeData";
 const Index = defineComponent({
   name: "index",
   props: {
-    modelValue: { type: String, default: "" }
+    modelValue: { type: String, default: "" },
   },
   setup() {
     const routeData = getRouteData();
@@ -27,25 +29,9 @@ const Index = defineComponent({
       });
     });
     return { links };
-  }
+  },
 });
 
-declare global {
-  interface __VLS_GlobalComponents {
-    index: typeof Index;
-  }
-}
 export type iIndex = InstanceType<typeof Index>;
 export default Index;
 </script>
-
-<style>
-.index {
-  overflow: auto;
-}
-.routerLinks {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-</style>
