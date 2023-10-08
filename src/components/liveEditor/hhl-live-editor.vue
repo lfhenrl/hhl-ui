@@ -3,8 +3,13 @@
     <div class="hhl-live-editor_errorPopup" v-show="showError" v-movable>
       <div class="hhl-live-editor_errorPopup_title" moveable-drag>
         <div>Error</div>
-        <H_spacer />
-        <H_icon btn icon="close" color="white" @click="hideError = !hideError" />
+        <div class="flex-1" />
+        <H_icon
+          btn
+          icon="close"
+          color="white"
+          @click="hideError = !hideError"
+        />
       </div>
 
       <span>{{ error }}</span>
@@ -12,7 +17,7 @@
 
     <div class="hhl-live-editor_toolbar">
       <div>{{ title }}</div>
-      <H_spacer />
+      <div class="flex-1" />
       <H_btn
         title="Show Error."
         type="icon-text"
@@ -22,7 +27,13 @@
         @click="hideError = !hideError"
         class="col-err"
       />
-      <H_btn title="Fullscreen." type="icon-text" icon="zoom_out_map" round @click="toggleFullScreen" />
+      <H_btn
+        title="Fullscreen."
+        type="icon-text"
+        icon="zoom_out_map"
+        round
+        @click="toggleFullScreen"
+      />
       <H_btn
         title="Change Horisont or Vertical."
         type="icon-text"
@@ -31,12 +42,25 @@
         :disabled="!showCode"
         @click="changeHorisont"
       />
-      <H_btn title="Show Code." round type="icon-text" icon="expand_down" @click="codeShow" />
+      <H_btn
+        title="Show Code."
+        round
+        type="icon-text"
+        icon="expand_down"
+        @click="codeShow"
+      />
     </div>
 
-    <div class="hhl-live-editor-contentCode" :class="{ 'hhl-live-editor-contentCode_column': column }">
+    <div
+      class="hhl-live-editor-contentCode"
+      :class="{ 'hhl-live-editor-contentCode_column': column }"
+    >
       <div ref="renderBox" class="hhl-live-editor-content__render">
-        <live-render :template="reactiv_htmlCode" @onError="errorHandler" :comp="comp" />
+        <live-render
+          :template="reactiv_htmlCode"
+          @onError="errorHandler"
+          :comp="comp"
+        />
       </div>
 
       <div class="hhl-live-editor-splitLine" v-splitpane v-if="!column" />
@@ -69,7 +93,7 @@ export default defineComponent({
   props: {
     htmlCode: { type: String, default: "" },
     title: { type: String, default: "Playground" },
-    comp: { type: Object, default: {} }
+    comp: { type: Object, default: {} },
   },
   setup(props) {
     const el = ref<any>();
@@ -130,9 +154,9 @@ export default defineComponent({
       displayCode,
       column,
       toggleFullScreen,
-      code
+      code,
     };
-  }
+  },
 });
 </script>
 

@@ -228,7 +228,7 @@ Validation by adding `validator=""`
             <H_textarea v-model="txt" label="email" :validator="[v.email]"></H_textarea>
             <H_textarea v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></H_textarea>
             <H_textarea v-model="txt" label="strMax(8)" :validator="[v.strMax(8)]"></H_textarea>
-      </H_col>
+      </divl>
       </template>
       <script>
             // import { validator } from "components/utils/validator";

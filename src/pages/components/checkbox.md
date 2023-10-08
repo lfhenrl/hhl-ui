@@ -5,7 +5,7 @@
 <hhl-live-editor title="" htmlCode=' 
     <template>
      <div class="flex items-center gap-4">
-        <H_checkbox label="CheckBox 1" v-model="check"></H_checkbox>
+        <H_checkbox label="CheckBox 1" class="col-err text-err" v-model="check"></H_checkbox>
         <H_checkbox label="CheckBox 2" v-model="check"></H_checkbox>    
         <H_checkbox label="CheckBox 3" v-model="check"></H_checkbox>
         <H_inputText :model-value="check ? `true` : `false`" label="value"></H_inputText>
@@ -29,7 +29,7 @@ You can change the label position to left by adding the prop `label-left`
      <div class="flex items-center gap-4">
         <H_checkbox label="label standard" v-model="check"></H_checkbox>
         <H_checkbox label-left label="Label left" :value="check"></H_checkbox>  
-        <H_spacer/>  
+        <div class="flex-1" /> 
     </div>
     </template>
     <script>
@@ -72,7 +72,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flex items-center gap-4">
+     <div class="flex items-center gap-4 flex-wrap">
         <H_checkbox class="col-pri" label="col-pri" v-model="check"></H_checkbox>
         <H_checkbox class="col-sec" label="col-sec" v-model="check"></H_checkbox>    
         <H_checkbox class="col-ok" label="col-ok" v-model="check"></H_checkbox>
@@ -99,7 +99,7 @@ You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-         <div class="flex items-center gap-4">
+         <div class="flex items-center gap-4 flex-wrap">
             <H_checkbox disabled class="col-pri" label="col-pri" v-model="check"></H_checkbox>
             <H_checkbox disabled class="col-sec" label="col-sec" v-model="check"></H_checkbox>    
             <H_checkbox disabled class="col-ok" label="col-ok" v-model="check"></H_checkbox>

@@ -51,8 +51,21 @@
       </div>
     </div>
     <div class="H_datagrid-footer">
-      <H_btn size="sm" round type="icon-text" icon="refresh" title="Reload data" />
-      <H_btn size="sm" round type="icon-text" icon="columns" title="Edit Columns" @click="editColumns" />
+      <H_btn
+        size="sm"
+        round
+        type="icon-text"
+        icon="refresh"
+        title="Reload data"
+      />
+      <H_btn
+        size="sm"
+        round
+        type="icon-text"
+        icon="columns"
+        title="Edit Columns"
+        @click="editColumns"
+      />
       <H_btn
         size="sm"
         round
@@ -61,11 +74,26 @@
         title="Auto adjust all columns"
         @click="autoAdjustColumns"
       />
-      <H_btn size="sm" round type="icon-text" icon="excel" title="Download to excel" @click="excel" />
-      <H_btn size="sm" round type="icon-text" icon="zoom_out_map" title="fullScreen" @click="fullScreen" />
-      <H_spacer />
+      <H_btn
+        size="sm"
+        round
+        type="icon-text"
+        icon="excel"
+        title="Download to excel"
+        @click="excel"
+      />
+      <H_btn
+        size="sm"
+        round
+        type="icon-text"
+        icon="zoom_out_map"
+        title="fullScreen"
+        @click="fullScreen"
+      />
+      <div class="flex-1" />
       <div class="H_datagrid__rowcount">
-        {{ columns.dataHandler?.rowsCount }} Loaded of {{ columns.dataHandler?.rowsCountTotal }} Rows.
+        {{ columns.dataHandler?.rowsCount }} Loaded of
+        {{ columns.dataHandler?.rowsCountTotal }} Rows.
       </div>
     </div>
   </div>
@@ -80,7 +108,6 @@ import H_dataRow from "../../SubComponents/datagrid/dataRow/H_dataRow.vue";
 import H_menuColumns from "../../SubComponents/datagrid/sub/columns/H_menuColumns.vue";
 import H_btn from "../../Components/H_btn.vue";
 import H_progressBar from "../H_progressBar.vue";
-import H_spacer from "../../Components/H_spacer.vue";
 import { Columns } from "../../SubComponents/datagrid/provide/Columns";
 import H_virtualList from "../../Components/H_virtualList.vue";
 import { datagridClickHandler } from "../../SubComponents/datagrid/provide/datagridClickHandler";
@@ -90,18 +117,18 @@ import { iClickData } from "../../SubComponents/datagrid/provide/datagridTypes";
 const P = defineProps({
   dataKey: {
     type: [String, Number],
-    required: true
+    required: true,
   },
   row_style: { type: Function, default: null },
   dataHandler: {
     type: Object as PropType<any>,
-    required: true
+    required: true,
   },
   virtualscroll: { type: Boolean, default: false },
   virtualscroll_keeps: { type: Number, default: 50 },
   virtualscroll_rowheight: { type: Number, default: 50 },
   filterList: { type: Array as PropType<string[]>, default: [] },
-  filterstring: { type: String, default: "" }
+  filterstring: { type: String, default: "" },
 });
 
 const E = defineEmits<{
@@ -117,7 +144,11 @@ const H_datagridVirtualRef = ref();
 let scrollPos = 0;
 const menuColumnsRef = ref();
 const columns = new Columns();
-const ClickHandler = new datagridClickHandler(P.dataHandler.rows, P.dataKey, columns);
+const ClickHandler = new datagridClickHandler(
+  P.dataHandler.rows,
+  P.dataKey,
+  columns,
+);
 const adjustColumns = new ColumnsResizing(columns);
 
 provide("Columns", columns);
@@ -147,7 +178,7 @@ columns.updateSeekFilterList(P.filterList);
 
 watch(
   () => P.filterstring,
-  () => columns.updateSeekFilterString(P.filterstring)
+  () => columns.updateSeekFilterString(P.filterstring),
 );
 
 watch(
@@ -158,7 +189,7 @@ watch(
       adjustColumns.adjust();
     }, 100);
   },
-  { deep: true }
+  { deep: true },
 );
 
 function rowStyle(row: any) {

@@ -1,130 +1,67 @@
 <template>
-  <button class="h_btn col-pri" type="button" :class="cl"><H_icon v-if="icon !== ''" :icon="icon"></H_icon><slot></slot></button>
+  <button
+    class="h_btn col-pri inline-flex cursor-pointer items-center justify-center gap-1 whitespace-nowrap rounded ring-offset-1 ring-offset-pri hover:scale-105 focus:outline-none focus:ring active:scale-95"
+    :style="{
+      'background-color':
+        type === 'outline' ||
+        type === 'text' ||
+        type === 'icon-outline' ||
+        type === 'icon-text'
+          ? 'transparent'
+          : 'var(--current-bg-col)',
+      color:
+        type === 'outline' ||
+        type === 'text' ||
+        type === 'icon-outline' ||
+        type === 'icon-text'
+          ? 'var(--current-bg-col)'
+          : 'var(--current-txt-col)',
+      'border-color':
+        type === 'outline' ? 'var(--current-bg-col)' : 'var(--current-txt-col)',
+    }"
+    type="button"
+    :class="{
+      'text-xs': size === 'sm',
+      'text-base': size === 'md',
+      'text-xl': size === 'lg',
+      'rounded-[50%]': round,
+      border: type === 'outline' || type === 'icon-outline',
+      'aspect-square px-1 py-1': type.startsWith('icon'),
+      'px-4 py-0.5': !type.startsWith('icon'),
+      'flex-row-reverse': iconRight,
+    }"
+  >
+    <H_icon v-if="icon !== ''" :icon="icon" :size="iconSize"></H_icon
+    ><slot></slot>
+  </button>
 </template>
 
 <script setup lang="ts">
 import { PropType, computed } from "vue";
 import H_icon from "./H_icon.vue";
 
-const props = defineProps({
+const P = defineProps({
   type: {
-    type: String as PropType<"standard" | "outline" | "text" | "icon" | "icon-outline" | "icon-text">,
-    default: "standard"
+    type: String as PropType<
+      "standard" | "outline" | "text" | "icon" | "icon-outline" | "icon-text"
+    >,
+    default: "standard",
   },
   round: {
     type: Boolean,
-    default: false
+    default: false,
   },
   size: {
     type: String as PropType<"lg" | "md" | "sm">,
-    default: "md"
+    default: "md",
   },
   icon: { type: String, default: "" },
-  iconRight: { type: Boolean, default: false }
+  iconRight: { type: Boolean, default: false },
 });
 
-const cl = computed(() => {
-  return {
-    "btn-outline": props.type.includes("outline"),
-    "btn-text": props.type.includes("text"),
-    "btn-icon": props.type.includes("icon"),
-    "btn-lg": props.size.includes("lg"),
-    "btn-sm": props.size.includes("sm"),
-    "btn-round": props.round,
-    "btn-icon-right": props.iconRight
-  };
+const iconSize = computed(() => {
+  if (P.size === "sm") return "16px";
+  if (P.size === "lg") return "26px";
+  return "24px";
 });
 </script>
-
-<style>
-.h_btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  white-space: nowrap !important;
-  cursor: pointer;
-  --btn-size: calc(var(--comp-font-size) * 2.3);
-  --btn-icon-size: calc(var(--comp-font-size) * 1.4);
-  padding: 0 1em;
-  height: var(--btn-size);
-  gap: 0.2em;
-  outline: none;
-  border: none;
-  appearance: none;
-  line-height: calc(var(--comp-font-size) * 2);
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  background-color: var(--current-bg-col);
-}
-
-.h_btn:hover {
-  transform: scale(1.04);
-}
-
-.h_btn.btn-text:hover {
-  background-color: var(--col-bg-2);
-  color: var(--col-txt-2);
-}
-
-.h_btn:active {
-  transform: scale(0.97);
-}
-
-.h_btn:focus {
-  box-shadow: 0px 0px 5px 1px var(--col-pri, dodgerblue);
-}
-
-.h_btn.btn-round {
-  border-radius: 50%;
-}
-
-.h_btn.btn-lg {
-  --btn-size: 2em;
-  --btn-icon-size: 1.3em;
-  font-size: calc(var(--comp-font-size) * 1.5);
-  line-height: calc(var(--comp-font-size) * 2.5);
-}
-
-.h_btn.btn-sm {
-  --btn-size: 2em;
-  --btn-icon-size: 1.3em;
-  font-size: calc(var(--comp-font-size) * 0.9);
-  line-height: calc(var(--comp-font-size) * 1);
-  padding-bottom: 1px;
-}
-
-.h_btn.btn-outline {
-  background-color: transparent;
-  color: var(--current-bg-col);
-  border: 1px solid var(--current-bg-col);
-}
-
-.h_btn.btn-text {
-  background-color: transparent;
-  color: var(--current-bg-col);
-  border-color: transparent;
-}
-
-.h_btn.btn-text.btn-icon {
-  color: var(--current-bg-col);
-}
-
-.h_btn.btn-icon {
-  padding: 0;
-  width: var(--btn-size);
-}
-
-.h_btn .h_icon {
-  --h_icon-size: var(--btn-icon-size);
-}
-
-.h_btn.btn-icon-right .h_icon {
-  order: 1;
-}
-
-.h_btn.btn-icon .h_icon {
-  color: currentColor;
-  --h_icon-size: calc(var(--btn-icon-size) * 1.3);
-}
-</style>

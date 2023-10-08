@@ -1,20 +1,31 @@
 <template>
   <H_pop :offset-top="20" :offset-left="-20" v-model="isOpen" movable>
-    <div class="H_menuFilter shadow-4 col-txt-1 col-bg-0">
-      <H_row padding="0" align="center" moveable-drag class="col-pri H_menuFilter-head">
-        <div style="width: 25px"></div>
-        <div class="H_menuFilter-head-title">{{ col.props.title }}</div>
+    <div class="shadow-4 rounded bg-bg0 text-txt1">
+      <div
+        moveable-drag
+        class="col-pri flex items-center overflow-hidden rounded-t"
+      >
+        <div class="flex-1 p-2 text-center font-medium">
+          {{ col.props.title }}
+        </div>
         <div style="width: 25px">
           <H_icon btn @click="isOpen = false" />
         </div>
-      </H_row>
+      </div>
 
       <component ref="filterCompRef" :is="filtComponent" :index="index" />
 
-      <H_row justify="end">
-        <H_btn @click="filterSave" class="ml-3 bg-ok" :disabled="!filterCompRef?.canSave">OK</H_btn>
-        <H_btn @click="filterClear" class="ml-3" :disabled="!col.filter.active">CLEAR</H_btn>
-      </H_row>
+      <div class="flex justify-end px-5 py-3">
+        <H_btn
+          @click="filterSave"
+          class="ml-3 bg-ok"
+          :disabled="!filterCompRef?.canSave"
+          >OK</H_btn
+        >
+        <H_btn @click="filterClear" class="ml-3" :disabled="!col.filter.active"
+          >CLEAR</H_btn
+        >
+      </div>
     </div>
   </H_pop>
 </template>
@@ -22,7 +33,6 @@
 <script setup lang="ts">
 import { computed, inject, ref } from "vue";
 import H_pop from "../../../Components/popup/H_pop.vue";
-import H_row from "../../../Components/layout/H_row.vue";
 import H_filterString from "./filterTypes/H_filterString.vue";
 import H_filterNumber from "./filterTypes/H_filterNumber.vue";
 import H_filterDate from "./filterTypes/H_filterDate.vue";
@@ -33,7 +43,7 @@ import { iColumns } from "../provide/Columns";
 import { icolumnData } from "../provide/datagridTypes";
 
 const P = defineProps({
-  index: { type: Number, default: 0 }
+  index: { type: Number, default: 0 },
 });
 
 defineExpose({ filterOpen });

@@ -5,8 +5,8 @@
 <hhl-live-editor title="" htmlCode='
     <template>
      <div class="flex items-center gap-4 px-4">
-        <H_radio label="Radio 1" v-model="radioVal" value="val1"></H_radio>
-        <H_radio label="Radio 2" v-model="radioVal" value="val2"></H_radio>    
+        <H_radio label="Radio 1" v-model="radioVal" class="col-err" value="val1"></H_radio>
+        <H_radio label="Radio 2" v-model="radioVal" value="val2" class="col-warn"></H_radio>    
         <H_radio label="Radio 3" v-model="radioVal" value="val3"></H_radio>
         <H_inputText v-model="radioVal" label="value"></H_inputText>
     </div>
@@ -29,7 +29,7 @@ You can change the label position to left by adding the prop `label-left`
      <div class="flex items-center gap-4 px-4">
         <H_radio label="label standard" v-model="radioVal" value="val1"></H_radio>
         <H_radio label-left label="Label left" v-model="radioVal" value="val2"></H_radio>
-        <H_spacer/>
+        <div class="flex-1" />
     </div>
     </template>
     <script>
@@ -72,7 +72,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flex items-center gap-4 px-4">
+     <div class="flex items-center gap-4 px-4 flex-wrap">
         <H_radio class="col-pri" label="col-pri" v-model="radioVal" value="val1"></H_radio>
         <H_radio class="col-sec" label="col-sec" v-model="radioVal" value="val1"></H_radio>
         <H_radio class="col-ok" label="col-ok" v-model="radioVal" value="val1"></H_radio>
@@ -99,7 +99,7 @@ You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flex items-center gap-4 px-4">
+     <div class="flex items-center gap-4 px-4 flex-wrap">
         <H_radio disabled class="col-pri" label="col-pri" v-model="radioVal" value="val1"></H_radio>
         <H_radio disabled class="col-sec" label="col-sec" v-model="radioVal" value="val1"></H_radio>
         <H_radio disabled class="col-ok" label="col-ok" v-model="radioVal" value="val1"></H_radio>

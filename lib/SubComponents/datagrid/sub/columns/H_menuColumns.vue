@@ -1,24 +1,32 @@
 <template>
   <H_dialog v-model="open" offsetTop="-20px" class="h_menuColumns" movable>
     <template #header>
-      <H_row padding="0" align="center">
-        <div style="width: 25px"></div>
-        <div style="flex: 1">Columns</div>
-        <div style="width: 25px"><H_icon btn @click="open = false" /></div>
-      </H_row>
+      <div class="flex min-w-[150px]">
+        <div class="flex-1">Columns</div>
+        <div class="-mr-2 overflow-hidden">
+          <H_icon btn @click="open = false" />
+        </div>
+      </div>
     </template>
-    <div class="h_menuColumns-body" padding="10px 0 0 0" gap="15px">
-      <H_inputbase label="Grouping" class="h_menuColumns-grouping" movelabel>
-        <H_dragDrop v-model="groupColumns" :max-items="3" class="h_menuColumns-grouping-dg">
+    <div class="flex flex-col gap-4">
+      <H_inputbase label="Grouping" movelabel>
+        <H_dragDrop
+          v-model="groupColumns"
+          :max-items="3"
+          class="max-h-[90px] min-h-[90px] p-2 pt-3"
+        >
           <template v-slot:item="{ item, index }">
             <H_columnItem :item="item" :index="index" />
           </template>
         </H_dragDrop>
       </H_inputbase>
 
-      <H_inputbase label="Columns" class="h_menuColumns-columns" movelabel>
-        <div class="h_menuColumns-columnsList">
-          <H_dragDrop v-model="sourceColumns" class="h_menuColumns-columns-dg">
+      <H_inputbase label="Columns" class="h-full" movelabel>
+        <div class="">
+          <H_dragDrop
+            v-model="sourceColumns"
+            class="max-h-[200px] min-h-[200px] p-2 pt-3"
+          >
             <template v-slot:item="{ item, index }">
               <H_columnItem :item="item" :index="index" />
             </template>
@@ -27,9 +35,11 @@
       </H_inputbase>
     </div>
     <template #footer>
-      <H_row justify="end" padding="0">
-        <H_btn @click="columnsSave" class="ml-3 bg-ok" :disabled="!canSave">OK</H_btn>
-      </H_row>
+      <div class="flex justify-end">
+        <H_btn @click="columnsSave" class="ml-3 bg-ok" :disabled="!canSave"
+          >OK</H_btn
+        >
+      </div>
     </template>
   </H_dialog>
 </template>
@@ -38,7 +48,6 @@
 import H_dialog from "../../../../Components/popup/H_dialog.vue";
 import H_btn from "../../../../Components/H_btn.vue";
 import H_icon from "../../../../Components/H_icon.vue";
-import H_row from "../../../../Components/layout/H_row.vue";
 import H_dragDrop from "../../../../Components/H_dragDrop.vue";
 import H_inputbase from "../../../../SubComponents/H_inputBase.vue";
 import H_columnItem from "./H_columnItem.vue";
@@ -58,17 +67,24 @@ let orgSourceArrayString = "";
 let orgGroupArrayString = "";
 
 const sourceColumnsString = computed(() => {
-  const x = sourceColumns.value.map((item: any) => item.orgIndex + "-" + item.visibel).toString();
+  const x = sourceColumns.value
+    .map((item: any) => item.orgIndex + "-" + item.visibel)
+    .toString();
   return x;
 });
 
 const groupColumnsString = computed(() => {
-  const x = groupColumns.value.map((item: any) => item.orgIndex + "-" + item.visibel).toString();
+  const x = groupColumns.value
+    .map((item: any) => item.orgIndex + "-" + item.visibel)
+    .toString();
   return x;
 });
 
 const canSave = computed(() => {
-  return sourceColumnsString.value !== orgSourceArrayString || groupColumnsString.value !== orgGroupArrayString;
+  return (
+    sourceColumnsString.value !== orgSourceArrayString ||
+    groupColumnsString.value !== orgGroupArrayString
+  );
 });
 
 function columnsOpen() {
@@ -82,7 +98,7 @@ function columnsOpen() {
       title: item.props.title,
       visibel: item.visibel.value,
       index: index,
-      orgIndex: item.index
+      orgIndex: item.index,
     };
     const itString = it.orgIndex + "-" + it.visibel;
 
@@ -103,12 +119,16 @@ function columnsSave() {
   open.value = false;
   const newColumns: any = [];
   groupColumns.value.forEach((item: any) => {
-    const orgCol: any = Columns.columns.find((it) => it.index === item.orgIndex);
+    const orgCol: any = Columns.columns.find(
+      (it) => it.index === item.orgIndex,
+    );
     orgCol.visibel.value = item.visibel;
     newColumns.push(orgCol);
   });
   sourceColumns.value.forEach((item: any) => {
-    const orgCol: any = Columns.columns.find((it) => it.index === item.orgIndex);
+    const orgCol: any = Columns.columns.find(
+      (it) => it.index === item.orgIndex,
+    );
     orgCol.visibel.value = item.visibel;
     newColumns.push(orgCol);
   });
@@ -118,33 +138,3 @@ function columnsSave() {
   Columns.columnsChange();
 }
 </script>
-
-<style>
-.h_menuColumns-body {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  min-height: 400px;
-  max-height: 50vh;
-  gap: 20px;
-}
-
-.h_menuColumns-grouping {
-  min-height: 80px;
-  padding: 10px;
-}
-
-.h_menuColumns-columns .h_inputbase-slot {
-  overflow: auto;
-}
-
-.h_menuColumns-columnsList {
-  min-height: 120px;
-  padding: 10px;
-  height: 100%;
-}
-
-.h_menuColumns-columns-dg,
-.h_menuColumns-grouping-dg {
-  height: 100%;
-}
-</style>

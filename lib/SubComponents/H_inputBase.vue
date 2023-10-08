@@ -1,8 +1,28 @@
 <template>
-  <div class="h_inputbase" @click="Click" :disabled="disabled ? true : undefined" :error="ErrorMessage != '' ? true : undefined">
-    <label ref="_label" class="h_inputbase-label" :move="movelabel">{{ label }}</label>
-    <H_icon v-if="startIcon != ''" :icon="startIcon" class="h_inputbase-starticon" :btn="stBtn ? true : null" />
-    <H_icon v-if="endIcon != ''" :icon="endIcon" class="h_inputbase-endicon" :btn="endBtn ? true : null" />
+  <div
+    class="h_inputbase group relative inline-grid min-h-[40px] min-w-[100px] grid-cols-[auto_1fr_auto_auto] rounded border border-txt5 data-[error]:border-err"
+    @click="Click"
+    :disabled="disabled ? true : undefined"
+    :data-error="ErrorMessage != '' ? true : undefined"
+  >
+    <label
+      ref="_label"
+      class="h_inputbase-label pointer-events-none absolute block translate-x-[10px] translate-y-[10px] scale-100 select-none px-1 leading-4 text-txt2 transition-transform group-data-[error]:text-err"
+      :move="movelabel"
+      >{{ label }}</label
+    >
+    <H_icon
+      v-if="startIcon != ''"
+      :icon="startIcon"
+      class="h_inputbase-starticon"
+      :btn="stBtn ? true : null"
+    />
+    <H_icon
+      v-if="endIcon != ''"
+      :icon="endIcon"
+      class="h_inputbase-endicon"
+      :btn="endBtn ? true : null"
+    />
     <H_icon btn v-if="clearable" class="h_inputbase-clearicon" />
     <div class="h_inputbase-slot"><slot /></div>
 
@@ -34,10 +54,15 @@ defineProps({
   HelpTextEnd: { type: String, default: "" },
   ErrorMessage: { type: String, default: "" },
   stBtn: { type: Boolean, default: false },
-  endBtn: { type: Boolean, default: false }
+  endBtn: { type: Boolean, default: false },
 });
 
-const E = defineEmits(["ClearClick", "click", "StartIconClick", "EndIconClick"]);
+const E = defineEmits([
+  "ClearClick",
+  "click",
+  "StartIconClick",
+  "EndIconClick",
+]);
 const _label: any = ref();
 function Click(e: MouseEvent) {
   const ele = e.target as any;
@@ -59,44 +84,19 @@ onMounted(() => {
 </script>
 
 <style>
-.h_inputbase {
-  display: inline-grid;
-  grid-template-columns: auto 1fr auto auto;
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  font-weight: normal;
-  border: 1px solid var(--col-txt-5);
-  position: relative;
-  background-color: inherit;
-  border-radius: 4px;
-  gap: 0;
-  padding: 0;
-  min-height: 40px;
-  min-width: 100px;
-  --col-icon: var(--col-txt-3);
-}
-
-.h_inputbase[error] {
-  border-color: var(--col-err);
-}
-
-.h_inputbase[error] .h_inputbase-label {
-  color: var(--col-err);
-}
-
 .h_inputbase-label {
-  display: block;
+  /* display: block;
   position: absolute;
   color: var(--col-txt-2);
   top: 0;
-  left: 0;
-  padding: 0 5px;
-  line-height: 18px;
-  pointer-events: none;
-  background-repeat: no-repeat;
-  user-select: none;
-  transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
-  transform: translate(10px, 10px) scale(1);
+  left: 0; */
+  /* padding: 0 5px;
+  line-height: 18px; */
+  /* pointer-events: none; */
+  /* background-repeat: no-repeat; */
+  /* user-select: none; */
+  /* transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms; */
+  /* transform: translate(10px, 10px) scale(1); */
 }
 
 .h_inputbase:focus-within {

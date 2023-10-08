@@ -5,7 +5,7 @@
         <H_btn @click="load" start-icon="zoom_out_map" end-icon="filter"
           >Load</H_btn
         >
-        <H_spacer />
+        <div class="flex-1" />
         <H_inputText
           v-model="seek"
           :debounce="300"

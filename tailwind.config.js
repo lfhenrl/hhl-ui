@@ -35,6 +35,7 @@ module.exports = {
       bg6: "var(--col-bg-6)",
       black: "black",
       white: "white",
+      transparent: "transparent",
     },
   },
   plugins: [],

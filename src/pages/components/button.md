@@ -25,7 +25,9 @@ You can change the icon position to right by adding the prop `icon-right`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4">
-            <H_btn icon="edit">ICON</H_btn>
+            <H_btn icon="edit" size="sm">ICON sm</H_btn>
+             <H_btn icon="edit">ICON md</H_btn>
+            <H_btn icon="edit" size="lg">ICON lg</H_btn>
             <H_btn icon-right icon="edit">ICON-RIGHT</H_btn>
       </div>
       </template>

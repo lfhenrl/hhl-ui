@@ -11,7 +11,11 @@
     data-field="text"
     data-orgindex="0"
   >
-    <div class="GroupRowGantt__content H_datagridRowCell" :class="[columns[1].className]" :style="style">
+    <div
+      class="GroupRowGantt__content H_datagridRowCell"
+      :class="[columns[1].className]"
+      :style="style"
+    >
       <H_icon
         :disabled="data.children.length < 1 ? true : null"
         :icon="data.expanded ? 'expand_down' : 'expand_right'"
@@ -20,11 +24,25 @@
         class="GroupRowGantt_Expander"
       />
       {{ data.text }}
-      <span class="GroupRowGantt__childCount"> ({{ data.children.length }})</span>
-      <H_spacer />
-      <H_icon icon="menuSmall" btn class="GroupRowGantt_Menu" :data-id="data.id" data-field="userAction" data-orgindex="0" />
+      <span class="GroupRowGantt__childCount">
+        ({{ data.children.length }})</span
+      >
+      <div class="flex-1" />
+      <H_icon
+        icon="menuSmall"
+        btn
+        class="GroupRowGantt_Menu"
+        :data-id="data.id"
+        data-field="userAction"
+        data-orgindex="0"
+      />
     </div>
-    <H_datagridRowCell :key="2" :column="columns[2]" :data="data" :data-id="data.id" />
+    <H_datagridRowCell
+      :key="2"
+      :column="columns[2]"
+      :data="data"
+      :data-id="data.id"
+    />
   </div>
 
   <H_rowGantt
@@ -42,15 +60,15 @@ import { debounce } from "../../../../utils/debounce";
 import { iDatagrid } from "../../../datagrid/provide";
 import H_icon from "../../../../Components/H_icon.vue";
 import { iChartGantt } from "../common";
-import H_datagridRowCell from "../../../datagrid/sub/H_datagridRowCell.vue"
-import H_rowGantt from "../datagrid/H_rowGantt.vue"
+import H_datagridRowCell from "../../../datagrid/sub/H_datagridRowCell.vue";
+import H_rowGantt from "../datagrid/H_rowGantt.vue";
 // import H_rowGantt from "./H_rowGantt.vue";
 
 const props = defineProps({
   id: { type: String, default: "" },
   type: { type: String, default: "" },
   index: { type: Number, default: -1 },
-  data: { type: Object as PropType<any>, default: () => {} }
+  data: { type: Object as PropType<any>, default: () => {} },
 });
 
 const dg = inject("dg") as iDatagrid;
@@ -69,7 +87,7 @@ function expanded() {
 
 const style = computed(() => {
   return {
-    paddingLeft: props.data.level * 15 + "px"
+    paddingLeft: props.data.level * 15 + "px",
   };
 });
 
@@ -84,10 +102,11 @@ function startDrag(e: DragEvent) {
 function drop(e: DragEvent) {
   setDropStyle("");
   const pos = getPosition(e);
-    dg.Event.emit("dragDrop", { 
-    sourceId: dg.draggedItemId, 
-    targetId: props.id, 
-    pos });
+  dg.Event.emit("dragDrop", {
+    sourceId: dg.draggedItemId,
+    targetId: props.id,
+    pos,
+  });
   // console.log("dragOver", "pos:", pos, "target:", props.id, "source:", dg.draggedItemId);
 }
 

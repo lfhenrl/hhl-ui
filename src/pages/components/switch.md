@@ -49,7 +49,7 @@ You can change the label position to left by adding the prop `label-left`
     <div class="flex items-center gap-4 px-4">
         <H_switch label="label standard" v-model="check"></H_switch>
         <H_switch label-left label="Label left" v-model="check"></H_switch>  
-        <H_spacer/>  
+       <div class="flex-1" /> 
     </div>
     </template>
     <script>

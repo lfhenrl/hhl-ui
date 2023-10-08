@@ -14,17 +14,24 @@
         />
       </div>
       <div class="gantt_edit_row" v-if="data.type !== 'group'">
-        <H_inputNumber label="Work days"  v-model="workload" min="1" />
-        <H_inputNumber label="Work load"  v-model="data.workLoad" max="100" min="0" />
+        <H_inputNumber label="Work days" v-model="workload" min="1" />
+        <H_inputNumber
+          label="Work load"
+          v-model="data.workLoad"
+          max="100"
+          min="0"
+        />
       </div>
       <H_slider v-model="data.progress" min="0" max="100" />
     </div>
     <template #footer>
       <div class="gantt_edit_footer">
         <H_btn @click="remove" class="col-warn">Delete</H_btn>
-        <H_spacer />
+        <div class="flex-1" />
         <H_btn @click="cancel" class="col-sec">Cancel</H_btn>
-        <H_btn @click="save" :disabled="!isChanged && !isValid_date">Save</H_btn>
+        <H_btn @click="save" :disabled="!isChanged && !isValid_date"
+          >Save</H_btn
+        >
       </div>
     </template>
   </H_dialog>
@@ -32,14 +39,21 @@
 
 <script setup lang="ts">
 import { computed, inject, reactive, ref, watch } from "vue";
-import { DateDiffDays, DateAddDays, DateGetToday } from "../../../../utils/dateFunctions";
+import {
+  DateDiffDays,
+  DateAddDays,
+  DateGetToday,
+} from "../../../../utils/dateFunctions";
 import { iChartGantt } from "../common";
 import H_inputText from "../../../../Components/H_inputText.vue";
 import H_inputNumber from "../../../../Components/H_inputNumber.vue";
 import H_btn from "../../../../Components/H_btn.vue";
-import H_spacer from "../../../../Components/H_spacer.vue";
 import H_datePicker from "../../../../Components/H_datePicker.vue";
-import { dateFromSeconds, secondsFromDate, TimeToPixcel } from "../chart/utils/converter";
+import {
+  dateFromSeconds,
+  secondsFromDate,
+  TimeToPixcel,
+} from "../chart/utils/converter";
 
 const props = defineProps({
   activeId: { type: String, default: "" },
@@ -70,7 +84,7 @@ watch(
   () => {
     isChanged.value = true;
   },
-  { deep: true }
+  { deep: true },
 );
 
 watch([() => props.activeId, () => props.show], () => {
