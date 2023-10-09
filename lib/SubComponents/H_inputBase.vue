@@ -84,20 +84,20 @@ onMounted(() => {
 </script>
 
 <style>
-.h_inputbase-label {
-  /* display: block;
+/* .h_inputbase-label {
+  display: block;
   position: absolute;
   color: var(--col-txt-2);
   top: 0;
-  left: 0; */
-  /* padding: 0 5px;
-  line-height: 18px; */
-  /* pointer-events: none; */
-  /* background-repeat: no-repeat; */
-  /* user-select: none; */
-  /* transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms; */
-  /* transform: translate(10px, 10px) scale(1); */
-}
+  left: 0;
+  padding: 0 5px;
+  line-height: 18px;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  user-select: none;
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  transform: translate(10px, 10px) scale(1);
+} */
 
 .h_inputbase:focus-within {
   border-color: var(--col-pri);
