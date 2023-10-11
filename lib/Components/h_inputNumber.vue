@@ -1,6 +1,6 @@
 <template>
   <H_inputBase
-    class="h_inputNumber"
+    class="h_inputNumber max-h-10 flex-1"
     :label="label"
     :clearable="clearable"
     :start-icon="startIcon"
@@ -18,10 +18,10 @@
     @startIconClick="$emit('startIconClick')"
     @endIconClick="$emit('endIconClick')"
   >
-    <div class="h_inputNumber-container">
+    <div class="flex">
       <input
         type="number"
-        class="h_inputNumber-input"
+        class="h_inputNumber-input inline-block flex-1 text-txt1 align-bottom bg-transparent border-none outline-none whitespace-nowrap text-ellipsis w-full overflow-hidden px-2.5 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         :value="modelValue"
         inputmode="numeric"
         @input="onInput"
@@ -32,20 +32,20 @@
         :aria-label="label"
         :name="label"
       />
-      <div class="h_inputNumber-icons">
+      <div class="h_inputNumber-icons flex flex-col text-txt3 mt-[-3px] mb-[-4px]">
         <H_icon
           btn
           @click.stop="CountUp"
           :disabled="readonly ? true : null"
           icon="expand_up"
-          class="h_inputNumber-iconup text-txtCol-3"
+          class="h_inputNumber-iconup text-txt3 mb-[-2px]"
         />
         <H_icon
           btn
           @click.passive="CountDown"
           :disabled="readonly ? true : null"
           icon="expand_down"
-          class="h_inputNumber-icondown text-txtCol-3"
+          class="h_inputNumber-icondown text-txt3 mt-[-1px]"
         />
       </div>
     </div>
@@ -79,7 +79,7 @@ const P = defineProps({
   onEndIconClick: { type: Function, default: null }
 });
 
-const E = defineEmits(["update:modelValue", "inputClick"]);
+const E = defineEmits(["update:modelValue", "inputClick", "startIconClick", "endIconClick"]);
 const focused = ref(false);
 
 const move_label = computed(() => {
@@ -99,53 +99,3 @@ const CountDown = () => E("update:modelValue", Number(P.modelValue) - Number(P.s
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
 
-<style>
-.h_inputNumber.h_select {
-  flex: 1 1 200px;
-  max-height: 40px;
-}
-
-.h_inputNumber-container {
-  display: flex;
-  flex-direction: row;
-}
-
-.h_inputNumber-input {
-  display: inline-block;
-  box-sizing: border-box;
-  flex: 1;
-  padding: 0 10px;
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  color: var(--col-txt-1);
-  vertical-align: bottom;
-  background-color: transparent;
-  border: none;
-  width: 100%;
-  overflow: hidden;
-  outline: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  appearance: textfield;
-}
-
-.h_inputNumber-input::-webkit-inner-spin-button,
-.h_inputNumber-input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-}
-
-.h_inputNumber-icons {
-  display: flex;
-  flex-direction: column;
-  margin: -3px 0 -4px 0;
-  color: var(--col-txt-3);
-}
-
-.h_inputNumber-iconup {
-  margin-bottom: -2px;
-}
-
-.h_inputNumber-icondown {
-  margin-top: -1px;
-}
-</style>

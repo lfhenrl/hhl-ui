@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --shadow-1: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
     0 1px 3px 0 rgba(0, 0, 0, 0.2) !important;
 
@@ -14,8 +14,8 @@
   --shadow-5: 0 14px 18px 3px rgba(0, 0, 0, 0.14), 0 7px 16px 6px rgba(0, 0, 0, 0.12),
     0 4px 5px 0 rgba(0, 0, 0, 0.2) !important;
 
-}
-
+} */
+/* 
 .shadow-0 {
   box-shadow: none;
 }
@@ -37,4 +37,4 @@
 
 .shadow-5 {
   box-shadow: var(--shadow-5);
-}
+} */

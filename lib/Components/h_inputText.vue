@@ -1,6 +1,6 @@
 <template>
   <H_inputBase
-    class="h_inputText"
+    class="h_inputText max-h-10 flex-1"
     :label="label"
     :clearable="clearable"
     :start-icon="startIcon"
@@ -20,7 +20,7 @@
   >
     <input
       type="text"
-      class="h_inputText-input"
+      class="h_inputText-input inline-block flex-1 text-txt1 align-bottom bg-transparent border-none appearance-none outline-none whitespace-nowrap text-ellipsis w-full overflow-hidden px-2.5"
       :maxlength="counter"
       :value="modelValue"
       @input="onInput"
@@ -59,7 +59,7 @@ const P = defineProps({
   onStartIconClick: { type: Function, default: null },
   onEndIconClick: { type: Function, default: null }
 });
-const E = defineEmits(["update:modelValue", "inputClick"]);
+const E = defineEmits(["update:modelValue", "inputClick", "startIconClick", "endIconClick"]);
 const focused = ref(false);
 
 const move_label = computed(() => {
@@ -83,28 +83,3 @@ const onInput = (e: any) => debouncedUpdate(e.target.value ?? "");
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
 
-<style>
-.h_inputbase.h_inputText {
-  flex: 1 1 40px;
-  max-height: 40px;
-}
-
-.h_inputText-input {
-  display: inline-block;
-  box-sizing: border-box;
-  flex: 1;
-  padding: 0 10px;
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  color: var(--col-txt-1);
-  vertical-align: bottom;
-  background-color: transparent;
-  border: none;
-  width: 100%;
-  overflow: hidden;
-  appearance: none;
-  outline: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-</style>

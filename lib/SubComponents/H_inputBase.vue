@@ -1,38 +1,38 @@
 <template>
   <div
-    class="h_inputbase group relative inline-grid min-h-[40px] min-w-[100px] grid-cols-[auto_1fr_auto_auto] rounded border border-txt5 data-[error]:border-err"
+    class="h_inputbase group relative inline-grid min-h-[40px] min-w-[100px] grid-cols-[auto_1fr_auto_auto] rounded border border-txt5 data-[error]:border-err focus-within:border-pri"
     @click="Click"
     :disabled="disabled ? true : undefined"
     :data-error="ErrorMessage != '' ? true : undefined"
   >
     <label
       ref="_label"
-      class="h_inputbase-label pointer-events-none absolute block translate-x-[10px] translate-y-[10px] scale-100 select-none px-1 leading-4 text-txt2 transition-transform group-data-[error]:text-err"
-      :move="movelabel"
+      class="h_inputbase-label pointer-events-none absolute block translate-x-[10px] translate-y-[10px] scale-100 select-none px-1 leading-4 text-txt2 transition-transform group-data-[error]:text-err group-focus-within:text-pri data-[move='true']:translate-y-[-8px] data-[move='true']:translate-x-[-8px] data-[move='true']:scale-75"
+      :data-move="movelabel"
       >{{ label }}</label
     >
     <H_icon
       v-if="startIcon != ''"
       :icon="startIcon"
-      class="h_inputbase-starticon"
+      class="h_inputbase-starticon row-start-1 col-start-1 self-center w-[22px] ml-1 text-txt3"
       :btn="stBtn ? true : null"
     />
     <H_icon
       v-if="endIcon != ''"
       :icon="endIcon"
-      class="h_inputbase-endicon"
+      class="h_inputbase-endicon row-start-1 col-start-4 self-center w-[22px] mr-1 text-txt3"
       :btn="endBtn ? true : null"
     />
-    <H_icon btn v-if="clearable" class="h_inputbase-clearicon" />
-    <div class="h_inputbase-slot"><slot /></div>
+    <H_icon btn v-if="clearable" class="h_inputbase-clearicon row-start-1 col-start-3 self-center w-[22px] mr-1 text-txt3" />
+    <div class="flex flex-col w-full row-start-1 col-start-2"><slot /></div>
 
-    <div class="h_inputbase-HelpText">
+    <div class="absolute flex row-start-2 col-start-1 col-span-4 text-xs justify-between select-none text-txt2  w-full pt-0.5 px-0.5">
       <template v-if="ErrorMessage == ''">
         <div>{{ HelpTextStart }}</div>
-        <div>{{ HelpTextEnd }}</div>
+        <div class="self-end">{{ HelpTextEnd }}</div>
       </template>
       <template v-else>
-        <div class="col-txt-err">{{ ErrorMessage }}</div>
+        <div class="text-err">{{ ErrorMessage }}</div>
       </template>
     </div>
   </div>
@@ -82,90 +82,3 @@ onMounted(() => {
   }, 20);
 });
 </script>
-
-<style>
-/* .h_inputbase-label {
-  display: block;
-  position: absolute;
-  color: var(--col-txt-2);
-  top: 0;
-  left: 0;
-  padding: 0 5px;
-  line-height: 18px;
-  pointer-events: none;
-  background-repeat: no-repeat;
-  user-select: none;
-  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
-  transform: translate(10px, 10px) scale(1);
-} */
-
-.h_inputbase:focus-within {
-  border-color: var(--col-pri);
-  border-width: 1px;
-}
-
-.h_inputbase:focus-within .h_inputbase-label {
-  color: var(--col-pri);
-}
-
-.h_inputbase-slot {
-  display: flex;
-  flex-direction: column;
-  grid-row: 1;
-  grid-column: 2;
-  width: 100%;
-}
-
-.h_inputbase-label[move="true"] {
-  transform: translate(7px, -8px) scale(0.75);
-  transform-origin: top left;
-}
-
-.h_inputbase-starticon {
-  grid-row: 1;
-  grid-column: 1;
-  align-self: center;
-  width: 22px;
-  margin: 0;
-  padding: 0;
-  margin-left: 4px;
-  color: var(--col-icon);
-}
-
-.h_inputbase-endicon {
-  grid-row: 1;
-  grid-column: 4;
-  align-self: center;
-  width: 22px;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  color: var(--col-icon);
-}
-
-.h_inputbase-clearicon {
-  grid-row: 1;
-  grid-column: 3;
-  align-self: center;
-  width: 22px;
-  margin: 0;
-  padding: 0;
-  margin-right: 4px;
-  color: var(--col-icon);
-}
-
-.h_inputbase-HelpText {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  grid-row: 2;
-  grid-column: 1/5;
-  font-size: 0.7rem;
-  bottom: -17px;
-  right: 3px;
-  left: 3px;
-  justify-content: space-between;
-  color: var(--col-txt-2);
-  user-select: none;
-}
-</style>

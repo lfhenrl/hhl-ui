@@ -1,5 +1,5 @@
 <template>
-  <div class="hhl-code-editor">
+  <div class="hhl-code-editor text-sm flex-1">
     <textarea ref="el" />
   </div>
 </template>
@@ -91,11 +91,3 @@ export type ihhlCodeEditor = InstanceType<typeof hhlCodeEditor>;
 export default hhlCodeEditor;
 </script>
 
-<style>
-.hhl-code-editor {
-  font-family: "Source Code Pro", monospace;
-  font-size: 14px;
-  flex: 1;
-  line-height: 1.6em;
-}
-</style>

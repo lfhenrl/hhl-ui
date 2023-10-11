@@ -8,32 +8,11 @@
         <H_switch label="Switch 1" v-model="check"></H_switch>
         <H_switch label="Switch 2" v-model="check"></H_switch>    
         <H_switch label="Switch 3" v-model="check"></H_switch>
-        <H_input v-model="check" label="value"></H_input>
     </div>
     </template>
     <script>
         const check = ref(true);
         return {check}
-    </script>
-'>
-</hhl-live-editor>
-
-<br>
-
-## Data binding Array
-
-<hhl-live-editor title="" htmlCode='
-    <template>
-    <div class="flex items-center gap-4 px-4">
-        <H_switch label="Switch 1" v-model="checkArray" value="value1"></H_switch>
-        <H_switch label="Switch 2" v-model="checkArray" value="value2"></H_switch>    
-        <H_switch label="Switch 3" v-model="checkArray" value="value3"></H_switch>
-        <H_input v-model="checkArray" label="value"></H_input>
-    </div>
-    </template>
-    <script>
-        const  checkArray = ref([]);
-        return {checkArray}
     </script>
 '>
 </hhl-live-editor>
