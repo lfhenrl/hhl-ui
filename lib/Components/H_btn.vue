@@ -1,6 +1,6 @@
 <template>
   <button
-    class="h_btn col-pri inline-flex cursor-pointer items-center justify-center gap-1 whitespace-nowrap rounded ring-offset-1 ring-offset-pri hover:scale-105 focus:outline-none focus:ring active:scale-95"
+    class="h_btn col-pri inline-flex cursor-pointer items-center justify-center gap-1 whitespace-nowrap rounded leading-loose ring-offset-1 ring-offset-pri hover:scale-105 focus:outline-none focus:ring active:scale-95"
     :style="{
       'background-color':
         type === 'outline' ||

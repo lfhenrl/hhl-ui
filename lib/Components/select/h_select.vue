@@ -8,38 +8,42 @@
   >
     <template v-slot:referance>
       <H_inputbase
-        class="h_select"
+        class="h_select max-h-[36px] min-h-[36px] flex-1"
         :label="label"
         :start-icon="startIcon"
         :end-icon="isOpen ? 'expand_up' : 'expand_down'"
         :HelpTextStart="HelpTextStart"
         :HelpTextEnd="HelpTextEnd"
         :disabled="disabled"
-        :movelabel="move_label"
         :ErrorMessage="validate"
         :err_text="validate"
         :err_label="label"
       >
         <input
           type="text"
-          class="h_select-input"
+          class="h_select-input inline-block max-h-[34px] min-h-[34px] w-full flex-1 appearance-none overflow-hidden text-ellipsis whitespace-nowrap border-none bg-transparent px-2.5 align-bottom text-txt1 outline-none"
           :maxlength="counter"
           :value="labelValue"
           @focus="focused = true"
           @blur="focused = false"
           readonly
+          :name="label"
         />
       </H_inputbase>
     </template>
-    <div class="h_select-list">
-      <div class="h_select-filter" v-if="!hideFilter">
+    <div class="h_select-list rounded border border-bg4 bg-bg0">
+      <div
+        class="h_select-filter flex items-center gap-1 border-b px-1.5 py-1"
+        v-if="!hideFilter"
+      >
         <H_icon icon="search" class="text-txtCol-3" />
         <input
           type="text"
-          class="h_select-filter-input"
+          class="min-h-[24px inline-flex max-h-[24px] w-2 min-w-[50px] appearance-none overflow-hidden text-ellipsis whitespace-nowrap border-none bg-transparent align-bottom text-txt1 outline-none"
           :maxlength="counter"
           :value="filter"
           @input="onInput"
+          name="filter"
         />
         <H_icon
           btn
@@ -98,21 +102,6 @@ const filter = ref("");
 const isOpen = ref(false);
 const labelValue = ref("");
 
-// const LabelValue = computed(() => {
-//   if (P.multi) {
-//     return P.list.includes(P.modelValue);
-//   } else {
-//     return P.list.includes(P.modelValue);
-//   }
-// });
-
-const move_label = computed(() => {
-  if (P.startIcon != "") return true;
-  if (P.modelValue != "") return true;
-  if (focused.value) return true;
-  return false;
-});
-
 watch(
   () => P.modelValue,
   () => {
@@ -127,75 +116,3 @@ const debouncedUpdate = debounce(function (val: string) {
 const onInput = (e: any) => debouncedUpdate(e.target.value ?? "");
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
-
-<style>
-.h_inputbase.h_select {
-  position: relative;
-  background-color: inherit;
-  max-height: 40px;
-}
-
-.h_selectPop .h_pop__referance {
-  display: flex;
-}
-
-.h_select-input {
-  display: inline-block;
-  box-sizing: border-box;
-  flex: 1 1;
-  padding: 0 10px;
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  color: var(--col-txt-1);
-  vertical-align: bottom;
-  background-color: transparent;
-  border: none;
-  width: 100%;
-  overflow: hidden;
-  appearance: none;
-  outline: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.h_select-list {
-  width: 100%;
-  background-color: var(--col-bg-0);
-  box-shadow: var(--shadow-4);
-  border: 1px solid var(--col-txt-5);
-  border-radius: 4px;
-}
-
-.h_select-filter {
-  display: flex;
-  border-bottom: 1px solid var(--col-txt-5);
-  align-items: center;
-  gap: 6px;
-  padding: 3px 6px;
-}
-
-.h_select-filter-input {
-  flex: 1;
-  margin: 0;
-  font: inherit;
-  font-size: 1rem;
-  color: currentColor;
-
-  border: 0;
-  padding: 0;
-  padding-top: 0;
-  height: 1.1876em;
-  display: block;
-  background: none;
-  /*    background-color: dimgrey;*/
-  position: relative;
-  box-sizing: border-box;
-  letter-spacing: inherit;
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
-  align-self: center;
-  justify-self: stretch;
-  min-width: none;
-  width: 33px;
-}
-</style>

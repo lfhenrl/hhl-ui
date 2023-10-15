@@ -1,6 +1,6 @@
 <template>
   <H_inputBase
-    class="h_inputText max-h-10 flex-1"
+    class="h_inputText max-h-[36px] min-h-[36px] flex-1"
     :label="label"
     :clearable="clearable"
     :start-icon="startIcon"
@@ -8,7 +8,6 @@
     :HelpTextStart="hintStart"
     :HelpTextEnd="stringCounter"
     :disabled="disabled"
-    :movelabel="move_label"
     :ErrorMessage="validate"
     :err_text="validate"
     :err_label="label"
@@ -20,7 +19,7 @@
   >
     <input
       type="text"
-      class="h_inputText-input inline-block flex-1 text-txt1 align-bottom bg-transparent border-none appearance-none outline-none whitespace-nowrap text-ellipsis w-full overflow-hidden px-2.5"
+      class="h_inputText-input inline-block max-h-[34px] min-h-[34px] w-full flex-1 appearance-none overflow-hidden text-ellipsis whitespace-nowrap border-none bg-transparent px-2.5 align-bottom text-txt1 outline-none"
       :maxlength="counter"
       :value="modelValue"
       @input="onInput"
@@ -43,7 +42,7 @@ import { validateFunc } from "../utils/validateFunc";
 const P = defineProps({
   modelValue: {
     type: String,
-    default: ""
+    default: "",
   },
   label: { type: String, default: "" },
   clearable: { type: Boolean, default: false },
@@ -57,17 +56,15 @@ const P = defineProps({
   debounce: { type: Number, default: 200 },
   validator: Array,
   onStartIconClick: { type: Function, default: null },
-  onEndIconClick: { type: Function, default: null }
+  onEndIconClick: { type: Function, default: null },
 });
-const E = defineEmits(["update:modelValue", "inputClick", "startIconClick", "endIconClick"]);
+const E = defineEmits([
+  "update:modelValue",
+  "inputClick",
+  "startIconClick",
+  "endIconClick",
+]);
 const focused = ref(false);
-
-const move_label = computed(() => {
-  if (P.startIcon != "") return true;
-  if (P.modelValue != "") return true;
-  if (focused.value) return true;
-  return false;
-});
 
 const stringCounter = computed(() => {
   if (P.counter == "") return P.hintEnd;
@@ -82,4 +79,3 @@ const debouncedUpdate = debounce(function (val: string) {
 const onInput = (e: any) => debouncedUpdate(e.target.value ?? "");
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
-

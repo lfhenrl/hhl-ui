@@ -1,4 +1,4 @@
-# Select
+# Select Box
 
 The `H_selectBox` component is selector box for singel selection or multi selections.
 
@@ -8,6 +8,46 @@ The `H_selectBox` component is selector box for singel selection or multi select
       <template>
        <div class="flex items-center gap-4 px-4"> 
             <H_selectBox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectBox>
+            <H_inputText readonly v-model="selection" label="Selector"></H_inputText>
+      </div>
+      </template>
+      <script>
+            const selection = ref("");
+            return { selection }
+      </script>
+'>
+</hhl-live-editor>
+
+<br>
+
+## Label left
+
+By adding attribute "LabelLeft"
+
+<hhl-live-editor title="" htmlCode='
+      <template>
+       <div class="flex items-center gap-4 px-4"> 
+            <H_selectBox label-left :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectBox>
+            <H_inputText readonly v-model="selection" label="Selector"></H_inputText>
+      </div>
+      </template>
+      <script>
+            const selection = ref("");
+            return { selection }
+      </script>
+'>
+</hhl-live-editor>
+
+<br>
+
+## Layout as row
+
+By adding attribute "row"
+
+<hhl-live-editor title="" htmlCode='
+      <template>
+       <div class="flex items-center gap-4 px-4"> 
+            <H_selectBox row :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectBox>
             <H_inputText readonly v-model="selection" label="Selector"></H_inputText>
       </div>
       </template>
@@ -75,37 +115,14 @@ Multi selections by adding `multi`
 <hhl-live-editor title="" htmlCode='
       <template>
        <div class="flex items-center gap-4 px-4"> 
-            <H_select multi
+            <H_selectBox multi
             :list="[
                         {value:`nr1`, label: `Number 1`},
                         {value:`nr2`, label: `Number 2`},
                         {value:`nr3`, label: `Number 3`}
                         ]" 
             v-model="selection" label="Selector">
-            </H_select>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
-      </div>
-      </template>
-      <script>
-            const selection = ref("");
-            return { selection }
-      </script>
-'>
-</hhl-live-editor>
-
-<br>
-
-## Hide filter
-
-Hide filter by adding `hide-filter`
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-       <div class="flex items-center gap-4 px-4"> 
-            <H_select hide-filter
-                  :list="[`nr1`, `nr2`, `nr3`]" 
-                  v-model="selection" label="Selector">
-            </H_select>
+            </H_selectBox>
             <H_inputText readonly v-model="selection" label="Value"></H_inputText>
       </div>
       </template>
@@ -125,10 +142,10 @@ Disabled by adding `disabled`
 <hhl-live-editor title="" htmlCode='
       <template>
        <div class="flex items-center gap-4 px-4"> 
-            <H_select disabled
+            <H_selectBox disabled
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
-            </H_select>
+            </H_selectBox>
             <H_inputText readonly v-model="selection" label="Value"></H_inputText>
       </div>
       </template>
@@ -148,10 +165,10 @@ Readonly by adding `readonly`
 <hhl-live-editor title="" htmlCode='
       <template>
        <div class="flex items-center gap-4 px-4"> 
-            <H_select readonly
+            <H_selectBox readonly
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
-            </H_select>
+            </H_selectBox>
             <H_inputText readonly v-model="selection" label="Value"></H_inputText>
       </div>
       </template>

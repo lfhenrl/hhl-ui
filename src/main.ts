@@ -87,6 +87,9 @@ const H_dragDrop = defineAsyncComponent(
 const H_slider = defineAsyncComponent(
   () => import("../lib/Components/H_slider.vue"),
 );
+const H_progressBar = defineAsyncComponent(
+  () => import("../lib/Components/H_progressBar.vue"),
+);
 const H_form = defineAsyncComponent(
   () => import("../lib/Components/H_form.vue"),
 );
@@ -123,6 +126,7 @@ app.component("H_chartPie", H_chartPie);
 app.component("H_virtualList", H_virtualList);
 app.component("H_dragDrop", H_dragDrop);
 app.component("H_slider", H_slider);
+app.component("H_progressBar", H_progressBar);
 app.component("H_form", H_form);
 
 app.component("nav-bar", navBar);

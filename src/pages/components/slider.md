@@ -34,7 +34,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex flex-col gap-4 px-4">
+    <div class="flex flex-col gap-8 px-4">
         <H_slider v-model="value" min="0" max="100" label="col-pri" class="col-pri"></H_slider>
         <H_slider v-model="value" min="0" max="100" label="col-sec" class="col-sec"></H_slider>
         <H_slider v-model="value" min="0" max="100" label="col-ok" class="col-ok"></H_slider>
@@ -61,7 +61,7 @@ You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-        <div class="flex flex-col gap-4 px-4">
+        <div class="flex flex-col gap-8 px-4">
             <H_slider disabled v-model="value" min="0" max="100" label="col-pri" class="col-pri"></H_slider>
             <H_slider disabled v-model="value" min="0" max="100" label="col-sec" class="col-sec"></H_slider>
             <H_slider disabled v-model="value" min="0" max="100" label="col-ok" class="col-ok"></H_slider>

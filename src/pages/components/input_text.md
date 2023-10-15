@@ -231,7 +231,7 @@ Validation by adding `validator=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-col  gap-6">
+      <div class="flex flex-col  gap-12">
       <H_inputText v-model="txt" label="required" :validator="[v.required]"></H_inputText>
       <H_inputText v-model="txt" label="email" :validator="[v.email]"></H_inputText>
       <H_inputText v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></H_inputText>

@@ -1,9 +1,16 @@
 <template>
   <div class="H_pop" ref="H_popRef">
-    <div class="H_pop-referance">
+    <div class="H_pop-referance flex">
       <slot name="referance" />
     </div>
-    <dialog popover="manual" v-movable="movable" :pos="pos" :modal="modal" class="H_pop-dialog shadow-3" :shake="shake">
+    <dialog
+      popover="manual"
+      v-movable="movable"
+      :pos="pos"
+      :modal="modal"
+      class="H_pop-dialog origin-top overflow-auto bg-transparent opacity-0 shadow-lg"
+      :shake="shake"
+    >
       <slot />
     </dialog>
     <div class="bg"></div>
@@ -18,11 +25,11 @@ import { Pop } from "./utils/Pop";
 const P = defineProps({
   modelValue: {
     type: Boolean,
-    default: false
+    default: false,
   },
   container: {
     type: String as PropType<"box" | "slotElement">,
-    default: "slotElement"
+    default: "slotElement",
   },
   querySelector: { type: String, default: "body" },
   placement: {
@@ -41,9 +48,12 @@ const P = defineProps({
       | "left-end"
       | "center"
     >,
-    default: "bottom-start"
+    default: "bottom-start",
   },
-  trigger: { type: String as PropType<"toggle" | "click" | "hover" | "none">, default: "toggle" },
+  trigger: {
+    type: String as PropType<"toggle" | "click" | "hover" | "none">,
+    default: "toggle",
+  },
   readonly: { type: Boolean, default: false },
   offsetTop: { type: Number, default: 0 },
   offsetLeft: { type: Number, default: 0 },
@@ -55,7 +65,7 @@ const P = defineProps({
   movable: { default: false, type: Boolean },
   closePopupClick: { type: Boolean, default: false },
   delayOnMouseOver: { type: String, default: "100" },
-  delayOnMouseOut: { type: String, default: "400" }
+  delayOnMouseOut: { type: String, default: "400" },
 });
 const E = defineEmits(["open", "close"]);
 
@@ -121,7 +131,7 @@ function diaClose() {
       dialogBox.hidePopover();
     }
     Object.assign(dialogBox.style, {
-      maxHeight: "none"
+      maxHeight: "none",
     });
   }, 400);
 }
@@ -252,16 +262,6 @@ onUnmounted(() => {
 </script>
 
 <style>
-.H_pop-dialog {
-  padding: 0;
-  border: none;
-  overflow: auto;
-  transform-origin: top;
-  opacity: 0;
-
-  background-color: transparent;
-}
-
 .H_pop-dialog.open-end {
   opacity: 1;
 }

@@ -1,13 +1,19 @@
 <template>
   <div class="live-render">
-    <div :class="scope" class="live-render_content p-4">
+    <div :class="scope" class="live-render_content px-4 py-8">
       <component :key="count" :is="render()" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onErrorCaptured, onUnmounted, ref, watchEffect } from "vue";
+import {
+  defineComponent,
+  onErrorCaptured,
+  onUnmounted,
+  ref,
+  watchEffect,
+} from "vue";
 import { tryRender } from "./render/tryRender";
 
 function generateScope() {
@@ -23,7 +29,7 @@ export default defineComponent({
   emits: ["onError"],
   props: {
     template: { type: String, default: "<div>Det virker</div>" },
-    comp: { type: Object, default: {} }
+    comp: { type: Object, default: {} },
   },
   setup(props, { emit }) {
     const count = ref(0);
@@ -36,7 +42,7 @@ export default defineComponent({
       const error = {
         err,
         Ins: instance,
-        info
+        info,
       };
       emit("onError", error.err);
       return false;
@@ -57,7 +63,7 @@ export default defineComponent({
 
         comp = defineComponent({
           template: result.template,
-          setup: result.setup
+          setup: result.setup,
         });
         setTimeout(() => {
           count.value = count.value + 1;
@@ -96,9 +102,8 @@ export default defineComponent({
     return {
       render,
       count,
-      scope
+      scope,
     };
-  }
+  },
 });
 </script>
-

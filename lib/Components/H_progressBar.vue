@@ -1,6 +1,9 @@
 <template>
-  <div class="H_progressBar" v-if="show">
-    <div class="H_progressBar-value"></div>
+  <div
+    class="H_progressBar min-h-[4px] w-full overflow-hidden rounded"
+    v-if="show"
+  >
+    <div class="H_progressBar-value h-full min-h-[4px] w-full"></div>
   </div>
 </template>
 
@@ -8,24 +11,19 @@
 defineProps({
   show: {
     type: Boolean,
-    default: false
+    default: false,
   },
-  size: String
+  color_bg: { type: String, default: "" },
+  color_fg: { type: String, default: "var(--col-pri)" },
 });
 </script>
 
 <style>
 .H_progressBar {
-  height: 4px;
-  background-color: rgba(5, 114, 206, 0.2);
-  width: 100%;
-  overflow: hidden;
+  background-color: v-bind(color_bg);
 }
-
 .H_progressBar-value {
-  width: 100%;
-  height: 100%;
-  background-color: rgb(5, 114, 206);
+  background-color: v-bind(color_fg);
   animation: indeterminateAnimation 1s infinite linear;
   transform-origin: 0% 50%;
 }

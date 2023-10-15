@@ -13,7 +13,6 @@
   "files": [
     "Components/*",
     "SubComponents/*",
-    "style/*",
     "utils/*",
     "Directives/*",
     "style.css",

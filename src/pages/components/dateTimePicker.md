@@ -6,7 +6,7 @@
     <template>
     <div class="flex items-center gap-4"> 
           <H_date-picker label="Date" v-model="dato"></H_date-picker>
-          <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
+          <H_inputText readonly :model-value="formatDate(dato)" label="Value"></H_inputText>
     </div>
     </template>
     <script>
@@ -34,7 +34,7 @@
       <div class="flex items-center gap-4"> 
             <H_date-picker v-model="dato"/>
             </H_date-picker>
-            <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
+            <H_inputText readonly :model-value="formatDate(dato)" label="Value"></H_inputText>
       </div>
       </template>
       <script>
@@ -64,7 +64,7 @@ By adding the property `long-date` you will get the week day name incluted
       <div class="flex items-center gap-4"> 
             <H_date-picker v-model="dato" long-date/>
             </H_date-picker>
-            <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
+            <H_inputText readonly :model-value="formatDate(dato)" label="Value"></H_inputText>
       </div>
       </template>
       <script>
@@ -94,7 +94,7 @@ By adding the property `show-seconds`.
       <div class="flex items-center gap-4"> 
             <H_date-picker v-model="dato" show-seconds/>
             </H_date-picker>
-            <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
+            <H_inputText readonly :model-value="formatDate(dato)" label="Value"></H_inputText>
       </div>
       </template>
       <script>
@@ -125,7 +125,7 @@ You can select "datetime" (default) "date" or "time"
       <div class="flex items-center gap-4"> 
             <H_date-picker label="Date" v-model="dato" type="date"/>
             </H_date-picker>
-            <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
+            <H_inputText readonly :model-value="formatDate(dato)" label="Value"></H_inputText>
       </div>
       </template>
       <script>
@@ -156,7 +156,7 @@ You can select "datetime" (default) "date" or "time"
       <div class="flex items-center gap-4"> 
             <H_date-picker label="Date" v-model="dato" type="time"/>
             </H_date-picker>
-            <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
+            <H_inputText readonly :model-value="formatDate(dato)" label="Value"></H_inputText>
       </div>
       </template>
       <script>
@@ -186,7 +186,7 @@ By adding the property `hide-icon` you will remove the icon.
       <div class="flex items-center gap-4"> 
             <H_date-picker label="Date" v-model="dato" hide-icon/>
             </H_date-picker>
-            <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
+            <H_inputText readonly :model-value="formatDate(dato)" label="Value"></H_inputText>
       </div>
       </template>
       <script>
@@ -216,7 +216,7 @@ By adding the attribute `no-outside-click` you will prevent the popup to close w
       <div class="flex items-center gap-4"> 
             <H_date-picker label="Date" v-model="dato" no-outside-click/>
             </H_date-picker>
-            <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
+            <H_inputText readonly :model-value="formatDate(dato)" label="Value"></H_inputText>
       </div>
       </template>
       <script>
@@ -246,7 +246,7 @@ By adding the attribute `disabled` you will disable the dateTime-picker
       <div class="flex items-center gap-4"> 
             <H_date-picker label="Date" v-model="dato" disabled/>
             </H_date-picker>
-            <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
+            <H_inputText readonly :model-value="formatDate(dato)" label="Value"></H_inputText>
       </div>
       </template>
       <script>
@@ -276,7 +276,7 @@ By adding the attribute `readonly` it will be in readonly mode.
       <div class="flex items-center gap-4"> 
             <H_date-picker label="Date" v-model="dato" readonly/>
             </H_date-picker>
-            <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
+            <H_inputText readonly :model-value="formatDate(dato)" label="Value"></H_inputText>
       </div>
       </template>
       <script>
@@ -306,7 +306,7 @@ You can show a hint text at the bottom of the datepicker by adding `hint-start="
       <div class="flex items-center gap-4"> 
             <H_date-picker label="Date" v-model="dato" hint-start="hint-start." hint-end="hint-end."/>
             </H_date-picker>
-            <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
+            <H_inputText readonly :model-value="formatDate(dato)" label="Value"></H_inputText>
       </div>
       </template>
       <script>
@@ -336,7 +336,7 @@ Validation by adding `validator=""`
       <div class="flex items-center gap-4"> 
             <H_date-picker label="Date" v-model="dato" :validator="[v.dateRequired]"/>
             </H_date-picker>
-            <H_input :model-value="formatDate(dato)" label="Value" ></H_input>
+            <H_inputText :model-value="formatDate(dato)" label="Value" ></H_inputText>
       </div>
       </template>
       <script>

@@ -1,11 +1,13 @@
 <template>
   <H_inputbase
     class="h_selectBox"
+    :class="{
+      'max-h-[36px] min-h-[36px]': row,
+    }"
     :label="label"
     :HelpTextStart="HelpTextStart"
     :HelpTextEnd="HelpTextEnd"
     :disabled="disabled"
-    :movelabel="true"
     :ErrorMessage="validate"
     :err_text="validate"
     :err_label="label"
@@ -33,37 +35,23 @@ import { validateFunc } from "../../utils/validateFunc";
 const P = defineProps({
   modelValue: {
     type: String,
-    default: ""
+    default: "",
   },
   label: { type: String, default: "" },
   row: { type: Boolean, default: false },
   HelpTextStart: { type: String, default: "" },
   HelpTextEnd: { type: String, default: "" },
   disabled: { type: Boolean, default: false },
+  readonly: { type: Boolean, default: false },
   filter: { type: String, default: "" },
-  labelGap: { type: String, default: "10px" },
-  listGap: { type: String, default: "10px" },
+  labelGap: { type: String, default: "6px" },
+  listGap: { type: String, default: "6px" },
   labelLeft: { type: Boolean, default: false },
   multi: { type: Boolean, default: false },
   list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] },
-  validator: Array
+  validator: Array,
 });
 defineEmits(["update:modelValue"]);
 
-const align = computed(() => {
-  if (P.row) {
-    return "center";
-  } else {
-    return "start";
-  }
-});
-
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
-
-<style>
-.h_selectBox {
-  align-items: v-bind(align);
-  margin: 0;
-}
-</style>

@@ -1,10 +1,30 @@
 <template>
-  <H_inputBase class="h_slider col-pri" :label="label" :movelabel="true">
-    <div class="h_slider_inner">
-      <div class="h_slider_innerBox">
-        <div class="h_slider_info" :style="{ left: posProcent }">{{ modelValue }}</div>
+  <H_inputBase
+    class="h_slider max-h-[36px] min-h-[36px] flex-1 bg-transparent"
+    :label="label"
+    :movelabel="true"
+  >
+    <div
+      class="h_slider_inner relative grid max-h-[36px] min-h-[36px] flex-1 items-center bg-transparent px-1"
+    >
+      <div
+        class="h_slider_innerBox pointer-events-none absolute bottom-0 left-[16px] right-[16px] top-0 flex items-center"
+      >
+        <div
+          class="h_slider_info lea pointer-events-none absolute ml-[-12px] flex h-[26px] w-[26px] items-center justify-center rounded-full bg-[var(--current-bg-col)] text-[11px] leading-none"
+          :style="{ left: posProcent }"
+        >
+          {{ modelValue }}
+        </div>
       </div>
-      <input type="range" :value="modelValue" @input="changed" :aria-label="label" :name="label" />
+      <input
+        type="range"
+        class="h-1.5 w-full appearance-none rounded bg-gradient-to-t from-[var(--current-bg-col)] to-[var(--current-bg-col)]"
+        :value="modelValue"
+        @input="changed"
+        :aria-label="label"
+        :name="label"
+      />
     </div>
   </H_inputBase>
 </template>
@@ -16,22 +36,22 @@ import H_inputBase from "../SubComponents/H_inputBase.vue";
 const P = defineProps({
   modelValue: {
     type: [String, Number],
-    default: false
+    default: false,
   },
   label: {
     type: String,
-    default: ""
+    default: "",
   },
   min: {
     type: String,
-    default: "100"
+    default: "100",
   },
   max: {
     type: String,
-    default: "0"
+    default: "0",
   },
   disabled: { type: Boolean, default: false },
-  validator: Array
+  validator: Array,
 });
 
 const E = defineEmits(["update:modelValue"]);
@@ -48,72 +68,10 @@ function changed(e: any) {
 </script>
 
 <style>
-.h_slider {
-  background-color: transparent !important;
-  flex: 1 1 200px;
-  max-height: 40px;
-}
-.h_slider_inner {
-  position: relative;
-  display: grid;
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  background-color: transparent !important;
-  flex: 1;
-  margin: 0 5px;
-  align-items: center;
-}
-
-.h_slider_innerBox {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 26px;
-  pointer-events: none;
-}
-
-.h_slider_info {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 26px;
-  border-radius: 4px;
-  line-height: 1;
-  pointer-events: none;
-  font-size: 11px;
-  padding-left: 2px;
-}
-
-.h_slider input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 5px;
-  background-image: linear-gradient(var(--current-bg-col), var(--current-bg-col));
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-
-.h_slider input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 26px;
-  width: 26px;
-  border-radius: 50%;
-  background: var(--current-bg-col);
-  cursor: pointer;
-  box-shadow: 0 0 2px 0 #555;
-  transition: background 0.3s ease-in-out;
-}
-
-.h_slider input[type="range"]::-webkit-slider-runnable-track {
+/* .h_slider input[type="range"]::-webkit-slider-runnable-track {
   -webkit-appearance: none;
   box-shadow: none;
   border: none;
   background: transparent;
-}
+} */
 </style>

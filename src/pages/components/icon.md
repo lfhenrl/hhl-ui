@@ -38,21 +38,21 @@ If you add the prop `btn` you will get a hover effect-
 ## Color
 
 You can change the color by adding one of the theme color classes<br>
-`col-txt-pri` `col-txt-sec` `col-txt-ok` `col-txt-err` `col-txt-warn` `col-txt-info` `col-txt-black` `col-txt-white`<br>
+`text-pri` `text-sec` `text-ok` `text-err` `text-warn` `text-info` `text-black` `text-white`<br>
 The default is `currentcolor`.<br>
 If you need a special color then just use `style="color: purple"`
 
 <hhl-live-editor title="" htmlCode='
     <template>
     <div class="flex items-center gap-4">
-        <H_icon icon="edit" class="col-txt-pri"></H_icon>
-        <H_icon icon="edit" class="col-txt-sec"></H_icon>
-        <H_icon icon="edit" class="col-txt-ok"></H_icon>
-        <H_icon icon="edit" class="col-txt-err"></H_icon>
-        <H_icon icon="edit" class="col-txt-warn"></H_icon>
-        <H_icon icon="edit" class="col-txt-info"></H_icon>
-        <H_icon icon="edit" class="col-txt-black"></H_icon>
-        <H_icon icon="edit" class="col-txt-white"></H_icon>
+        <H_icon icon="edit" class="text-pri"></H_icon>
+        <H_icon icon="edit" class="text-sec"></H_icon>
+        <H_icon icon="edit" class="text-ok"></H_icon>
+        <H_icon icon="edit" class="text-err"></H_icon>
+        <H_icon icon="edit" class="text-warn"></H_icon>
+        <H_icon icon="edit" class="text-info"></H_icon>
+        <H_icon icon="edit" class="text-black"></H_icon>
+        <H_icon icon="edit" class="text-white"></H_icon>
         <H_icon icon="edit" style="color: purple"></H_icon>
     </div>
     </template>

@@ -27,7 +27,7 @@
           <H_btn>Open</H_btn>
         </template>
         <div class="flex flex-col rounded bg-bg1 p-32">
-          <div moveable-drag pop-close>TITLE</div>
+          <div moveable-drag>TITLE</div>
         </div>
       </H_pop>
       <H_select

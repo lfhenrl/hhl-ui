@@ -1,19 +1,74 @@
 <template>
-  <div class="h_baseSelectList" @click="Click" @keyup.space="Click" @keyup.enter="Click" :row="row ? 'true' : null">
-    <div class="h_baseSelectList-item" v-for="item in filterList" :key="(item.value as string)"
-      :selected="selected(item.value)" :data-value="item.value" :label-left="labelLeft">
-      <div class="h_baseSelectList-icon">
-        <svg v-if="multi" viewBox="0 0 24 24" class="h_baseSelectList__checkbox" tabindex="0">
-          <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"></path>
+  <div
+    class="h_baseSelectList col-warn flex flex-col items-start bg-transparent px-2.5 py-2.5"
+    :class="{
+      '!flex-row flex-wrap items-center': row,
+    }"
+    :style="{ gap: listGap }"
+    @click="Click"
+    @keyup.space="Click"
+    @keyup.enter="Click"
+    :row="row ? 'true' : null"
+  >
+    <div
+      class="h_baseSelectList-item flex cursor-pointer select-none items-center"
+      :class="{
+        'flex-row-reverse': labelLeft,
+      }"
+      :style="{ gap: labelGap }"
+      v-for="item in filterList"
+      :key="item.value as string"
+      :data-value="item.value"
+    >
+      <div class="h_baseSelectList-icon pointer-events-none flex items-center">
+        <svg
+          v-if="multi"
+          viewBox="0 0 24 24"
+          class="h_baseSelectList__checkbox h-4 whitespace-nowrap rounded border border-txt5 fill-transparent p-[1px] ring-offset-1 ring-offset-pri transition focus:outline-none focus:ring"
+          :class="{
+            'border-[var(--current-bg-col)] bg-[var(--current-bg-col)] fill-[var(--current-txt-col)]':
+              selected(item.value),
+          }"
+          tabindex="0"
+        >
+          <path
+            d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"
+          ></path>
         </svg>
 
-        <svg v-else class="h_baseSelectList-radio__svg" tabindex="0">
-          <circle class="h_baseSelectList-radio__box" cx="50%" cy="50%" r="44%" fill="none" stroke-width="8%" />
-          <circle class="h_baseSelectList-radio__box_inner" cx="50%" cy="50%" r="26%" />
+        <svg
+          v-else
+          class="h_baseSelectList-radio__svg h-[18px] w-[18px] ring-offset-1 ring-offset-pri focus:outline-none focus:ring"
+          tabindex="0"
+        >
+          <circle
+            class="h_baseSelectList-radio__box stroke-txt5"
+            :class="{
+              'stroke-[var(--current-bg-col)]': selected(item.value),
+            }"
+            cx="50%"
+            cy="50%"
+            r="44%"
+            fill="none"
+            stroke-width="8%"
+          />
+          <circle
+            class="h_baseSelectList-radio__box_inner origin-center scale-0 fill-[var(--current-bg-col)] transition"
+            :class="{
+              'scale-100': selected(item.value),
+            }"
+            cx="50%"
+            cy="50%"
+            r="26%"
+          />
         </svg>
       </div>
 
-      <div class="h_baseSelectList-label text-txtCol-2">{{ item.label }}</div>
+      <div
+        class="h_baseSelectList-label text-txtCol-2 pointer-events-none -mt-0.5 text-sm"
+      >
+        {{ item.label }}
+      </div>
     </div>
   </div>
 </template>
@@ -24,11 +79,11 @@ import { computed, ref, watch } from "vue";
 const P = defineProps({
   modelValue: {
     type: String,
-    default: ""
+    default: "",
   },
   labelValue: {
     type: String,
-    default: ""
+    default: "",
   },
   filter: { type: String, default: "" },
   labelGap: { type: String, default: "10px" },
@@ -36,17 +91,18 @@ const P = defineProps({
   labelLeft: { type: Boolean, default: false },
   row: { type: Boolean, default: false },
   multi: { type: Boolean, default: false },
-  list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] }
+  list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] },
 });
 const E = defineEmits(["update:modelValue", "update:labelValue"]);
 const valueList: any = ref(P.modelValue.split(","));
-const sortAlphaNum = (a: any, b: any) => a.localeCompare(b, "en", { numeric: true });
+const sortAlphaNum = (a: any, b: any) =>
+  a.localeCompare(b, "en", { numeric: true });
 
 const optionlist = computed(() => {
   return P.list.map((ele: any) => {
     return {
       value: ele.value ? ele.value : ele,
-      label: ele.label ? ele.label : ele
+      label: ele.label ? ele.label : ele,
     };
   });
 });
@@ -63,10 +119,11 @@ watch(
       .toString();
     E("update:labelValue", val);
   },
-  { immediate: true }
+  { immediate: true },
 );
 
-const filterFunc = (item: any) => item.label.toLowerCase().includes(P.filter.toLowerCase());
+const filterFunc = (item: any) =>
+  item.label.toLowerCase().includes(P.filter.toLowerCase());
 const filterList = computed(() => optionlist.value.filter(filterFunc));
 
 function selected(item: any) {
@@ -110,103 +167,3 @@ function setMultivalue(val: string) {
   E("update:modelValue", valSort.toString());
 }
 </script>
-
-<style>
-svg:focus {
-  outline: none;
-}
-
-.h_baseSelectList {
-  display: flex;
-  flex-direction: column;
-  gap: v-bind(listGap);
-  /* border: 1px solid red; */
-  align-items: flex-start;
-  flex-wrap: wrap;
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  padding: 10px;
-}
-
-.h_baseSelectList[row="true"] {
-  flex-direction: row;
-}
-
-.h_baseSelectList-item {
-  display: flex;
-  align-items: center;
-  gap: v-bind(labelGap);
-  user-select: none;
-}
-
-.h_baseSelectList-item[label-left="true"] {
-  flex-direction: row-reverse;
-}
-
-.h_baseSelectList-icon {
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-}
-
-.h_baseSelectList-label {
-  pointer-events: none;
-}
-
-.h_baseSelectList__checkbox:focus-visible,
-.h_baseSelectList-radio__svg:focus-visible,
-.h_baseSelectList-item:hover .h_baseSelectList__checkbox,
-.h_baseSelectList-item:hover .h_baseSelectList-radio__svg {
-  outline: 3px solid var(--current-bg-col, var(--col-pri));
-  outline-offset: 2px;
-  opacity: 0.5;
-}
-
-.h_baseSelectList__checkbox {
-  border: solid 2px var(--col-txt-5, red);
-  height: 1.2em;
-  fill: transparent;
-  transition: all linear 200ms;
-  line-height: 1rem;
-  border-radius: 4px;
-  margin-top: 0;
-  white-space: nowrap;
-}
-
-.h_baseSelectList-radio__svg {
-  height: 1.2em;
-  width: 1.2em;
-  border-radius: 50%;
-  pointer-events: none;
-  cursor: pointer;
-}
-
-.h_baseSelectList-radio__box {
-  stroke: var(--col-txt-5, red);
-  cursor: pointer;
-  pointer-events: none;
-}
-
-.h_baseSelectList-radio__box_inner {
-  fill: var(--current-bg-col, var(--col-pri));
-  transform: scale3d(0, 0, 0);
-  transition: transform 0.3s;
-  transform-origin: center;
-  cursor: pointer;
-  pointer-events: none;
-}
-
-.h_baseSelectList-item[selected="true"] .h_baseSelectList__checkbox {
-  border-color: var(--current-bg-col, var(--col-pri));
-  background-color: var(--current-bg-col, var(--col-pri));
-  fill: var(--current-txt-col, var(--col-on-pri));
-}
-
-.h_baseSelectList-item[selected="true"] .h_baseSelectList-radio__box_inner {
-  transform: scale3d(1, 1, 1);
-}
-
-.h_baseSelectList-item[selected="true"] .h_baseSelectList-radio__box {
-  stroke: var(--current-bg-col, var(--col-pri));
-}
-</style>

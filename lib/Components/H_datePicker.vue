@@ -10,9 +10,9 @@
     :HelpTextEnd="hintEnd"
     :ErrorMessage="validate"
     @isValid="$emit('isValid', $event)"
-    class="h_datePicker"
+    class="h_datePicker max-h-[36px] min-h-[36px] flex-1"
   >
-    <div class="h_datePicker_container">
+    <div class="h_datePicker_container flex items-center pl-2">
       <H_baseDatePicker
         :modelValue="dato"
         @dateChanged="setDate"
@@ -44,7 +44,10 @@ import H_baseTimePicker from "../SubComponents/date/H_baseTimePicker.vue";
 
 const P = defineProps({
   modelValue: { type: Object as PropType<Date | undefined>, default: null },
-  type: { type: String as PropType<"dateTime" | "date" | "time">, default: "dateTime" },
+  type: {
+    type: String as PropType<"dateTime" | "date" | "time">,
+    default: "dateTime",
+  },
   hideIcon: { default: false, type: Boolean },
   readonly: { type: Boolean, default: false },
   longDate: { default: false, type: Boolean },
@@ -55,17 +58,27 @@ const P = defineProps({
   disabled: { type: Boolean, default: false },
   label: { type: String, default: "" },
   clearable: Boolean,
-  validator: Array
+  validator: Array,
 });
 
-const emit = defineEmits(["update:date", "update:modelValue", "update:time", "isValid"]);
+const emit = defineEmits([
+  "update:date",
+  "update:modelValue",
+  "update:time",
+  "isValid",
+]);
 
 const dato = ref();
 const time = ref({ hour: 0, minute: 0, second: 0 });
 
 function setDate(e: any) {
-  const newDatoNumber = new Date(e.getFullYear(), e.getMonth(), e.getDate()).valueOf();
-  const newTimeNumber = time.value.hour * 3600 + time.value.minute * 60 + time.value.second;
+  const newDatoNumber = new Date(
+    e.getFullYear(),
+    e.getMonth(),
+    e.getDate(),
+  ).valueOf();
+  const newTimeNumber =
+    time.value.hour * 3600 + time.value.minute * 60 + time.value.second;
   const newDato = new Date(newDatoNumber + newTimeNumber * 1000);
   if (newDato) {
     emit("update:modelValue", newDato);
@@ -78,7 +91,11 @@ function setTime(e: any) {
   time.value = { hour: e.hour, minute: e.minute, second: e.second };
   const newTimeNumber = e.hour * 3600 + e.minute * 60 + e.second;
   if (dato.value) {
-    const newDatoNumber = new Date(dato.value.getFullYear(), dato.value.getMonth(), dato.value.getDate()).valueOf();
+    const newDatoNumber = new Date(
+      dato.value.getFullYear(),
+      dato.value.getMonth(),
+      dato.value.getDate(),
+    ).valueOf();
     const newDato = new Date(newDatoNumber + newTimeNumber * 1000);
     if (newDato) {
       emit("update:modelValue", newDato);
@@ -96,31 +113,25 @@ watch(
   () => {
     if (P.modelValue) {
       const pDato = new Date(P.modelValue);
-      time.value = { hour: pDato.getHours(), minute: pDato.getMinutes(), second: pDato.getSeconds() };
-      dato.value = new Date(pDato.getFullYear(), pDato.getMonth(), pDato.getDate());
+      time.value = {
+        hour: pDato.getHours(),
+        minute: pDato.getMinutes(),
+        second: pDato.getSeconds(),
+      };
+      dato.value = new Date(
+        pDato.getFullYear(),
+        pDato.getMonth(),
+        pDato.getDate(),
+      );
     } else {
       time.value = { hour: 0, minute: 0, second: 0 };
       dato.value = null;
     }
   },
   {
-    immediate: true
-  }
+    immediate: true,
+  },
 );
 
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
-
-<style>
-.h_inputbase.h_datePicker {
-  flex: 1 1 200px;
-  max-height: 40px;
-}
-
-.h_datePicker_container {
-  display: flex;
-  align-items: center;
-  margin-top: 3px;
-  margin-left: 9px;
-}
-</style>

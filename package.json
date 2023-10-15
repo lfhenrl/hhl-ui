@@ -32,6 +32,6 @@
     "unplugin-vue-components": "^0.25.2",
     "vite": "^4.4.9",
     "vite-plugin-pages": "^0.31.0",
-    "vite-plugin-vue-markdown": "^0.23.8"
+    "unplugin-vue-markdown": "^0.24.3"
   }
 }

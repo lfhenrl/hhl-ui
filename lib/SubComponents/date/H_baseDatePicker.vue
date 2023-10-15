@@ -1,21 +1,36 @@
 <template>
   <div class="h_datePicker" :focused="focused" :readonly="readonly">
-    <H_pop v-model="popupOpen" trigger="none" :no-outside-click="noOutsideClick" position="fixed">
+    <H_pop
+      v-model="popupOpen"
+      trigger="none"
+      :no-outside-click="noOutsideClick"
+      position="fixed"
+    >
       <template v-slot:referance>
-        <div class="h_datePicker__inputcontainer" @click="onClick">
-          <H_icon icon="event" btn v-if="!hideIcon" />
+        <div
+          class="h_datePicker__inputcontainer group inline-flex cursor-pointer items-center"
+          @click="onClick"
+        >
+          <H_icon
+            icon="event"
+            btn
+            v-if="!hideIcon"
+            class="opacity-70 group-hover:scale-125"
+          />
           <input
             :value="formattetValueDate"
             :size="setSize()"
             readonly
             @focus="focused = !readonly"
             @blur="focused = false"
-            class="h_datePicker__input"
+            class="h_datePicker__input cursor-pointer overflow-hidden bg-transparent pl-1"
           />
         </div>
       </template>
-      <div class="h_datePicker__popup shadow-5">
-        <div class="h_datePicker__header">
+      <div class="h_datePicker__popup rounded border border-bg5 bg-bg0 shadow">
+        <div
+          class="h_datePicker__header flex items-center justify-center bg-bg5 p-1 text-center text-xl font-bold text-txt1"
+        >
           {{ formattetTempDate }}
         </div>
         <H_dateTable
@@ -25,10 +40,18 @@
           @update:tempDatomy="tempDatomy = $event"
           @month-click="activeView = 'month'"
         />
-        <H_monthTable v-show="activeView == 'month'" v-model="tempDatomy" @month-selected="activeView = 'day'" />
-        <div class="h_datePicker__footer">
-          <H_btn size="sm" @click="cancel" class="col-sec">CANCEL</H_btn>
-          <H_btn size="sm" @click="ok">OK</H_btn>
+        <H_monthTable
+          v-show="activeView == 'month'"
+          v-model="tempDatomy"
+          @month-selected="activeView = 'day'"
+        />
+        <div
+          class="h_datePicker__footer flex justify-end gap-3 border-t border-bg4 p-3"
+        >
+          <H_btn :tabindex="0" size="sm" @click="cancel" class="col-sec w-16"
+            >CANCEL</H_btn
+          >
+          <H_btn size="sm" @click="ok" class="w-16">OK</H_btn>
         </div>
       </div>
     </H_pop>
@@ -50,7 +73,7 @@ const props = defineProps({
   readonly: { type: Boolean, default: false },
   hideIcon: { default: false, type: Boolean },
   longDate: { default: false, type: Boolean },
-  noOutsideClick: { type: Boolean, default: false }
+  noOutsideClick: { type: Boolean, default: false },
 });
 
 const emit = defineEmits(["dateChanged"]);
@@ -68,7 +91,7 @@ watch(
       tempDato.value = props.modelValue;
       tempDatomy.value = tempDato.value;
     }
-  }
+  },
 );
 
 function setSize() {
@@ -119,68 +142,3 @@ const onClick = () => {
   tempDatomy.value = tempDato.value;
 };
 </script>
-
-<style>
-.h_datePicker__inputcontainer {
-  flex-direction: row;
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.h_datePicker__inputcontainer .h_icon {
-  --h_icon-size: 1.3em;
-  opacity: 0.7;
-}
-
-.h_datePicker__inputcontainer:hover .h_icon {
-  transform: scale(1.25);
-}
-
-.h_datePicker__popup {
-  border-radius: 4px;
-  background-color: var(--col-bg-0);
-  border: solid 1px var(--col-txt-5);
-}
-
-.h_datePicker__input {
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  padding: 0.45em 0.1em 0.45em 0.2em;
-  background-color: transparent;
-  cursor: pointer;
-  border: none;
-  overflow: hidden;
-  appearance: none;
-  outline: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: currentColor;
-}
-
-.h_datePicker__header {
-  font-family: var(--comp-font-family);
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  font-size: 22px;
-  font-weight: bold;
-  padding: 9px;
-  background-color: var(--col-bg-5);
-  color: var(--col-txt-1);
-}
-
-.h_datePicker__footer {
-  font-family: var(--comp-font-family);
-  display: flex;
-  justify-content: flex-end;
-  gap: 4px;
-  padding: 11px;
-  border-top: solid 1px var(--col-bg-4);
-}
-
-.h_datePicker__footer .h_btn {
-  width: 70px;
-}
-</style>

@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Pages from "vite-plugin-pages";
 import mdAnchor from "markdown-it-anchor";
-import Markdown from "vite-plugin-vue-markdown";
+import Markdown from "unplugin-vue-markdown/vite";
 import { containerPlugin } from "./src/components/containers";
 import visualizer from "rollup-plugin-visualizer";
 
@@ -10,15 +10,15 @@ export default defineConfig({
   // base: "/hhl-ui/",
   resolve: {
     alias: {
-      vue: "vue/dist/vue.esm-bundler.js"
-    }
+      vue: "vue/dist/vue.esm-bundler.js",
+    },
   },
   plugins: [
     vue({
       include: [/\.vue$/, /\.md$/],
       script: {
-        defineModel: true
-      }
+        defineModel: true,
+      },
     }),
     Markdown({
       markdownItSetup(md) {
@@ -26,21 +26,21 @@ export default defineConfig({
         md.use(mdAnchor);
         md.use(containerPlugin);
         md.use(require("markdown-it-prism"));
-      }
+      },
     }),
     Pages({
-      extensions: ["vue", "md"]
-    })
+      extensions: ["vue", "md"],
+    }),
   ],
   server: {
-    open: true
+    open: true,
   },
   build: {
     target: "esnext",
     outDir: "docs",
     cssCodeSplit: false,
     rollupOptions: {
-      plugins: [visualizer({ filename: "./analyse/index.html" })]
-    }
-  }
+      plugins: [visualizer({ filename: "./analyse/index.html" })],
+    },
+  },
 });

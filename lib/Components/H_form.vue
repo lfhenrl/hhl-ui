@@ -1,5 +1,5 @@
 <template>
-  <div ref="hform" class="H_form"><slot /></div>
+  <div ref="hform" class="H_form flex flex-col gap-7"><slot /></div>
 </template>
 
 <script setup lang="ts">
@@ -8,7 +8,7 @@ import { debounce } from "../utils/debounce";
 
 const props = defineProps({
   data: { type: Object, default: {} },
-  dirty: { type: Boolean, default: false }
+  dirty: { type: Boolean, default: false },
 });
 const emit = defineEmits(["update:dirty", "valid", "dirtyValid"]);
 
@@ -21,21 +21,22 @@ watch(
     emit("update:dirty", true);
     isvalid();
   },
-  { deep: true }
+  { deep: true },
 );
 
 watch(
   () => props.dirty,
   () => {
     isvalid();
-  }
+  },
 );
 
 function _isvalid() {
   const w = hform.value;
   const errors = w.querySelectorAll("*[error=true]");
   const isvalid = errors.length < 1 ? true : false;
-  const isdirtyAndValid = props.dirty === true && isvalid === true ? true : false;
+  const isdirtyAndValid =
+    props.dirty === true && isvalid === true ? true : false;
   emit("valid", isvalid);
   emit("dirtyValid", isdirtyAndValid);
 }
@@ -44,11 +45,3 @@ onMounted(() => {
   isvalid();
 });
 </script>
-
-<style>
-.H_form {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-</style>
