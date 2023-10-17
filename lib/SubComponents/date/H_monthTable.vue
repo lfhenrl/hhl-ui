@@ -1,20 +1,39 @@
 <template>
   <div class="h_monthTable">
-    <div class="h_monthTable__innerHeader">
-      <H_btn icon="expand_left" type="icon-text" size="sm" @click="changeYear(-1)" round />
-      <div class="h_monthTable__innerHeaderValue">
+    <div
+      class="h_monthTable__innerHeader flex flex-1 flex-row items-center p-1 font-bold"
+    >
+      <H_icon
+        btn
+        icon="expand_left"
+        type="icon-text"
+        @click="changeYear(-1)"
+        round
+      />
+      <div
+        class="h_monthTable__innerHeaderValue flex flex-1 cursor-pointer justify-center"
+      >
         {{ tempDato.toLocaleString("en-us", { year: "numeric" }) }}
       </div>
-      <H_btn icon="expand_right" type="icon-text" size="sm" @click="changeYear(1)" round />
+      <H_icon
+        btn
+        icon="expand_right"
+        type="icon-text"
+        @click="changeYear(1)"
+        round
+      />
     </div>
-    <div class="h_monthTable__table" @click="itemClick">
+    <div
+      class="h_monthTable__table m-2.5 grid grid-cols-[repeat(3,72px)] grid-rows-[repeat(4,36px)] gap-2.5"
+      @click="itemClick"
+    >
       <div
         v-for="(item, index) in month"
         :key="index"
         :data-value="index"
-        class="h_monthTable__tableItem"
+        class="h_monthTable__tableItem flex cursor-pointer items-center justify-center font-bold hover:col-warn"
         :class="{
-          h_monthTable__itemSelected: tempDato.getMonth() === index,
+          'col-pri': tempDato.getMonth() === index,
         }"
       >
         {{ item }}
@@ -26,7 +45,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { DateAddYears } from "../../utils/dateFunctions";
-import H_btn from "../../Components/H_btn.vue";
+import H_icon from "../../Components/H_icon.vue";
 
 const props = defineProps({
   modelValue: { type: Date, default: new Date() },
@@ -34,7 +53,20 @@ const props = defineProps({
 
 const emit = defineEmits(["month-selected", "update:modelValue"]);
 
-const month = ref(["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]);
+const month = ref([
+  "JAN",
+  "FEB",
+  "MAR",
+  "APR",
+  "MAY",
+  "JUN",
+  "JUL",
+  "AUG",
+  "SEP",
+  "OCT",
+  "NOV",
+  "DEC",
+]);
 const tempDato = ref(props.modelValue);
 
 const itemClick = (e: any) => {
@@ -54,57 +86,3 @@ const changeYear = (val: number) => {
   tempDato.value = newDate;
 };
 </script>
-
-<style>
-.h_monthTable {
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-}
-
-.h_monthTable__innerHeader {
-  display: flex;
-  flex-direction: row;
-  flex: auto;
-  align-items: center;
-  padding: 3px;
-  font-weight: bold;
-}
-
-.h_monthTable__innerHeader .h_btn.btn-icon .h_icon {
-  --h_icon-size: 1.2em;
-}
-
-.h_monthTable__innerHeaderValue {
-  cursor: pointer;
-  display: flex;
-  flex: 1;
-  justify-content: center;
-}
-
-.h_monthTable__table {
-  display: grid;
-  grid-template-columns: repeat(3, 72px);
-  grid-template-rows: repeat(4, 36px);
-  grid-column-gap: 10px;
-  grid-row-gap: 20px;
-  margin: 10px;
-}
-
-.h_monthTable__tableItem {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.h_monthTable__tableItem:hover {
-  background-color: bisque;
-  color: black;
-}
-
-.h_monthTable__itemSelected {
-  background-color: var(--col-pri);
-  color: var(--col-on-pri);
-}
-</style>

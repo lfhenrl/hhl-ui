@@ -1,7 +1,9 @@
 <template>
-  <div class="h_timetable__header">
+  <div
+    class="h_timetable__header flex flex-row items-stretch justify-center bg-bg3 text-center text-2xl font-bold text-txt1"
+  >
     <div
-      class="h_timetable__headerValue"
+      class="flex cursor-pointer flex-col items-center justify-center px-1"
       @click="timeBase = 'hour'"
       :class="{
         'col-pri': timeBase === 'hour',
@@ -9,9 +11,9 @@
     >
       {{ getZeroInFront(value.hour) }}
     </div>
-    <div class="h_timetable__headerSemiColon">:</div>
+    <div class="flex flex-col items-center justify-center">:</div>
     <div
-      class="h_timetable__headerValue"
+      class="flex cursor-pointer flex-col items-center justify-center px-1"
       @click="timeBase = 'minute'"
       :class="{
         'col-pri': timeBase === 'minute',
@@ -19,10 +21,10 @@
     >
       {{ getZeroInFront(value.minute) }}
     </div>
-    <div v-show="showSeconds" class="flx-row-align-center">
-      <div class="h_timetable__headerSemiColon">:</div>
+    <div v-show="showSeconds" class="flex">
+      <div class="flex flex-col items-center justify-center">:</div>
       <div
-        class="h_timetable__headerValue"
+        class="flex cursor-pointer flex-col items-center justify-center px-1"
         @click="timeBase = 'second'"
         :class="{
           'col-pri': timeBase === 'second',
@@ -32,17 +34,20 @@
       </div>
     </div>
   </div>
-  <div class="h_timeTable__table">
+  <div
+    class="h_timeTable__table grid grid-cols-[repeat(8,28px)] grid-rows-[repeat(8,28px)] gap-1 p-1"
+  >
     <div
       v-for="(item, index) in time"
       @click="itemClick(index)"
       :key="index"
       :data-value="index"
       :selected="selectedIndex === index"
-      class="h_timeTable__tableItem"
+      class="h_timeTable__tableItem pointer-events-none flex items-center justify-center rounded-full font-bold opacity-20 hover:bg-warn"
       :class="{
-        h_timeTable__tableItemActive: (index < 24 && timeBase === 'hour') || timeBase !== 'hour',
-        h_datePicker__itemSelected: selectedIndex === index,
+        '!pointer-events-auto !cursor-pointer !opacity-100':
+          (index < 24 && timeBase === 'hour') || timeBase !== 'hour',
+        'col-pri': selectedIndex === index,
       }"
     >
       {{ item }}
@@ -51,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref } from "vue";
 
 const props = defineProps({
   modelValue: { type: Object, default: { hour: 0, minute: 0, second: 0 } },
@@ -110,73 +115,3 @@ const itemClick = (index: number) => {
   }
 };
 </script>
-
-<style>
-.h_timetable__header {
-  font-family: var(--comp-font-family);
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  text-align: center;
-  justify-content: center;
-  font-size: 28px;
-  font-weight: bold;
-  background-color: var(--col-bg-3);
-  color: var(--col-txt-1);
-  height: 44px;
-}
-
-.h_timetable__headerValue {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2px;
-  cursor: pointer;
-}
-
-.h_timetable__headerSemiColon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 1px 5px 1px;
-}
-
-.h_timeTable__table {
-  display: grid;
-  grid-template-columns: repeat(8, 28px);
-  grid-template-rows: repeat(8, 28px);
-  grid-column-gap: 4px;
-  grid-row-gap: 1.7px;
-  padding: 4px;
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-}
-
-.h_timeTable__tableItem {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font-weight: bold;
-  opacity: 0.2;
-  pointer-events: none;
-}
-
-.h_timeTable__tableItemActive {
-  cursor: pointer;
-  opacity: 1;
-  pointer-events: all;
-}
-
-.h_timeTable__tableItem:hover {
-  background-color: bisque;
-  color: black;
-}
-
-.flx-row-align-center {
-  display: flex;
-  flex-direction: row;
-}
-</style>

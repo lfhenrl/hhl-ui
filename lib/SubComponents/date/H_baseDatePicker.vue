@@ -8,14 +8,14 @@
     >
       <template v-slot:referance>
         <div
-          class="h_datePicker__inputcontainer group inline-flex cursor-pointer items-center"
+          class="h_datePicker__inputcontainer group/date inline-flex cursor-pointer items-center"
           @click="onClick"
         >
           <H_icon
             icon="event"
             btn
             v-if="!hideIcon"
-            class="opacity-70 group-hover:scale-125"
+            class="opacity-70 group-hover/date:scale-125"
           />
           <input
             :value="formattetValueDate"
@@ -48,10 +48,10 @@
         <div
           class="h_datePicker__footer flex justify-end gap-3 border-t border-bg4 p-3"
         >
-          <H_btn :tabindex="0" size="sm" @click="cancel" class="col-sec w-16"
+          <H_btn tabindex="3" size="sm" @click="cancel" class="col-sec w-16"
             >CANCEL</H_btn
           >
-          <H_btn size="sm" @click="ok" class="w-16">OK</H_btn>
+          <H_btn tabindex="4" size="sm" @click="ok" class="w-16">OK</H_btn>
         </div>
       </div>
     </H_pop>

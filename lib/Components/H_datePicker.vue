@@ -10,7 +10,7 @@
     :HelpTextEnd="hintEnd"
     :ErrorMessage="validate"
     @isValid="$emit('isValid', $event)"
-    class="h_datePicker max-h-[36px] min-h-[36px] flex-1"
+    class="h_datePicker max-h-[36px] min-h-[36px] flex-1 pt-1"
   >
     <div class="h_datePicker_container flex items-center pl-2">
       <H_baseDatePicker

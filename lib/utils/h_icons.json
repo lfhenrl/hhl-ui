@@ -17,7 +17,7 @@
   "expand_down": "<path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z\"/>",
   "expand_up": "<path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z\"/>",
   "expand_right": "<path d=\"M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z\"/>",
-  "expand_left": "<path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z\"/>",
+  "expand_left": "<path  d=\"m10.8 12l3.9 3.9q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.212-.325T8.425 12q0-.2.063-.375T8.7 11.3l4.6-4.6q.275-.275.7-.275t.7.275q.275.275.275.7t-.275.7L10.8 12Z\"/>",
   "page_first": "<path d=\"M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z\"/><path d=\"M24 24H0V0h24v24z\" fill=\"none\"/>",
   "page_last": "<path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z\"/>",
   "expand_horizontal": "<path d=\"M9,11H15V8L19,12L15,16V13H9V16L5,12L9,8V11M2,20V4H4V20H2M20,20V4H22V20H20Z\"/>",

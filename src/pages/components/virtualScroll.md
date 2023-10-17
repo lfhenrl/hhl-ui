@@ -35,16 +35,6 @@
     }
     return {list, load}
     </script>
-    <style>
-    .item {
-      display:flex;
-      border: solid 1px var(--col-bg-3);
-      gap: 10px;
-      flex-wrap:wrap;
-      padding: 10px;
-      margin: 7px;
-    }
-    </style>
 '>
 </hhl-live-editor>
 
