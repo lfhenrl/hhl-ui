@@ -1,24 +1,26 @@
-<template>
-  <div class="page1">
+<template>Test</template>
+
+<!-- <template>
+  <div class="overflow-auto">
     <hhl-chart @ready="ready">
       <div class="hhl-chart-header">
-        <div class="header-left">
+        <div class="header-left flex-1">
           <hhl-chart-btn type="refresh" />
           <hhl-chart-btn type="zoomfit" />
           <hhl-chart-btn type="print" />
         </div>
-        <div class="header-center">Header</div>
-        <div class="header-right"></div>
-      </div>
+        <div class="header-center flex-1 text-center">Header</div>
+        <div class="header-right flex-1 text-right"></div>
+      </div> -->
 
       <!-- <div class="hhl-chart-footer">Footer</div> -->
 
       <!-- <div class="rotate hhl-chart-left">Left</div> -->
-      <hhl-chart-yscale-band :item-height="40" />
+     <!--  <hhl-chart-yscale-band :item-height="40" /> -->
 
       <!-- <div class="rotate hhl-chart-right">Right</div> -->
 
-      <hhl-chart-xscale-time class="hhl-chart-bottom-scale" />
+<!--       <hhl-chart-xscale-time class="hhl-chart-bottom-scale" />
 
       <hhl-chart-legend />
 
@@ -44,37 +46,38 @@
       <hhl-gantt />
     </hhl-chart>
   </div>
-</template>
-<script lang="ts">
+</template> -->
+
+<!-- <script lang="ts">
 import { defineComponent } from "vue";
 import { iHHLchart } from "../../components/canvas/use/hhlChart";
 import { testData } from "../../components/canvas/data";
 import { D_01_dec_2021_HHMMSS } from "../../../lib/utils/dateFormat";
-// import { getStops } from "../../components/canvas/data_EventLog";
+import { getStops } from "../../components/canvas/data_EventLog";
 
 export default defineComponent({
   name: "chart_gantt",
   setup() {
     let ch: iHHLchart;
-    // const data = ref(testData(24));
+    const data = ref(testData(24));
 
-    async function ready(chart: iHHLchart) {
+     async function ready(chart: iHHLchart) {
       ch = chart;
       ch.Event.on("refresh", Refresh);
     }
 
-    async function Refresh() {
-      // const startTime = new Date("2020-9-4");
-      // const endTime = new Date("2020-9-4 13:00");
-      // const stops = await getStops(startTime.toJSON(), endTime.toJSON());
+    async function Refresh() { 
+      const startTime = new Date("2020-9-4");
+      const endTime = new Date("2020-9-4 13:00");
+      const stops = await getStops(startTime.toJSON(), endTime.toJSON());
 
-      // const val = {
-      //   Xmin: startTime.valueOf(),
-      //   Xmax: endTime.valueOf(),
-      //   items: Object.freeze(stops.gData_1)
-      // };
+      const val = {
+      Xmin: startTime.valueOf(),
+      Xmax: endTime.valueOf(),
+      items: Object.freeze(stops.gData_1)
+      };
 
-      const d = testData(240);
+       const d = testData(240);
 
       const val = {
         Xmin: d.x.min,
@@ -89,23 +92,4 @@ export default defineComponent({
   }
 });
 </script>
-
-<style>
-.page1 {
-  overflow: auto;
-}
-
-.header-left {
-  flex: 1;
-}
-
-.header-center {
-  flex: 1;
-  text-align: center;
-}
-
-.header-right {
-  flex: 1;
-  text-align: right;
-}
-</style>
+ -->

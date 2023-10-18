@@ -1,5 +1,5 @@
 <template>
-  <div v-if="selected || keepAlive" v-show="selected" class="H_tab">
+  <div v-if="selected || keepAlive" v-show="selected" class="H_tab grid grid-cols-[1fr] grid-rows-[1fr]">
     <slot />
   </div>
 </template>
@@ -26,13 +26,3 @@ const tabData: any = inject("tabData");
 const selected = computed(() => tabData.selected.value === props.name);
 </script>
 
-<style>
-.H_tab {
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  /* overflow: hidden; */
-}
-</style>

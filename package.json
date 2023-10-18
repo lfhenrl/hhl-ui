@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@emmetio/codemirror-plugin": "^1.2.4",
-    "@floating-ui/dom": "^1.5.3",
     "codemirror": "^5.65.15",
     "firebase": "^10.4.0",
     "pinia": "^2.1.6",

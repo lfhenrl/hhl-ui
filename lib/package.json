@@ -18,8 +18,5 @@
     "style.css",
     "index.d.ts",
     "index.ts"
-  ],
-  "dependencies": {
-    "@floating-ui/dom": "^1.2.8"
-  }
+  ]
 }
