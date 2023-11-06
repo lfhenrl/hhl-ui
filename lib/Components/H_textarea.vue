@@ -1,13 +1,12 @@
 <template>
   <H_inputBase
-  :label="label"
+    :label="label"
     :clearable="clearable"
     :start-icon="startIcon"
     :end-icon="endIcon"
     :HelpTextStart="hintStart"
     :HelpTextEnd="stringCounter"
     :disabled="disabled"
-    :movelabel="move_label"
     :ErrorMessage="validate"
     :err_text="validate"
     :err_label="label"
@@ -16,7 +15,7 @@
     @clearClick="$emit('update:modelValue', '')"
     @startIconClick="$emit('startIconClick')"
     @endIconClick="$emit('endIconClick')"
-    class="H_textarea"
+    class="H_textarea min-h-[36px] flex-1"
   >
     <textarea
       ref="input"
@@ -30,7 +29,7 @@
       @click="$emit('input_click')"
       @focus="handleFocus"
       @blur="handleBlur"
-      class="H_textarea__input"
+      class="H_textarea__input w-full border-none bg-transparent px-2.5 align-bottom text-txt1 outline-none"
     />
   </H_inputBase>
 </template>
@@ -57,10 +56,15 @@ const P = defineProps({
   rows: { type: String, default: "1" },
   noGrow: { type: Boolean, default: false },
   onStartIconClick: { type: Function, default: null },
-  onEndIconClick: { type: Function, default: null }
+  onEndIconClick: { type: Function, default: null },
 });
 
-const E = defineEmits([ "update:modelValue", "input_click"]);
+const E = defineEmits([
+  "update:modelValue",
+  "input_click",
+  "startIconClick",
+  "endIconClick",
+]);
 
 const focused = ref(false);
 const input = ref<any>(null);
@@ -70,13 +74,6 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
 const focus = () => input.value?.focus();
 const handleFocus = () => (focused.value = true);
 const handleBlur = () => (focused.value = false);
-
-const move_label = computed(() => {
-  if (P.startIcon != "") return true;
-  if (P.modelValue != "") return true;
-  if (focused.value) return true;
-  return false;
-});
 
 const stringCounter = computed(() => {
   if (P.counter == "") return P.hintEnd;
@@ -92,7 +89,7 @@ defineExpose({ focus });
 
 watch(
   () => P.modelValue,
-  () => calculateInputHeight()
+  () => calculateInputHeight(),
 );
 onMounted(() => calculateInputHeight());
 
@@ -100,19 +97,19 @@ function calculateInputHeight() {
   if (input.value && !P.noGrow) {
     input.value.style.height = "0";
     const scrollHeight = input.value.scrollHeight;
-    input.value.style.height = scrollHeight + "px";
+    input.value.style.minHeight = scrollHeight + "px";
     console.log(input.value.style.height);
   }
 }
 </script>
 
 <style>
-.h_inputbase.H_textarea {
+/* .h_inputbase.H_textarea {
   flex: 1 1 40px;
-  /* height: 40px; */
-}
+  height: 40px;
+} */
 
-.H_textarea__input {
+/* .H_textarea__input {
   display: inline-block;
   box-sizing: border-box;
   padding: 10px;
@@ -121,17 +118,15 @@ function calculateInputHeight() {
   background-color: transparent;
   border: none;
   min-height: 40px;
-  /* width: 100%; */
+  width: 100%;
   overflow: hidden;
   appearance: none;
-
   outline: none;
-
   vertical-align: bottom;
-}
+} */
 
 .H_textarea_autoGrow {
-  overflow-y: hidden;
-  resize: none;
+  /* overflow-y: hidden; */
+  resize: both;
 }
 </style>

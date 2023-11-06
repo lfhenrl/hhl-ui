@@ -86,7 +86,9 @@ function overlayClick() {
 }
 
 .H_dialog.H_modal-pop__shake {
-  animation: fadein 0.2s ease-in 1,shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+  animation:
+    fadein 0.2s ease-in 1,
+    shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
 }
 
 @keyframes shaking {

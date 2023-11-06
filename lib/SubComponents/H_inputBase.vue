@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h_inputbase group relative inline-grid min-w-[100px] grid-cols-[auto_1fr_auto_auto] grid-rows-[auto_auto_auto] rounded border border-txt5 focus-within:border-pri data-[error]:border-err"
+    class="h_inputbase group relative inline-grid min-w-[100px] resize grid-cols-[auto_1fr_auto_auto] grid-rows-[auto_auto_auto] rounded border border-txt5 focus-within:border-pri data-[error]:border-err"
     @click="Click"
     :disabled="disabled ? true : undefined"
     :data-error="ErrorMessage != '' ? true : undefined"
@@ -27,7 +27,7 @@
       v-if="clearable"
       class="h_inputbase-clearicon col-start-3 row-start-2 mr-1 w-[22px] self-center text-txt3"
     />
-    <div class="col-start-2 row-start-2 flex w-full flex-col">
+    <div class="col-start-2 row-start-2 flex h-full w-full flex-col">
       <slot />
     </div>
 

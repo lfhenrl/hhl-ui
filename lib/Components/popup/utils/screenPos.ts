@@ -50,7 +50,7 @@ export function screenPos(Pop: iPop) {
             width: dia.width,
             height: dia.height,
             maxHeight,
-            pos: inner ? "bottom" : "top"
+            pos: inner ? "bottom" : "top",
           };
         case "top-end":
           if (inner === true) {
@@ -67,7 +67,7 @@ export function screenPos(Pop: iPop) {
             width: dia.width,
             height: dia.height,
             maxHeight,
-            pos: inner ? "bottom" : "top"
+            pos: inner ? "bottom" : "top",
           };
         default:
           left = ref.width / 2 - dia.width / 2 + ref.left + oL;
@@ -80,7 +80,7 @@ export function screenPos(Pop: iPop) {
             width: dia.width,
             height: dia.height,
             maxHeight,
-            pos: inner ? "bottom" : "top"
+            pos: inner ? "bottom" : "top",
           };
       }
     }
@@ -117,7 +117,7 @@ export function screenPos(Pop: iPop) {
             width: dia.width,
             height: dia.height,
             maxHeight,
-            pos: inner ? "top" : "bottom"
+            pos: inner ? "top" : "bottom",
           };
         case "bottom-end":
           if (inner === true) {
@@ -134,7 +134,7 @@ export function screenPos(Pop: iPop) {
             width: dia.width,
             height: dia.height,
             maxHeight,
-            pos: inner ? "top" : "bottom"
+            pos: inner ? "top" : "bottom",
           };
         default:
           left = ref.width / 2 - dia.width / 2 + ref.left + oL;
@@ -147,7 +147,7 @@ export function screenPos(Pop: iPop) {
             width: dia.width,
             height: dia.height,
             maxHeight,
-            pos: inner ? "top" : "bottom"
+            pos: inner ? "top" : "bottom",
           };
       }
     }
@@ -168,7 +168,7 @@ export function screenPos(Pop: iPop) {
             width: dia.width,
             height: dia.height,
             maxHeight,
-            pos: inner ? "right" : "left"
+            pos: inner ? "right" : "left",
           };
         case "left-end":
           top = ref.height - dia.height + ref.top - oT;
@@ -181,7 +181,7 @@ export function screenPos(Pop: iPop) {
             width: dia.width,
             height: dia.height,
             maxHeight,
-            pos: inner ? "right" : "left"
+            pos: inner ? "right" : "left",
           };
         default:
           top = ref.height / 2 - dia.height / 2 + ref.top + oT;
@@ -194,13 +194,15 @@ export function screenPos(Pop: iPop) {
             width: dia.width,
             height: dia.height,
             maxHeight,
-            pos: inner ? "right" : "left"
+            pos: inner ? "right" : "left",
           };
       }
     }
 
     if (placement.startsWith("right")) {
-      left = inner ? ref.left + ref.width - dia.width - oL : ref.left + ref.width + oL;
+      left = inner
+        ? ref.left + ref.width - dia.width - oL
+        : ref.left + ref.width + oL;
       right = left + dia.width;
       maxHeight = Pop.wHeight - padding * 2;
       right = Pop.wWidth - (left + dia.width);
@@ -216,7 +218,7 @@ export function screenPos(Pop: iPop) {
             width: dia.width,
             height: dia.height,
             maxHeight,
-            pos: inner ? "left" : "right"
+            pos: inner ? "left" : "right",
           };
         case "right-end":
           top = ref.height - dia.height + ref.top - oT;
@@ -229,7 +231,7 @@ export function screenPos(Pop: iPop) {
             width: dia.width,
             height: dia.height,
             maxHeight,
-            pos: inner ? "left" : "right"
+            pos: inner ? "left" : "right",
           };
         default:
           top = ref.height / 2 - dia.height / 2 + ref.top + oT;
@@ -242,7 +244,7 @@ export function screenPos(Pop: iPop) {
             width: dia.width,
             height: dia.height,
             maxHeight,
-            pos: inner ? "left" : "right"
+            pos: inner ? "left" : "right",
           };
       }
     }
@@ -260,7 +262,7 @@ export function screenPos(Pop: iPop) {
       width: dia.width,
       height: dia.height,
       maxHeight,
-      pos: "center"
+      pos: "center",
     };
   }
   return getScreenPos;
