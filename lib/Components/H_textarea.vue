@@ -24,12 +24,11 @@
       :rows="Number(rows)"
       :aria-label="label"
       :name="label"
-      :class="{ H_textarea_autoGrow: !noGrow }"
       @input="onInput"
       @click="$emit('input_click')"
       @focus="handleFocus"
       @blur="handleBlur"
-      class="H_textarea__input w-full border-none bg-transparent px-2.5 align-bottom text-txt1 outline-none"
+      class="H_textarea__input min-h-[34px] w-full resize-none overflow-hidden border border-none bg-transparent px-2.5 pt-1.5 leading-tight text-txt1 outline-none"
     />
   </H_inputBase>
 </template>
@@ -51,9 +50,9 @@ const P = defineProps({
   hintStart: { type: String, default: "" },
   hintEnd: { type: String, default: "" },
   counter: { type: String, default: "" },
-  debounce: { type: Number, default: 200 },
+  debounce: { type: Number, default: 0 },
   validator: Array,
-  rows: { type: String, default: "1" },
+  rows: { type: String, default: "0" },
   noGrow: { type: Boolean, default: false },
   onStartIconClick: { type: Function, default: null },
   onEndIconClick: { type: Function, default: null },
@@ -127,6 +126,6 @@ function calculateInputHeight() {
 
 .H_textarea_autoGrow {
   /* overflow-y: hidden; */
-  resize: both;
+  resize: vertical;
 }
 </style>
