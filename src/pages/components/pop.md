@@ -21,25 +21,25 @@ The other options are.<br>
             <template v-slot:referance>
               <H_btn>default (trigger)</H_btn>
             </template>
-            <div class="col-bg-warn p-5">Hello</div>
+            <div class="bg-warn p-5 rounded">Hello</div>
           </H_pop>
           <H_pop trigger="click">
             <template v-slot:referance>
               <H_btn>click</H_btn>
             </template>
-            <div class="col-bg-warn p-5">Hello</div>
+            <div class="bg-warn p-5 rounded">Hello</div>
           </H_pop>
           <H_pop trigger="hover">
             <template v-slot:referance>
                 <H_btn>trigger="hover"</H_btn>
             </template>
-            <div class="col-bg-warn p-5">Hello</div>
+            <div class="bg-warn p-5 rounded">Hello</div>
           </H_pop>
           <H_pop trigger="none">
             <template v-slot:referance>
                 <H_btn>trigger="none""</H_btn>
             </template>
-            <div class="col-bg-warn p-5">Hello</div>
+            <div class="bg-warn p-5 rounded">Hello</div>
           </H_pop>
         </div> 
     </template>
@@ -59,7 +59,7 @@ You can also use the v-model to control the open/close of the popup.
          <template v-slot:referance>
               <H_btn>v-model</H_btn>
           </template>
-          <div class="col-bg-warn p-5">Hello</div>
+          <div class="bg-warn p-5">Hello</div>
         </H_pop>
         <H_checkbox v-model="open" label="open">
       </div>
@@ -85,7 +85,7 @@ The default is 100.
           <template v-slot:referance>
               <H_btn>trigger="hover" + delay-on-mouse-over="1000"</H_btn>
           </template>
-          <div class="col-bg-warn p-5">Hello</div>
+          <div class="bg-warn p-5 rounded">Hello</div>
         </H_pop>
       </div>
     </template>
@@ -106,7 +106,7 @@ The default is 300.
           <template v-slot:referance>
               <H_btn>trigger="hover" + delay-on-mouse-out="1000"</H_btn>
           </template>
-          <div class="col-bg-warn p-5">Hello</div>
+          <div class="bg-warn p-5 rounded">Hello</div>
         </H_pop>
       </div>
     </template>
@@ -126,7 +126,7 @@ By adding the property `readonly` the Popup will not open.<br>
           <template v-slot:referance>
               <H_btn>readonly</H_btn>
           </template>
-          <div class="col-bg-warn p-5">Hello</div>
+          <div class="bg-warn p-5 rounded">Hello</div>
         </H_pop>
       </div>
     </template>
@@ -146,7 +146,7 @@ By adding the property `close-popup-click` the popup will close when you click i
           <template v-slot:referance>
               <H_btn>close-popup-click"</H_btn>
           </template>
-          <div class="col-bg-warn p-5">Hello</div>
+          <div class="bg-warn p-5 rounded">Hello</div>
         </H_pop>
       </div>
     </template>
@@ -172,7 +172,7 @@ By adding the property `pop-close` to an element in the PopUp dialog a click on 
           <template v-slot:referance>
               <H_btn>close-popup-click"</H_btn>
           </template>
-          <div class="col-bg-warn p-5">
+          <div class="bg-warn p-5 rounded">
           <div>Hello</div>
           <div pop-close style="border: 1px red solid; margin: 10px 0">close</div>
           </div>
@@ -209,7 +209,7 @@ You can disable this by adding the property `no-shake`
           <template v-slot:referance>
               <H_btn>modal"</H_btn>
           </template>
-          <div class="col-bg-warn p-5">
+          <div class="bg-warn p-5 rounded">
             <div>Hello</div>
             <div pop-close style="border: 1px red solid; margin: 10px 0">close</div>
           </div>
@@ -218,7 +218,7 @@ You can disable this by adding the property `no-shake`
         <template v-slot:referance>
             <H_btn>modal + trigger="click"</H_btn>
         </template>
-        <div class="col-bg-warn p-5"><H_btn @click="popup=false">Close"</H_btn></div>
+        <div class="bg-warn p-5 rounded"><H_btn @click="popup=false">Close"</H_btn></div>
       </H_pop>
       <H_switch label="no-shake" v-model="shake"></H_switch>
       </div>
@@ -277,7 +277,7 @@ By adding the property `offset-left` it will adjust the left position with the v
 <hhl-live-editor title="" htmlCode='
     <template>
       <div class="flex flex-col gap-4">
-       <div class="flex gap-4">
+       <div class="flex gap-12">
         <H_pop  :placement="placement" 
                 :inner="inner" 
                 :container="container" 
@@ -288,16 +288,16 @@ By adding the property `offset-left` it will adjust the left position with the v
             <template v-slot:referance>
               <H_btn>Open</H_btn>
             </template>
-          <div class="col-bg-warn p-5">Hello</div>
+          <div class="bg-warn p-5 rounded">Hello</div>
         </H_pop>
       </div>
-     <div class="flex items-center gap-4">
+     <div class="flex items-center gap-4 mt-5">
         <H_select hide-filter :list="selectData" v-model="placement" label="Placement" style="max-width:150px"></H_select>
         <H_switch label="Inner" v-model="inner"></H_switch>
         <H_select hide-filter :list="conType" v-model="container" label="container" style="max-width:150px"></H_select>
          <H_select hide-filter :list="queryType" v-model="querySelector" label="querySelector" style="max-width:150px"></H_select>
       </div>
-     <div class="flex items-center gap-4">
+     <div class="flex items-center gap-4 mt-5">
          <H_inputNumber v-model="padding" label="padding" style="max-width:150px"></H_inputNumber>
          <H_inputNumber v-model="offsetTop" label="offset-top" style="max-width:150px"></H_inputNumber>
          <H_inputNumber v-model="offsetLeft" label="offset-left" style="max-width:150px"></H_inputNumber>
@@ -352,7 +352,7 @@ By adding the property `moveable-drag` to one element in the Popup it will be he
           <template v-slot:referance>
               <H_btn>Drag</H_btn>
           </template>
-          <div class="col-bg-warn p-4">
+          <div class="bg-warn p-5 rounded">
           <div>Hello</div>
           </div>
         </H_pop>
@@ -360,7 +360,7 @@ By adding the property `moveable-drag` to one element in the Popup it will be he
           <template v-slot:referance>
               <H_btn>Drag by element"</H_btn>
           </template>
-          <div class="flex flex-col col-bg-warn items-center gap-4">
+          <div class="flex flex-col bg-warn items-center gap-4 rounded">
           <div moveable-drag style="background-color: lime; text-align: center; padding: 10px">dragme</div>
           <div>Hello</div>
           </div>
@@ -388,7 +388,7 @@ This is the default to disable add `:width-as-ref="false"`
           <template v-slot:referance>
               <H_btn>width-as-ref="false" .......</H_btn>
           </template>
-          <div class="col-bg-warn p-5">
+          <div class="bg-warn p-5 rounded">
           <div>Hello</div>
           </div>
         </H_pop>         

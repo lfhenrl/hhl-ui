@@ -1,6 +1,6 @@
 <template>
   <button
-    class="h_btn col-pri inline-flex cursor-pointer items-center justify-center gap-1 whitespace-nowrap rounded leading-loose ring-offset-1 ring-offset-pri hover:scale-105 focus:outline-none focus:ring active:scale-95"
+    class="h_btn col-pri inline-flex cursor-pointer items-center justify-center gap-1 hover:drop-shadow-[1px_1px_5px_var(--col-txt-1)] whitespace-nowrap rounded leading-loose ring-offset-1 ring-offset-pri focus:outline-none focus:ring active:scale-95"
     :style="{
       'background-color':
         type === 'outline' ||
@@ -65,3 +65,8 @@ const iconSize = computed(() => {
   return "24px";
 });
 </script>
+<style>
+/* .h_btn:hover {
+  filter: drop-shadow(1px 1px 5px var(--col-txt-1));;
+} */
+</style>

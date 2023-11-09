@@ -1,6 +1,6 @@
 <template>
   <H_inputBase
-    class="h_slider max-h-[36px] min-h-[36px] flex-1 bg-transparent"
+    class="h_slider max-h-[36px] min-h-[36px] flex-1 bg-transparent col-pri"
     :label="label"
     :movelabel="true"
   >
@@ -67,11 +67,3 @@ function changed(e: any) {
 }
 </script>
 
-<style>
-/* .h_slider input[type="range"]::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
-  box-shadow: none;
-  border: none;
-  background: transparent;
-} */
-</style>
