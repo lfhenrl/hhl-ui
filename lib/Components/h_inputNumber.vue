@@ -22,7 +22,7 @@
       <input
         type="number"
         class="h_inputNumber-input inline-block max-h-[34px] min-h-[34px] w-full flex-1 overflow-hidden text-ellipsis whitespace-nowrap border-none bg-transparent px-2.5 align-bottom text-txt1 outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-        :value="modelValue"
+        :value="Numbervalue"
         inputmode="numeric"
         @input="onInput"
         @focus="focused = true"
@@ -55,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { debounce } from "../utils/debounce";
 import { validateFunc } from "../utils/validateFunc";
 import H_inputBase from "../SubComponents/H_inputBase.vue";
@@ -88,6 +88,9 @@ const E = defineEmits([
   "endIconClick",
 ]);
 const focused = ref(false);
+const Numbervalue = ref(P.modelValue);
+
+watch(() => P.modelValue, () => {Numbervalue.value = P.modelValue})
 
 const move_label = computed(() => {
   if (P.startIcon != "") return true;
@@ -101,9 +104,9 @@ const debouncedUpdate = debounce(function (val: string) {
 }, P.debounce);
 
 const onInput = (e: any) => debouncedUpdate(e.target.value ?? "");
-const CountUp = () =>
-  E("update:modelValue", Number(P.modelValue) + Number(P.step));
-const CountDown = () =>
-  E("update:modelValue", Number(P.modelValue) - Number(P.step));
+const CountUp = () => (Numbervalue.value = Number(Numbervalue.value) + Number(P.step),debouncedUpdate(Numbervalue.value))
+ /*  E("update:modelValue", Number(P.modelValue) + Number(P.step)); */
+const CountDown = () => (Numbervalue.value = Number(Numbervalue.value) - Number(P.step),debouncedUpdate(Numbervalue.value))
+ /*  E("update:modelValue", Number(P.modelValue) - Number(P.step)); */
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>

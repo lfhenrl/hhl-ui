@@ -28,13 +28,14 @@
       @click="$emit('input_click')"
       @focus="handleFocus"
       @blur="handleBlur"
-      class="H_textarea__input min-h-[34px] w-full resize-none overflow-hidden border border-none bg-transparent px-2.5 pt-1.5 leading-tight text-txt1 outline-none"
+      :class="{'resize-none overflow-hidden': !noGrow}"
+      class="H_textarea__input min-h-[32px] h-[32] w-full border border-none bg-transparent px-2.5 pt-1.5 leading-tight text-txt1 outline-none"
     />
   </H_inputBase>
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted, computed } from "vue";
+import { ref, onMounted, computed } from "vue";
 import H_inputBase from "../SubComponents/H_inputBase.vue";
 import { debounce } from "../utils/debounce";
 import { validateFunc } from "../utils/validateFunc";
@@ -50,9 +51,9 @@ const P = defineProps({
   hintStart: { type: String, default: "" },
   hintEnd: { type: String, default: "" },
   counter: { type: String, default: "" },
-  debounce: { type: Number, default: 0 },
+  debounce: { type: Number, default: 200 },
   validator: Array,
-  rows: { type: String, default: "0" },
+  rows: { type: String, default: "1" },
   noGrow: { type: Boolean, default: false },
   onStartIconClick: { type: Function, default: null },
   onEndIconClick: { type: Function, default: null },
@@ -67,7 +68,7 @@ const E = defineEmits([
 
 const focused = ref(false);
 const input = ref<any>(null);
-const onInput = (e: any) => debouncedUpdate(e.target.value ?? "");
+const onInput = (e: any) => (calculateInputHeight(), debouncedUpdate(e.target.value ?? ""));
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 
 const focus = () => input.value?.focus();
@@ -86,10 +87,6 @@ const debouncedUpdate = debounce(function (val: string) {
 
 defineExpose({ focus });
 
-watch(
-  () => P.modelValue,
-  () => calculateInputHeight(),
-);
 onMounted(() => calculateInputHeight());
 
 function calculateInputHeight() {
@@ -103,26 +100,6 @@ function calculateInputHeight() {
 </script>
 
 <style>
-/* .h_inputbase.H_textarea {
-  flex: 1 1 40px;
-  height: 40px;
-} */
-
-/* .H_textarea__input {
-  display: inline-block;
-  box-sizing: border-box;
-  padding: 10px;
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  background-color: transparent;
-  border: none;
-  min-height: 40px;
-  width: 100%;
-  overflow: hidden;
-  appearance: none;
-  outline: none;
-  vertical-align: bottom;
-} */
 
 .H_textarea_autoGrow {
   /* overflow-y: hidden; */

@@ -18,6 +18,65 @@
 
 <br>
 
+## Debounce Data binding
+
+The default for updating the v-model is 200Ms.
+You can change this by the proberty `debounce`
+<br>
+Here the debounce is set to `debounce="1000"`
+
+<hhl-live-editor title="" htmlCode='
+      <template>
+      <div class="flex items-center gap-4 p-4">
+            <H_textarea v-model="txt" label="Text input" debounce="1000"></H_textarea>
+            <H_inputText v-model="txt" label="Text input"></H_inputText>
+      </div>
+      </template>
+      <script>
+            const txt = ref("Data binding");
+            return {txt}
+      </script>
+'>
+</hhl-live-editor>
+
+<br>
+
+## No Autoresize
+By adding `no-grow="true"`
+
+<hhl-live-editor title="" htmlCode='
+      <template>
+      <div class="flex items-center gap-4 p-4">
+            <H_textarea v-model="txt" label="Text input" no-grow="true"></H_textarea>
+      </div>
+      </template>
+      <script>
+            const txt = ref("Data binding");
+            return {txt}
+      </script>
+'>
+</hhl-live-editor>
+
+<br>
+
+## No Autoresize and setting amounts of rows
+By adding `no-grow="true"` and `rows="5"`
+
+<hhl-live-editor title="" htmlCode='
+      <template>
+      <div class="flex items-center gap-4 p-4">
+            <H_textarea v-model="txt" label="Text input" no-grow="true" rows="5"></H_textarea>
+      </div>
+      </template>
+      <script>
+            const txt = ref("Data binding");
+            return {txt}
+      </script>
+'>
+</hhl-live-editor>
+
+<br>
+
 ## Clearable
 
 Add input clear functionality by adding `clearable`
@@ -223,7 +282,7 @@ Validation by adding `validator=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-col gap-6 p-4">
+      <div class="flex flex-col gap-12 p-4">
             <H_textarea v-model="txt" label="required" :validator="[v.required]"></H_textarea>
             <H_textarea v-model="txt" label="email" :validator="[v.email]"></H_textarea>
             <H_textarea v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></H_textarea>

@@ -17,6 +17,29 @@
 
 <br>
 
+## Debounce Data binding
+
+The default for updating the v-model is 200Ms.
+You can change this by the proberty `debounce`
+<br>
+Here the debounce is set to `debounce="1000"`
+
+<hhl-live-editor title="" htmlCode='
+      <template>
+      <div class="flex items-center gap-4 p-4">
+            <H_inputNumber v-model="num" label="Number input" :debounce="1000"></H_inputNumber>
+            <H_inputNumber v-model="num" label="Number input"></H_inputNumber>
+      </div>
+      </template>
+      <script>
+            const num = ref(27);
+            return {num}
+      </script>
+'>
+</hhl-live-editor>
+
+<br>
+
 ## Clearable
 
 Add input clear functionality by adding `clearable`
