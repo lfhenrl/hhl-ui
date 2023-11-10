@@ -1,9 +1,9 @@
 <template>
   <transition name="alert" @after-leave="$emit('close')">
-    <div v-show="modelValue" class="H_snack" @click="$emit('update:modelValue', false)">
-      <H_icon :icon="icon" class="H_snack__icon" :color="color" />
-      <div class="H_snack__info">
-        <span class="H_snack__title">{{ title }}</span>
+    <div v-show="modelValue" class="H_snack flex fixed p-1.5 pb-3 rounded shadow bg-bg2 top-5 right-5 text-txt0 z-50 min-w-[330px] max-w-[330px]" @click="$emit('update:modelValue', false)">
+      <H_icon :icon="icon" size="28px" :color="color" />
+      <div class="flex flex-col flex-1 items-center">
+        <span class="font-bold text-lg">{{ title }}</span>
         <span class="H_snack__text">{{ text }}</span>
       </div>
     </div>
@@ -50,39 +50,6 @@ defineExpose({ close });
 </script>
 
 <style>
-.H_snack {
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-  display: flex;
-  position: fixed;
-  padding: 5px 5px 10px 5px;
-  border-radius: 4px;
-  top: 10px;
-  right: 10px;
-  min-width: 330px;
-  max-width: 330px;
-  z-index: 999;
-  background-color: var(--col-bg-0);
-  color: var(--col-txt-0);
-  box-shadow: var(--shadow-5);
-}
-
-.H_snack__icon {
-  zoom: 1.3;
-}
-
-.H_snack__info {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  align-items: center;
-}
-
-.H_snack__title {
-  font-weight: bolder;
-  font-size: 110%;
-}
-
 .alert-leave-active {
   animation: slide-out 0.5s reverse;
 }

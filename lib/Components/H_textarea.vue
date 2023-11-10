@@ -99,10 +99,3 @@ function calculateInputHeight() {
 }
 </script>
 
-<style>
-
-.H_textarea_autoGrow {
-  /* overflow-y: hidden; */
-  resize: vertical;
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="H_datagrid" ref="H_datagridRef">
+  <div class="H_datagrid grid grid-row-[1fr_auto] max-h-full rounded border border-bg5 overflow-hidden" ref="H_datagridRef">
     <H_virtualList
       ref="H_datagridVirtualRef"
       :key="columns.changeCounter.value"
@@ -7,7 +7,7 @@
       v-if="virtualscroll"
       :data-sources="dataHandler.rows.value"
       item-class="H_dataRow"
-      class="H_datagrid-table"
+      class="H_datagrid-table grid-row-[auto_1fr] max-h-full h-full min-h-[59px] w-full overflow-x-auto overflow-y-scroll"
       :estimate-size="virtualscroll_rowheight"
       :keeps="virtualscroll_keeps"
       :class="guid"
@@ -16,7 +16,7 @@
       @click="datagridClick"
     >
       <template v-slot:header>
-        <div class="H_datagrid-head">
+        <div class="H_datagrid-head sticky top-0 z-[1]">
           <H_headerRow role="headitem" />
           <H_progressBar :show="columns.dataHandler?.rowsLoading.value" />
         </div>
@@ -50,16 +50,15 @@
         <H_dataRow :row="row" />
       </div>
     </div>
-    <div class="H_datagrid-footer">
+    <div class="H_datagrid-footer flex items-center text-sm h-10 flex-wrap pr-3 border-t border-bg6 text-pri gap-2">
       <H_btn
-        size="sm"
         round
         type="icon-text"
         icon="refresh"
         title="Reload data"
       />
       <H_btn
-        size="sm"
+
         round
         type="icon-text"
         icon="columns"
@@ -67,7 +66,7 @@
         @click="editColumns"
       />
       <H_btn
-        size="sm"
+
         round
         type="icon-text"
         icon="expand_horizontal"
@@ -75,7 +74,7 @@
         @click="autoAdjustColumns"
       />
       <H_btn
-        size="sm"
+
         round
         type="icon-text"
         icon="excel"
@@ -83,7 +82,7 @@
         @click="excel"
       />
       <H_btn
-        size="sm"
+
         round
         type="icon-text"
         icon="zoom_out_map"
@@ -231,46 +230,3 @@ function fullScreen() {
   }
 }
 </script>
-
-<style>
-.H_datagrid {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  max-height: 100%;
-  border: 1px var(--col-bg-5) solid;
-  border-radius: 4px;
-  font-family: var(--comp-font-family);
-  font-size: var(--comp-font-size);
-  overflow: hidden;
-}
-.H_datagrid-table {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  max-height: 100%;
-  height: 100%;
-  min-height: 59px;
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: scroll;
-}
-
-.H_datagrid-head {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
-.H_datagrid-footer {
-  display: flex;
-  height: 33px;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 3px;
-  color: var(--col-pri);
-  font-size: 0.9em;
-  padding-right: 14px;
-  gap: 5px;
-  background-color: var(--col-bg-3);
-  border-top: 1px solid var(--col-bg-5);
-}
-</style>

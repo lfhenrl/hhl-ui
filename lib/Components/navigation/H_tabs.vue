@@ -1,25 +1,25 @@
 <template>
-  <div class="H_tabs">
-    <div class="H_tabs__tabs">
+  <div class="H_tabs grid grid-rows-[auto_1fr] w-full h-full">
+    <div class="H_tabs__tabs flex">
       <div
         v-for="tab in tabs"
         :key="tab.props.name"
         :disabled="tab.props.disabled"
         :selected="tab.props.name === tabData.selected.value"
         :class="tab.props.tab_class"
-        class="H_tabs__tab col-txt-1"
+        class="H_tabs__tab inline-flex relative cursor-pointer py-1 px-3 rounded-t-lg"
         @click="changeTab(tab.props.name)"
       >
-        <div class="H_tabs__tab_label">
+        <div class="H_tabs__tab_label inline-flex relative items-center border-b-4 border-transparent">
           <H_icon :icon="tab.props.icon" size="1.5em" v-if="tab.props.icon" btn />
           {{ tab.props.label }}
         </div>
       </div>
-      <div class="H_tabs__tab-spacer" />
+      <div class="flex-1" />
     </div>
 
     <transition name="H_tabsFade" mode="out-in">
-      <div class="H_tabs-details">
+      <div class="H_tabs-details bg-bg0 rounded border border-txt4">
         <slot />
       </div>
     </transition>
@@ -74,37 +74,7 @@ function changeTab(e: string) {
 </script>
 
 <style>
-.H_tabs {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  width: 100%;
-  height: 100%;
-  font-size: var(--comp-font-size);
-  font-family: var(--comp-font-family);
-}
-
-.H_tabs__tabs {
-  display: flex;
-  padding: 0;
-}
-
-.H_tabs__tab {
-  display: inline-flex;
-  position: relative;
-  padding: 3px 8px 0 8px;
-  cursor: pointer;
-  /* border-bottom: 1px solid var(--col-txt-4); */
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
-}
-
-.H_tabs__tab-spacer {
-  flex: 1;
-  /* border-bottom: 1px solid var(--col-txt-4); */
-}
-
 .H_tabs__tab[selected="true"] {
-  position: relative;
   font-weight: bold;
   border: solid 1px var(--col-txt-4);
   border-bottom: none;
@@ -112,27 +82,8 @@ function changeTab(e: string) {
   top: 1px;
 }
 
-.H_tabs__tab_label {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 4px 0 4px;
-  border-bottom: 4px solid transparent;
-  line-height: 1;
-}
-
 .H_tabs__tab[selected="true"] .H_tabs__tab_label {
   border-bottom-color: var(--col-pri);
-}
-
-.H_tabs-details {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  border: 1px solid var(--col-txt-4);
-  border-radius: 4px;
-  /* border-top: none; */
-  background-color: var(--col-bg-0);
 }
 
 .H_tabsFade-enter-active,

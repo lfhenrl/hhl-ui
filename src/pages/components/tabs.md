@@ -22,9 +22,9 @@ Tabs are elements that help you organize and navigate multiple documents in a si
 		<template>
 			<div class="flex items-center gap-4 px-4">
 				<H_tabs>
-					<H_tab name="tab1" label="Tab 1."><div>This is TAB 1...</div></H_tab>
-					<H_tab name="tab2" label="Tab 2."><div>This is TAB 2...</div></H_tab>
-					<H_tab name="tab3" label="Tab 3."><div>This is TAB 3...</div></H_tab>
+					<H_tab name="tab1" label="Tab 1."><div class="p-10">This is TAB 1...</div></H_tab>
+					<H_tab name="tab2" label="Tab 2."><div class="p-10">This is TAB 2...</div></H_tab>
+					<H_tab name="tab3" label="Tab 3."><div class="p-10">This is TAB 3...</div></H_tab>
 				</H_tabs>
 			</div>
 		</template>
@@ -41,9 +41,9 @@ You can add `disabled` to a tab<br>
 		<template>
 			<div class="flex items-center gap-4 px-4">
 				<H_tabs>
-					<H_tab name="tab1" label="Tab 1."><div>This is TAB 1...</div></H_tab>
-					<H_tab disabled name="tab2" label="Tab 2."><div>This is TAB 2...</div></H_tab>
-					<H_tab name="tab3" label="Tab 3."><div>This is TAB 3...</div></H_tab>
+					<H_tab name="tab1" label="Tab 1."><div class="p-10">This is TAB 1...</div></H_tab>
+					<H_tab disabled name="tab2" label="Tab 2."><div class="p-10">This is TAB 2...</div></H_tab>
+					<H_tab name="tab3" label="Tab 3."><div class="p-10">This is TAB 3...</div></H_tab>
 				</H_tabs>
 			</div>
 		</template>
@@ -60,9 +60,9 @@ You can use a `will-change` event to do some work or validation before leaving t
 		<template>
 			<div class="flex items-center gap-4 px-4">
 				<H_tabs :will-change="canChange">
-					<H_tab name="tab1" label="Tab 1."><div>This is TAB 1...</div></H_tab>
-					<H_tab name="tab2" label="Tab 2."><div>This is TAB 2...</div></H_tab>
-					<H_tab name="tab3" label="Tab 3."><div>This is TAB 3...</div></H_tab>
+					<H_tab name="tab1" label="Tab 1."><div class="p-10">This is TAB 1...</div></H_tab>
+					<H_tab name="tab2" label="Tab 2."><div class="p-10">This is TAB 2...</div></H_tab>
+					<H_tab name="tab3" label="Tab 3."><div class="p-10">This is TAB 3...</div></H_tab>
 				</H_tabs>
 			</div>
 		</template>
