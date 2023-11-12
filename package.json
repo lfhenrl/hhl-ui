@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vue-tsc  --noEmit && vite build",
     "serve": "vite preview",
     "npmPublish": "cd lib && npm version patch && npm publish"
   },
@@ -29,8 +29,9 @@
     "tailwindcss": "^3.3.5",
     "typescript": "^5.2.2",
     "unplugin-vue-components": "^0.25.2",
+    "unplugin-vue-markdown": "^0.24.3",
     "vite": "^4.5.0",
     "vite-plugin-pages": "^0.31.0",
-    "unplugin-vue-markdown": "^0.24.3"
+    "vue-tsc": "^1.8.22"
   }
 }

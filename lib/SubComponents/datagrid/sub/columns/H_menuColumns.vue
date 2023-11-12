@@ -1,19 +1,19 @@
 <template>
   <H_dialog v-model="open" offsetTop="-20px" class="h_menuColumns" movable>
     <template #header>
-      <div class="flex min-w-[150px]">
+      <div class="flex min-w-[200px]">
         <div class="flex-1">Columns</div>
-        <div class="-mr-2 overflow-hidden">
+        <div class="overflow-hidden">
           <H_icon btn @click="open = false" />
         </div>
       </div>
     </template>
-    <div class="flex flex-col gap-4">
+    <div class="mt-3 flex flex-col gap-4">
       <H_inputbase label="Grouping" movelabel>
         <H_dragDrop
           v-model="groupColumns"
           :max-items="3"
-          class="max-h-[90px] min-h-[90px] p-2 pt-3"
+          class="max-h-[90px] min-h-[90px] overflow-auto p-2 pt-1"
         >
           <template v-slot:item="{ item, index }">
             <H_columnItem :item="item" :index="index" />
@@ -21,11 +21,11 @@
         </H_dragDrop>
       </H_inputbase>
 
-      <H_inputbase label="Columns" class="h-full" movelabel>
+      <H_inputbase label="Columns" class="mt-3 h-full" movelabel>
         <div class="">
           <H_dragDrop
             v-model="sourceColumns"
-            class="max-h-[200px] min-h-[200px] p-2 pt-3"
+            class="max-h-[200px] min-h-[200px] overflow-auto p-2 pt-1"
           >
             <template v-slot:item="{ item, index }">
               <H_columnItem :item="item" :index="index" />

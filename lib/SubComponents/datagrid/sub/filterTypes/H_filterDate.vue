@@ -1,7 +1,12 @@
 <template>
-  <div class="H_filtercomponent">
+  <div
+    class="H_filtercomponent grid h-full grid-rows-[auto_auto_1fr] gap-3 overflow-hidden p-5 pb-0"
+  >
     <H_select v-model="condition1" :list="list" hide-filter />
-    <H_datePicker v-model="value1" :type="col.filter.type === 'date' ? 'date' : 'dateTime'" />
+    <H_datePicker
+      v-model="value1"
+      :type="col.filter.type === 'date' ? 'date' : 'dateTime'"
+    />
     <H_selectBox
       row
       list-gap="20px"
@@ -9,11 +14,14 @@
       v-model="logical"
       :list="[
         { label: 'AND', value: 'and' },
-        { label: 'OR', value: 'or' }
+        { label: 'OR', value: 'or' },
       ]"
     />
     <H_select v-model="condition2" :list="list" hide-filter />
-    <H_datePicker v-model="value2" :type="col.filter.type === 'date' ? 'date' : 'dateTime'" />
+    <H_datePicker
+      v-model="value2"
+      :type="col.filter.type === 'date' ? 'date' : 'dateTime'"
+    />
   </div>
 </template>
 
@@ -26,7 +34,7 @@ import H_select from "../../../../Components/select/H_select.vue";
 import H_selectBox from "../../../../Components/select/H_selectBox.vue";
 
 const P = defineProps({
-  index: { type: Number, default: 0 }
+  index: { type: Number, default: 0 },
 });
 
 const Columns = inject("Columns") as iColumns;
@@ -38,7 +46,7 @@ const list = [
   { label: "Greater than.", value: "greater" },
   { label: "Greater than or Equal.", value: "greaterOrEqual" },
   { label: "Less than.", value: "less" },
-  { label: "Less than or Equal.", value: "lessOrEqual" }
+  { label: "Less than or Equal.", value: "lessOrEqual" },
 ];
 
 const condition1 = ref("equal");
@@ -49,9 +57,17 @@ const logical = ref("and");
 
 const canSave = computed(() => {
   if (value1.value === null && col.filter.value1 === null) return false;
-  if (value1.value !== col.filter.value1 || condition1.value !== col.filter.condition1) return true;
+  if (
+    value1.value !== col.filter.value1 ||
+    condition1.value !== col.filter.condition1
+  )
+    return true;
   if (value2.value === col.filter.value2 && value2.value === null) return false;
-  if (value2.value !== col.filter.value2 || condition2.value !== col.filter.condition2 || logical.value !== col.filter.logical)
+  if (
+    value2.value !== col.filter.value2 ||
+    condition2.value !== col.filter.condition2 ||
+    logical.value !== col.filter.logical
+  )
     return true;
   return false;
 });
@@ -85,8 +101,10 @@ function open() {
 function close() {}
 
 onMounted(() => {
-  col.filter.condition1 = col.filter.condition1 === "" ? "equal" : col.filter.condition1;
-  col.filter.condition2 = col.filter.condition2 === "" ? "equal" : col.filter.condition2;
+  col.filter.condition1 =
+    col.filter.condition1 === "" ? "equal" : col.filter.condition1;
+  col.filter.condition2 =
+    col.filter.condition2 === "" ? "equal" : col.filter.condition2;
   col.filter.value1 = col.filter.value1 === "" ? null : col.filter.value1;
   col.filter.value2 = col.filter.value2 === "" ? null : col.filter.value2;
 });

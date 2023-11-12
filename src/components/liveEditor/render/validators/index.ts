@@ -31,7 +31,7 @@ export function validate(template: string): iValidateError {
   const returnValue: iValidateError = {
     isOk: true,
     message: "",
-    func: () => null
+    func: () => null,
   };
   nodes.every((node: iValidateNode) => {
     return rules.every(function (rule: Function) {
@@ -60,7 +60,7 @@ function allDescendants(node: any, array: any) {
   for (let i = 0; i < node.childNodes.length; i++) {
     var child = node.childNodes[i];
     allDescendants(child, array);
-    const attributes = {};
+    const attributes: any = {};
     if (child.attributes && child.attributes.length > 0) {
       const attrs = child.attributes;
       for (let i = attrs.length - 1; i >= 0; i--) {
@@ -74,7 +74,7 @@ function allDescendants(node: any, array: any) {
       ele: child,
       textContent: child.textContent,
       attributes: attributes,
-      error: ""
+      error: "",
     };
     array.push(n);
   }

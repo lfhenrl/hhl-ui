@@ -1,7 +1,11 @@
 <template>
-  <div ref="root" class="H_virtualList" @scroll="onScroll">
+  <div ref="root" class="H_virtualList flex flex-col" @scroll="onScroll">
     <slot name="header" />
-    <div class="H_virtualList-scroller" role="group" :style="paddingStyle">
+    <div
+      class="H_virtualList-scroller flex border-r border-bg3"
+      role="group"
+      :style="paddingStyle"
+    >
       <H_virtualListItem
         v-for="item in items"
         :key="item[dataKey]"
@@ -23,7 +27,7 @@
       ref="shepherd"
       :style="{
         width: isHorizontal ? '0px' : '100%',
-        height: isHorizontal ? '0px' : '0px'
+        height: isHorizontal ? '0px' : '0px',
       }"
     />
   </div>
@@ -37,49 +41,55 @@ import H_virtualListItem from "../SubComponents/virtualList/H_virtualListItem.vu
 const props = defineProps({
   dataKey: {
     type: [String, Number],
-    required: true
+    required: true,
   },
   item_style: { type: Function, default: null },
   dataSources: {
     type: Array,
-    required: true
+    required: true,
   },
   keeps: {
     type: Number,
-    default: 50
+    default: 50,
   },
   estimateSize: {
     type: Number,
-    default: 25
+    default: 25,
   },
 
   direction: {
     type: String,
-    default: "vertical" // the other value is horizontal
+    default: "vertical", // the other value is horizontal
   },
   start: {
     type: Number,
-    default: 0
+    default: 0,
   },
   offset: {
     type: Number,
-    default: 0
+    default: 0,
   },
   topThreshold: {
     type: Number,
-    default: 0
+    default: 0,
   },
   bottomThreshold: {
     type: Number,
-    default: 0
+    default: 0,
   },
   itemClass: {
     type: String,
-    default: "H_virtualListItem"
+    default: "H_virtualListItem",
   },
-  selectedId: { type: [Number, String, Date, Object] }
+  selectedId: { type: [Number, String, Date, Object] },
 });
-const emit = defineEmits(["scrollLeft", "tobottom", "totop", "scroll", "resized"]);
+const emit = defineEmits([
+  "scrollLeft",
+  "tobottom",
+  "totop",
+  "scroll",
+  "resized",
+]);
 
 defineExpose({
   scrollToIndex,
@@ -87,7 +97,7 @@ defineExpose({
   getOffset,
   getScrollSize,
   reset,
-  update
+  update,
 });
 
 const root = ref<HTMLElement | null>(null);
@@ -112,27 +122,27 @@ watch(
     virtual.updateParam("uniqueIds", getUniqueIdFromDataSources());
     virtual.handleDataSourcesChange();
   },
-  { deep: true }
+  { deep: true },
 );
 watch(
   () => props.keeps,
   (newValue) => {
     virtual.updateParam("keeps", newValue);
     virtual.handleSlotSizeChange();
-  }
+  },
 );
 watch(
   () => props.start,
   (newValue) => {
     scrollToIndex(newValue);
-  }
+  },
 );
 
 watch(
   () => props.offset,
   (newValue) => {
     scrollToOffset(newValue);
-  }
+  },
 );
 
 onActivated(() => {
@@ -157,10 +167,10 @@ function installVirtual() {
       keeps: props.keeps,
       estimateSize: props.estimateSize,
       buffer: Math.round(props.keeps / 3), // recommend for a third of keeps
-      uniqueIds: getUniqueIdFromDataSources()
+      uniqueIds: getUniqueIdFromDataSources(),
     },
 
-    onRangeChanged
+    onRangeChanged,
   );
   // sync initial range
   range = virtual.getRange();
@@ -240,8 +250,11 @@ function onItemResized(id: any, size: number) {
 function onRangeChanged(r: any) {
   range = r;
   paddingStyle.value = {
-    padding: isHorizontal ? `0px ${range.padBehind}px 0px ${range.padFront}px` : `${range.padFront}px 0px ${range.padBehind}px`,
-    "flex-direction": isHorizontal ? "row" : "column"
+    padding: isHorizontal
+      ? `0px ${range.padBehind}px 0px ${range.padFront}px`
+      : `${range.padFront}px 0px ${range.padBehind}px`,
+    "flex-direction": isHorizontal ? "row" : "column",
+    width: root.value?.scrollWidth + "px",
   };
   items.value = props.dataSources.slice(range.start, range.end) as any;
 }
@@ -261,12 +274,24 @@ function onScroll(evt: any) {
 }
 
 // emit event in special position
-function emitEvent(offset: number, clientSize: number, scrollSize: number, evt: any) {
+function emitEvent(
+  offset: number,
+  clientSize: number,
+  scrollSize: number,
+  evt: any,
+) {
   emit("scroll", evt, virtual.getRange());
 
-  if (virtual.isFront() && !!props.dataSources!.length && offset - props.topThreshold <= 0) {
+  if (
+    virtual.isFront() &&
+    !!props.dataSources!.length &&
+    offset - props.topThreshold <= 0
+  ) {
     emit("totop");
-  } else if (virtual.isBehind() && offset + clientSize + props.bottomThreshold >= scrollSize) {
+  } else if (
+    virtual.isBehind() &&
+    offset + clientSize + props.bottomThreshold >= scrollSize
+  ) {
     emit("tobottom");
   }
 
@@ -276,16 +301,3 @@ function emitEvent(offset: number, clientSize: number, scrollSize: number, evt: 
   }
 }
 </script>
-
-<style>
-.H_virtualList {
-  display: flex;
-  flex-direction: column;
-}
-.H_virtualList-scroller {
-  display: flex;
-  /* flex-direction: column; */
-  border-right: solid 1px var(--col-bg-3);
-  width: 100%;
-}
-</style>

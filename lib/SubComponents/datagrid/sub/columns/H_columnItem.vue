@@ -1,5 +1,7 @@
 <template>
-  <div class="h_columnItem">
+  <div
+    class="h_columnItem flex items-center justify-start font-normal text-txt1 hover:bg-bg2"
+  >
     <H_checkbox size="sm" v-model="data.visibel" class="selectSize" />
     <H_icon icon="drag" size="16px" />
     {{ data?.title }}
@@ -26,34 +28,8 @@ type iGroupdata = {
 
 const props = defineProps({
   index: Number,
-  item: { type: Object as PropType<iGroupdata>, default: {} }
+  item: { type: Object as PropType<iGroupdata>, default: {} },
 });
 
 const data = ref<iGroupdata>(props.item);
 </script>
-
-<style>
-.h_columnItem {
-  display: flex;
-  align-items: center;
-  justify-items: flex-start;
-  justify-content: flex-start;
-  padding: 0;
-  margin: 0;
-  margin-bottom: 4px;
-  color: var(--col-txt-1);
-  font-size: 0.9em;
-  font-weight: normal;
-  font-family: var(--comp-font-family);
-}
-
-.h_columnItem:hover {
-  background-color: var(--col-bg-2);
-}
-
-.h_columnItem > .h_checkbox {
-  height: 20px;
-  max-width: 20px;
-  line-height: 0.4;
-}
-</style>

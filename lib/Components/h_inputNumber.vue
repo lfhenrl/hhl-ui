@@ -90,7 +90,12 @@ const E = defineEmits([
 const focused = ref(false);
 const Numbervalue = ref(P.modelValue);
 
-watch(() => P.modelValue, () => {Numbervalue.value = P.modelValue})
+watch(
+  () => P.modelValue,
+  () => {
+    Numbervalue.value = P.modelValue;
+  },
+);
 
 const move_label = computed(() => {
   if (P.startIcon != "") return true;
@@ -104,9 +109,15 @@ const debouncedUpdate = debounce(function (val: string) {
 }, P.debounce);
 
 const onInput = (e: any) => debouncedUpdate(e.target.value ?? "");
-const CountUp = () => (Numbervalue.value = Number(Numbervalue.value) + Number(P.step),debouncedUpdate(Numbervalue.value))
- /*  E("update:modelValue", Number(P.modelValue) + Number(P.step)); */
-const CountDown = () => (Numbervalue.value = Number(Numbervalue.value) - Number(P.step),debouncedUpdate(Numbervalue.value))
- /*  E("update:modelValue", Number(P.modelValue) - Number(P.step)); */
+const CountUp = () => (
+  (Numbervalue.value = Number(Numbervalue.value) + Number(P.step)),
+  debouncedUpdate(Numbervalue.value)
+);
+/*  E("update:modelValue", Number(P.modelValue) + Number(P.step)); */
+const CountDown = () => (
+  (Numbervalue.value = Number(Numbervalue.value) - Number(P.step)),
+  debouncedUpdate(Numbervalue.value)
+);
+/*  E("update:modelValue", Number(P.modelValue) - Number(P.step)); */
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>

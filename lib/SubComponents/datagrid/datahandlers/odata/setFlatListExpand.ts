@@ -1,7 +1,7 @@
 import { iDatahandler } from "../odata";
 
 export async function setFlatListExpand(DH: iDatahandler, row: any, index: number = 0) {
-  const level = row.level ?? 0;
+  // const level = row.level ?? 0;
   const parentArr = row.id.split("/");
   const filter = [];
 

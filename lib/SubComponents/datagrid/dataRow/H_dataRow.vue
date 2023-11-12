@@ -25,7 +25,7 @@ import H_dataGroupRow from "./H_dataGroupRow.vue";
 import H_loadMoreRow from "./H_loadMoreRow.vue";
 
 const P = defineProps({
-  row: { type: Object, default: {} }
+  row: { type: Object, default: {} },
 });
 
 const Columns = inject("Columns") as iColumns;
@@ -40,7 +40,7 @@ function rend(data: any) {
     const rowData = {
       row: data.row,
       col: data.col,
-      value
+      value,
     };
     return data.col.slot?.default(rowData);
   } else {
@@ -56,7 +56,7 @@ function cellStyle(col: any) {
 function rendRowTemplate() {
   return Columns.dataRowTemplate({
     row: P.row,
-    cols: Columns.columns
+    cols: Columns.columns,
   });
 }
 
@@ -95,7 +95,6 @@ function format(value: any, col: any, data: any) {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
   /* flex: 1; */
 }
 

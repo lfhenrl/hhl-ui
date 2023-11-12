@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h_baseSelectList col-warn flex flex-col items-start bg-transparent px-2.5 py-2.5"
+    class="h_baseSelectList col-pri flex flex-col items-start bg-transparent px-2.5 py-2.5"
     :class="{
       '!flex-row flex-wrap items-center': row,
     }"
@@ -26,7 +26,7 @@
           viewBox="0 0 24 24"
           class="h_baseSelectList__checkbox h-4 whitespace-nowrap rounded border border-txt5 fill-transparent p-[1px] ring-offset-1 ring-offset-pri transition focus:outline-none focus:ring"
           :class="{
-            'border-[var(--current-bg-col)] bg-[var(--current-bg-col)] fill-[var(--current-txt-col)]':
+            '!border-[var(--current-bg-col)] bg-[var(--current-bg-col)] !fill-[var(--current-txt-col)]':
               selected(item.value),
           }"
           tabindex="0"
@@ -65,7 +65,7 @@
       </div>
 
       <div
-        class="h_baseSelectList-label text-txtCol-2 pointer-events-none -mt-0.5 text-sm"
+        class="h_baseSelectList-label pointer-events-none -mt-0.5 text-sm text-txt2"
       >
         {{ item.label }}
       </div>

@@ -19,7 +19,7 @@ export class Columns {
   public changeCounter = ref(0);
   public expandList: string[] = [];
   // public groupList: string[] = ["val2", "val3", "val4"];"
-  public groupList: string[] = ["val2", "val4", "val7"];
+  public groupList: string[] = [];
   public rowStyle?: Function = undefined;
   public adjustColumns?: iColumnsResizing;
   public insObserver?: IntersectionObserver;
@@ -29,16 +29,18 @@ export class Columns {
     const style = document.createElement("style");
     document.body.appendChild(style) as HTMLStyleElement;
     this.StyleSheet = style.sheet! as CSSStyleSheet;
-   const tempColumnsObject: any = {};
-   this.groupList.forEach((item)=> {
-    tempColumnsObject[item]= {}
-   })
+    const tempColumnsObject: any = {};
+    this.groupList.forEach((item) => {
+      tempColumnsObject[item] = {};
+    });
     const slotData = this.getSlotsData(slots, "H_column");
     if (slotData.length < 1) return;
     const tempColumns: any = [];
     slotData.forEach((item: any, index: number) => {
       const className = `col-${index}`;
-      this.StyleSheet.insertRule(`.${guid} .col-${index.toString()} { max-width: ${item.props.width}}`);
+      this.StyleSheet.insertRule(
+        `.${guid} .col-${index.toString()} { max-width: ${item.props.width}}`,
+      );
       const cssList = Array.from(this.StyleSheet.cssRules);
       const column: icolumnData = {
         dom: null,
@@ -63,7 +65,7 @@ export class Columns {
           filter_condition2: item.props.filter_condition ?? "none",
           filter_value1: item.props.filter_value1,
           filter_value2: item.props.filter_value2,
-          visibel: item.props.visibel ?? true
+          visibel: item.props.visibel ?? true,
         },
         filter: reactive({
           field: item.props.field,
@@ -73,24 +75,24 @@ export class Columns {
           value2: item.props.filter_value2 ?? "",
           logical: "and",
           type: item.props.filter_type ?? "none",
-          active: false
+          active: false,
         }),
         slot: item.children,
         index: index,
         orgIndex: index,
-        width: item.props.width
+        width: item.props.width,
       };
 
       column.cssRule.style.minWidth = column.props.width;
-      column.cssRule.style.whiteSpace = column.props.autoHeight === true ? "break-spaces" : "nowrap";
+      column.cssRule.style.whiteSpace =
+        column.props.autoHeight === true ? "break-spaces" : "nowrap";
       column.filter.active = column.filter.value1 !== "";
       tempColumns.push(column);
 
-        tempColumnsObject[column.props.field] = column;
-
+      tempColumnsObject[column.props.field] = column;
     });
-   
-    console.log("OrderColumn ",Object.values(tempColumnsObject))
+
+    console.log("OrderColumn ", Object.values(tempColumnsObject));
     this.columns = Object.values(tempColumnsObject);
 
     this.updateSortArray();
@@ -126,13 +128,16 @@ export class Columns {
 
   createObserver() {
     let options = {
-      root: null
+      root: null,
     };
 
     this.insObserver = new IntersectionObserver(this.handleIntersect, options);
   }
 
-  handleIntersect = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+  handleIntersect = (
+    entries: IntersectionObserverEntry[],
+    observer: IntersectionObserver,
+  ) => {
     entries.forEach((entry: IntersectionObserverEntry) => {
       if (entry.isIntersecting) {
         const s = entry.target as HTMLElement;
@@ -155,12 +160,18 @@ export class Columns {
     const sArray: any[] = [];
     this.columns.forEach((item: icolumnData) => {
       if (item.props.sorting && item.props.sorting !== "none") {
-        sArray.push({ field: item.props.field, direction: item.props.sorting, index: item.props.sortIndex });
+        sArray.push({
+          field: item.props.field,
+          direction: item.props.sorting,
+          index: item.props.sortIndex,
+        });
       }
     });
 
     sArray.sort((a, b) => a.index - b.index);
-    sArray.sort((a, b) => a.index - b.index).map((item) => ({ field: item.field, direction: item.direction }));
+    sArray
+      .sort((a, b) => a.index - b.index)
+      .map((item) => ({ field: item.field, direction: item.direction }));
 
     this.sortArray.value = sArray;
     this.dataHandler?.setSorting(this.sortArray.value);

@@ -8,7 +8,7 @@
       v-movable="movable"
       :pos="pos"
       :modal="modal"
-      class="H_pop-dialog origin-top overflow-auto bg-transparent opacity-0 shadow-lg"
+      class="H_pop-dialog origin-top overflow-auto rounded bg-transparent opacity-0 shadow-lg outline-none"
       :shake="shake"
     >
       <slot />

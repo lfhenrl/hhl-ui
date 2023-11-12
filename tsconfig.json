@@ -3,7 +3,7 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
+    // "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     // "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
@@ -20,7 +20,7 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",    
+    "src/**/*.vue",
     "lib/**/*.vue",
     "lib/**/*.ts",
     "lib/**/*.d.ts"

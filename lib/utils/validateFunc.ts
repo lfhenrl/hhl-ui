@@ -10,7 +10,9 @@ export function validateFunc(validator: any, modelValue: any) {
       returnValue = valid;
       return true;
     } else if (typeof valid !== "boolean") {
-      console.log(`VALIDATION: Rules should return a string or boolean, received '${typeof valid}' instead`, this);
+      console.log(
+        `VALIDATION: Rules should return a string or boolean, received '${typeof valid}' instead`,
+      );
       return true;
     }
     return false;

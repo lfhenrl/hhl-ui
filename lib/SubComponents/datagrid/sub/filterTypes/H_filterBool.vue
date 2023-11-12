@@ -1,5 +1,7 @@
 <template>
-  <div class="H_filtercomponent filterBool">
+  <div
+    class="H_filtercomponent grid h-full grid-rows-[auto_auto] gap-3 overflow-hidden p-5 pb-0"
+  >
     <H_selectBox
       multi
       list-gap="10px"
@@ -8,7 +10,7 @@
       :list="[
         { label: 'Is True', value: 'true' },
         { label: 'Is False', value: 'false' },
-        { label: 'Is Empty', value: 'null' }
+        { label: 'Is Empty', value: 'null' },
       ]"
     />
   </div>
@@ -21,7 +23,7 @@ import { icolumnData } from "../../provide/datagridTypes";
 import H_selectBox from "../../../../Components/select/H_selectBox.vue";
 
 const P = defineProps({
-  index: { type: Number, default: 0 }
+  index: { type: Number, default: 0 },
 });
 
 const Columns = inject("Columns") as iColumns;
@@ -49,7 +51,8 @@ function clear() {
 }
 
 function open() {
-  value1.value = col.filter.value1 === "" ? "true,false,null" : col.filter.value1;
+  value1.value =
+    col.filter.value1 === "" ? "true,false,null" : col.filter.value1;
 }
 
 function close() {}
@@ -60,14 +63,3 @@ onMounted(() => {
 
 defineExpose({ save, clear, open, close, canSave });
 </script>
-
-<style>
-.H_filtercomponent.filterBool .h_selectBox {
-  border: 1px solid var(--col-txt-5);
-}
-
-.H_filtercomponent.filterBool .h_selectBox .h_inputbase-slot {
-  gap: 10px;
-  align-items: start;
-}
-</style>

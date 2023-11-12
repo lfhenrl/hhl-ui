@@ -1,6 +1,6 @@
 <template>
-  <H_pop :offset-top="20" :offset-left="-20" v-model="isOpen" movable>
-    <div class="shadow-4 rounded bg-bg0 text-txt1">
+  <H_pop :offset-top="0" :offset-left="-20" v-model="isOpen" movable>
+    <div class="max-h-[80vh] w-64 overflow-hidden bg-bg0 font-normal text-txt1">
       <div
         moveable-drag
         class="col-pri flex items-center overflow-hidden rounded-t"
@@ -90,42 +90,3 @@ const filtComponent = computed(() => {
   }
 });
 </script>
-
-<style>
-.H_menuFilter {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  border-radius: 4px;
-  resize: vertical;
-  overflow: hidden;
-  max-height: 90vh;
-}
-
-.H_menuFilter-head {
-  cursor: move;
-  border-radius: 4px 4px 0 0;
-}
-
-.H_menuFilter-head-title {
-  flex: 1;
-  padding: 9px;
-  text-align: center;
-}
-
-.H_filtercomponent {
-  display: flex;
-  flex-direction: column;
-  font-weight: normal;
-  gap: 10px;
-  padding: 20px 20px 0 20px;
-}
-
-.H_filtercomponent .h_selectBox {
-  border: none;
-}
-
-.H_filtercomponent .h_selectBox .h_inputbase-slot {
-  align-items: center;
-  gap: 20px;
-}
-</style>

@@ -1,11 +1,30 @@
 <template>
-  <div class="H_HeaderCell" ref="headCellRef" :data-index="index" data-type="headcell" :class="col.className">
-    <div class="H_HeaderCell-inner">
-      <div class="H_HeadCell-text" data-subtype="title">{{ col.props.title }}</div>
+  <div
+    class="H_HeaderCell min-h[33px] flex flex-col border-b border-r border-bg3"
+    ref="headCellRef"
+    :data-index="index"
+    data-type="headcell"
+    :class="col.className"
+  >
+    <div
+      class="H_HeaderCell-inner min-h[33px] flex w-full flex-1 items-center font-bold"
+    >
+      <div
+        class="H_HeadCell-text w-full overflow-hidden text-ellipsis whitespace-nowrap p-1.5"
+        data-subtype="title"
+      >
+        {{ col.props.title }}
+      </div>
       <H_menu data-subtype="menu" :index="index" />
-      <div class="H_HeadCell-resize" @mousedown="resize" data-subtype="resize"></div>
+      <div
+        class="H_HeadCell-resize z-10 h-full w-1.5 min-w-[6px] cursor-w-resize overflow-visible"
+        @mousedown="resize"
+        data-subtype="resize"
+      ></div>
     </div>
-    <div class="H_HeadCell-text H_HeadCell-space">
+    <div
+      class="H_HeadCell-space h-0 w-min overflow-hidden text-ellipsis whitespace-nowrap px-2.5 opacity-0"
+    >
       <rend :col="col" :row="Columns.dataHandler?.MaxSizeRow" />
     </div>
   </div>
@@ -19,7 +38,7 @@ import { inject, onMounted, ref } from "vue";
 import { icolumnData } from "../provide/datagridTypes";
 
 const P = defineProps({
-  index: { type: Number, default: 0 }
+  index: { type: Number, default: 0 },
 });
 // const E = defineEmits([]);
 const headCellRef = ref();
@@ -31,13 +50,13 @@ function resize(e: MouseEvent) {
 }
 
 function rend(data: any) {
-  if (!data.row.value) return
+  if (!data.row.value) return;
   const value = data.row.value[data.col.props.field];
   if (data.col.slot) {
     const rowData = {
       row: data.row.value,
       col: data.col,
-      value
+      value,
     };
     return data.col.slot?.default(rowData);
   } else {
@@ -57,52 +76,3 @@ onMounted(() => {
   }
 });
 </script>
-
-<style>
-.H_HeaderCell {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-  min-height: 33px;
-  border-right: solid 1px var(--col-bg-3);
-  border-bottom: solid 1px var(--col-bg-3);
-}
-
-.H_HeaderCell-inner {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  padding: 0;
-  margin: 0;
-  min-height: 33px;
-  width: 100%;
-}
-
-.H_HeadCell-text {
-  padding-left: 6px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 100%;
-
-}
-
-.H_HeadCell-space {
-  padding: 0 10px;
-  width: min-content;
-  opacity: 0;
-  height: 0;
-
-}
-
-.H_HeadCell-resize {
-  cursor: col-resize;
-  width: 6px;
-  min-width: 6px;
-  overflow: visible;
-  height: 100%;
-  /*   background-color: red; */
-  z-index: 2;
-}
-</style>

@@ -1,5 +1,8 @@
 <template>
-  <div class="H_datagrid grid grid-row-[1fr_auto] max-h-full rounded border border-bg5 overflow-hidden" ref="H_datagridRef">
+  <div
+    class="H_datagrid grid-row-[1fr_auto] grid max-h-full overflow-hidden rounded border border-bg5 text-sm"
+    ref="H_datagridRef"
+  >
     <H_virtualList
       ref="H_datagridVirtualRef"
       :key="columns.changeCounter.value"
@@ -7,7 +10,7 @@
       v-if="virtualscroll"
       :data-sources="dataHandler.rows.value"
       item-class="H_dataRow"
-      class="H_datagrid-table grid-row-[auto_1fr] max-h-full h-full min-h-[59px] w-full overflow-x-auto overflow-y-scroll"
+      class="H_datagrid-table grid-row-[auto_1fr] relative h-full max-h-full min-h-[59px] w-full overflow-x-auto overflow-y-scroll"
       :estimate-size="virtualscroll_rowheight"
       :keeps="virtualscroll_keeps"
       :class="guid"
@@ -16,7 +19,7 @@
       @click="datagridClick"
     >
       <template v-slot:header>
-        <div class="H_datagrid-head sticky top-0 z-[1]">
+        <div class="H_datagrid-head sticky right-0 top-0 z-[1] flex">
           <H_headerRow role="headitem" />
           <H_progressBar :show="columns.dataHandler?.rowsLoading.value" />
         </div>
@@ -50,15 +53,11 @@
         <H_dataRow :row="row" />
       </div>
     </div>
-    <div class="H_datagrid-footer flex items-center text-sm h-10 flex-wrap pr-3 border-t border-bg6 text-pri gap-2">
+    <div
+      class="H_datagrid-footer flex h-10 flex-wrap items-center gap-2 border-t border-bg6 bg-bg2 pr-3 text-sm text-pri"
+    >
+      <H_btn round type="icon-text" icon="refresh" title="Reload data" />
       <H_btn
-        round
-        type="icon-text"
-        icon="refresh"
-        title="Reload data"
-      />
-      <H_btn
-
         round
         type="icon-text"
         icon="columns"
@@ -66,7 +65,6 @@
         @click="editColumns"
       />
       <H_btn
-
         round
         type="icon-text"
         icon="expand_horizontal"
@@ -74,7 +72,6 @@
         @click="autoAdjustColumns"
       />
       <H_btn
-
         round
         type="icon-text"
         icon="excel"
@@ -82,7 +79,6 @@
         @click="excel"
       />
       <H_btn
-
         round
         type="icon-text"
         icon="zoom_out_map"

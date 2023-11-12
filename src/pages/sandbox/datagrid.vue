@@ -119,7 +119,7 @@ const seek = ref("");
 const lData = new localData();
 
 async function loadData() {
-  await lData.setDataSource(getData(40000));
+  await lData.setDataSource(getData(4000));
 }
 
 function formatDate(value: any) {
@@ -146,6 +146,6 @@ async function load() {
   setTimeout(async () => {
     await loadData();
     lData.loadData();
-  }, 20);
+  }, 0);
 }
 </script>

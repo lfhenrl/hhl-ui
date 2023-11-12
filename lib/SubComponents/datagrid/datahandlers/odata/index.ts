@@ -26,7 +26,7 @@ export class odata {
   public dataSource: any[] = [];
   public filterArray: any[] = [];
   public OrderArray: any[] = [];
-  private expandList: string[] = [];
+  public expandList: string[] = [];
   public groupList: string[] = [];
   public seekFilterList: string[] = [];
   public seekFilterString: string = "";
@@ -69,7 +69,9 @@ export class odata {
   public async expanding(row: any) {
     const index = this.rows.value.findIndex((item) => item.id === row.id);
     if (row.expanded) {
-      const moreRowsIndex = this.rows.value.findIndex((item) => item.Pid === row.id);
+      const moreRowsIndex = this.rows.value.findIndex(
+        (item) => item.Pid === row.id,
+      );
       if (moreRowsIndex) this.rows.value.splice(moreRowsIndex, 1);
       this.rows.value.splice(index + 1, row.rowsLoaded);
       row.rowsLoaded = 0;
@@ -121,7 +123,10 @@ export class odata {
 
   public async setSorting(_sortArray: iSortData[]) {
     this.OrderArray = _sortArray.map((item: iSortData) => {
-      return { field: item.field, desc: item.direction === "up" ? false : true };
+      return {
+        field: item.field,
+        desc: item.direction === "up" ? false : true,
+      };
     });
 
     this.loadData();
@@ -148,12 +153,17 @@ export class odata {
     //this.loadData();
   }
 
+  public setseekFilterString(_seekFilterString: string) {
+    this.seekFilterString = _seekFilterString;
+    // this.loadData();
+  }
+
   public toExcel(Columns: any) {
     const fields: any = {};
     Columns.forEach((item: icolumnData) => {
       const it = {
         type: item.props.type,
-        title: item.props.title
+        title: item.props.title,
       };
       fields[item.props.field] = it;
     });

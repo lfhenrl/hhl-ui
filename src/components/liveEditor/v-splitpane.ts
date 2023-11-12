@@ -1,16 +1,16 @@
 export const splitpane = {
   mounted(el: HTMLElement) {
     const leftSide = el.previousElementSibling as HTMLElement;
-    let x = 0,
-      y = 0,
-      leftWidth = 0;
+    let x = 0;
+    // let y = 0;
+    let leftWidth = 0;
     el.onmousedown = dragMouseDown;
 
     function dragMouseDown(e: any) {
       e = e || window.event;
       e.preventDefault();
       x = e.clientX;
-      y = e.clientY;
+      // y = e.clientY;
       leftWidth = leftSide.getBoundingClientRect().width;
       document.onmouseup = closeDragElement;
       document.onmousemove = elementDrag;
@@ -35,6 +35,5 @@ export const splitpane = {
   unmounted() {
     document.onmouseup = null;
     document.onmousemove = null;
-  }
+  },
 };
-

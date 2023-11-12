@@ -1,8 +1,22 @@
 <template>
-  <div class="H_filtercomponent filterSelect">
+  <div
+    class="H_filtercomponent grid h-full grid-rows-[auto_auto_1fr] gap-3 overflow-hidden p-5 pb-0"
+  >
     <H_inputText v-model="searchValue" end-icon="search" clearable />
-    <H_checkbox size="sm" label="Select All." :model-value="AllSelected" @click="SelectToggle" />
-    <H_selectBox multi list-gap="6px" label-gap="5px" v-model="value1" :list="filter" />
+    <H_checkbox
+      size="sm"
+      label="Select All."
+      :model-value="AllSelected"
+      @click="SelectToggle"
+    />
+    <H_selectBox
+      multi
+      class="max-h-80 overflow-auto border border-txt5"
+      list-gap="6px"
+      label-gap="5px"
+      v-model="value1"
+      :list="filter"
+    />
   </div>
 </template>
 
@@ -15,7 +29,7 @@ import H_checkbox from "../../../../Components/H_checkbox.vue";
 import H_selectBox from "../../../../Components/select/H_selectBox.vue";
 
 const P = defineProps({
-  index: { type: Number, default: 0 }
+  index: { type: Number, default: 0 },
 });
 
 const Columns = inject("Columns") as iColumns;
@@ -54,11 +68,14 @@ const endValue = computed(() => {
   if (endCondition.value === "equal") {
     return value1.value;
   } else {
-    return list.value.filter((x: any) => !valueList.value.includes(x)).toString();
+    return list.value
+      .filter((x: any) => !valueList.value.includes(x))
+      .toString();
   }
 });
 
-const filterFunc = (item: any) => item.toLowerCase().includes(searchValue.value.toLowerCase());
+const filterFunc = (item: any) =>
+  item.toLowerCase().includes(searchValue.value.toLowerCase());
 const filter = computed(() => list.value?.filter(filterFunc));
 
 const canSave = computed(() => {
@@ -97,39 +114,16 @@ async function open() {
   }
 }
 
-function close() { }
+function close() {}
 
 onMounted(() => {
-  col.filter.condition1 = col.filter.condition1 === "" ? "equal" : col.filter.condition1;
-  col.filter.condition2 = col.filter.condition2 === "" ? "equal" : col.filter.condition2;
+  col.filter.condition1 =
+    col.filter.condition1 === "" ? "equal" : col.filter.condition1;
+  col.filter.condition2 =
+    col.filter.condition2 === "" ? "equal" : col.filter.condition2;
   col.filter.value1 = col.filter.value1 === "" ? "" : col.filter.value1;
   col.filter.value2 = col.filter.value2 === "" ? "null" : col.filter.value2;
 });
 
 defineExpose({ save, clear, open, close, canSave });
 </script>
-<style>
-.H_filtercomponent.filterSelect {
-  display: grid;
-  grid-template-rows: auto auto 1fr;
-  height: 100%;
-  overflow: hidden;
-
-}
-
-.H_filtercomponent.filterSelect .h_selectBox {
-  border: 1px solid var(--col-txt-5);
-  overflow: auto;
-  height: 300px;
-
-
-}
-
-.H_filtercomponent.filterSelect .h_baseSelectList {}
-
-.H_filtercomponent.filterSelect .h_selectBox .h_inputbase-slot {
-  gap: 10px;
-  align-items: start;
-
-}
-</style>
