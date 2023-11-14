@@ -7,7 +7,7 @@
     <div class="flex flex-col items-center gap-4 px-4 ">
     <H_btn @click="load">Load</H_btn>
      <div class="flex flex-col items-center gap-4 px-4">
-      <H_virtual-list data-key="id" :data-sources="list" class="border border-bg3 max-h-96 overflow-auto">
+      <H_virtual-list data-key="id" :data-sources="list" class="border border-bg3 max-h-96 w-[500px] overflow-auto">
         <template v-slot:header>
           <div>Headline..</div>
         </template>

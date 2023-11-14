@@ -5,7 +5,7 @@
 <hhl-live-editor title="" htmlCode=' 
     <template>
      <div class="flex items-center gap-4">
-        <H_checkbox label="CheckBox 1" class="col-err text-err" v-model="check"></H_checkbox>
+        <H_checkbox label="CheckBox 1" class="col-err" v-model="check"></H_checkbox>
         <H_checkbox label="CheckBox 2" v-model="check"></H_checkbox>    
         <H_checkbox label="CheckBox 3" v-model="check"></H_checkbox>
         <H_inputText :model-value="check ? `true` : `false`" label="value"></H_inputText>

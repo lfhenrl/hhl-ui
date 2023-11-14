@@ -39,12 +39,12 @@
         :data-activemonth="item.activeMonth"
         :today="isToday(item.value)"
         :title="isHolyday(item.value)"
-        class="h_dateTable__tableItem flex items-center justify-center font-bold"
+        class="h_dateTable__tableItem flex items-center justify-center"
         :class="{
-          'cursor-pointer rounded-full opacity-50 hover:bg-warn hover:text-black':
+          'cursor-pointer rounded-full opacity-90  hover:bg-warn hover:text-black':
             item.type === 'day',
           'font-bold opacity-100': item.activeMonth,
-          'font-normal opacity-100': item.daytype === 'weekend',
+          'font-normal opacity-70': item.daytype === 'weekend',
           'bg-bg2 font-normal text-txt1 opacity-100':
             item.type === 'head' || item.type === 'week',
           'col-pri': isSelected(item.value),
