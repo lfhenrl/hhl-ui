@@ -1,8 +1,8 @@
 <template>
   <rendRowTemplate v-if="Columns.haveDataRowTemplate" />
   <template v-else>
-    <H_dataGroupRow v-if="row._type === 'group'" :row="row" />
-    <H_loadMoreRow v-else-if="row._type === 'loadmore'" :row="row" />
+    <H_dataGroupRow v-if="row.__type === 'group'" :row="row" />
+    <H_loadMoreRow v-else-if="row.__type === 'loadmore'" :row="row" />
     <template v-else>
       <div
         v-for="(col, index) in Columns.getVisibelColumns()"

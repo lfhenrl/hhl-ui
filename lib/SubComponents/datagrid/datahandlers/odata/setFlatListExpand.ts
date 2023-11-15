@@ -1,6 +1,10 @@
 import { iDatahandler } from "../odata";
 
-export async function setFlatListExpand(DH: iDatahandler, row: any, index: number = 0) {
+export async function setFlatListExpand(
+  DH: iDatahandler,
+  row: any,
+  index: number = 0,
+) {
   // const level = row.level ?? 0;
   const parentArr = row.id.split("/");
   const filter = [];
@@ -11,7 +15,7 @@ export async function setFlatListExpand(DH: iDatahandler, row: any, index: numbe
       Field: DH.groupList[i],
       Condition: "=",
       Value: parentArr[i],
-      End: ""
+      End: "",
     };
     filter.push(F);
   }
@@ -19,26 +23,26 @@ export async function setFlatListExpand(DH: iDatahandler, row: any, index: numbe
     Take: DH.pageSize,
     Skip: 0,
     Filter: filter,
-    Order: DH.OrderArray
+    Order: DH.OrderArray,
   };
 
   const data: any = await DH.dataFetch.post("", Qpara);
   const dataCount = data.data.length;
   DH.rowsCount.value = DH.rowsCount.value + dataCount;
-  const rowsLeft = row.count - dataCount;
+  const __rowsLeft = row.count - dataCount;
   row.rowsLoaded = row.rowsLoaded + dataCount;
 
-  if (rowsLeft > 0) {
+  if (__rowsLeft > 0) {
     data.data.push({
-      _type: "loadmore",
-      nextPage: DH.pageSize,
-      level: 0,
-      rowsLeft,
-      rowsLoaded: row.rowsLoaded,
-      isGroup: false,
-      filter,
-      Pid: row.id,
-      id: crypto.randomUUID()
+      __type: "loadmore",
+      __nextPage: DH.pageSize,
+      __level: 0,
+      __rowsLeft,
+      __rowsLoaded: row.rowsLoaded,
+      __isGroup: false,
+      __filter: filter,
+      __Pid: row.id,
+      __id: crypto.randomUUID(),
     });
   }
 

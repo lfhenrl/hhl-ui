@@ -1,18 +1,18 @@
 <template>
   <div
     class="H_dataGroupRow flex w-full flex-1 items-center border-b border-bg3 px-0.5"
-    :style="{ paddingLeft: 17 * row.level + 'px' }"
+    :style="{ paddingLeft: 17 * row.__level + 'px' }"
     :col-index="0"
     data-type="rowgroup"
-    :row-level="row.level"
+    :row-level="row.__level"
   >
     <H_icon
-      :icon="row.expanded ? 'expand_down' : 'expand_right'"
+      :icon="row.__expanded ? 'expand_down' : 'expand_right'"
       btn
       @click="expand"
     />
-    {{ row.title }} ({{ row.count }}/{{ row.count_total }}) ----
-    {{ row.id }}---- {{ row.level }} --- {{ row.rowsLoaded }}
+    {{ row.__title }} ({{ row.__count }}/{{ row.__count_total }}) ----
+    {{ row.__id }}---- {{ row.__level }} --- {{ row.__rowsLoaded }}
   </div>
 </template>
 

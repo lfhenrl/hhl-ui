@@ -49,7 +49,6 @@ export class localData {
     this.rowsLoading.value = false;
   }, 50);
 
-
   public async setDataSource(_dataSource: any[]) {
     this.dataSource = (await _dataSource) ?? [];
     this.rowsCountTotal.value = _dataSource.length;
@@ -107,13 +106,13 @@ export class localData {
   public async expanding(row: any) {
     const index = this.groupData.indexOf(toRaw(row));
 
-    if (row.expanded) {
-      this.groupData.splice(index + 1, row.count);
-      row.expanded = false;
+    if (row.__expanded) {
+      this.groupData.splice(index + 1, row.__count);
+      row.__expanded = false;
     } else {
-      const parentArr = row.id.split("/");
+      const parentArr = row.__id.split("/");
       const raw = this.sortData.filter((item) => {
-        for (let i = 0; i < row.level + 1; i++) {
+        for (let i = 0; i < row.__level + 1; i++) {
           if (item[this.groupList[i]] !== parentArr[i]) {
             return false;
           }
@@ -121,17 +120,17 @@ export class localData {
         return true;
       });
 
-      if (this.groupList.length > row.level + 1) {
-        const GroupProp = this.groupList[row.level + 1];
-        const rr = await groupBy(GroupProp, raw, row.level + 1, row.id);
-        row.count = rr.length;
+      if (this.groupList.length > row.__level + 1) {
+        const GroupProp = this.groupList[row.__level + 1];
+        const rr = await groupBy(GroupProp, raw, row.__level + 1, row.__id);
+        row.__count = rr.length;
         this.groupData.splice(index + 1, 0, ...rr);
       } else {
         this.groupData.splice(index + 1, 0, ...raw);
       }
 
       this.rows.value = this.groupData;
-      row.expanded = true;
+      row.__expanded = true;
     }
   }
 
@@ -154,7 +153,7 @@ export class localData {
     Columns.forEach((item: icolumnData) => {
       const it = {
         type: item.props.type,
-        title: item.props.title
+        title: item.props.title,
       };
       fields[item.props.field] = it;
     });

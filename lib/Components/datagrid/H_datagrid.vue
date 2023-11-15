@@ -19,7 +19,7 @@
       @click="datagridClick"
     >
       <template v-slot:header>
-        <div class="H_datagrid-head sticky right-0 top-0 z-[1] flex">
+        <div class="H_datagrid-head sticky top-0 z-[1] flex flex-col">
           <H_headerRow role="headitem" />
           <H_progressBar :show="columns.dataHandler?.rowsLoading.value" />
         </div>
@@ -179,9 +179,9 @@ watch(
 watch(
   () => columns.dataHandler?.MaxSizeRow.value,
   () => {
-    console.log("adjustColumns.adjust()");
     setTimeout(() => {
       adjustColumns.adjust();
+      console.log("adjustColumns.adjust()");
     }, 100);
   },
   { deep: true },

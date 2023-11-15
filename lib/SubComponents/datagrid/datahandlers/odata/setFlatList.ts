@@ -5,16 +5,24 @@ export async function setFlatList(DH: iDatahandler) {
     Take: DH.pageSize,
     Skip: 0,
     Filter: DH.filterArray,
-    Order: DH.OrderArray
+    Order: DH.OrderArray,
   };
 
   const data: any = await DH.dataFetch.post("", Qpara);
   const dataCount = data.data.length;
   DH.rowsCount.value = DH.rowsCount.value + dataCount;
-  const rowsLeft = DH.rowsCountTotal.value - DH.rowsCount.value;
+  const __rowsLeft = DH.rowsCountTotal.value - DH.rowsCount.value;
 
-  if (rowsLeft > 0) {
-    data.data.push({ _type: "loadmore", nextPage: DH.pageSize, level: 0, rowsLeft, isGroup: false, id: crypto.randomUUID() });
+  if (__rowsLeft > 0) {
+    data.data.push({
+      __type: "loadmore",
+      __nextPage: DH.pageSize,
+      __level: 0,
+      __rowsLeft,
+      __rowsLoaded: 0,
+      __isGroup: false,
+      __id: crypto.randomUUID(),
+    });
   }
 
   DH.rows.value = data.data;

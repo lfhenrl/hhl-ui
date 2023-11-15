@@ -49,17 +49,12 @@ export class odata {
     } else {
       await setFlatList(this);
     }
-
-    this.makeCalcMaxRowSize(this.rows.value);
+    // this.makeMaxRowStore();
+    this.makeCalcMaxRowSize();
 
     this.newDataEvent();
     this.rowsLoading.value = false;
   }, 50);
-
-  public async setDataSource() {
-    this.makeMaxRowStore();
-    this.debouncedUpdate();
-  }
 
   public async moreRows(row: any) {
     const index = this.rows.value.findIndex((item) => item.id === row.id);
@@ -87,33 +82,23 @@ export class odata {
     }
   }
 
-  private makeMaxRowStore() {
-    if (this.rowsCountTotal.value > 0) {
-      this.SizeStore = {};
-      this._MaxSizeRow = structuredClone(this.dataSource[0]);
-
-      for (const key in this._MaxSizeRow) {
-        this.SizeStore[key] = 1;
-      }
-    }
-  }
-
-  private makeCalcMaxRowSize(data: any[]) {
-    const slicedArray = data.slice(0, 100);
-    slicedArray.forEach((item: any) => {
+  private makeCalcMaxRowSize() {
+    const mArr: any = {};
+    this.rows.value.forEach((item: any) => {
       if (item._type === "group") return;
       for (const key in item) {
+        if (key.startsWith("__")) return;
         const val = item[key];
         const valStr: string = val?.toString() ?? "";
+        if (!this.SizeStore[key]) this.SizeStore[key] = 0;
         if (valStr && this.SizeStore[key] < valStr.length) {
           this.SizeStore[key] = valStr.length;
-          this._MaxSizeRow[key] = val;
+          mArr[key] = val;
         }
       }
     });
-    console.log(this.SizeStore, this._MaxSizeRow);
-    this.MaxSizeRow.value = null;
-    this.MaxSizeRow.value = this._MaxSizeRow;
+
+    this.MaxSizeRow.value = mArr;
   }
 
   public loadData() {
@@ -129,13 +114,13 @@ export class odata {
       };
     });
 
-    this.loadData();
+    //  this.loadData();
   }
 
   public setFilter(_filterArray: iFilterData[]) {
     this.filterArray = getFilterList(_filterArray);
     this.expandList = [];
-    this.loadData();
+    // this.loadData();
   }
 
   public setGrouping(_groupList: string[]) {

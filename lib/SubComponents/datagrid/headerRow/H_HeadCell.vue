@@ -19,11 +19,13 @@
       <div
         class="H_HeadCell-resize z-10 h-full w-1.5 min-w-[6px] cursor-w-resize overflow-visible"
         @mousedown="resize"
+        @mouseup="resizeEnd"
+        @mouseout="resizeEnd"
         data-subtype="resize"
       ></div>
     </div>
     <div
-      class="H_HeadCell-space h-0 w-min overflow-hidden text-ellipsis whitespace-nowrap px-2.5 opacity-0"
+      class="H_HeadCell-space h-5 w-min overflow-hidden text-ellipsis whitespace-nowrap px-2.5"
     >
       <rend :col="col" :row="Columns.dataHandler?.MaxSizeRow" />
     </div>
@@ -47,6 +49,15 @@ const col: icolumnData = Columns.columns[P.index];
 
 function resize(e: MouseEvent) {
   ColResize(col, e);
+  setTimeout(() => {
+    Columns.adjustColumns?.adjust();
+  }, 10);
+}
+
+function resizeEnd(e: MouseEvent) {
+  setTimeout(() => {
+    Columns.adjustColumns?.adjust();
+  }, 10);
 }
 
 function rend(data: any) {

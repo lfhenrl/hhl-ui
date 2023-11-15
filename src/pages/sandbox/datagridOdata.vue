@@ -110,9 +110,9 @@ import { iClickData } from "../../../lib/SubComponents/datagrid/provide/datagrid
 const seek = ref("");
 const lData = new odata("http://localhost:5101/hhl");
 
-async function loadData() {
-  await lData.setDataSource();
-}
+// async function loadData() {
+//   await lData.setDataSource();
+// }
 
 function headClick(data: iClickData) {
   console.log("headClick :", data);
@@ -134,7 +134,7 @@ function rowStyle(row: any) {
 async function load() {
   lData.rowsLoading.value = true;
   setTimeout(async () => {
-    await loadData();
+    // await loadData();
     lData.loadData();
   }, 20);
 }

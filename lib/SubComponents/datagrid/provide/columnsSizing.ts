@@ -12,9 +12,7 @@ export class ColumnsResizing {
 
   public autoColumns() {
     for (const col of this.Columns.getVisibelColumns()) {
-
-        this.autoColumn(col);
-       
+      this.autoColumn(col);
     }
     setTimeout(() => {
       this.adjust();
@@ -30,15 +28,16 @@ export class ColumnsResizing {
     col.cssRule.style.maxWidth = "";
     col.cssRule.style.minWidth = "";
     col.cssRule.style.width = "auto";
-
   }
 
   public adjust() {
     const cols: any[] = [];
+    this.setgridWidth();
+
     this.Columns.getVisibelColumns().forEach((item) => {
       const col = {
         width: item.dom?.offsetWidth,
-        style: item.cssRule.style
+        style: item.cssRule.style,
       };
       cols.push(col);
     });
@@ -49,13 +48,30 @@ export class ColumnsResizing {
   }
 
   public adjustColumn(column: icolumnData) {
-    this.autoColumn(column)
+    this.autoColumn(column);
     this.setWidth(column.dom?.offsetWidth ?? 0, column.cssRule.style);
+    this.setgridWidth();
   }
 
   private setWidth(w: number, s: any) {
     const newWidthString = w + "px";
     s.maxWidth = newWidthString;
     s.minWidth = newWidthString;
+  }
+
+  setgridWidth() {
+    const dGrid = this.Columns.H_datagridRef.value as HTMLElement;
+    if (dGrid) {
+      const Vscroller: HTMLElement | null = dGrid.querySelector(
+        ".H_virtualList-scroller",
+      );
+      const head: HTMLElement | null = dGrid.querySelector(".H_datagrid-head");
+
+      if (head && Vscroller) {
+        const w = head.scrollWidth ?? 0;
+        head.style.width = w + "px";
+        Vscroller.style.width = w + "px";
+      }
+    }
   }
 }
