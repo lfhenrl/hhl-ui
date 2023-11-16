@@ -31,6 +31,7 @@
         :readonly="readonly"
         :aria-label="label"
         :name="label"
+        autocomplete="off"
       />
       <div
         class="h_inputNumber-icons relative flex max-h-[34px] min-h-[34px] flex-col text-txt3"

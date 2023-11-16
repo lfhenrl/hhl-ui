@@ -28,7 +28,7 @@ Here the debounce is set to `debounce="1000"`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4 p-4">
-            <H_inputText v-model="txt" label="Text input" debounce="1000"></H_inputText>
+            <H_inputText v-model="txt" label="Text input" :debounce="1000"></H_inputText>
             <H_inputText v-model="txt" label="Text input"></H_inputText>
       </div>
       </template>

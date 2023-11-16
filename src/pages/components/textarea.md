@@ -28,7 +28,7 @@ Here the debounce is set to `debounce="1000"`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4 p-4">
-            <H_textarea v-model="txt" label="Text input" debounce="1000"></H_textarea>
+            <H_textarea v-model="txt" label="Text input" :debounce="1000"></H_textarea>
             <H_inputText v-model="txt" label="Text input"></H_inputText>
       </div>
       </template>
@@ -47,7 +47,7 @@ By adding `no-grow="true"`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4 p-4">
-            <H_textarea v-model="txt" label="Text input" no-grow="true"></H_textarea>
+            <H_textarea v-model="txt" label="Text input" :no-grow="true"></H_textarea>
       </div>
       </template>
       <script>
@@ -65,7 +65,7 @@ By adding `no-grow="true"` and `rows="5"`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4 p-4">
-            <H_textarea v-model="txt" label="Text input" no-grow="true" rows="5"></H_textarea>
+            <H_textarea v-model="txt" label="Text input" :no-grow="true" rows="5"></H_textarea>
       </div>
       </template>
       <script>

@@ -25,7 +25,7 @@
       ></div>
     </div>
     <div
-      class="H_HeadCell-space h-5 w-min overflow-hidden text-ellipsis whitespace-nowrap px-2.5"
+      class="H_HeadCell-space h-0 w-min overflow-hidden text-ellipsis whitespace-nowrap px-2.5 opacity-0"
     >
       <rend :col="col" :row="Columns.dataHandler?.MaxSizeRow" />
     </div>
@@ -54,7 +54,7 @@ function resize(e: MouseEvent) {
   }, 10);
 }
 
-function resizeEnd(e: MouseEvent) {
+function resizeEnd() {
   setTimeout(() => {
     Columns.adjustColumns?.adjust();
   }, 10);

@@ -1,5 +1,5 @@
 <template>
-  <div
+  <label
     class="h_inputbase group relative grid min-w-[100px] grid-cols-[auto_1fr_auto_auto] grid-rows-[auto_auto_auto] rounded border border-txt5 focus-within:border-pri data-[error]:border-err"
     @click="Click"
     :disabled="disabled ? true : undefined"
@@ -42,7 +42,7 @@
         <div class="text-err">{{ ErrorMessage }}</div>
       </template>
     </div>
-  </div>
+  </label>
 </template>
 
 <script setup lang="ts">

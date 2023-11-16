@@ -28,6 +28,7 @@
       @click="$emit('input_click')"
       @focus="handleFocus"
       @blur="handleBlur"
+      autocomplete="off"
       :class="{'resize-none overflow-hidden': !noGrow}"
       class="H_textarea__input min-h-[32px] h-[32] w-full border border-none bg-transparent px-2.5 pt-1.5 leading-tight text-txt1 outline-none"
     />

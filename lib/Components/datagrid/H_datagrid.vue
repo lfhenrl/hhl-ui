@@ -20,7 +20,7 @@
     >
       <template v-slot:header>
         <div class="H_datagrid-head sticky top-0 z-[1] flex flex-col">
-          <H_headerRow role="headitem" />
+          <H_headerRow role="heading" aria-level="2"/>
           <H_progressBar :show="columns.dataHandler?.rowsLoading.value" />
         </div>
       </template>

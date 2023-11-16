@@ -29,6 +29,7 @@
       :readonly="readonly"
       :aria-label="label"
       :name="label"
+      autocomplete="off"
     />
   </H_inputBase>
 </template>
