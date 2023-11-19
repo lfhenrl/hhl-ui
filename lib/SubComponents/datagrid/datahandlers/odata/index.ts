@@ -62,23 +62,23 @@ export class odata {
   }
 
   public async expanding(row: any) {
-    const index = this.rows.value.findIndex((item) => item.id === row.id);
-    if (row.expanded) {
+    const index = this.rows.value.findIndex((item) => item.__id === row.__id);
+    if (row.__expanded) {
       const moreRowsIndex = this.rows.value.findIndex(
-        (item) => item.Pid === row.id,
+        (item) => item.__Pid === row.__id,
       );
       if (moreRowsIndex) this.rows.value.splice(moreRowsIndex, 1);
-      this.rows.value.splice(index + 1, row.rowsLoaded);
-      row.rowsLoaded = 0;
-      row.expanded = false;
+      this.rows.value.splice(index + 1, row.__rowsLoaded);
+      row.__rowsLoaded = 0;
+      row.__expanded = false;
     } else {
-      if (this.groupList.length > row.level + 1) {
+      if (this.groupList.length > row.__level + 1) {
         await setGroupListExpand(this, row, index);
       } else {
         await setFlatListExpand(this, row, index);
       }
 
-      row.expanded = true;
+      row.__expanded = true;
     }
   }
 

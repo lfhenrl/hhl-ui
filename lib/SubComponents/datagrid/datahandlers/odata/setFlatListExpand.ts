@@ -6,10 +6,10 @@ export async function setFlatListExpand(
   index: number = 0,
 ) {
   // const level = row.level ?? 0;
-  const parentArr = row.id.split("/");
+  const parentArr = row.__id.split("/");
   const filter = [];
 
-  for (let i = 0; i < row.level + 1; i++) {
+  for (let i = 0; i < row.__level + 1; i++) {
     const F = {
       Front: "AND",
       Field: DH.groupList[i],
@@ -30,7 +30,7 @@ export async function setFlatListExpand(
   const dataCount = data.data.length;
   DH.rowsCount.value = DH.rowsCount.value + dataCount;
   const __rowsLeft = row.count - dataCount;
-  row.rowsLoaded = row.rowsLoaded + dataCount;
+  row.__rowsLoaded = row.__rowsLoaded + dataCount;
 
   if (__rowsLeft > 0) {
     data.data.push({

@@ -45,7 +45,7 @@ const P = defineProps({
     type: String,
     default: "",
   },
-  label: { type: String, default: "" },
+  label: { type: String, default: "xxx" },
   clearable: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },

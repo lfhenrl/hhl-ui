@@ -19,7 +19,7 @@ export async function setFlatList(DH: iDatahandler) {
       __nextPage: DH.pageSize,
       __level: 0,
       __rowsLeft,
-      __rowsLoaded: 0,
+      __rowsLoaded: dataCount,
       __isGroup: false,
       __id: crypto.randomUUID(),
     });

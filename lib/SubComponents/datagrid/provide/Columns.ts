@@ -19,7 +19,7 @@ export class Columns {
   public changeCounter = ref(0);
   public expandList: string[] = [];
   // public groupList: string[] = ["val2", "val3", "val4"];"
-  public groupList: string[] = [];
+  public groupList: string[] = ["val2", "val4"];
   public rowStyle?: Function = undefined;
   public adjustColumns?: iColumnsResizing;
   public insObserver?: IntersectionObserver;
@@ -143,11 +143,9 @@ export class Columns {
         const s = entry.target as HTMLElement;
         if (s.dataset.row) {
           const row = JSON.parse(s.dataset.row);
-          console.log("OPSERVES ", row);
+          console.log("OPSERVES ", observer);
           this.dataHandler?.moreRows(row);
-        }
-
-        observer.unobserve(entry.target);
+        }       
       }
     });
   };

@@ -13,7 +13,6 @@ export async function setCounters(DH: iDatahandler) {
     hhl.alert("err", "Server Error", message);
     return;
   }
-
   if (DH.groupList.length > 0) {
     CountPara.GroupBy = [DH.groupList[0]];
     const count: any = await DH.dataFetch.post("", CountPara);

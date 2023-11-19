@@ -13,8 +13,8 @@ export async function setMoreRows(
     Skip: skip,
     Filter: DH.filterArray,
     Order: DH.OrderArray,
-    Select: row.select,
-    GroupBy: row.groupBy,
+    Select: row.__select,
+    GroupBy: row.__groupBy,
   };
 
   if (!row.__isGroup) {
@@ -29,14 +29,14 @@ export async function setMoreRows(
   if (row.__isGroup) {
     gData = data.data.map((item: any) => {
       return {
-        id: item.title,
-        title: item.title,
-        _type: "group",
-        count_total: item.count,
-        count: item.count,
-        rowsLoaded: 0,
-        level: 0,
-        nextPage: 0,
+        __id: item.title,
+        __title: item.title,
+        __type: "group",
+        __count_total: item.count,
+        __count: item.count,
+        __rowsLoaded: 0,
+        __level: 0,
+        __nextPage: 0,
       };
     });
   } else {
@@ -55,14 +55,14 @@ export async function setMoreRows(
       __level: 0,
       __rowsLeft,
       __rowsLoaded: row.__rowsLoaded,
-      __filter: row.filter ?? [],
-      __Pid: row.Pid,
+      __filter: row.__filter ?? [],
+      __Pid: row.__Pid,
       __id: crypto.randomUUID(),
     });
   }
-  if (row.isGroup) {
+  if (row.__isGroup) {
     const pRow = DH.rows.value.find((item) => item.__id === row.__Pid);
-    pRow.rowsLoaded = pRow.rowsLoaded + dataCount;
+    pRow.__rowsLoaded = pRow.__rowsLoaded + dataCount;
   }
   DH.rows.value.splice(index, 1);
   DH.rows.value.splice(index, 0, ...gData);

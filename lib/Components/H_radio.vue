@@ -14,6 +14,7 @@
       style="accent-color: var(--current-bg-col)"
       :checked="modelValue === value"
       :value="value"
+      :name="label"
       @change="$emit('update:modelValue', value)"
     />
     <div class="label line-clamp-1 text-sm">{{ label }}</div>

@@ -13,6 +13,7 @@
       }"
       style="accent-color: var(--current-bg-col)"
       :checked="modelValue"
+      :name="label"
       @change="
         $emit('update:modelValue', (<HTMLInputElement>$event.target).checked)
       "
@@ -37,5 +38,5 @@ defineProps({
     default: "md",
   },
 });
-const E = defineEmits(["update:modelValue", "changed"]);
+defineEmits(["update:modelValue", "changed"]);
 </script>
