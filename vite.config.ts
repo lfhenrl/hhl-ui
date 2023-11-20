@@ -1,8 +1,8 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import Pages from "vite-plugin-pages";
 import mdAnchor from "markdown-it-anchor";
 import Markdown from "unplugin-vue-markdown/vite";
+import VueRouter from 'unplugin-vue-router/vite'
 import { containerPlugin } from "./src/components/containers";
 import visualizer from "rollup-plugin-visualizer";
 
@@ -14,6 +14,10 @@ export default defineConfig({
     },
   },
   plugins: [
+    VueRouter({
+      extensions: ['.vue', '.md'],
+      routesFolder: 'src/pages',
+    }),
     vue({
       include: [/\.vue$/, /\.md$/],
       script: {
@@ -27,10 +31,7 @@ export default defineConfig({
         md.use(containerPlugin);
         md.use(require("markdown-it-prism"));
       },
-    }),
-    Pages({
-      extensions: ["vue", "md"],
-    }),
+    })
   ],
   server: {
     open: true,

@@ -88,6 +88,7 @@ export default defineComponent({
       const routeData = getRouteData();
       routeLinks = routeData.routeLinks;
       mainRoutes.value = routeData.mainRoutes;
+      console.log("onMounted",routeLinks)
       routeChanged();
       onResize();
     });

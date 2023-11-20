@@ -1,17 +1,21 @@
 // vite-env.d.ts
-/// <reference types="vite-plugin-pages/client" />
+
 
 import { createApp, defineAsyncComponent } from "vue";
 import App from "./App.vue";
-import { createRouter, createWebHashHistory } from "vue-router";
+/* import { createRouter, createWebHashHistory } from "vue-router"; */
+import { createRouter, createWebHistory } from 'vue-router/auto'
 import { createPinia } from "pinia";
-import routes from "~pages";
+/* import routes from "~pages"; */
 
 import "./components/mdStyle/index.css";
 import "../lib/style.css";
 
-const history = createWebHashHistory();
-const router = createRouter({ history, routes });
+const router = createRouter({
+  history: createWebHistory(),
+  // You don't need to pass the routes anymore,
+  // the plugin writes it for you 🤖
+})
 
 const app = createApp(App).use(router);
 app.use(createPinia());

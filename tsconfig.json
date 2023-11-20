@@ -21,6 +21,7 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "typed-router.d.ts",
     "lib/**/*.vue",
     "lib/**/*.ts",
     "lib/**/*.d.ts"
