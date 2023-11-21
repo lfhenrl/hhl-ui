@@ -9,7 +9,7 @@ const routeLinks: any = {};
 
 function jsUcfirst(string: string) {
   let str = string.charAt(0).toUpperCase() + string.slice(1);
-  return str.replaceAll("_", " ");
+  return str.replaceAll("/", " ");
 }
 
 export function makeRouteList(router: any) {
@@ -24,9 +24,9 @@ export function makeRouteList(router: any) {
     return 0;
   });
   sortList.forEach((item: any) => {
-    const linkArr = item.name.split("-");
-    const del1 = linkArr[0];
-    const del2 = linkArr[1] || "na";
+    const linkArr = item.name.split("/");
+    const del1 = linkArr[1];
+    const del2 = linkArr[2] || "na";
     if (!routeLinks[del1]) {
       routeLinks[del1] = {
         name: jsUcfirst(del1),

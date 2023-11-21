@@ -21,10 +21,7 @@
     />
 
     <div id="page-container" ref="page" class="overflow-auto scroll-smooth h-full pb-32 px-8">
-      <router-view v-slot="{ Component }" class="flex flex-col p-1">
-        <keep-alive>
-          <component :is="Component" />
-        </keep-alive>
+      <router-view class="flex flex-col p-1">
       </router-view>
     </div>
     <menu-right :view="page" v-show="!medium" />
@@ -54,7 +51,7 @@ export default defineComponent({
 
     function routeChanged() {
       const val = router.currentRoute.value.name as string;
-      const val1 = val.split("-")[0];
+      const val1 = val.split("/")[1];
       if (val1 !== activeMainPath.value) {
         activeMainPath.value = val1;
         activeRouteLinks.value = routeLinks[val1].children;

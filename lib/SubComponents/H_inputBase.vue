@@ -19,7 +19,7 @@
     <H_icon
       v-if="endIcon != ''"
       :icon="endIcon"
-      class="h_inputbase-endicon col-start-4 row-start-2 mr-1 w-[22px] self-center text-txt3"
+      class="h_inputbase-endicon col-start-4 row-start-2 mr-1 w-[22px] self-center text-txt3 pointer-events-none"
       :btn="endBtn ? true : null"
     />
     <H_icon
