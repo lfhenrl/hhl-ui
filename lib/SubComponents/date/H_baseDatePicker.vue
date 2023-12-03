@@ -2,24 +2,29 @@
   <div class="h_datePicker" :focused="focused" :readonly="readonly">
     <H_pop
       v-model="popupOpen"
-      trigger="none"
+      trigger="click"
       :no-outside-click="noOutsideClick"
       position="fixed"
     >
       <template v-slot:referance>
         <div
           class="h_datePicker__inputcontainer group/date inline-flex cursor-pointer items-center"
-          @click="onClick"
+          title="Datepicker"
+          tabindex="0"
         >
           <H_icon
             icon="event"
-            btn
+            btn="standard"
             v-if="!hideIcon"
-            class="opacity-70 group-hover/date:scale-125"
+            tabindex="-1"
+            class="opacity-70 group-hover/date:scale-110"
           />
           <input
+            name="datepicker"
+            title="Datepicker"
             :value="formattetValueDate"
             :size="setSize()"
+            tabindex="-1"
             readonly
             @focus="focused = !readonly"
             @blur="focused = false"
@@ -126,19 +131,4 @@ const ok = () => {
   emit("dateChanged", new Date(tempDato.value));
 };
 const cancel = () => close();
-const onClick = () => {
-  if (props.readonly) return;
-  if (popupOpen.value === false || !props.noOutsideClick) {
-    popupOpen.value = !popupOpen.value;
-    if (popupOpen.value === false) return;
-  }
-
-  if (props.modelValue) {
-    tempDato.value = new Date(props.modelValue);
-  } else {
-    tempDato.value = new Date(DateGetToday());
-  }
-
-  tempDatomy.value = tempDato.value;
-};
 </script>

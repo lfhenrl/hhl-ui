@@ -1,7 +1,7 @@
 <template>
   <label
-    class="h_inputbase group relative grid min-w-[100px] grid-cols-[auto_1fr_auto_auto] grid-rows-[auto_auto_auto] rounded border border-txt5 focus-within:border-pri data-[error]:border-err"
-    @click="Click"
+    class="h_inputbase group relative grid min-w-[100px] grid-cols-[auto_1fr_auto_auto] grid-rows-[auto_auto_auto] rounded border border-bg4 focus-within:border-pri data-[error]:border-err"
+    @click.prevent="Click"
     :disabled="disabled ? true : undefined"
     :data-error="ErrorMessage != '' ? true : undefined"
   >
@@ -19,7 +19,7 @@
     <H_icon
       v-if="endIcon != ''"
       :icon="endIcon"
-      class="h_inputbase-endicon col-start-4 row-start-2 mr-1 w-[22px] self-center text-txt3 pointer-events-none"
+      class="h_inputbase-endicon col-start-4 row-start-2 mr-1 w-[22px] self-center text-txt3"
       :btn="endBtn ? true : null"
     />
     <H_icon

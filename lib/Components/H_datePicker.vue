@@ -20,6 +20,7 @@
         :hide-icon="hideIcon"
         :readonly="readonly"
         :no-outside-click="noOutsideClick"
+        class="mr-3"
         v-if="type === 'dateTime' || type === 'date'"
       />
       <H_baseTimePicker
@@ -29,6 +30,7 @@
         :readonly="readonly"
         :show-seconds="showSeconds"
         :no-outside-click="noOutsideClick"
+        class="mr-3"
         v-if="type === 'dateTime' || type === 'time'"
       />
     </div>

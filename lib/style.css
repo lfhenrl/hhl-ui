@@ -2,3 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline-offset: 2px;
+  outline: 2px ridge rgba(170, 50, 220, 1);
+}
+
+button {
+  cursor: pointer;
+  font-size: inherit;
+}

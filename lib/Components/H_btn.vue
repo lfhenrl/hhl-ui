@@ -1,72 +1,82 @@
 <template>
   <button
-    class="h_btn col-pri inline-flex cursor-pointer items-center justify-center gap-1 hover:drop-shadow-[1px_1px_5px_var(--col-txt-1)] whitespace-nowrap rounded leading-loose ring-offset-1 ring-offset-pri focus:outline-none focus:ring active:scale-95"
-    :style="{
-      'background-color':
-        type === 'outline' ||
-        type === 'text' ||
-        type === 'icon-outline' ||
-        type === 'icon-text'
-          ? 'transparent'
-          : 'var(--current-bg-col)',
-      color:
-        type === 'outline' ||
-        type === 'text' ||
-        type === 'icon-outline' ||
-        type === 'icon-text'
-          ? 'var(--current-bg-col)'
-          : 'var(--current-txt-col)',
-      'border-color':
-        type === 'outline' ? 'var(--current-bg-col)' : 'var(--current-txt-col)',
-    }"
+    class="H_btn col-pri"
     type="button"
     :class="{
-      'text-xs': size === 'sm',
-      'text-base': size === 'md',
-      'text-xl': size === 'lg',
-      'rounded-[50%]': round,
-      border: type === 'outline' || type === 'icon-outline',
-      'aspect-square px-1 py-1': type.startsWith('icon'),
-      'px-4 py-0.5': !type.startsWith('icon'),
-      'flex-row-reverse': iconRight,
+      'H_btn-sm': size === 'sm',
+      'H_btn-lg': size === 'lg',
+      'H_btn-outline': type === 'outline',
+      'H_btn-text': type === 'text',
     }"
   >
-    <H_icon v-if="icon !== ''" :icon="icon" :size="iconSize"></H_icon
-    ><slot></slot>
+    <slot></slot>
   </button>
 </template>
 
 <script setup lang="ts">
-import { PropType, computed } from "vue";
-import H_icon from "./H_icon.vue";
+import { PropType } from "vue";
 
-const P = defineProps({
+defineProps({
   type: {
-    type: String as PropType<
-      "standard" | "outline" | "text" | "icon" | "icon-outline" | "icon-text"
-    >,
+    type: String as PropType<"standard" | "outline" | "text">,
     default: "standard",
-  },
-  round: {
-    type: Boolean,
-    default: false,
   },
   size: {
     type: String as PropType<"lg" | "md" | "sm">,
     default: "md",
   },
-  icon: { type: String, default: "" },
-  iconRight: { type: Boolean, default: false },
-});
-
-const iconSize = computed(() => {
-  if (P.size === "sm") return "16px";
-  if (P.size === "lg") return "26px";
-  return "24px";
 });
 </script>
 <style>
-/* .h_btn:hover {
-  filter: drop-shadow(1px 1px 5px var(--col-txt-1));;
-} */
+@layer hhl-components {
+  button.H_btn {
+    display: inline-flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    white-space: nowrap;
+    border-radius: 4px;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    padding: 0 10px !important;
+    --btn-icon-size: 1.1rem;
+  }
+
+  .H_btn:hover {
+    filter: brightness(90%);
+    -webkit-backdrop-filter: drop-shadow(4px 4px 10px blue);
+    backdrop-filter: drop-shadow(4px 4px 10px blue);
+  }
+
+  .H_btn:active {
+    transform: scale(0.95);
+  }
+
+  .H_btn.H_btn-outline {
+    background-color: transparent;
+    color: var(--current-bg-col);
+    border: 1px solid var(--current-bg-col);
+  }
+
+  .H_btn.H_btn-text {
+    background-color: transparent;
+    color: var(--current-bg-col);
+  }
+
+  button.H_btn.H_btn-sm {
+    font-size: 0.8rem;
+    --btn-icon-size: 0.8rem;
+  }
+
+  button.H_btn-lg {
+    font-size: 1.5rem;
+    --btn-icon-size: 1.5rem;
+  }
+
+  .H_btn .H_icon {
+    --icon-size: var(--btn-icon-size);
+    --current-bg-col: currentColor;
+  }
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <nav class="flex items-center overflow-hidden bg-bg3 pl-2 pr-8">
     <H_icon
-      btn
+      btn="standard"
       icon="menu"
       @click.stop="$emit('update:modelValue', !modelValue)"
       v-if="small"

@@ -1,4 +1,12 @@
-<template>Test</template>
+<template>
+  <H_datePicker label="Date" v-model="dato"></H_datePicker>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import H_datePicker from "../../../lib/Components/H_datePicker.vue";
+const dato = ref(new Date());
+</script>
 
 <!-- <template>
   <div class="overflow-auto">
@@ -13,12 +21,12 @@
         <div class="header-right flex-1 text-right"></div>
       </div> -->
 
-      <!-- <div class="hhl-chart-footer">Footer</div> -->
+<!-- <div class="hhl-chart-footer">Footer</div> -->
 
-      <!-- <div class="rotate hhl-chart-left">Left</div> -->
-     <!--  <hhl-chart-yscale-band :item-height="40" /> -->
+<!-- <div class="rotate hhl-chart-left">Left</div> -->
+<!--  <hhl-chart-yscale-band :item-height="40" /> -->
 
-      <!-- <div class="rotate hhl-chart-right">Right</div> -->
+<!-- <div class="rotate hhl-chart-right">Right</div> -->
 
 <!--       <hhl-chart-xscale-time class="hhl-chart-bottom-scale" />
 

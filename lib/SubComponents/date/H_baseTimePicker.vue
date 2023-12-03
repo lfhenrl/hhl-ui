@@ -2,7 +2,7 @@
   <div class="h_timePicker" :focused="focused" :readonly="readonly">
     <H_pop
       v-model="popupOpen"
-      trigger="none"
+      trigger="click"
       offset-when-up="11"
       :no-outside-click="noOutsideClick"
       position="fixed"
@@ -10,14 +10,15 @@
       <template v-slot:referance>
         <div
           class="h_timePicker__inputcontainer group/time inline-flex cursor-pointer flex-row items-center"
-          @click="onClick"
         >
           <H_icon
             icon="clock"
             v-if="!hideIcon"
-            class="group-hover/time:scale-125"
+            class="group-hover/time:scale-110"
           />
           <input
+            name="timepicker"
+            title="Timepicker"
             :value="formattetTime"
             :size="setSize()"
             readonly
@@ -66,7 +67,7 @@ const close = () => (popupOpen.value = false);
 const ok = () => (close(), emit("timeChanged", tempDato.value));
 const cancel = () => close();
 
-const onClick = () => {
+/* const onClick = () => {
   if (props.readonly) {
     return;
   }
@@ -78,7 +79,7 @@ const onClick = () => {
   if (popupOpen.value === false || !props.noOutsideClick) {
     popupOpen.value = !popupOpen.value;
   }
-};
+}; */
 
 function setSize() {
   if (props.showSeconds) {

@@ -1,11 +1,11 @@
 <template>
   <label
-    class="h_checkbox col-pri bg-transparent flex items-center gap-2 text-txt2"
+    class="h_checkbox col-pri flex items-center gap-2 bg-transparent text-txt2"
     :class="{ 'flex-row-reverse': labelLeft }"
   >
     <input
       type="checkbox"
-      class="aspect-square ring-offset-2 ring-offset-pri focus:outline-none focus:ring"
+      class="aspect-square"
       :class="{
         'w-[15px]': size === 'sm',
         'w-[19px]': size === 'md',

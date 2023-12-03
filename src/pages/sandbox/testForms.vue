@@ -30,6 +30,9 @@
           <div moveable-drag>TITLE</div>
         </div>
       </H_pop>
+      <div class="border border-pri">
+        <input type="date" id="start" name="trip-start" />
+      </div>
       <H_select
         label="Placement"
         v-model="placement"
@@ -52,6 +55,7 @@
       <H_switch label="Inner" v-model="inner" />
       <H_inputNumber label="OffsetTop" v-model="offsetTop" />
       <H_inputNumber label="OffsetLeft" v-model="offsetLeft" />
+      <H_icon icon="cast" />
     </div>
     <div style="min-height: 500px" />
   </div>
@@ -61,6 +65,7 @@
 import H_pop from "../../../lib/Components/popup/H_pop.vue";
 import H_select from "../../../lib/Components/select/H_select.vue";
 import H_switch from "../../../lib/Components/H_switch.vue";
+import H_icon from "../../../lib/Components/H_icon.vue";
 import H_btn from "../../../lib/Components/H_btn.vue";
 import H_inputNumber from "../../../lib/Components/H_inputNumber.vue";
 import { ref } from "vue";

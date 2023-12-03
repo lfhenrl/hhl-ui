@@ -56,9 +56,3 @@ declare global {
 }
 
 declare var hhl: hhl;
-
-// declare module "@vue/runtime-core" {
-//   export interface GlobalComponents {
-//     H_btn: typeof import("./src/components/h_btn.vue")["default"];
-//   }
-// }

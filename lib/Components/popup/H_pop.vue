@@ -121,6 +121,7 @@ function diaOpen() {
 }
 
 function diaClose() {
+  console.log("diaClose");
   dialogPos.endPos();
   modelValue.value = false;
   stopOpserve();
@@ -140,9 +141,9 @@ function refClick() {
   if (P.trigger === "toggle") {
     modelValue.value = !modelValue.value;
   }
-
   if (P.trigger === "click") {
     modelValue.value = true;
+    console.log("refClick");
   }
 }
 
@@ -164,13 +165,14 @@ function mouseOut() {
 
 function popupClick() {
   if (P.closePopupClick) {
+    console.log("popupClick");
     modelValue.value = false;
   }
 }
 
 function outsideClick() {
+  console.log("OUTSIDE_CLICK");
   if (ModelValueDelay) return;
-
   if (P.modal) {
     if (!P.noShake) {
       shake.value = true;
@@ -189,10 +191,12 @@ function keyCancel(event: any) {
 
 function docClick(e: any) {
   if (!e.target) return;
+
   if (H_popRef.value?.contains(e.target)) {
     e.stopPropagation;
     if (e.target.getAttribute("pop-close") !== null) {
       modelValue.value = false;
+      console.log("docClick");
     }
 
     if (P.modal && modelValue.value) {
@@ -203,7 +207,9 @@ function docClick(e: any) {
       if (dialogBox.contains(e.target)) popupClick();
       return;
     }
-    if (refBox?.contains(e.target)) refClick();
+    if (refBox?.contains(e.target)) {
+      refClick();
+    }
     if (dialogBox.contains(e.target)) popupClick();
   } else {
     if (modelValue.value) outsideClick();

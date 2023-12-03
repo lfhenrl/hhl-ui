@@ -1,11 +1,18 @@
 <template>
-  <div class="hhl-live-editor shadow-lg relative flex flex-col" ref="el">
-    <div class="absolute flex flex-col z-10 bottom-1 right-1 overflow-auto bg-warn max-h-52 w-52" v-show="showError" v-movable>
-      <div class="flex items-center overflow-hidden col-err cursor-grab pl-2 " moveable-drag>
+  <div class="hhl-live-editor relative flex flex-col shadow-lg" ref="el">
+    <div
+      class="absolute bottom-1 right-1 z-10 flex max-h-52 w-52 flex-col overflow-auto bg-warn"
+      v-show="showError"
+      v-movable
+    >
+      <div
+        class="col-err flex cursor-grab items-center overflow-hidden pl-2"
+        moveable-drag
+      >
         <div>Error</div>
         <div class="flex-1" />
         <H_icon
-          btn
+          btn="standard"
           icon="close"
           color="white"
           @click="hideError = !hideError"
@@ -15,47 +22,40 @@
       <span class="m-2 text-sm text-err">{{ error }}</span>
     </div>
 
-    <div class="flex items-center bg-bg2 rounded-t-lg p-1">
+    <div class="flex items-center gap-2 rounded-t-lg bg-bg2 p-1 text-txt3">
       <div>{{ title }}</div>
       <div class="flex-1" />
-      <H_btn
-        title="Show Error."
-        type="icon-text"
+      <H_icon
         icon="info"
-        round
+        btn="standard"
+        title="Show Error."
+        class="text-err"
         v-if="error !== '' && showCode"
         @click="hideError = !hideError"
-        class="col-err"
       />
-      <H_btn
-        title="Fullscreen."
-        type="icon-text"
+      <H_icon
         icon="zoom_out_map"
-        round
+        btn="standard"
+        title="Fullscreen."
         @click="toggleFullScreen"
       />
-      <H_btn
-        title="Change Horisont or Vertical."
-        type="icon-text"
+      <H_icon
         icon="split"
-        round
+        btn="standard"
+        title="Change Horisont or Vertical."
         :disabled="!showCode"
         @click="changeHorisont"
       />
-      <H_btn
-        title="Show Code."
-        round
-        type="icon-text"
+      <H_icon
         icon="expand_down"
+        btn="standard"
+        title="Show Code."
         @click="codeShow"
       />
     </div>
 
-    <div
-      class="flex flex-1"
-      :class="{ 'flex-col': column }"
-    >
-      <div ref="renderBox" >
+    <div class="flex flex-1" :class="{ 'flex-col': column }">
+      <div ref="renderBox">
         <live-render
           :template="reactiv_htmlCode"
           @onError="errorHandler"
@@ -65,16 +65,14 @@
 
       <div class="w-1 cursor-ew-resize" v-splitpane v-if="!column" />
 
-
-        <hhl-code-editor
-          class="bg-bg1 origin-top transition-transform"
-          :code="code"
-          lang="htmlmixed"
-          @changed="reactiv_htmlCode = $event"
-          :show="showCode"
-          v-if="showCode"
-        />
-
+      <hhl-code-editor
+        class="origin-top bg-bg0 transition-transform"
+        :code="code"
+        lang="htmlmixed"
+        @changed="reactiv_htmlCode = $event"
+        :show="showCode"
+        v-if="showCode"
+      />
     </div>
   </div>
 </template>
@@ -159,4 +157,3 @@ export default defineComponent({
   },
 });
 </script>
-

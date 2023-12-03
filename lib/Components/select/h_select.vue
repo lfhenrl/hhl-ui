@@ -1,14 +1,15 @@
 <template>
   <H_pop
-    class="h_selectPop"
+    class="h_selectPop group"
     v-model="isOpen"
     full-width
+    :offsetTop="5"
     :disabled="disabled ? 'true' : null"
     :readonly="readonly"
   >
     <template v-slot:referance>
       <H_inputbase
-        class="h_select max-h-[36px] min-h-[36px] flex-1"
+        class="h_select max-h-[36px] min-h-[36px] flex-1 group-focus-within:border-pri"
         :label="label"
         :start-icon="startIcon"
         :end-icon="isOpen ? 'expand_up' : 'expand_down'"
@@ -18,14 +19,14 @@
         :ErrorMessage="validate"
         :err_text="validate"
         :err_label="label"
+        @keydown.down.prevent.stop="isOpen = true"
+        tabindex="0"
       >
         <input
           type="text"
           class="h_select-input inline-block max-h-[34px] min-h-[34px] w-full flex-1 appearance-none overflow-hidden text-ellipsis whitespace-nowrap border-none bg-transparent px-2.5 align-bottom text-txt1 outline-none"
           :maxlength="counter"
           :value="labelValue"
-          @focus="focused = true"
-          @blur="focused = false"
           readonly
           :name="label"
         />
@@ -33,32 +34,38 @@
     </template>
     <div class="h_select-list rounded border border-bg4 bg-bg0">
       <div
-        class="h_select-filter flex items-center gap-1 border-b px-1.5 py-1"
+        class="h_select-filter flex items-center gap-1 border-b border-bg4 px-3 py-1"
         v-if="!hideFilter"
       >
-        <H_icon icon="search" class="text-txtCol-3" />
+        <H_icon icon="search" size="20px" class="text-txt3" />
         <input
           type="text"
-          class="min-h-[24px inline-flex max-h-[24px] w-2 min-w-[50px] appearance-none overflow-hidden text-ellipsis whitespace-nowrap border-none bg-transparent align-bottom text-txt1 outline-none"
+          class="min-h-[24px inline-flex max-h-[24px] w-2 min-w-[50px] flex-1 appearance-none overflow-hidden text-ellipsis whitespace-nowrap border-none bg-transparent align-bottom text-txt1 outline-none"
           :maxlength="counter"
           :value="filter"
           @input="onInput"
           name="filter"
+          @keyup.enter.prevent="KeyEnter"
+          @keydown.up.prevent="KeyUp"
+          @keydown.down.prevent="KeyDown"
         />
         <H_icon
           btn
           v-if="filter != ''"
           icon="close"
-          class="text-txtCol-3"
+          class="text-txt5"
+          size="20px"
           @click.stop="filter = ''"
         />
       </div>
       <H_baseSelectList
+        ref="baseSelectList"
         :modelValue="modelValue"
         v-model:labelValue="labelValue"
         @update:modelValue="$emit('update:modelValue', $event)"
         listGap="5px"
-        labelGap="10px"
+        labelGap="3px"
+        labelLeft
         :multi="multi"
         :list="list"
         :filter="filter"
@@ -97,10 +104,22 @@ const P = defineProps({
 
 defineEmits(["update:modelValue"]);
 
-const focused = ref(false);
+const baseSelectList = ref<any>();
 const filter = ref("");
 const isOpen = ref(false);
 const labelValue = ref("");
+
+function KeyDown() {
+  baseSelectList.value?.KeyDown();
+}
+
+function KeyUp() {
+  baseSelectList.value?.KeyUp();
+}
+
+function KeyEnter() {
+  baseSelectList.value?.KeyEnter();
+}
 
 watch(
   () => P.modelValue,

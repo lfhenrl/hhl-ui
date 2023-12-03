@@ -44,7 +44,7 @@ const P = defineProps({
   disabled: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
   filter: { type: String, default: "" },
-  labelGap: { type: String, default: "6px" },
+  labelGap: { type: String, default: "2px" },
   listGap: { type: String, default: "6px" },
   labelLeft: { type: Boolean, default: false },
   multi: { type: Boolean, default: false },

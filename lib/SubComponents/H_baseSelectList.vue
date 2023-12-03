@@ -1,71 +1,39 @@
 <template>
   <div
-    class="h_baseSelectList col-pri flex flex-col items-start bg-transparent px-2.5 py-2.5"
+    ref="selectBox"
+    class="h_baseSelectList flex flex-col items-stretch bg-transparent px-1 py-2.5 focus-within:border-pri focus:outline-none"
     :class="{
       '!flex-row flex-wrap items-center': row,
     }"
     :style="{ gap: listGap }"
-    @click="Click"
-    @keyup.space="Click"
-    @keyup.enter="Click"
+    @click.prevent="Click"
+    @keyup.enter.prevent="KeyEnter"
     :row="row ? 'true' : null"
+    @keydown.up.prevent="KeyUp"
+    @keydown.down.prevent="KeyDown"
+    tabindex="0"
   >
     <div
-      class="h_baseSelectList-item flex cursor-pointer select-none items-center"
+      class="h_baseSelectList-item group flex w-full flex-1 cursor-pointer select-none items-center rounded px-1 pr-2 text-txt3 data-[selected=true]:text-pri"
       :class="{
         'flex-row-reverse': labelLeft,
+        'border border-pri': focused(item),
       }"
       :style="{ gap: labelGap }"
-      v-for="item in filterList"
+      v-for="(item, index) in filterList"
+      :data-selected="selected(item.value)"
       :key="item.value as string"
       :data-value="item.value"
+      :data-index="index"
     >
-      <div class="h_baseSelectList-icon pointer-events-none flex items-center">
-        <svg
-          v-if="multi"
-          viewBox="0 0 24 24"
-          class="h_baseSelectList__checkbox h-4 whitespace-nowrap rounded border border-txt5 fill-transparent p-[1px] ring-offset-1 ring-offset-pri transition focus:outline-none focus:ring"
-          :class="{
-            '!border-[var(--current-bg-col)] bg-[var(--current-bg-col)] !fill-[var(--current-txt-col)]':
-              selected(item.value),
-          }"
-          tabindex="0"
-        >
-          <path
-            d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"
-          ></path>
-        </svg>
-
-        <svg
-          v-else
-          class="h_baseSelectList-radio__svg h-[18px] w-[18px] ring-offset-1 ring-offset-pri focus:outline-none focus:ring"
-          tabindex="0"
-        >
-          <circle
-            class="h_baseSelectList-radio__box stroke-txt5"
-            :class="{
-              'stroke-[var(--current-bg-col)]': selected(item.value),
-            }"
-            cx="50%"
-            cy="50%"
-            r="44%"
-            fill="none"
-            stroke-width="8%"
-          />
-          <circle
-            class="h_baseSelectList-radio__box_inner origin-center scale-0 fill-[var(--current-bg-col)] transition"
-            :class="{
-              'scale-100': selected(item.value),
-            }"
-            cx="50%"
-            cy="50%"
-            r="26%"
-          />
-        </svg>
+      <div
+        class="h_baseSelectList-icon pointer-events-none flex items-center opacity-0 group-data-[selected=true]:opacity-100"
+      >
+        ✓
       </div>
 
       <div
-        class="h_baseSelectList-label pointer-events-none -mt-0.5 text-sm text-txt2"
+        class="h_baseSelectList-label pointer-events-none -mt-0.5 w-full flex-1 text-sm"
       >
         {{ item.label }}
       </div>
@@ -86,7 +54,7 @@ const P = defineProps({
     default: "",
   },
   filter: { type: String, default: "" },
-  labelGap: { type: String, default: "10px" },
+  labelGap: { type: String, default: "5px" },
   listGap: { type: String, default: "10px" },
   labelLeft: { type: Boolean, default: false },
   row: { type: Boolean, default: false },
@@ -94,6 +62,11 @@ const P = defineProps({
   list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] },
 });
 const E = defineEmits(["update:modelValue", "update:labelValue"]);
+defineExpose({
+  KeyUp,
+  KeyDown,
+  KeyEnter,
+});
 const valueList: any = ref(P.modelValue.split(","));
 const sortAlphaNum = (a: any, b: any) =>
   a.localeCompare(b, "en", { numeric: true });
@@ -106,6 +79,31 @@ const optionlist = computed(() => {
     };
   });
 });
+
+const selectBox = ref();
+const activeItem = ref("");
+
+let activeFocus = -1;
+
+function KeyUp() {
+  if (activeFocus > 0) {
+    activeFocus = activeFocus - 1;
+    activeItem.value = filterList.value[activeFocus].value;
+  }
+}
+
+function KeyDown() {
+  if (activeFocus < filterList.value.length - 1) {
+    activeFocus = activeFocus + 1;
+    activeItem.value = filterList.value[activeFocus].value;
+  }
+}
+
+function KeyEnter() {
+  if (activeFocus < filterList.value.length && activeFocus >= 0) {
+    setValue(filterList.value[activeFocus].value);
+  }
+}
 
 watch(
   () => P.modelValue,
@@ -134,7 +132,13 @@ function selected(item: any) {
   }
 }
 
+function focused(item: any) {
+  const tt = item.value === activeItem.value ? true : false;
+  return tt;
+}
+
 function Click(e: any) {
+  e.preventDefault = true;
   let T: any = e.target;
   if (!T.classList.contains("h_baseSelectList-item")) T = T.parentElement;
   if (!T.classList.contains("h_baseSelectList-item")) T = T.parentElement;
@@ -142,6 +146,12 @@ function Click(e: any) {
   if (!D) return;
   let val = D.value;
   if (!val) return;
+  activeItem.value = val;
+  activeFocus = parseInt(D.index) ?? 0;
+  setValue(val);
+}
+
+function setValue(val: any) {
   if (P.multi) {
     setMultivalue(val);
   } else {

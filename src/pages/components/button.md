@@ -10,7 +10,7 @@ The default is `"md"`.
       <div class="flex items-center gap-4">
             <H_btn size="sm">SM</H_btn>
             <H_btn size="md">MD</H_btn>
-            <H_btn size="lg">LG</H_btn>
+            <H_btn size="lg"><H_icon></H_icon>LG</H_btn>
       </div>
       </template>
 '>
@@ -24,11 +24,11 @@ You can change the icon position to right by adding the prop `icon-right`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
-            <H_btn icon="edit" size="sm">ICON sm</H_btn>
-             <H_btn icon="edit">ICON md</H_btn>
-            <H_btn icon="edit" size="lg">ICON lg</H_btn>
-            <H_btn icon-right icon="edit">ICON-RIGHT</H_btn>
+            <div class="flex items-center gap-4">
+            <H_btn size="sm"><H_icon icon="edit"></H_icon> ICON sm</H_btn>
+             <H_btn><H_icon icon="edit"></H_icon>ICON md</H_btn>
+            <H_btn size="lg"><H_icon icon="edit"></H_icon>ICON lg</H_btn>
+            <H_btn>ICON-RIGHT <H_icon icon="edit"></H_icon></H_btn>
       </div>
       </template>
 '>
@@ -38,58 +38,15 @@ You can change the icon position to right by adding the prop `icon-right`
 
 ## Type
 
-You can change the type by the prop `type="/standard/outline/text/icon/icon-outline/icon-text"`<br>
+You can change the type by the prop `type="/standard/outline/text"`<br>
 The default is `"standard"`.
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4">
-            <H_btn type="standard" icon="mail">STANDARD</H_btn>
+            <H_btn>STANDARD</H_btn>
             <H_btn type="outline" icon="mail">OUTLINE</H_btn>
             <H_btn type="text" icon="mail">TEXT</H_btn>
-            <H_btn type="icon" icon="mail"></H_btn>
-            <H_btn type="icon-outline" icon="mail"></H_btn>
-            <H_btn type="icon-text" icon="mail"></H_btn>
-      </div>
-      </template>
-'>
-</hhl-live-editor>
-
-<br>
-
-## Rounded
-
-You can make rounded buttons by adding the attribute `"round"`
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-       <div class="flex items-center gap-4">
-            <H_btn round type="standard" icon="mail">STANDARD</H_btn>
-            <H_btn round type="outline" icon="mail">OUTLINE</H_btn>
-            <H_btn round type="text" icon="mail">TEXT</H_btn>
-            <H_btn round type="icon" icon="mail"></H_btn>
-            <H_btn round type="icon-outline" icon="mail"></H_btn>
-            <H_btn round type="icon-text" icon="mail"></H_btn>
-      </div>
-      </template>
-'>
-</hhl-live-editor>
-
-<br>
-
-## Raised
-
-You can make raised buttons by adding the class `shadow-/1/2/3/4/5`.
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-      <div class="flex items-center gap-4">
-            <H_btn class="shadow-2" type="standard" icon="mail">STANDARD</H_btn>
-            <H_btn class="shadow-2" type="outline" icon="mail">OUTLINE</H_btn>
-            <H_btn class="shadow-2" type="text" icon="mail">TEXT</H_btn>
-            <H_btn class="shadow-2" type="icon" round icon="mail"></H_btn>
-            <H_btn class="shadow-2" type="icon-outline" round icon="mail"></H_btn>
-            <H_btn class="shadow-2" type="icon-text" icon="mail"></H_btn>
       </div>
       </template>
 '>
@@ -104,12 +61,9 @@ You disable by adding the props `disabled`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4">
-            <H_btn disabled type="standard" icon="mail">STANDARD</H_btn>
-            <H_btn disabled type="outline" icon="mail">OUTLINE</H_btn>
-            <H_btn disabled type="text" icon="mail">TEXT</H_btn>
-            <H_btn disabled type="icon" round icon="mail"></H_btn>
-            <H_btn disabled type="icon-outline" round icon="mail"></H_btn>
-            <H_btn disabled type="icon-text" icon="mail"></H_btn>
+            <H_btn disabled>STANDARD</H_btn>
+            <H_btn disabled type="outline">OUTLINE</H_btn>
+            <H_btn disabled type="text">TEXT</H_btn>
       </div>
       </template>
 '>
