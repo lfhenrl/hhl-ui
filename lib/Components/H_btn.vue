@@ -29,7 +29,7 @@ defineProps({
 </script>
 <style>
 @layer hhl-components {
-  button.H_btn {
+  .H_btn {
     display: inline-flex;
     cursor: pointer;
     align-items: center;
@@ -39,7 +39,7 @@ defineProps({
     border-radius: 4px;
     line-height: 1.7;
     font-size: 1.1rem;
-    padding: 0 10px !important;
+    padding: 0 10px;
     --btn-icon-size: 1.1rem;
   }
 
@@ -56,7 +56,7 @@ defineProps({
   .H_btn.H_btn-outline {
     background-color: transparent;
     color: var(--current-bg-col);
-    border: 1px solid var(--current-bg-col);
+    border: 1px solid currentColor;
   }
 
   .H_btn.H_btn-text {
@@ -69,7 +69,7 @@ defineProps({
     --btn-icon-size: 0.8rem;
   }
 
-  button.H_btn-lg {
+  .H_btn-lg {
     font-size: 1.5rem;
     --btn-icon-size: 1.5rem;
   }
