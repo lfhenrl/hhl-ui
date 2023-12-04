@@ -1,23 +1,20 @@
 <template>
-  <label
-    class="h_radio col-pri bg-transparent flex items-center gap-2 text-txt2"
-    :class="{ 'flex-row-reverse': labelLeft }"
-  >
+  <label class="H_radio col-pri" :class="{ 'H_radio-labelLeft': labelLeft }">
     <input
       type="radio"
-      class="aspect-square ring-offset-2 ring-offset-pri focus:outline-none focus:ring"
+      class="H_radio-input"
       :class="{
-        'w-[15px]': size === 'sm',
-        'w-[19px]': size === 'md',
-        'w-[24px]': size === 'lg',
+        'H_radio-input-sm': size === 'sm',
+        'H_radio-input-lg': size === 'lg',
       }"
-      style="accent-color: var(--current-bg-col)"
+      style="{accent-color: var(--current-bg-col)}"
       :checked="modelValue === value"
       :value="value"
       :name="label"
       @change="$emit('update:modelValue', value)"
     />
-    <div class="label line-clamp-1 text-sm">{{ label }}</div>
+    {{ modelValue }}
+    <div class="H_radio-label">{{ label }}</div>
   </label>
 </template>
 
@@ -42,3 +39,39 @@ defineProps({
 
 defineEmits(["update:modelValue"]);
 </script>
+<style>
+@layer hhl-components {
+  .H_radio {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: var(--col-txt-2);
+  }
+
+  .H_radio-labelLeft {
+    flex-direction: row-reverse;
+  }
+
+  .H_radio-input {
+    aspect-ratio: 1 / 1;
+    width: 19px;
+  }
+
+  .H_radio-input-sm {
+    width: 15px;
+  }
+
+  .H_radio-input-lg {
+    width: 24px;
+  }
+
+  .H_radio-label {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    font-size: 14px;
+  }
+}
+</style>

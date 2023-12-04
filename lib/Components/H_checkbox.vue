@@ -1,15 +1,14 @@
 <template>
   <label
-    class="h_checkbox col-pri flex items-center gap-2 bg-transparent text-txt2"
-    :class="{ 'flex-row-reverse': labelLeft }"
+    class="H_checkbox col-pri"
+    :class="{ 'H_checkbox-labelLeft': labelLeft }"
   >
     <input
       type="checkbox"
-      class="aspect-square"
+      class="H_checkbox-input"
       :class="{
-        'w-[15px]': size === 'sm',
-        'w-[19px]': size === 'md',
-        'w-[24px]': size === 'lg',
+        'H_checkbox-input-sm': size === 'sm',
+        'H_checkbox-input-lg': size === 'lg',
       }"
       style="accent-color: var(--current-bg-col)"
       :checked="modelValue"
@@ -18,7 +17,7 @@
         $emit('update:modelValue', (<HTMLInputElement>$event.target).checked)
       "
     />
-    <div class="label line-clamp-1 text-sm">{{ label }}</div>
+    <div class="H_checkbox-label">{{ label }}</div>
   </label>
 </template>
 
@@ -40,3 +39,40 @@ defineProps({
 });
 defineEmits(["update:modelValue", "changed"]);
 </script>
+
+<style>
+@layer hhl-components {
+  .H_checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: var(--col-txt-2);
+  }
+
+  .H_checkbox-labelLeft {
+    flex-direction: row-reverse;
+  }
+
+  .H_checkbox-input {
+    aspect-ratio: 1 / 1;
+    width: 19px;
+  }
+
+  .H_checkbox-input-sm {
+    width: 15px;
+  }
+
+  .H_checkbox-input-lg {
+    width: 24px;
+  }
+
+  .H_checkbox-label {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    font-size: 14px;
+  }
+}
+</style>

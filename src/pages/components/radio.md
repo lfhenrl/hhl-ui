@@ -73,19 +73,19 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
 <hhl-live-editor title="" htmlCode='
     <template>
      <div class="flex items-center gap-4 px-4 flex-wrap">
-        <H_radio class="col-pri" label="col-pri" v-model="radioVal" value="val1"></H_radio>
-        <H_radio class="col-sec" label="col-sec" v-model="radioVal" value="val1"></H_radio>
-        <H_radio class="col-ok" label="col-ok" v-model="radioVal" value="val1"></H_radio>
-        <H_radio class="col-err" label="col-err" v-model="radioVal" value="val1"></H_radio>
-        <H_radio class="col-warn" label="col-warn" v-model="radioVal" value="val1"></H_radio>
-        <H_radio class="col-info" label="col-info" v-model="radioVal" value="val1"></H_radio>
-        <H_radio class="col-black" label="col-black" v-model="radioVal" value="val1"></H_radio>
-        <H_radio class="col-white" label="col-white" v-model="radioVal" value="val1"></H_radio>
-        <H_radio style="--current-bg-col: purple; color: white" label="purple" v-model="radioVal" value="val1"></H_radio>
+        <H_radio class="col-pri" label="col-pri" v-model="radioVal" value="val11"></H_radio>
+        <H_radio class="col-sec" label="col-sec" v-model="radioVal" value="val11"></H_radio>
+        <H_radio class="col-ok" label="col-ok" v-model="radioVal" value="val11"></H_radio>
+        <H_radio class="col-err" label="col-err" v-model="radioVal" value="val11"></H_radio>
+        <H_radio class="col-warn" label="col-warn" v-model="radioVal" value="val11"></H_radio>
+        <H_radio class="col-info" label="col-info" v-model="radioVal" value="val11"></H_radio>
+        <H_radio class="col-black" label="col-black" v-model="radioVal" value="val11"></H_radio>
+        <H_radio class="col-white" label="col-white" v-model="radioVal" value="val11"></H_radio>
+        <H_radio style="--current-bg-col: purple; color: white" label="purple" v-model="radioVal" value="val11"></H_radio>
     </div>
     </template>
     <script>
-        const radioVal = ref("val1");
+        const radioVal = ref("val11");
         return {radioVal}
     </script>
 '>
@@ -100,19 +100,19 @@ You disable by adding the props `disabled`
 <hhl-live-editor title="" htmlCode='
     <template>
      <div class="flex items-center gap-4 px-4 flex-wrap">
-        <H_radio disabled class="col-pri" label="col-pri" v-model="radioVal" value="val1"></H_radio>
-        <H_radio disabled class="col-sec" label="col-sec" v-model="radioVal" value="val1"></H_radio>
-        <H_radio disabled class="col-ok" label="col-ok" v-model="radioVal" value="val1"></H_radio>
-        <H_radio disabled class="col-err" label="col-err" v-model="radioVal" value="val1"></H_radio>
-        <H_radio disabled class="col-warn" label="col-warn" v-model="radioVal" value="val1"></H_radio>
-        <H_radio disabled class="col-info" label="col-info" v-model="radioVal" value="val1"></H_radio>
-        <H_radio disabled class="col-black" label="col-black" v-model="radioVal" value="val1"></H_radio>
-        <H_radio disabled class="col-white" label="col-white" v-model="radioVal" value="val1"></H_radio>
-        <H_radio disabled style="--current-bg-col: purple; color: white" label="purple" v-model="radioVal" value="val1"></H_radio>
+        <H_radio disabled class="col-pri" label="col-pri" v-model="radioVal" value="val2"></H_radio>
+        <H_radio disabled class="col-sec" label="col-sec" v-model="radioVal" value="val2"></H_radio>
+        <H_radio disabled class="col-ok" label="col-ok" v-model="radioVal" value="val2"></H_radio>
+        <H_radio disabled class="col-err" label="col-err" v-model="radioVal" value="val2"></H_radio>
+        <H_radio disabled class="col-warn" label="col-warn" v-model="radioVal" value="val2"></H_radio>
+        <H_radio disabled class="col-info" label="col-info" v-model="radioVal" value="val2"></H_radio>
+        <H_radio disabled class="col-black" label="col-black" v-model="radioVal" value="val2"></H_radio>
+        <H_radio disabled class="col-white" label="col-white" v-model="radioVal" value="val2"></H_radio>
+        <H_radio disabled style="--current-bg-col: purple; color: white" label="purple" v-model="radioVal" value="val2"></H_radio>
     </div>
     </template>
     <script>
-        const radioVal = ref("val1");
+        const radioVal = ref("val2");
         return {radioVal}
     </script>
 '>
