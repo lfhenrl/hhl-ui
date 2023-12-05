@@ -2,11 +2,13 @@
 @import "tailwindcss/components" layer(hhl-components); /* contains @tailwind components; */
 @import "tailwindcss/utilities" layer(hhl-utilities); /* contains @tailwind utilities;  */
 
-*:focus {
-  outline: none;
-}
+@layer hhl-base {
+  *:focus {
+    outline: none;
+  }
 
-*:focus-visible {
-  outline-offset: 2px;
-  outline: 2px ridge rgba(170, 50, 220, 1);
+  *:focus-visible {
+    outline-offset: 2px;
+    outline: 2px ridge rgba(170, 50, 220, 1);
+  }
 }

@@ -127,12 +127,9 @@ Start Icon by adding `start-icon="iconName"`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4">
-            <H_inputText start-icon="mail" clearable  v-model="txt" label="Text input">
+            <H_inputText  v-model="txt" label="Text input">
                   <template v-slot:start>
-                        <H_icon icon="edit"></H_icon>
-                  </template>
-                  <template v-slot:end>
-                        <H_icon icon="edit"></H_icon>
+                        <H_icon icon="mail" btn="standard" @click="click(txt)"></H_icon>
                   </template>
             </H_inputText>
       </div>
@@ -149,27 +146,6 @@ Start Icon by adding `start-icon="iconName"`
 
 <br>
 
-## Start Icon Click
-
-Start Icon by adding `@start-icon-click=""`
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-      <div class="flex items-center gap-4">
-            <H_inputText @start-icon-click="click(txt)" start-icon="mail"  v-model="txt" label="Text input"></H_inputText>
-      </div>
-      </template>
-      <script>
-            const txt = ref("Start icon click");
-            function click(e) {
-                  alert(e);
-            }
-            return {txt, click}
-      </script>
-'>
-</hhl-live-editor>
-
-<br>
 
 ## End Icon
 
@@ -178,7 +154,11 @@ End Icon by adding `end-icon="iconName"`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4">
-            <H_inputText end-icon="mail"  v-model="txt" label="Text input"></H_inputText>
+            <H_inputText v-model="txt" label="Text input">
+                  <template v-slot:end>
+                        <H_icon icon="mail" btn="standard" @click="click(txt)"></H_icon>
+                  </template>
+            </H_inputText>
       </div>
       </template>
       <script>
@@ -193,27 +173,6 @@ End Icon by adding `end-icon="iconName"`
 
 <br>
 
-## End Icon Click
-
-End Icon by adding `@end-icon-click=""`
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-      <div class="flex items-center gap-4">
-            <H_inputText @end-icon-click="click(txt)" end-icon="mail"  v-model="txt" label="Text input"></H_inputText>
-      </div>
-      </template>
-      <script>
-            const txt = ref("End icon click");
-            function click(e) {
-                  alert(e);
-            }
-            return {txt, click}
-      </script>
-'>
-</hhl-live-editor>
-
-<br>
 
 ## Hint text
 

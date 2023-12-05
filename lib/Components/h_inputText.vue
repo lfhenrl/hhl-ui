@@ -1,21 +1,15 @@
 <template>
   <H_inputBase
-    class="h_inputText max-h-[36px] min-h-[36px] flex-1"
+    class="H_inputText"
     :label="label"
     :clearable="clearable"
-    :start-icon="startIcon"
-    :end-icon="endIcon"
     :HelpTextStart="hintStart"
     :HelpTextEnd="stringCounter"
     :disabled="disabled"
     :ErrorMessage="validate"
     :err_text="validate"
     :err_label="label"
-    :stBtn="onStartIconClick !== null"
-    :endBtn="onEndIconClick !== null"
     @clearClick="$emit('update:modelValue', '')"
-    @startIconClick="$emit('startIconClick')"
-    @endIconClick="$emit('endIconClick')"
   >
     <template v-slot:start>
       <slot name="start" />
@@ -26,12 +20,10 @@
 
     <input
       type="text"
-      class="h_inputText-input inline-block max-h-[34px] min-h-[34px] w-full flex-1 appearance-none overflow-hidden text-ellipsis whitespace-nowrap border-none bg-transparent px-2.5 align-bottom text-txt1 outline-none"
+      class="H_inputText-input"
       :maxlength="counter"
       :value="modelValue"
       @input="onInput"
-      @focus="focused = true"
-      @blur="focused = false"
       @click="$emit('inputClick')"
       :readonly="readonly"
       :aria-label="label"
@@ -42,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import H_inputBase from "../SubComponents/H_inputBase.vue";
 import { debounce } from "../utils/debounce";
 import { validateFunc } from "../utils/validateFunc";
@@ -56,23 +48,13 @@ const P = defineProps({
   clearable: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
-  startIcon: { type: String, default: "" },
-  endIcon: { type: String, default: "" },
   hintStart: { type: String, default: "" },
   hintEnd: { type: String, default: "" },
   counter: { type: String, default: "" },
   debounce: { type: Number, default: 200 },
   validator: Array,
-  onStartIconClick: { type: Function, default: null },
-  onEndIconClick: { type: Function, default: null },
 });
-const E = defineEmits([
-  "update:modelValue",
-  "inputClick",
-  "startIconClick",
-  "endIconClick",
-]);
-const focused = ref(false);
+const E = defineEmits(["update:modelValue", "inputClick"]);
 
 const stringCounter = computed(() => {
   if (P.counter == "") return P.hintEnd;
@@ -87,3 +69,33 @@ const debouncedUpdate = debounce(function (val: string) {
 const onInput = (e: any) => debouncedUpdate(e.target.value ?? "");
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
+
+<style>
+@layer hhl-components {
+  .H_inputText {
+    max-height: 36px;
+    min-height: 36px;
+    height: 36px;
+    flex: 1 1 0%;
+  }
+
+  .H_inputText-input {
+    display: inline-block;
+    max-height: 36px;
+    min-height: 36px;
+    width: 100%;
+    flex: 1 1 0%;
+    appearance: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-style: none;
+    background-color: transparent;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: bottom;
+    color: var(--col-txt-1);
+    outline: none;
+  }
+}
+</style>
