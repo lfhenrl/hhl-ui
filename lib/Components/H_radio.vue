@@ -7,13 +7,11 @@
         'H_radio-input-sm': size === 'sm',
         'H_radio-input-lg': size === 'lg',
       }"
-      style="{accent-color: var(--current-bg-col)}"
       :checked="modelValue === value"
       :value="value"
-      :name="label"
       @change="$emit('update:modelValue', value)"
     />
-    {{ modelValue }}
+    {{ modelValue === value }}
     <div class="H_radio-label">{{ label }}</div>
   </label>
 </template>
@@ -56,6 +54,7 @@ defineEmits(["update:modelValue"]);
   .H_radio-input {
     aspect-ratio: 1 / 1;
     width: 19px;
+    accent-color: var(--current-bg-col);
   }
 
   .H_radio-input-sm {

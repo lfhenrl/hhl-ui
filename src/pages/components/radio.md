@@ -101,7 +101,7 @@ You disable by adding the props `disabled`
     <template>
      <div class="flex items-center gap-4 px-4 flex-wrap">
         <H_radio disabled class="col-pri" label="col-pri" v-model="radioVal" value="val2"></H_radio>
-        <H_radio disabled class="col-sec" label="col-sec" v-model="radioVal" value="val2"></H_radio>
+        <H_radio disabled class="col-sec" label="col-sec" v-model="radioVal" value="val2" ></H_radio>
         <H_radio disabled class="col-ok" label="col-ok" v-model="radioVal" value="val2"></H_radio>
         <H_radio disabled class="col-err" label="col-err" v-model="radioVal" value="val2"></H_radio>
         <H_radio disabled class="col-warn" label="col-warn" v-model="radioVal" value="val2"></H_radio>

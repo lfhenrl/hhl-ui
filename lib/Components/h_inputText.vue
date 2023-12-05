@@ -17,6 +17,13 @@
     @startIconClick="$emit('startIconClick')"
     @endIconClick="$emit('endIconClick')"
   >
+    <template v-slot:start>
+      <slot name="start" />
+    </template>
+    <template v-slot:end>
+      <slot name="end" />
+    </template>
+
     <input
       type="text"
       class="h_inputText-input inline-block max-h-[34px] min-h-[34px] w-full flex-1 appearance-none overflow-hidden text-ellipsis whitespace-nowrap border-none bg-transparent px-2.5 align-bottom text-txt1 outline-none"

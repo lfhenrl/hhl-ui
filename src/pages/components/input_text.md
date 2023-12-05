@@ -127,7 +127,14 @@ Start Icon by adding `start-icon="iconName"`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4">
-            <H_inputText start-icon="mail"  v-model="txt" label="Text input"></H_inputText>
+            <H_inputText start-icon="mail" clearable  v-model="txt" label="Text input">
+                  <template v-slot:start>
+                        <H_icon icon="edit"></H_icon>
+                  </template>
+                  <template v-slot:end>
+                        <H_icon icon="edit"></H_icon>
+                  </template>
+            </H_inputText>
       </div>
       </template>
       <script>

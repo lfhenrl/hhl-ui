@@ -1,25 +1,14 @@
 <template>
-  <H_inputBase
-    class="h_slider max-h-[36px] min-h-[36px] flex-1 bg-transparent col-pri"
-    :label="label"
-    :movelabel="true"
-  >
-    <div
-      class="h_slider_inner relative grid max-h-[36px] min-h-[36px] flex-1 items-center bg-transparent px-1"
-    >
-      <div
-        class="h_slider_innerBox pointer-events-none absolute bottom-0 left-[16px] right-[16px] top-0 flex items-center"
-      >
-        <div
-          class="h_slider_info lea pointer-events-none absolute ml-[-12px] flex h-[26px] w-[26px] items-center justify-center rounded-full bg-[var(--current-bg-col)] text-[11px] leading-none"
-          :style="{ left: posProcent }"
-        >
+  <H_inputBase class="H_slider col-pri" :label="label" :movelabel="true">
+    <div class="H_slider_inner" :disabled="disabled ? true : undefined">
+      <div class="H_slider_innerBox">
+        <div class="H_slider_info" :style="{ left: posProcent }">
           {{ modelValue }}
         </div>
       </div>
       <input
         type="range"
-        class="h-1.5 w-full appearance-none rounded bg-gradient-to-t from-[var(--current-bg-col)] to-[var(--current-bg-col)]"
+        class="H_slider-input"
         :value="modelValue"
         @input="changed"
         :aria-label="label"
@@ -67,3 +56,62 @@ function changed(e: any) {
 }
 </script>
 
+<style>
+@layer hhl-components {
+  .H_slider {
+    flex: 1 1 0%;
+    background-color: transparent;
+    max-height: 36px;
+    min-height: 36px;
+    height: 36px;
+  }
+
+  .H_slider_inner {
+    position: relative;
+    display: flex;
+    flex: 1 1 0%;
+    align-items: center;
+    padding-left: 4px;
+    padding-right: 4px;
+    max-height: 36px;
+    min-height: 36px;
+    height: 36px;
+  }
+
+  .H_slider-input {
+    height: 6px;
+    width: 100%;
+    appearance: none;
+    border-radius: 4px;
+    background-image: linear-gradient(
+      var(--current-bg-col),
+      var(--current-bg-col)
+    );
+  }
+
+  .H_slider_innerBox {
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    right: 16px;
+    top: 0;
+  }
+  .H_slider_info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    position: absolute;
+    border-radius: 50%;
+    height: 26px;
+    width: 26px;
+    margin-left: -12px;
+    background-color: var(--current-bg-col);
+    font-size: 11px;
+    line-height: 1;
+  }
+}
+</style>

@@ -10,21 +10,32 @@
     >
       {{ label }}
     </div>
-    <H_icon
+    <div
+      class="h_inputbase-starticon col-start-1 row-start-2 ml-1 flex items-center text-txt3"
+    >
+      <slot name="start" />
+    </div>
+    <div
+      class="h_inputbase-endicon col-start-3 row-start-2 mr-1 w-[22px] self-center text-txt3"
+    >
+      <slot name="end" />
+    </div>
+    <!--     <H_icon
       v-if="startIcon != ''"
       :icon="startIcon"
       class="h_inputbase-starticon col-start-1 row-start-2 ml-1 self-center text-txt3"
-      :btn="stBtn ? true : null"
-    />
-    <H_icon
+      :btn="stBtn ? 'standard' : 'none'"
+    /> -->
+    <!--     <H_icon
       v-if="endIcon != ''"
       :icon="endIcon"
       class="h_inputbase-endicon col-start-4 row-start-2 mr-1 w-[22px] self-center text-txt3"
-      :btn="endBtn ? true : null"
-    />
+      :btn="stBtn ? 'standard' : 'none'"
+    /> -->
     <H_icon
-      btn
+      :btn="stBtn ? 'standard' : 'none'"
       v-if="clearable"
+      icon="close"
       class="h_inputbase-clearicon col-start-3 row-start-2 mr-1 w-[22px] self-center text-txt3"
     />
     <div class="col-start-2 row-start-2 flex w-full flex-col">

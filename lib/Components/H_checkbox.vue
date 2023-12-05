@@ -10,9 +10,7 @@
         'H_checkbox-input-sm': size === 'sm',
         'H_checkbox-input-lg': size === 'lg',
       }"
-      style="accent-color: var(--current-bg-col)"
       :checked="modelValue"
-      :name="label"
       @change="
         $emit('update:modelValue', (<HTMLInputElement>$event.target).checked)
       "
@@ -57,6 +55,7 @@ defineEmits(["update:modelValue", "changed"]);
   .H_checkbox-input {
     aspect-ratio: 1 / 1;
     width: 19px;
+    accent-color: var(--current-bg-col);
   }
 
   .H_checkbox-input-sm {
