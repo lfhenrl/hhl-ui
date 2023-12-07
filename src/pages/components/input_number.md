@@ -126,7 +126,11 @@ Start Icon by adding `start-icon="iconName"`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4">
-            <H_inputNumber start-icon="mail"  v-model="num" label="Number input"></H_inputNumber>
+            <H_inputNumber v-model="num" label="Number input">
+                  <template v-slot:start>
+                  <H_icon icon="mail" btn="standard" @click="click(num)"></H_icon>
+                  </template>
+            </H_inputNumber>
       </div>
       </template>
       <script>
@@ -141,55 +145,18 @@ Start Icon by adding `start-icon="iconName"`
 
 <br>
 
-## Start Icon Click
-
-Start Icon by adding `@start-icon-click=""`
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-      <div class="flex items-center gap-4">
-            <H_inputNumber @start-icon-click="click(num)" start-icon="mail"  v-model="num" label="Number input"></H_inputNumber>
-      </div>
-      </template>
-      <script>
-            const num = ref(22);
-            function click(e) {
-                  alert(e.toString());
-            }
-            return {num, click}
-      </script>
-'>
-</hhl-live-editor>
-
-<br>
-
 ## End Icon
 
-Start Icon by adding `end-icon="iconName"`
+End Icon by adding `end-icon="iconName"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4">
-            <H_inputNumber end-icon="mail"  v-model="num" label="Number input"></H_inputNumber>
-      </div>
-      </template>
-      <script>
-            const num = ref(22);
-            return {num}
-      </script>
-'>
-</hhl-live-editor>
-
-<br>
-
-## End Icon Click
-
-Start Icon by adding `@end-icon-click=""`
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-      <div class="flex items-center gap-4">
-            <H_inputNumber @end-icon-click="click(num)" end-icon="mail"  v-model="num" label="Number input"></H_inputNumber>
+            <H_inputNumber v-model="num" label="Number input">
+                  <template v-slot:end>
+                        <H_icon icon="mail" btn="standard" @click="click(num)"></H_icon>
+                  </template>
+            </H_inputNumber>
       </div>
       </template>
       <script>
