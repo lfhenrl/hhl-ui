@@ -1,9 +1,19 @@
 <template>
   <transition name="alert" @after-leave="$emit('close')">
-    <div v-show="modelValue" class="H_snack flex fixed p-1.5 pb-3 rounded shadow bg-bg2 top-5 right-5 text-txt0 z-50 min-w-[330px] max-w-[330px]" @click="$emit('update:modelValue', false)">
-      <H_icon :icon="icon" size="28px" :color="color" />
-      <div class="flex flex-col flex-1 items-center">
-        <span class="font-bold text-lg">{{ title }}</span>
+    <div
+      v-show="modelValue"
+      class="H_snack shadow"
+      :class="{
+        'col-err': type === 'err',
+        'col-warn': type === 'warn',
+        'col-ok': type === 'info',
+      }"
+      @click="$emit('update:modelValue', false)"
+    >
+      <H_icon icon="check" size="28px" btn="standard" v-if="type === 'info'" />
+      <H_icon icon="info" size="28px" btn="standard" v-else />
+      <div class="H_snack-info">
+        <span class="H_snack-info-title">{{ title }}</span>
         <span class="H_snack__text">{{ text }}</span>
       </div>
     </div>
@@ -11,10 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import H_icon from "../H_icon.vue";
 
-const props = defineProps({
+defineProps({
   modelValue: { type: Boolean, default: false, required: true },
   type: { default: "warn", type: String },
   title: { default: "Title", type: String },
@@ -23,26 +32,6 @@ const props = defineProps({
 
 const emit = defineEmits(["show", "close", "update:modelValue"]);
 
-const color = computed(() => {
-  if (props.type === "info") {
-    return "var(--col-ok)";
-  }
-  if (props.type === "warn") {
-    return "var(--col-warn)";
-  }
-  if (props.type === "err") {
-    return "var(--col-err)";
-  }
-  return "var(--col-ok)";
-});
-
-const icon = computed(() => {
-  if (props.type === "info") {
-    return "check";
-  }
-  return "info";
-});
-
 function close() {
   emit("show", false);
 }
@@ -50,42 +39,69 @@ defineExpose({ close });
 </script>
 
 <style>
-.alert-leave-active {
-  animation: slide-out 0.5s reverse;
-}
-.alert-enter-active /* .fade-leave-active below version 2.1.8 */ {
-  animation: slide-up 0.5s;
-}
-
-@keyframes slide-up {
-  0% {
-    opacity: 0;
-    transform: translateY(60px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-10px);
+@layer hhl-components {
+  .H_snack {
+    display: flex;
+    position: fixed;
+    padding: 6px 6px 12px 6px;
+    border-radius: 4px;
+    min-width: 330px;
+    max-width: 330px;
+    width: 330px;
+    z-index: 50;
+    right: 20px;
+    top: 20px;
   }
 
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-out {
-  0% {
-    opacity: 0;
-    transform: translateX(60px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateX(-10px);
+  .H_snack-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0%;
   }
 
-  100% {
-    opacity: 1;
-    transform: translateX(0);
+  .H_snack-info-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .alert-leave-active {
+    animation: slide-out 0.5s reverse;
+  }
+  .alert-enter-active /* .fade-leave-active below version 2.1.8 */ {
+    animation: slide-up 0.5s;
+  }
+
+  @keyframes slide-up {
+    0% {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-out {
+    0% {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    60% {
+      opacity: 1;
+      transform: translateX(-10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 }
 </style>

@@ -1,9 +1,6 @@
 <template>
   <H_inputbase
-    class="h_selectBox"
-    :class="{
-      'max-h-[36px] min-h-[36px]': row,
-    }"
+    class="H_selectBox"
     :label="label"
     :HelpTextStart="HelpTextStart"
     :HelpTextEnd="HelpTextEnd"
@@ -45,7 +42,7 @@ const P = defineProps({
   readonly: { type: Boolean, default: false },
   filter: { type: String, default: "" },
   labelGap: { type: String, default: "2px" },
-  listGap: { type: String, default: "6px" },
+  listGap: { type: String, default: "6px 20px" },
   labelLeft: { type: Boolean, default: false },
   multi: { type: Boolean, default: false },
   list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] },

@@ -98,6 +98,39 @@ Multi selections by adding `multi`
 
 <br>
 
+## Start slot
+
+You can add a Icon or other stoff with the start slot.
+
+<hhl-live-editor title="" htmlCode='
+      <template>
+      <div class="flex items-center gap-4 px-4"> 
+            <H_select multi
+            :list="[
+                        {value:`nr1`, label: `Number 1`},
+                        {value:`nr2`, label: `Number 2`},
+                        {value:`nr3`, label: `Number 3`}
+                        ]" 
+            v-model="selection" label="Selector">
+             <template #start>
+                  <H_icon btn="standard" icon="mail" @click.stop.prevent="click" />
+            </template>
+            </H_select>
+            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
+      </div>
+      </template>
+      <script>
+            const selection = ref("");
+               function click(e) {
+                  alert("Start Icon Clicked");
+            }
+            return { selection,click }
+      </script>
+'>
+</hhl-live-editor>
+
+<br>
+
 ## Hide filter
 
 Hide filter by adding `hide-filter`

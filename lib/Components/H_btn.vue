@@ -34,13 +34,14 @@ defineProps({
     cursor: pointer;
     align-items: center;
     justify-content: center;
+    font-weight: 500;
     gap: 4px;
     white-space: nowrap;
     border-radius: 4px;
-    line-height: 1.7;
-    font-size: 1.1rem;
+    font-size: 14px;
     padding: 0 10px;
-    --btn-icon-size: 1.1rem;
+    height: 36px;
+    --btn-icon-size: 1rem;
   }
 
   .H_btn:hover {
@@ -65,12 +66,14 @@ defineProps({
   }
 
   button.H_btn.H_btn-sm {
-    font-size: 0.8rem;
+    height: 28px;
+    font-size: 12px;
     --btn-icon-size: 0.8rem;
   }
 
   .H_btn-lg {
-    font-size: 1.5rem;
+    height: 44px;
+    font-size: 17px;
     --btn-icon-size: 1.5rem;
   }
 

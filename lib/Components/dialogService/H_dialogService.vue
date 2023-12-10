@@ -4,17 +4,27 @@
       <template #header>{{ dialog.title }}</template>
       {{ dialog.info }}
       <template #footer>
-        <div class="flex justify-end gap-4">
-        <H_btn size="sm" :class="dialog.buttons.cancel.Color" class="w-16" @click="dialogCancel">
-          {{ dialog.buttons.cancel.Text }}
-        </H_btn>
-        <H_btn size="sm" :class="dialog.buttons.ok.Color" class="w-16" @click="dialogOk">
-          {{ dialog.buttons.ok.Text }}
-        </H_btn>
-      </div>
+        <div class="H_dialogService-footer">
+          <H_btn
+            size="sm"
+            :class="dialog.buttons.cancel.Color"
+            @click="dialogCancel"
+          >
+            {{ dialog.buttons.cancel.Text }}
+          </H_btn>
+          <H_btn size="sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
+            {{ dialog.buttons.ok.Text }}
+          </H_btn>
+        </div>
       </template>
     </H_dialog>
-    <H_snack v-model="snackPop" :title="snack.title" :type="snack.type" :text="snack.text" @close="snackClose" />
+    <H_snack
+      v-model="snackPop"
+      :title="snack.title"
+      :type="snack.type"
+      :text="snack.text"
+      @close="snackClose"
+    />
   </div>
 </template>
 
@@ -32,8 +42,8 @@ const dialog = ref({
   title: "Title",
   info: "Info",
   buttons: {
-    ok: { Text: "Ok", Color: "bg-pri" },
-    cancel: { Text: "Cancel", Color: "bg-sec" },
+    ok: { Text: "Ok", Color: "var(--col-bg-pri)" },
+    cancel: { Text: "Cancel", Color: "var(--col-bg-sec)" },
   },
   callback(ok: boolean) {
     return ok;
@@ -164,4 +174,16 @@ function updateButtons(data: any) {
   return data;
 }
 </script>
+<style>
+@layer hhl-components {
+  .H_dialogService-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+  }
 
+  .H_dialogService-footer .H_btn {
+    width: 66px;
+  }
+}
+</style>

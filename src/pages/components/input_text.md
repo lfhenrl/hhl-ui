@@ -120,9 +120,9 @@ Input Click by adding @input-click=""
 
 <br>
 
-## Start Icon
+## Start slot
 
-Start Icon by adding `start-icon="iconName"`
+You can add a Icon or other stoff with the start slot.
 
 <hhl-live-editor title="" htmlCode='
       <template>
@@ -147,9 +147,9 @@ Start Icon by adding `start-icon="iconName"`
 <br>
 
 
-## End Icon
+## End slot
 
-End Icon by adding `end-icon="iconName"`
+You can add a Icon or other stoff with the end slot.
 
 <hhl-live-editor title="" htmlCode='
       <template>

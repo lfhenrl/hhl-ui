@@ -1,17 +1,17 @@
 <template>
   <H_pop
-    class="h_selectPop group"
+    class="H_selectPop"
     v-model="isOpen"
     full-width
     :offsetTop="5"
     :disabled="disabled ? 'true' : null"
     :readonly="readonly"
+    @close="selecClose"
   >
     <template v-slot:referance>
       <H_inputbase
-        class="h_select max-h-[36px] min-h-[36px] flex-1 group-focus-within:border-pri"
+        class="H_select"
         :label="label"
-        :start-icon="startIcon"
         :end-icon="isOpen ? 'expand_up' : 'expand_down'"
         :HelpTextStart="HelpTextStart"
         :HelpTextEnd="HelpTextEnd"
@@ -23,24 +23,30 @@
         tabindex="0"
       >
         <input
+          ref="selectInput"
           type="text"
-          class="h_select-input inline-block max-h-[34px] min-h-[34px] w-full flex-1 appearance-none overflow-hidden text-ellipsis whitespace-nowrap border-none bg-transparent px-2.5 align-bottom text-txt1 outline-none"
+          class="H_select-input H_select-input-reset"
           :maxlength="counter"
           :value="labelValue"
           readonly
           :name="label"
+          tabindex="0"
         />
+        <template v-slot:start>
+          <slot name="start" />
+        </template>
+        <template #end>
+          <H_icon btn="standard" icon="expand_up" v-if="isOpen" />
+          <H_icon btn="standard" icon="expand_down" v-else />
+        </template>
       </H_inputbase>
     </template>
-    <div class="h_select-list rounded border border-bg4 bg-bg0">
-      <div
-        class="h_select-filter flex items-center gap-1 border-b border-bg4 px-3 py-1"
-        v-if="!hideFilter"
-      >
-        <H_icon icon="search" size="20px" class="text-txt3" />
+    <div class="H_select-list">
+      <div class="H_select-filter" v-if="!hideFilter">
+        <H_icon icon="search" size="20px" class="H_select-icon" />
         <input
           type="text"
-          class="min-h-[24px inline-flex max-h-[24px] w-2 min-w-[50px] flex-1 appearance-none overflow-hidden text-ellipsis whitespace-nowrap border-none bg-transparent align-bottom text-txt1 outline-none"
+          class="H_select-filter-input H_select-input-reset"
           :maxlength="counter"
           :value="filter"
           @input="onInput"
@@ -48,12 +54,13 @@
           @keyup.enter.prevent="KeyEnter"
           @keydown.up.prevent="KeyUp"
           @keydown.down.prevent="KeyDown"
+          @keydown.escape.prevent="KeyEscape"
         />
         <H_icon
-          btn
+          btn="standard"
           v-if="filter != ''"
           icon="close"
-          class="text-txt5"
+          class="H_select-icon"
           size="20px"
           @click.stop="filter = ''"
         />
@@ -92,7 +99,6 @@ const P = defineProps({
   disabled: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
   hideFilter: { type: Boolean, default: false },
-  startIcon: { type: String, default: "" },
   HelpTextStart: { type: String, default: "" },
   HelpTextEnd: { type: String, default: "" },
   counter: { type: String, default: "" },
@@ -104,6 +110,7 @@ const P = defineProps({
 
 defineEmits(["update:modelValue"]);
 
+const selectInput = ref<any>();
 const baseSelectList = ref<any>();
 const filter = ref("");
 const isOpen = ref(false);
@@ -121,6 +128,15 @@ function KeyEnter() {
   baseSelectList.value?.KeyEnter();
 }
 
+function KeyEscape() {
+  isOpen.value = false;
+}
+
+function selecClose() {
+  filter.value = "";
+  selectInput.value.focus();
+}
+
 watch(
   () => P.modelValue,
   () => {
@@ -135,3 +151,60 @@ const debouncedUpdate = debounce(function (val: string) {
 const onInput = (e: any) => debouncedUpdate(e.target.value ?? "");
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
+<style>
+@layer hhl-components {
+  .H_select {
+    max-height: 36px;
+    min-height: 36px;
+    height: 36px;
+    flex: 1 1 0%;
+  }
+
+  .H_select-input-reset {
+    outline: none;
+    color: var(--col-txt-1);
+    vertical-align: bottom;
+    background-color: transparent;
+    border-style: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    appearance: none;
+  }
+
+  .H_select-input {
+    display: inline-flex;
+    align-items: center;
+    flex: 1 1 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .H_select-list {
+    background-color: var(--col-bg-0);
+    border: 1px solid var(--col-bg-4);
+    border-radius: 4px;
+  }
+
+  .H_select-filter {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border-bottom: 1px solid var(--col-bg-4);
+    padding: 4px 12px;
+  }
+
+  .H_select-filter-input {
+    display: inline-flex;
+    flex: 1 1 0%;
+    min-height: 24px;
+    max-height: 24px;
+    height: 24px;
+    min-width: 50px;
+  }
+
+  .H_select-icon {
+    color: var(--col-txt-3);
+  }
+}
+</style>

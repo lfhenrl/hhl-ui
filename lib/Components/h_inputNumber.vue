@@ -1,6 +1,6 @@
 <template>
   <H_inputBase
-    class="h_inputNumber max-h-[36px] min-h-[36px] flex-1"
+    class="H_inputNumber"
     :label="label"
     :clearable="clearable"
     :HelpTextStart="hintStart"
@@ -18,10 +18,10 @@
     <template v-slot:end>
       <slot name="end" />
     </template>
-    <div class="flex">
+    <div class="H_inputText-container">
       <input
         type="number"
-        class="h_inputNumber-input inline-block max-h-[34px] min-h-[34px] w-full flex-1 overflow-hidden text-ellipsis whitespace-nowrap border-none bg-transparent px-2.5 align-bottom text-txt1 outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+        class="H_inputText-input"
         :value="Numbervalue"
         inputmode="numeric"
         @input="onInput"
@@ -33,22 +33,20 @@
         :name="label"
         autocomplete="off"
       />
-      <div
-        class="h_inputNumber-icons relative flex max-h-[34px] min-h-[34px] flex-col text-txt3"
-      >
+      <div class="H_inputNumber-icons">
         <H_icon
           btn="standard"
           @click.stop="CountUp"
           :disabled="readonly ? true : null"
           icon="expand_up"
-          class="h_inputNumber-iconup -mt-1 text-txt3"
+          class="H_inputNumber-iconup"
         />
         <H_icon
           btn="standard"
           @click.passive="CountDown"
           :disabled="readonly ? true : null"
           icon="expand_down"
-          class="h_inputNumber-icondown -my-1 text-txt3"
+          class="H_inputNumber-icondown"
         />
       </div>
     </div>
@@ -112,3 +110,63 @@ const CountDown = () => (
 
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
+
+<style>
+@layer hhl-components {
+  .H_inputNumber {
+    max-height: 36px;
+    min-height: 36px;
+    height: 36px;
+    flex: 1 1 0%;
+  }
+
+  .H_inputText-container {
+    display: flex;
+  }
+
+  .H_inputText-input {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    flex: 1 1 0%;
+    appearance: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-style: none;
+    background-color: transparent;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: var(--col-txt-1);
+    outline: none;
+  }
+
+  .H_inputText-input::-webkit-outer-spin-button,
+  .H_inputText-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .H_inputNumber-icons {
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: var(--col-txt-3);
+    width: 20px;
+    height: 100%;
+  }
+
+  .H_inputNumber-iconup {
+    position: absolute;
+    left: -3px;
+    top: -7px;
+  }
+
+  .H_inputNumber-icondown {
+    position: absolute;
+    left: -3px;
+    bottom: -12px;
+  }
+}
+</style>

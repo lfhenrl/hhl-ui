@@ -3,19 +3,21 @@
     ref="dialogRef"
     @close="OnClose"
     @click="click"
-    class="H_dialog overflow-auto rounded bg-bg0 shadow"
+    class="H_dialog"
     :class="{ 'H_modal-pop__shake': shake }"
     v-movable="movable"
   >
     <div
-      class="H_dialog__header col-pri py-1 text-center font-bold"
+      class="H_dialog__header"
       moveable-drag
       :class="{ 'cursor-move': movable }"
     >
       <slot name="header" />
     </div>
-    <div class="H_dialog__body p-3"><slot /></div>
-    <div class="H_dialog__footer p-3"><slot name="footer" /></div>
+    <div class="H_dialog__body"><slot /></div>
+    <div class="H_dialog__footer">
+      <slot name="footer" />
+    </div>
   </dialog>
 </template>
 
@@ -76,6 +78,9 @@ function overlayClick() {
 
 <style>
 .H_dialog {
+  overflow: auto;
+  border-radius: 4px;
+  background-color: var(--col-bg-0);
   top: v-bind(offsetTop);
   left: v-bind(offsetLeft);
   opacity: 1;
@@ -85,10 +90,27 @@ function overlayClick() {
   animation: fadein 0.2s ease-in 1;
 }
 
+.H_dialog__header {
+  background-color: var(--col-pri);
+  color: var(--col-on-pri);
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-align: center;
+  font-weight: bold;
+}
+
 .H_dialog.H_modal-pop__shake {
   animation:
     fadein 0.2s ease-in 1,
     shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.H_dialog__body {
+  padding: 12px;
+}
+
+.H_dialog__footer {
+  padding: 12px;
 }
 
 @keyframes shaking {

@@ -1,40 +1,36 @@
 <template>
   <div
     ref="selectBox"
-    class="h_baseSelectList flex flex-col items-stretch bg-transparent px-1 py-2.5 focus-within:border-pri focus:outline-none"
+    class="H_baseSelectList"
     :class="{
-      '!flex-row flex-wrap items-center': row,
+      'H_baseSelectList-row': row,
     }"
     :style="{ gap: listGap }"
     @click.prevent="Click"
     @keyup.enter.prevent="KeyEnter"
-    :row="row ? 'true' : null"
     @keydown.up.prevent="KeyUp"
     @keydown.down.prevent="KeyDown"
     tabindex="0"
   >
     <div
-      class="h_baseSelectList-item group flex w-full flex-1 cursor-pointer select-none items-center rounded px-1 pr-2 text-txt3 data-[selected=true]:text-pri"
+      class="H_baseSelectList-item"
       :class="{
-        'flex-row-reverse': labelLeft,
-        'border border-pri': focused(item),
+        reverse: labelLeft,
+        focused: focused(item),
+        selected: selected(item.value),
       }"
       :style="{ gap: labelGap }"
       v-for="(item, index) in filterList"
-      :data-selected="selected(item.value)"
+      :selected="selected(item.value)"
       :key="item.value as string"
       :data-value="item.value"
       :data-index="index"
     >
-      <div
-        class="h_baseSelectList-icon pointer-events-none flex items-center opacity-0 group-data-[selected=true]:opacity-100"
-      >
-        ✓
+      <div class="H_baseSelectList-icon">
+        <H_icon icon="check" size="16px" />
       </div>
 
-      <div
-        class="h_baseSelectList-label pointer-events-none -mt-0.5 w-full flex-1 text-sm"
-      >
+      <div class="H_baseSelectList-label">
         {{ item.label }}
       </div>
     </div>
@@ -43,6 +39,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
+import H_icon from "../Components/H_icon.vue";
 
 const P = defineProps({
   modelValue: {
@@ -106,6 +103,13 @@ function KeyEnter() {
 }
 
 watch(
+  () => P.filter,
+  () => {
+    activeFocus = -1;
+  },
+);
+
+watch(
   () => P.modelValue,
   () => {
     valueList.value = P.modelValue.split(",");
@@ -140,8 +144,8 @@ function focused(item: any) {
 function Click(e: any) {
   e.preventDefault = true;
   let T: any = e.target;
-  if (!T.classList.contains("h_baseSelectList-item")) T = T.parentElement;
-  if (!T.classList.contains("h_baseSelectList-item")) T = T.parentElement;
+  if (!T.classList.contains("H_baseSelectList-item")) T = T.parentElement;
+  if (!T.classList.contains("H_baseSelectList-item")) T = T.parentElement;
   const D = T.dataset;
   if (!D) return;
   let val = D.value;
@@ -177,3 +181,71 @@ function setMultivalue(val: string) {
   E("update:modelValue", valSort.toString());
 }
 </script>
+<style>
+@layer hhl-components {
+  .H_baseSelectList {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    background-color: transparent;
+    padding: 10px 4px;
+    outline: none;
+  }
+
+  .H_baseSelectList-row {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 49px;
+    padding: 0 4px;
+    height: 36px;
+  }
+
+  .H_baseSelectList-item {
+    display: flex;
+    align-items: center;
+    flex: 1 1 0%;
+    width: 100%;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 4px;
+    padding-left: 0;
+    padding-right: 0;
+    color: var(--col-txt-3);
+  }
+
+  .H_baseSelectList-item.selected {
+    color: var(--col-pri);
+  }
+
+  .H_baseSelectList:focus .H_baseSelectList-item.focused {
+    border: 1px solid var(--col-pri);
+  }
+  .H_baseSelectList-item.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .H_baseSelectList-icon {
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    font-weight: bolder;
+    color: var(--col-pri);
+    padding-right: 2px;
+  }
+
+  .H_baseSelectList-item.selected .H_baseSelectList-icon {
+    opacity: 100%;
+  }
+
+  .H_baseSelectList-label {
+    pointer-events: none;
+    margin-top: -2px;
+    flex: 1 1 0%;
+    width: 100%;
+    font-size: 14px;
+  }
+}
+</style>

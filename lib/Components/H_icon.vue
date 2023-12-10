@@ -46,7 +46,7 @@ const icon = defineAsyncComponent(
   .H_icon:not(.btn),
   .H_icon.btn-outline {
     background-color: transparent !important;
-    color: var(--current-bg-col, var(--col-txt-2));
+    color: var(--current-bg-col, currentColor, var(--col-txt-2));
   }
 
   .H_icon.btn {

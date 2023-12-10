@@ -80,9 +80,8 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
   }
 
   .H_inputText-input {
-    display: inline-block;
-    max-height: 36px;
-    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
     width: 100%;
     flex: 1 1 0%;
     appearance: none;
@@ -93,7 +92,6 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
     background-color: transparent;
     padding-left: 10px;
     padding-right: 10px;
-    vertical-align: bottom;
     color: var(--col-txt-1);
     outline: none;
   }

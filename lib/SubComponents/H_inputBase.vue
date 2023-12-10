@@ -88,6 +88,8 @@ function Click(e: MouseEvent) {
     grid-column-start: 2;
     grid-row-start: 2;
     width: 100%;
+    height: 100%;
+    margin-top: -1px;
   }
 
   .H_inputbase-label {
@@ -137,19 +139,21 @@ function Click(e: MouseEvent) {
 
   .H_inputbase-info {
     display: flex;
+    position: absolute;
     justify-content: space-between;
     grid-column-start: 1;
     grid-row-start: 3;
     grid-column: span 4 / span 4;
     max-height: 0;
     width: 100%;
+    height: 0;
     user-select: none;
     overflow: visible;
     color: var(--col-txt-2);
     font-size: 12px;
-    padding-top: 2px;
     padding-left: 2px;
     padding-right: 2px;
+    top: 6px;
   }
 
   .H_inputbase-err {
