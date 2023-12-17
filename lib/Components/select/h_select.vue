@@ -206,5 +206,9 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
   .H_select-icon {
     color: var(--col-txt-3);
   }
+
+  .H_selectPop .H_baseSelectList-item.focused {
+    border: 1px solid var(--col-pri);
+  }
 }
 </style>

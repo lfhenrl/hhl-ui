@@ -15,7 +15,7 @@
     @clearClick="$emit('update:modelValue', '')"
     @startIconClick="$emit('startIconClick')"
     @endIconClick="$emit('endIconClick')"
-    class="H_textarea min-h-[36px] flex-1"
+    class="H_textarea"
   >
     <textarea
       ref="input"
@@ -29,8 +29,8 @@
       @focus="handleFocus"
       @blur="handleBlur"
       autocomplete="off"
-      :class="{'resize-none overflow-hidden': !noGrow}"
-      class="H_textarea__input min-h-[32px] h-[32] w-full border border-none bg-transparent px-2.5 pt-1.5 leading-tight text-txt1 outline-none"
+      :class="{ noGrow: !noGrow }"
+      class="H_textarea__input"
     />
   </H_inputBase>
 </template>
@@ -69,7 +69,9 @@ const E = defineEmits([
 
 const focused = ref(false);
 const input = ref<any>(null);
-const onInput = (e: any) => (calculateInputHeight(), debouncedUpdate(e.target.value ?? ""));
+const onInput = (e: any) => (
+  calculateInputHeight(), debouncedUpdate(e.target.value ?? "")
+);
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 
 const focus = () => input.value?.focus();
@@ -99,4 +101,29 @@ function calculateInputHeight() {
   }
 }
 </script>
+<style>
+@layer hhl-components {
+  .H_textarea {
+    flex: 1 1 0%;
+    min-height: 36px;
+  }
 
+  .H_textarea__input {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    width: 100%;
+    outline: none;
+    color: var(--col-txt-1);
+    background-color: transparent;
+    border-style: none;
+    padding: 2px 10px;
+    resize: vertical;
+  }
+}
+
+.H_textarea__input.noGrow {
+  resize: none;
+  overflow: hidden;
+}
+</style>

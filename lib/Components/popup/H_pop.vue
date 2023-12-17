@@ -1,6 +1,6 @@
 <template>
   <div class="H_pop" ref="H_popRef">
-    <div class="H_pop-referance flex">
+    <div class="H_pop-referance">
       <slot name="referance" />
     </div>
     <dialog
@@ -8,12 +8,11 @@
       v-movable="movable"
       :pos="pos"
       :modal="modal"
-      class="H_pop-dialog origin-top overflow-auto rounded bg-transparent opacity-0 shadow-lg outline-none"
+      class="H_pop-dialog"
       :shake="shake"
     >
       <slot />
     </dialog>
-    <div class="bg"></div>
   </div>
 </template>
 
@@ -268,169 +267,187 @@ onUnmounted(() => {
 </script>
 
 <style>
-.H_pop-dialog.open-end {
-  opacity: 1;
-}
-
-.H_pop-dialog.open[pos="bottom"]:not(.open-end) {
-  animation: scaleY-display 0.3s forwards;
-  transform-origin: top;
-}
-
-.H_pop-dialog.open[pos="top"]:not(.open-end) {
-  animation: scaleY-display 0.3s forwards;
-  transform-origin: bottom;
-}
-
-.H_pop-dialog.open[pos="left"]:not(.open-end) {
-  animation: scaleX-display 0.3s forwards;
-  transform-origin: right;
-}
-
-.H_pop-dialog.open[pos="right"]:not(.open-end) {
-  animation: scaleX-display 0.3s forwards;
-  transform-origin: left;
-}
-
-.H_pop-dialog.open[pos="center"]:not(.open-end) {
-  animation: scaleX-display 0.3s forwards;
-  transform-origin: center;
-}
-
-.H_pop-dialog.close[pos="bottom"] {
-  animation: scaleY-display--reversed 0.5s forwards;
-  transform-origin: top;
-}
-
-.H_pop-dialog.close[pos="top"] {
-  animation: scaleY-display--reversed 0.5s forwards;
-  transform-origin: bottom;
-}
-
-.H_pop-dialog.close[pos="left"] {
-  animation: scaleX-display--reversed 0.5s forwards;
-  transform-origin: right;
-}
-
-.H_pop-dialog.close[pos="right"] {
-  animation: scaleX-display--reversed 0.5s forwards;
-  transform-origin: left;
-}
-
-.H_pop-dialog.close[pos="center"] {
-  animation: scaleX-display--reversed 0.5s forwards;
-  transform-origin: center;
-}
-
-.H_pop-dialog div[moveable-drag] {
-  cursor: move;
-}
-
-.H_pop-dialog[shake="true"] {
-  animation: shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important;
-  opacity: 1;
-}
-
-dialog.H_pop-dialog:modal::backdrop {
-  position: fixed;
-  inset: 0px;
-  background: rgba(0, 0, 0, 0.1);
-  opacity: 0;
-}
-
-dialog.H_pop-dialog:modal.open::backdrop {
-  opacity: 1;
-}
-
-@keyframes shaking {
-  10%,
-  90% {
-    transform: rotate(-1deg);
+@layer hhl-components {
+  .H_pop-referance {
+    display: flex;
   }
 
-  20%,
-  80% {
-    transform: rotate(1deg);
-  }
-
-  30%,
-  50%,
-  70% {
-    transform: rotate(-1deg);
-  }
-
-  40%,
-  60% {
-    transform: rotate(1deg);
-  }
-}
-
-@keyframes scaleY-display {
-  0% {
+  .H_pop-dialog {
+    overflow: auto;
+    border-radius: 4px;
+    background-color: transparent;
     opacity: 0;
-    transform: scaleY(0);
+    transform-origin: top;
+    outline: none;
+    box-shadow:
+      0 6px 10px 0 rgba(0, 0, 0, 0.14),
+      0 1px 18px 0 rgba(0, 0, 0, 0.12),
+      0 3px 4px 0 rgba(0, 0, 0, 0.2);
   }
 
-  50% {
+  .H_pop-dialog.open-end {
     opacity: 1;
-    transform: scaleY(1);
   }
 
-  100% {
+  .H_pop-dialog.open[pos="bottom"]:not(.open-end) {
+    animation: scaleY-display 0.3s forwards;
+    transform-origin: top;
+  }
+
+  .H_pop-dialog.open[pos="top"]:not(.open-end) {
+    animation: scaleY-display 0.3s forwards;
+    transform-origin: bottom;
+  }
+
+  .H_pop-dialog.open[pos="left"]:not(.open-end) {
+    animation: scaleX-display 0.3s forwards;
+    transform-origin: right;
+  }
+
+  .H_pop-dialog.open[pos="right"]:not(.open-end) {
+    animation: scaleX-display 0.3s forwards;
+    transform-origin: left;
+  }
+
+  .H_pop-dialog.open[pos="center"]:not(.open-end) {
+    animation: scaleX-display 0.3s forwards;
+    transform-origin: center;
+  }
+
+  .H_pop-dialog.close[pos="bottom"] {
+    animation: scaleY-display--reversed 0.5s forwards;
+    transform-origin: top;
+  }
+
+  .H_pop-dialog.close[pos="top"] {
+    animation: scaleY-display--reversed 0.5s forwards;
+    transform-origin: bottom;
+  }
+
+  .H_pop-dialog.close[pos="left"] {
+    animation: scaleX-display--reversed 0.5s forwards;
+    transform-origin: right;
+  }
+
+  .H_pop-dialog.close[pos="right"] {
+    animation: scaleX-display--reversed 0.5s forwards;
+    transform-origin: left;
+  }
+
+  .H_pop-dialog.close[pos="center"] {
+    animation: scaleX-display--reversed 0.5s forwards;
+    transform-origin: center;
+  }
+
+  .H_pop-dialog div[moveable-drag] {
+    cursor: move;
+  }
+
+  .H_pop-dialog[shake="true"] {
+    animation: shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important;
     opacity: 1;
-    transform: scaleY(1);
-  }
-}
-
-@keyframes scaleX-display--reversed {
-  0% {
-    opacity: 1;
-    transform: scaleX(1);
   }
 
-  50% {
+  dialog.H_pop-dialog:modal::backdrop {
+    position: fixed;
+    inset: 0px;
+    background: rgba(0, 0, 0, 0.1);
     opacity: 0;
-    transform: scaleX(0);
   }
 
-  100% {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-}
-
-@keyframes scaleX-display {
-  0% {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-
-  50% {
+  dialog.H_pop-dialog:modal.open::backdrop {
     opacity: 1;
-    transform: scaleX(0);
   }
 
-  100% {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-}
+  @keyframes shaking {
+    10%,
+    90% {
+      transform: rotate(-1deg);
+    }
 
-@keyframes scaleY-display--reversed {
-  0% {
-    opacity: 1;
-    transform: scaleY(1);
+    20%,
+    80% {
+      transform: rotate(1deg);
+    }
+
+    30%,
+    50%,
+    70% {
+      transform: rotate(-1deg);
+    }
+
+    40%,
+    60% {
+      transform: rotate(1deg);
+    }
   }
 
-  50% {
-    opacity: 0;
-    transform: scaleY(0);
+  @keyframes scaleY-display {
+    0% {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
   }
 
-  100% {
-    opacity: 0;
-    transform: scaleY(0);
+  @keyframes scaleX-display--reversed {
+    0% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    50% {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+  }
+
+  @keyframes scaleX-display {
+    0% {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scaleX(0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes scaleY-display--reversed {
+    0% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+
+    50% {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scaleY(0);
+    }
   }
 }
 </style>
-./utils/Pop

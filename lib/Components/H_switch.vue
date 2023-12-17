@@ -2,7 +2,7 @@
   <div class="H_switch col-pri">
     <div
       class="H_switch-container"
-      :class="{ 'flex-row-reverse': labelLeft }"
+      :class="{ reverse: labelLeft }"
       @click="Click"
       @keyup.space="Click"
       @keyup.enter="Click"
@@ -62,6 +62,10 @@ function Click() {
     align-items: center;
     justify-content: start;
     gap: 10px;
+  }
+
+  .H_switch-container.reverse {
+    flex-direction: row-reverse;
   }
 
   .H_switch-box {

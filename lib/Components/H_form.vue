@@ -1,5 +1,5 @@
 <template>
-  <div ref="hform" class="H_form flex flex-col gap-7"><slot /></div>
+  <div ref="hform" class="H_form"><slot /></div>
 </template>
 
 <script setup lang="ts">
@@ -33,7 +33,7 @@ watch(
 
 function _isvalid() {
   const w = hform.value;
-  const errors = w.querySelectorAll("*[error=true]");
+  const errors = w.querySelectorAll("*[data-error=true]");
   const isvalid = errors.length < 1 ? true : false;
   const isdirtyAndValid =
     props.dirty === true && isvalid === true ? true : false;
@@ -45,3 +45,12 @@ onMounted(() => {
   isvalid();
 });
 </script>
+<style>
+@layer hhl-components {
+  .H_form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+}
+</style>

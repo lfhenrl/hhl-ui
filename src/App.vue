@@ -1,11 +1,11 @@
 <template>
   <div
     v-if="!loadTheme"
-    class="grid grid-cols-[auto_1fr_auto] grid-rows-[44px_1fr] w-screen h-screen overflow-hidden bg-bg0"
+    class="grid h-screen w-screen grid-cols-[auto_1fr_auto] grid-rows-[44px_1fr] overflow-hidden bg-bg0"
     @click="showMenu = false"
   >
     <nav-bar
-    class="col-span-3"
+      class="col-span-3"
       :main-routes="mainRoutes"
       :active-route="activeMainPath"
       v-model="showMenu"
@@ -20,9 +20,12 @@
       :small="small"
     />
 
-    <div id="page-container" ref="page" class="overflow-auto scroll-smooth h-full pb-32 px-8">
-      <router-view class="flex flex-col p-1">
-      </router-view>
+    <div
+      id="page-container"
+      ref="page"
+      class="h-full overflow-auto scroll-smooth px-8 pb-32"
+    >
+      <router-view class="flex flex-col p-1"> </router-view>
     </div>
     <menu-right :view="page" v-show="!medium" />
   </div>
@@ -85,7 +88,6 @@ export default defineComponent({
       const routeData = getRouteData();
       routeLinks = routeData.routeLinks;
       mainRoutes.value = routeData.mainRoutes;
-      console.log("onMounted",routeLinks)
       routeChanged();
       onResize();
     });
@@ -107,4 +109,3 @@ export default defineComponent({
   },
 });
 </script>
-

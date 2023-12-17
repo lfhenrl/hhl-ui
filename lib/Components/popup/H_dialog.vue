@@ -77,71 +77,73 @@ function overlayClick() {
 </script>
 
 <style>
-.H_dialog {
-  overflow: auto;
-  border-radius: 4px;
-  background-color: var(--col-bg-0);
-  top: v-bind(offsetTop);
-  left: v-bind(offsetLeft);
-  opacity: 1;
-}
-
-.H_dialog[open] {
-  animation: fadein 0.2s ease-in 1;
-}
-
-.H_dialog__header {
-  background-color: var(--col-pri);
-  color: var(--col-on-pri);
-  padding-top: 4px;
-  padding-bottom: 4px;
-  text-align: center;
-  font-weight: bold;
-}
-
-.H_dialog.H_modal-pop__shake {
-  animation:
-    fadein 0.2s ease-in 1,
-    shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
-}
-
-.H_dialog__body {
-  padding: 12px;
-}
-
-.H_dialog__footer {
-  padding: 12px;
-}
-
-@keyframes shaking {
-  10%,
-  90% {
-    transform: rotate(-1deg);
+@layer hhl-components {
+  .H_dialog {
+    overflow: auto;
+    border-radius: 4px;
+    background-color: var(--col-bg-0);
+    top: v-bind(offsetTop);
+    left: v-bind(offsetLeft);
+    opacity: 1;
   }
 
-  20%,
-  80% {
-    transform: rotate(1deg);
+  .H_dialog[open] {
+    animation: fadein 0.2s ease-in 1;
   }
 
-  30%,
-  50%,
-  70% {
-    transform: rotate(-1deg);
+  .H_dialog__header {
+    background-color: var(--col-pri);
+    color: var(--col-on-pri);
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: center;
+    font-weight: bold;
   }
 
-  40%,
-  60% {
-    transform: rotate(1deg);
+  .H_dialog.H_modal-pop__shake {
+    animation:
+      fadein 0.2s ease-in 1,
+      shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
   }
-}
 
-@keyframes fadein {
-  0% {
-    opacity: 0%;
+  .H_dialog__body {
+    padding: 12px;
   }
-  100% {
-    opacity: 100%;
+
+  .H_dialog__footer {
+    padding: 12px;
+  }
+
+  @keyframes shaking {
+    10%,
+    90% {
+      transform: rotate(-1deg);
+    }
+
+    20%,
+    80% {
+      transform: rotate(1deg);
+    }
+
+    30%,
+    50%,
+    70% {
+      transform: rotate(-1deg);
+    }
+
+    40%,
+    60% {
+      transform: rotate(1deg);
+    }
+  }
+
+  @keyframes fadein {
+    0% {
+      opacity: 0%;
+    }
+    100% {
+      opacity: 100%;
+    }
   }
 }
 </style>

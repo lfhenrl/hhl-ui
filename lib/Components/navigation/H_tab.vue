@@ -1,5 +1,5 @@
 <template>
-  <div v-if="selected || keepAlive" v-show="selected" class="H_tab grid grid-cols-[1fr] grid-rows-[1fr]">
+  <div v-if="selected || keepAlive" v-show="selected" class="H_tab">
     <slot />
   </div>
 </template>
@@ -14,15 +14,24 @@ const props = defineProps({
   tab_class: { default: "", type: String },
   keepAlive: { default: false, type: Boolean },
   disabled: { default: false, type: Boolean },
-  selected: { default: false, type: Boolean }
+  selected: { default: false, type: Boolean },
 });
 
 watch(
   () => props.tab_class,
-  () => tabData.changed()
+  () => tabData.changed(),
 );
 
 const tabData: any = inject("tabData");
 const selected = computed(() => tabData.selected.value === props.name);
 </script>
 
+<style>
+@layer hhl-components {
+  .H_tab {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+}
+</style>
