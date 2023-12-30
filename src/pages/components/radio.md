@@ -4,7 +4,7 @@
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flex items-center gap-4 px-4">
+     <div class="flexRow items-center gap-4 flexWrap">
         <H_radio label="Radio 1" v-model="radioVal" class="col-err" value="val1"></H_radio>
         <H_radio label="Radio 2" v-model="radioVal" value="val2" class="col-warn"></H_radio>    
         <H_radio label="Radio 3" v-model="radioVal" value="val3"></H_radio>
@@ -26,7 +26,7 @@ You can change the label position to left by adding the prop `label-left`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flex items-center gap-4 px-4">
+     <div class="flexRow items-center gap-4 flexWrap">
         <H_radio label="label standard" v-model="radioVal" value="val1"></H_radio>
         <H_radio label-left label="Label left" v-model="radioVal" value="val2"></H_radio>
         <div class="flex-1" />
@@ -48,7 +48,7 @@ The default is `"md"`.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex items-center gap-4 px-4">
+    <div class="flexRow items-center gap-4 flexWrap">
         <H_radio size="sm" label="Radio small (sm)" v-model="radioVal" value="val1"></H_radio>
         <H_radio label="Radio standard (md)" v-model="radioVal" value="val2"></H_radio>
         <H_radio size="lg" label="Radio large (lg)" v-model="radioVal" value="val3"></H_radio>
@@ -72,7 +72,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flex items-center gap-4 px-4 flex-wrap">
+     <div class="flexRow items-center gap-4 flexWrap">
         <H_radio class="col-pri" label="col-pri" v-model="radioVal" value="val11"></H_radio>
         <H_radio class="col-sec" label="col-sec" v-model="radioVal" value="val11"></H_radio>
         <H_radio class="col-ok" label="col-ok" v-model="radioVal" value="val11"></H_radio>
@@ -99,7 +99,7 @@ You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flex items-center gap-4 px-4 flex-wrap">
+     <div class="flexRow items-center gap-4 flexWrap">
         <H_radio disabled class="col-pri" label="col-pri" v-model="radioVal" value="val2"></H_radio>
         <H_radio disabled class="col-sec" label="col-sec" v-model="radioVal" value="val2" ></H_radio>
         <H_radio disabled class="col-ok" label="col-ok" v-model="radioVal" value="val2"></H_radio>

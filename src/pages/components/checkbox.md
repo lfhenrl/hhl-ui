@@ -4,7 +4,7 @@
 
 <hhl-live-editor title="" htmlCode=' 
     <template>
-     <div class="flex items-center gap-4">
+     <div class="flexRow items-center gap-4 flexWrap">
         <H_checkbox label="CheckBox 1" class="col-err" v-model="check"></H_checkbox>
         <H_checkbox label="CheckBox 2" v-model="check"></H_checkbox>    
         <H_checkbox label="CheckBox 3" v-model="check"></H_checkbox>
@@ -26,7 +26,7 @@ You can change the label position to left by adding the prop `label-left`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flex items-center gap-4">
+     <div class="flexRow items-center gap-4 flexWrap">
         <H_checkbox label="label standard" v-model="check"></H_checkbox>
         <H_checkbox label-left label="Label left" :value="check"></H_checkbox>  
         <div class="flex-1" /> 
@@ -48,7 +48,7 @@ The default is `"md"`.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flex items-center gap-4">
+     <div class="flexRow items-center gap-4 flexWrap">
         <H_checkbox size="sm" label="CheckBox small (sm)" v-model="check"></H_checkbox>
         <H_checkbox size="md"  label="CheckBox standard (md)" v-model="check"></H_checkbox>    
         <H_checkbox size="lg" label="CheckBox large (lg)" v-model="check"></H_checkbox>
@@ -72,7 +72,7 @@ If you need a special color then just use `style="--current-bg-col: purple: colo
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flex items-center gap-4 flex-wrap">
+     <div class="flexRow items-center gap-4 flexWrap">
         <H_checkbox class="col-pri" label="col-pri" v-model="check"></H_checkbox>
         <H_checkbox class="col-sec" label="col-sec" v-model="check"></H_checkbox>    
         <H_checkbox class="col-ok" label="col-ok" v-model="check"></H_checkbox>
@@ -99,7 +99,7 @@ You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-         <div class="flex items-center gap-4 flex-wrap">
+         <div class="flexRow items-center gap-4 flexWrap">
             <H_checkbox disabled class="col-pri" label="col-pri" v-model="check"></H_checkbox>
             <H_checkbox disabled class="col-sec" label="col-sec" v-model="check"></H_checkbox>    
             <H_checkbox disabled class="col-ok" label="col-ok" v-model="check"></H_checkbox>

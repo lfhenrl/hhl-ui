@@ -1,5 +1,10 @@
 <template>
-  <H_inputBase class="H_slider col-pri" :label="label" :movelabel="true">
+  <H_inputBase
+    class="H_slider col-pri"
+    :label="label"
+    :movelabel="true"
+    :disabled="disabled"
+  >
     <div class="H_slider_inner" :disabled="disabled ? true : undefined">
       <div class="H_slider_innerBox">
         <div class="H_slider_info" :style="{ left: posProcent }">
@@ -11,8 +16,8 @@
         class="H_slider-input"
         :value="modelValue"
         @input="changed"
-        :aria-label="label"
-        :name="label"
+        :aria-label="label === '' ? 'No label' : label"
+        :name="label === '' ? 'No name' : label"
       />
     </div>
   </H_inputBase>
@@ -82,6 +87,7 @@ function changed(e: any) {
     height: 6px;
     width: 100%;
     appearance: none;
+    cursor: pointer;
     border-radius: 4px;
     background-image: linear-gradient(
       var(--current-bg-col),

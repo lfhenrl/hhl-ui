@@ -2,7 +2,7 @@
   <label
     class="H_inputbase"
     @click.prevent="Click"
-    :disabled="disabled ? true : undefined"
+    :disabled="disabled ? '' : undefined"
     :data-error="ErrorMessage != '' ? true : undefined"
   >
     <div class="H_inputbase-label">
@@ -13,12 +13,6 @@
     </div>
     <div class="H_inputbase-endicon">
       <slot name="end" />
-      <H_icon
-        btn="standard"
-        v-if="clearable"
-        icon="close"
-        class="H_inputbase-clearicon"
-      />
     </div>
 
     <div class="H_inputbase-mainSlot">
@@ -38,12 +32,9 @@
 </template>
 
 <script setup lang="ts">
-import H_icon from "../Components/H_icon.vue";
-
 defineProps({
   label: { type: String, default: "Label" },
   disabled: { type: Boolean, default: false },
-  clearable: { type: Boolean, default: false },
   HelpTextStart: { type: String, default: "" },
   HelpTextEnd: { type: String, default: "" },
   ErrorMessage: { type: String, default: "" },
@@ -66,7 +57,6 @@ function Click(e: MouseEvent) {
   .H_inputbase {
     position: relative;
     display: grid;
-    min-width: 100px;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: auto auto auto;
     border: 1px solid var(--col-bg-4);
@@ -89,7 +79,6 @@ function Click(e: MouseEvent) {
     grid-row-start: 2;
     width: 100%;
     height: 100%;
-    margin-top: -1px;
   }
 
   .H_inputbase-label {
@@ -119,6 +108,7 @@ function Click(e: MouseEvent) {
     grid-row-start: 2;
     margin-left: 4px;
     color: var(--col-txt-3);
+    height: 35px;
   }
 
   .H_inputbase-endicon {
@@ -126,8 +116,9 @@ function Click(e: MouseEvent) {
     align-items: center;
     grid-column-start: 3;
     grid-row-start: 2;
-    margin-right: 4px;
+    padding-right: 4px;
     color: var(--col-txt-3);
+    height: 35px;
   }
 
   .H_inputbase-clearicon {
@@ -153,7 +144,6 @@ function Click(e: MouseEvent) {
     font-size: 12px;
     padding-left: 2px;
     padding-right: 2px;
-    top: 6px;
   }
 
   .H_inputbase-err {

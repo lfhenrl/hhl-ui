@@ -10,9 +10,9 @@
     :HelpTextEnd="hintEnd"
     :ErrorMessage="validate"
     @isValid="$emit('isValid', $event)"
-    class="h_datePicker max-h-[36px] min-h-[36px] flex-1 pt-1"
+    class="H_datePicker"
   >
-    <div class="h_datePicker_container flex items-center pl-2">
+    <div class="H_datePicker_container">
       <H_baseDatePicker
         :modelValue="dato"
         @dateChanged="setDate"
@@ -20,7 +20,6 @@
         :hide-icon="hideIcon"
         :readonly="readonly"
         :no-outside-click="noOutsideClick"
-        class="mr-3"
         v-if="type === 'dateTime' || type === 'date'"
       />
       <H_baseTimePicker
@@ -30,7 +29,6 @@
         :readonly="readonly"
         :show-seconds="showSeconds"
         :no-outside-click="noOutsideClick"
-        class="mr-3"
         v-if="type === 'dateTime' || type === 'time'"
       />
     </div>
@@ -77,7 +75,7 @@ function setDate(e: any) {
   const newDatoNumber = new Date(
     e.getFullYear(),
     e.getMonth(),
-    e.getDate(),
+    e.getDate()
   ).valueOf();
   const newTimeNumber =
     time.value.hour * 3600 + time.value.minute * 60 + time.value.second;
@@ -96,7 +94,7 @@ function setTime(e: any) {
     const newDatoNumber = new Date(
       dato.value.getFullYear(),
       dato.value.getMonth(),
-      dato.value.getDate(),
+      dato.value.getDate()
     ).valueOf();
     const newDato = new Date(newDatoNumber + newTimeNumber * 1000);
     if (newDato) {
@@ -123,7 +121,7 @@ watch(
       dato.value = new Date(
         pDato.getFullYear(),
         pDato.getMonth(),
-        pDato.getDate(),
+        pDato.getDate()
       );
     } else {
       time.value = { hour: 0, minute: 0, second: 0 };
@@ -132,8 +130,27 @@ watch(
   },
   {
     immediate: true,
-  },
+  }
 );
 
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
+<style>
+@layer hhl-components {
+  .H_datePicker {
+    max-height: 36px;
+    min-height: 36px;
+    height: 36px;
+    flex: 1 1 0%;
+  }
+
+  .H_datePicker_container {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    padding-left: 8px;
+    min-height: 36px;
+    padding-bottom: 1px;
+  }
+}
+</style>

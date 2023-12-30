@@ -2,31 +2,49 @@
 
 ## Data binding
 
+<style>
+.dragContainer {
+  display: flex;
+  flex-direction: column;
+  height:460px;
+  width:160px;
+  border: 1px solid var(--col-bg-5);
+  border-radius: 4px;
+  padding: 16px;
+  gap: 10px;
+}
+.dragItem {
+  border-radius: 4px;
+  padding: 4px 12px;
+}
+
+</style>
+
 <hhl-live-editor title="" htmlCode='
       <template>
-     <div class="flex items-center gap-4">
-        <H_drag-drop v-model="list1" class="flex flex-col h-96 w-36 items-center border border-bg5 rounded p-4 gap-3">
+     <div class="flexRow items-center gap-4">
+        <H_drag-drop v-model="list1" class="dragContainer">
           <template v-slot:item="{ item }">
             <!-- example -->
-            <div class="px-3 py-1 rounded col-pri shadow-2">
+            <div class="dragItem col-pri shadow">
               {{ item.title }}
             </div>
             <!-- or your own template -->
           </template>
         </H_drag-drop>
-        <div class="h-96 w-48 border border-bg5 rounded p-4">
+        <div class="dragContainer">
           {{ list1 }}
         </div>
-        <H_drag-drop v-model="list2" class="flex flex-col h-96 w-36 items-center border border-bg5 rounded p-4 gap-3" :max-items="3">
+        <H_drag-drop v-model="list2" class="dragContainer" :max-items="3">
           <template v-slot:item="{ item }">
             <!-- example -->
-            <div class="px-3 py-1 rounded col-pri shadow-2">
+            <div class="dragItem col-pri shadow">
               {{ item.title }}
             </div>
             <!-- or your own template -->
           </template>
         </H_drag-drop>
-        <div class="h-96 w-48 border border-bg5 rounded p-4">
+        <div class="dragContainer">
           {{ list2 }}
         </div>
       </div>

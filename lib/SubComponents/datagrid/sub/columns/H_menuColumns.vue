@@ -1,19 +1,17 @@
 <template>
-  <H_dialog v-model="open" offsetTop="-20px" class="h_menuColumns" movable>
+  <H_dialog v-model="open" offsetTop="-20px" class="H_menuColumns" movable>
     <template #header>
-      <div class="flex min-w-[200px]">
-        <div class="flex-1">Columns</div>
-        <div class="overflow-hidden">
-          <H_icon btn @click="open = false" />
-        </div>
+      <div class="H_menuColumns-header">
+        <div>Columns</div>
+        <H_icon btn="standard" @click="open = false" />
       </div>
     </template>
-    <div class="mt-3 flex flex-col gap-4">
+    <div class="H_menuColumns-body">
       <H_inputbase label="Grouping" movelabel>
         <H_dragDrop
           v-model="groupColumns"
           :max-items="3"
-          class="max-h-[90px] min-h-[90px] overflow-auto p-2 pt-1"
+          class="H_menuColumns-drag H_menuColumns-dragH90"
         >
           <template v-slot:item="{ item, index }">
             <H_columnItem :item="item" :index="index" />
@@ -21,11 +19,11 @@
         </H_dragDrop>
       </H_inputbase>
 
-      <H_inputbase label="Columns" class="mt-3 h-full" movelabel>
+      <H_inputbase label="Columns" class="" movelabel>
         <div class="">
           <H_dragDrop
             v-model="sourceColumns"
-            class="max-h-[200px] min-h-[200px] overflow-auto p-2 pt-1"
+            class="H_menuColumns-drag H_menuColumns-dragH200"
           >
             <template v-slot:item="{ item, index }">
               <H_columnItem :item="item" :index="index" />
@@ -35,8 +33,8 @@
       </H_inputbase>
     </div>
     <template #footer>
-      <div class="flex justify-end">
-        <H_btn @click="columnsSave" class="ml-3 bg-ok" :disabled="!canSave"
+      <div class="H_menuColumns-footer">
+        <H_btn @click="columnsSave" class="bg-ok" :disabled="!canSave"
           >OK</H_btn
         >
       </div>
@@ -138,3 +136,40 @@ function columnsSave() {
   Columns.columnsChange();
 }
 </script>
+<style>
+@layer hhl-components {
+  .H_menuColumns-header {
+    display: flex;
+    min-width: 200px;
+  }
+  .H_menuColumns-header div {
+    flex: 1 1 100%;
+  }
+  .H_menuColumns-header .H_icon {
+    cursor: pointer;
+  }
+  .H_menuColumns-body {
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    gap: 29px;
+  }
+  .H_menuColumns-drag {
+    overflow: auto;
+    padding: 8px;
+    padding-top: 4px;
+  }
+  .H_menuColumns-dragH90 {
+    max-height: 90px;
+    min-height: 90px;
+  }
+  .H_menuColumns-dragH200 {
+    max-height: 200px;
+    min-height: 200px;
+  }
+  .H_menuColumns-footer {
+    display: flex;
+    justify-content: end;
+  }
+}
+</style>

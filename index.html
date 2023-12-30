@@ -1,18 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
 
-<head>
-  <meta charset="utf-8">
-  
-  <link rel="icon" href="/icon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="Description" content="Documentation of HHL-UI." />
-  <title>HHL-UI</title>
-</head>
+    <link rel="icon" href="/icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Description" content="Documentation of HHL-UI." />
+    <title>HHL-UI</title>
+    <style>
+      body,
+      #app {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background-color: var(--col-bg-0);
+        color: var(--col-txt-0);
+      }
+    </style>
+  </head>
 
-<body class="w-screen h-screen bg-bg0 overflow-hidden text-txt0">
-  <div id="app" class="overflow-hidden"></div>
-  <script type="module" src="/src/main.ts" type="text/javascript"></script>
-</body>
-
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts" type="text/javascript"></script>
+  </body>
 </html>

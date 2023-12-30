@@ -1,6 +1,6 @@
 <template>
   <div class="live-render">
-    <div :class="scope" class="live-render_content px-4 py-8">
+    <div :class="scope" class="live-render_content">
       <component :key="count" :is="render()" />
     </div>
   </div>
@@ -45,6 +45,7 @@ export default defineComponent({
         info,
       };
       emit("onError", error.err);
+
       return false;
     });
 
@@ -107,3 +108,9 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+.live-render {
+  background-color: var(--col-bg-0);
+  padding: 32px 16px;
+}
+</style>

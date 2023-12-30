@@ -20,7 +20,7 @@ Tabs are elements that help you organize and navigate multiple documents in a si
 
 <hhl-live-editor title="" htmlCode='
 		<template>
-			<div class="flex items-center gap-4 px-4">
+			<div class="flexRow items-center gap-4 flexWrap">
 				<H_tabs>
 					<H_tab name="tab1" label="Tab 1."><div class="p-10">This is TAB 1...</div></H_tab>
 					<H_tab name="tab2" label="Tab 2."><div class="p-10">This is TAB 2...</div></H_tab>
@@ -39,7 +39,7 @@ You can add `disabled` to a tab<br>
 
 <hhl-live-editor title="" htmlCode='
 		<template>
-			<div class="flex items-center gap-4 px-4">
+			<div class="flexRow items-center gap-4 flexWrap">
 				<H_tabs>
 					<H_tab name="tab1" label="Tab 1."><div class="p-10">This is TAB 1...</div></H_tab>
 					<H_tab disabled name="tab2" label="Tab 2."><div class="p-10">This is TAB 2...</div></H_tab>
@@ -58,7 +58,7 @@ You can use a `will-change` event to do some work or validation before leaving t
 
 <hhl-live-editor title="" htmlCode='
 		<template>
-			<div class="flex items-center gap-4 px-4">
+			<div class="flexRow items-center gap-4 flexWrap">
 				<H_tabs :will-change="canChange">
 					<H_tab name="tab1" label="Tab 1."><div class="p-10">This is TAB 1...</div></H_tab>
 					<H_tab name="tab2" label="Tab 2."><div class="p-10">This is TAB 2...</div></H_tab>

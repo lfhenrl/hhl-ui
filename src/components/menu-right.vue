@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col overflow-auto bg-bg1 p-2 text-sm min-w-[160px] max-w-[160px]">
+  <div class="menu-right">
     <div
-    class="cursor-pointer"
-    :class="{'text-ok' : item.id === activeIndex}"
+      class="menu-right-links"
+      :class="{ 'menu-right-links-selected': item.id === activeIndex }"
       :hh="item.id"
       :dd="activeIndex"
       v-for="item in indexList"
@@ -26,7 +26,7 @@ function jsUcfirst(string: string) {
 const MenuRight = defineComponent({
   name: "menu-right",
   props: {
-    view: { type: Object, default: {} }
+    view: { type: Object, default: {} },
   },
   setup(props, {}) {
     const _onScroll = debounce(onScroll);
@@ -43,7 +43,7 @@ const MenuRight = defineComponent({
         const newList = Array.from(list).map((item) => {
           return {
             id: item.id,
-            name: jsUcfirst(item.id)
+            name: jsUcfirst(item.id),
           };
         });
         domList = Array.from(list) as HTMLElement[];
@@ -51,7 +51,7 @@ const MenuRight = defineComponent({
         page.scrollTo({
           top: 0,
           left: 0,
-          behavior: "auto"
+          behavior: "auto",
         });
       }, 10);
     }
@@ -79,7 +79,7 @@ const MenuRight = defineComponent({
       () => route.path,
       async () => {
         updateIndex();
-      }
+      },
     );
 
     onMounted(() => {
@@ -95,10 +95,28 @@ const MenuRight = defineComponent({
     });
 
     return { indexList, linkClick, activeIndex };
-  }
+  },
 });
 
 export type iMenuRight = InstanceType<typeof MenuRight>;
 export default MenuRight;
 </script>
-
+<style>
+.menu-right {
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  max-width: 160px;
+  overflow: auto;
+  background-color: var(--col-bg-1);
+  padding: 8px;
+  font-size: 14px;
+}
+.menu-right-links {
+  cursor: pointer;
+}
+.menu-right-links-selected {
+  color: var(--col-ok);
+  font-weight: bold;
+}
+</style>

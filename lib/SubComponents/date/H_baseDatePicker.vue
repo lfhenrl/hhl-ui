@@ -1,24 +1,20 @@
 <template>
-  <div class="h_datePicker" :focused="focused" :readonly="readonly">
+  <div :focused="focused" :readonly="readonly">
     <H_pop
       v-model="popupOpen"
       trigger="click"
-      :no-outside-click="noOutsideClick"
+      :offset-top="8"
+      :modal="noOutsideClick"
       position="fixed"
+      :readonly="readonly"
     >
       <template v-slot:referance>
         <div
-          class="h_datePicker__inputcontainer group/date inline-flex cursor-pointer items-center"
+          class="H_datePicker__inputcontainer"
           title="Datepicker"
           tabindex="0"
         >
-          <H_icon
-            icon="event"
-            btn="standard"
-            v-if="!hideIcon"
-            tabindex="-1"
-            class="opacity-70 group-hover/date:scale-110"
-          />
+          <H_icon icon="event" v-if="!hideIcon" tabindex="-1" />
           <input
             name="datepicker"
             title="Datepicker"
@@ -28,14 +24,12 @@
             readonly
             @focus="focused = !readonly"
             @blur="focused = false"
-            class="h_datePicker__input cursor-pointer overflow-hidden bg-transparent pl-1"
+            class="H_datePicker__input"
           />
         </div>
       </template>
-      <div class="h_datePicker__popup rounded border border-bg5 bg-bg0 shadow">
-        <div
-          class="h_datePicker__header flex items-center justify-center bg-bg5 p-1 text-center text-xl font-bold text-txt1"
-        >
+      <div class="H_datePicker__popup">
+        <div class="H_datePicker__header">
           {{ formattetTempDate }}
         </div>
         <H_dateTable
@@ -50,13 +44,11 @@
           v-model="tempDatomy"
           @month-selected="activeView = 'day'"
         />
-        <div
-          class="h_datePicker__footer flex justify-end gap-3 border-t border-bg4 p-3"
-        >
-          <H_btn tabindex="3" size="sm" @click="cancel" class="col-sec w-16"
+        <div class="H_datePicker__footer">
+          <H_btn tabindex="3" size="sm" @click="cancel" class="col-sec"
             >CANCEL</H_btn
           >
-          <H_btn tabindex="4" size="sm" @click="ok" class="w-16">OK</H_btn>
+          <H_btn tabindex="0" size="sm" @click="ok">OK</H_btn>
         </div>
       </div>
     </H_pop>
@@ -132,3 +124,56 @@ const ok = () => {
 };
 const cancel = () => close();
 </script>
+<style>
+@layer hhl-components {
+  .H_datePicker__inputcontainer {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .H_datePicker__inputcontainer .H_icon {
+    color: var(--col-txt-3);
+    width: 20px;
+  }
+
+  .H_datePicker__inputcontainer:hover .H_icon {
+    scale: 1.2;
+  }
+
+  .H_datePicker__input {
+    cursor: pointer;
+    overflow: hidden;
+    background-color: transparent;
+    padding-left: 4px;
+    color: var(--col-txt-1);
+  }
+  .H_datePicker__popup {
+    border-radius: 4px;
+    background-color: var(--col-bg-0);
+    border: 1px solid var(--col-bg-5);
+  }
+  .H_datePicker__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--col-bg-5);
+    padding: 4px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--col-txt-1);
+  }
+  .H_datePicker__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    border-top: 1px solid var(--col-bg-4);
+    padding: 12px;
+  }
+
+  .H_datePicker__footer .H_btn {
+    width: 64px;
+  }
+}
+</style>

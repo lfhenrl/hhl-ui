@@ -1,6 +1,6 @@
 <template>
   <div
-    class="H_dataGroupRow flex w-full flex-1 items-center border-b border-bg3 px-0.5 h-7"
+    class="H_dataGroupRow"
     :style="{ paddingLeft: 17 * row.__level + 'px' }"
     :col-index="0"
     data-type="rowgroup"
@@ -8,12 +8,13 @@
   >
     <H_icon
       :icon="row.__expanded ? 'expand_down' : 'expand_right'"
-      btn
+      btn="standard"
       @click="expand"
     />
     <span>{{ row.__title }}</span>
-    <span class="pl-2 text-xs opacity-70"> ({{ row.__count }}/{{ row.__count_total }})</span>
-     
+    <span class="pl-2 text-xs opacity-70">
+      ({{ row.__count }}/{{ row.__count_total }})</span
+    >
   </div>
 </template>
 
@@ -32,3 +33,16 @@ function expand() {
 }
 onMounted(() => {});
 </script>
+<style>
+@layer hhl-components {
+  .H_dataGroupRow {
+    display: flex;
+    flex: 1 1 0%;
+    align-items: center;
+    width: 100%;
+    height: 28px;
+    border-bottom: 1px solid var(--col-bg-3);
+    padding: 0 2px;
+  }
+}
+</style>

@@ -1,21 +1,16 @@
 <template>
-  <div class="h_timePicker" :focused="focused" :readonly="readonly">
+  <div :focused="focused" :readonly="readonly">
     <H_pop
       v-model="popupOpen"
       trigger="click"
-      offset-when-up="11"
-      :no-outside-click="noOutsideClick"
+      :offset-top="8"
+      :modal="noOutsideClick"
       position="fixed"
+      :readonly="readonly"
     >
       <template v-slot:referance>
-        <div
-          class="h_timePicker__inputcontainer group/time inline-flex cursor-pointer flex-row items-center"
-        >
-          <H_icon
-            icon="clock"
-            v-if="!hideIcon"
-            class="group-hover/time:scale-110"
-          />
+        <div class="H_timePicker__inputcontainer">
+          <H_icon icon="clock" v-if="!hideIcon" />
           <input
             name="timepicker"
             title="Timepicker"
@@ -24,17 +19,15 @@
             readonly
             @focus="focused = !readonly"
             @blur="focused = false"
-            class="h_timePicker__input cursor-pointer overflow-hidden bg-transparent pl-1"
+            class="H_timePicker__input"
           />
         </div>
       </template>
-      <div class="h_timePicker__popup rounded border border-bg5 bg-bg0 shadow">
+      <div class="H_timePicker__popup">
         <H_timeTable v-model="tempDato" :show-seconds="showSeconds" />
-        <div
-          class="h_timePicker__footer flex justify-end gap-3 border-t border-bg4 p-3"
-        >
-          <H_btn size="sm" @click="cancel" class="col-sec w-16">CANCEL</H_btn>
-          <H_btn size="sm" @click="ok" class="w-16">OK</H_btn>
+        <div class="H_timePicker__footer">
+          <H_btn size="sm" @click="cancel" class="col-sec">CANCEL</H_btn>
+          <H_btn size="sm" @click="ok">OK</H_btn>
         </div>
       </div>
     </H_pop>
@@ -67,20 +60,6 @@ const close = () => (popupOpen.value = false);
 const ok = () => (close(), emit("timeChanged", tempDato.value));
 const cancel = () => close();
 
-/* const onClick = () => {
-  if (props.readonly) {
-    return;
-  }
-  tempDato.value = {
-    hour: props.time.hour,
-    minute: props.time.minute,
-    second: props.time.second,
-  };
-  if (popupOpen.value === false || !props.noOutsideClick) {
-    popupOpen.value = !popupOpen.value;
-  }
-}; */
-
 function setSize() {
   if (props.showSeconds) {
     return 4;
@@ -101,3 +80,56 @@ const formattetTime = computed(() => {
   return xxx;
 });
 </script>
+<style>
+@layer hhl-components {
+  .H_timePicker__inputcontainer {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .H_timePicker__inputcontainer .H_icon {
+    color: var(--col-txt-3);
+    width: 20px;
+  }
+
+  .H_timePicker__inputcontainer:hover .H_icon {
+    scale: 1.2;
+  }
+
+  .H_timePicker__input {
+    cursor: pointer;
+    overflow: hidden;
+    background-color: transparent;
+    padding-left: 4px;
+    color: var(--col-txt-1);
+  }
+  .H_timePicker__popup {
+    border-radius: 4px;
+    background-color: var(--col-bg-0);
+    border: 1px solid var(--col-bg-5);
+  }
+  .H_datePicker__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--col-bg-5);
+    padding: 4px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--col-txt-1);
+  }
+  .H_timePicker__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    border-top: 1px solid var(--col-bg-4);
+    padding: 12px;
+  }
+
+  .H_timePicker__footer .H_btn {
+    width: 64px;
+  }
+}
+</style>

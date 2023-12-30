@@ -1,5 +1,5 @@
 <template>
-  <div class="H_pop" ref="H_popRef">
+  <div class="H_pop" ref="H_popRef" :readonly="readonly">
     <div class="H_pop-referance">
       <slot name="referance" />
     </div>
@@ -77,12 +77,13 @@ let opserveTimer: any = null;
 let ModelValueDelay = false;
 let mouseOvertimer = {} as any;
 const dialogPos = new Pop();
-const modelValue = defineModel<boolean>({ local: true, default: false });
+const modelValue = defineModel<boolean>({ default: false });
 
 watch(modelValue, (val: boolean) => {
   if (val === true) {
     if (P.readonly === true) {
       modelValue.value = false;
+      E("close");
       return;
     }
     diaOpen();
@@ -279,10 +280,9 @@ onUnmounted(() => {
     opacity: 0;
     transform-origin: top;
     outline: none;
-    box-shadow:
-      0 6px 10px 0 rgba(0, 0, 0, 0.14),
-      0 1px 18px 0 rgba(0, 0, 0, 0.12),
-      0 3px 4px 0 rgba(0, 0, 0, 0.2);
+    z-index: 99;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+      0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
   }
 
   .H_pop-dialog.open-end {

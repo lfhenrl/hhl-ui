@@ -1,35 +1,26 @@
 <template>
-  <div class="h_dateTable">
-    <div
-      class="h_dateTable__innerHeader flex flex-1 flex-row items-center p-1 font-bold"
-    >
+  <div>
+    <div class="H_dateTable__innerHeader">
       <H_icon
         icon="expand_left"
         type="icon-text"
-        btn
+        btn="standard"
         @click="changeMonth(-1)"
-        round
       />
-      <div
-        class="h_dateTable__innerHeaderValue flex flex-1 cursor-pointer justify-center"
-        @click="$emit('month-click')"
-      >
+      <div class="H_dateTable__innerHeaderValue" @click="$emit('month-click')">
         {{
           tempDatomy.toLocaleString("en-us", { month: "long", year: "numeric" })
         }}
       </div>
       <H_icon
-        btn
+        btn="standard"
         icon="expand_right"
         type="icon-text"
         @click="changeMonth(1)"
         round
       />
     </div>
-    <div
-      class="h_dateTable__table grid grid-cols-[repeat(8,32px)] grid-rows-[repeat(7,32px)]"
-      @click="itemClick"
-    >
+    <div class="H_dateTable__table" @click="itemClick">
       <div
         v-for="item in dates"
         :key="item.value"
@@ -39,17 +30,15 @@
         :data-activemonth="item.activeMonth"
         :today="isToday(item.value)"
         :title="isHolyday(item.value)"
-        class="h_dateTable__tableItem flex items-center justify-center"
+        class="H_dateTable__tableItem"
         :class="{
-          'cursor-pointer rounded-full opacity-90  hover:bg-warn hover:text-black':
-            item.type === 'day',
-          'font-bold opacity-100': item.activeMonth,
-          'font-normal opacity-70': item.daytype === 'weekend',
-          'bg-bg2 font-normal text-txt1 opacity-100':
-            item.type === 'head' || item.type === 'week',
-          'col-pri': isSelected(item.value),
-          'col-sec': isToday(item.value),
-          'text-err': isHolyday(item.value),
+          day: item.type === 'day',
+          activeMonth: item.activeMonth,
+          weekend: item.daytype === 'weekend',
+          head: item.type === 'head' || item.type === 'week',
+          isSelected: isSelected(item.value),
+          isToday: isToday(item.value),
+          isHolyday: isHolyday(item.value),
         }"
       >
         {{ item.title }}
@@ -134,3 +123,60 @@ const isSelected = (dato: any) => (dato === selectedDate.value ? true : null);
 const isToday = (dato: any) => (dato === toDayDate.value ? true : null);
 const isHolyday = (dato: any) => HHL_isHolyDay(dato);
 </script>
+<style>
+@layer hhl-components {
+  .H_dateTable__innerHeader {
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 4px;
+  }
+  .H_dateTable__innerHeaderValue {
+    display: flex;
+    justify-content: center;
+    flex: 1 1 0%;
+    cursor: pointer;
+  }
+  .H_dateTable__table {
+    display: grid;
+    grid-template-columns: repeat(8, 32px);
+    grid-template-rows: repeat(7, 32px);
+  }
+  .H_dateTable__tableItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .H_dateTable__tableItem.day {
+    cursor: pointer;
+    border-radius: 50%;
+    opacity: 90%;
+  }
+  .H_dateTable__tableItem.day:hover {
+    background-color: var(--col-warn);
+    color: var(--col-on-warn);
+  }
+  .H_dateTable__tableItem.activeMonth {
+    opacity: 100%;
+    font-weight: 700;
+  }
+  .H_dateTable__tableItem.weekend {
+    opacity: 70%;
+    font-weight: normal;
+  }
+  .H_dateTable__tableItem.isSelected {
+    background-color: var(--col-pri);
+    color: var(--col-on-pri);
+  }
+  .H_dateTable__tableItem.isToday {
+    background-color: var(--col-sec);
+    color: var(--col-on-sec);
+  }
+  .H_dateTable__tableItem.isHolyday {
+    color: var(--col-err);
+  }
+}
+</style>

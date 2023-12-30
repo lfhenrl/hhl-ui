@@ -142,7 +142,6 @@ function focused(item: any) {
 }
 
 function Click(e: any) {
-  e.preventDefault = true;
   let T: any = e.target;
   if (!T.classList.contains("H_baseSelectList-item")) T = T.parentElement;
   if (!T.classList.contains("H_baseSelectList-item")) T = T.parentElement;
@@ -189,8 +188,12 @@ function setMultivalue(val: string) {
     align-items: stretch;
     width: 100%;
     background-color: transparent;
-    padding: 10px 4px;
+    padding: 10px 2px;
     outline: none;
+  }
+
+  .H_baseSelectList[readonly] {
+    pointer-events: none;
   }
 
   .H_baseSelectList-row {
@@ -198,7 +201,7 @@ function setMultivalue(val: string) {
     align-items: center;
     flex-wrap: wrap;
     gap: 49px;
-    padding: 0 4px;
+    padding: 0 2px;
     height: 36px;
   }
 
@@ -210,8 +213,8 @@ function setMultivalue(val: string) {
     cursor: pointer;
     user-select: none;
     border-radius: 4px;
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 3px;
+    padding-right: 3px;
     color: var(--col-txt-3);
   }
 
@@ -220,7 +223,7 @@ function setMultivalue(val: string) {
   }
 
   .H_baseSelectList:focus .H_baseSelectList-item.focused {
-    border: 1px solid var(--col-pri);
+    outline: 1px solid var(--col-pri);
   }
   .H_baseSelectList-item.reverse {
     flex-direction: row-reverse;

@@ -1,11 +1,10 @@
 <template>
-  <H_icon ref="icon" v-show="false"></H_icon>
-  <div class="flex flex-wrap gap-3 pt-5">
+  <div class="icon-list">
     <div
       :name="item"
       v-for="item in iconList.toSorted()"
       :key="item"
-      class="flex w-36 flex-col items-center p-1 shadow-md"
+      class="icon-list-item shadow"
     >
       <H_icon :icon="String(item)"></H_icon>
       <div>{{ item }}</div>
@@ -23,12 +22,6 @@ const IconList = defineComponent({
   components: { H_icon },
   setup() {
     const icon = ref<any>(null);
-    /*     const iconList = ref([]); */
-
-    /*     onMounted(() => {
-      iconList.value = iconList.value;
-    }); */
-
     return {
       icon,
       iconList,
@@ -39,3 +32,18 @@ const IconList = defineComponent({
 export type iIconList = InstanceType<typeof IconList>;
 export default IconList;
 </script>
+<style>
+.icon-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 20px;
+}
+.icon-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 144px;
+  padding: 4px;
+}
+</style>

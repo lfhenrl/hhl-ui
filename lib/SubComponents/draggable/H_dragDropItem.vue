@@ -23,27 +23,31 @@ const props = defineProps({
   item: { type: Object as PropType<any>, default: {} },
   maxItems: { type: Number, default: 10000 },
   position: { type: Number, default: 0 },
-  containerId: { type: Number, default: 0 }
+  containerId: { type: Number, default: 0 },
 });
 
 const emit = defineEmits(["update:modelValue", "itemDragOver"]);
 
 const context = {
-  emit
+  emit,
 };
 
 const { item, position, containerId } = toRefs(props);
-const { draggableItemEl, isDragging, onDragStart, onDragOver, onDragEnd, transitionStart, transitionEnd } = useDraggableItem(
-  item,
-  position,
-  containerId,
-  context,
-  props.maxItems
-);
+const {
+  draggableItemEl,
+  isDragging,
+  onDragStart,
+  onDragOver,
+  onDragEnd,
+  transitionStart,
+  transitionEnd,
+} = useDraggableItem(item, position, containerId, context, props.maxItems);
 </script>
 
-<style scoped>
-.isDragging {
-  opacity: 0.4;
+<style>
+@layer hhl-components {
+  .isDragging {
+    opacity: 0.4;
+  }
 }
 </style>

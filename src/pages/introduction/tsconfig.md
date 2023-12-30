@@ -1,21 +1,42 @@
-# tsconfig
+## Tsconfig
 
 ```js
-{
+
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "target": "ESNext",
     "useDefineForClassFields": true,
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": ["hhl-ui"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "node",
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "types": ["vite/client", "node", "hhl-ui"]
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "components.d.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "hhl-ui/**/*.vue",
+    "components.d.ts",
+    "auto-imports.d.ts",
+    "typed-router.d.ts"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
+
 ```

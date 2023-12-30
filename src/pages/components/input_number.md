@@ -4,7 +4,7 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div class="flexRow items-center gap-4 flexWrap">
             <H_inputNumber v-model="num" label="Number input"></H_numberText>
       </div>
       </template>
@@ -26,7 +26,7 @@ Here the debounce is set to `debounce="1000"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 p-4">
+      <div class="flexRow items-center gap-4 flexWrap">
             <H_inputNumber v-model="num" label="Number input" :debounce="1000"></H_inputNumber>
             <H_inputNumber v-model="num" label="Number input"></H_inputNumber>
       </div>
@@ -46,7 +46,7 @@ Add input clear functionality by adding `clearable`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div class="flexRow items-center gap-4 flexWrap">
             <H_inputNumber clearable v-model="num" label="Number input"></H_inputNumber>
       </div>
       </template>
@@ -65,7 +65,7 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-     <div class="flex items-center gap-4">
+     <div class="flexRow items-center gap-4 flexWrap">
             <H_inputNumber disabled v-model="num" label="Number input"></H_inputNumber>
       </div>
       </template>
@@ -84,7 +84,7 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div class="flexRow items-center gap-4 flexWrap">
             <H_inputNumber readonly v-model="num" label="Number input"></H_inputNumber>
       </div>
       </template>
@@ -103,7 +103,7 @@ Input Click by adding @input-click=""
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div class="flexRow items-center gap-4 flexWrap">
             <H_inputNumber @input-click="click(num)" v-model="num" label="Number input"></H_inputNumber>
       </div>
       </template>
@@ -125,7 +125,7 @@ You can add a Icon or other stoff with the start slot.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div class="flexRow items-center gap-4 flexWrap">
             <H_inputNumber v-model="num" label="Number input">
                   <template v-slot:start>
                   <H_icon icon="mail" btn="standard" @click="click(num)"></H_icon>
@@ -151,7 +151,7 @@ You can add a Icon or other stoff with the end slot.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div class="flexRow items-center gap-4 flexWrap">
             <H_inputNumber v-model="num" label="Number input">
                   <template v-slot:end>
                         <H_icon icon="mail" btn="standard" @click="click(num)"></H_icon>
@@ -177,7 +177,7 @@ Hint text by adding `hint-start=""` and `hint-end=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div class="flexRow items-center gap-4 flexWrap">
             <H_inputNumber hint-start="hint-start." hint-end="hint-end."  v-model="num" label="Number input"></H_inputNumber>
       </div>
       </template>
@@ -196,7 +196,7 @@ Validation by adding `validator=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div class="flexRow items-center gap-4 flexWrap">
       <H_inputNumber v-model="num" label="Min value 2" :validator="[v.numMin(2)]"></H_inputNumber>
       <H_inputNumber v-model="num2" label="Max value 23" :validator="[v.numMax(23)]"></H_inputNumber>
        </div>

@@ -1,5 +1,9 @@
 <template>
-  <label class="H_radio col-pri" :class="{ 'H_radio-labelLeft': labelLeft }">
+  <label
+    class="H_radio col-pri"
+    :class="{ 'H_radio-labelLeft': labelLeft }"
+    :disabled="disabled ? '' : undefined"
+  >
     <input
       type="radio"
       class="H_radio-input"
@@ -9,9 +13,10 @@
       }"
       :checked="modelValue === value"
       :value="value"
+      :aria-label="label === '' ? 'No label' : label"
+      :name="label === '' ? 'No name' : label"
       @change="$emit('update:modelValue', value)"
     />
-    {{ modelValue === value }}
     <div class="H_radio-label">{{ label }}</div>
   </label>
 </template>
@@ -33,6 +38,7 @@ defineProps({
     type: String as PropType<"lg" | "md" | "sm">,
     default: "md",
   },
+  disabled: { type: Boolean, default: false },
 });
 
 defineEmits(["update:modelValue"]);
@@ -54,6 +60,7 @@ defineEmits(["update:modelValue"]);
   .H_radio-input {
     aspect-ratio: 1 / 1;
     width: 19px;
+    background-color: transparent;
     accent-color: var(--current-bg-col);
   }
 

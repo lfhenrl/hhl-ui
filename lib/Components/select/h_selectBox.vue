@@ -19,6 +19,7 @@
       :labelLeft="labelLeft"
       :multi="multi"
       :list="list"
+      :readonly="readonly"
     />
   </H_inputbase>
 </template>

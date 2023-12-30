@@ -12,7 +12,7 @@ It is very important it's only added one time and in the main page (app.vue).
 <template>
   <div class="app">
     <div class="app-toolbar">
-      <H_btn icon @click="menuOpen()">
+      <H_btn  @click="menuOpen()">
         <H_icon icon="menu" />
       </H_btn>
     </div>
@@ -107,7 +107,7 @@ timeout: "Number" the amount of millisecond the snack is open.<br>
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div class="flexRow items-center gap-4 flexWrap">
             <H_btn @click="open(`info`)">Snack Info</H_btn>
             <H_btn @click="open(`warn`)">Snack Warning</H_btn>
             <H_btn @click="open(`err`)">Snack Error</H_btn>

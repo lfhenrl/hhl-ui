@@ -2,10 +2,13 @@
   <label
     class="H_checkbox col-pri"
     :class="{ 'H_checkbox-labelLeft': labelLeft }"
+    :disabled="disabled ? '' : undefined"
   >
     <input
       type="checkbox"
       class="H_checkbox-input"
+      :aria-label="label === '' ? 'No label' : label"
+      :name="label === '' ? 'No name' : label"
       :class="{
         'H_checkbox-input-sm': size === 'sm',
         'H_checkbox-input-lg': size === 'lg',
@@ -30,6 +33,7 @@ defineProps({
   label: { type: String, default: "" },
   labelGap: { type: String, default: "10px" },
   labelLeft: { type: Boolean, default: false },
+  disabled: { type: Boolean, default: false },
   size: {
     type: String as PropType<"lg" | "md" | "sm">,
     default: "md",

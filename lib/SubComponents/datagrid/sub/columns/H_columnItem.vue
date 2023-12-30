@@ -1,9 +1,7 @@
 <template>
-  <div
-    class="h_columnItem flex items-center justify-start font-normal text-txt1 hover:bg-bg2"
-  >
+  <div class="H_columnItem">
     <H_checkbox size="sm" v-model="data.visibel" class="selectSize" />
-    <H_icon icon="drag" size="16px" />
+    <H_icon icon="drag" size="16px" btn="standard" />
     {{ data?.title }}
   </div>
 </template>
@@ -33,3 +31,17 @@ const props = defineProps({
 
 const data = ref<iGroupdata>(props.item);
 </script>
+<style>
+@layer hhl-components {
+  .H_columnItem {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 400;
+    color: var(--col-txt-1);
+  }
+  .H_columnItem:hover {
+    background-color: var(--col-bg-2);
+  }
+}
+</style>

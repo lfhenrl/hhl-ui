@@ -2,6 +2,59 @@
 @import "code.css";
 @import "custom-blocks.css";
 
+:fullscreen {
+  background-color: var(--col-bg-0);
+}
+
+.shadow {
+  box-shadow:
+    0 6px 10px 0 rgba(0, 0, 0, 0.14),
+    0 1px 18px 0 rgba(0, 0, 0, 0.12),
+    0 3px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flexRow {
+  display: flex;
+}
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+.flex1 {
+  flex: 1 1 0%;
+}
+.flexWrap {
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.gap-4 {
+  gap: 16px;
+}
+.gap-8 {
+  gap: 32px;
+}
+.gap-12 {
+  gap: 3rem /* 48px */;
+}
+
+.p-10 {
+  padding: 2.5rem /* 40px */;
+}
+
+.mt-4 {
+  margin-top: 1rem /* 16px */;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  color: var(--col-ok);
+}
+
 a:hover {
   text-decoration: underline;
 }

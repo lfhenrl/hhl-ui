@@ -94,8 +94,7 @@ function overlayClick() {
   .H_dialog__header {
     background-color: var(--col-pri);
     color: var(--col-on-pri);
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding: 4px;
     text-align: center;
     font-weight: bold;
   }
@@ -107,7 +106,7 @@ function overlayClick() {
   }
 
   .H_dialog__body {
-    padding: 12px;
+    padding: 12px 12px 0 12px;
   }
 
   .H_dialog__footer {

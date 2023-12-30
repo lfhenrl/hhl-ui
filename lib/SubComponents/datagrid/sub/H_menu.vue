@@ -1,86 +1,70 @@
 <template>
-  <div
-    class="H_menu flex h-full items-center justify-center overflow-visible text-pri hover:bg-bg5"
-  >
+  <div class="H_menu">
     <H_pop :offset-top="8" :offset-left="2" close-popup-click position="fixed">
       <template v-slot:referance>
-        <div
-          class="H_HeadCell-Icon flex min-w-[24px] flex-col items-center justify-center overflow-visible"
-          data-subtype="menu"
-        >
-          <H_icon
-            btn
-            icon="menuSmall"
-            v-if="sort === '' && !col.filter.active"
-          />
-          <div
-            class="H_HeadCell-sorting flex overflow-visible text-xs"
-            v-if="sort !== ''"
-          >
-            <H_icon
-              btn
-              :icon="sort === 'asc' ? 'arrow_upward' : 'arrow_downward'"
-              size="16px"
-            />
-            <div class="flex flex-1 overflow-visible">
+        <div class="H_HeadCell-Icon" data-subtype="menu">
+          <H_icon icon="menuSmall" v-if="sort === '' && !col.filter.active" />
+          <div class="H_HeadCell-sorting" v-if="sort !== ''">
+            <H_icon icon="arrow_upward" size="16px" v-if="sort === 'asc'" />
+            <H_icon icon="arrow_downward" size="16px" v-else />
+            <div class="H_HeadCell-sortingText">
               {{ sortItemIndex + 1 }}
             </div>
           </div>
-          <H_icon btn icon="filter" size="16px" v-if="col.filter.active" />
+          <H_icon icon="filter" size="16px" v-if="col.filter.active" />
         </div>
       </template>
-      <div
-        class="H_menu-popup flex flex-col border border-bg2 bg-bg0 pt-1 text-xs font-normal text-txt1"
-        @click="menuClick"
-      >
+      <div class="H_menu-popup" @click="menuClick">
         <div
-          class="H_menu-popup-item flex cursor-pointer items-center gap-2 border-b border-bg4 px-2 py-0.5 data-[selected=true]:col-pri hover:bg-bg3"
+          class="H_menu-popup-item"
           data-action="asc"
           :data-selected="sort === 'asc'"
           v-if="col.props.sorting !== 'none'"
         >
           <H_icon
-            class="pointer-events-none"
-            btn
+            class="H_menu-noPointerEvents"
+            btn="standard"
             icon="arrow_upward"
             size="18px"
           />
-          <div class="pointer-events-none">Sort Ascending</div>
+          <div class="H_menu-noPointerEvents">Sort Ascending</div>
         </div>
         <div
-          class="H_menu-popup-item flex cursor-pointer items-center gap-2 border-b border-bg3 px-2 py-0.5 data-[selected=true]:col-pri hover:bg-bg3"
+          class="H_menu-popup-item"
           data-action="desc"
           :data-selected="sort === 'desc'"
           v-if="col.props.sorting !== 'none'"
         >
           <H_icon
-            class="pointer-events-none"
-            btn
+            class="H_menu-noPointerEvents"
+            btn="standard"
             icon="arrow_downward"
             size="18px"
           />
-          <div class="pointer-events-none">Sort Descending</div>
+          <div class="H_menu-noPointerEvents">Sort Descending</div>
         </div>
         <div
-          class="H_menu-popup-item flex cursor-pointer items-center gap-2 border-b border-bg3 px-2 py-0.5 hover:bg-bg3"
+          class="H_menu-popup-item"
           data-action="filter"
           v-if="col.filter.type !== 'none'"
         >
-          <H_icon class="pointer-events-none" btn icon="filter" size="18px" />
-          <div class="pointer-events-none">Filter</div>
+          <H_icon
+            class="H_menu-noPointerEvents"
+            btn="standard"
+            icon="filter"
+            size="18px"
+          />
+          <div class="H_menu-noPointerEvents">Filter</div>
         </div>
 
-        <div
-          class="H_menu-popup-item flex cursor-pointer items-center gap-2 px-2 py-0.5 hover:bg-bg3"
-          data-action="autoSize"
-        >
+        <div class="H_menu-popup-item" data-action="autoSize">
           <H_icon
-            class="pointer-events-none"
-            btn
+            class="H_menu-noPointerEvents"
+            btn="standard"
             icon="expand_horizontal"
             size="18px"
           />
-          <div class="pointer-events-none">Auto size</div>
+          <div class="H_menu-noPointerEvents">Auto size</div>
         </div>
       </div>
     </H_pop>
@@ -162,3 +146,65 @@ function menuClick(e: MouseEvent) {
   }
 }
 </script>
+<style>
+@layer hhl-components {
+  .H_menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow: visible;
+    color: var(--col-pri);
+  }
+  .H_menu:hover {
+    background-color: var(--col-bg-5);
+  }
+  .H_HeadCell-Icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    overflow: visible;
+  }
+  .H_HeadCell-sorting {
+    display: flex;
+    overflow: visible;
+    font-size: 12px;
+  }
+  .H_HeadCell-sorting {
+    display: flex;
+    overflow: visible;
+    flex: 1 1 0%;
+  }
+
+  .H_menu-popup {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--col-bg-2);
+    background-color: var(--col-bg-0);
+    padding-top: 4px;
+    color: var(--col-txt-1);
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .H_menu-popup-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+    border-bottom: 1px solid var(--col-bg-4);
+    padding: 2px 8px;
+  }
+  .H_menu-popup-item[data-selected="true"] {
+    background-color: var(--col-pri);
+    color: var(--col-on-pri);
+  }
+  .H_menu-popup-item:hover {
+    background-color: var(--col-bg-3);
+  }
+  .H_menu-noPointerEvents {
+    pointer-events: none;
+  }
+}
+</style>

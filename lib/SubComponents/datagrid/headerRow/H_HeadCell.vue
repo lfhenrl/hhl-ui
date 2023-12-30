@@ -1,32 +1,25 @@
 <template>
   <div
-    class="H_HeaderCell min-h[33px] flex flex-col border-b border-r border-bg3"
+    class="H_HeaderCell"
     ref="headCellRef"
     :data-index="index"
     data-type="headcell"
     :class="col.className"
   >
-    <div
-      class="H_HeaderCell-inner min-h[33px] flex w-full flex-1 items-center font-bold"
-    >
-      <div
-        class="H_HeadCell-text w-full overflow-hidden text-ellipsis whitespace-nowrap p-1.5"
-        data-subtype="title"
-      >
+    <div class="H_HeaderCell-inner">
+      <div class="H_HeadCell-text" data-subtype="title">
         {{ col.props.title }}
       </div>
       <H_menu data-subtype="menu" :index="index" />
       <div
-        class="H_HeadCell-resize z-10 h-full w-1.5 min-w-[6px] cursor-w-resize overflow-visible"
+        class="H_HeadCell-resize"
         @mousedown="resize"
         @mouseup="resizeEnd"
         @mouseout="resizeEnd"
         data-subtype="resize"
       ></div>
     </div>
-    <div
-      class="H_HeadCell-space h-0 w-min overflow-hidden text-ellipsis whitespace-nowrap px-2.5 opacity-0"
-    >
+    <div class="H_HeadCell-space">
       <rend :col="col" :row="Columns.dataHandler?.MaxSizeRow" />
     </div>
   </div>
@@ -87,3 +80,48 @@ onMounted(() => {
   }
 });
 </script>
+<style>
+@layer hhl-components {
+  .H_HeaderCell {
+    display: flex;
+    flex-direction: column;
+    min-height: 33px;
+    border-right: 1px solid var(--col-bg-3);
+    border-bottom: 1px solid var(--col-bg-3);
+  }
+
+  .H_HeaderCell-inner {
+    display: flex;
+    flex: 1 1 0%;
+    align-items: center;
+    font-weight: bold;
+    min-height: 33px;
+    width: 100%;
+  }
+  .H_HeadCell-text {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 6px;
+  }
+  .H_HeadCell-resize {
+    z-index: 10;
+    height: 100%;
+    width: 6px;
+    min-width: 6px;
+    cursor: w-resize;
+    overflow: visible;
+  }
+  .H_HeadCell-space {
+    height: 0px;
+    width: min-content;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+</style>

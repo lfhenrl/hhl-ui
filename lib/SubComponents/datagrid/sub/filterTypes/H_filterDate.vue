@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="H_filtercomponent grid h-full grid-rows-[auto_auto_1fr] gap-3 overflow-hidden p-5 pb-0"
-  >
+  <div class="H_filterDate">
     <H_select v-model="condition1" :list="list" hide-filter />
     <H_datePicker
       v-model="value1"
@@ -112,4 +110,15 @@ onMounted(() => {
 defineExpose({ save, clear, open, close, canSave });
 </script>
 
-<style></style>
+<style>
+@layer hhl-components {
+  .H_filterDate {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    height: 100%;
+    gap: 12px;
+    overflow: hidden;
+    padding: 20px 20px 0 20px;
+  }
+}
+</style>

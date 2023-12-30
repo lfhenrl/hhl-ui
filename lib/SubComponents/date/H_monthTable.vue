@@ -1,37 +1,18 @@
 <template>
-  <div class="h_monthTable">
-    <div
-      class="h_monthTable__innerHeader flex flex-1 flex-row items-center p-1 font-bold"
-    >
-      <H_icon
-        btn
-        icon="expand_left"
-        type="icon-text"
-        @click="changeYear(-1)"
-        round
-      />
-      <div
-        class="h_monthTable__innerHeaderValue flex flex-1 cursor-pointer justify-center"
-      >
+  <div>
+    <div class="H_monthTable__innerHeader">
+      <H_icon btn="standard" icon="expand_left" @click="changeYear(-1)" round />
+      <div class="H_monthTable__innerHeaderValue">
         {{ tempDato.toLocaleString("en-us", { year: "numeric" }) }}
       </div>
-      <H_icon
-        btn
-        icon="expand_right"
-        type="icon-text"
-        @click="changeYear(1)"
-        round
-      />
+      <H_icon btn="standard" icon="expand_right" @click="changeYear(1)" />
     </div>
-    <div
-      class="h_monthTable__table m-2.5 grid grid-cols-[repeat(3,72px)] grid-rows-[repeat(4,36px)] gap-2.5"
-      @click="itemClick"
-    >
+    <div class="H_monthTable__table" @click="itemClick">
       <div
         v-for="(item, index) in month"
         :key="index"
         :data-value="index"
-        class="h_monthTable__tableItem flex cursor-pointer items-center justify-center font-bold hover:col-warn"
+        class="H_monthTable__tableItem"
         :class="{
           'col-pri': tempDato.getMonth() === index,
         }"
@@ -86,3 +67,38 @@ const changeYear = (val: number) => {
   tempDato.value = newDate;
 };
 </script>
+<style>
+@layer hhl-components {
+  .H_monthTable__innerHeader {
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 700;
+    padding: 4px;
+  }
+  .H_monthTable__innerHeaderValue {
+    display: flex;
+    flex: 1 1 0%;
+    justify-content: center;
+  }
+  .H_monthTable__table {
+    display: grid;
+    grid-template-columns: repeat(3, 72px);
+    grid-template-rows: repeat(4, 36px);
+    margin: 10px;
+    gap: 10px;
+  }
+  .H_monthTable__tableItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .H_monthTable__tableItem:hover {
+    background-color: var(--col-warn);
+    color: var(--col-on-warn);
+  }
+}
+</style>

@@ -1,11 +1,6 @@
 <template>
-  <div
-    v-if="!loadTheme"
-    class="grid h-screen w-screen grid-cols-[auto_1fr_auto] grid-rows-[44px_1fr] overflow-hidden bg-bg0"
-    @click="showMenu = false"
-  >
+  <div class="main-container" @click="showMenu = false">
     <nav-bar
-      class="col-span-3"
       :main-routes="mainRoutes"
       :active-route="activeMainPath"
       v-model="showMenu"
@@ -20,12 +15,8 @@
       :small="small"
     />
 
-    <div
-      id="page-container"
-      ref="page"
-      class="h-full overflow-auto scroll-smooth px-8 pb-32"
-    >
-      <router-view class="flex flex-col p-1"> </router-view>
+    <div id="page-container" ref="page">
+      <router-view class="page-container_routerView"> </router-view>
     </div>
     <menu-right :view="page" v-show="!medium" />
   </div>
@@ -36,7 +27,6 @@
 import { defineComponent, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { makeRouteList, getRouteData } from "./components/routeData";
-import { themeSelector } from "../lib/utils/themeSelector";
 
 export default defineComponent({
   name: "App",
@@ -50,7 +40,6 @@ export default defineComponent({
     const small = ref(false);
     const page = ref({});
     const mainRoutes = ref();
-    const loadTheme = themeSelector().loadTheme;
 
     function routeChanged() {
       const val = router.currentRoute.value.name as string;
@@ -79,7 +68,7 @@ export default defineComponent({
       () => router.currentRoute.value.name,
       async () => {
         routeChanged();
-      },
+      }
     );
 
     onMounted(() => {
@@ -104,8 +93,34 @@ export default defineComponent({
       showMenu,
       medium,
       small,
-      loadTheme,
     };
   },
 });
 </script>
+<style>
+.main-container {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 44px 1fr;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--col-bg-0);
+}
+.main-container .nav-bar {
+  grid-column: span 3 / span 3;
+}
+#page-container {
+  height: 100%;
+  overflow: auto;
+  scroll-behavior: smooth;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 128px;
+}
+.page-container_routerView {
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+}
+</style>

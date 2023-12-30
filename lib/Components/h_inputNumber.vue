@@ -18,6 +18,7 @@
     <template v-slot:end>
       <slot name="end" />
     </template>
+
     <div class="H_inputText-container">
       <input
         type="number"
@@ -29,22 +30,30 @@
         @blur="focused = false"
         @click="$emit('inputClick')"
         :readonly="readonly"
-        :aria-label="label"
-        :name="label"
+        :aria-label="label === '' ? 'No label' : label"
+        :name="label === '' ? 'No name' : label"
         autocomplete="off"
       />
+      <div class="H_inputNumber-clearBtn">
+        <H_icon
+          btn="standard"
+          v-if="clearable && Numbervalue"
+          icon="close"
+          class="H_inputbase-clearicon"
+        />
+      </div>
       <div class="H_inputNumber-icons">
         <H_icon
           btn="standard"
           @click.stop="CountUp"
-          :disabled="readonly ? true : null"
+          :disabled="readonly"
           icon="expand_up"
           class="H_inputNumber-iconup"
         />
         <H_icon
           btn="standard"
           @click.passive="CountDown"
-          :disabled="readonly ? true : null"
+          :disabled="readonly"
           icon="expand_down"
           class="H_inputNumber-icondown"
         />
@@ -84,7 +93,7 @@ watch(
   () => P.modelValue,
   () => {
     Numbervalue.value = P.modelValue;
-  },
+  }
 );
 
 const move_label = computed(() => {
@@ -127,6 +136,8 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
   .H_inputText-input {
     display: inline-flex;
     align-items: center;
+    max-height: 36px;
+    min-height: 36px;
     width: 100%;
     flex: 1 1 0%;
     appearance: none;
@@ -137,6 +148,7 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
     background-color: transparent;
     padding-left: 10px;
     padding-right: 10px;
+    padding-bottom: 2px;
     color: var(--col-txt-1);
     outline: none;
   }
@@ -144,6 +156,10 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
   .H_inputText-input::-webkit-outer-spin-button,
   .H_inputText-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
+  }
+  .H_inputNumber-clearBtn {
+    display: flex;
+    align-items: center;
   }
 
   .H_inputNumber-icons {
@@ -160,13 +176,13 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
   .H_inputNumber-iconup {
     position: absolute;
     left: -3px;
-    top: -7px;
+    top: -4px;
   }
 
   .H_inputNumber-icondown {
     position: absolute;
     left: -3px;
-    bottom: -12px;
+    bottom: -3px;
   }
 }
 </style>

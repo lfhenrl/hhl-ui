@@ -1,53 +1,46 @@
 <template>
-  <nav class="flex items-center overflow-hidden bg-bg3 pl-2 pr-8">
+  <nav class="nav-bar">
     <H_icon
       btn="standard"
       icon="menu"
       @click.stop="$emit('update:modelValue', !modelValue)"
       v-if="small"
     />
-    <router-link to="/" class="flex items-center">
+    <router-link to="/" class="nav-bar-home">
       <img src="/icon.svg" height="30" width="32" alt="Logo" href="#" />
-      <div class="ml-1 flex text-lg font-bold">HHL-UI</div>
+      <div>HHL-UI</div>
     </router-link>
 
-    <div class="flex-1" />
-    <div v-if="!small" class="flex items-center gap-8">
+    <div class="nav-bar-spacer" />
+    <div v-if="!small" class="nav-bar-items">
       <router-link
         v-for="route in mainRoutes"
         :key="route.id"
-        class="cursor-pointer border-b-0 border-b-ok"
+        class="nav-bar-items-item"
         :to="route.path"
-        :class="{ 'border-b-4': activeRoute === route.id }"
+        :class="{ activ: activeRoute === route.id }"
         >{{ route.name }}</router-link
       >
-      <H_pop>
+      <H_pop class="popUp-external">
         <template v-slot:referance>
-          <div class="flex cursor-pointer items-center">
-            External <H_icon icon="expand_down" />
-          </div>
+          External <H_icon btn="standard" icon="expand_down" />
         </template>
-        <div class="flex flex-col gap-4 bg-bg0 p-3 shadow">
-          <a href="https://v3.vuejs.org/guide/introduction.html" target="blank"
-            >Vue 3 Docs</a
-          >
-          <a href="https://vitejs.dev/" target="blank">Vite</a>
-          <a href="https://materialdesignicons.com/" target="blank">Icons</a>
-        </div>
+        <a href="https://v3.vuejs.org/guide/introduction.html" target="blank"
+          >Vue 3 Docs</a
+        >
+        <a href="https://vitejs.dev/" target="blank">Vite</a>
+        <a href="https://materialdesignicons.com/" target="blank">Icons</a>
       </H_pop>
     </div>
-    <H_switch
-      v-model="dark"
-      label="Dark"
-      style="max-width: 65px; margin-left: 17px; margin-right: 10px"
-    />
+    <H_themeSelector style="margin-left: 17px" />
   </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import H_pop from "../../lib/Components/popup/H_pop.vue";
-import { themeSelector } from "../../lib/utils/themeSelector";
+import H_icon from "../../lib/Components/H_icon.vue";
+import H_themeSelector from "../../lib/Components/H_themeSelector.vue";
 
 export default defineComponent({
   components: { H_pop },
@@ -60,9 +53,54 @@ export default defineComponent({
     small: { type: Boolean, default: false },
   },
   setup() {
-    const dark = themeSelector().darkTheme;
-
-    return { dark };
+    return { H_themeSelector };
   },
 });
 </script>
+<style>
+.nav-bar {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--col-bg-3);
+  padding-left: 8px;
+  padding-right: 12px;
+}
+.nav-bar-spacer {
+  flex: 1 1 0%;
+}
+.nav-bar-home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.nav-bar-items {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.nav-bar-items-item {
+  cursor: pointer;
+  border-bottom-style: solid;
+  border-bottom-width: 0;
+  border-bottom-color: var(--col-ok);
+}
+.nav-bar-items-item.activ {
+  border-bottom-width: 4px;
+}
+
+.popUp-external .H_pop-referance {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.popUp-external .H_pop-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+  background-color: var(--col-bg-0);
+}
+</style>

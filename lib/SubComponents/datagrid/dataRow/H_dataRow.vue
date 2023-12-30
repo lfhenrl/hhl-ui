@@ -66,43 +66,45 @@ function format(value: any, col: any, data: any) {
 </script>
 
 <style>
-.H_dataRow {
-  display: flex;
-  height: min-content;
-  min-height: 25px;
-}
+@layer hhl-components {
+  .H_dataRow {
+    display: flex;
+    height: min-content;
+    min-height: 25px;
+  }
 
-.H_dataRow:nth-child(odd) {
-  background: var(--col-bg-1);
-}
+  .H_dataRow:nth-child(odd) {
+    background: var(--col-bg-1);
+  }
 
-.H_dataRow[selected="true"] {
-  background-color: var(--col-bg-4);
-}
+  .H_dataRow[selected="true"] {
+    background-color: var(--col-bg-4);
+  }
 
-.H_dataRow:hover {
-  background-color: var(--col-bg-2);
-}
+  .H_dataRow:hover {
+    background-color: var(--col-bg-2);
+  }
 
-.H_dataRow[selected="true"]:hover {
-  background-color: var(--col-bg-5);
-}
+  .H_dataRow[selected="true"]:hover {
+    background-color: var(--col-bg-5);
+  }
 
-.H_dataRow-Cell {
-  border-right: solid 1px var(--col-bg-3);
-  border-bottom: solid 1px var(--col-bg-3);
-  padding: 4px 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  /* flex: 1; */
-}
+  .H_dataRow-Cell {
+    border-right: solid 1px var(--col-bg-3);
+    border-bottom: solid 1px var(--col-bg-3);
+    padding: 4px 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* flex: 1; */
+  }
 
-.H_dataRow-Cell.H_dataRow-CellAutoHeight {
-  white-space: break-spaces;
-}
+  .H_dataRow-Cell.H_dataRow-CellAutoHeight {
+    white-space: break-spaces;
+  }
 
-.H_dataRow-Cell.H_dataRow-slotCell {
-  padding: 0 8px;
+  .H_dataRow-Cell.H_dataRow-slotCell {
+    padding: 0 8px;
+  }
 }
 </style>

@@ -4,15 +4,15 @@
     v-model="isOpen"
     full-width
     :offsetTop="5"
-    :disabled="disabled ? 'true' : null"
+    :disabled="disabled ? '' : null"
     :readonly="readonly"
+    trigger="none"
     @close="selecClose"
   >
     <template v-slot:referance>
       <H_inputbase
         class="H_select"
         :label="label"
-        :end-icon="isOpen ? 'expand_up' : 'expand_down'"
         :HelpTextStart="HelpTextStart"
         :HelpTextEnd="HelpTextEnd"
         :disabled="disabled"
@@ -21,6 +21,7 @@
         :err_label="label"
         @keydown.down.prevent.stop="isOpen = true"
         tabindex="0"
+        @click="isOpen = !isOpen"
       >
         <input
           ref="selectInput"
@@ -29,15 +30,21 @@
           :maxlength="counter"
           :value="labelValue"
           readonly
-          :name="label"
+          :aria-label="label === '' ? 'No label' : label"
+          :name="label === '' ? 'No name' : label"
           tabindex="0"
         />
         <template v-slot:start>
           <slot name="start" />
         </template>
         <template #end>
-          <H_icon btn="standard" icon="expand_up" v-if="isOpen" />
-          <H_icon btn="standard" icon="expand_down" v-else />
+          <div
+            style="width: 22px; display: flex; align-items: center"
+            v-if="!readonly"
+          >
+            <H_icon btn="standard" icon="expand_up" v-if="isOpen" />
+            <H_icon btn="standard" icon="expand_down" v-else />
+          </div>
         </template>
       </H_inputbase>
     </template>
@@ -141,7 +148,7 @@ watch(
   () => P.modelValue,
   () => {
     if (!P.multi) isOpen.value = false;
-  },
+  }
 );
 
 const debouncedUpdate = debounce(function (val: string) {
@@ -173,11 +180,11 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
   }
 
   .H_select-input {
-    display: inline-flex;
     align-items: center;
-    flex: 1 1 100%;
+    flex: 1 1 0%;
     padding-left: 10px;
     padding-right: 10px;
+    width: 100%;
   }
 
   .H_select-list {

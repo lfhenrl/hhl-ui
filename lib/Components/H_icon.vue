@@ -2,6 +2,7 @@
   <component
     :is="icon"
     class="H_icon"
+    :disabled="disabled ? '' : undefined"
     :tabindex="btn === 'none' || $attrs.disabled == true ? '' : '0'"
     :class="{
       btn: btn !== 'none',
@@ -26,12 +27,13 @@ const P = defineProps({
   },
   icon: {
     type: String as PropType<IconNames>,
-    default: "account",
+    default: "close",
   },
+  disabled: { type: Boolean, default: false },
 });
 
 const icon = defineAsyncComponent(
-  () => import(`../SubComponents/icons/ico-${P.icon}.vue`),
+  () => import(`../SubComponents/icons/ico-${P.icon}.vue`)
 );
 </script>
 
@@ -41,6 +43,9 @@ const icon = defineAsyncComponent(
     --icon-size: v-bind(size);
     height: var(--icon-size);
     width: var(--icon-size);
+    min-height: var(--icon-size);
+    min-width: var(--icon-size);
+    aspect-ratio: 1 / 1;
   }
 
   .H_icon:not(.btn),
@@ -72,6 +77,9 @@ const icon = defineAsyncComponent(
     filter: brightness(70%);
     -webkit-backdrop-filter: drop-shadow(4px 4px 10px red);
     backdrop-filter: drop-shadow(4px 4px 10px red);
+    outline: 2px solid rgba(128, 128, 128, 0.01);
+    border-radius: 10em;
+    aspect-ratio: 1 / 1;
   }
 
   .H_icon.btn:active {

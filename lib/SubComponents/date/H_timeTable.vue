@@ -1,9 +1,7 @@
 <template>
-  <div
-    class="h_timetable__header flex flex-row items-stretch justify-center bg-bg3 text-center text-2xl font-bold text-txt1"
-  >
+  <div class="H_timetable__header">
     <div
-      class="flex cursor-pointer flex-col items-center justify-center px-1"
+      class="H_timetable__value"
       @click="timeBase = 'hour'"
       :class="{
         'col-pri': timeBase === 'hour',
@@ -11,9 +9,9 @@
     >
       {{ getZeroInFront(value.hour) }}
     </div>
-    <div class="flex flex-col items-center justify-center">:</div>
+    <div class="H_timetable__semiColon">:</div>
     <div
-      class="flex cursor-pointer flex-col items-center justify-center px-1"
+      class="H_timetable__value"
       @click="timeBase = 'minute'"
       :class="{
         'col-pri': timeBase === 'minute',
@@ -21,32 +19,28 @@
     >
       {{ getZeroInFront(value.minute) }}
     </div>
-    <div v-show="showSeconds" class="flex">
-      <div class="flex flex-col items-center justify-center">:</div>
-      <div
-        class="flex cursor-pointer flex-col items-center justify-center px-1"
-        @click="timeBase = 'second'"
-        :class="{
-          'col-pri': timeBase === 'second',
-        }"
-      >
-        {{ getZeroInFront(value.second) }}
-      </div>
+    <div v-show="showSeconds" class="H_timetable__semiColon">:</div>
+    <div
+      v-show="showSeconds"
+      class="H_timetable__value"
+      @click="timeBase = 'second'"
+      :class="{
+        'col-pri': timeBase === 'second',
+      }"
+    >
+      {{ getZeroInFront(value.second) }}
     </div>
   </div>
-  <div
-    class="h_timeTable__table grid grid-cols-[repeat(8,28px)] grid-rows-[repeat(8,28px)] gap-1 p-1"
-  >
+  <div class="H_timeTable__table">
     <div
       v-for="(item, index) in time"
       @click="itemClick(index)"
       :key="index"
       :data-value="index"
       :selected="selectedIndex === index"
-      class="h_timeTable__tableItem pointer-events-none flex items-center justify-center rounded-full font-bold opacity-20 hover:bg-warn"
+      class="H_timeTable__tableItem"
       :class="{
-        '!pointer-events-auto !cursor-pointer !opacity-100':
-          (index < 24 && timeBase === 'hour') || timeBase !== 'hour',
+        activ: (index < 24 && timeBase === 'hour') || timeBase !== 'hour',
         'col-pri': selectedIndex === index,
       }"
     >
@@ -84,10 +78,10 @@ const selectedIndex = computed(() => {
   return timeBase.value === "hour"
     ? value.value.hour
     : timeBase.value === "minute"
-    ? value.value.minute
-    : timeBase.value === "second"
-    ? value.value.second
-    : null;
+      ? value.value.minute
+      : timeBase.value === "second"
+        ? value.value.second
+        : null;
 });
 
 const itemClick = (index: number) => {
@@ -115,3 +109,58 @@ const itemClick = (index: number) => {
   }
 };
 </script>
+<style>
+@layer hhl-components {
+  .H_timetable__header {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    background-color: var(--col-bg-3);
+    text-align: center;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+    color: var(--col-txt-1);
+  }
+  .H_timetable__value {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .H_timetable__semiColon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .H_timeTable__table {
+    display: grid;
+    grid-template-columns: repeat(8, 28px);
+    grid-template-rows: repeat(8, 28px);
+    padding: 4px;
+    gap: 4px;
+  }
+  .H_timeTable__tableItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    border-radius: 50%;
+    font-weight: 700;
+    opacity: 0.2;
+  }
+  .H_timeTable__tableItem:hover {
+    background-color: var(--col-warn);
+  }
+  .H_timeTable__tableItem.activ {
+    pointer-events: auto;
+    cursor: pointer;
+    opacity: 1;
+  }
+}
+</style>

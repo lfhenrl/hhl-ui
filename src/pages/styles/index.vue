@@ -1,13 +1,9 @@
 <template>
-  <div class="markdown-body overflow-auto">
+  <div class="markdown-body">
     <h1>Styles</h1>
     <p>This is the documentation for how to use the stylesheets</p>
-    <div class="flex flex-col text-ok">
-      <router-link
-        v-for="route in links"
-        :key="route.id"
-        class="cursor-pointer"
-        :to="route.path"
+    <div class="linkList">
+      <router-link v-for="route in links" :key="route.id" :to="route.path"
         >-{{ route.name }}</router-link
       >
     </div>

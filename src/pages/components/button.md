@@ -7,7 +7,7 @@ The default is `"md"`.
 
 <hhl-live-editor title=""  htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div class="flexRow items-center gap-4 flexWrap">
             <H_btn size="sm">SM</H_btn>
             <H_btn size="md">MD</H_btn>
             <H_btn size="lg"><H_icon></H_icon>LG</H_btn>
@@ -24,7 +24,7 @@ You can change the icon position to right by adding the prop `icon-right`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-            <div class="flex items-center gap-4">
+            <div class="flexRow items-center gap-4 flexWrap">
             <H_btn size="sm"><H_icon icon="edit"></H_icon> ICON sm</H_btn>
              <H_btn><H_icon icon="edit"></H_icon>ICON md</H_btn>
             <H_btn size="lg"><H_icon icon="edit"></H_icon>ICON lg</H_btn>
@@ -43,7 +43,7 @@ The default is `"standard"`.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div class="flexRow items-center gap-4 flexWrap">
             <H_btn>STANDARD</H_btn>
             <H_btn type="outline" icon="mail">OUTLINE</H_btn>
             <H_btn type="text" icon="mail">TEXT</H_btn>
@@ -60,7 +60,7 @@ You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div class="flexRow items-center gap-4 flexWrap">
             <H_btn disabled>STANDARD</H_btn>
             <H_btn disabled type="outline">OUTLINE</H_btn>
             <H_btn disabled type="text">TEXT</H_btn>
@@ -80,7 +80,7 @@ If you need a special color then just use `style="background-color: purple: colo
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div class="flexRow items-center gap-4 flexWrap">
             <H_btn class="col-pri">Primery</H_btn>
             <H_btn class="col-sec">Secondary</H_btn>
             <H_btn class="col-ok">Ok</H_btn>

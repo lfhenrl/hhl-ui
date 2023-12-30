@@ -4,6 +4,7 @@
       class="H_switch-container"
       :class="{ reverse: labelLeft }"
       @click="Click"
+      :disabled="disabled ? '' : undefined"
       @keyup.space="Click"
       @keyup.enter="Click"
     >
@@ -37,6 +38,7 @@ const P = defineProps({
     type: String as PropType<"lg" | "md" | "sm">,
     default: "md",
   },
+  disabled: { type: Boolean, default: false },
 });
 const E = defineEmits(["update:modelValue", "changed"]);
 

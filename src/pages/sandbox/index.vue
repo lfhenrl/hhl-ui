@@ -1,13 +1,9 @@
 <template>
-  <div class="markdown-body overflow-auto">
+  <div class="markdown-body">
     <h1>Sandbox</h1>
     <p>This is a sandbox area for development</p>
-    <div class="flex flex-col text-ok">
-      <router-link
-        v-for="route in links"
-        :key="route.id"
-        class="cursor-pointer"
-        :to="route.path"
+    <div class="linkList">
+      <router-link v-for="route in links" :key="route.id" :to="route.path"
         >-{{ route.name }}</router-link
       >
     </div>
@@ -39,3 +35,10 @@ const Index = defineComponent({
 export type iIndex = InstanceType<typeof Index>;
 export default Index;
 </script>
+<style scoped>
+.linkList {
+  display: flex;
+  flex-direction: column;
+  color: var(--col-ok);
+}
+</style>

@@ -1,6 +1,6 @@
 {
   "name": "hhl-ui",
-  "version": "1.0.43",
+  "version": "1.0.45",
   "description": "hhl-ui is a VUE library for personel use.",
   "homepage": "https://github.com/lfhenrl/hhl-ui",
   "author": {
@@ -15,7 +15,7 @@
     "SubComponents/*",
     "utils/*",
     "Directives/*",
-    "style.css",
+    "styles/*",
     "hhlTailwind.js",
     "index.d.ts",
     "index.ts"

@@ -33,12 +33,13 @@ type iPieItem = {
 const P = defineProps({
   data: { type: Array as PropType<iPieItem[]>, default: [] },
   legendPlacement: {
-    type: String as PropType<"bottom" | "center" | "top" | "right" | "left">,
-    default: "center",
+    type: String as PropType<"bottom" | "top" | "right" | "left">,
+    default: "bottom",
   },
   legendStacked: { type: Boolean, default: true },
   hideLegend: { type: Boolean, default: false },
   fontSize: { type: String, default: "14px" },
+  size: { type: String, default: "200px" },
   pieWidth: {
     type: Number,
     default: 20,
@@ -48,20 +49,16 @@ const P = defineProps({
 
 const cl_pie = computed(() => {
   return {
-    "flex-col":
-      P.legendPlacement.includes("bottom") ||
-      P.legendPlacement.includes("center"),
-    "flex-col-reverse": P.legendPlacement.includes("top"),
-    "flex-row-reverse": P.legendPlacement.includes("left"),
-    "flex-row": P.legendPlacement.includes("right"),
+    Placement_bottom: P.legendPlacement.includes("bottom"),
+    Placement_top: P.legendPlacement.includes("top"),
+    Placement_left: P.legendPlacement.includes("left"),
+    Placement_right: P.legendPlacement.includes("right"),
   };
 });
 
 const cl_legend = computed(() => {
   return {
-    "inline-flex absolute flex-col flex-0 justify-content-center":
-      P.legendPlacement.includes("center"),
-    "flex flex-0 flex-col": P.legendStacked,
+    legendStacked: P.legendStacked,
   };
 });
 
@@ -96,22 +93,35 @@ watch(
       }, 50);
     }, 50);
   },
-  { immediate: true },
+  { immediate: true }
 );
 </script>
 
 <style>
 @layer hhl-components {
+  .Placement_bottom {
+    flex-direction: column;
+  }
+  .Placement_right {
+    flex-direction: row;
+  }
+  .Placement_top {
+    flex-direction: column-reverse;
+  }
+  .Placement_left {
+    flex-direction: row-reverse;
+  }
   .H_chartPie {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex: 0 0 0%;
     position: relative;
+    align-items: center;
     padding: 0;
+    gap: 10px;
   }
 
   .H_chartPie_pie {
-    width: 100%;
+    width: v-bind(size);
     border-radius: 50%;
   }
 
@@ -131,13 +141,15 @@ watch(
     flex-wrap: wrap;
     position: relative;
   }
+  .H_chartPie-legend.legendStacked {
+    flex-direction: column;
+  }
 
   .H_chartPie-pieData {
     display: flex;
     align-items: center;
     white-space: nowrap;
     margin: 2px;
-    font-size: 12px;
   }
 
   .H_chartPie-pieData-item {

@@ -11,13 +11,16 @@
     :err_label="label"
     @clearClick="$emit('update:modelValue', '')"
   >
-    <template v-slot:start>
-      <slot name="start" />
-    </template>
+    <template v-slot:start><slot name="start" /></template>
     <template v-slot:end>
+      <H_icon
+        btn="standard"
+        v-if="clearable && modelValue"
+        icon="close"
+        class="H_inputbase-clearicon"
+      />
       <slot name="end" />
     </template>
-
     <input
       type="text"
       class="H_inputText-input"
@@ -26,8 +29,8 @@
       @input="onInput"
       @click="$emit('inputClick')"
       :readonly="readonly"
-      :aria-label="label"
-      :name="label"
+      :aria-label="label === '' ? 'No label' : label"
+      :name="label === '' ? 'No name' : label"
       autocomplete="off"
     />
   </H_inputBase>
@@ -36,6 +39,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import H_inputBase from "../SubComponents/H_inputBase.vue";
+import H_icon from "./H_icon.vue";
 import { debounce } from "../utils/debounce";
 import { validateFunc } from "../utils/validateFunc";
 
@@ -82,6 +86,8 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
   .H_inputText-input {
     display: inline-flex;
     align-items: center;
+    max-height: 36px;
+    min-height: 36px;
     width: 100%;
     flex: 1 1 0%;
     appearance: none;
@@ -92,6 +98,7 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
     background-color: transparent;
     padding-left: 10px;
     padding-right: 10px;
+    padding-bottom: 2px;
     color: var(--col-txt-1);
     outline: none;
   }

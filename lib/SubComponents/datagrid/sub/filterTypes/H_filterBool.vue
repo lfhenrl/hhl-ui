@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="H_filtercomponent grid h-full grid-rows-[auto_auto] gap-3 overflow-hidden p-5 pb-0"
-  >
+  <div class="H_filterBool">
     <H_selectBox
       multi
       list-gap="10px"
@@ -63,3 +61,15 @@ onMounted(() => {
 
 defineExpose({ save, clear, open, close, canSave });
 </script>
+<style>
+@layer hhl-components {
+  .H_filterBool {
+    display: grid;
+    grid-template-rows: auto auto;
+    height: 100%;
+    gap: 12px;
+    overflow: hidden;
+    padding: 20px 20px 0 20px;
+  }
+}
+</style>

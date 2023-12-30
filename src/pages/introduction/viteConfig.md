@@ -1,33 +1,42 @@
-# Vite config
+## Vite config
 
 ```js
+
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import Pages from "vite-plugin-pages";
 import Components from "unplugin-vue-components/vite";
-import { visualizer } from "rollup-plugin-visualizer";
-import WindiCSS from "vite-plugin-windicss";
+import AutoImport from "unplugin-auto-import/vite";
+import VueRouter from "unplugin-vue-router/vite";
+import { VueRouterAutoImports } from "unplugin-vue-router";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    VueRouter({
+      /* options */
+    }),
     vue(),
-    Pages({
-      extensions: ["vue", "md"]
-    }),
     Components({
-      dirs: ["src/components", "./node_modules/hhl-ui/Components"],
-      extensions: ["vue", "md"],
-      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-      dts: true
+      dts: true,
+      types: [
+        {
+          from: "vue-router",
+          names: ["RouterLink", "RouterView"],
+        },
+      ],
+      dirs: [
+        "src/components",
+        "./node_modules/hhl-ui/Components",
+        "./node_modules/hhl-ui/Directives",
+      ],
     }),
-    WindiCSS(),
-    visualizer()
+    AutoImport({
+      imports: ["vue", VueRouterAutoImports],
+      dirs: ["./node_modules/hhl-ui/utils"],
+    }),
   ],
-  build: {
-    cssCodeSplit: false
-  }
 });
+
 
 ```
 

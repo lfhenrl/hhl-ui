@@ -1,6 +1,6 @@
 <template>
-  <div class="flex bg-bg0 p-8">
-    <div class="flex gap-5" style="min-width: 400px">
+  <div class="_page">
+    <div style="min-width: 400px; display: flex; gap: 20px">
       <H_pop
         :placement="placement"
         modal
@@ -12,8 +12,8 @@
         <template v-slot:referance>
           <H_btn>Open-modal</H_btn>
         </template>
-        <div class="flex flex-col rounded bg-bg1 p-32">
-          <div class="flex" moveable-drag pop-close>TITLE xx</div>
+        <div class="flexCol pop">
+          <div class="flexRow" moveable-drag pop-close>TITLE xx</div>
         </div>
       </H_pop>
       <H_pop
@@ -26,13 +26,10 @@
         <template v-slot:referance>
           <H_btn>Open</H_btn>
         </template>
-        <div class="flex flex-col rounded bg-bg1 p-32">
+        <div class="flexCol pop">
           <div moveable-drag>TITLE</div>
         </div>
       </H_pop>
-      <div class="border border-pri">
-        <input type="date" id="start" name="trip-start" />
-      </div>
       <H_select
         label="Placement"
         v-model="placement"
@@ -75,3 +72,16 @@ const inner = ref(false);
 const offsetTop = ref(0);
 const offsetLeft = ref(0);
 </script>
+<style scoped>
+._page {
+  display: flex;
+  padding: 32px;
+  background-color: var(--col-bg-0);
+}
+
+.pop {
+  border-radius: 4px;
+  background-color: var(--col-bg-1);
+  padding: 100px;
+}
+</style>

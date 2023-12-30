@@ -1,14 +1,7 @@
 <template>
-  <div class="hhl-live-editor relative flex flex-col shadow-lg" ref="el">
-    <div
-      class="absolute bottom-1 right-1 z-10 flex max-h-52 w-52 flex-col overflow-auto bg-warn"
-      v-show="showError"
-      v-movable
-    >
-      <div
-        class="col-err flex cursor-grab items-center overflow-hidden pl-2"
-        moveable-drag
-      >
+  <div class="hhl-live-editor shadow" ref="el">
+    <div class="hhl-live-editor_errBox" v-show="showError" v-movable>
+      <div class="hhl-live-editor_errBox_title" moveable-drag>
         <div>Error</div>
         <div class="flex-1" />
         <H_icon
@@ -19,20 +12,21 @@
         />
       </div>
 
-      <span class="m-2 text-sm text-err">{{ error }}</span>
+      <span class="hhl-live-editor_errBox_body">{{ error }}</span>
     </div>
 
-    <div class="flex items-center gap-2 rounded-t-lg bg-bg2 p-1 text-txt3">
+    <div class="hhl-live-editor_topBar">
       <div>{{ title }}</div>
-      <div class="flex-1" />
+      <div class="hhl-live-editor_spacer" />
       <H_icon
         icon="info"
         btn="standard"
         title="Show Error."
-        class="text-err"
+        class="col-err"
         v-if="error !== '' && showCode"
         @click="hideError = !hideError"
       />
+      {{ showCode }}
       <H_icon
         icon="zoom_out_map"
         btn="standard"
@@ -54,7 +48,10 @@
       />
     </div>
 
-    <div class="flex flex-1" :class="{ 'flex-col': column }">
+    <div
+      class="hhl-live-editor_renderBox"
+      :class="{ 'hhl-live-editor_renderBox-column': column }"
+    >
       <div ref="renderBox">
         <live-render
           :template="reactiv_htmlCode"
@@ -63,10 +60,10 @@
         />
       </div>
 
-      <div class="w-1 cursor-ew-resize" v-splitpane v-if="!column" />
+      <div class="hhl-live-editor_splitpane" v-splitpane v-if="!column" />
 
       <hhl-code-editor
-        class="origin-top bg-bg0 transition-transform"
+        class="hhl-live-editor_code-editor"
         :code="code"
         lang="htmlmixed"
         @changed="reactiv_htmlCode = $event"
@@ -157,3 +154,67 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+.hhl-live-editor {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.hhl-live-editor_errBox {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  overflow: auto;
+  bottom: 4px;
+  right: 4px;
+  z-index: 10;
+  height: 208px;
+  width: 208px;
+  background-color: var(--col-warn);
+}
+.hhl-live-editor_errBox_title {
+  display: flex;
+  align-items: center;
+  background-color: var(--col-err);
+  color: var(--col-on-err);
+  cursor: grab;
+  overflow: hidden;
+  padding-left: 8px;
+}
+.hhl-live-editor_errBox_body {
+  color: var(--col-err);
+  font-size: 14p;
+  margin: 8px;
+}
+.hhl-live-editor_topBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: var(--col-bg-2);
+  color: var(--col-txt-3);
+  padding: 4px;
+}
+.hhl-live-editor_spacer {
+  flex: 1 1 0%;
+}
+.hhl-live-editor_renderBox {
+  display: flex;
+  flex: 1 1 0%;
+}
+.hhl-live-editor_renderBox-column {
+  flex-direction: column;
+}
+.hhl-live-editor_splitpane {
+  width: 4px;
+  cursor: ew-resize;
+}
+.hl-live-editor_code-editor {
+  transform-origin: top;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  background-color: var(--col-bg-0);
+}
+</style>

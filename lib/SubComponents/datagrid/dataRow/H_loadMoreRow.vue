@@ -1,14 +1,6 @@
 <template>
-  <div
-    ref="loadmore"
-    class="H_loadMoreRow w-full bg-bg0 p-2.5"
-    :data-row="JSON.stringify(row)"
-  >
-    <H_btn
-      @click="LoadMore"
-      class="H_loadMoreRow_btn sticky left-[40%]"
-      size="sm"
-      type="outline"
+  <div ref="loadmore" class="H_loadMoreRow" :data-row="JSON.stringify(row)">
+    <H_btn @click="LoadMore" class="H_loadMoreRow_btn" size="sm" type="outline"
       >Load more..{{ row }}</H_btn
     >
   </div>
@@ -35,3 +27,16 @@ onMounted(() => {
   Columns.insObserver?.observe(loadmore.value);
 });
 </script>
+<style>
+@layer hhl-components {
+  .H_loadMoreRow {
+    width: 100%;
+    background-color: var(--col-bg-0);
+    padding: 10px;
+  }
+  .H_loadMoreRow_btn {
+    position: sticky;
+    left: 40%;
+  }
+}
+</style>

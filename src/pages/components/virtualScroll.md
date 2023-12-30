@@ -1,18 +1,35 @@
 # Virtual scroll
 
+<style>
+  .list {
+    border: 1px solid var(--col-pri);
+    max-height: 500px;
+    gap:16px;
+    overflow: auto;
+  }
+  .listItem {
+    border: 1px solid var(--col-pri);
+    border-radius: 4px;
+    display:flex;
+    gap:8px;
+    margin: 3px 10px;
+    width: 90%;
+  }
+</style>
+
 ## Data binding
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex flex-col items-center gap-4 px-4 ">
+    <div class="flexCol  gap-4">
     <H_btn @click="load">Load</H_btn>
-     <div class="flex flex-col items-center gap-4 px-4">
-      <H_virtual-list data-key="id" :data-sources="list" class="border border-bg3 max-h-96 w-[500px] overflow-auto">
+     <div class="flexCol  gap-4">
+      <H_virtual-list data-key="id" :data-sources="list" class="list shadow">
         <template v-slot:header>
           <div>Headline..</div>
         </template>
         <template v-slot="data">
-          <div class="flex border border-bg3 gap-2 p-1 m-1 col-pri shadow-2">
+          <div class="listItem shadow">
             <span>Id: {{ data.item.id }}</span>
             <span>Row: {{ data.item.val1 }}</span>
             <span>Group: {{ data.item.val2 }}</span>

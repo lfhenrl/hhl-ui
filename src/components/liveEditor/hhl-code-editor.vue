@@ -1,5 +1,5 @@
 <template>
-  <div class="hhl-code-editor text-sm flex-1">
+  <div class="hhl-code-editor">
     <textarea ref="el" />
   </div>
 </template>
@@ -90,4 +90,9 @@ const hhlCodeEditor = defineComponent({
 export type ihhlCodeEditor = InstanceType<typeof hhlCodeEditor>;
 export default hhlCodeEditor;
 </script>
-
+<style>
+.hhl-code-editor {
+  font-size: 14px;
+  flex: 1 1 0%;
+}
+</style>

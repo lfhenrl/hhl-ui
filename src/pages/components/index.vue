@@ -1,8 +1,8 @@
 <template>
-  <div class="markdown-body overflow-auto">
+  <div class="markdown-body">
     <h1>Components</h1>
     <p>This is the documentation for the HHL-UI components</p>
-    <div class="flex flex-col text-ok">
+    <div class="linkList">
       <router-link v-for="route in links" :key="route.id" :to="route.path"
         >-{{ route.name }}</router-link
       >

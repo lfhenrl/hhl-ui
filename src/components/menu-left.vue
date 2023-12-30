@@ -1,25 +1,33 @@
 <template>
-  <div class="flex">
-    <nav class="absolute flex flex-col flex-1 h-full overflow-auto  min-w-[160px] max-w-[160px] border-r border-r-bg4 -translate-x-40 duration-500 bg-bg1 z-10" :class="{ 'translate-x-0': showMenu }">
-      <div class="flex flex-col bg-bg1 p-2">
+  <div class="menu-left">
+    <nav class="menu-left-flyOut" :class="{ open: showMenu }">
+      <div class="menu-left-links">
         <router-link
           v-for="route in mainRoutes"
           :key="route.id"
           :to="route.path"
-          :class="{ 'text-ok': activeRoute === route.id }"
+          :class="{ 'menu-left-links-selected': activeRoute === route.id }"
           >{{ route.name }}</router-link
         >
       </div>
-      <div class="flex flex-col bg-bg1 p-2">
-        <router-link active-class="text-ok" v-for="link in routeLinks" :key="link.name" :to="link.path">{{
-          link.name
-        }}</router-link>
+      <div class="menu-left-links">
+        <router-link
+          active-class="menu-left-links-selected"
+          v-for="link in routeLinks"
+          :key="link.name"
+          :to="link.path"
+          >{{ link.name }}</router-link
+        >
       </div>
     </nav>
-    <nav class="flex flex-col flex-1 h-full overflow-auto min-w-[160px] max-w-[160px] p-2 text-base border-r border-r-bg4 bg-bg1" v-if="!small">
-      <router-link active-class="text-ok" v-for="link in routeLinks" :key="link.name" :to="link.path">{{
-        link.name
-      }}</router-link>
+    <nav v-if="!small">
+      <router-link
+        active-class="menu-left-links-selected"
+        v-for="link in routeLinks"
+        :key="link.name"
+        :to="link.path"
+        >{{ link.name }}</router-link
+      >
     </nav>
   </div>
 </template>
@@ -34,14 +42,49 @@ const MenuLeft = defineComponent({
     mainRoutes: { type: Array as PropType<any[]>, default: [] },
     activeRoute: { type: String, default: "" },
     showMenu: { type: Boolean, default: false },
-    small: { type: Boolean, default: false }
+    small: { type: Boolean, default: false },
   },
   setup() {
     return {};
-  }
+  },
 });
 
 export type iMenuLeft = InstanceType<typeof MenuLeft>;
 export default MenuLeft;
 </script>
-
+<style>
+.menu-left {
+  display: flex;
+}
+.menu-left nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0%;
+  height: 100%;
+  min-width: 160px;
+  max-width: 160px;
+  overflow: auto;
+  border-right: 1px solid var(--col-bg-4);
+  background-color: var(--col-bg-1);
+  padding: 8px;
+  font-size: 14px;
+}
+.menu-left-flyOut {
+  position: absolute;
+  z-index: 10;
+  transform: translate(-160px);
+  transition-duration: 500ms;
+}
+.menu-left-flyOut.open {
+  transform: translate(0px);
+}
+.menu-left-links {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.menu-left-links-selected {
+  color: var(--col-ok);
+  font-weight: bold;
+}
+</style>

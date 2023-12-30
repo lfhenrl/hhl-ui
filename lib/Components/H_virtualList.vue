@@ -1,11 +1,7 @@
 <template>
-  <div ref="root" class="H_virtualList flex flex-col" @scroll="onScroll">
+  <div ref="root" class="H_virtualList" @scroll="onScroll">
     <slot name="header" />
-    <div
-      class="H_virtualList-scroller flex border-r border-bg3"
-      role="group"
-      :style="paddingStyle"
-    >
+    <div class="H_virtualList-scroller" role="group" :style="paddingStyle">
       <H_virtualListItem
         v-for="item in items"
         :key="item[dataKey]"
@@ -301,3 +297,15 @@ function emitEvent(
   }
 }
 </script>
+<style>
+@layer hhl-components {
+  .H_virtualList {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .H_virtualList-scroller {
+    display: flex;
+  }
+}
+</style>
