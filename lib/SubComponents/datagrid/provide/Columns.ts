@@ -39,7 +39,7 @@ export class Columns {
     slotData.forEach((item: any, index: number) => {
       const className = `col-${index}`;
       this.StyleSheet.insertRule(
-        `.${guid} .col-${index.toString()} { max-width: ${item.props.width}}`,
+        `.${guid} .col-${index.toString()} { max-width: ${item.props.width}}`
       );
       const cssList = Array.from(this.StyleSheet.cssRules);
       const column: icolumnData = {
@@ -118,8 +118,8 @@ export class Columns {
 
   getSlotsData(slots: Slots, name: string) {
     if (!slots || !slots.default) return [];
-    this.dataRowTemplate = slots.dataRow;
-    this.haveDataRowTemplate = this.dataRowTemplate !== undefined;
+    /*     this.dataRowTemplate = slots.dataRow;
+    this.haveDataRowTemplate = this.dataRowTemplate !== undefined; */
     const sl = slots.default().filter((vnode: any) => {
       return vnode.type.name === name;
     });
@@ -136,7 +136,7 @@ export class Columns {
 
   handleIntersect = (
     entries: IntersectionObserverEntry[],
-    observer: IntersectionObserver,
+    observer: IntersectionObserver
   ) => {
     entries.forEach((entry: IntersectionObserverEntry) => {
       if (entry.isIntersecting) {

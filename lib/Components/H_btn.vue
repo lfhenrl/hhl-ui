@@ -3,6 +3,7 @@
     class="H_btn col-pri"
     type="button"
     :class="{
+      'H_btn-xs': size === 'xs',
       'H_btn-sm': size === 'sm',
       'H_btn-lg': size === 'lg',
       'H_btn-outline': type === 'outline',
@@ -22,7 +23,7 @@ defineProps({
     default: "standard",
   },
   size: {
-    type: String as PropType<"lg" | "md" | "sm">,
+    type: String as PropType<"lg" | "md" | "sm" | "xs">,
     default: "md",
   },
 });
@@ -63,6 +64,12 @@ defineProps({
   .H_btn.H_btn-text {
     background-color: transparent;
     color: var(--current-bg-col);
+  }
+
+  button.H_btn.H_btn-xs {
+    height: 20px;
+    font-size: 10px;
+    --btn-icon-size: 0.6rem;
   }
 
   button.H_btn.H_btn-sm {

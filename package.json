@@ -10,6 +10,8 @@
   "dependencies": {
     "@emmetio/codemirror-plugin": "^1.2.4",
     "codemirror": "^5.65.16",
+    "fast-sort": "^3.4.0",
+    "@tanstack/vue-virtual": "v3.0.0-beta.65",
     "firebase": "^10.7.1",
     "vue": "^3.4.3",
     "vue-router": "^4.2.5"

@@ -2,7 +2,7 @@
   <div
     class="H_HeaderCell"
     ref="headCellRef"
-    :data-index="index"
+    :data-col-index="index"
     data-type="headcell"
     :class="col.className"
   >
@@ -10,74 +10,39 @@
       <div class="H_HeadCell-text" data-subtype="title">
         {{ col.props.title }}
       </div>
-      <H_menu data-subtype="menu" :index="index" />
+      <H_menu :index="index" />
       <div
         class="H_HeadCell-resize"
         @mousedown="resize"
-        @mouseup="resizeEnd"
-        @mouseout="resizeEnd"
         data-subtype="resize"
       ></div>
     </div>
     <div class="H_HeadCell-space">
-      <rend :col="col" :row="Columns.dataHandler?.MaxSizeRow" />
+      {{ col.maxValue }}
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import H_menu from "../sub/H_menu.vue";
-import { ColResize } from "./ColResize";
-import { iColumns } from "../provide/Columns";
 import { inject, onMounted, ref } from "vue";
-import { icolumnData } from "../provide/datagridTypes";
+import { iDgrid } from "../provide/Dgrid";
+import { ColResize } from "./ColResize";
+import H_menu from "./H_menu.vue";
 
 const P = defineProps({
   index: { type: Number, default: 0 },
 });
 // const E = defineEmits([]);
 const headCellRef = ref();
-const Columns = inject("Columns") as iColumns;
-const col: icolumnData = Columns.columns[P.index];
+const DG = inject("DG") as iDgrid;
+const col = DG.columns[P.index];
 
 function resize(e: MouseEvent) {
   ColResize(col, e);
-  setTimeout(() => {
-    Columns.adjustColumns?.adjust();
-  }, 10);
-}
-
-function resizeEnd() {
-  setTimeout(() => {
-    Columns.adjustColumns?.adjust();
-  }, 10);
-}
-
-function rend(data: any) {
-  if (!data.row.value) return;
-  const value = data.row.value[data.col.props.field];
-  if (data.col.slot) {
-    const rowData = {
-      row: data.row.value,
-      col: data.col,
-      value,
-    };
-    return data.col.slot?.default(rowData);
-  } else {
-    return format(value, data.col, data.row.value);
-  }
-}
-
-function format(value: any, col: any, data: any) {
-  return col.props.format?.(value, col, data) ?? value?.toString() ?? "";
 }
 
 onMounted(() => {
   col.dom = headCellRef.value;
-  if (col.props.width && col.dom) {
-    col.dom.style.maxWidth = col.props.width;
-    col.dom.style.minWidth = col.props.width;
-  }
 });
 </script>
 <style>
@@ -86,11 +51,13 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     min-height: 33px;
-    border-right: 1px solid var(--col-bg-3);
+    border-right: 1px solid var(--col-bg-5);
     border-bottom: 1px solid var(--col-bg-3);
+    padding-bottom: 3px;
   }
 
   .H_HeaderCell-inner {
+    position: relative;
     display: flex;
     flex: 1 1 0%;
     align-items: center;
@@ -108,10 +75,13 @@ onMounted(() => {
   .H_HeadCell-resize {
     z-index: 10;
     height: 100%;
-    width: 6px;
+    width: 8px;
+    right: -4px;
     min-width: 6px;
     cursor: w-resize;
     overflow: visible;
+    position: absolute;
+    z-index: 2;
   }
   .H_HeadCell-space {
     height: 0;
@@ -120,8 +90,8 @@ onMounted(() => {
     text-overflow: ellipsis;
     white-space: nowrap;
     opacity: 0;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 2px;
+    padding-right: 5px;
   }
 }
 </style>

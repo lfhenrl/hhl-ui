@@ -121,7 +121,6 @@ function diaOpen() {
 }
 
 function diaClose() {
-  console.log("diaClose");
   dialogPos.endPos();
   modelValue.value = false;
   stopOpserve();
@@ -143,7 +142,6 @@ function refClick() {
   }
   if (P.trigger === "click") {
     modelValue.value = true;
-    console.log("refClick");
   }
 }
 
@@ -165,13 +163,11 @@ function mouseOut() {
 
 function popupClick() {
   if (P.closePopupClick) {
-    console.log("popupClick");
     modelValue.value = false;
   }
 }
 
 function outsideClick() {
-  console.log("OUTSIDE_CLICK");
   if (ModelValueDelay) return;
   if (P.modal) {
     if (!P.noShake) {
@@ -196,7 +192,6 @@ function docClick(e: any) {
     e.stopPropagation;
     if (e.target.getAttribute("pop-close") !== null) {
       modelValue.value = false;
-      console.log("docClick");
     }
 
     if (P.modal && modelValue.value) {
@@ -271,6 +266,7 @@ onUnmounted(() => {
 @layer hhl-components {
   .H_pop-referance {
     display: flex;
+    height: 100%;
   }
 
   .H_pop-dialog {

@@ -116,7 +116,7 @@ export default defineComponent({
   scroll-behavior: smooth;
   padding-left: 32px;
   padding-right: 32px;
-  padding-bottom: 128px;
+  padding-bottom: 60px;
 }
 .page-container_routerView {
   display: flex;

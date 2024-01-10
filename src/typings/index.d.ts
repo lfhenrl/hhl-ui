@@ -28,7 +28,14 @@ declare module "*.md" {
 type ListenerCallback = (...data: any) => void;
 declare type notifyType = "err" | "warn" | "info";
 
-declare type dialogbuttonColor = "col-pri" | "col-ok" | "col-sec" | "col-err" | "col-info" | "col-black" | "col-white";
+declare type dialogbuttonColor =
+  | "col-pri"
+  | "col-ok"
+  | "col-sec"
+  | "col-err"
+  | "col-info"
+  | "col-black"
+  | "col-white";
 
 declare type dialogButton = {
   Text?: string;
@@ -47,7 +54,11 @@ declare type hhl = {
     emit(event: string, payLoad: any): void;
   };
   alert(type: notifyType, title: string, text: string, timeout?: number): void;
-  dialog(title: string, info: string, buttons?: dialogButtons): Promise<boolean>;
+  dialog(
+    title: string,
+    info: string,
+    buttons?: dialogButtons
+  ): Promise<boolean>;
   ignoreEmitPropErrors(x: any): void;
 };
 

@@ -25,11 +25,13 @@
         <template v-slot:referance>
           External <H_icon btn="standard" icon="expand_down" />
         </template>
-        <a href="https://v3.vuejs.org/guide/introduction.html" target="blank"
-          >Vue 3 Docs</a
-        >
-        <a href="https://vitejs.dev/" target="blank">Vite</a>
-        <a href="https://materialdesignicons.com/" target="blank">Icons</a>
+        <div class="popUp-external-body">
+          <a href="https://v3.vuejs.org/guide/introduction.html" target="blank"
+            >Vue 3 Docs</a
+          >
+          <a href="https://vitejs.dev/" target="blank">Vite</a>
+          <a href="https://materialdesignicons.com/" target="blank">Icons</a>
+        </div>
       </H_pop>
     </div>
     <H_themeSelector style="margin-left: 17px" />
@@ -96,7 +98,7 @@ export default defineComponent({
   align-items: center;
   cursor: pointer;
 }
-.popUp-external .H_pop-dialog {
+.popUp-external .popUp-external-body {
   display: flex;
   flex-direction: column;
   gap: 16px;

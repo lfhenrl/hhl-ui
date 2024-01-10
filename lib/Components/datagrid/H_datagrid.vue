@@ -131,7 +131,7 @@ const columns = new Columns();
 const ClickHandler = new datagridClickHandler(
   P.dataHandler.rows,
   P.dataKey,
-  columns,
+  columns
 );
 const adjustColumns = new ColumnsResizing(columns);
 
@@ -162,7 +162,7 @@ columns.updateSeekFilterList(P.filterList);
 
 watch(
   () => P.filterstring,
-  () => columns.updateSeekFilterString(P.filterstring),
+  () => columns.updateSeekFilterString(P.filterstring)
 );
 
 watch(
@@ -173,7 +173,7 @@ watch(
       console.log("adjustColumns.adjust()");
     }, 100);
   },
-  { deep: true },
+  { deep: true }
 );
 
 function rowStyle(row: any) {
@@ -251,7 +251,6 @@ function fullScreen() {
     gap: 8px;
     border-top: 1px solid var(--col-bg-6);
     background-color: var(--col-bg-2);
-    padding-right: 12px;
     color: var(--col-pri);
     font-size: 14px;
     padding-right: 10px;

@@ -39,6 +39,7 @@
         </template>
         <template #end>
           <div
+            @click.stop
             style="width: 22px; display: flex; align-items: center"
             v-if="!readonly"
           >

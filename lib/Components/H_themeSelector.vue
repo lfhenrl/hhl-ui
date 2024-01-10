@@ -4,8 +4,20 @@
     @click="click"
     title="Change Theme: Light ot Dark"
   >
-    <H_icon icon="night" btn="standard" v-if="dark" size="30px" />
-    <H_icon icon="day" btn="standard" v-else="dark" size="30px" />
+    <H_icon
+      icon="night"
+      btn="standard"
+      v-if="dark"
+      size="30px"
+      style="color: aqua"
+    />
+    <H_icon
+      icon="day"
+      btn="standard"
+      v-else="dark"
+      size="30px"
+      style="color: rgb(255, 119, 0)"
+    />
   </div>
 </template>
 

@@ -1,4 +1,14 @@
 import { DateAddDays } from "../../lib/utils/dateFunctions";
+export type testDataItem = {
+  id: number;
+  val1: string;
+  val2: string;
+  val3: string;
+  val4: string;
+  val5: boolean | null;
+  val6: Date;
+  val7: string;
+};
 
 export function getData(rowsCount: number = 1000) {
   const l: any = [];
@@ -7,7 +17,7 @@ export function getData(rowsCount: number = 1000) {
   let count10 = 1;
   let count5 = 1;
   for (let i = 0; i <= rowsCount - 1; i++) {
-    const item: any = {
+    const item: testDataItem = {
       id: i + 1,
       val1: `Row ${i + 1} cell 1.`,
       val2: `Group ${count20}.`,
@@ -15,7 +25,7 @@ export function getData(rowsCount: number = 1000) {
       val4: `SubGroup ${count5}.`,
       val5: count5 > 3 ? true : count5 > 2 ? null : false,
       val6: DateAddDays(dato, i),
-      val7: `SubXXGroup ${count10}.`
+      val7: `SubXXGroup ${count10}.`,
     };
     l.push(item);
     count20++;
