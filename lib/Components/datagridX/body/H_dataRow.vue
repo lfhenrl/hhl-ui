@@ -1,15 +1,17 @@
 <template>
-  <H_dataGroupRow v-if="row.__type === 'group'" :row="row" :index="index" />
-  <div
-    v-else
-    v-for="(col, index) in DG.getVisibelColumns()"
-    class="H_dataRow-Cell"
-    :class="[col.className, col.props.className, slotClass(col)]"
-    :style="cellStyle(col)"
-    :data-col-index="index"
-    data-type="rowcell"
-  >
-    <rend :col="col" :row="row" />
+  <div class="row-test">
+    <H_dataGroupRow v-if="row.__type === 'group'" :row="row" :index="index" />
+    <div
+      v-else
+      v-for="(col, index) in DG.getVisibelColumns()"
+      class="H_dataRow-Cell"
+      :class="[col.className, col.props.className, slotClass(col)]"
+      :style="cellStyle(col)"
+      :data-col-index="index"
+      data-type="rowcell"
+    >
+      <rend :col="col" :row="row" />
+    </div>
   </div>
 </template>
 
@@ -55,11 +57,15 @@ function format(value: any, col: any, data: any) {
 
 <style>
 @layer hhl-components {
-  .H_vscroll-item {
+  .row-test {
     display: flex;
     height: 30px;
     min-height: 30px;
     max-height: 30px;
+  }
+  .H_vscroll-item {
+    display: flex;
+
     width: 100%;
     flex: 1;
     background: var(--col-bg-0);

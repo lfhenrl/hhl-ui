@@ -96,6 +96,8 @@ export class localData {
         this.outData.value.splice(index + 1, 0, ...raw);
       }
 
+      this.outData.value = [...this.outData.value];
+
       row.__expanded = true;
     }
   }

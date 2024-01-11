@@ -19,6 +19,7 @@
             :key="virtualRow.key"
             :style="row_style(virtualRow.index)"
             :data-index="virtualRow.index"
+            :ref="measureElement"
             :class="virtualRow.index % 2 ? 'Odd' : 'Even'"
             :selected="selectedIndex == virtualRow.index ? true : null"
           >
@@ -40,7 +41,7 @@ import { computed, ref } from "vue";
 
 const P = defineProps({
   items: { type: Array, default: [] },
-  estimateSize: { type: Number, default: 34 },
+  estimateSize: { type: Number, default: 30 },
   overscan: { type: Number, default: 10 },
   paddingStart: { type: Number, default: 0 },
   paddingEnd: { type: Number, default: 0 },
@@ -77,15 +78,17 @@ const totalSize = computed(() => rowVirtualizer.value.getTotalSize());
 
 const measureElement = (el: HTMLElement) => {
   if (!el) {
-    console.log("WWWWWWWWWWWWWWWWWWWW", el);
     return;
   }
   rowVirtualizer.value.measureElement(el);
+  /*   const dd = el.getClientRects();
+  console.log("wwwwwwwwwwww", dd[0].height); */
   return undefined;
 };
 
 function get_data(i: number) {
   const data = P.items[i];
+  console.log("pppp", virtualRows.value[0]?.start);
   return data;
 }
 

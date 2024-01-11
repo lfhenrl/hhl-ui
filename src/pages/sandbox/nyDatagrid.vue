@@ -22,11 +22,6 @@
       :filterstring="seek"
       data-key="id"
     >
-      <H_column field="id" title="Action" type="action" sorting="none">
-        <template v-slot="col">
-          <H_btn size="xs">{{ col.row.id }}</H_btn>
-        </template>
-      </H_column>
       <H_column
         field="id"
         title="Id"
@@ -101,7 +96,7 @@ const lData = new localData();
 
 async function load() {
   await lData.startLoading();
-  const data = await getData(5000);
+  const data = await getData(40000);
   lData.setData(data);
   lData.loadData();
 }

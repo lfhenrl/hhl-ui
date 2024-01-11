@@ -46,8 +46,7 @@
     const { getData } = fakeImport;
     const list = ref([]);
     function load() {
-      const d = getData(1000);
-      console.log(d)
+      const d = getData(400000);
       list.value = d;
     }
     return {list, load}
