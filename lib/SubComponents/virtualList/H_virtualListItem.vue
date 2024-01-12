@@ -1,9 +1,7 @@
 <template>
-  <transition appear name="fade">
-    <div ref="el" role="listitem" :class="itemClass" :style="itemStyle(data)">
-      <slot />
-    </div>
-  </transition>
+  <div ref="el" role="listitem" :class="itemClass" :style="itemStyle(data)">
+    <slot />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -12,25 +10,25 @@ import { onBeforeUnmount, onMounted, onUpdated, ref } from "vue";
 const props = defineProps({
   setSize: {
     type: Function,
-    default: {}
+    default: {},
   },
   item_style: { type: Function, default: null },
   horizontal: {
-    type: Boolean
+    type: Boolean,
   },
   data: {
-    type: Object
+    type: Object,
   },
   uniqueKey: {
-    type: [String, Number]
+    type: [String, Number],
   },
   index: {
-    type: [String, Number]
+    type: [String, Number],
   },
   itemClass: {
     type: String,
-    default: "H_virtualListItem"
-  }
+    default: "H_virtualListItem",
+  },
 });
 
 const el = ref<HTMLElement | null>(null);

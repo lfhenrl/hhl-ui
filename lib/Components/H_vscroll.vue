@@ -17,7 +17,6 @@
             class="H_vscroll-item"
             v-for="virtualRow in virtualRows"
             :key="virtualRow.key"
-            :style="row_style(virtualRow.index)"
             :data-index="virtualRow.index"
             :ref="measureElement"
             :class="virtualRow.index % 2 ? 'Odd' : 'Even'"
@@ -47,7 +46,6 @@ const P = defineProps({
   paddingEnd: { type: Number, default: 0 },
   debug: { type: Boolean, default: false },
   selectedIndex: { type: Number, default: 1 },
-  row_style: { type: Function, default: null },
 });
 
 defineExpose({

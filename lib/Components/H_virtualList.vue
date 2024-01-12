@@ -1,21 +1,25 @@
 <template>
-  <div ref="root" class="H_virtualList" @scroll="onScroll">
-    <slot name="header" />
-    <div class="H_virtualList-scroller" role="group" :style="paddingStyle">
-      <H_virtualListItem
-        v-for="item in items"
-        :key="item[dataKey]"
-        :uniqueKey="item[dataKey]"
-        :horizontal="isHorizontal"
-        :setSize="onItemResized"
-        :item_style="item_style"
-        :data="item"
-        :data-id="item[dataKey]"
-        :itemClass="itemClass"
-        :selected="selectedId == item[dataKey] ? true : null"
-      >
-        <slot :item="item" />
-      </H_virtualListItem>
+  <div class="H_virtualList">
+    <div class="H_virtualList-body" ref="root" @scroll="onScroll">
+      <div class="H_virtualList-header">
+        <slot name="header" />
+      </div>
+      <div class="H_virtualList-scroller" role="group" :style="paddingStyle">
+        <H_virtualListItem
+          v-for="item in items"
+          :key="item[dataKey]"
+          :uniqueKey="item[dataKey]"
+          :horizontal="isHorizontal"
+          :setSize="onItemResized"
+          :item_style="item_style"
+          :data="item"
+          :data-id="item[dataKey]"
+          :itemClass="itemClass"
+          :selected="selectedId == item[dataKey] ? true : null"
+        >
+          <slot :item="item" />
+        </H_virtualListItem>
+      </div>
       <slot name="absoluteItems" />
     </div>
 
@@ -46,11 +50,11 @@ const props = defineProps({
   },
   keeps: {
     type: Number,
-    default: 50,
+    default: 80,
   },
   estimateSize: {
     type: Number,
-    default: 25,
+    default: 30,
   },
 
   direction: {
@@ -118,27 +122,27 @@ watch(
     virtual.updateParam("uniqueIds", getUniqueIdFromDataSources());
     virtual.handleDataSourcesChange();
   },
-  { deep: true },
+  { deep: true }
 );
 watch(
   () => props.keeps,
   (newValue) => {
     virtual.updateParam("keeps", newValue);
     virtual.handleSlotSizeChange();
-  },
+  }
 );
 watch(
   () => props.start,
   (newValue) => {
     scrollToIndex(newValue);
-  },
+  }
 );
 
 watch(
   () => props.offset,
   (newValue) => {
     scrollToOffset(newValue);
-  },
+  }
 );
 
 onActivated(() => {
@@ -166,7 +170,7 @@ function installVirtual() {
       uniqueIds: getUniqueIdFromDataSources(),
     },
 
-    onRangeChanged,
+    onRangeChanged
   );
   // sync initial range
   range = virtual.getRange();
@@ -250,7 +254,6 @@ function onRangeChanged(r: any) {
       ? `0px ${range.padBehind}px 0px ${range.padFront}px`
       : `${range.padFront}px 0px ${range.padBehind}px`,
     "flex-direction": isHorizontal ? "row" : "column",
-    width: root.value?.scrollWidth + "px",
   };
   items.value = props.dataSources.slice(range.start, range.end) as any;
 }
@@ -274,7 +277,7 @@ function emitEvent(
   offset: number,
   clientSize: number,
   scrollSize: number,
-  evt: any,
+  evt: any
 ) {
   emit("scroll", evt, virtual.getRange());
 
@@ -300,12 +303,34 @@ function emitEvent(
 <style>
 @layer hhl-components {
   .H_virtualList {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-rows: auto;
+    height: 100%;
+    min-height: 200px;
+    border: 1px solid gray;
+  }
+
+  .H_virtualList-body {
+    display: inline-block;
+    position: relative;
+    overflow: auto;
+    height: 100%;
   }
 
   .H_virtualList-scroller {
-    display: flex;
+    display: inline-block;
+    overflow: visible;
+  }
+
+  .H_virtualList-header {
+    display: inline-block;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
   }
 }
 </style>
