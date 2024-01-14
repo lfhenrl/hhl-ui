@@ -22,7 +22,7 @@ export class localData {
   public groupData: any[] = [];
   private sortArray: iSortData[] = [];
   public filterArray: iFilterData[] = [];
-  private groupList: string[] = [];
+  private groupList: string[] = ["val2"];
   public seekFilterList: string[] = [];
   public seekFilterString: string = "";
   public newDataEvent: any;

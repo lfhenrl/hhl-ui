@@ -8,15 +8,11 @@
       type="checkbox"
       class="H_checkbox-input"
       :aria-label="label === '' ? 'No label' : label"
-      :name="label === '' ? 'No name' : label"
       :class="{
         'H_checkbox-input-sm': size === 'sm',
         'H_checkbox-input-lg': size === 'lg',
       }"
-      :checked="modelValue"
-      @change="
-        $emit('update:modelValue', (<HTMLInputElement>$event.target).checked)
-      "
+      v-model="modelValue"
     />
     <div class="H_checkbox-label">{{ label }}</div>
   </label>
@@ -26,10 +22,6 @@
 import { PropType } from "vue";
 
 defineProps({
-  modelValue: {
-    type: Boolean,
-    default: false,
-  },
   label: { type: String, default: "" },
   labelGap: { type: String, default: "10px" },
   labelLeft: { type: Boolean, default: false },
@@ -39,7 +31,8 @@ defineProps({
     default: "md",
   },
 });
-defineEmits(["update:modelValue", "changed"]);
+
+const modelValue = defineModel<boolean>({ default: false });
 </script>
 
 <style>

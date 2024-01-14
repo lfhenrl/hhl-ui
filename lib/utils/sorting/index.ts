@@ -1,5 +1,9 @@
-import { createNewSortInstance } from "fast-sort";
-import { iSortData } from "../../../provide/datagridTypes";
+import { createNewSortInstance } from "./sort";
+
+export type iSortData = {
+  field: string;
+  direction: string;
+};
 
 const naturalSort = createNewSortInstance({
   comparer: new Intl.Collator(undefined, {

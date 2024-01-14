@@ -64,5 +64,6 @@ export function ColumnWidthAdjustment(_Dgrid: iDgrid) {
     findMaxSingelColumn,
     findMaxAllColumns,
     adjustAll,
+    resetCss,
   };
 }

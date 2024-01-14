@@ -1,29 +1,35 @@
 <template>
   <div class="H_datagridX">
-    <H_vscroll
+    <H_virtualList
       :row_style="rowStyle"
-      :items="DG.dataHandler?.outData.value"
-      :selected-index="DG.dataHandler?.selectedIndex.value"
-      :estimate-size="30"
+      data-key="id"
+      item-class="H_dataRow"
+      class="H_datagrid-virtualList"
+      :data-sources="DG.dataHandler?.outData.value"
+      :selectedId="selectedId"
       ref="vscroll"
       @click="datagridClick"
     >
-      <template v-slot:header-sticky>
-        <H_headerRow role="heading" aria-level="2" />
+      <template v-slot:header>
+        <H_headerRow
+          role="heading"
+          aria-level="2"
+          :key="DG.changeCounter.value"
+        />
         <H_progressBar :show="DG.dataHandler?.rowsLoading.value" />
       </template>
-      <template v-slot:footer><H_datagridFooter /></template>
-      <template v-slot="{ item, index }">
-        <H_dataRow :row="item" :index="index" />
+      <template v-slot="{ item }">
+        <H_dataRow :row="item" :key="DG.changeCounter.value" />
         <adjustColumnsWidth :row="item" />
       </template>
-    </H_vscroll>
+    </H_virtualList>
+    <H_datagridFooter />
   </div>
 </template>
 
 <script setup lang="ts">
 import { PropType, onMounted, provide, ref, useSlots, watch } from "vue";
-import H_vscroll from "../H_vscroll.vue";
+import H_virtualList from "../H_virtualList.vue";
 import H_headerRow from "./head/H_headerRow.vue";
 import H_dataRow from "./body/H_dataRow.vue";
 import H_datagridFooter from "./H_datagridFooter.vue";
@@ -32,7 +38,7 @@ import { Dgrid } from "./provide/Dgrid";
 import { datagridClickHandler } from "./provide/datagridClickHandler";
 import { iClickData } from "./provide/datagridTypes";
 
-type iVscroller = InstanceType<typeof H_vscroll>;
+type iVscroller = InstanceType<typeof H_virtualList>;
 
 const P = defineProps({
   dataKey: {
@@ -57,6 +63,7 @@ const row_styleActive = P.row_style ? true : false;
 const vscroll = ref<iVscroller | null>(null);
 const slots = useSlots();
 const DG = new Dgrid(slots, P.dataHandler);
+const selectedId = ref("");
 
 provide("DG", DG);
 const ClickHandler = new datagridClickHandler(DG);
@@ -66,7 +73,7 @@ DG.dataHandler!.dataKey = P.dataKey;
 function datagridClick(e: MouseEvent) {
   const data = ClickHandler.click(e);
   if (data && data.type.startsWith("row")) {
-    DG.dataHandler!.setSelectedIndex(data?.dataIndex);
+    selectedId.value = data?.dataId;
     E("rowClick", data);
   }
   if (data && data.type.startsWith("head")) E("headClick", data);
@@ -94,18 +101,14 @@ onMounted(() => {
 </script>
 
 <style>
-.H_datagridX {
-  height: 100%;
-  border: 1px solid var(--col-bg-5);
-  border-radius: 4px;
-  font-size: 14px;
-  background-color: var(--col-bg-1);
+@layer hhl-components {
+  .H_datagridX {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100%;
+    border: 1px solid var(--col-bg-6);
+    border-radius: 4px;
+    font-size: 14px;
+  }
 }
-
-/* .H_datagridX .Odd {
-  background-color: var(--col-bg-2);
-}
-.H_datagridX .Even {
-  background-color: var(--col-bg-0);
-} */
 </style>

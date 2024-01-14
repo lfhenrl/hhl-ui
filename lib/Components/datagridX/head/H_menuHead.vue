@@ -35,34 +35,36 @@ const col: iColumn = DG.columns[P.index];
 </script>
 
 <style>
-.H_menuHead {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  overflow: visible;
-  cursor: pointer;
-  color: var(--col-txt-5);
-  /*   border: 1px solid red; */
-  padding-right: 4px;
-}
-.H_menuHead:hover {
-  background-color: var(--col-bg-5);
-}
-.H_menuHead-active {
-  display: flex;
-  color: var(--col-txt-2);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 24px;
-  overflow: visible;
-}
-.H_HeadCell-sorting {
-  display: flex;
-  overflow: visible;
-  align-items: center;
-  flex: 1 1 0%;
-  font-size: 12px;
+@layer hhl-components {
+  .H_menuHead {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow: visible;
+    cursor: pointer;
+    color: var(--col-txt-5);
+    /*   border: 1px solid red; */
+    padding-right: 4px;
+  }
+  .H_menuHead:hover {
+    background-color: var(--col-bg-5);
+  }
+  .H_menuHead-active {
+    display: flex;
+    color: var(--col-txt-2);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    overflow: visible;
+  }
+  .H_HeadCell-sorting {
+    display: flex;
+    overflow: visible;
+    align-items: center;
+    flex: 1 1 0%;
+    font-size: 12px;
+  }
 }
 </style>

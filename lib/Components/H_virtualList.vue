@@ -1,21 +1,19 @@
 <template>
   <div class="H_virtualList">
     <div class="H_virtualList-body" ref="root" @scroll="onScroll">
-      <div class="H_virtualList-header">
-        <slot name="header" />
-      </div>
       <div class="H_virtualList-scroller" role="group" :style="paddingStyle">
+        <div class="H_virtualList-header"><slot name="header" /></div>
         <H_virtualListItem
           v-for="item in items"
-          :key="item[dataKey]"
-          :uniqueKey="item[dataKey]"
+          :key="getId(item)"
+          :uniqueKey="getId(item)"
           :horizontal="isHorizontal"
           :setSize="onItemResized"
           :item_style="item_style"
           :data="item"
-          :data-id="item[dataKey]"
+          :data-id="getId(item)"
           :itemClass="itemClass"
-          :selected="selectedId == item[dataKey] ? true : null"
+          :selected="selectedId == getId(item) ? true : null"
         >
           <slot :item="item" />
         </H_virtualListItem>
@@ -35,6 +33,7 @@
 
 <script setup lang="ts">
 import { onActivated, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { debounce } from "../utils/debounce";
 import Virtual from "../SubComponents/virtualList/virtual";
 import H_virtualListItem from "../SubComponents/virtualList/H_virtualListItem.vue";
 
@@ -48,9 +47,9 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-  keeps: {
+  overscan: {
     type: Number,
-    default: 80,
+    default: 6,
   },
   estimateSize: {
     type: Number,
@@ -98,6 +97,7 @@ defineExpose({
   getScrollSize,
   reset,
   update,
+  getvirtualRows,
 });
 
 const root = ref<HTMLElement | null>(null);
@@ -109,11 +109,48 @@ let range: any = {};
 const isHorizontal = props.direction === "horizontal";
 const directionKey = isHorizontal ? "scrollLeft" : "scrollTop";
 let leftScroll = 0;
+let scrollHeight = 0;
+let keeps = 50;
 
-installVirtual();
+const resizeObserver = new ResizeObserver((entries) => {
+  for (const entry of entries) {
+    if (entry.contentBoxSize) {
+      scrollHeight = entry.contentRect.height;
+      calcKeeps();
+    }
+  }
+});
+
+const calcKeeps = debounce(async () => {
+  let _keeps;
+  if (virtual) {
+    _keeps =
+      Math.ceil(scrollHeight / virtual.getEstimateSize()) + props.overscan;
+  } else {
+    _keeps = Math.ceil(scrollHeight / props.estimateSize) + props.overscan;
+  }
+  if (_keeps !== keeps) {
+    keeps = _keeps;
+    virtual.updateParam("keeps", keeps);
+    virtual.updateParam("buffer", props.overscan);
+    virtual.handleSlotSizeChange();
+  }
+});
 
 function update() {
   virtual.handleDataSourcesChange();
+}
+
+function getId(item: any) {
+  if (item.__type && item.__type === "group") {
+    return item.__id;
+  } else {
+    return item[props.dataKey];
+  }
+}
+
+function getvirtualRows() {
+  return items.value;
 }
 
 watch(
@@ -121,16 +158,9 @@ watch(
   () => {
     virtual.updateParam("uniqueIds", getUniqueIdFromDataSources());
     virtual.handleDataSourcesChange();
-  },
-  { deep: true }
-);
-watch(
-  () => props.keeps,
-  (newValue) => {
-    virtual.updateParam("keeps", newValue);
-    virtual.handleSlotSizeChange();
   }
 );
+
 watch(
   () => props.start,
   (newValue) => {
@@ -155,18 +185,21 @@ onMounted(() => {
   } else if (props.offset) {
     scrollToOffset(props.offset);
   }
+  resizeObserver.observe(root.value!);
+  installVirtual();
 });
 
 onBeforeUnmount(() => {
+  resizeObserver.unobserve(root.value!);
   virtual.destroy();
 });
 
 function installVirtual() {
   virtual = new Virtual(
     {
-      keeps: props.keeps,
+      keeps: keeps,
       estimateSize: props.estimateSize,
-      buffer: Math.round(props.keeps / 3), // recommend for a third of keeps
+      buffer: Math.round(keeps / 5), // recommend for a third of keeps
       uniqueIds: getUniqueIdFromDataSources(),
     },
 
@@ -305,32 +338,31 @@ function emitEvent(
   .H_virtualList {
     display: grid;
     grid-template-rows: 1fr auto;
-    grid-template-rows: auto;
+    grid-template-columns: auto;
     height: 100%;
     min-height: 200px;
-    border: 1px solid gray;
+    padding: 1px;
   }
 
   .H_virtualList-body {
-    display: inline-block;
     position: relative;
-    overflow: auto;
+    display: inline-block;
+    overflow: scroll;
     height: 100%;
   }
 
   .H_virtualList-scroller {
     display: inline-block;
-    overflow: visible;
+    min-width: 100%;
   }
 
   .H_virtualList-header {
     display: inline-block;
+    overflow: visible;
     position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
     width: 100%;
+    z-index: 1;
   }
 }
 </style>

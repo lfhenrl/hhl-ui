@@ -20,7 +20,7 @@
         >
       </div>
     </nav>
-    <nav v-if="!small">
+    <nav v-if="false">
       <router-link
         active-class="menu-left-links-selected"
         v-for="link in routeLinks"

@@ -30,22 +30,26 @@ const props = defineProps({
   maxItems: { type: Number, default: 10000 },
   itemClass: {
     type: String,
-    default: "H_dragItem"
+    default: "H_dragItem",
   },
   transition: {
     default: "200",
-    type: String
-  }
+    type: String,
+  },
 });
 
 const emit = defineEmits(["update:modelValue", "itemDragOver"]);
 
 const context = {
-  emit
+  emit,
 };
 
 const { modelValue, maxItems } = toRefs(props);
-const { id, items, onDragOver, onItemDragOver } = useDraggableContainer(modelValue!, context, props.maxItems);
+const { id, items, onDragOver, onItemDragOver } = useDraggableContainer(
+  modelValue!,
+  context,
+  props.maxItems
+);
 
 const transitionStyle = computed(() => `transform ${props.transition}ms`);
 </script>

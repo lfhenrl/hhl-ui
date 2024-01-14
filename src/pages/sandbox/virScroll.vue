@@ -27,7 +27,7 @@ const data = ref<testDataItem[]>([]);
 const vscroll = ref<InstanceType<typeof H_virtualList> | null>(null);
 
 async function load() {
-  data.value = await getData(4000);
+  data.value = await getData(5000);
 }
 </script>
 <style>

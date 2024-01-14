@@ -1,6 +1,6 @@
 import { iColumn } from "./Column";
 import { iDgrid } from "./Dgrid";
-import { iSortData } from "./datagridTypes";
+import { iSortData } from "../../../utils/sorting";
 
 export type iSorting = InstanceType<typeof Sorting>;
 export class Sorting {

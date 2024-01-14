@@ -34,9 +34,13 @@ function filterOpen() {
 </script>
 
 <style>
-.H_menu-pop {
-  display: flex;
-  align-items: center;
-  height: 100%;
+@layer hhl-components {
+  .H_menu-pop {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    min-width: 30px;
+    max-width: 30px;
+  }
 }
 </style>

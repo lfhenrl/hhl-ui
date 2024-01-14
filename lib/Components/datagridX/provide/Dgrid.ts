@@ -1,17 +1,18 @@
-import { Slots } from "vue";
+import { Slots, ref } from "vue";
 import { Column, iColumn } from "./Column";
 import { iSorting, Sorting } from "./Sorting";
 import { iDatahandler } from "../datahandlers/local";
-import H_vscroll from "../../H_vscroll.vue";
+import H_virtualList from "../../H_virtualList.vue";
 import { ColumnWidthAdjustment } from "./ColumnWidthAdjustment";
 import { iFilterData } from "./datagridTypes";
 
 export type iDgrid = InstanceType<typeof Dgrid>;
-type iVscroller = InstanceType<typeof H_vscroll>;
+type iVscroller = InstanceType<typeof H_virtualList>;
 
 export class Dgrid {
   public columns: iColumn[] = [];
   public Guid = "";
+  public changeCounter = ref(0);
   public StyleSheet = {} as CSSStyleSheet;
   public Sorting: iSorting;
   public Filter: iFilterData[] = [];
@@ -47,6 +48,14 @@ export class Dgrid {
       return vnode.type.name === name;
     });
     return sl;
+  }
+
+  columnsChange() {
+    this.changeCounter.value++;
+  }
+
+  scrollToOffset(offset: number) {
+    this.Vscroller!.scrollToOffset(offset);
   }
 
   updateFilter() {

@@ -14,8 +14,8 @@ export class datagridClickHandler {
     if (!ele) return null;
     const data = getData(ele);
 
-    if (data.dataIndex >= 0) {
-      data.dataItem = this.DG.dataHandler?.outData.value[data.dataIndex];
+    if (data.dataId) {
+      data.dataItem = this.DG.dataHandler?.getItemById(data.dataId);
     }
 
     if (data.colIndex >= 0) {
@@ -34,7 +34,7 @@ function getData(ele0: HTMLElement) {
     colIndex: -1,
     colOrgIndex: -1,
     subType: "",
-    dataIndex: -1,
+    dataId: null,
     dataItem: null,
     column: (<any>[]) as iColumn,
     field: "",
@@ -65,7 +65,7 @@ function getDetails(val: any, ele?: HTMLElement) {
     val.subType = ele.dataset.subtype;
   }
 
-  if (ele.dataset.index) {
-    val.dataIndex = parseInt(ele.dataset.index) ?? 1;
+  if (ele.dataset.id) {
+    val.dataId = ele.dataset.id;
   }
 }

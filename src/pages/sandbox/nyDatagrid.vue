@@ -96,7 +96,7 @@ const lData = new localData();
 
 async function load() {
   await lData.startLoading();
-  const data = await getData(40000);
+  const data = await getData(5000);
   lData.setData(data);
   lData.loadData();
 }

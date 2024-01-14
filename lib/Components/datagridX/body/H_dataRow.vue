@@ -1,17 +1,15 @@
 <template>
-  <div class="row-test">
-    <H_dataGroupRow v-if="row.__type === 'group'" :row="row" :index="index" />
-    <div
-      v-else
-      v-for="(col, index) in DG.getVisibelColumns()"
-      class="H_dataRow-Cell"
-      :class="[col.className, col.props.className, slotClass(col)]"
-      :style="cellStyle(col)"
-      :data-col-index="index"
-      data-type="rowcell"
-    >
-      <rend :col="col" :row="row" />
-    </div>
+  <H_dataGroupRow v-if="row.__type === 'group'" :row="row" />
+  <div
+    v-else
+    v-for="(col, index) in DG.getVisibelColumns()"
+    class="H_dataRow-Cell"
+    :class="[col.className, col.props.className, slotClass(col)]"
+    :style="cellStyle(col)"
+    :data-col-index="index"
+    data-type="rowcell"
+  >
+    <rend :col="col" :row="row" />
   </div>
 </template>
 
@@ -57,29 +55,29 @@ function format(value: any, col: any, data: any) {
 
 <style>
 @layer hhl-components {
-  .row-test {
+  .H_dataRow {
     display: flex;
-    height: 30px;
-    min-height: 30px;
-    max-height: 30px;
-  }
-  .H_vscroll-item {
-    display: flex;
-
-    width: 100%;
     flex: 1;
-    background: var(--col-bg-0);
+    height: min-content;
+    min-height: 25px;
+    width: 100%;
   }
-  .H_vscroll-item.Odd {
+
+  .H_dataRow:nth-child(odd) {
     background: var(--col-bg-1);
   }
-  .H_vscroll-item[selected="true"] {
+
+  .H_dataRow[selected="true"] {
     background-color: var(--col-bg-4);
   }
 
-  /*   .H_vscroll-item:hover {
+  .H_dataRow:hover {
     background-color: var(--col-bg-2);
-  } */
+  }
+
+  .H_dataRow[selected="true"]:hover {
+    background-color: var(--col-bg-5);
+  }
 
   .H_vscroll-item[selected="true"]:hover {
     background-color: var(--col-bg-5);

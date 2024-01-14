@@ -43,7 +43,7 @@ export class Column {
   constructor(_Dgrid: iDgrid, item: any, index: number) {
     this.Dgrid = _Dgrid;
     this.className = `${this.Dgrid.Guid}-${index}`;
-    const W = item.props.width ?? "none";
+    const W = item.props.width ?? "";
     this.Dgrid.StyleSheet.insertRule(
       `.${
         this.Dgrid.Guid
