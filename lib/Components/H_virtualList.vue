@@ -49,7 +49,7 @@ const props = defineProps({
   },
   overscan: {
     type: Number,
-    default: 6,
+    default: 8,
   },
   estimateSize: {
     type: Number,

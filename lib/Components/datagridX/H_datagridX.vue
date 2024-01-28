@@ -52,6 +52,7 @@ const P = defineProps({
   row_style: { type: Function, default: null },
   filterList: { type: Array as PropType<string[]>, default: [] },
   filterstring: { type: String, default: "" },
+  groupList: { type: Array as PropType<string[]>, default: [] },
 });
 
 const E = defineEmits<{
@@ -69,6 +70,7 @@ provide("DG", DG);
 const ClickHandler = new datagridClickHandler(DG);
 DG.SeekList = P.filterList;
 DG.dataHandler!.dataKey = P.dataKey;
+DG.dataHandler!.groupList = P.groupList;
 
 function datagridClick(e: MouseEvent) {
   const data = ClickHandler.click(e);

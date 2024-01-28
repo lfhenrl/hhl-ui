@@ -1,8 +1,8 @@
 <template>
   <div class="_page">
-    <div class="flex items-center" style="margin-bottom: 16px">
-      <H_btn @click="load">Load</H_btn>
-      <div class="flex-1" />
+    <div style="display: flex; align-items: center">
+      <H_btn @click="load" style="width: 100px">Load</H_btn>
+      <div style="flex: 1" />
       <H_inputText
         v-model="seek"
         :debounce="300"
@@ -14,17 +14,13 @@
         </template>
       </H_inputText>
     </div>
-
-    <H_datagrid
-      data-key="id"
-      :dataHandler="lData"
-      :filter-list="['id']"
-      :filterstring="seek"
-      virtualscroll
-      :virtualscroll_keeps="50"
-      :virtualscroll_rowheight="44"
-      @row-click="rowClick"
+    <H_datagridX
       @head-click="headClick"
+      @row-click="rowClick"
+      :dataHandler="lData"
+      :filter-list="['id', 'val1', 'val2', 'val3', 'val4', 'val7']"
+      :filterstring="seek"
+      data-key="id"
     >
       <H_column
         field="id"
@@ -38,40 +34,27 @@
         title="Value 1"
         type="string"
         filter_type="string"
-        class="text-err"
-      />
-      <H_column
-        field="val6"
-        title="Value 6"
-        type="date"
-        filter_type="datetime"
-        :format="formatDate"
+        width="auto"
       />
       <H_column
         field="val2"
         title="Value 2"
         type="string"
         filter_type="select"
-        filter_condition="equal"
-        :select_list="[
-          { label: 'G1', value: 'Group 1.' },
-          { label: 'G2', value: 'Group 2.' },
-          { label: 'G3', value: 'Group 3.' },
-          { label: 'G4', value: 'Group 4.' },
-          { label: 'G5', value: 'Group 5.' },
-          { label: 'G6', value: 'Group 6.' },
-          { label: 'G7', value: 'Group 7.' },
-          { label: 'G8', value: 'Group 8.' },
-          { label: 'G9', value: 'Group 9.' },
-          { label: 'G10', value: 'Group 10.' },
-        ]"
       />
       <H_column
         field="val3"
         title="Value 3"
-        auto-height
         type="string"
+        filter_type="string"
+        class="text-err"
         :cell_style="styleCell"
+      />
+      <H_column
+        field="val4"
+        title="Value 4"
+        type="string"
+        filter_type="select"
       />
       <H_column
         field="val5"
@@ -81,10 +64,11 @@
         filter_condition="bool_list"
       />
       <H_column
-        field="val4"
-        title="Value 4"
-        type="string"
-        filter_type="select"
+        field="val6"
+        title="Value 6"
+        type="date"
+        filter_type="datetime"
+        :format="formatDate"
       />
       <H_column
         field="val7"
@@ -92,27 +76,29 @@
         type="string"
         filter_type="select"
       />
-    </H_datagrid>
+    </H_datagridX>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { D_01_dec_2021_HHMM } from "../../../lib/utils/dateFormat";
-import { localData } from "../../../lib/Components/datagrid";
-import H_datagrid from "../../../lib/Components/datagrid/H_datagrid.vue";
+import H_datagridX from "../../../lib/Components/datagridX/H_datagridX.vue";
 import H_column from "../../../lib/Components/datagrid/H_column.vue";
 import H_btn from "../../../lib/Components/H_btn.vue";
-import H_icon from "../../../lib/Components/H_icon.vue";
 import H_inputText from "../../../lib/Components/H_inputText.vue";
 import { getData } from "../../testData/data";
-import { iClickData } from "../../../lib/SubComponents/datagrid/provide/datagridTypes";
+import { localData } from "../../../lib/Components/datagridX/datahandlers/local";
+import { D_01_dec_2021_HHMM } from "../../../lib/utils/dateFormat";
+import { ref } from "vue";
+import { iClickData } from "../../../lib/Components/datagridX/provide/datagridTypes";
 
 const seek = ref("");
 const lData = new localData();
 
-async function loadData() {
-  await lData.setDataSource(getData(1000));
+async function load() {
+  await lData.startLoading();
+  const data = await getData(5000);
+  lData.setData(data);
+  lData.loadData();
 }
 
 function formatDate(value: any) {
@@ -133,24 +119,13 @@ function styleCell(val: string) {
       color: "red",
     };
 }
-
-async function load() {
-  lData.rowsLoading.value = true;
-  setTimeout(async () => {
-    await loadData();
-    lData.loadData();
-  }, 0);
-}
 </script>
 <style scoped>
 ._page {
-  margin-top: 22px;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  height: 80vh;
-  overflow: hidden;
-}
-.flex-1 {
-  flex: 1 1 0%;
+  display: flex;
+  padding: 32px;
+  gap: 18px;
+  background-color: var(--col-bg-0);
+  height: 100%;
 }
 </style>

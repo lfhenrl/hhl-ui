@@ -1,5 +1,6 @@
 <template>
   <H_dataGroupRow v-if="row.__type === 'group'" :row="row" />
+  <H_loadMoreRow v-else-if="row.__type === 'loadmore'" :row="row" />
   <div
     v-else
     v-for="(col, index) in DG.getVisibelColumns()"
@@ -17,6 +18,7 @@
 import { inject } from "vue";
 import { iDgrid } from "../provide/Dgrid";
 import H_dataGroupRow from "./H_dataGroupRow.vue";
+import H_loadMoreRow from "./H_loadMoreRow.vue";
 
 const P = defineProps({
   row: { type: Object, default: {} },

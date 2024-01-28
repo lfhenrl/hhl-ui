@@ -1,6 +1,6 @@
 <template>
-  <div class="grid h-[80vh] grid-cols-1 overflow-hidden">
-    <div class="grid grid-rows-[auto_1fr] overflow-hidden p-1">
+  <div class="">
+    <div class="odata">
       <div class="flex items-center" style="margin-bottom: 16px">
         <H_btn @click="load" start-icon="zoom_out_map" end-icon="filter"
           >Load</H_btn
@@ -139,3 +139,10 @@ async function load() {
   }, 20);
 }
 </script>
+<style>
+.odata {
+  display: grid;
+  height: 80vh;
+  overflow: hidden;
+}
+</style>

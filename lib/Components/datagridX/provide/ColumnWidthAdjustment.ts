@@ -35,7 +35,10 @@ export function ColumnWidthAdjustment(_Dgrid: iDgrid) {
     const valFormatted =
       col.props.format?.(val, col, row) ?? val?.toString() ?? "";
     const valStr: string = valFormatted.toString() ?? "";
-    if (valStr && col.maxValue.value.length < valStr.length) {
+    if (
+      (valStr && col.maxValue.value.length < valStr.length) ||
+      valStr.length < 5
+    ) {
       resetCss(col);
       col.maxValue.value = valFormatted;
       setCss(col);

@@ -6,7 +6,7 @@
     data-type="rowgroup"
     :row-level="row.__level"
   >
-    <div class="H_dataGroupRow-expandBtn" @click="expand">
+    <div class="H_dataGroupRow-expandBtn" @click.stop="expand">
       <H_icon v-if="row.__expanded" icon="expand_down" btn="standard" />
       <H_icon v-else icon="expand_right" btn="standard" />
     </div>

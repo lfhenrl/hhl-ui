@@ -9,6 +9,11 @@ export type iFilterData = {
   logical: string;
 };
 
+export type iSortData = {
+  field: string;
+  direction: string;
+};
+
 export type iClickData = {
   type: string;
   colIndex: number;

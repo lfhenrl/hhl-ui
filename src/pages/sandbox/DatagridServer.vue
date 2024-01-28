@@ -17,10 +17,11 @@
     <H_datagridX
       @head-click="headClick"
       @row-click="rowClick"
-      :dataHandler="lData"
+      :dataHandler="sData"
       :filter-list="['id', 'val1', 'val2', 'val3', 'val4', 'val7']"
       :filterstring="seek"
       data-key="id"
+      :group-list="['val2', 'val4']"
     >
       <H_column
         field="id"
@@ -68,7 +69,6 @@
         title="Value 6"
         type="date"
         filter_type="datetime"
-        :format="formatDate"
       />
       <H_column
         field="val7"
@@ -85,24 +85,17 @@ import H_datagridX from "../../../lib/Components/datagridX/H_datagridX.vue";
 import H_column from "../../../lib/Components/datagrid/H_column.vue";
 import H_btn from "../../../lib/Components/H_btn.vue";
 import H_inputText from "../../../lib/Components/H_inputText.vue";
-import { getData } from "../../testData/data";
-import { localData } from "../../../lib/Components/datagridX/datahandlers/local";
-import { D_01_dec_2021_HHMM } from "../../../lib/utils/dateFormat";
+import { serverData } from "../../../lib/Components/datagridX/datahandlers/server";
+
 import { ref } from "vue";
 import { iClickData } from "../../../lib/Components/datagridX/provide/datagridTypes";
 
 const seek = ref("");
-const lData = new localData();
+const sData = new serverData("http://localhost:5101/hhl");
 
 async function load() {
-  await lData.startLoading();
-  const data = await getData(5000);
-  lData.setData(data);
-  lData.loadData();
-}
-
-function formatDate(value: any) {
-  return D_01_dec_2021_HHMM(value);
+  await sData.startLoading();
+  sData.loadData();
 }
 
 function headClick(data: iClickData) {
