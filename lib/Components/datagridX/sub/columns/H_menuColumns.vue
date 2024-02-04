@@ -37,8 +37,6 @@
         <H_btn @click="columnsSave" class="bg-ok" :disabled="!canSave"
           >OK</H_btn
         >
-        {{ columnsHaveChanged }} xx {{ groupHaveChanged }} sss
-        {{ canSave }}
       </div>
     </template>
   </H_dialog>

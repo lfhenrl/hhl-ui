@@ -49,7 +49,7 @@ const props = defineProps({
   },
   overscan: {
     type: Number,
-    default: 8,
+    default: 18,
   },
   estimateSize: {
     type: Number,
@@ -360,7 +360,7 @@ function emitEvent(
     display: inline-block;
     overflow: visible;
     position: sticky;
-    top: 0;
+    top: -1px;
     width: 100%;
     z-index: 1;
   }

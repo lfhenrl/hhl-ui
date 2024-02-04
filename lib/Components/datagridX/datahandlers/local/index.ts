@@ -101,6 +101,7 @@ export class localData {
           return item.__id.startsWith(row.__id);
         }
       }).length;
+      console.log("nnnnnnnnnnn");
       this.outData.value.splice(index + 1, count);
       row.__expanded = false;
     } else {

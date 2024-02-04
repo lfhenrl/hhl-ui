@@ -45,6 +45,7 @@ export async function setGroupListExpand(
       __rowsLoaded: 0,
       __level: level + 1,
       __nextPage: 0,
+      __pid: row.__id,
     };
   });
 
@@ -64,11 +65,11 @@ export async function setGroupListExpand(
       __rowsLoaded: row.__rowsLoaded,
       __isGroup: true,
       __filter: filter,
-      __Pid: row.__id,
+      __pid: row.__id,
       __id: crypto.randomUUID(),
     });
   }
-
+  console.log("expanGroup");
   DH.outData.value.splice(index + 1, 0, ...gData);
   DH.outData.value = [...DH.outData.value];
 }

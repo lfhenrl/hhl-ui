@@ -99,7 +99,6 @@ function menuClick(e: MouseEvent) {
 
   if (action === "autoSize") {
     col.autoWidth = true;
-    col.maxValue.value = "x";
     col.Dgrid.ColumnWidthAdjustment.findMaxSingelColumn(col);
   }
 }

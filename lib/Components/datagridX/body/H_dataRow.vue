@@ -5,8 +5,14 @@
     v-else
     v-for="(col, index) in DG.getVisibelColumns()"
     class="H_dataRow-Cell"
-    :class="[col.className, col.props.className, slotClass(col)]"
-    :style="cellStyle(col)"
+    :class="[col.props.className, slotClass(col)]"
+    :style="[
+      {
+        minWidth: col.width.value ?? '',
+        maxWidth: col.width.value ?? '',
+      },
+      cellStyle(col),
+    ]"
     :data-col-index="index"
     data-type="rowcell"
   >

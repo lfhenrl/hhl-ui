@@ -28,6 +28,7 @@
         type="number"
         filter_type="number"
         cell-class="text-err"
+        width="100px"
       />
       <H_column
         field="val1"

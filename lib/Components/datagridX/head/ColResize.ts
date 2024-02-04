@@ -9,8 +9,7 @@ export function ColResize(col: any, mousePos: any) {
     const newWidth = rowWidth + diffX;
     if (newWidth > 40) {
       const newWidthString = rowWidth + diffX + 1 + "px";
-      col.cssRule.style.maxWidth = newWidthString;
-      col.cssRule.style.minWidth = newWidthString;
+      col.width.value = newWidthString;
       col.autoWidth = false;
     }
   }

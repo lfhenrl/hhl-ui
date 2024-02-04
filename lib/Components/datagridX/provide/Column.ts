@@ -1,14 +1,13 @@
 import { Ref, reactive, ref, watch } from "vue";
 import { iDgrid } from "./Dgrid";
 import { iFilterData } from "./datagridTypes";
+import { debounce } from "../../../utils/debounce";
 
 export type iColumn = InstanceType<typeof Column>;
 
 export class Column {
   public Dgrid: iDgrid;
   public dom: HTMLElement | null;
-  public className: string;
-  public cssRule: CSSStyleRule;
   public props: {
     field: string;
     title: string;
@@ -33,25 +32,17 @@ export class Column {
   public slot: any;
   public index: number;
   public orgIndex: number;
-  public width: string;
+  public width = ref("auto");
   public autoWidth: boolean;
-  public maxValue: Ref<string>;
+  public maxValue = "x";
+  public maxValueRef = ref("x");
   public visibel: Ref<boolean> = ref(true);
   public sortDirection: Ref<string>;
   public sortIndex: Ref<number>;
 
   constructor(_Dgrid: iDgrid, item: any, index: number) {
     this.Dgrid = _Dgrid;
-    this.className = `${this.Dgrid.Guid}-${index}`;
-    const W = item.props.width ?? "";
-    this.Dgrid.StyleSheet.insertRule(
-      `.${
-        this.Dgrid.Guid
-      }-${index.toString()} { max-width: ${W}; min-width: ${W};}`
-    );
-    const cssList = Array.from(this.Dgrid.StyleSheet.cssRules);
     this.dom = null;
-    this.cssRule = cssList[0] as CSSStyleRule;
     this.visibel = ref(item.props.visibel ?? true);
     this.props = {
       field: item.props.field,
@@ -93,13 +84,30 @@ export class Column {
     this.slot = item.children;
     this.index = index;
     this.orgIndex = index;
-    this.width = item.props.width;
+    this.width.value = item.props.width;
     this.autoWidth =
       item.props.width === undefined || item.props.width === "auto"
         ? true
         : false;
-    this.maxValue = ref("x");
-    watch(this.maxValue, () => this.Dgrid.ColumnWidthAdjustment.setCss(this));
+    this.maxValue = "x";
     watch(this.sortDirection, () => this.Dgrid.Sorting.update(this));
   }
+
+  setMaxValue(val: string) {
+    this.maxValue = val;
+    if (this.autoWidth) {
+      this.debouncedUpdate();
+    }
+  }
+  debouncedUpdate = debounce(async () => {
+    this.maxValueRef.value = this.maxValue;
+    setTimeout(() => {
+      const spaceDiv = this.dom?.querySelector(
+        ".H_HeadCell-space"
+      ) as HTMLElement;
+      const textW = spaceDiv?.offsetWidth! + 6;
+      let headW = this.dom?.offsetWidth! + 1;
+      this.width.value = Math.max(textW, headW) + "px";
+    }, 10);
+  }, 20);
 }

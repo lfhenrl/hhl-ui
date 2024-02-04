@@ -4,7 +4,10 @@
     ref="headCellRef"
     :data-col-index="index"
     data-type="headcell"
-    :class="col.className"
+    :style="{
+      minWidth: col.width.value ?? '',
+      maxWidth: col.width.value ?? '',
+    }"
   >
     <div class="H_HeaderCell-inner">
       <div class="H_HeadCell-text" data-subtype="title">
@@ -18,7 +21,7 @@
       ></div>
     </div>
     <div class="H_HeadCell-space">
-      {{ col.maxValue }}
+      {{ col.maxValueRef.value }}
     </div>
   </div>
 </template>
@@ -86,12 +89,11 @@ onMounted(() => {
   .H_HeadCell-space {
     height: 0;
     width: min-content;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: visible;
     white-space: nowrap;
     opacity: 0;
-    padding-left: 2px;
-    padding-right: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 </style>

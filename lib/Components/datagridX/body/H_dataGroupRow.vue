@@ -12,6 +12,7 @@
     </div>
     <div>{{ row.__title }}</div>
     <span> ({{ row.__count }}/{{ row.__count_total }})</span>
+    <span> ({{ row.__rowsLoaded }}</span>
   </div>
 </template>
 
@@ -26,8 +27,8 @@ const P = defineProps({
 
 const DG = inject("DG") as iDgrid;
 
-function expand() {
-  DG.dataHandler?.expanding(P.row);
+async function expand() {
+  await DG.dataHandler?.expanding(P.row);
 }
 onMounted(() => {});
 </script>

@@ -28,6 +28,7 @@ export async function setGroupList(DH: iDatahandler) {
       __rowsLoaded: 0,
       __level: 0,
       __nextPage: 0,
+      __pid: 0,
     };
   });
 
@@ -46,8 +47,9 @@ export async function setGroupList(DH: iDatahandler) {
       __groupBy,
       __isGroup: true,
       __id: crypto.randomUUID(),
+      __pid: 0,
     });
   }
-
+  console.log("setGroupList ", gData);
   DH.outData.value = gData;
 }

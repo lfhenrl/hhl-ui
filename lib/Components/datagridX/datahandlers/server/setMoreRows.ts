@@ -37,10 +37,15 @@ export async function setMoreRows(
         __rowsLoaded: 0,
         __level: 0,
         __nextPage: 0,
+        __pid: row.__id,
       };
     });
   } else {
-    gData = data.data;
+    const d = data.data.map((it: any) => {
+      it.__pid = row.__pid;
+      return it;
+    });
+    gData = d;
   }
 
   const dataCount = gData.length;
@@ -58,6 +63,7 @@ export async function setMoreRows(
       __filter: row.__filter ?? [],
       __Pid: row.__Pid,
       __id: crypto.randomUUID(),
+      __pid: row.__id,
     });
   }
   if (row.__isGroup) {
@@ -66,6 +72,7 @@ export async function setMoreRows(
     );
     pRow.__rowsLoaded = pRow.__rowsLoaded + dataCount;
   }
+  console.log("MoreRows ", gData);
   DH.outData.value.splice(index, 1);
   DH.outData.value.splice(index, 0, ...gData);
   DH.outData.value = [...DH.outData.value];

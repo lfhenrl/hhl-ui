@@ -4,26 +4,6 @@ import { iDgrid } from "./Dgrid";
 export function ColumnWidthAdjustment(_Dgrid: iDgrid) {
   const Dgrid: iDgrid = _Dgrid;
 
-  function setCss(col: iColumn) {
-    if (col.autoWidth === true) {
-      setTimeout(() => {
-        col.cssRule.style.minWidth = col.dom?.offsetWidth + "px";
-        col.cssRule.style.maxWidth = col.dom?.offsetWidth + "px";
-      }, 10);
-    }
-  }
-
-  function resetCss(col: iColumn) {
-    col.autoWidth = true;
-    col.cssRule.style.minWidth = "";
-    col.cssRule.style.maxWidth = "";
-  }
-
-  function getvirtualRows(): any[] {
-    const rows: any[] | undefined = Dgrid.Vscroller?.getvirtualRows();
-    return rows ?? [];
-  }
-
   function getActiveColumns() {
     return Dgrid.columns.filter((item) => item.autoWidth === true);
   }
@@ -34,21 +14,17 @@ export function ColumnWidthAdjustment(_Dgrid: iDgrid) {
 
     const valFormatted =
       col.props.format?.(val, col, row) ?? val?.toString() ?? "";
-    const valStr: string = valFormatted.toString() ?? "";
-    if (
-      (valStr && col.maxValue.value.length < valStr.length) ||
-      valStr.length < 5
-    ) {
-      resetCss(col);
-      col.maxValue.value = valFormatted;
-      setCss(col);
-    }
+    const valStr: string = valFormatted.toString() ?? "xxx";
+
+    if (!valStr) return;
+    if (valStr.length <= col.maxValue.length) return;
+    col.setMaxValue(valFormatted);
   }
 
   function findMaxSingelColumn(col: iColumn) {
-    resetCss(col);
-    getvirtualRows().forEach((row) => setMaxValue(col, row));
-    setCss(col);
+    col.autoWidth = true;
+    col.width.value = "auto";
+    col.setMaxValue(col.maxValue);
   }
 
   function findMaxAllColumns(row: any) {
@@ -57,16 +33,15 @@ export function ColumnWidthAdjustment(_Dgrid: iDgrid) {
 
   function adjustAll() {
     Dgrid.columns.forEach((col) => {
-      resetCss(col);
-      col.maxValue.value = "x";
+      col.autoWidth = true;
+      col.width.value = "auto";
+      col.setMaxValue(col.maxValue);
     });
   }
 
   return {
-    setCss,
     findMaxSingelColumn,
     findMaxAllColumns,
     adjustAll,
-    resetCss,
   };
 }

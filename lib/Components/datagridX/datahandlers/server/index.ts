@@ -60,12 +60,14 @@ export class serverData {
   public async expanding(row: any) {
     const index = this.getIndexByItem(row);
     if (row.__expanded) {
-      const moreRowsIndex = this.outData.value.findIndex(
-        (item: any) => item.__Pid === row.__id
-      );
-      if (moreRowsIndex) this.outData.value.splice(moreRowsIndex, 1);
-      this.outData.value.splice(index + 1, row.__rowsLoaded);
-      row.__rowsLoaded = 0;
+      console.log("EXPAND ", row);
+      const count = this.outData.value.filter((item: any) => {
+        return item.__pid === row.__id;
+      }).length;
+
+      this.outData.value.splice(index + 1, count);
+
+      // row.__rowsLoaded = 0;
       row.__expanded = false;
       this.outData.value = [...this.outData.value];
     } else {

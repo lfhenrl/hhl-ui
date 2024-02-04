@@ -41,11 +41,17 @@ export async function setFlatListExpand(
       __rowsLoaded: row.rowsLoaded,
       __isGroup: false,
       __filter: filter,
-      __Pid: row.id,
+      __pid: row.id,
       __id: crypto.randomUUID(),
     });
   }
 
-  DH.outData.value.splice(index + 1, 0, ...data.data);
+  const d = data.data.map((it: any) => {
+    it.__pid = row.__id;
+    return it;
+  });
+  console.log("FlatListExpand");
+  DH.outData.value.splice(index + 1, 0, ...d);
+
   DH.outData.value = [...DH.outData.value];
 }

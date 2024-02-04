@@ -11,11 +11,7 @@
       @click="datagridClick"
     >
       <template v-slot:header>
-        <H_headerRow
-          role="heading"
-          aria-level="2"
-          :key="DG.changeCounter.value"
-        />
+        <H_headerRow role="heading" aria-level="2" />
         <H_progressBar :show="DG.dataHandler?.rowsLoading.value" />
       </template>
       <template v-slot="{ item }">
@@ -88,7 +84,9 @@ function rowStyle(index: number) {
 }
 
 function adjustColumnsWidth(row: any) {
+  if (row.row.__type) return;
   DG.ColumnWidthAdjustment.findMaxAllColumns(row.row);
+  /*   console.log(row.row.id); */
 }
 watch(
   () => P.filterstring,
