@@ -1,11 +1,6 @@
 <template>
   <div class="icon-list">
-    <div
-      :name="item"
-      v-for="item in iconList.toSorted()"
-      :key="item"
-      class="icon-list-item shadow"
-    >
+    <div :name="item" v-for="item in iconList.toSorted()" :key="item" class="icon-list-item shadow">
       <H_icon :icon="String(item)"></H_icon>
       <div>{{ item }}</div>
     </div>

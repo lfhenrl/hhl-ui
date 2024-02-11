@@ -1,6 +1,6 @@
 <template>
   <component
-    :is="icon"
+    :is="ic"
     class="H_icon"
     :disabled="disabled ? '' : undefined"
     :tabindex="btn === 'none' || $attrs.disabled == true ? '' : '0'"
@@ -14,15 +14,13 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, defineAsyncComponent } from "vue";
-import { type IconNames } from "../SubComponents/icons/iconNames";
+import { PropType } from "vue";
+import { type IconNames, Icons } from "../SubComponents/icons/iconNames";
 
 const P = defineProps({
   size: { type: String, default: "24px" },
   btn: {
-    type: String as PropType<
-      "outline" | "outline-round" | "fill" | "fill-round" | "standard" | "none"
-    >,
+    type: String as PropType<"outline" | "outline-round" | "fill" | "fill-round" | "standard" | "none">,
     default: "none",
   },
   icon: {
@@ -32,9 +30,7 @@ const P = defineProps({
   disabled: { type: Boolean, default: false },
 });
 
-const icon = defineAsyncComponent(
-  () => import(`../SubComponents/icons/ico-${P.icon}.vue`)
-);
+const ic: any = Icons[P.icon];
 </script>
 
 <style>

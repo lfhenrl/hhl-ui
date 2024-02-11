@@ -86,15 +86,19 @@ export class serverData {
     return new Promise((resolve) => setTimeout(resolve));
   }
 
+  public getItemById(id: any) {
+    return this.outData.value.find((item: any) => item[this.dataKey] == id);
+  }
+
+  public async getSelectList(field: string) {
+    return [field];
+  }
+
   public getIndexByItem(dataItem: any) {
     if (dataItem.__type) {
-      return this.outData.value.findIndex(
-        (item: any) => item.__id == dataItem.__id
-      );
+      return this.outData.value.findIndex((item: any) => item.__id == dataItem.__id);
     } else {
-      return this.outData.value.findIndex(
-        (item: any) => item[this.dataKey] == dataItem[this.dataKey]
-      );
+      return this.outData.value.findIndex((item: any) => item[this.dataKey] == dataItem[this.dataKey]);
     }
   }
 }
