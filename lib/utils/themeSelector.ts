@@ -4,8 +4,6 @@ const darkTheme = ref(false);
 const loadTheme = ref(false);
 
 export function themeSelector() {
-
-
   const storageTheme = localStorage.getItem("hhlThemeDark");
   if (storageTheme) {
     darkTheme.value = storageTheme === "true" ? true : false;
@@ -13,14 +11,11 @@ export function themeSelector() {
   }
 
   watch(darkTheme, () => {
-    loadTheme.value=true;
-    console.log("LOAD: ", loadTheme.value);
+    loadTheme.value = true;
     setTheme();
     setTimeout(() => {
-      loadTheme.value=false;
-      console.log("LOAD: ", loadTheme.value);
-    })
-   
+      loadTheme.value = false;
+    });
   });
 
   function setTheme() {
@@ -31,8 +26,7 @@ export function themeSelector() {
       localStorage.setItem("hhlThemeDark", "false");
       document.body.classList.remove("darkTheme");
     }
-
   }
 
-  return {darkTheme,loadTheme};
+  return { darkTheme, loadTheme };
 }
