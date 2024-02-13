@@ -1,51 +1,5 @@
 import { defineAsyncComponent } from "vue";
 
-/* export const iconList = [
-  "account",
-  "add",
-  "arrow_downward",
-  "arrow_upward",
-  "drag",
-  "cast",
-  "day",
-  "lock",
-  "edit",
-  "excel",
-  "mail",
-  "menu",
-  "menuSmall",
-  "night",
-  "close",
-  "search",
-  "sorting",
-  "expand_down",
-  "expand_up",
-  "expand_right",
-  "expand_left",
-  "page_first",
-  "page_last",
-  "expand_horizontal",
-  "event",
-  "info",
-  "clock",
-  "check",
-  "refresh",
-  "history",
-  "home",
-  "columns",
-  "tree",
-  "upload",
-  "print",
-  "settings",
-  "save",
-  "zoom_out_map",
-  "filter",
-  "split",
-  "undo",
-  "image",
-] as const;
- */
-
 export const Icons: any = {
   account: defineAsyncComponent(() => import(`./ico-account.vue`)),
   add: defineAsyncComponent(() => import(`./ico-add.vue`)),
@@ -89,6 +43,8 @@ export const Icons: any = {
   split: defineAsyncComponent(() => import(`./ico-split.vue`)),
   image: defineAsyncComponent(() => import(`./ico-image.vue`)),
   undo: defineAsyncComponent(() => import(`./ico-undo.vue`)),
+  windowMinimize: defineAsyncComponent(() => import(`./ico-windowMinimize.vue`)),
+  windowRestore: defineAsyncComponent(() => import(`./ico-windowRestore.vue`)),
 };
 export const iconList = Object.keys(Icons);
 
