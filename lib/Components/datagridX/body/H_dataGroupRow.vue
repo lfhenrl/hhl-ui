@@ -12,7 +12,7 @@
     </div>
     <div>{{ row.__title }}</div>
     <span> ({{ row.__count }}/{{ row.__count_total }})</span>
-    <span> ({{ row.__rowsLoaded }}</span>
+    <span> ({{ row.__id }})</span>
   </div>
 </template>
 

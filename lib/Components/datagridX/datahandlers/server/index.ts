@@ -60,12 +60,8 @@ export class serverData {
   public async expanding(row: any) {
     const index = this.getIndexByItem(row);
     if (row.__expanded) {
-      console.log("EXPAND ", row);
-      const count = this.outData.value.filter((item: any) => {
-        return item.__pid === row.__id;
-      }).length;
-
-      this.outData.value.splice(index + 1, count);
+      console.log("EXPAND");
+      this.outData.value = this.outData.value.filter((item: any) => !item.__pid.startsWith(row.__id));
 
       // row.__rowsLoaded = 0;
       row.__expanded = false;

@@ -1,9 +1,4 @@
-export async function groupBy(
-  property: any,
-  data: any,
-  level: number,
-  _id: string,
-) {
+export async function groupBy(property: any, data: any, level: number, _id: string) {
   if (!property) return data;
   const objArr = data.reduce((acc: any, obj: any) => {
     let key = obj[property];
@@ -19,6 +14,7 @@ export async function groupBy(
         __level: level,
         __title: key,
         __expanded: false,
+        __pid: _id,
       };
     }
     acc[key].__count++;

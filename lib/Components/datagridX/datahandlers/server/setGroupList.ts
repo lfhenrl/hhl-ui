@@ -1,10 +1,7 @@
 import { iDatahandler } from "../server";
 
 export async function setGroupList(DH: iDatahandler) {
-  const __select = [
-    `${DH.groupList[0]} AS title`,
-    `Count(${DH.groupList[0]}) AS count`,
-  ];
+  const __select = [`${DH.groupList[0]} AS title`, `Count(${DH.groupList[0]}) AS count`];
   const __groupBy = [DH.groupList[0]];
 
   const Qpara: any = {
@@ -28,7 +25,7 @@ export async function setGroupList(DH: iDatahandler) {
       __rowsLoaded: 0,
       __level: 0,
       __nextPage: 0,
-      __pid: 0,
+      __pid: "",
     };
   });
 
@@ -47,7 +44,7 @@ export async function setGroupList(DH: iDatahandler) {
       __groupBy,
       __isGroup: true,
       __id: crypto.randomUUID(),
-      __pid: 0,
+      __pid: "",
     });
   }
   console.log("setGroupList ", gData);

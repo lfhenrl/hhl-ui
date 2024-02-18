@@ -15,7 +15,7 @@ export class localData {
   public rowsCount = ref(0);
   public rowsCountTotal = ref(0);
   public rowsLoading = ref(false);
-  public groupList: string[] = ["val2", "val4", "val7"];
+  public groupList: string[] = [];
   public scrollPos = 0;
 
   init(_Dgrid: iDgrid) {
@@ -34,6 +34,7 @@ export class localData {
   async loadData() {
     await this.startLoading();
     this.rowsCountTotal.value = this.orgData.length;
+
     const newData = await this.getFilt_sortData(this.Dgrid!.Filter);
     if (this.groupList.length > 0) {
       const result = await groupBy(this.groupList[0], newData, 0, "");
@@ -51,13 +52,9 @@ export class localData {
 
   public getIndexByItem(dataItem: any) {
     if (dataItem.__type) {
-      return this.outData.value.findIndex(
-        (item: any) => item.__id == dataItem.__id
-      );
+      return this.outData.value.findIndex((item: any) => item.__id == dataItem.__id);
     } else {
-      return this.outData.value.findIndex(
-        (item: any) => item[this.dataKey] == dataItem[this.dataKey]
-      );
+      return this.outData.value.findIndex((item: any) => item[this.dataKey] == dataItem[this.dataKey]);
     }
   }
 
@@ -66,7 +63,7 @@ export class localData {
     return new Promise((resolve) => setTimeout(resolve));
   }
 
-  async getExpandingData(row: any, id: string) {
+  async getExpandingData(row: any, pid: string) {
     const GrFilter = structuredClone(this.Dgrid?.Filter) ?? [];
     const parentArr = row.__id.split("/");
 
@@ -84,7 +81,7 @@ export class localData {
       GrFilter.push(Nfilter);
     }
     return (await this.getFilt_sortData(GrFilter)).map((it) => {
-      it.__id = id;
+      it.__pid = pid;
       return it;
     });
   }
@@ -94,15 +91,7 @@ export class localData {
     const index = this.getIndexByItem(row);
 
     if (row.__expanded) {
-      const count = this.outData.value.filter((item: any) => {
-        if (item.__type && item.__type === "group") {
-          return item.__id.startsWith(row.__id) && item.__id !== row.__id;
-        } else {
-          return item.__id.startsWith(row.__id);
-        }
-      }).length;
-      console.log("nnnnnnnnnnn");
-      this.outData.value.splice(index + 1, count);
+      this.outData.value = this.outData.value.filter((item: any) => !item.__pid.startsWith(row.__id));
       row.__expanded = false;
     } else {
       const GroupProp = this.groupList[row.__level + 1];
@@ -117,8 +106,8 @@ export class localData {
       }
       row.__expanded = true;
     }
-    this.outData.value = [...this.outData.value];
 
+    this.outData.value = [...this.outData.value];
     this.rowsCount.value = this.outData.value.length ?? 0;
     this.rowsLoading.value = false;
   }

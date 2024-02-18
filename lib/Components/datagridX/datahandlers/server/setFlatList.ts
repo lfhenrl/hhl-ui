@@ -22,7 +22,7 @@ export async function setFlatList(DH: iDatahandler) {
       __rowsLoaded: dataCount,
       __isGroup: false,
       __id: crypto.randomUUID(),
-      __pid: 0,
+      __pid: "",
     });
   }
   console.log("FlatList");

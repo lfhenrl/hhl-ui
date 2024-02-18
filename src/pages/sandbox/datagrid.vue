@@ -3,12 +3,7 @@
     <div style="display: flex; align-items: center">
       <H_btn @click="load" style="width: 100px">Load</H_btn>
       <div style="flex: 1" />
-      <H_inputText
-        v-model="seek"
-        :debounce="300"
-        clearable
-        style="max-width: 200px"
-      >
+      <H_inputText v-model="seek" :debounce="300" clearable style="max-width: 200px">
         <template v-slot:end>
           <H_icon icon="search"></H_icon>
         </template>
@@ -20,29 +15,12 @@
       :dataHandler="lData"
       :filter-list="['id', 'val1', 'val2', 'val3', 'val4', 'val7']"
       :filterstring="seek"
+      :group-list="['val2', 'val4', 'val7']"
       data-key="id"
     >
-      <H_column
-        field="id"
-        title="Id"
-        type="number"
-        filter_type="number"
-        cell-class="text-err"
-        width="100px"
-      />
-      <H_column
-        field="val1"
-        title="Value 1"
-        type="string"
-        filter_type="string"
-        width="auto"
-      />
-      <H_column
-        field="val2"
-        title="Value 2"
-        type="string"
-        filter_type="select"
-      />
+      <H_column field="id" title="Id" type="number" filter_type="number" cell-class="text-err" width="100px" />
+      <H_column field="val1" title="Value 1" type="string" filter_type="string" width="auto" />
+      <H_column field="val2" title="Value 2" type="string" filter_type="select" />
       <H_column
         field="val3"
         title="Value 3"
@@ -51,32 +29,10 @@
         class="text-err"
         :cell_style="styleCell"
       />
-      <H_column
-        field="val4"
-        title="Value 4"
-        type="string"
-        filter_type="select"
-      />
-      <H_column
-        field="val5"
-        title="Value 5"
-        type="bool"
-        filter_type="bool"
-        filter_condition="bool_list"
-      />
-      <H_column
-        field="val6"
-        title="Value 6"
-        type="date"
-        filter_type="datetime"
-        :format="formatDate"
-      />
-      <H_column
-        field="val7"
-        title="Value 7"
-        type="string"
-        filter_type="select"
-      />
+      <H_column field="val4" title="Value 4" type="string" filter_type="select" />
+      <H_column field="val5" title="Value 5" type="bool" filter_type="bool" filter_condition="bool_list" />
+      <H_column field="val6" title="Value 6" type="date" filter_type="datetime" :format="formatDate" />
+      <H_column field="val7" title="Value 7" type="string" filter_type="select" />
     </H_datagridX>
   </div>
 </template>
