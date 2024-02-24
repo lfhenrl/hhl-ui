@@ -1,10 +1,8 @@
-import { iSortData } from "../../provide/datagridTypes";
-
-export function getSortList(_sortArray: iSortData[]) {
-  return _sortArray.map((item: iSortData) => {
+export function getSortList(_sortArray: any[]) {
+  return _sortArray.map((item: any) => {
     return {
-      field: item.field,
-      desc: item.direction === "up" ? false : true,
+      Field: item.field,
+      Desc: item.direction === "asc" ? false : true,
     };
   });
 }
