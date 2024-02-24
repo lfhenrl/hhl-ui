@@ -86,7 +86,6 @@ function rowStyle(index: number) {
 function adjustColumnsWidth(row: any) {
   if (row.row.__type) return;
   DG.ColumnWidthAdjustment.findMaxAllColumns(row.row);
-  /*   console.log(row.row.id); */
 }
 watch(
   () => P.filterstring,

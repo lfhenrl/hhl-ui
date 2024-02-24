@@ -13,12 +13,7 @@
   >
     <template v-slot:start><slot name="start" /></template>
     <template v-slot:end>
-      <H_icon
-        btn="standard"
-        v-if="clearable && modelValue"
-        icon="close"
-        class="H_inputbase-clearicon"
-      />
+      <H_icon btn="standard" v-if="clearable && modelValue" icon="close" class="H_inputbase-clearicon" />
       <slot name="end" />
     </template>
 
@@ -66,9 +61,7 @@ const E = defineEmits(["update:modelValue", "input_click"]);
 
 const focused = ref(false);
 const input = ref<any>(null);
-const onInput = (e: any) => (
-  calculateInputHeight(), debouncedUpdate(e.target.value ?? "")
-);
+const onInput = (e: any) => (calculateInputHeight(), debouncedUpdate(e.target.value ?? ""));
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 
 const focus = () => input.value?.focus();
@@ -93,12 +86,8 @@ function calculateInputHeight() {
   if (input.value && !P.noGrow) {
     input.value.style.height = "0";
     const scrollHeight = input.value.scrollHeight;
-    const scrollHeightEnd =
-      scrollHeight < input.value.style.minHeight
-        ? input.value.style.minHeight
-        : scrollHeight;
+    const scrollHeightEnd = scrollHeight < input.value.style.minHeight ? input.value.style.minHeight : scrollHeight;
     input.value.style.minHeight = scrollHeightEnd + "px";
-    console.log(scrollHeight, scrollHeightEnd);
   }
 }
 </script>

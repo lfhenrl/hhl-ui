@@ -13,7 +13,6 @@ const P = defineProps({
 const DG = inject("DG") as iDgrid;
 
 onMounted(() => {
-  console.log("LoadMore");
   DG.dataHandler?.moreRows(P.row);
 });
 </script>

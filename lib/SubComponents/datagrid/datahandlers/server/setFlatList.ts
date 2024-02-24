@@ -25,7 +25,5 @@ export async function setFlatList(DH: iDatahandler) {
       __pid: "",
     });
   }
-  console.log("FlatList");
   DH.outData.value = [...data.data];
-  console.log("ww ", data.data);
 }

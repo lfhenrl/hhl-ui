@@ -1,10 +1,6 @@
 import { iDatahandler } from "../server";
 
-export async function setMoreRows(
-  DH: iDatahandler,
-  row: any,
-  index: number = 0
-) {
+export async function setMoreRows(DH: iDatahandler, row: any, index: number = 0) {
   const skip = !row ? 0 : row.__nextPage;
   // const level = !row ? 0 : row.level;
 
@@ -25,7 +21,6 @@ export async function setMoreRows(
 
   const data: any = await DH.dataFetch.post("", Qpara);
   let gData: any;
-  console.log("DATA", data);
   if (row.__isGroup) {
     gData = data.data.map((item: any) => {
       return {
@@ -67,12 +62,9 @@ export async function setMoreRows(
     });
   }
   if (row.__isGroup) {
-    const pRow: any = DH.outData.value.find(
-      (item: any) => item.__id === row.__Pid
-    );
+    const pRow: any = DH.outData.value.find((item: any) => item.__id === row.__Pid);
     pRow.__rowsLoaded = pRow.__rowsLoaded + dataCount;
   }
-  console.log("MoreRows ", gData);
   DH.outData.value.splice(index, 1);
   DH.outData.value.splice(index, 0, ...gData);
   DH.outData.value = [...DH.outData.value];

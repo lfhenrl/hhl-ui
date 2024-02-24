@@ -66,7 +66,6 @@ export function DateWorkingDays(date1: Date, date2: Date) {
 
     if (day != 0 && day != 6) {
       numOfWorkingDays++;
-      console.log("DAY", day);
     }
   }
   return numOfWorkingDays;

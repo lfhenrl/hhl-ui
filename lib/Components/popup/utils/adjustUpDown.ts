@@ -9,6 +9,5 @@ export function adjustUpDown(Pop: iPop, rect: ipos) {
       rect.top = Pop.wHeight - Math.min(rect.maxHeight, rect.height) - Pop.padding;
     }
   }
-  console.log("R ", rect);
   return rect;
 }

@@ -1,10 +1,6 @@
 import { iDatahandler } from "../server";
 
-export async function setGroupListExpand(
-  DH: iDatahandler,
-  row: any,
-  index: number = 0
-) {
+export async function setGroupListExpand(DH: iDatahandler, row: any, index: number = 0) {
   const level = row.__level ?? 0;
   const parentArr = row.__id.split("/");
   const filter = [];
@@ -25,10 +21,7 @@ export async function setGroupListExpand(
     Skip: 0,
     Filter: filter,
     Order: DH.OrderArray,
-    Select: [
-      `${DH.groupList[level + 1]} AS title`,
-      `Count(${DH.groupList[level + 1]}) AS count`,
-    ],
+    Select: [`${DH.groupList[level + 1]} AS title`, `Count(${DH.groupList[level + 1]}) AS count`],
     GroupBy: [DH.groupList[level + 1]],
   };
 
@@ -69,7 +62,6 @@ export async function setGroupListExpand(
       __id: crypto.randomUUID(),
     });
   }
-  console.log("expanGroup");
   DH.outData.value.splice(index + 1, 0, ...gData);
   DH.outData.value = [...DH.outData.value];
 }

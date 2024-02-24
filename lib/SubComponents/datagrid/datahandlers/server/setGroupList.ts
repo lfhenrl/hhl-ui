@@ -47,6 +47,5 @@ export async function setGroupList(DH: iDatahandler) {
       __pid: "",
     });
   }
-  console.log("setGroupList ", gData);
   DH.outData.value = gData;
 }

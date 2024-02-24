@@ -1,11 +1,6 @@
 import { iDatahandler } from "../server";
 
-export async function setFlatListExpand(
-  DH: iDatahandler,
-  row: any,
-  index: number = 0
-) {
-  // const level = row.level ?? 0;
+export async function setFlatListExpand(DH: iDatahandler, row: any, index: number = 0) {
   const parentArr = row.__id.split("/");
   const filter = [];
 
@@ -50,8 +45,6 @@ export async function setFlatListExpand(
     it.__pid = row.__id;
     return it;
   });
-  console.log("FlatListExpand");
   DH.outData.value.splice(index + 1, 0, ...d);
-
   DH.outData.value = [...DH.outData.value];
 }
