@@ -20,18 +20,18 @@
 
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from "vue";
-import { iColumns } from "../../provide/Columns";
-import { icolumnData } from "../../provide/datagridTypes";
 import H_inputText from "../../../../Components/H_inputText.vue";
 import H_checkbox from "../../../../Components/H_checkbox.vue";
 import H_selectBox from "../../../../Components/select/H_selectBox.vue";
+import { iDgrid } from "../../provide/Dgrid";
+import { iColumn } from "../../provide/Column";
 
 const P = defineProps({
   index: { type: Number, default: 0 },
 });
 
-const Columns = inject("Columns") as iColumns;
-const col: icolumnData = Columns.columns[P.index];
+const DG = inject("DG") as iDgrid;
+const col: iColumn = DG.columns[P.index];
 
 const list = ref<any>([]);
 const value1 = ref<any>();
@@ -96,7 +96,7 @@ function clear() {
 }
 
 async function open() {
-  list.value = await Columns.dataHandler?.getSelectList(col.props.field);
+  list.value = await DG.dataHandler?.getSelectList(col.props.field);
   if (col.filter.value1 === "") {
     value1.value = list.value.toString();
   } else {

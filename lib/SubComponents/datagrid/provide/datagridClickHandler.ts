@@ -1,31 +1,25 @@
-import { iColumns } from "./Columns";
-import { icolumnData } from "./datagridTypes";
+import { iColumn } from "./Column";
+import { iDgrid } from "./Dgrid";
+import { iClickData } from "./datagridTypes";
 
 export class datagridClickHandler {
-  private dataRows: any[];
-  private dataKey: number | string;
-  private columns: iColumns;
+  public DG: iDgrid;
 
-  constructor(rows: any, dataKey: number | string, columns: iColumns) {
-    this.dataRows = rows?.value ?? [];
-    this.dataKey = dataKey;
-    this.columns = columns;
+  constructor(_DG: iDgrid) {
+    this.DG = _DG;
   }
 
-  newData(rows: any) {
-    this.dataRows = rows;
-  }
   click(e: MouseEvent) {
     const ele = e.target as HTMLElement;
     if (!ele) return null;
     const data = getData(ele);
 
-    if (data.dataId !== "") {
-      data.dataItem = this.dataRows.find((item: any) => item[this.dataKey] == data.dataId);
+    if (data.dataId) {
+      data.dataItem = this.DG.dataHandler?.getItemById(data.dataId);
     }
 
     if (data.colIndex >= 0) {
-      data.column = this.columns.columns[data.colIndex];
+      data.column = this.DG.columns[data.colIndex];
       data.field = data.column.props.field;
       data.colOrgIndex = data.column.orgIndex;
     }
@@ -35,15 +29,15 @@ export class datagridClickHandler {
 }
 
 function getData(ele0: HTMLElement) {
-  const val = {
+  const val: iClickData = {
     type: "",
     colIndex: -1,
     colOrgIndex: -1,
     subType: "",
-    dataId: "",
+    dataId: null,
     dataItem: null,
-    column: (<any>[]) as icolumnData,
-    field: ""
+    column: (<any>[]) as iColumn,
+    field: "",
   };
   getDetails(val, ele0);
   const ele1 = ele0.parentElement ?? undefined;
@@ -64,8 +58,8 @@ function getDetails(val: any, ele?: HTMLElement) {
   if (ele.dataset.type) {
     val.type = ele.dataset.type;
   }
-  if (ele.dataset.index) {
-    val.colIndex = ele.dataset.index;
+  if (ele.dataset["colIndex"]) {
+    val.colIndex = ele.dataset["colIndex"];
   }
   if (ele.dataset.subtype) {
     val.subType = ele.dataset.subtype;

@@ -32,8 +32,8 @@ import H_filterDate from "./filterTypes/H_filterDate.vue";
 import H_filterBool from "./filterTypes/H_filterBool.vue";
 import H_filterSelect from "./filterTypes/H_filterSelect.vue";
 import H_filterNone from "./filterTypes/H_filterNone.vue";
-import { iColumns } from "../provide/Columns";
-import { icolumnData } from "../provide/datagridTypes";
+import { iDgrid } from "../provide/Dgrid";
+import { iColumn } from "../provide/Column";
 
 const P = defineProps({
   index: { type: Number, default: 0 },
@@ -41,8 +41,9 @@ const P = defineProps({
 
 defineExpose({ filterOpen });
 
-const Columns = inject("Columns") as iColumns;
-const col: icolumnData = Columns.columns[P.index];
+const DG = inject("DG") as iDgrid;
+
+const col: iColumn = DG.columns[P.index];
 
 const isOpen = ref(false);
 const filterCompRef = ref<any>();
@@ -54,13 +55,13 @@ function filterOpen() {
 
 function filterSave() {
   filterCompRef.value.save();
-  Columns.updateFilterArray();
+  DG.updateFilter();
   isOpen.value = false;
 }
 
 function filterClear() {
   filterCompRef.value.clear();
-  Columns.updateFilterArray();
+  DG.updateFilter();
   isOpen.value = false;
 }
 

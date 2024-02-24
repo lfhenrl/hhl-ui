@@ -5,11 +5,13 @@ export default function filterBool(filter: iFilterData) {
   let trueCheck = filtList?.includes("true");
   let falseCheck = filtList?.includes("false");
   let nullCheck = filtList?.includes("null");
+  const field = filter.field;
   return (value: any) => {
     let sand = false;
-    if (trueCheck && value === true) sand = true;
-    if (falseCheck && value === false) sand = true;
-    if (nullCheck && value === null) sand = true;
+    const val = value[field];
+    if (trueCheck && val === true) sand = true;
+    if (falseCheck && val === false) sand = true;
+    if (nullCheck && val === null) sand = true;
 
     return sand;
   };

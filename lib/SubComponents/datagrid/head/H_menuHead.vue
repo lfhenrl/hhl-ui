@@ -1,16 +1,9 @@
 <template>
   <div class="H_menuHead" data-subtype="menu">
-    <H_icon
-      icon="menuSmall"
-      v-if="col.sortDirection.value === 'none' && !col.filter.active"
-    />
+    <H_icon icon="menuSmall" v-if="col.sortDirection.value === 'none' && !col.filter.active" />
     <div class="H_menuHead-active" v-else>
       <div class="H_HeadCell-sorting" v-if="col.sortDirection.value !== 'none'">
-        <H_icon
-          icon="arrow_upward"
-          size="18px"
-          v-if="col.sortDirection.value === 'asc'"
-        />
+        <H_icon icon="arrow_upward" size="18px" v-if="col.sortDirection.value === 'asc'" />
         <H_icon icon="arrow_downward" size="18px" v-else />
         <div class="H_HeadCell-sortingText">{{ col.sortIndex.value + 1 }}</div>
       </div>
@@ -21,7 +14,7 @@
 
 <script setup lang="ts">
 import { inject } from "vue";
-import H_icon from "../../H_icon.vue";
+import H_icon from "../../../Components/H_icon.vue";
 import { iColumn } from "../provide/Column";
 import { iDgrid } from "../provide/Dgrid";
 

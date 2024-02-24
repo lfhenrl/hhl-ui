@@ -9,7 +9,7 @@
         </template>
       </H_inputText>
     </div>
-    <H_datagridX
+    <H_datagrid
       @head-click="headClick"
       @row-click="rowClick"
       :dataHandler="lData"
@@ -33,20 +33,20 @@
       <H_column field="val5" title="Value 5" type="bool" filter_type="bool" filter_condition="bool_list" />
       <H_column field="val6" title="Value 6" type="date" filter_type="datetime" :format="formatDate" />
       <H_column field="val7" title="Value 7" type="string" filter_type="select" />
-    </H_datagridX>
+    </H_datagrid>
   </div>
 </template>
 
 <script setup lang="ts">
-import H_datagridX from "../../../lib/Components/datagridX/H_datagridX.vue";
+import H_datagrid from "../../../lib/Components/datagrid/H_datagrid.vue";
 import H_column from "../../../lib/Components/datagrid/H_column.vue";
 import H_btn from "../../../lib/Components/H_btn.vue";
 import H_inputText from "../../../lib/Components/H_inputText.vue";
 import { getData } from "../../testData/data";
-import { localData } from "../../../lib/Components/datagridX/datahandlers/local";
+import { localData } from "../../../lib/Components/datagrid";
 import { D_01_dec_2021_HHMM } from "../../../lib/utils/dateFormat";
 import { ref } from "vue";
-import { iClickData } from "../../../lib/Components/datagridX/provide/datagridTypes";
+import { iClickData } from "../../../lib/Components/datagrid";
 
 const seek = ref("");
 const lData = new localData();

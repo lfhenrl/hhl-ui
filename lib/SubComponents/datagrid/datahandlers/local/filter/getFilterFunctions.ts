@@ -3,29 +3,33 @@ import filterString from "./filterString";
 import filterBool from "./filterBool";
 import filterDate from "./filterDate";
 import filterSelect from "./filterSelect";
+import filterSeek from "./filterSeek";
 import { iFilterData } from "../../../provide/datagridTypes";
 
 export default function getFilterFunctions(filterList: any[]) {
-  const fList: any = {};
+  const fList: any = [];
   filterList.forEach((item: iFilterData) => {
     switch (item.type) {
       case "number":
-        fList[item.field] = filterNumber(item);
+        fList.push(filterNumber(item));
         break;
       case "string":
-        fList[item.field] = filterString(item);
+        fList.push(filterString(item));
         break;
       case "bool":
-        fList[item.field] = filterBool(item);
+        fList.push(filterBool(item));
         break;
       case "date":
-        fList[item.field] = filterDate(item);
+        fList.push(filterDate(item));
         break;
       case "datetime":
-        fList[item.field] = filterDate(item);
+        fList.push(filterDate(item));
         break;
       case "select":
-        fList[item.field] = filterSelect(item);
+        fList.push(filterSelect(item));
+        break;
+      case "seek":
+        fList.push(filterSeek(item));
         break;
       default:
     }

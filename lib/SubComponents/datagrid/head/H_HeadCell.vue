@@ -14,11 +14,7 @@
         {{ col.props.title }}
       </div>
       <H_menu :index="index" />
-      <div
-        class="H_HeadCell-resize"
-        @mousedown="resize"
-        data-subtype="resize"
-      ></div>
+      <div class="H_HeadCell-resize" @mousedown="resize" data-subtype="resize"></div>
     </div>
     <div class="H_HeadCell-space">
       {{ col.maxValueRef.value }}

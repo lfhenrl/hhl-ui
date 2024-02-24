@@ -1,6 +1,12 @@
 <template>
   <div class="H_columnItem">
-    <H_checkbox size="sm" v-model="data.visibel" class="selectSize" />
+    <div
+      class="H_columnItem-check"
+      :class="{ 'H_columnItem-checked': data.visibel }"
+      @click="checkClick"
+    >
+      <H_icon icon="check" size="15px" btn="standard" v-if="data.visibel" />
+    </div>
     <H_icon icon="drag" size="16px" btn="standard" />
     {{ data?.title }}
   </div>
@@ -8,7 +14,6 @@
 
 <script setup lang="ts">
 import { PropType, ref } from "vue";
-import H_checkbox from "../../../../Components/H_checkbox.vue";
 import H_icon from "../../../../Components/H_icon.vue";
 
 type iGroupdata = {
@@ -30,6 +35,9 @@ const props = defineProps({
 });
 
 const data = ref<iGroupdata>(props.item);
+function checkClick() {
+  data.value.visibel = !data.value.visibel;
+}
 </script>
 <style>
 @layer hhl-components {
@@ -42,6 +50,20 @@ const data = ref<iGroupdata>(props.item);
   }
   .H_columnItem:hover {
     background-color: var(--col-bg-2);
+  }
+  .H_columnItem-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px var(--col-txt-1);
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    margin-right: 3px;
+  }
+  .H_columnItem-checked {
+    background-color: var(--col-pri);
+    border: none;
   }
 }
 </style>

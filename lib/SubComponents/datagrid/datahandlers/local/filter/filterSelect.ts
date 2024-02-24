@@ -6,11 +6,12 @@ export default function filterSelect(filter: iFilterData) {
   switch (filter.condition1) {
     case "equal":
       return (value: any) => {
-        return filterList?.includes(value);
+        return filterList?.includes(value[filter.field]);
       };
+
     case "not_equal":
       return (value: any) => {
-        return !filterList?.includes(value);
+        return !filterList?.includes(value[filter.field]);
       };
 
     default:

@@ -75,22 +75,17 @@ export class Column {
       type: item.props.filter_type ?? "none",
       active: false,
     });
-    const sd: string =
-      this.props.sorting === undefined || this.props.sorting === "none"
-        ? "none"
-        : this.props.sorting;
+    const sd: string = this.props.sorting === undefined || this.props.sorting === "none" ? "none" : this.props.sorting;
     this.sortDirection = ref(sd);
     this.sortIndex = ref(0);
     this.slot = item.children;
     this.index = index;
     this.orgIndex = index;
     this.width.value = item.props.width;
-    this.autoWidth =
-      item.props.width === undefined || item.props.width === "auto"
-        ? true
-        : false;
+    this.autoWidth = item.props.width === undefined || item.props.width === "auto" ? true : false;
     this.maxValue = "x";
     watch(this.sortDirection, () => this.Dgrid.Sorting.update(this));
+    this.debouncedUpdate();
   }
 
   setMaxValue(val: string) {
@@ -102,9 +97,7 @@ export class Column {
   debouncedUpdate = debounce(async () => {
     this.maxValueRef.value = this.maxValue;
     setTimeout(() => {
-      const spaceDiv = this.dom?.querySelector(
-        ".H_HeadCell-space"
-      ) as HTMLElement;
+      const spaceDiv = this.dom?.querySelector(".H_HeadCell-space") as HTMLElement;
       const textW = spaceDiv?.offsetWidth! + 6;
       let headW = this.dom?.offsetWidth! + 1;
       this.width.value = Math.max(textW, headW) + "px";

@@ -50,19 +50,20 @@ import H_dragDrop from "../../../../Components/H_dragDrop.vue";
 import H_inputbase from "../../../../SubComponents/H_inputBase.vue";
 import H_columnItem from "./H_columnItem.vue";
 import { ref, inject, computed } from "vue";
-import { iColumns } from "../../provide/Columns";
+import { iDgrid } from "../../provide/Dgrid";
+/* import { iColumn } from "../../provide/Column"; */
 
 // const E = defineEmits([]);
 
-const Columns = inject("Columns") as iColumns;
+const DG = inject("DG") as iDgrid;
 const sourceColumns = ref<any[]>([]);
 const groupColumns = ref<any>([]);
 
 defineExpose({ columnsOpen });
 
 const open = ref(false);
-let orgSourceArrayString = "";
-let orgGroupArrayString = "";
+const orgSourceArrayString = ref("");
+const orgGroupArrayString = ref("");
 
 const sourceColumnsString = computed(() => {
   const x = sourceColumns.value
@@ -78,11 +79,16 @@ const groupColumnsString = computed(() => {
   return x;
 });
 
+const groupHaveChanged = computed(() => {
+  return groupColumnsString.value !== orgGroupArrayString.value;
+});
+
+const columnsHaveChanged = computed(() => {
+  return sourceColumnsString.value !== orgSourceArrayString.value;
+});
+
 const canSave = computed(() => {
-  return (
-    sourceColumnsString.value !== orgSourceArrayString ||
-    groupColumnsString.value !== orgGroupArrayString
-  );
+  return groupHaveChanged.value || columnsHaveChanged.value;
 });
 
 function columnsOpen() {
@@ -90,7 +96,7 @@ function columnsOpen() {
   groupColumns.value = [];
   const sArray: string[] = [];
   const gArray: string[] = [];
-  Columns.columns.forEach((item, index) => {
+  DG.columns.forEach((item, index) => {
     const it = {
       field: item.props.field,
       title: item.props.title,
@@ -100,7 +106,7 @@ function columnsOpen() {
     };
     const itString = it.orgIndex + "-" + it.visibel;
 
-    if (Columns.groupList.includes(it.field)) {
+    if (DG.dataHandler!.groupList.includes(it.field)) {
       groupColumns.value?.push(it);
       gArray.push(itString);
     } else {
@@ -108,8 +114,8 @@ function columnsOpen() {
       sArray.push(itString);
     }
   });
-  orgSourceArrayString = sArray.toString();
-  orgGroupArrayString = gArray.toString();
+  orgSourceArrayString.value = sArray.toString();
+  orgGroupArrayString.value = gArray.toString();
   open.value = true;
 }
 
@@ -117,23 +123,30 @@ function columnsSave() {
   open.value = false;
   const newColumns: any = [];
   groupColumns.value.forEach((item: any) => {
-    const orgCol: any = Columns.columns.find(
-      (it) => it.index === item.orgIndex,
-    );
+    const orgCol: any = DG.columns.find((it) => it.index === item.orgIndex);
     orgCol.visibel.value = item.visibel;
     newColumns.push(orgCol);
   });
   sourceColumns.value.forEach((item: any) => {
-    const orgCol: any = Columns.columns.find(
-      (it) => it.index === item.orgIndex,
-    );
+    const orgCol: any = DG.columns.find((it) => it.index === item.orgIndex);
     orgCol.visibel.value = item.visibel;
     newColumns.push(orgCol);
   });
 
-  Columns.updateGroupList(groupColumns.value.map((item: any) => item.field));
-  Columns.columns = newColumns;
-  Columns.columnsChange();
+  if (groupHaveChanged.value) {
+    DG.dataHandler!.groupList = groupColumns.value.map(
+      (item: any) => item.field
+    );
+  }
+
+  if (columnsHaveChanged.value) {
+    DG.columns = newColumns;
+    DG.columnsChange();
+  }
+
+  if (groupHaveChanged.value) {
+    DG.dataHandler!.loadData();
+  }
 }
 </script>
 <style>
@@ -153,6 +166,7 @@ function columnsSave() {
     flex-direction: column;
     padding-top: 16px;
     gap: 29px;
+    background-color: var(--col-bg-0);
   }
   .H_menuColumns-drag {
     overflow: auto;

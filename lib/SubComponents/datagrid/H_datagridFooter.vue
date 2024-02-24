@@ -1,30 +1,10 @@
 <template>
   <div class="H_datagridFooter">
     <H_icon btn="standard" icon="refresh" title="Reload data" />
-    <H_icon
-      btn="standard"
-      icon="columns"
-      title="Edit Columns"
-      @click="editColumns"
-    />
-    <H_icon
-      btn="standard"
-      icon="expand_horizontal"
-      title="Auto adjust all columns"
-      @click="autoAdjustColumns"
-    />
-    <H_icon
-      btn="standard"
-      icon="excel"
-      title="Download to excel"
-      @click="excel"
-    />
-    <H_icon
-      btn="standard"
-      icon="zoom_out_map"
-      title="fullScreen"
-      @click="fullScreen"
-    />
+    <H_icon btn="standard" icon="columns" title="Edit Columns" @click="editColumns" />
+    <H_icon btn="standard" icon="expand_horizontal" title="Auto adjust all columns" @click="autoAdjustColumns" />
+    <H_icon btn="standard" icon="excel" title="Download to excel" @click="excel" />
+    <H_icon btn="standard" icon="zoom_out_map" title="fullScreen" @click="fullScreen" />
     <div class="H_datagrid__rowcount">
       <b>{{ DG.dataHandler?.rowsCount }}</b
       >&nbsp; Loaded of&nbsp; <b>{{ DG.dataHandler?.rowsCountTotal }}</b
@@ -37,7 +17,7 @@
 <script setup lang="ts">
 import { inject, ref } from "vue";
 import { iDgrid } from "./provide/Dgrid";
-import H_icon from "../H_icon.vue";
+import H_icon from "../../Components/H_icon.vue";
 import H_menuColumns from "./sub/columns/H_menuColumns.vue";
 
 const DG = inject("DG") as iDgrid;

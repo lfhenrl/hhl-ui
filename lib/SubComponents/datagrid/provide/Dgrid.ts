@@ -2,7 +2,7 @@ import { Slots, ref } from "vue";
 import { Column, iColumn } from "./Column";
 import { iSorting, Sorting } from "./Sorting";
 import { iDatahandler } from "../datahandlers/server";
-import H_virtualList from "../../H_virtualList.vue";
+import H_virtualList from "../../../Components/H_virtualList.vue";
 import { ColumnWidthAdjustment } from "./ColumnWidthAdjustment";
 import { iFilterData } from "./datagridTypes";
 

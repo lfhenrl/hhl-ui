@@ -25,18 +25,18 @@
 
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from "vue";
-import { iColumns } from "../../provide/Columns";
-import { icolumnData } from "../../provide/datagridTypes";
 import H_datePicker from "../../../../Components/H_datePicker.vue";
 import H_select from "../../../../Components/select/H_select.vue";
 import H_selectBox from "../../../../Components/select/H_selectBox.vue";
+import { iDgrid } from "../../provide/Dgrid";
+import { iColumn } from "../../provide/Column";
 
 const P = defineProps({
   index: { type: Number, default: 0 },
 });
 
-const Columns = inject("Columns") as iColumns;
-const col: icolumnData = Columns.columns[P.index];
+const DG = inject("DG") as iDgrid;
+const col: iColumn = DG.columns[P.index];
 
 const list = [
   { label: "Equal to.", value: "equal" },

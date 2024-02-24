@@ -1,168 +1,119 @@
-import { ref, toRaw } from "vue";
-import { iSortData, iFilterData } from "../../provide/datagridTypes";
-import Sorting from "./sorting/sorting";
+import { Ref, ref } from "vue";
+import { iDgrid } from "../../provide/Dgrid";
 import { filtering } from "./filter/filtering";
 import { groupBy } from "./grouping";
-import { debounce } from "../../../../utils/debounce";
-import Excel from "../../../../utils/exportToExcel";
-import { icolumnData } from "../../provide/datagridTypes";
+import { Sorting } from "../../../../utils/sorting";
+import { iFilterData } from "../../provide/datagridTypes";
 
 export type iDatahandler = InstanceType<typeof localData>;
 
 export class localData {
-  public rows = ref<any[]>([]);
+  public Dgrid?: iDgrid;
+  public dataKey = "";
+  public orgData: any[] = [];
+  public outData: Ref<unknown[]> = ref([]);
   public rowsCount = ref(0);
-  public rowsLoading = ref(false);
   public rowsCountTotal = ref(0);
-  public MaxSizeRow: any = ref();
-  public _MaxSizeRow: any = {};
-  private SizeStore: any = {};
-  public dataSource: any[] = [];
-  public sortData: any[] = [];
-  public groupData: any[] = [];
-  private sortArray: iSortData[] = [];
-  public filterArray: iFilterData[] = [];
-  private groupList: string[] = ["val2"];
-  public seekFilterList: string[] = [];
-  public seekFilterString: string = "";
-  public newDataEvent: any;
+  public rowsLoading = ref(false);
+  public groupList: string[] = [];
+  public scrollPos = 0;
 
-  debouncedUpdate = debounce(async () => {
-    if (this.dataSource.length < 1) {
-      this.rowsLoading.value = false;
-      return;
-    }
+  init(_Dgrid: iDgrid) {
+    this.Dgrid = _Dgrid;
+  }
 
-    const filterData = await filtering(this);
-    this.sortData = await Sorting.Sort(this.sortArray, filterData);
+  async setData(data: any[]) {
+    this.orgData = data;
+  }
+
+  async getFilt_sortData(filter: iFilterData[]) {
+    const filterData = await filtering(this, filter);
+    return (await Sorting(this.Dgrid?.Sorting.sortArray, filterData)) ?? [];
+  }
+
+  async loadData() {
+    await this.startLoading();
+    this.rowsCountTotal.value = this.orgData.length;
+
+    const newData = await this.getFilt_sortData(this.Dgrid!.Filter);
     if (this.groupList.length > 0) {
-      this.groupData = await groupBy(this.groupList[0], this.sortData, 0, "");
+      const result = await groupBy(this.groupList[0], newData, 0, "");
+      this.outData.value = result;
     } else {
-      this.groupData = this.sortData;
+      this.outData.value = newData;
     }
-
-    this.rowsCount.value = this.sortData.length;
-    this.makeCalcMaxRowSize(this.groupData);
-
-    this.rows.value = this.groupData;
-    this.newDataEvent();
+    this.rowsCount.value = this.outData.value.length ?? 0;
     this.rowsLoading.value = false;
-  }, 50);
-
-  public async setDataSource(_dataSource: any[]) {
-    this.dataSource = (await _dataSource) ?? [];
-    this.rowsCountTotal.value = _dataSource.length;
-    this.makeMaxRowStore();
   }
 
-  private makeMaxRowStore() {
-    if (this.rowsCountTotal.value > 0) {
-      this.SizeStore = {};
-      this._MaxSizeRow = structuredClone(this.dataSource[0]);
+  public getItemById(id: any) {
+    return this.orgData.find((item: any) => item[this.dataKey] == id);
+  }
 
-      for (const key in this._MaxSizeRow) {
-        this.SizeStore[key] = 1;
-      }
+  public getIndexByItem(dataItem: any) {
+    if (dataItem.__type) {
+      return this.outData.value.findIndex((item: any) => item.__id == dataItem.__id);
+    } else {
+      return this.outData.value.findIndex((item: any) => item[this.dataKey] == dataItem[this.dataKey]);
     }
   }
 
-  private makeCalcMaxRowSize(data: any[]) {
-    const slicedArray = data.slice(0, 100);
-    slicedArray.forEach((item: any) => {
-      if (item._type === "group") return;
-      for (const key in item) {
-        const val = item[key];
-        const valStr: string = val?.toString() ?? "";
-        if (valStr && this.SizeStore[key] < valStr.length) {
-          this.SizeStore[key] = valStr.length;
-          this._MaxSizeRow[key] = val;
-        }
-      }
-    });
-    this.MaxSizeRow.value = null;
-    this.MaxSizeRow.value = this._MaxSizeRow;
-  }
-
-  public loadData() {
+  public async startLoading() {
     this.rowsLoading.value = true;
-    this.debouncedUpdate();
+    return new Promise((resolve) => setTimeout(resolve));
   }
 
-  public async setSorting(_sortArray: iSortData[]) {
-    this.sortArray = _sortArray;
-    this.loadData();
-  }
+  async getExpandingData(row: any, pid: string) {
+    const GrFilter = structuredClone(this.Dgrid?.Filter) ?? [];
+    const parentArr = row.__id.split("/");
 
-  public setFilter(_filterArray: iFilterData[]) {
-    this.filterArray = _filterArray;
-    this.loadData();
-  }
-
-  public setGrouping(_groupList: string[]) {
-    this.groupList = _groupList;
-    this.loadData();
+    for (let i = 0; i < row.__level + 1; i++) {
+      const Nfilter: iFilterData = {
+        active: true,
+        condition1: "equal",
+        condition2: "equal",
+        field: this.groupList[i],
+        logical: "and",
+        value1: parentArr[i],
+        value2: null,
+        type: "string",
+      };
+      GrFilter.push(Nfilter);
+    }
+    return (await this.getFilt_sortData(GrFilter)).map((it) => {
+      it.__pid = pid;
+      return it;
+    });
   }
 
   public async expanding(row: any) {
-    const index = this.groupData.indexOf(toRaw(row));
+    this.rowsLoading.value = true;
+    const index = this.getIndexByItem(row);
 
     if (row.__expanded) {
-      this.groupData.splice(index + 1, row.__count);
+      this.outData.value = this.outData.value.filter((item: any) => !item.__pid.startsWith(row.__id));
       row.__expanded = false;
     } else {
-      const parentArr = row.__id.split("/");
-      const raw = this.sortData.filter((item) => {
-        for (let i = 0; i < row.__level + 1; i++) {
-          if (item[this.groupList[i]] !== parentArr[i]) {
-            return false;
-          }
-        }
-        return true;
-      });
+      const GroupProp = this.groupList[row.__level + 1];
+      const raw: any[] = (await this.getExpandingData(row, row.__id)) ?? [];
 
       if (this.groupList.length > row.__level + 1) {
-        const GroupProp = this.groupList[row.__level + 1];
         const rr = await groupBy(GroupProp, raw, row.__level + 1, row.__id);
         row.__count = rr.length;
-        this.groupData.splice(index + 1, 0, ...rr);
+        this.outData.value.splice(index + 1, 0, ...rr);
       } else {
-        this.groupData.splice(index + 1, 0, ...raw);
+        this.outData.value.splice(index + 1, 0, ...raw);
       }
-
-      this.rows.value = this.groupData;
       row.__expanded = true;
     }
-  }
 
-  public setExpanding(_expandList: string[]) {
-    this.loadData();
-  }
-
-  public setSeekFilterList(_seekFilterList: string[]) {
-    this.seekFilterList = _seekFilterList;
-    this.loadData();
-  }
-
-  public setseekFilterString(_seekFilterString: string) {
-    this.seekFilterString = _seekFilterString;
-    this.loadData();
-  }
-
-  public toExcel(Columns: any) {
-    const fields: any = {};
-    Columns.forEach((item: icolumnData) => {
-      const it = {
-        type: item.props.type,
-        title: item.props.title,
-      };
-      fields[item.props.field] = it;
-    });
-
-    Excel.load(this.rows.value, fields, "GridData");
+    this.outData.value = [...this.outData.value];
+    this.rowsCount.value = this.outData.value.length ?? 0;
+    this.rowsLoading.value = false;
   }
 
   public async getSelectList(field: string) {
-    const objArr = this.dataSource.reduce((acc: any, obj: any) => {
+    const objArr = this.orgData.reduce((acc: any, obj: any) => {
       let key = obj[field];
       if (!acc[key]) {
         acc[key] = key;

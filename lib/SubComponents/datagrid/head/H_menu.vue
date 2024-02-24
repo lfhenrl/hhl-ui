@@ -1,11 +1,5 @@
 <template>
-  <H_pop
-    class="H_menu-pop"
-    :offset-top="8"
-    :offset-left="2"
-    close-popup-click
-    position="fixed"
-  >
+  <H_pop class="H_menu-pop" :offset-top="8" :offset-left="2" close-popup-click position="fixed">
     <template v-slot:referance>
       <H_menuHead :index="index" />
     </template>
@@ -15,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import H_pop from "../../popup/H_pop.vue";
+import H_pop from "../../../Components/popup/H_pop.vue";
 import H_menuHead from "./H_menuHead.vue";
 import H_menuBody from "./H_menuBody.vue";
 import H_menuFilter from "../sub/H_menuFilter.vue";

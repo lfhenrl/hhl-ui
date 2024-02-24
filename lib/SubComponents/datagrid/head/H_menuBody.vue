@@ -6,12 +6,7 @@
       :data-selected="col.sortDirection.value === 'asc'"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_icon
-        class="H_menu-noPointerEvents"
-        btn="standard"
-        icon="arrow_upward"
-        size="18px"
-      />
+      <H_icon class="H_menu-noPointerEvents" btn="standard" icon="arrow_upward" size="18px" />
       <div class="H_menu-noPointerEvents">Sort Ascending</div>
     </div>
     <div
@@ -20,35 +15,16 @@
       :data-selected="col.sortDirection.value === 'desc'"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_icon
-        class="H_menu-noPointerEvents"
-        btn="standard"
-        icon="arrow_downward"
-        size="18px"
-      />
+      <H_icon class="H_menu-noPointerEvents" btn="standard" icon="arrow_downward" size="18px" />
       <div class="H_menu-noPointerEvents">Sort Descending</div>
     </div>
-    <div
-      class="H_menu-popup-item"
-      data-action="filter"
-      v-if="col.filter.type !== 'none'"
-    >
-      <H_icon
-        class="H_menu-noPointerEvents"
-        btn="standard"
-        icon="filter"
-        size="18px"
-      />
+    <div class="H_menu-popup-item" data-action="filter" v-if="col.filter.type !== 'none'">
+      <H_icon class="H_menu-noPointerEvents" btn="standard" icon="filter" size="18px" />
       <div class="H_menu-noPointerEvents">Filter</div>
     </div>
 
     <div class="H_menu-popup-item" data-action="autoSize">
-      <H_icon
-        class="H_menu-noPointerEvents"
-        btn="standard"
-        icon="expand_horizontal"
-        size="18px"
-      />
+      <H_icon class="H_menu-noPointerEvents" btn="standard" icon="expand_horizontal" size="18px" />
       <div class="H_menu-noPointerEvents">Auto size</div>
     </div>
   </div>
@@ -56,7 +32,7 @@
 
 <script setup lang="ts">
 import { inject } from "vue";
-import H_icon from "../../H_icon.vue";
+import H_icon from "../../../Components/H_icon.vue";
 import { iColumn } from "../provide/Column";
 import { iDgrid } from "../provide/Dgrid";
 
