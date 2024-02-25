@@ -8,13 +8,24 @@ export async function setFlatList(DH: iDatahandler) {
     Order: DH.OrderArray,
   };
 
-  const data: any = await DH.dataFetch.post("", Qpara);
-  const dataCount = data.data.length;
-  DH.rowsCount.value = DH.rowsCount.value + dataCount;
-  const __rowsLeft = DH.rowsCountTotal.value - DH.rowsCount.value;
+  let __rowsLeft = 0;
+  let dataCount = 0;
+
+  const { data, ok } = await DH.dataFetch.post("", Qpara);
+  if (ok) {
+    if (data.length > 0) {
+      dataCount = data.length;
+      DH.rowsCount.value = dataCount;
+      __rowsLeft = DH.rowsCountTotal.value - DH.rowsCount.value;
+    } else {
+      DH.rowsCountTotal.value = 0;
+    }
+  } else {
+    return;
+  }
 
   if (__rowsLeft > 0) {
-    data.data.push({
+    data.push({
       __type: "loadmore",
       __nextPage: DH.pageSize,
       __level: 0,
@@ -25,5 +36,5 @@ export async function setFlatList(DH: iDatahandler) {
       __pid: "",
     });
   }
-  DH.outData.value = [...data.data];
+  DH.outData.value = [...data];
 }

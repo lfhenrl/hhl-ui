@@ -84,7 +84,16 @@ export class serverData {
   }
 
   public async getSelectList(field: string) {
-    return [field];
+    const selectPara: any = {
+      Select: ["DISTINCT " + field],
+    };
+    const { data, message, ok } = await this.dataFetch.post("", selectPara);
+    if (ok) {
+      return data.map((a: any) => a[field]);
+    } else {
+      window["hhl"].alert("err", "Server Error", message);
+      return;
+    }
   }
 
   public getIndexByItem(dataItem: any) {

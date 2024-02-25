@@ -8,7 +8,12 @@ export async function setCounters(DH: iDatahandler) {
 
   const { data, message, ok } = await DH.dataFetch.post("", CountPara);
   if (ok) {
-    DH.rowsCountTotal.value = data[0].count;
+    if (data.length > 0) {
+      DH.rowsCountTotal.value = data[0].count;
+    } else {
+      DH.rowsCountTotal.value = 0;
+      window["hhl"].alert("warn", "Data", "No Date with this filter");
+    }
   } else {
     window["hhl"].alert("err", "Server Error", message);
     return;

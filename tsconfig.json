@@ -13,14 +13,14 @@
     "jsx": "preserve",
     "sourceMap": true,
     "lib": ["esnext", "dom"],
-    "types": ["vite/client", "node"]
+    "types": ["vite/client", "node", "unplugin-vue-router/client"]
   },
   "include": [
+    "./typed-router.d.ts",
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "typed-router.d.ts",
     "lib/**/*.vue",
     "lib/**/*.ts",
     "lib/**/*.d.ts"

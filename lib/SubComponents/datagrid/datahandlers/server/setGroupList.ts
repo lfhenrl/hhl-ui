@@ -12,7 +12,7 @@ export async function setGroupList(DH: iDatahandler) {
     Select: __select,
     GroupBy: __groupBy,
   };
-
+  console.log("Filter2 ", Qpara);
   const data: any = await DH.dataFetch.post("", Qpara);
 
   const gData = data.data.map((item: any) => {
@@ -30,7 +30,7 @@ export async function setGroupList(DH: iDatahandler) {
   });
 
   const dataCount = gData.length;
-  DH.rowsCount.value = DH.rowsCount.value + dataCount;
+  DH.rowsCount.value = dataCount;
   const __rowsLeft = DH.rowsLevel0_Count - DH.rowsCount.value;
 
   if (__rowsLeft > 0) {

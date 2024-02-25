@@ -16,7 +16,7 @@
       :filter-list="['id', 'val1', 'val2', 'val3', 'val4', 'val7']"
       :filterstring="seek"
       data-key="id"
-      :group-list="['val2', 'val4', 'val7']"
+      :group-list="[]"
     >
       <H_column field="id" title="Id" type="number" filter_type="number" cell-class="text-err" />
       <H_column field="val1" title="Value 1" type="string" filter_type="string" width="auto" />

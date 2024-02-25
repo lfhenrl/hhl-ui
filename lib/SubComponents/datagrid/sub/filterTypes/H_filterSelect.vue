@@ -1,20 +1,8 @@
 <template>
   <div class="H_filterSelect">
     <H_inputText v-model="searchValue" end-icon="search" clearable />
-    <H_checkbox
-      size="sm"
-      label="Select All."
-      :model-value="AllSelected"
-      @click.prevent="SelectToggle"
-    />
-    <H_selectBox
-      multi
-      list-gap="2px"
-      label-gap="2px"
-      label-left
-      v-model="value1"
-      :list="filter"
-    />
+    <H_checkbox size="sm" label="Select All." :model-value="AllSelected" @click.prevent="SelectToggle" />
+    <H_selectBox multi list-gap="2px" label-gap="2px" label-left v-model="value1" :list="filter" />
   </div>
 </template>
 
@@ -66,14 +54,11 @@ const endValue = computed(() => {
   if (endCondition.value === "equal") {
     return value1.value;
   } else {
-    return list.value
-      .filter((x: any) => !valueList.value.includes(x))
-      .toString();
+    return list.value.filter((x: any) => !valueList.value.includes(x)).toString();
   }
 });
 
-const filterFunc = (item: any) =>
-  item.toLowerCase().includes(searchValue.value.toLowerCase());
+const filterFunc = (item: any) => item.toLowerCase().includes(searchValue.value.toLowerCase());
 const filter = computed(() => list.value?.filter(filterFunc));
 
 const canSave = computed(() => {
@@ -115,10 +100,8 @@ async function open() {
 function close() {}
 
 onMounted(() => {
-  col.filter.condition1 =
-    col.filter.condition1 === "" ? "equal" : col.filter.condition1;
-  col.filter.condition2 =
-    col.filter.condition2 === "" ? "equal" : col.filter.condition2;
+  col.filter.condition1 = col.filter.condition1 === "" ? "equal" : col.filter.condition1;
+  col.filter.condition2 = col.filter.condition2 === "" ? "equal" : col.filter.condition2;
   col.filter.value1 = col.filter.value1 === "" ? "" : col.filter.value1;
   col.filter.value2 = col.filter.value2 === "" ? "null" : col.filter.value2;
 });
