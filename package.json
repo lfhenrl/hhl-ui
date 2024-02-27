@@ -9,9 +9,10 @@
   },
   "dependencies": {
     "@emmetio/codemirror-plugin": "^1.2.4",
-    "codemirror": "^5.65.16",
+    "codemirror": "^5.65.15",
     "firebase": "^10.8.0",
     "vue": "^3.4.20",
+    "vue-live": "^2.5.4",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {

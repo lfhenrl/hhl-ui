@@ -1,20 +1,15 @@
 <template>
-  <H_pop :offset-top="0" :offset-left="-20" v-model="isOpen" movable>
+  <H_pop :offset-left="-20" v-model="isOpen" movable>
     <div class="H_menuFilter">
       <div moveable-drag class="H_menuFilter-header">
         <div>{{ col.props.title }}</div>
         <H_icon btn="standard" @click="isOpen = false" />
       </div>
-
-      <component ref="filterCompRef" :is="filtComponent" :index="index" />
-
+      <div class="H_menuFilter_comp">
+        <component ref="filterCompRef" :is="filtComponent" :index="index" />
+      </div>
       <div class="H_menuFilter-footer">
-        <H_btn
-          @click="filterSave"
-          class="bg-ok"
-          :disabled="!filterCompRef?.canSave"
-          >OK</H_btn
-        >
+        <H_btn @click="filterSave" class="bg-ok" :disabled="!filterCompRef?.canSave">OK</H_btn>
         <H_btn @click="filterClear" :disabled="!col.filter.active">CLEAR</H_btn>
       </div>
     </div>
@@ -87,11 +82,16 @@ const filtComponent = computed(() => {
 <style>
 @layer hhl-components {
   .H_menuFilter {
-    max-height: 80vh;
-    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     color: var(--col-txt-1);
     background-color: var(--col-bg-0);
     font-weight: 400;
+    overflow: hidden;
+    max-height: 100%;
+  }
+  .H_menuFilter_comp {
+    overflow: hidden;
   }
 
   .H_menuFilter-header {
@@ -112,8 +112,8 @@ const filtComponent = computed(() => {
   .H_menuFilter-footer {
     display: flex;
     justify-content: flex-end;
-    padding: 12px 20px;
     gap: 12px;
+    padding: 20px;
   }
 }
 </style>

@@ -62,6 +62,7 @@ const hhlCodeEditor = defineComponent({
 
       setTimeout(() => {
         if (!el || !el.value) return;
+
         editor = CodeMirror.fromTextArea(el.value, {
           mode: "",
           lineNumbers: true,

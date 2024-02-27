@@ -27,11 +27,13 @@ const value1 = ref<any>();
 const searchValue = ref("");
 
 function SelectToggle() {
-  if (AllSelected.value) {
-    value1.value = "";
-  } else {
-    value1.value = list.value.toString();
-  }
+  setTimeout(() => {
+    if (AllSelected.value) {
+      value1.value = "";
+    } else {
+      value1.value = list.value.toString();
+    }
+  });
 }
 
 const AllSelected = computed(() => {
@@ -111,18 +113,17 @@ defineExpose({ save, clear, open, close, canSave });
 <style>
 @layer hhl-components {
   .H_filterSelect {
-    display: grid;
-    grid-template-rows: auto auto 1fr;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     height: 100%;
     gap: 12px;
-    overflow: hidden;
     padding: 20px 20px 0 20px;
   }
 
   .H_filterSelect .H_selectBox {
     border: 1px solid var(--col-txt-5);
     overflow: auto;
-    max-height: 320px;
   }
 }
 </style>

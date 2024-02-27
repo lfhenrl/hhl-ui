@@ -21,10 +21,12 @@ const app = createApp(App).use(router);
 import { validator } from "../lib/utils/validator";
 import * as dateFormat from "../lib/utils/dateFormat";
 import { getData } from "./testData/data";
+import { localData } from "../lib/Components/datagrid";
 (window as { [key: string]: any })["fakeImport"] = {
   validator,
   dateFormat,
   getData,
+  localData,
 };
 
 const H_icon = defineAsyncComponent(() => import("../lib/Components/H_icon.vue"));
@@ -51,6 +53,8 @@ const H_dragDrop = defineAsyncComponent(() => import("../lib/Components/H_dragDr
 const H_slider = defineAsyncComponent(() => import("../lib/Components/H_slider.vue"));
 const H_progressBar = defineAsyncComponent(() => import("../lib/Components/H_progressBar.vue"));
 const H_form = defineAsyncComponent(() => import("../lib/Components/H_form.vue"));
+const H_datagrid = defineAsyncComponent(() => import("../lib/Components/datagrid/H_datagrid.vue"));
+import H_column from "../lib/Components/datagrid/H_column.vue";
 
 const H_themeSelector = defineAsyncComponent(() => import("../lib/Components/H_themeSelector.vue"));
 
@@ -82,6 +86,8 @@ app.component("H_dragDrop", H_dragDrop);
 app.component("H_slider", H_slider);
 app.component("H_progressBar", H_progressBar);
 app.component("H_form", H_form);
+app.component("H_datagrid", H_datagrid);
+app.component("H_column", H_column);
 app.component("H_themeSelector", H_themeSelector);
 
 app.component("nav-bar", navBar);

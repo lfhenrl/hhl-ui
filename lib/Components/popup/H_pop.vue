@@ -3,14 +3,7 @@
     <div class="H_pop-referance">
       <slot name="referance" />
     </div>
-    <dialog
-      popover="manual"
-      v-movable="movable"
-      :pos="pos"
-      :modal="modal"
-      class="H_pop-dialog"
-      :shake="shake"
-    >
+    <dialog popover="manual" v-movable="movable" :pos="pos" :modal="modal" class="H_pop-dialog" :shake="shake">
       <slot />
     </dialog>
   </div>
@@ -268,17 +261,20 @@ onUnmounted(() => {
     display: flex;
     height: 100%;
   }
+  dialog:popover-open {
+    display: flex;
+    flex-direction: column;
+  }
 
   .H_pop-dialog {
-    overflow: auto;
+    overflow: hidden;
     border-radius: 4px;
     background-color: transparent;
     opacity: 0;
     transform-origin: top;
     outline: none;
     z-index: 99;
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
-      0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
   }
 
   .H_pop-dialog.open-end {

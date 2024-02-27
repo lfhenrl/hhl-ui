@@ -4,12 +4,7 @@
       <div class="hhl-live-editor_errBox_title" moveable-drag>
         <div>Error</div>
         <div class="flex-1" />
-        <H_icon
-          btn="standard"
-          icon="close"
-          color="white"
-          @click="hideError = !hideError"
-        />
+        <H_icon btn="standard" icon="close" color="white" @click="hideError = !hideError" />
       </div>
 
       <span class="hhl-live-editor_errBox_body">{{ error }}</span>
@@ -27,12 +22,7 @@
         @click="hideError = !hideError"
       />
       {{ showCode }}
-      <H_icon
-        icon="zoom_out_map"
-        btn="standard"
-        title="Fullscreen."
-        @click="toggleFullScreen"
-      />
+      <H_icon icon="zoom_out_map" btn="standard" title="Fullscreen." @click="toggleFullScreen" />
       <H_icon
         icon="split"
         btn="standard"
@@ -40,24 +30,12 @@
         :disabled="!showCode"
         @click="changeHorisont"
       />
-      <H_icon
-        icon="expand_down"
-        btn="standard"
-        title="Show Code."
-        @click="codeShow"
-      />
+      <H_icon icon="expand_down" btn="standard" title="Show Code." @click="codeShow" />
     </div>
 
-    <div
-      class="hhl-live-editor_renderBox"
-      :class="{ 'hhl-live-editor_renderBox-column': column }"
-    >
+    <div class="hhl-live-editor_renderBox" :class="{ 'hhl-live-editor_renderBox-column': column }">
       <div ref="renderBox">
-        <live-render
-          :template="reactiv_htmlCode"
-          @onError="errorHandler"
-          :comp="comp"
-        />
+        <live-render :template="reactiv_htmlCode" @onError="errorHandler" :comp="comp" />
       </div>
 
       <div class="hhl-live-editor_splitpane" v-splitpane v-if="!column" />

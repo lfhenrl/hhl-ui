@@ -1,5 +1,5 @@
 <template>
-  <div class="H_datagridX">
+  <div class="H_datagrid">
     <H_virtualList
       :row_style="rowStyle"
       data-key="id"
@@ -101,7 +101,7 @@ onMounted(() => {
 
 <style>
 @layer hhl-components {
-  .H_datagridX {
+  .H_datagrid {
     display: grid;
     grid-template-rows: 1fr auto;
     height: 100%;
