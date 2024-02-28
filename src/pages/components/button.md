@@ -6,13 +6,13 @@ You can change the size by the prop `size="/sm/md/lg"`<br>
 The default is `"md"`.
 
 <hhl-live-editor title=""  htmlCode='
-      <template>
+<template>
       <div class="flexRow items-center gap-4 flexWrap">
             <H_btn size="sm">SM</H_btn>
             <H_btn size="md">MD</H_btn>
             <H_btn size="lg"><H_icon></H_icon>LG</H_btn>
       </div>
-      </template>
+</template>
 '>
 </hhl-live-editor>
 <br>

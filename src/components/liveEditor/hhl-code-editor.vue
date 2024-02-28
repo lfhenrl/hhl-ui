@@ -1,35 +1,14 @@
 <template>
   <div class="hhl-code-editor">
-    <textarea ref="el" />
+    <div ref="el" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType, ref, watchEffect } from "vue";
-import "./css/codemirror.css";
+import { defineComponent, onMounted, PropType, ref } from "vue";
+import { basicSetup, EditorView } from "codemirror";
+import { vue } from "@codemirror/lang-vue";
 import { debounce } from "../../../lib/utils/debounce";
-
-const tabs = ["", " ", "  ", "   ", "    ", "     ", "      "];
-
-function format(str: string) {
-  if (!str) return "";
-  let tab = "  ";
-  const lines = str.split("\n");
-  const formattet = lines
-    .filter((item) => item !== "")
-    .map((line) => {
-      if (line.includes("<template>")) {
-        const space = line.search(/\S/);
-        tab = tabs[space];
-        return line.trimStart();
-      }
-      if (line.includes("</template>")) return line.trimStart();
-      if (line.includes("script>")) return line.trimStart();
-      if (line.includes("style>")) return line.trimStart();
-      if (line !== "") return line.replace(tab, "");
-    });
-  return formattet.join("\n");
-}
 
 const hhlCodeEditor = defineComponent({
   name: "hhl-code-editor",
@@ -44,42 +23,30 @@ const hhlCodeEditor = defineComponent({
   },
   setup(props, { emit }) {
     const el = ref<HTMLTextAreaElement>();
-    let editor: any;
+    let editor: EditorView;
 
-    watchEffect(() => {
-      if (props.show) {
-        editor?.refresh();
-      }
-    });
-
-    function updateCode() {
-      emit("changed", editor.getValue());
-    }
+    const debouncedUpdate = debounce(() => {
+      emit("changed", editor.state.doc.toString());
+    }, 400);
 
     onMounted(async () => {
-      await import("./render/codeMirror");
-      const CodeMirror = await import("codemirror");
-
       setTimeout(() => {
         if (!el || !el.value) return;
-
-        editor = CodeMirror.fromTextArea(el.value, {
-          mode: "",
-          lineNumbers: true,
-          lineWrapping: true,
-          tabSize: 2,
-          autofocus: false,
-          autoCloseBrackets: true,
-          autoCloseTags: true,
-          styleActiveLine: true,
-          foldGutter: true,
-          gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+        editor = new EditorView({
+          doc: props.code,
+          extensions: [
+            basicSetup,
+            vue(),
+            EditorView.updateListener.of((v: any) => {
+              if (v.docChanged) {
+                console.log("CODEMIRROR Changed ", v);
+                debouncedUpdate();
+              }
+            }),
+          ],
+          parent: el.value,
         });
-
-        editor.on("change", debounce(updateCode, 600));
-        watchEffect(() => editor.setOption("mode", props.lang));
-        editor.setValue(format(props.code));
-      }, 100);
+      }, 10);
     });
 
     return {
@@ -95,5 +62,13 @@ export default hhlCodeEditor;
 .hhl-code-editor {
   font-size: 14px;
   flex: 1 1 0%;
+  overflow: auto;
+  background-color: rgb(255, 254, 254);
+  line-height: 1.2;
+  color: black;
+}
+
+.hhl-code-editor .cm-scroller {
+  overflow: visible;
 }
 </style>

@@ -53,7 +53,6 @@ declare module 'vue-router/auto-routes' {
     '/sandbox/chartGantt': RouteRecordInfo<'/sandbox/chartGantt', '/sandbox/chartGantt', Record<never, never>, Record<never, never>>,
     '/sandbox/datagrid': RouteRecordInfo<'/sandbox/datagrid', '/sandbox/datagrid', Record<never, never>, Record<never, never>>,
     '/sandbox/DatagridServer': RouteRecordInfo<'/sandbox/DatagridServer', '/sandbox/DatagridServer', Record<never, never>, Record<never, never>>,
-    '/sandbox/editor': RouteRecordInfo<'/sandbox/editor', '/sandbox/editor', Record<never, never>, Record<never, never>>,
     '/sandbox/testForms': RouteRecordInfo<'/sandbox/testForms', '/sandbox/testForms', Record<never, never>, Record<never, never>>,
     '/sandbox/virScroll': RouteRecordInfo<'/sandbox/virScroll', '/sandbox/virScroll', Record<never, never>, Record<never, never>>,
     '/styles/': RouteRecordInfo<'/styles/', '/styles', Record<never, never>, Record<never, never>>,

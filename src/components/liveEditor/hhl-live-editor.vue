@@ -21,7 +21,6 @@
         v-if="error !== '' && showCode"
         @click="hideError = !hideError"
       />
-      {{ showCode }}
       <H_icon icon="zoom_out_map" btn="standard" title="Fullscreen." @click="toggleFullScreen" />
       <H_icon
         icon="split"
@@ -137,6 +136,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: hidden;
 }
 .hhl-live-editor_errBox {
   display: flex;
@@ -180,6 +180,10 @@ export default defineComponent({
 .hhl-live-editor_renderBox {
   display: flex;
   flex: 1 1 0%;
+  overflow: hidden;
+}
+.hhl-live-editor_renderBox:fullscreen {
+  max-height: calc(100vh - 40px);
 }
 .hhl-live-editor_renderBox-column {
   flex-direction: column;
@@ -193,6 +197,6 @@ export default defineComponent({
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-  background-color: var(--col-bg-0);
+  background-color: var(--col-bg-2);
 }
 </style>
