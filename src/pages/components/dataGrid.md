@@ -19,10 +19,14 @@ with range of functionalities.
 <br>
 
 ## Datasource.
-<br>
 
-The datasource is handled by a datahandler called localdata it is also possible to get a virsion called servedata.
-The localdata recieve the data by first call localdata.startLoading for the loading bar showing we wait for data.
+The datasource is handled by a datahandler called localdata it is also possible to get a virsion called servedata.<br>
+First think to do is to provide a unik key for the data-set by the property `data-key`<br>
+The localdata recieve the data by first call `localdata.startLoading()` for the loading bar showing we wait for data.<br>
+Next set the data with `localdata.setData(data)` and call `localdata.loadData()` to fill the datagrid with the data.<br>
+<br>
+You can resize the column width b
+<br>
 
 <hhl-live-editor title="" htmlCode='
 <template>
