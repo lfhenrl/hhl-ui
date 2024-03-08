@@ -33,7 +33,6 @@ function filterOpen() {
     display: flex;
     align-items: center;
     height: 100%;
-    min-width: 30px;
     max-width: 30px;
   }
 }

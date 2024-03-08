@@ -15,10 +15,10 @@
       :dataHandler="lData"
       :filter-list="['id', 'val1', 'val2', 'val3', 'val4', 'val7']"
       :filterstring="seek"
-      :group-list="['val2', 'val4', 'val7']"
+      :group-list="[]"
       data-key="id"
     >
-      <H_column field="id" title="Id" type="number" filter_type="number" cell-class="text-err" width="100px" />
+      <H_column field="id" title="Id" type="number" sorting="none" cell-class="text-err" />
       <H_column field="val1" title="Value 1" type="string" filter_type="string" width="auto" />
       <H_column field="val2" title="Value 2" type="string" filter_type="select" />
       <H_column
@@ -53,7 +53,7 @@ const lData = new localData();
 
 async function load() {
   await lData.startLoading();
-  const data = await getData(5000);
+  const data = await getData(500);
   lData.setData(data);
   lData.loadData();
 }

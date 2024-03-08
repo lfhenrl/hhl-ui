@@ -52,7 +52,6 @@ onMounted(() => {
     min-height: 33px;
     border-right: 1px solid var(--col-bg-5);
     border-bottom: 1px solid var(--col-bg-3);
-    padding-bottom: 3px;
   }
 
   .H_HeaderCell-inner {
@@ -61,7 +60,6 @@ onMounted(() => {
     flex: 1 1 0%;
     align-items: center;
     font-weight: bold;
-    min-height: 33px;
     width: 100%;
   }
   .H_HeadCell-text {

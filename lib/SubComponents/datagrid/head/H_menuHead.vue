@@ -1,14 +1,31 @@
 <template>
   <div class="H_menuHead" data-subtype="menu">
-    <H_icon icon="menuSmall" v-if="col.sortDirection.value === 'none' && !col.filter.active" />
-    <div class="H_menuHead-active" v-else>
-      <div class="H_HeadCell-sorting" v-if="col.sortDirection.value !== 'none'">
-        <H_icon icon="arrow_upward" size="18px" v-if="col.sortDirection.value === 'asc'" />
-        <H_icon icon="arrow_downward" size="18px" v-else />
-        <div class="H_HeadCell-sortingText">{{ col.sortIndex.value + 1 }}</div>
+    <div class="H_HeadCell-sorting" v-if="col.props.sorting !== 'none'">
+      <H_icon
+        icon="arrow_upward"
+        size="18px"
+        class="H_HeadCell-sorting_icon"
+        :class="{ H_HeadCellActive: col.sortDirection.value === 'asc' }"
+        v-if="col.sortDirection.value === 'asc' || col.sortDirection.value === 'none'"
+      />
+      <H_icon
+        icon="arrow_downward"
+        size="18px"
+        class="H_HeadCell-sorting_icon"
+        :class="{ H_HeadCellActive: col.sortDirection.value === 'desc' }"
+        v-if="col.sortDirection.value === 'desc' || col.sortDirection.value === 'none'"
+      />
+      <div class="H_HeadCell-sortingText" v-if="col.sortDirection.value !== 'none'">
+        {{ col.sortIndex.value + 1 }}
       </div>
-      <H_icon icon="filter" size="16px" v-if="col.filter.active" />
     </div>
+    <H_icon
+      icon="filter"
+      size="14px"
+      v-if="col.filter.type !== 'none'"
+      :class="{ H_HeadCellActive: col.filter.active }"
+    />
+    <H_icon icon="menuSmall" size="18px" v-if="col.filter.type === 'none' && col.props.sorting === 'none'" />
   </div>
 </template>
 
@@ -31,33 +48,37 @@ const col: iColumn = DG.columns[P.index];
 @layer hhl-components {
   .H_menuHead {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
     overflow: visible;
     cursor: pointer;
     color: var(--col-txt-5);
-    /*   border: 1px solid red; */
-    padding-right: 4px;
+    min-width: 24px;
+    overflow: visible;
   }
   .H_menuHead:hover {
     background-color: var(--col-bg-5);
   }
-  .H_menuHead-active {
-    display: flex;
-    color: var(--col-txt-2);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 24px;
-    overflow: visible;
+
+  .H_HeadCellActive {
+    --current-bg-col: var(--col-pri);
   }
+
   .H_HeadCell-sorting {
     display: flex;
     overflow: visible;
-    align-items: center;
+    align-items: start;
     flex: 1 1 0%;
     font-size: 12px;
+    max-height: 16px;
+  }
+  .H_HeadCell-sorting_icon {
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+  .H_HeadCell-sortingText {
+    color: var(--col-pri);
   }
 }
 </style>

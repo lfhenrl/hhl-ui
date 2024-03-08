@@ -2,7 +2,6 @@
   <div class="H_virtualList">
     <div class="H_virtualList-body" ref="root" @scroll="onScroll">
       <div class="H_virtualList-scroller" role="group" :style="paddingStyle">
-        <div class="H_virtualList-header"><slot name="header" /></div>
         <H_virtualListItem
           v-for="item in items"
           :key="getId(item)"
@@ -82,13 +81,7 @@ const props = defineProps({
   },
   selectedId: { type: [Number, String, Date, Object] },
 });
-const emit = defineEmits([
-  "scrollLeft",
-  "tobottom",
-  "totop",
-  "scroll",
-  "resized",
-]);
+const emit = defineEmits(["scrollLeft", "tobottom", "totop", "scroll", "resized"]);
 
 defineExpose({
   scrollToIndex,
@@ -124,8 +117,7 @@ const resizeObserver = new ResizeObserver((entries) => {
 const calcKeeps = debounce(async () => {
   let _keeps;
   if (virtual) {
-    _keeps =
-      Math.ceil(scrollHeight / virtual.getEstimateSize()) + props.overscan;
+    _keeps = Math.ceil(scrollHeight / virtual.getEstimateSize()) + props.overscan;
   } else {
     _keeps = Math.ceil(scrollHeight / props.estimateSize) + props.overscan;
   }
@@ -306,24 +298,12 @@ function onScroll(evt: any) {
 }
 
 // emit event in special position
-function emitEvent(
-  offset: number,
-  clientSize: number,
-  scrollSize: number,
-  evt: any
-) {
+function emitEvent(offset: number, clientSize: number, scrollSize: number, evt: any) {
   emit("scroll", evt, virtual.getRange());
 
-  if (
-    virtual.isFront() &&
-    !!props.dataSources!.length &&
-    offset - props.topThreshold <= 0
-  ) {
+  if (virtual.isFront() && !!props.dataSources!.length && offset - props.topThreshold <= 0) {
     emit("totop");
-  } else if (
-    virtual.isBehind() &&
-    offset + clientSize + props.bottomThreshold >= scrollSize
-  ) {
+  } else if (virtual.isBehind() && offset + clientSize + props.bottomThreshold >= scrollSize) {
     emit("tobottom");
   }
 
@@ -341,28 +321,19 @@ function emitEvent(
     grid-template-columns: auto;
     height: 100%;
     min-height: 200px;
-    padding: 1px;
+    border-radius: 4px;
   }
 
   .H_virtualList-body {
     position: relative;
     display: inline-block;
-    overflow: scroll;
+    overflow: visible;
     height: 100%;
   }
 
   .H_virtualList-scroller {
     display: inline-block;
     min-width: 100%;
-  }
-
-  .H_virtualList-header {
-    display: inline-block;
-    overflow: visible;
-    position: sticky;
-    top: -1px;
-    width: 100%;
-    z-index: 1;
   }
 }
 </style>

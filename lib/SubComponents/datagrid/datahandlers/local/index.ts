@@ -1,4 +1,4 @@
-import { Ref, ref } from "vue";
+import { Ref, ref, toRaw } from "vue";
 import { iDgrid } from "../../provide/Dgrid";
 import { filtering } from "./filter/filtering";
 import { groupBy } from "./grouping";
@@ -64,7 +64,7 @@ export class localData {
   }
 
   async getExpandingData(row: any, pid: string) {
-    const GrFilter = structuredClone(this.Dgrid?.Filter) ?? [];
+    const GrFilter = JSON.parse(JSON.stringify(this.Dgrid?.Filter ?? []));
     const parentArr = row.__id.split("/");
 
     for (let i = 0; i < row.__level + 1; i++) {

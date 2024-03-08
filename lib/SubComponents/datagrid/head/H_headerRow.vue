@@ -19,6 +19,7 @@ const DG = inject("DG") as iDgrid;
     display: flex;
     flex: 1 1 100%;
     background-color: var(--col-bg-2);
+    border-top-left-radius: 4px;
   }
 }
 </style>

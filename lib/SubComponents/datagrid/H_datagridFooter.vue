@@ -5,6 +5,7 @@
     <H_icon btn="standard" icon="expand_horizontal" title="Auto adjust all columns" @click="autoAdjustColumns" />
     <H_icon btn="standard" icon="excel" title="Download to excel" @click="excel" />
     <H_icon btn="standard" icon="zoom_out_map" title="fullScreen" @click="fullScreen" />
+    <div style="flex: 1" />
     <div class="H_datagrid__rowcount">
       <b>{{ DG.dataHandler?.rowsCount }}</b
       >&nbsp; Loaded of&nbsp; <b>{{ DG.dataHandler?.rowsCountTotal }}</b
@@ -42,19 +43,19 @@ function fullScreen() {}
 @layer hhl-components {
   .H_datagridFooter {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    height: 40px;
     gap: 8px;
     color: var(--col-txt-3);
     font-size: 14px;
     padding-right: 10px;
     padding-left: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
     border-top: 1px solid var(--col-bg-6);
   }
   .H_datagrid__rowcount {
     display: flex;
-    justify-content: end;
-    width: 100%;
   }
 }
 </style>

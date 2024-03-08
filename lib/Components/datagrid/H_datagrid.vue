@@ -1,24 +1,28 @@
 <template>
   <div class="H_datagrid">
-    <H_virtualList
-      :row_style="rowStyle"
-      data-key="id"
-      item-class="H_dataRow"
-      class="H_datagrid-virtualList"
-      :data-sources="DG.dataHandler?.outData.value"
-      :selectedId="selectedId"
-      ref="vscroll"
-      @click="datagridClick"
-    >
-      <template v-slot:header>
+    <div ref="header" class="H_datagrid-header">
+      <H_headerRow role="heading" aria-level="2" />
+      <H_progressBar :show="DG.dataHandler?.rowsLoading.value" />
+    </div>
+    <div class="H_datagrid-body" @scroll="onScroll">
+      <div class="H_datagrid-body-spacer">
         <H_headerRow role="heading" aria-level="2" />
-        <H_progressBar :show="DG.dataHandler?.rowsLoading.value" />
-      </template>
-      <template v-slot="{ item }">
-        <H_dataRow :row="item" :key="DG.changeCounter.value" />
-        <adjustColumnsWidth :row="item" />
-      </template>
-    </H_virtualList>
+      </div>
+      <H_virtualList
+        :row_style="rowStyle"
+        data-key="id"
+        item-class="H_dataRow"
+        :data-sources="DG.dataHandler?.outData.value"
+        :selectedId="selectedId"
+        ref="vscroll"
+        @click="datagridClick"
+      >
+        <template v-slot="{ item }">
+          <H_dataRow :row="item" :key="DG.changeCounter.value" />
+          <adjustColumnsWidth :row="item" />
+        </template>
+      </H_virtualList>
+    </div>
     <H_datagridFooter />
   </div>
 </template>
@@ -56,6 +60,7 @@ const E = defineEmits<{
   headClick: [data: iClickData];
 }>();
 
+const header = ref();
 const row_styleActive = P.row_style ? true : false;
 const vscroll = ref<iVscroller | null>(null);
 const slots = useSlots();
@@ -75,6 +80,11 @@ function datagridClick(e: MouseEvent) {
     E("rowClick", data);
   }
   if (data && data.type.startsWith("head")) E("headClick", data);
+}
+
+function onScroll(e: any) {
+  console.log("bb ", e.target.scrollLeft);
+  header.value.scrollLeft = e.target.scrollLeft;
 }
 
 function rowStyle(index: number) {
@@ -102,12 +112,34 @@ onMounted(() => {
 <style>
 @layer hhl-components {
   .H_datagrid {
+    position: relative;
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
     height: 100%;
     border: 1px solid var(--col-bg-6);
     border-radius: 4px;
     font-size: 14px;
+    overflow: hidden;
+  }
+
+  .H_datagrid-header {
+    display: flex;
+    height: 33px;
+    padding-right: 22px;
+    overflow: hidden;
+  }
+
+  .H_datagrid-body-spacer {
+    max-height: 0;
+  }
+  .H_datagrid-body-spacer * {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  .H_datagrid-body {
+    overflow-y: scroll;
   }
 }
 </style>
