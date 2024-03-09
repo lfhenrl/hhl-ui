@@ -1,6 +1,7 @@
 <template>
   <div class="H_virtualList">
     <div class="H_virtualList-body" ref="root" @scroll="onScroll">
+      <slot name="header" />
       <div class="H_virtualList-scroller" role="group" :style="paddingStyle">
         <H_virtualListItem
           v-for="item in items"
@@ -327,11 +328,12 @@ function emitEvent(offset: number, clientSize: number, scrollSize: number, evt: 
   .H_virtualList-body {
     position: relative;
     display: inline-block;
-    overflow: visible;
+    overflow: scroll;
     height: 100%;
   }
 
   .H_virtualList-scroller {
+    position: relative;
     display: inline-block;
     min-width: 100%;
   }

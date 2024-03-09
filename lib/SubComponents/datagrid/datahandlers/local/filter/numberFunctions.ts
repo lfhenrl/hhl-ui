@@ -1,8 +1,4 @@
-export function getNumberFunction(
-  condition: string,
-  field: any,
-  compareValue: number
-) {
+export function getNumberFunction(condition: string, field: any, compareValue: number) {
   switch (condition) {
     case "equal":
       return (value: any) => {

@@ -9,7 +9,7 @@ export default function filterSelect(filter: iFilterData) {
         return filterList?.includes(value[filter.field]);
       };
 
-    case "not_equal":
+    case "notEqual":
       return (value: any) => {
         return !filterList?.includes(value[filter.field]);
       };

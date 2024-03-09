@@ -34,7 +34,6 @@ export class localData {
   async loadData() {
     await this.startLoading();
     this.rowsCountTotal.value = this.orgData.length;
-
     const newData = await this.getFilt_sortData(this.Dgrid!.Filter);
     if (this.groupList.length > 0) {
       const result = await groupBy(this.groupList[0], newData, 0, "");

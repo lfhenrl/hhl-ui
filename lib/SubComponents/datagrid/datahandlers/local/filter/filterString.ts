@@ -11,7 +11,6 @@ export default function filterString(filter: iFilterData) {
 
   if (filter.value2) {
     const filterfunction2 = getStringFunction(filter.condition2, field, V2);
-
     if (filterfunction2) {
       return (value: any) => {
         if (filter.logical === "and") {

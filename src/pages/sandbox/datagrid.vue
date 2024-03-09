@@ -18,9 +18,16 @@
       :group-list="[]"
       data-key="id"
     >
-      <H_column field="id" title="Id" type="number" sorting="none" cell-class="text-err" />
+      <H_column field="id" filter_type="number" title="Id" type="number" sorting="none" cell-class="text-err" />
       <H_column field="val1" title="Value 1" type="string" filter_type="string" width="auto" />
-      <H_column field="val2" title="Value 2" type="string" filter_type="select" />
+      <H_column
+        field="val2"
+        title="Value 2"
+        type="string"
+        filter_type="select"
+        filter_condition1="notEqual"
+        filter_value1="Group 2.,Group 5."
+      />
       <H_column
         field="val3"
         title="Value 3"
@@ -30,7 +37,7 @@
         :cell_style="styleCell"
       />
       <H_column field="val4" title="Value 4" type="string" filter_type="select" />
-      <H_column field="val5" title="Value 5" type="bool" filter_type="bool" filter_condition="bool_list" />
+      <H_column field="val5" title="Value 5" type="bool" filter_type="bool" />
       <H_column field="val6" title="Value 6" type="date" filter_type="datetime" :format="formatDate" />
       <H_column field="val7" title="Value 7" type="string" filter_type="select" />
     </H_datagrid>

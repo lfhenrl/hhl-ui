@@ -69,6 +69,7 @@ function format(value: any, col: any, data: any) {
     height: min-content;
     min-height: 25px;
     width: 100%;
+    background: var(--col-bg-0);
   }
 
   .H_dataRow:nth-child(odd) {
@@ -109,6 +110,22 @@ function format(value: any, col: any, data: any) {
     display: flex;
     padding: 0 8px;
     align-items: center;
+  }
+
+  .sticky-0 {
+    position: sticky;
+    top: 0;
+    opacity: 1;
+  }
+  .sticky-1 {
+    position: sticky;
+    top: 30px;
+    opacity: 1;
+  }
+  .sticky-2 {
+    position: sticky;
+    top: 60px;
+    opacity: 1;
   }
 }
 </style>

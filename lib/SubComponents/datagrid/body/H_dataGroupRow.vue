@@ -12,15 +12,15 @@
     </div>
     <div>{{ row.__title }}</div>
     <span> ({{ row.__count }}/{{ row.__count_total }})</span>
-    <span> ({{ row.__id }})</span>
   </div>
 </template>
 
 <script setup lang="ts">
-import { inject, onMounted } from "vue";
+import { getCurrentInstance, inject, onMounted } from "vue";
 import { iDgrid } from "../provide/Dgrid";
 import H_icon from "../../../Components/H_icon.vue";
 
+const instace = getCurrentInstance();
 const P = defineProps({
   row: { type: Object, default: {} },
 });
@@ -30,7 +30,21 @@ const DG = inject("DG") as iDgrid;
 async function expand() {
   await DG.dataHandler?.expanding(P.row);
 }
-onMounted(() => {});
+onMounted(() => {
+  if (true) {
+    const t: any = instace?.parent?.parent ?? {};
+
+    if (P.row.__level === 0) {
+      t.ctx.$el.classList.add("sticky-0");
+    }
+    if (P.row.__level === 1) {
+      t.ctx.$el.classList.add("sticky-1");
+    }
+    if (P.row.__level === 2) {
+      t.ctx.$el.classList.add("sticky-2");
+    }
+  }
+});
 </script>
 <style>
 @layer hhl-components {
@@ -41,6 +55,7 @@ onMounted(() => {});
     gap: 12px;
     width: 100%;
     min-height: 30px;
+    max-height: 30px;
     padding: 0 2px;
   }
   .H_dataGroupRow-expandBtn {
@@ -48,7 +63,6 @@ onMounted(() => {});
     align-items: center;
   }
   .H_dataGroupRow span {
-    opacity: 70%;
     font-size: 12px;
   }
 }

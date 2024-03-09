@@ -35,6 +35,7 @@ export class Dgrid {
       this.columns.push(col);
     });
     this.Sorting = new Sorting(this);
+    this.updateFilter();
     this.dataHandler?.init(this);
   }
 

@@ -1,10 +1,7 @@
 <template>
   <div class="H_filterDate">
     <H_select v-model="condition1" :list="list" hide-filter />
-    <H_datePicker
-      v-model="value1"
-      :type="col.filter.type === 'date' ? 'date' : 'dateTime'"
-    />
+    <H_datePicker v-model="value1" :type="col.filter.type === 'date' ? 'date' : 'dateTime'" />
     <H_selectBox
       row
       list-gap="20px"
@@ -16,10 +13,7 @@
       ]"
     />
     <H_select v-model="condition2" :list="list" hide-filter />
-    <H_datePicker
-      v-model="value2"
-      :type="col.filter.type === 'date' ? 'date' : 'dateTime'"
-    />
+    <H_datePicker v-model="value2" :type="col.filter.type === 'date' ? 'date' : 'dateTime'" />
   </div>
 </template>
 
@@ -55,11 +49,7 @@ const logical = ref("and");
 
 const canSave = computed(() => {
   if (value1.value === null && col.filter.value1 === null) return false;
-  if (
-    value1.value !== col.filter.value1 ||
-    condition1.value !== col.filter.condition1
-  )
-    return true;
+  if (value1.value !== col.filter.value1 || condition1.value !== col.filter.condition1) return true;
   if (value2.value === col.filter.value2 && value2.value === null) return false;
   if (
     value2.value !== col.filter.value2 ||
@@ -77,6 +67,7 @@ function save() {
   col.filter.value2 = value2.value;
   col.filter.logical = logical.value;
   col.filter.active = col.filter.value1 !== null;
+  debugger;
 }
 
 function clear() {
@@ -99,10 +90,8 @@ function open() {
 function close() {}
 
 onMounted(() => {
-  col.filter.condition1 =
-    col.filter.condition1 === "" ? "equal" : col.filter.condition1;
-  col.filter.condition2 =
-    col.filter.condition2 === "" ? "equal" : col.filter.condition2;
+  col.filter.condition1 = col.filter.condition1 === "" ? "equal" : col.filter.condition1;
+  col.filter.condition2 = col.filter.condition2 === "" ? "equal" : col.filter.condition2;
   col.filter.value1 = col.filter.value1 === "" ? null : col.filter.value1;
   col.filter.value2 = col.filter.value2 === "" ? null : col.filter.value2;
 });

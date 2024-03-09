@@ -49,7 +49,7 @@ const endCondition = computed(() => {
   if (listCount / 2 > valueList.value.length) {
     return "equal";
   }
-  return "not_equal";
+  return "notEqual";
 });
 
 const endValue = computed(() => {
@@ -87,14 +87,12 @@ async function open() {
   if (col.filter.value1 === "") {
     value1.value = list.value.toString();
   } else {
+    value1.value = col.filter.value1;
     if (col.filter.condition1 === "equal") {
       return value1.value;
     } else {
       const ValList = value1.value.split(",");
-      return list.value
-        .filter((x: any) => ValList.includes(x))
-        .toString()
-        .toString();
+      value1.value = list.value.filter((x: any) => !ValList.includes(x)).toString();
     }
   }
 }

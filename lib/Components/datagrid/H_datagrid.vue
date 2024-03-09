@@ -4,19 +4,18 @@
       <H_headerRow role="heading" aria-level="2" />
       <H_progressBar :show="DG.dataHandler?.rowsLoading.value" />
     </div>
-    <div class="H_datagrid-body" @scroll="onScroll">
-      <div class="H_datagrid-body-spacer">
-        <H_headerRow role="heading" aria-level="2" />
-      </div>
+    <div class="H_datagrid-body">
       <H_virtualList
         :row_style="rowStyle"
         data-key="id"
+        @scroll="onScroll"
         item-class="H_dataRow"
         :data-sources="DG.dataHandler?.outData.value"
         :selectedId="selectedId"
         ref="vscroll"
         @click="datagridClick"
       >
+        <template v-slot:header><H_spaceRow /></template>
         <template v-slot="{ item }">
           <H_dataRow :row="item" :key="DG.changeCounter.value" />
           <adjustColumnsWidth :row="item" />
@@ -32,6 +31,7 @@ import { PropType, onMounted, provide, ref, useSlots, watch } from "vue";
 import H_virtualList from "../H_virtualList.vue";
 import H_headerRow from "../../SubComponents/datagrid/head/H_headerRow.vue";
 import H_dataRow from "../../SubComponents/datagrid/body/H_dataRow.vue";
+import H_spaceRow from "../../SubComponents/datagrid/body/H_spaceRow.vue";
 import H_datagridFooter from "../../SubComponents/datagrid/H_datagridFooter.vue";
 import H_progressBar from "../H_progressBar.vue";
 import { Dgrid } from "../../SubComponents/datagrid/provide/Dgrid";
@@ -126,20 +126,30 @@ onMounted(() => {
   .H_datagrid-header {
     display: flex;
     height: 33px;
-    padding-right: 22px;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
-  .H_datagrid-body-spacer {
-    max-height: 0;
+  .H_datagrid-header::-webkit-scrollbar {
+    border-radius: 0;
   }
-  .H_datagrid-body-spacer * {
-    max-height: 0;
+
+  .H_datagrid-header::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: var(--col-bg-2);
+  }
+
+  .H_datagrid-header::-webkit-scrollbar-thumb {
+    background-color: transparent;
     opacity: 0;
   }
 
+  .H_datagrid-body-spacer {
+    display: flex;
+    max-height: 0;
+  }
+
   .H_datagrid-body {
-    overflow-y: scroll;
+    overflow: hidden;
   }
 }
 </style>

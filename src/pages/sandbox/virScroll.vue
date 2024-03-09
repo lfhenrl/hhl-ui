@@ -2,7 +2,6 @@
   <div class="_page">
     <H_btn @click="load">Load</H_btn>
     <H_virtualList data-key="id" :data-sources="data" ref="vscroll">
-      <template v-slot:header> <div class="header">HEADER</div></template>
       <template v-slot:footer>FOOTER</template>
       <template v-slot="{ item }">
         <div class="listItem shadow">
@@ -35,7 +34,7 @@ async function load() {
   display: flex;
   padding: 32px;
   background-color: var(--col-bg-0);
-  height: 100%;
+  height: 500px;
 }
 .header {
   background-color: gray;

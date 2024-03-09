@@ -26,6 +26,7 @@ export class Column {
     filter_condition2: string;
     filter_value1: string;
     filter_value2: string;
+    filter_logical: string;
     visibel: boolean;
   };
   public filter: iFilterData;
@@ -58,22 +59,23 @@ export class Column {
       sorting: item.props.sorting,
       sortIndex: item.props["sort-index"] ?? 1000,
       filter_type: item.props.filter_type,
-      filter_condition1: item.props.filter_condition ?? "none",
-      filter_condition2: item.props.filter_condition ?? "none",
+      filter_condition1: item.props.filter_condition1 ?? "none",
+      filter_condition2: item.props.filter_condition2 ?? "none",
       filter_value1: item.props.filter_value1,
       filter_value2: item.props.filter_value2,
+      filter_logical: item.props.filter_logical,
       visibel: item.props.visibel ?? true,
     };
 
     this.filter = reactive({
-      field: item.props.field,
-      condition1: item.props.filter_condition1 ?? "",
-      condition2: item.props.filter_condition2 ?? "",
-      value1: item.props.filter_value1 ?? "",
-      value2: item.props.filter_value2 ?? "",
-      logical: "and",
-      type: item.props.filter_type ?? "none",
-      active: false,
+      field: this.props.field,
+      condition1: this.props.filter_condition1 ?? "",
+      condition2: this.props.filter_condition2 ?? "",
+      value1: this.props.filter_value1 ?? "",
+      value2: this.props.filter_value2 ?? "",
+      logical: this.props.filter_logical ?? "and",
+      type: this.props.filter_type ?? "none",
+      active: this.props.filter_condition1 !== "none" && this.props.filter_value1 !== "" ? true : false,
     });
     const sd: string = this.props.sorting === undefined || this.props.sorting === "none" ? "none" : this.props.sorting;
     this.sortDirection = ref(sd);

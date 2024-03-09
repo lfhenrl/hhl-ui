@@ -7,9 +7,7 @@ export default defineComponent({
     field: { type: String, default: "" },
     title: { type: String, default: "" },
     type: {
-      type: String as PropType<
-        "number" | "string" | "date" | "bool" | "action" | "userAction"
-      >,
+      type: String as PropType<"number" | "string" | "date" | "bool" | "action" | "userAction">,
       required: true,
     },
     width: { type: String, default: "auto" },
@@ -25,22 +23,28 @@ export default defineComponent({
     },
     sortIndex: { type: Number, default: 1000 },
     filter_type: {
-      type: String as PropType<
-        "none" | "number" | "string" | "date" | "datetime" | "select" | "bool"
-      >,
+      type: String as PropType<"none" | "number" | "string" | "date" | "datetime" | "select" | "bool">,
+      default: "none",
+    },
+    filter_logical: {
+      type: String as PropType<"and" | "or">,
       default: "none",
     },
     filter_condition1: {
       type: String as PropType<
         | "none"
         | "equal"
-        | "not_equal"
+        | "notEqual"
         | "greater"
+        | "greaterOrEqual"
         | "less"
-        | "between"
+        | "lessOrEqual"
         | "contain"
+        | "notContain"
         | "startswith"
-        | "endswith"
+        | "notStartwith"
+        | "endwith"
+        | "notEndwith"
         | "bool_list"
       >,
       default: "none",
@@ -49,13 +53,17 @@ export default defineComponent({
       type: String as PropType<
         | "none"
         | "equal"
-        | "not_equal"
+        | "notEqual"
         | "greater"
+        | "greaterOrEqual"
         | "less"
-        | "between"
+        | "lessOrEqual"
         | "contain"
+        | "notContain"
         | "startswith"
-        | "endswith"
+        | "notStartwith"
+        | "endwith"
+        | "notEndwith"
         | "bool_list"
       >,
       default: "none",

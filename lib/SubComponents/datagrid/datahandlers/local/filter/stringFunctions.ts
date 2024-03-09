@@ -1,8 +1,4 @@
-export function getStringFunction(
-  condition: string,
-  field: any,
-  compareValue: string
-) {
+export function getStringFunction(condition: string, field: any, compareValue: string) {
   switch (condition) {
     case "equal":
       return (value: any) => {
@@ -22,7 +18,7 @@ export function getStringFunction(
         return val.toLowerCase().includes(compareValue);
       };
       break;
-    case "startwith":
+    case "startswith":
       return (value: any) => {
         const val = value[field].toString();
         return val.toLowerCase().startsWith(compareValue);
