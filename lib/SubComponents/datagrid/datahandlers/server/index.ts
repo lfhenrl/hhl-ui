@@ -103,4 +103,8 @@ export class serverData {
       return this.outData.value.findIndex((item: any) => item[this.dataKey] == dataItem[this.dataKey]);
     }
   }
+
+  public async getExcel() {
+    return await [];
+  }
 }

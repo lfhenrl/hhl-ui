@@ -1,7 +1,7 @@
 <template>
   <div class="H_datagrid">
     <div ref="header" class="H_datagrid-header">
-      <H_headerRow role="heading" aria-level="2" />
+      <H_headerRow role="heading" aria-level="2" :key="DG.changeCounter.value" />
       <H_progressBar :show="DG.dataHandler?.rowsLoading.value" />
     </div>
     <div class="H_datagrid-body">
@@ -126,7 +126,10 @@ onMounted(() => {
   .H_datagrid-header {
     display: flex;
     height: 33px;
+    max-height: 33px;
     overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: aqua;
   }
 
   .H_datagrid-header::-webkit-scrollbar {

@@ -1,8 +1,8 @@
 export default {
-  load(jSONData: any, fields: any, reportTitle: string) {
+  // Fields should be a array of object with {field: string, type: string, title: string}
+  load(jSONData: any, fields: any[], reportTitle: string) {
     // If JSONData is not an object then JSON.parse will parse the JSON string in an Object
-    const arrData =
-      typeof jSONData !== "object" ? JSON.parse(jSONData) : jSONData;
+    const arrData = typeof jSONData !== "object" ? JSON.parse(jSONData) : jSONData;
 
     let CSV = "sep=;" + "\r\n\n";
 
@@ -10,12 +10,9 @@ export default {
     let header = "";
 
     // This loop will extract the label from 1st index of on array
-    for (const head in fields) {
-      if (fields.hasOwnProperty(head)) {
-        const column = fields[head];
-        header += column.title + ";";
-      }
-    }
+    fields.forEach((x: any) => {
+      header += x.title + ";";
+    });
 
     header = header.slice(0, -1);
 
@@ -28,49 +25,48 @@ export default {
       let row = "";
 
       // 2nd loop will extract each column and convert it in string comma-seprated
-      for (const head in fields) {
-        if (fields.hasOwnProperty(head)) {
-          const typ = fields[head].type || "string";
-          const dataField = arrData[i][head];
+      fields.forEach((x: any) => {
+        const typ = x.type || "string";
+        const dataField = arrData[i][x.field];
 
-          if (typ === "number") {
-            if (dataField) {
-              let val = dataField.toString().replace(".", ",");
-              val = val === "" ? "0" : val;
-              row += val + ";";
-            } else {
-              row += "0;";
-            }
-          }
-          if (typ === "string") {
-            if (dataField) {
-              row += '"' + dataField.toString() + '";';
-            } else {
-              row += ";";
-            }
-          }
-          if (typ === "bool") {
-            if (dataField) {
-              row += "TRUE;";
-            } else if (dataField === false) {
-              row += "FALSE;";
-            } else {
-              row += ";";
-            }
-          }
-          if (typ === "date") {
-            if (dataField) {
-              const D = new Date(dataField);
-              // tslint:disable-next-line:max-line-length
-              const DD = `${D.getFullYear()}-${D.getMonth() +
-                1}-${D.getDate()} ${D.getHours()}:${D.getMinutes()}:${D.getSeconds()};`;
-              row += DD;
-            } else {
-              row += ";";
-            }
+        if (typ === "number") {
+          if (dataField) {
+            let val = dataField.toString().replace(".", ",");
+            val = val === "" ? "0" : val;
+            row += val + ";";
+          } else {
+            row += "0;";
           }
         }
-      }
+        if (typ === "string") {
+          if (dataField) {
+            row += '"' + dataField.toString() + '";';
+          } else {
+            row += ";";
+          }
+        }
+        if (typ === "bool") {
+          if (dataField) {
+            row += "TRUE;";
+          } else if (dataField === false) {
+            row += "FALSE;";
+          } else {
+            row += ";";
+          }
+        }
+        if (typ === "date") {
+          if (dataField) {
+            const D = new Date(dataField);
+            // tslint:disable-next-line:max-line-length
+            const DD = `${D.getFullYear()}-${
+              D.getMonth() + 1
+            }-${D.getDate()} ${D.getHours()}:${D.getMinutes()}:${D.getSeconds()};`;
+            row += DD;
+          } else {
+            row += ";";
+          }
+        }
+      });
 
       row.slice(0, row.length - 1);
 
@@ -108,5 +104,5 @@ export default {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  }
+  },
 };

@@ -83,7 +83,8 @@ onMounted(() => {
   .H_HeadCell-space {
     height: 0;
     width: min-content;
-    overflow: visible;
+    overflow-x: hidden;
+    overflow-y: visible;
     white-space: nowrap;
     opacity: 0;
     padding-left: 8px;

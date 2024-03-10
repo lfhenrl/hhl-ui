@@ -64,6 +64,7 @@ const menuRight = defineAsyncComponent(() => import("./components/menu-right.vue
 const HhlLiveEditor = defineAsyncComponent(() => import("./components/liveEditor/hhl-live-editor.vue"));
 
 app.component("H_icon", H_icon);
+app.component("Hicon", H_icon);
 app.component("H_btn", H_btn);
 app.component("H_pop", H_pop);
 app.component("H_radio", H_radio);

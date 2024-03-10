@@ -15,19 +15,12 @@
       :dataHandler="lData"
       :filter-list="['id', 'val1', 'val2', 'val3', 'val4', 'val7']"
       :filterstring="seek"
-      :group-list="[]"
+      :group-list="['val2']"
       data-key="id"
     >
-      <H_column field="id" filter_type="number" title="Id" type="number" sorting="none" cell-class="text-err" />
+      <H_column field="id" filter_type="number" title="Id" type="number" cell-class="text-err" />
       <H_column field="val1" title="Value 1" type="string" filter_type="string" width="auto" />
-      <H_column
-        field="val2"
-        title="Value 2"
-        type="string"
-        filter_type="select"
-        filter_condition1="notEqual"
-        filter_value1="Group 2.,Group 5."
-      />
+      <H_column field="val2" title="Value 2" type="string" filter_type="select" />
       <H_column
         field="val3"
         title="Value 3"

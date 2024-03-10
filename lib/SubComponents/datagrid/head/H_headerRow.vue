@@ -17,7 +17,7 @@ const DG = inject("DG") as iDgrid;
 @layer hhl-components {
   .H_headerRow {
     display: flex;
-    flex: 1 1 100%;
+    flex: 1 1 0%;
     background-color: var(--col-bg-2);
     border-top-left-radius: 4px;
   }

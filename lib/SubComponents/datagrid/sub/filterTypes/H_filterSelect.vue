@@ -1,6 +1,7 @@
 <template>
   <div class="H_filterSelect">
     <H_inputText v-model="searchValue" end-icon="search" clearable />
+    {{ value1 }}
     <H_checkbox size="sm" label="Select All." :model-value="AllSelected" @click.prevent="SelectToggle" />
     <H_selectBox multi list-gap="2px" label-gap="2px" label-left v-model="value1" :list="filter" />
   </div>
@@ -31,13 +32,13 @@ function SelectToggle() {
     if (AllSelected.value) {
       value1.value = "";
     } else {
-      value1.value = list.value.toString();
+      value1.value = list.value.map((x: any) => x.value).toString();
     }
   });
 }
 
 const AllSelected = computed(() => {
-  return value1.value === list.value.toString();
+  return value1.value === list.value.map((x: any) => x.value).toString();
 });
 
 const valueList = computed(() => {
@@ -56,11 +57,14 @@ const endValue = computed(() => {
   if (endCondition.value === "equal") {
     return value1.value;
   } else {
-    return list.value.filter((x: any) => !valueList.value.includes(x)).toString();
+    return list.value
+      .filter((x: any) => !valueList.value.includes(x.value))
+      .map((x: any) => x.value)
+      .toString();
   }
 });
 
-const filterFunc = (item: any) => item.toLowerCase().includes(searchValue.value.toLowerCase());
+const filterFunc = (item: any) => item.value?.toLowerCase().includes(searchValue.value.toLowerCase());
 const filter = computed(() => list.value?.filter(filterFunc));
 
 const canSave = computed(() => {
@@ -83,16 +87,30 @@ function clear() {
 }
 
 async function open() {
-  list.value = await DG.dataHandler?.getSelectList(col.props.field);
+  let arr: any = [];
+  if (col.props.select_list) {
+    arr = col.props.select_list;
+  } else {
+    arr = await DG.dataHandler?.getSelectList(col.props.field);
+  }
+  list.value = arr.map((ele: any) => {
+    return {
+      value: ele.value ? ele.value : ele,
+      label: ele.label ? ele.label : ele,
+    };
+  });
   if (col.filter.value1 === "") {
-    value1.value = list.value.toString();
+    value1.value = list.value.map((x: any) => x.value).toString();
   } else {
     value1.value = col.filter.value1;
     if (col.filter.condition1 === "equal") {
       return value1.value;
     } else {
       const ValList = value1.value.split(",");
-      value1.value = list.value.filter((x: any) => !ValList.includes(x)).toString();
+      value1.value = list.value
+        .filter((x: any) => !ValList.includes(x.value))
+        .map((x: any) => x.value)
+        .toString();
     }
   }
 }

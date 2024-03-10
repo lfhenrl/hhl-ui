@@ -18,8 +18,10 @@
 <script setup lang="ts">
 import { inject, ref } from "vue";
 import { iDgrid } from "./provide/Dgrid";
+import csv from "../../utils/exportToExcel";
 import H_icon from "../../Components/H_icon.vue";
 import H_menuColumns from "./sub/columns/H_menuColumns.vue";
+import { iColumn } from "./provide/Column";
 
 const DG = inject("DG") as iDgrid;
 const menuColumnsRef = ref();
@@ -32,8 +34,12 @@ function autoAdjustColumns() {
   DG.ColumnWidthAdjustment.adjustAll();
 }
 
-function excel() {
-  DG!.scrollToOffset(600);
+async function excel() {
+  csv.load(
+    await DG.dataHandler?.getExcel(),
+    DG.getVisibelColumns().map((x: iColumn) => x.props),
+    "list"
+  );
 }
 
 function fullScreen() {}

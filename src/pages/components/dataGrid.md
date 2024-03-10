@@ -33,7 +33,9 @@ Next set the data with `localdata.setData(data)` and call `localdata.loadData()`
 
   ## Column resize
   You can resize the column width dragging the border.<br>
-  In the dropDown menu you can select `Auto size` that will adjust the size to the content.
+  In the dropDown menu you can select `Auto size` that will adjust the size to the content.<br>
+  You can auto adjust all columns by clicking the <hicon icon="expand_horizontal" style="margin-bottom: -7px;"/> icon in the bottom toolbar.
+<br>
   <br>
 
   ## Filter
@@ -146,16 +148,45 @@ for example: <br>
       | "none"
       | "equal"
       | "notEqual"
-
+<br>
+You can add the filters as properties to the column.
 <br>
 
 `filter_condition1`: The condition 1 should be equal/notEqual.<br>
 `filter_value1`: The value 1 to filter by as a comma separated string<br>
-<br>
 for example: <br>
 `filter_condition1="notEqual" filter_value1="Group 2.,Group 5."`
   <br>
   Will get all rows that that not have a value of Group 2. or Group 5.
+<br>
+<br>
+The select list will be automatic filled with data from the datasource.<br>
+You can add the list with other data by adding a String Array to property `select_list="list"`<br>
+If you want the list show Labels that not correspond to the values you want to filter by<br>you can make a list of objects with this syntax {value: string, label: string}
+<br>
+<br>
+## Grouping
+You can group your data to max 3 levels.<br>
+Up front you can set the grouping by the property `group-list` with a string array order by the levels.<br>
+In the columns menu you get by cliking the <hicon icon="columns" style="margin-bottom: -7px;"/> icon in the bottom toolbar.<br>
+You can drag columns to or from the column list to the group list.<br>
+you can drag the column up and down to adjust the order the data will be grouped.
+<br>
+<br>
+## Column Toggle
+In the columns menu you get by cliking the <hicon icon="columns" style="margin-bottom: -7px;"/> icon in the bottom toolbar.<br>
+You can toggle the columns on or off by the checkbox.
+<br>
+<br>
+## Column Reorder
+In the columns menu you get by cliking the <hicon icon="columns" style="margin-bottom: -7px;"/> icon in the bottom toolbar.<br>
+you can drag the column up and down to adjust the order of the columns.
+<br>
+<br>
+
+## Export to Excel
+In the columns menu you get by cliking the <hicon icon="excel" style="margin-bottom: -7px;"/> icon in the bottom toolbar.<br>
+you can drag the column up and down to adjust the order of the columns.
 <br>
 
 <hhl-live-editor title="" htmlCode='

@@ -122,4 +122,8 @@ export class localData {
     }, {});
     return Object.values(objArr);
   }
+
+  public async getExcel() {
+    return await this.getFilt_sortData(this.Dgrid!.Filter);
+  }
 }

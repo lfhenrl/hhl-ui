@@ -67,7 +67,6 @@ export class Dgrid {
       }
     });
     this.updateSeekFilter(sArray);
-    console.log("Filter ", sArray);
     this.Filter = sArray;
     this.dataHandler?.loadData();
   }
