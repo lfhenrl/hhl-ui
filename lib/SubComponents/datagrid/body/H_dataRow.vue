@@ -5,7 +5,7 @@
     v-else
     v-for="(col, index) in DG.getVisibelColumns()"
     class="H_dataRow-Cell"
-    :class="[col.props.cell_class, slotClass(col)]"
+    :class="[col.props.cell_class, slotClass(col), col.props.autoHeight === true ? 'H_dataRow-CellAutoHeight' : '']"
     :style="[
       {
         minWidth: col.width.value ?? '',

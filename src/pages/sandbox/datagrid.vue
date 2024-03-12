@@ -27,7 +27,7 @@
         </template>
       </H_column>
       <H_column field="id" title="Ids" type="number" sorting="desc" />
-      <H_column field="val1" type="string" width="auto" />
+      <H_column field="val1" type="string" />
       <H_column field="val2" title="Value 2" type="string" filter="select" />
       <H_column
         field="val3"
@@ -39,7 +39,7 @@
       />
       <H_column field="val4" title="Value 4" type="string" sorting="desc" :sort-index="1" />
       <H_column field="val5" title="Value 5" type="bool" />
-      <H_column field="val6" title="Value 6" type="date" :format="formatDate" />
+      <H_column field="val6" title="Value 6" type="date" :auto-height="true" width="300px" />
       <H_column field="val7" title="Value 7" type="string" />
     </H_datagrid>
   </div>

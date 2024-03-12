@@ -13,7 +13,7 @@ defineProps({
   },
   width: { type: String, default: "auto" },
   autoWidth: { type: Boolean, default: true },
-  autoHeight: { type: Boolean, default: true },
+  autoHeight: { type: Boolean, default: false },
   cell_class: { type: String, default: "" },
   format: { type: Function, default: (v: any) => v },
   cell_style: { type: Function, default: null },

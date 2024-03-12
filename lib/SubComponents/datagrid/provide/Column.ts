@@ -52,7 +52,7 @@ export class Column {
       type: item.props.type,
       width: item.props.width,
       autoWidth: item.props["auto-width"] === false ? false : true,
-      autoHeight: item.props["auto-height"] === "" ? true : false,
+      autoHeight: item.props["auto-height"] === true ? true : false,
       cell_class: item.props.cell_class,
       format: item.props.format,
       cell_style: item.props.cell_style,
