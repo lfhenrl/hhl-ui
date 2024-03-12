@@ -53,7 +53,7 @@ const col: iColumn = DG.columns[P.index];
     justify-content: center;
     overflow: visible;
     cursor: pointer;
-    color: var(--col-txt-5);
+    color: var(--col-bg-6);
     min-width: 24px;
     overflow: visible;
   }
@@ -62,7 +62,7 @@ const col: iColumn = DG.columns[P.index];
   }
 
   .H_HeadCellActive {
-    --current-bg-col: var(--col-pri);
+    color: var(--col-pri);
   }
 
   .H_HeadCell-sorting {

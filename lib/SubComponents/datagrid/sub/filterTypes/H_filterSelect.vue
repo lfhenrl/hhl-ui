@@ -1,7 +1,6 @@
 <template>
   <div class="H_filterSelect">
     <H_inputText v-model="searchValue" end-icon="search" clearable />
-    {{ value1 }}
     <H_checkbox size="sm" label="Select All." :model-value="AllSelected" @click.prevent="SelectToggle" />
     <H_selectBox multi list-gap="2px" label-gap="2px" label-left v-model="value1" :list="filter" />
   </div>

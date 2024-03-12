@@ -42,7 +42,13 @@ async function excel() {
   );
 }
 
-function fullScreen() {}
+function fullScreen() {
+  if (!document.fullscreenElement) {
+    DG.datagridRef?.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
 </script>
 
 <style>
@@ -58,7 +64,9 @@ function fullScreen() {}
     padding-left: 6px;
     padding-top: 6px;
     padding-bottom: 6px;
-    border-top: 1px solid var(--col-bg-6);
+    border: 1px solid var(--col-bg-6);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
   }
   .H_datagrid__rowcount {
     display: flex;

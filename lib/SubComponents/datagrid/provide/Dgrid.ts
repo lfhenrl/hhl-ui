@@ -10,6 +10,7 @@ export type iDgrid = InstanceType<typeof Dgrid>;
 type iVscroller = InstanceType<typeof H_virtualList>;
 
 export class Dgrid {
+  public datagridRef?: HTMLElement;
   public columns: iColumn[] = [];
   public Guid = "";
   public changeCounter = ref(0);

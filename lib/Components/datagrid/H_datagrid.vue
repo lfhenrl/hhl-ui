@@ -1,21 +1,27 @@
 <template>
-  <div class="H_datagrid">
+  <div class="H_datagrid" ref="datagridRef">
+    <div class="H_datagrid-head">
+      <slot name="head"></slot>
+    </div>
     <div ref="header" class="H_datagrid-header">
-      <H_headerRow role="heading" aria-level="2" :key="DG.changeCounter.value" />
+      <H_headerRow role="heading" aria-level="2" :key="DG.changeCounter.value" @click="headerClick" />
       <H_progressBar :show="DG.dataHandler?.rowsLoading.value" />
     </div>
     <div class="H_datagrid-body">
       <H_virtualList
-        :row_style="rowStyle"
+        :item_style="rowStyle"
         data-key="id"
         @scroll="onScroll"
         item-class="H_dataRow"
         :data-sources="DG.dataHandler?.outData.value"
         :selectedId="selectedId"
         ref="vscroll"
-        @click="datagridClick"
+        @click="bodyClick"
       >
-        <template v-slot:header><H_spaceRow /></template>
+        <template v-slot:header
+          ><H_spaceRow />
+          <div v-if="DG.dataHandler?.rowsCount.value === 0" class="H_datagrid-noRows">No rows loaded...</div>
+        </template>
         <template v-slot="{ item }">
           <H_dataRow :row="item" :key="DG.changeCounter.value" />
           <adjustColumnsWidth :row="item" />
@@ -44,10 +50,12 @@ const P = defineProps({
   dataKey: {
     type: String,
     required: true,
+    default: "",
   },
   dataHandler: {
     type: Object as PropType<any>,
     required: true,
+    default: null,
   },
   row_style: { type: Function, default: null },
   filterList: { type: Array as PropType<string[]>, default: [] },
@@ -60,6 +68,7 @@ const E = defineEmits<{
   headClick: [data: iClickData];
 }>();
 
+const datagridRef = ref();
 const header = ref();
 const row_styleActive = P.row_style ? true : false;
 const vscroll = ref<iVscroller | null>(null);
@@ -73,21 +82,24 @@ DG.SeekList = P.filterList;
 DG.dataHandler!.dataKey = P.dataKey;
 DG.dataHandler!.groupList = P.groupList;
 
-function datagridClick(e: MouseEvent) {
+function bodyClick(e: MouseEvent) {
   const data = ClickHandler.click(e);
   if (data && data.type.startsWith("row")) {
     selectedId.value = data?.dataId;
     E("rowClick", data);
   }
+}
+
+function headerClick(e: MouseEvent) {
+  const data = ClickHandler.click(e);
   if (data && data.type.startsWith("head")) E("headClick", data);
 }
 
 function onScroll(e: any) {
-  console.log("bb ", e.target.scrollLeft);
   header.value.scrollLeft = e.target.scrollLeft;
 }
 
-function rowStyle(index: number) {
+function rowStyle(index: any) {
   if (row_styleActive) {
     return P.row_style(index);
   }
@@ -106,6 +118,7 @@ watch(
 );
 onMounted(() => {
   DG.Vscroller = vscroll.value!;
+  DG.datagridRef = datagridRef.value;
 });
 </script>
 
@@ -114,30 +127,36 @@ onMounted(() => {
   .H_datagrid {
     position: relative;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto auto 1fr auto;
     grid-template-columns: 1fr;
     height: 100%;
-    border: 1px solid var(--col-bg-6);
-    border-radius: 4px;
     font-size: 14px;
     overflow: hidden;
   }
 
+  .H_datagrid-head {
+    display: flex;
+  }
+
   .H_datagrid-header {
     display: flex;
-    height: 33px;
-    max-height: 33px;
+    height: 36px;
+    max-height: 36px;
     overflow-x: hidden;
     overflow-y: scroll;
-    background-color: aqua;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border: 1px solid var(--col-bg-6);
   }
 
   .H_datagrid-header::-webkit-scrollbar {
     border-radius: 0;
+    border-top-right-radius: 4px;
   }
 
   .H_datagrid-header::-webkit-scrollbar-track {
     border-radius: 0;
+    border-top-right-radius: 4px;
     background-color: var(--col-bg-2);
   }
 
@@ -151,8 +170,18 @@ onMounted(() => {
     max-height: 0;
   }
 
+  .H_datagrid-noRows {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    font-size: 18px;
+    height: 99px;
+  }
+
   .H_datagrid-body {
     overflow: hidden;
+    border-right: 1px solid var(--col-bg-6);
+    border-left: 1px solid var(--col-bg-6);
   }
 }
 </style>

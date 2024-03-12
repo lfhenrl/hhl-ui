@@ -3,6 +3,7 @@
     <div
       class="H_menu-popup-item"
       data-action="asc"
+      data-subtype="menuSortAsc"
       :data-selected="col.sortDirection.value === 'asc'"
       v-if="col.props.sorting !== 'none'"
     >
@@ -12,18 +13,19 @@
     <div
       class="H_menu-popup-item"
       data-action="desc"
+      data-subtype="menuSortDesc"
       :data-selected="col.sortDirection.value === 'desc'"
       v-if="col.props.sorting !== 'none'"
     >
       <H_icon class="H_menu-noPointerEvents" btn="standard" icon="arrow_downward" size="18px" />
       <div class="H_menu-noPointerEvents">Sort Descending</div>
     </div>
-    <div class="H_menu-popup-item" data-action="filter" v-if="col.filter.type !== 'none'">
+    <div class="H_menu-popup-item" data-action="filter" v-if="col.filter.type !== 'none'" data-subtype="menuFilter">
       <H_icon class="H_menu-noPointerEvents" btn="standard" icon="filter" size="18px" />
       <div class="H_menu-noPointerEvents">Filter</div>
     </div>
 
-    <div class="H_menu-popup-item" data-action="autoSize">
+    <div class="H_menu-popup-item" data-action="autoSize" data-subtype="menuAutoSize">
       <H_icon class="H_menu-noPointerEvents" btn="standard" icon="expand_horizontal" size="18px" />
       <div class="H_menu-noPointerEvents">Auto size</div>
     </div>

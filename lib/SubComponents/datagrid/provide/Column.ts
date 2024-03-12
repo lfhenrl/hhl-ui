@@ -8,20 +8,21 @@ export type iColumn = InstanceType<typeof Column>;
 export class Column {
   public Dgrid: iDgrid;
   public dom: HTMLElement | null;
+  private filtType: string = "none";
   public props: {
     field: string;
     title: string;
     type: string;
     width: string;
+    autoWidth: boolean;
     autoHeight: boolean;
-    className: string;
+    cell_class: string;
     format: Function;
     cell_style: Function;
     select_list: [];
-    no_sorting: boolean;
     sorting: string;
     sortIndex: number;
-    filter_type: string;
+    filter: string;
     filter_condition1: string;
     filter_condition2: string;
     filter_value1: string;
@@ -50,22 +51,26 @@ export class Column {
       title: item.props.title ?? item.props.field,
       type: item.props.type,
       width: item.props.width,
+      autoWidth: item.props["auto-width"] === false ? false : true,
       autoHeight: item.props["auto-height"] === "" ? true : false,
-      className: item.props.className,
+      cell_class: item.props.cell_class,
       format: item.props.format,
       cell_style: item.props.cell_style,
       select_list: item.props.select_list,
-      no_sorting: item.props.no_sorting ?? false,
       sorting: item.props.sorting,
       sortIndex: item.props["sort-index"] ?? 1000,
-      filter_type: item.props.filter_type,
-      filter_condition1: item.props.filter_condition1 ?? "none",
-      filter_condition2: item.props.filter_condition2 ?? "none",
+      filter: item.props.filter,
+      filter_condition1: item.props.filter_condition1 ?? "",
+      filter_condition2: item.props.filter_condition2 ?? "",
       filter_value1: item.props.filter_value1,
       filter_value2: item.props.filter_value2,
       filter_logical: item.props.filter_logical,
       visibel: item.props.visibel ?? true,
     };
+    this.filtType = this.props.type;
+    if (this.filtType === "action") this.filtType = "none";
+    if (this.props.filter === "none") this.filtType = "none";
+    if (this.props.filter === "select") this.filtType = "select";
 
     this.filter = reactive({
       field: this.props.field,
@@ -74,8 +79,8 @@ export class Column {
       value1: this.props.filter_value1 ?? "",
       value2: this.props.filter_value2 ?? "",
       logical: this.props.filter_logical ?? "and",
-      type: this.props.filter_type ?? "none",
-      active: this.props.filter_condition1 !== "none" && this.props.filter_value1 !== "" ? true : false,
+      type: this.filtType,
+      active: this.props.filter_condition1 !== "" && this.props.filter_value1 !== "" ? true : false,
     });
     const sd: string = this.props.sorting === undefined || this.props.sorting === "none" ? "none" : this.props.sorting;
     this.sortDirection = ref(sd);
@@ -84,7 +89,8 @@ export class Column {
     this.index = index;
     this.orgIndex = index;
     this.width.value = item.props.width;
-    this.autoWidth = item.props.width === undefined || item.props.width === "auto" ? true : false;
+    this.autoWidth =
+      item.props.width === undefined || (item.props.width === "auto" && item.props.autoWidth === true) ? true : false;
     this.maxValue = "x";
     watch(this.sortDirection, () => this.Dgrid.Sorting.update(this));
     this.debouncedUpdate();

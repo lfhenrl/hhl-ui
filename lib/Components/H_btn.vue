@@ -18,6 +18,7 @@
 import { PropType } from "vue";
 
 defineProps({
+  /** @type {type} The type of Btn it can be standard, outline or text default is standard */
   type: {
     type: String as PropType<"standard" | "outline" | "text">,
     default: "standard",

@@ -1,26 +1,34 @@
 <template>
   <div class="_page">
-    <div style="display: flex; align-items: center">
-      <H_btn @click="load" style="width: 100px">Load</H_btn>
-      <div style="flex: 1" />
-      <H_inputText v-model="seek" :debounce="300" clearable style="max-width: 200px">
-        <template v-slot:end>
-          <H_icon icon="search"></H_icon>
-        </template>
-      </H_inputText>
-    </div>
     <H_datagrid
       @head-click="headClick"
       @row-click="rowClick"
       :dataHandler="lData"
       :filter-list="['id', 'val1', 'val2', 'val3', 'val4', 'val7']"
       :filterstring="seek"
-      :group-list="['val2']"
+      :group-list="[]"
+      :row_style="rowStyle"
       data-key="id"
     >
-      <H_column field="id" filter_type="number" title="Id" type="number" cell-class="text-err" />
-      <H_column field="val1" title="Value 1" type="string" filter_type="string" width="auto" />
-      <H_column field="val2" title="Value 2" type="string" filter_type="select" />
+      <template v-slot:head>
+        <div style="display: flex; padding: 10px 0; flex: 1">
+          <H_btn @click="load" style="width: 100px" type="outline">Load</H_btn>
+          <div style="flex: 1" />
+          <H_inputText v-model="seek" :debounce="300" clearable style="max-width: 200px">
+            <template v-slot:end>
+              <H_icon icon="search"></H_icon>
+            </template>
+          </H_inputText>
+        </div>
+      </template>
+      <H_column field="id" title="Id" type="action" width="100px" :auto-width="false"
+        ><template #default>
+          <H_icon icon="edit" btn="standard" size="24px" class="text-pri"></H_icon>
+        </template>
+      </H_column>
+      <H_column field="id" title="Ids" type="number" sorting="desc" />
+      <H_column field="val1" type="string" width="auto" />
+      <H_column field="val2" title="Value 2" type="string" filter="select" />
       <H_column
         field="val3"
         title="Value 3"
@@ -29,10 +37,10 @@
         class="text-err"
         :cell_style="styleCell"
       />
-      <H_column field="val4" title="Value 4" type="string" filter_type="select" />
-      <H_column field="val5" title="Value 5" type="bool" filter_type="bool" />
-      <H_column field="val6" title="Value 6" type="date" filter_type="datetime" :format="formatDate" />
-      <H_column field="val7" title="Value 7" type="string" filter_type="select" />
+      <H_column field="val4" title="Value 4" type="string" sorting="desc" :sort-index="1" />
+      <H_column field="val5" title="Value 5" type="bool" />
+      <H_column field="val6" title="Value 6" type="date" :format="formatDate" />
+      <H_column field="val7" title="Value 7" type="string" />
     </H_datagrid>
   </div>
 </template>
@@ -63,26 +71,41 @@ function formatDate(value: any) {
 }
 
 function headClick(data: iClickData) {
-  console.log("headClick :", data);
+  if (data.colOrgIndex === 0 && data.subType === "title") {
+    console.log("headClick :", data);
+  }
 }
 
 function rowClick(data: iClickData) {
-  console.log("rowClick :", data);
+  if (data.subType === "XX1") {
+    console.log("rowClick: ", data);
+  }
 }
 
-function styleCell(val: string) {
-  if (val === "Row 4 cell 3.")
+function styleCell(val: string, row: any) {
+  if (val === "Row 4 cell 3." || row.id === 2)
+    return {
+      color: "red",
+    };
+}
+
+function rowStyle(row: any) {
+  if (row.id === 7)
     return {
       color: "red",
     };
 }
 </script>
-<style scoped>
+<style>
 ._page {
   display: flex;
   padding: 32px;
   gap: 18px;
   background-color: var(--col-bg-0);
   height: 100%;
+}
+
+.text1-err {
+  color: lime;
 }
 </style>

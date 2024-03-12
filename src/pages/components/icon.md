@@ -50,14 +50,14 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
     <template>
      <div class="flexCol gap-4">
     <div class="flexRow items-center gap-4 flexWrap">
-        <H_icon icon="edit" class="col-pri"></H_icon>
-        <H_icon icon="edit" class="col-sec"></H_icon>
-        <H_icon icon="edit" class="col-ok"></H_icon>
-        <H_icon icon="edit" class="col-err"></H_icon>
-        <H_icon icon="edit" class="col-warn"></H_icon>
-        <H_icon icon="edit" class="col-info"></H_icon>
-        <H_icon icon="edit" class="col-black"></H_icon>
-        <H_icon icon="edit" style="--current-bg-col: purple;--current-txt-col: white"></H_icon>
+        <H_icon icon="edit" class="text-pri" btn></H_icon>
+        <H_icon icon="edit" class="text-sec" btn></H_icon>
+        <H_icon icon="edit" class="text-ok" btn></H_icon>
+        <H_icon icon="edit" class="text-err" btn></H_icon>
+        <H_icon icon="edit" class="text-warn" btn></H_icon>
+        <H_icon icon="edit" class="text-info" btn></H_icon>
+        <H_icon icon="edit" class="text-black" btn></H_icon>
+        <H_icon icon="edit" btn style="--current-bg-col: purple;--current-txt-col: white"></H_icon>
     </div>
     <div class="flexRow items-center gap-4 flexWrap">
         <H_icon icon="edit" class="col-pri" btn="outline"></H_icon>

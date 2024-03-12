@@ -51,11 +51,7 @@ const logical = ref("and");
 
 const canSave = computed(() => {
   if (value1.value === "" && col.filter.value1 === "") return false;
-  if (
-    value1.value !== col.filter.value1 ||
-    condition1.value !== col.filter.condition1
-  )
-    return true;
+  if (value1.value !== col.filter.value1 || condition1.value !== col.filter.condition1) return true;
   if (value2.value === col.filter.value2 && value2.value === "") return false;
   if (
     value2.value !== col.filter.value2 ||
@@ -95,10 +91,8 @@ function open() {
 function close() {}
 
 onMounted(() => {
-  col.filter.condition1 =
-    col.filter.condition1 === "" ? "contain" : col.filter.condition1;
-  col.filter.condition2 =
-    col.filter.condition2 === "" ? "contain" : col.filter.condition2;
+  col.filter.condition1 = col.filter.condition1 === "" ? "contain" : col.filter.condition1;
+  col.filter.condition2 = col.filter.condition2 === "" ? "contain" : col.filter.condition2;
 });
 
 defineExpose({ save, clear, open, close, canSave });

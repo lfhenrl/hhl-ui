@@ -2,21 +2,73 @@
 
 The H_datagrid component is a datagrid for displaying data in a tabular format,
 with range of functionalities.
-- Filtering
-- Sorting
-- Grouping
-- Column Resizing
-- Column Chooser
-- Column Menu
-- Cell Template
-- Cell styling
-- Cell format
-- Row Styling
-- Virtual scrolling
-- Export to CSV
-- Full screen
+
 
 <br>
+
+## Datagrid properties.
+
+| Name       | Describtion                                                                       |
+| ---------- | --------------------------------------------------------------------------------- | 
+| dataKey | Required. A data key from the datasource that should be unik. | 
+| dataHandler | Required. A data function you need to import from the libery. |
+| row_style | A function to be called if you want to style the row, you will recieve the rowData so you can use this as conditions |
+| filterList | A string array with the field names you want to filter by with a global filter |
+| filterstring | The filter string to use with the global filter|
+| groupList | A string array with the field names you want to group by max 3 fields |
+
+
+<br/>
+
+## Datagrid events.
+
+| Name         | Describtion                                                                                                          |
+| ------------ | -------------------------------------------------------------------------------------------------------------------- |
+| head-click | A event for a column is clicked, the event sends information about column and other details                                                    |
+|row-click  | A event a row is clicked, the event sends information about column and the row.                                                       |
+
+<br/>
+
+## Datagrid slots.
+
+| Name       | Describtion                                                                                 |
+| ---------- | ------------------------------------------------------------------------------------------- |
+| default | Here you have to put the columns |
+| head  | A possibillity to add content on top of the grid. It could be the global filter interface             |
+
+
+
+<br/>
+
+## Column properties
+
+| Name    | Describtion                                                                               |
+| ------- | ----------------------------------------------------------------------------------------- |
+| field | Required. The field from the datasource                                                          |
+| type    | Required. The type of data |
+| title    | If you want another Title than the field name |
+| width    | x |
+| autoHeight    | x |
+| visibel    | If you want to hide the column up front, it can controlled later by the column menu |
+| cell_class    | To add a class to a cell in the datagrid |
+| cell_style    |  A function to be called,the event sends data for the value and row should return a style object|
+| format    | A function to be called,the event sends data for the value and row, should return the formattet value |
+| sorting    | The column get a sorting by default but you can disable this by sorting="none" <br> If you want sorting up front you can set sorting="asc/desc" |
+| sortIndex    | If you make sorting up front with more columns you can specify the order by this |
+| filter    | The column get a filter by default but you can disable this by filter="none" or if you want the filter to be a select filter by filter="select" |
+| filter_condition1    | The condition 1 should be contain/startswith etc. For filtering up front. |
+| filter_condition2    | The condition 2 should be contain/startswith etc. For filtering up front. |
+| filter_value1    | The value 1 to filter by. For filtering up front. |
+| filter_value2    | The value 2 to filter by. For filtering up front. |
+| filter_logical    | The 2 filters will be handled by this, can be “and” (default) or “or” |
+| select_list    | select filters will be automatic filled with data from the datasource. But if you need you can add you own list.|
+
+
+
+
+
+
+<br/>
 
 ## Datasource.
 
@@ -165,6 +217,22 @@ You can add the list with other data by adding a String Array to property `selec
 If you want the list show Labels that not correspond to the values you want to filter by<br>you can make a list of objects with this syntax {value: string, label: string}
 <br>
 <br>
+
+## Global Filter
+You can add a global filter by adding a search textbox.<br>
+You bind the textbox with its `V-model` with a ref and add this ref to the Datagrid property `filterstring`<br>
+In the property `filter-list` you should add an string array with the fields you want to search.
+
+<br>
+<br>
+
+## Head Template
+You can use the Head template to add components to the top of the Datagrid.<br>
+`<template v-slot:head></template>`
+
+<br>
+<br>
+
 ## Grouping
 You can group your data to max 3 levels.<br>
 Up front you can set the grouping by the property `group-list` with a string array order by the levels.<br>
@@ -187,6 +255,184 @@ you can drag the column up and down to adjust the order of the columns.
 ## Export to Excel
 In the columns menu you get by cliking the <hicon icon="excel" style="margin-bottom: -7px;"/> icon in the bottom toolbar.<br>
 you can drag the column up and down to adjust the order of the columns.
+<br>
+<br>
+
+## Cell class
+You can add a class to a cell in the datagrid by the property `cell_class`.
+<br>
+<br>
+
+## Cell style
+You can add a function to the property `cell_style` that will be called with the value and the row.<br>
+It shall return a style object.<br>
+```js
+
+  <H_column
+    field="val3"
+    title="Value 3"
+    type="string"
+    :cell_style="styleCell"
+  />
+
+  function styleCell(val: string, row: any) {
+    if (val === "Row 4 cell 3." || row.id === 2)
+      return {
+        color: "red",
+      };
+  }
+
+```
+<br>
+<br>
+
+## Cell format
+You can add a function to the property `format` that will be called with the value and the row.<br>
+It shall return a value.<br>
+```js
+
+   <H_column 
+    field="val6" 
+    title="Value 6" 
+    type="date" 
+    :format="formatDate" />
+
+  function formatDate(value: any, row: any) {
+    return D_01_dec_2021_HHMM(value);
+  }
+
+```
+<br>
+<br>
+
+## Cell template
+In the default slot for a column you can add your own content.<br>
+The slot will be Scoped with a data object with the these data.<br>
+data.value: The value of the cell.<br>
+data.row: the rowdata for the actual row.<br>
+data.col: with all the data for the actual column,
+
+
+
+```js
+
+  <H_column field="id" title="Id" type="number">
+    <template #default="data">id:{{ data.value }}</template>
+  </H_column>
+
+```
+<br>
+<br>
+
+## Row style
+You can add a function to the property `row_style` that will be called with the row data.<br>
+It shall return a style object.<br>
+```js
+
+  <H_datagrid
+    :dataHandler="lData"
+    :filter-list="['id', 'val1', 'val2', 'val3', 'val4', 'val7']"
+    :filterstring="seek"
+    :row_style="rowStyle"
+    data-key="id"
+  >
+
+  function rowStyle(row: any) {
+    if (row.id === 7)
+      return {
+        color: "red",
+      };
+  }
+
+```
+<br>
+<br>
+
+## Header click
+To reduce the amount of eventhandlers, there is one event for that something in the header is clicked<br>
+The event `head-click` will give these informatios.<br>
+
+
+```js
+
+
+    colIndex: 1       The index of the column.
+    colOrgIndex: 1    The originel index of the column
+    column:Column     All the data for the actual column
+    dataId:null       Not relevant for a header
+    dataItem:null     Not relevant for a header
+    field: "id"       The field name.
+    subType: "title"  Gives info on what is clicked could be 
+                      title/resize/menuSortAsc/menuSortDesc/menuFilter/menuAutoSize
+    type: "headcell"  The type of dom element
+
+
+```
+
+So if you want to do something when you click on the title on the column withe index 0 (The first column)<br>
+```js
+
+    <H_datagrid
+      @head-click="headClick"
+      :dataHandler="lData"
+      data-key="id"
+    >
+
+    function headClick(data: iClickData) {
+      // use colOrgIndex because the column maybe have been reorded
+      if (data.colOrgIndex === 0 && data.subType === "title") {
+        console.log("headClick :", data);
+      }
+    }
+```
+
+<br>
+<br>
+
+## Row click
+To reduce the amount of eventhandlers, there is one event for that row is clicked<br>
+The event `row-click` will give these informatios.<br>
+
+
+```js
+
+
+    colIndex: 1       The index of the column.
+    colOrgIndex: 1    The originel index of the column.
+    column:Column     All the data for the actual column.
+    dataId: 1         The data Id of the row.
+    dataItem: {}      The data for the row.
+    field: "id"       The field name.
+    subType: "XX1"    Gives info on what is clicked if you have added data-subtype="XX1" on something in a cell template
+    type: "rowcell"   The type of dom element
+
+
+```
+
+So if you want to do something when you click on button in a cell template.<br>
+```js
+
+    <H_datagrid
+      @row-click="rowClick"
+      :dataHandler="lData"
+      data-key="id"
+    >
+
+    <H_column field="id" title="Id" type="action">
+      <template #default="data">
+        <H_btn size="xs" data-subtype="XX1">{{ data.value }}</H_btn>
+      </template>
+    </H_column>
+
+    function rowClick(data: iClickData) {
+      if (data.subType === "XX1") {
+        console.log("rowClick: ", data);
+      }
+    }
+
+```
+
+<br>
 <br>
 
 <hhl-live-editor title="" htmlCode='

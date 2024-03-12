@@ -6,9 +6,11 @@
     :tabindex="btn === 'none' || $attrs.disabled == true ? '' : '0'"
     :class="{
       btn: btn !== 'none',
-      'btn-fill': btn.startsWith('fill'),
-      'btn-outline': btn.startsWith('outline'),
-      'btn-round': btn.endsWith('round'),
+      'btn-standard': btn === 'standard',
+      'btn-fill': btn === 'fill',
+      'fill-round': btn === 'fill-round',
+      'btn-outline': btn === 'outline',
+      'btn-outline-round': btn === 'outline-round',
     }"
   />
 </template>
@@ -44,37 +46,42 @@ const ic: any = Icons[P.icon];
     aspect-ratio: 1 / 1;
   }
 
-  .H_icon:not(.btn),
+  .H_icon.btn {
+    border-radius: 50px;
+  }
+
   .H_icon.btn-outline {
     background-color: transparent !important;
     color: var(--current-bg-col, currentColor, var(--col-txt-2));
+    border: solid 1px currentColor;
+    border-radius: 4px;
   }
 
-  .H_icon.btn {
-    border-radius: 4px;
+  .H_icon.btn-outline-round {
+    background-color: transparent !important;
+    color: var(--current-bg-col, currentColor, var(--col-txt-2));
+    border: solid 1px currentColor;
+    padding: 3px;
+    border-radius: 50%;
   }
 
   .H_icon.btn-fill {
     background-color: var(--current-bg-col, var(--col-bg-4));
     color: var(--current-txt-col, var(--col-txt-0));
     padding: 4px;
+    border-radius: 4px;
   }
 
-  .H_icon.btn.btn-outline {
-    border: solid 1px currentColor;
+  .H_icon.fill-round {
+    background-color: var(--current-bg-col, var(--col-bg-4));
+    color: var(--current-txt-col, var(--col-txt-0));
     padding: 4px;
-  }
-
-  .H_icon.btn-round {
     border-radius: 50%;
   }
 
   .H_icon.btn:hover {
-    filter: brightness(70%);
-    -webkit-backdrop-filter: drop-shadow(4px 4px 10px red);
-    backdrop-filter: drop-shadow(4px 4px 10px red);
-    outline: 2px solid rgba(128, 128, 128, 0.01);
-    border-radius: 10em;
+    outline: 2px solid var(--col-pri);
+    outline-offset: 1px;
     aspect-ratio: 1 / 1;
   }
 

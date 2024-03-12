@@ -49,9 +49,8 @@ onMounted(() => {
   .H_HeaderCell {
     display: flex;
     flex-direction: column;
-    min-height: 33px;
+    min-height: 34px;
     border-right: 1px solid var(--col-bg-5);
-    border-bottom: 1px solid var(--col-bg-3);
   }
 
   .H_HeaderCell-inner {

@@ -5,7 +5,7 @@
     v-else
     v-for="(col, index) in DG.getVisibelColumns()"
     class="H_dataRow-Cell"
-    :class="[col.props.className, slotClass(col)]"
+    :class="[col.props.cell_class, slotClass(col)]"
     :style="[
       {
         minWidth: col.width.value ?? '',
@@ -56,8 +56,8 @@ function cellStyle(col: any) {
   return col.props.cell_style?.(value, P.row) ?? "";
 }
 
-function format(value: any, col: any, data: any) {
-  return col.props.format?.(value, col, data) ?? value?.toString() ?? "";
+function format(value: any, col: any, row: any) {
+  return col.props.format?.(value, row) ?? value?.toString() ?? "";
 }
 </script>
 

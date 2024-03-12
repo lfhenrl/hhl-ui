@@ -12,8 +12,7 @@ export function ColumnWidthAdjustment(_Dgrid: iDgrid) {
     const id = col.props.field;
     const val = row[id];
 
-    const valFormatted =
-      col.props.format?.(val, col, row) ?? val?.toString() ?? "";
+    const valFormatted = col.props.format?.(val, col, row) ?? val?.toString() ?? "";
     const valStr: string = valFormatted.toString() ?? "xxx";
 
     if (!valStr) return;
@@ -22,9 +21,11 @@ export function ColumnWidthAdjustment(_Dgrid: iDgrid) {
   }
 
   function findMaxSingelColumn(col: iColumn) {
-    col.autoWidth = true;
-    col.width.value = "auto";
-    col.setMaxValue(col.maxValue);
+    if (col.props.autoWidth === true) {
+      col.autoWidth = true;
+      col.width.value = "auto";
+      col.setMaxValue(col.maxValue);
+    }
   }
 
   function findMaxAllColumns(row: any) {
@@ -33,9 +34,11 @@ export function ColumnWidthAdjustment(_Dgrid: iDgrid) {
 
   function adjustAll() {
     Dgrid.columns.forEach((col) => {
-      col.autoWidth = true;
-      col.width.value = "auto";
-      col.setMaxValue(col.maxValue);
+      if (col.props.autoWidth === true) {
+        col.autoWidth = true;
+        col.width.value = "auto";
+        col.setMaxValue(col.maxValue);
+      }
     });
   }
 
