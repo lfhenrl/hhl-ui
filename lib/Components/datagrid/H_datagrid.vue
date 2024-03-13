@@ -58,6 +58,7 @@ const P = defineProps({
     default: null,
   },
   row_style: { type: Function, default: null },
+  row_height: { type: String, default: "33px" },
   filterList: { type: Array as PropType<string[]>, default: [] },
   filterstring: { type: String, default: "" },
   groupList: { type: Array as PropType<string[]>, default: [] },
@@ -132,6 +133,7 @@ onMounted(() => {
     height: 100%;
     font-size: 14px;
     overflow: hidden;
+    --dgrid-row-height: v-bind(row_height);
   }
 
   .H_datagrid-head {
@@ -140,8 +142,8 @@ onMounted(() => {
 
   .H_datagrid-header {
     display: flex;
-    height: 36px;
-    max-height: 36px;
+    height: 35px;
+    max-height: 35px;
     overflow-x: hidden;
     overflow-y: scroll;
     border-top-left-radius: 4px;

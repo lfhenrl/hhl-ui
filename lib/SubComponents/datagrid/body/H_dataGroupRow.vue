@@ -54,8 +54,8 @@ onMounted(() => {
     align-items: center;
     gap: 12px;
     width: 100%;
-    min-height: 30px;
-    max-height: 30px;
+    min-height: var(--dgrid-row-height);
+    max-height: var(--dgrid-row-height);
     padding: 0 2px;
   }
   .H_dataGroupRow-expandBtn {

@@ -12,6 +12,7 @@ type iVscroller = InstanceType<typeof H_virtualList>;
 export class Dgrid {
   public datagridRef?: HTMLElement;
   public columns: iColumn[] = [];
+  public headDom?: HTMLElement | null;
   public Guid = "";
   public changeCounter = ref(0);
   public StyleSheet = {} as CSSStyleSheet;

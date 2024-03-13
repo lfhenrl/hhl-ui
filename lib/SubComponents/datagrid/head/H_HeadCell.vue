@@ -5,8 +5,8 @@
     :data-col-index="index"
     data-type="headcell"
     :style="{
-      minWidth: col.width.value ?? '',
-      maxWidth: col.width.value ?? '',
+      minWidth: col.head_width.value ?? '',
+      maxWidth: col.head_width.value ?? '',
     }"
   >
     <div class="H_HeaderCell-inner">

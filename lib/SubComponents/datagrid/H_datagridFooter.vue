@@ -1,6 +1,5 @@
 <template>
   <div class="H_datagridFooter">
-    <H_icon btn="standard" icon="refresh" title="Reload data" />
     <H_icon btn="standard" icon="columns" title="Edit Columns" @click="editColumns" />
     <H_icon btn="standard" icon="expand_horizontal" title="Auto adjust all columns" @click="autoAdjustColumns" />
     <H_icon btn="standard" icon="excel" title="Download to excel" @click="excel" />

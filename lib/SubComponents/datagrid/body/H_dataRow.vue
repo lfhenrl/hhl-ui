@@ -25,6 +25,7 @@ import { inject } from "vue";
 import { iDgrid } from "../provide/Dgrid";
 import H_dataGroupRow from "./H_dataGroupRow.vue";
 import H_loadMoreRow from "./H_loadMoreRow.vue";
+import { iColumn } from "../provide/Column";
 
 const P = defineProps({
   row: { type: Object, default: {} },
@@ -33,7 +34,7 @@ const P = defineProps({
 
 const DG = inject("DG") as iDgrid;
 
-function slotClass(col: any) {
+function slotClass(col: iColumn) {
   if (col.slot?.default) return "H_dataRow-slotCell";
 }
 
@@ -51,12 +52,12 @@ function rend(data: any) {
   }
 }
 
-function cellStyle(col: any) {
+function cellStyle(col: iColumn) {
   const value = P.row[col.props.field];
   return col.props.cell_style?.(value, P.row) ?? "";
 }
 
-function format(value: any, col: any, row: any) {
+function format(value: any, col: iColumn, row: any) {
   return col.props.format?.(value, row) ?? value?.toString() ?? "";
 }
 </script>
@@ -67,8 +68,10 @@ function format(value: any, col: any, row: any) {
     display: flex;
     flex: 1;
     height: min-content;
-    min-height: 25px;
+    min-height: var(--dgrid-row-height);
+    max-height: var(--dgrid-row-height);
     width: 100%;
+    line-height: 1.1;
     background: var(--col-bg-0);
   }
 
@@ -119,12 +122,12 @@ function format(value: any, col: any, row: any) {
   }
   .sticky-1 {
     position: sticky;
-    top: 30px;
+    top: var(--dgrid-row-height);
     opacity: 1;
   }
   .sticky-2 {
     position: sticky;
-    top: 60px;
+    top: calc(var(--dgrid-row-height) * 2);
     opacity: 1;
   }
 }
