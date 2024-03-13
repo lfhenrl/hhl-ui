@@ -331,10 +331,11 @@ So if you want to do something when you click on button in a cell template.<br>
   <br>
 
   ## Filter
-  You can filter by the dropdown menu for a column by adding filter type to each column.<br>
+  The filter will be added automatically by the columns type property.<br>
+  You can filter by the dropdown menu for a column.<br>
   there are 6 filters.<br>
   ## String Filter
-  `filter_type="string"`: Gives a filter for strings with these conditions. <br>
+  Filter for strings with these conditions. <br>
         | "none"
         | "equal"
         | "notEqual"
@@ -362,7 +363,7 @@ for example: <br>
 <br>
  ## Number Filter
 
-  `filter_type="number"`: Gives a filter for numbers with these conditions. <br>
+  Filter for numbers with these conditions. <br>
         | "none"
         | "equal"
         | "notEqual"
@@ -390,7 +391,7 @@ for example: <br>
 <br>
  ## DateTime Filter
 
-  `filter_type="date"` or `filter_type="datetime"`: Gives a filter for dates with these conditions.<br>
+  Filter for dates with these conditions.<br>
         | "none"
         | "equal"
         | "notEqual"
@@ -418,7 +419,7 @@ for example: <br>
 
 ## Boolean Filter
 
- `filter_type="bool"`: Gives a filter for boolean with these conditions. <br>
+ Filter for boolean with these conditions. <br>
       | "none"
       | "equal"
 <br>
@@ -436,7 +437,8 @@ for example: <br>
 <br>
 
 ## Select Filter
-  `filter_type="select"`: Gives a select filter with these conditions. <br>
+The select filter will not be added automatically you need to specify `filter="select"` for the column.<br>
+  Select filter with these conditions. <br>
       | "none"
       | "equal"
       | "notEqual"
@@ -479,13 +481,7 @@ you can drag the column up and down to adjust the order the data will be grouped
 
 
 
-
-
-
-
-
-
-## DatasourceXX.
+## Example Grouping.
 <br>
 
 <hhl-live-editor title="" htmlCode='
@@ -505,13 +501,14 @@ you can drag the column up and down to adjust the order the data will be grouped
               :data-handler="lData"
               :filter-list="[`id`, `val1`, `val2`, `val3`, `val4`, `val7`]"
               :filterstring="seek"
+              :group-list="[`val2`,`val4`]"
               data-key="id"                 
         >
+          <H_column field="val2" title="Value 2" type="string" filter_type="select"></H_column>
+          <H_column field="val4" title="Value 4" type="string" filter_type="select"></H_column>
             <H_column field="id" title="Id" type="number" filter_type="number" cell-class="text-err" width="100px"></H_column>
-            <H_column field="val1" title="Value 1" type="string" filter_type="string" width="auto"></H_column>
-            <H_column field="val2" title="Value 2" type="string" filter_type="select"></H_column>
-            <H_column field="val3" title="Value 3" type="string" filter_type="string" ></H_column>
-            <H_column field="val4" title="Value 4" type="string" filter_type="select"></H_column>
+            <H_column field="val1" title="Value 1" type="string" filter_type="string" width="auto"></H_column>          
+            <H_column field="val3" title="Value 3" type="string" filter_type="string" ></H_column>            
             <H_column field="val5" title="Value 5" type="bool" filter_type="bool"></H_column>
             <H_column field="val6" title="Value 6" type="date" filter_type="datetime"></H_column>
             <H_column field="val7" title="Value 7" type="string" filter_type="select"></H_column>
@@ -526,7 +523,7 @@ you can drag the column up and down to adjust the order the data will be grouped
     const seek = ref("");
     async function load() {
     await lData.startLoading();
-          const data = await getData(100);
+          const data = await getData(1000);
           lData.setData(data);
           lData.loadData();
     }
@@ -534,3 +531,4 @@ you can drag the column up and down to adjust the order the data will be grouped
 </script>
 '>
 </hhl-live-editor>
+<br>
