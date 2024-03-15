@@ -1,14 +1,7 @@
 <template>
   <div class="_page">
     <div style="min-width: 400px; display: flex; gap: 20px">
-      <H_pop
-        :placement="placement"
-        modal
-        movable
-        :inner="inner"
-        :offset-left="offsetLeft"
-        :offset-top="offsetTop"
-      >
+      <H_pop :placement="placement" modal movable :inner="inner" :offset-left="offsetLeft" :offset-top="offsetTop">
         <template v-slot:referance>
           <H_btn>Open-modal</H_btn>
         </template>
@@ -16,13 +9,7 @@
           <div class="flexRow" moveable-drag pop-close>TITLE xx</div>
         </div>
       </H_pop>
-      <H_pop
-        movable
-        :placement="placement"
-        :inner="inner"
-        :offset-left="offsetLeft"
-        :offset-top="offsetTop"
-      >
+      <H_pop movable :placement="placement" :inner="inner" :offset-left="offsetLeft" :offset-top="offsetTop">
         <template v-slot:referance>
           <H_btn>Open</H_btn>
         </template>
@@ -56,6 +43,7 @@
     </div>
     <div style="min-height: 500px" />
   </div>
+  <H_btn>test</H_btn>
 </template>
 
 <script setup lang="ts">

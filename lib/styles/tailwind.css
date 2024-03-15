@@ -1,8 +1,43 @@
-@import "./utils//base.css";
-@import "tailwindcss/base" layer(hhl-base); /* contains @tailwind base;       */
-@import "tailwindcss/components" layer(hhl-components); /* contains @tailwind components; */
-@import "tailwindcss/utilities" layer(hhl-utilities); /* contains @tailwind utilities;  */
+@import "tailwindcss/preflight" layer(base);
+@import "hhl-ui/styles/utils/ColorVariables.css" layer(hhl-components);
+@import "tailwindcss/utilities" layer(utilities);
+@import "tailwindcss";
 
+*:focus {
+  outline: none;
+}
+*:focus-visible {
+  outline-offset: 2px;
+  outline: 2px ridge rgba(170, 50, 220, 1);
+}
 
+:fullscreen {
+  background-color: var(--col-bg-0);
+  padding: 10px;
+}
 
-
+@theme {
+  --color-*: initial;
+  --color-pri: var(--col-pri);
+  --color-sec: var(--col-sec);
+  --color-ok: var(--col-ok);
+  --color-err: var(--col-err);
+  --color-warn: var(--col-warn);
+  --color-info: var(--col-info);
+  --color-txt0: var(--col-txt-0);
+  --color-txt1: var(--col-txt-1);
+  --color-txt2: var(--col-txt-2);
+  --color-txt3: var(--col-txt-3);
+  --color-txt4: var(--col-txt-4);
+  --color-txt5: var(--col-txt-5);
+  --color-txt6: var(--col-txt-6);
+  --color-bg0: var(--col-bg-0);
+  --color-bg1: var(--col-bg-1);
+  --color-bg2: var(--col-bg-2);
+  --color-bg3: var(--col-bg-3);
+  --color-bg4: var(--col-bg-4);
+  --color-bg5: var(--col-bg-5);
+  --color-bg6: var(--col-bg-6);
+  --color-black: black;
+  --color-white: white;
+}
