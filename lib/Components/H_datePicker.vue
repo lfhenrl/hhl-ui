@@ -61,24 +61,14 @@ const P = defineProps({
   validator: Array,
 });
 
-const emit = defineEmits([
-  "update:date",
-  "update:modelValue",
-  "update:time",
-  "isValid",
-]);
+const emit = defineEmits(["update:date", "update:modelValue", "update:time", "isValid"]);
 
 const dato = ref();
 const time = ref({ hour: 0, minute: 0, second: 0 });
 
 function setDate(e: any) {
-  const newDatoNumber = new Date(
-    e.getFullYear(),
-    e.getMonth(),
-    e.getDate()
-  ).valueOf();
-  const newTimeNumber =
-    time.value.hour * 3600 + time.value.minute * 60 + time.value.second;
+  const newDatoNumber = new Date(e.getFullYear(), e.getMonth(), e.getDate()).valueOf();
+  const newTimeNumber = time.value.hour * 3600 + time.value.minute * 60 + time.value.second;
   const newDato = new Date(newDatoNumber + newTimeNumber * 1000);
   if (newDato) {
     emit("update:modelValue", newDato);
@@ -91,11 +81,7 @@ function setTime(e: any) {
   time.value = { hour: e.hour, minute: e.minute, second: e.second };
   const newTimeNumber = e.hour * 3600 + e.minute * 60 + e.second;
   if (dato.value) {
-    const newDatoNumber = new Date(
-      dato.value.getFullYear(),
-      dato.value.getMonth(),
-      dato.value.getDate()
-    ).valueOf();
+    const newDatoNumber = new Date(dato.value.getFullYear(), dato.value.getMonth(), dato.value.getDate()).valueOf();
     const newDato = new Date(newDatoNumber + newTimeNumber * 1000);
     if (newDato) {
       emit("update:modelValue", newDato);
@@ -118,11 +104,7 @@ watch(
         minute: pDato.getMinutes(),
         second: pDato.getSeconds(),
       };
-      dato.value = new Date(
-        pDato.getFullYear(),
-        pDato.getMonth(),
-        pDato.getDate()
-      );
+      dato.value = new Date(pDato.getFullYear(), pDato.getMonth(), pDato.getDate());
     } else {
       time.value = { hour: 0, minute: 0, second: 0 };
       dato.value = null;
@@ -151,6 +133,19 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
     padding-left: 8px;
     min-height: 36px;
     padding-bottom: 1px;
+  }
+
+  .col-pri {
+    background-color: var(--col-pri);
+    color: var(--col-on-pri);
+    --current-bg-col: var(--col-pri);
+    --current-txt-col: var(--col-on-pri);
+  }
+  .col-sec {
+    background-color: var(--col-sec);
+    color: var(--col-on-sec);
+    --current-bg-col: var(--col-sec);
+    --current-txt-col: var(--col-on-sec);
   }
 }
 </style>

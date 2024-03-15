@@ -5,7 +5,7 @@
 <hhl-live-editor title="" htmlCode=' 
     <template>
      <div class="flexRow items-center gap-4 flexWrap">
-        <H_checkbox label="CheckBox 1" class="col-err" v-model="check"></H_checkbox>
+        <H_checkbox label="CheckBox 1" v-model="check"></H_checkbox>
         <H_checkbox label="CheckBox 2" v-model="check"></H_checkbox>    
         <H_checkbox label="CheckBox 3" v-model="check"></H_checkbox>
         <H_inputText :model-value="check ? `true` : `false`" label="value"></H_inputText>
@@ -65,23 +65,20 @@ The default is `"md"`.
 
 ## Color
 
-You can change the color by adding one of the theme color classes<br>
-`col-pri` `col-sec` `col-ok` `col-err` `col-warn` `col-info` `col-black` `col-white`<br>
-The default is `col-pri`.<br>
-If you need a special color then just use `style="--current-bg-col: purple: color: white"`
+You can change the color by the prop `color="/pri/sec/ok/err/warn/info/"`<br>
+The default is `pri`.<br>
+If you need a special color then just use `style="--color: purple"`
 
 <hhl-live-editor title="" htmlCode='
     <template>
      <div class="flexRow items-center gap-4 flexWrap">
-        <H_checkbox class="col-pri" label="col-pri" v-model="check"></H_checkbox>
-        <H_checkbox class="col-sec" label="col-sec" v-model="check"></H_checkbox>    
-        <H_checkbox class="col-ok" label="col-ok" v-model="check"></H_checkbox>
-        <H_checkbox class="col-err" label="col-err" v-model="check"></H_checkbox>
-        <H_checkbox class="col-warn" label="col-warn" v-model="check"></H_checkbox>
-        <H_checkbox class="col-info" label="col-info" v-model="check"></H_checkbox>
-        <H_checkbox class="col-black" label="col-black" v-model="check"></H_checkbox>
-        <H_checkbox class="col-white" label="col-white" v-model="check"></H_checkbox>
-        <H_checkbox style="--current-bg-col: purple; color: white" label="purple" v-model="check"></H_checkbox>
+        <H_checkbox color="pri" label="col-pri" v-model="check"></H_checkbox>
+        <H_checkbox color="sec" label="col-sec" v-model="check"></H_checkbox>    
+        <H_checkbox color="ok" label="col-ok" v-model="check"></H_checkbox>
+        <H_checkbox color="err" label="col-err" v-model="check"></H_checkbox>
+        <H_checkbox color="warn" label="col-warn" v-model="check"></H_checkbox>
+        <H_checkbox color="info" label="col-info" v-model="check"></H_checkbox>
+        <H_checkbox style="--color: purple;" label="purple" v-model="check"></H_checkbox>
     </div>
     </template>
     <script>
@@ -100,15 +97,13 @@ You disable by adding the props `disabled`
 <hhl-live-editor title="" htmlCode='
     <template>
          <div class="flexRow items-center gap-4 flexWrap">
-            <H_checkbox disabled class="col-pri" label="col-pri" v-model="check"></H_checkbox>
-            <H_checkbox disabled class="col-sec" label="col-sec" v-model="check"></H_checkbox>    
-            <H_checkbox disabled class="col-ok" label="col-ok" v-model="check"></H_checkbox>
-            <H_checkbox disabled class="col-err" label="col-err" v-model="check"></H_checkbox>
-            <H_checkbox disabled class="col-warn" label="col-warn" v-model="check"></H_checkbox>
-            <H_checkbox disabled class="col-info" label="col-info" v-model="check"></H_checkbox>
-            <H_checkbox disabled class="col-black" label="col-black" v-model="check"></H_checkbox>
-            <H_checkbox disabled class="col-white" label="col-white" v-model="check"></H_checkbox>
-            <H_checkbox disabled style="--current-bg-col: purple; color: white" label="purple" v-model="check"></H_checkbox>
+            <H_checkbox disabled color="pri" label="col-pri" v-model="check"></H_checkbox>
+            <H_checkbox disabled color="sec" label="col-sec" v-model="check"></H_checkbox>    
+            <H_checkbox disabled color="ok" label="col-ok" v-model="check"></H_checkbox>
+            <H_checkbox disabled color="err" label="col-err" v-model="check"></H_checkbox>
+            <H_checkbox disabled color="warn" label="col-warn" v-model="check"></H_checkbox>
+            <H_checkbox disabled color="info" label="col-info" v-model="check"></H_checkbox>
+            <H_checkbox disabled style="--color: purple;" label="purple" v-model="check"></H_checkbox>
         </div>
     </template>
     <script>

@@ -73,23 +73,21 @@ You disable by adding the props `disabled`
 
 ## Color
 
-You can change the color by adding one of the theme color classes<br>
-`col-pri/col-sec/col-ok/col-err/col-warn/col-info/col-black/col-white`<br>
-The default is `col-pri`.<br>
+You can change the color by the prop `color="/pri/sec/ok/err/warn/info/"`<br>
+The default is `pri`.<br>
+
 If you need a special color then just use `style="background-color: purple: color: white"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap">
-            <H_btn class="col-pri">Primery</H_btn>
-            <H_btn class="col-sec">Secondary</H_btn>
-            <H_btn class="col-ok">Ok</H_btn>
-            <H_btn class="col-err">Error</H_btn>
-            <H_btn class="col-warn">Warning</H_btn>
-            <H_btn class="col-info">Information</H_btn>
-            <H_btn class="col-black">Black</H_btn>
-            <H_btn class="col-white">White</H_btn>
-            <H_btn style="background-color: purple">White</H_btn>
+            <H_btn color="pri">Primery</H_btn>
+            <H_btn color="sec">Secondary</H_btn>
+            <H_btn color="ok">Ok</H_btn>
+            <H_btn color="err">Error</H_btn>
+            <H_btn color="warn">Warning</H_btn>
+            <H_btn color="info">Information</H_btn>
+            <H_btn style="background-color: purple; color:white">White</H_btn>
       </div>
       </template>
 '>

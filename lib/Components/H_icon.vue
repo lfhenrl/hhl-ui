@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
+import { PropType, computed } from "vue";
 import { type IconNames, Icons } from "../SubComponents/icons/iconNames";
 
 const P = defineProps({
@@ -30,6 +30,22 @@ const P = defineProps({
     default: "close",
   },
   disabled: { type: Boolean, default: false },
+  color: {
+    type: String as PropType<"current" | "pri" | "sec" | "ok" | "err" | "warn" | "info">,
+    default: "current",
+  },
+});
+const bgColor = computed(() => {
+  if (P.btn.startsWith("fill")) {
+    if (P.color === "current") return "var(--col-bg-4)";
+    return `var(--col-${P.color})`;
+  } else return "transparent";
+});
+const txtColor = computed(() => {
+  if (P.btn.startsWith("fill")) {
+    if (P.color === "current") return "currentColor";
+    return `var(--col-on-${P.color})`;
+  } else return `var(--col-${P.color})`;
 });
 
 const ic: any = Icons[P.icon];
@@ -44,39 +60,38 @@ const ic: any = Icons[P.icon];
     min-height: var(--icon-size);
     min-width: var(--icon-size);
     aspect-ratio: 1 / 1;
+    --btn-icon-size: 1rem;
+    background-color: v-bind(bgColor);
+    color: v-bind(txtColor);
+  }
+
+  .H_icon[disabled] {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: none;
   }
 
   .H_icon.btn {
-    border-radius: 50px;
+    border-radius: 50%;
   }
 
   .H_icon.btn-outline {
-    background-color: transparent !important;
-    color: var(--current-bg-col, currentColor, var(--col-txt-2));
     border: solid 1px currentColor;
     border-radius: 4px;
   }
 
   .H_icon.btn-outline-round {
-    background-color: transparent !important;
-    color: var(--current-bg-col, currentColor, var(--col-txt-2));
     border: solid 1px currentColor;
     padding: 3px;
-    border-radius: 50%;
   }
 
   .H_icon.btn-fill {
-    background-color: var(--current-bg-col, var(--col-bg-4));
-    color: var(--current-txt-col, var(--col-txt-0));
     padding: 4px;
     border-radius: 4px;
   }
 
   .H_icon.fill-round {
-    background-color: var(--current-bg-col, var(--col-bg-4));
-    color: var(--current-txt-col, var(--col-txt-0));
     padding: 4px;
-    border-radius: 50%;
   }
 
   .H_icon.btn:hover {

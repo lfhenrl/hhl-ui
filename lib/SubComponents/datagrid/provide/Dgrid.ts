@@ -2,12 +2,12 @@ import { Slots, ref } from "vue";
 import { Column, iColumn } from "./Column";
 import { iSorting, Sorting } from "./Sorting";
 import { iDatahandler } from "../datahandlers/server";
-import H_virtualList from "../../../Components/H_virtualList.vue";
+//import H_virtualList from "../../../Components/H_virtualList.vue";
 import { ColumnWidthAdjustment } from "./ColumnWidthAdjustment";
 import { iFilterData } from "./datagridTypes";
 
 export type iDgrid = InstanceType<typeof Dgrid>;
-type iVscroller = InstanceType<typeof H_virtualList>;
+//type iVscroller = InstanceType<typeof H_virtualList>;
 
 export class Dgrid {
   public datagridRef?: HTMLElement;
@@ -21,7 +21,7 @@ export class Dgrid {
   public SeekList: string[] = [];
   public SeekString: string = "";
   public dataHandler?: iDatahandler;
-  public Vscroller?: iVscroller;
+  public Vscroller?: any;
   public ColumnWidthAdjustment = ColumnWidthAdjustment(this);
 
   constructor(slots: Slots, DHandler: iDatahandler) {

@@ -51,12 +51,13 @@ declare module 'vue-router/auto-routes' {
     '/introduction/viteConfig': RouteRecordInfo<'/introduction/viteConfig', '/introduction/viteConfig', Record<never, never>, Record<never, never>>,
     '/sandbox/': RouteRecordInfo<'/sandbox/', '/sandbox', Record<never, never>, Record<never, never>>,
     '/sandbox/chartGantt': RouteRecordInfo<'/sandbox/chartGantt', '/sandbox/chartGantt', Record<never, never>, Record<never, never>>,
+    '/sandbox/colors': RouteRecordInfo<'/sandbox/colors', '/sandbox/colors', Record<never, never>, Record<never, never>>,
     '/sandbox/datagrid': RouteRecordInfo<'/sandbox/datagrid', '/sandbox/datagrid', Record<never, never>, Record<never, never>>,
     '/sandbox/DatagridServer': RouteRecordInfo<'/sandbox/DatagridServer', '/sandbox/DatagridServer', Record<never, never>, Record<never, never>>,
     '/sandbox/testForms': RouteRecordInfo<'/sandbox/testForms', '/sandbox/testForms', Record<never, never>, Record<never, never>>,
     '/sandbox/virScroll': RouteRecordInfo<'/sandbox/virScroll', '/sandbox/virScroll', Record<never, never>, Record<never, never>>,
     '/styles/': RouteRecordInfo<'/styles/', '/styles', Record<never, never>, Record<never, never>>,
-    '/styles/colors': RouteRecordInfo<'/styles/colors', '/styles/colors', Record<never, never>, Record<never, never>>,
-    '/styles/colorsTheme': RouteRecordInfo<'/styles/colorsTheme', '/styles/colorsTheme', Record<never, never>, Record<never, never>>,
+    '/styles/Background_Text': RouteRecordInfo<'/styles/Background_Text', '/styles/Background_Text', Record<never, never>, Record<never, never>>,
+    '/styles/Brand_colors': RouteRecordInfo<'/styles/Brand_colors', '/styles/Brand_colors', Record<never, never>, Record<never, never>>,
   }
 }

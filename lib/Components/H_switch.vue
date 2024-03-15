@@ -1,5 +1,5 @@
 <template>
-  <div class="H_switch col-pri">
+  <div class="H_switch">
     <div
       class="H_switch-container"
       :class="{ reverse: labelLeft }"
@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
+import { PropType, computed } from "vue";
 
 const P = defineProps({
   modelValue: {
@@ -39,6 +39,10 @@ const P = defineProps({
     default: "md",
   },
   disabled: { type: Boolean, default: false },
+  color: {
+    type: String as PropType<"pri" | "sec" | "ok" | "err" | "warn" | "info">,
+    default: "pri",
+  },
 });
 const E = defineEmits(["update:modelValue", "changed"]);
 
@@ -46,6 +50,9 @@ function Click() {
   const val = !P.modelValue;
   E("update:modelValue", val);
 }
+const Color = computed(() => {
+  return `var(--col-${P.color})`;
+});
 </script>
 
 <style>
@@ -56,6 +63,16 @@ function Click() {
     align-items: center;
     justify-content: start;
     background-color: transparent;
+    --color: v-bind(Color);
+  }
+
+  .H_switch-container[disabled] {
+    opacity: 0.7;
+    pointer-events: none;
+    cursor: none;
+  }
+  .H_switch-container[disabled] .H_switch-box {
+    opacity: 0.5;
   }
 
   .H_switch-container {
@@ -90,12 +107,12 @@ function Click() {
 
   .H_switch-box[checked="true"] .H_switch-icon-inner {
     transform: translateX(80%);
-    background-color: var(--current-bg-col);
+    background-color: var(--color);
     opacity: 1;
   }
 
   .H_switch-box[checked="true"] .H_switch-icon-outer {
-    background-color: var(--current-bg-col);
+    background-color: var(--color);
     opacity: 0.5;
   }
 

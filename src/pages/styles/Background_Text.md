@@ -1,23 +1,23 @@
 ## Background colors
 <style>
-  .colors-bgBox {
+  .bgBox {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 40px;
-    width: 112px;
+    width: 90px;
   }
 </style>
 <hhl-live-editor title="Background colors" htmlCode='
     <template>
-    <div class="flexRow gap-4 flexWrap"> 
-      <div class="colors-bgBox bg-bg0 shadow">bg-bg0</div>
-      <div class="colors-bgBox bg-bg1 shadow">bg-bg1</div>
-      <div class="colors-bgBox bg-bg2 shadow">bg-bg2</div>
-      <div class="colors-bgBox bg-bg3 shadow">bg-bg3</div>
-      <div class="colors-bgBox bg-bg4 shadow">bg-bg4</div>
-      <div class="colors-bgBox bg-bg5 shadow">bg-bg5</div>
-      <div class="colors-bgBox bg-bg6 shadow">bg-bg6</div>
+    <div class="flexRow flexWrap"> 
+      <div style="background: var(--col-bg-0)" class="bgBox">bg-bg0</div>
+      <div style="background: var(--col-bg-1)" class="bgBox">bg-bg1</div>
+      <div style="background: var(--col-bg-2)" class="bgBox">bg-bg2</div>
+      <div style="background: var(--col-bg-3)" class="bgBox">bg-bg3</div>
+      <div style="background: var(--col-bg-4)" class="bgBox">bg-bg4</div>
+      <div style="background: var(--col-bg-5)" class="bgBox">bg-bg5</div>
+      <div style="background: var(--col-bg-6)" class="bgBox">bg-bg6</div>
     </div>
     </template>
 '>
@@ -29,14 +29,14 @@
 <hhl-live-editor title="Text colors" htmlCode='
 <template>
 
-   <div class="flexRow gap-8 flexWrap">
-      <h3 class="text-txt0">text-txt0</h3>
-      <h3 class="text-txt1">text-txt1</h3>
-      <h3 class="text-txt2">text-txt2</h3>
-      <h3 class="text-txt3">text-txt3</h3>
-      <h3 class="text-txt4">text-txt4</h3>
-      <h3 class="text-txt5">text-txt5</h3>
-      <h3 class="text-txt6">text-txt6</h3>
+   <div class="flexRow flexWrap">
+      <div style="background: var(--col-txt-0); color: var(--col-bg-0)" class="bgBox">txt0</div>
+      <div style="background: var(--col-txt-1); color: var(--col-bg-0)" class="bgBox">txt1</div>
+      <div style="background: var(--col-txt-2); color: var(--col-bg-0)" class="bgBox">txt2</div>
+      <div style="background: var(--col-txt-3); color: var(--col-bg-0)" class="bgBox">txt3</div>
+      <div style="background: var(--col-txt-4); color: var(--col-bg-0)" class="bgBox">txt4</div>
+      <div style="background: var(--col-txt-5); color: var(--col-bg-0)" class="bgBox">txt5</div>
+      <div style="background: var(--col-txt-6); color: var(--col-bg-0)" class="bgBox">txt6</div>
     </div>
 </template>
 '>

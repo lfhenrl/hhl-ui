@@ -72,6 +72,12 @@ function Click(e: MouseEvent) {
     border-color: var(--col-err);
   }
 
+  .H_inputbase[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: none;
+  }
+
   .H_inputbase-mainSlot {
     display: flex;
     flex-direction: column;

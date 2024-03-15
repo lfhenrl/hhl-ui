@@ -8,12 +8,6 @@
     outline: 2px ridge rgba(170, 50, 220, 1);
   }
 
-  [disabled] {
-    opacity: 0.7;
-    pointer-events: none;
-    cursor: none;
-  }
-
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;

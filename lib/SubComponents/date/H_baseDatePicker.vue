@@ -9,11 +9,7 @@
       :readonly="readonly"
     >
       <template v-slot:referance>
-        <div
-          class="H_datePicker__inputcontainer"
-          title="Datepicker"
-          tabindex="0"
-        >
+        <div class="H_datePicker__inputcontainer" title="Datepicker" tabindex="0">
           <H_icon icon="event" v-if="!hideIcon" tabindex="-1" />
           <input
             name="datepicker"
@@ -39,15 +35,9 @@
           @update:tempDatomy="tempDatomy = $event"
           @month-click="activeView = 'month'"
         />
-        <H_monthTable
-          v-show="activeView == 'month'"
-          v-model="tempDatomy"
-          @month-selected="activeView = 'day'"
-        />
+        <H_monthTable v-show="activeView == 'month'" v-model="tempDatomy" @month-selected="activeView = 'day'" />
         <div class="H_datePicker__footer">
-          <H_btn tabindex="3" size="sm" @click="cancel" class="col-sec"
-            >CANCEL</H_btn
-          >
+          <H_btn tabindex="3" size="sm" @click="cancel" class="col-sec">CANCEL</H_btn>
           <H_btn tabindex="0" size="sm" @click="ok">OK</H_btn>
         </div>
       </div>
@@ -88,7 +78,7 @@ watch(
       tempDato.value = props.modelValue;
       tempDatomy.value = tempDato.value;
     }
-  },
+  }
 );
 
 function setSize() {

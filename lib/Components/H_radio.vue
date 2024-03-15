@@ -1,9 +1,5 @@
 <template>
-  <label
-    class="H_radio col-pri"
-    :class="{ 'H_radio-labelLeft': labelLeft }"
-    :disabled="disabled ? '' : undefined"
-  >
+  <label class="H_radio" :class="{ 'H_radio-labelLeft': labelLeft }" :disabled="disabled ? '' : undefined">
     <input
       type="radio"
       class="H_radio-input"
@@ -22,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
+import { PropType, computed } from "vue";
 
-defineProps({
+const P = defineProps({
   modelValue: {
     type: [String, Number, Array],
     default: "",
@@ -39,9 +35,17 @@ defineProps({
     default: "md",
   },
   disabled: { type: Boolean, default: false },
+  color: {
+    type: String as PropType<"pri" | "sec" | "ok" | "err" | "warn" | "info">,
+    default: "pri",
+  },
 });
 
 defineEmits(["update:modelValue"]);
+
+const Color = computed(() => {
+  return `var(--col-${P.color})`;
+});
 </script>
 <style>
 @layer hhl-components {
@@ -51,17 +55,27 @@ defineEmits(["update:modelValue"]);
     gap: 8px;
     background-color: transparent;
     color: var(--col-txt-2);
+    --color: v-bind(Color);
   }
 
   .H_radio-labelLeft {
     flex-direction: row-reverse;
   }
 
+  .H_radio[disabled] {
+    opacity: 0.8;
+    pointer-events: none;
+    cursor: none;
+  }
+  .H_radio[disabled] .H_radio-input {
+    opacity: 0.5;
+  }
+
   .H_radio-input {
     aspect-ratio: 1 / 1;
     width: 19px;
     background-color: transparent;
-    accent-color: var(--current-bg-col);
+    accent-color: var(--color);
   }
 
   .H_radio-input-sm {

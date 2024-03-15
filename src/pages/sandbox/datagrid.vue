@@ -4,7 +4,6 @@
       @head-click="headClick"
       @row-click="rowClick"
       :dataHandler="lData"
-      row_height="40px"
       :filter-list="['id', 'val1', 'val2', 'val3', 'val4', 'val7']"
       :filterstring="seek"
       :group-list="[]"
@@ -48,7 +47,6 @@ import H_btn from "../../../lib/Components/H_btn.vue";
 import H_inputText from "../../../lib/Components/H_inputText.vue";
 import { getData } from "../../testData/data";
 import { localData } from "../../../lib/Components/datagrid";
-import { D_01_dec_2021_HHMM } from "../../../lib/utils/dateFormat";
 import { ref } from "vue";
 import { iClickData } from "../../../lib/Components/datagrid";
 
@@ -60,10 +58,6 @@ async function load() {
   const data = await getData(500);
   lData.setData(data);
   lData.loadData();
-}
-
-function formatDate(value: any) {
-  return D_01_dec_2021_HHMM(value);
 }
 
 function headClick(data: iClickData) {

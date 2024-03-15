@@ -1,10 +1,5 @@
 <template>
-  <H_inputBase
-    class="H_slider col-pri"
-    :label="label"
-    :movelabel="true"
-    :disabled="disabled"
-  >
+  <H_inputBase class="H_slider" :label="label" :movelabel="true" :disabled="disabled">
     <div class="H_slider_inner" :disabled="disabled ? true : undefined">
       <div class="H_slider_innerBox">
         <div class="H_slider_info" :style="{ left: posProcent }">
@@ -24,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { PropType, computed } from "vue";
 import H_inputBase from "../SubComponents/H_inputBase.vue";
 
 const P = defineProps({
@@ -46,6 +41,10 @@ const P = defineProps({
   },
   disabled: { type: Boolean, default: false },
   validator: Array,
+  color: {
+    type: String as PropType<"pri" | "sec" | "ok" | "err" | "warn" | "info">,
+    default: "pri",
+  },
 });
 
 const E = defineEmits(["update:modelValue"]);
@@ -59,6 +58,9 @@ const posProcent = computed(() => {
 function changed(e: any) {
   E("update:modelValue", e.target.value);
 }
+
+const bgColor = computed(() => `var(--col-${P.color})`);
+const txtColor = computed(() => `var(--col-on-${P.color})`);
 </script>
 
 <style>
@@ -69,6 +71,8 @@ function changed(e: any) {
     max-height: 36px;
     min-height: 36px;
     height: 36px;
+    --bgcolor: v-bind(bgColor);
+    color: v-bind(txtColor);
   }
 
   .H_slider_inner {
@@ -89,10 +93,7 @@ function changed(e: any) {
     appearance: none;
     cursor: pointer;
     border-radius: 4px;
-    background-image: linear-gradient(
-      var(--current-bg-col),
-      var(--current-bg-col)
-    );
+    background-image: linear-gradient(var(--bgcolor), var(--bgcolor));
   }
 
   .H_slider_innerBox {
@@ -115,7 +116,7 @@ function changed(e: any) {
     height: 26px;
     width: 26px;
     margin-left: -12px;
-    background-color: var(--current-bg-col);
+    background-color: var(--bgcolor);
     font-size: 11px;
     line-height: 1;
   }

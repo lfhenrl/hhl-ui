@@ -58,7 +58,7 @@ const P = defineProps({
     default: null,
   },
   row_style: { type: Function, default: null },
-  row_height: { type: String, default: "33px" },
+  row_height: { type: String, default: "26px" },
   filterList: { type: Array as PropType<string[]>, default: [] },
   filterstring: { type: String, default: "" },
   groupList: { type: Array as PropType<string[]>, default: [] },

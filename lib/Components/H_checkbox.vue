@@ -1,9 +1,5 @@
 <template>
-  <label
-    class="H_checkbox col-pri"
-    :class="{ 'H_checkbox-labelLeft': labelLeft }"
-    :disabled="disabled ? '' : undefined"
-  >
+  <label class="H_checkbox" :class="{ 'H_checkbox-labelLeft': labelLeft }" :disabled="disabled ? '' : undefined">
     <input
       type="checkbox"
       class="H_checkbox-input"
@@ -19,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
+import { PropType, computed } from "vue";
 
-defineProps({
+const P = defineProps({
   label: { type: String, default: "" },
   labelGap: { type: String, default: "10px" },
   labelLeft: { type: Boolean, default: false },
@@ -30,6 +26,13 @@ defineProps({
     type: String as PropType<"lg" | "md" | "sm">,
     default: "md",
   },
+  color: {
+    type: String as PropType<"pri" | "sec" | "ok" | "err" | "warn" | "info">,
+    default: "pri",
+  },
+});
+const Color = computed(() => {
+  return `var(--col-${P.color})`;
 });
 
 const modelValue = defineModel<boolean>({ default: false });
@@ -43,6 +46,7 @@ const modelValue = defineModel<boolean>({ default: false });
     gap: 8px;
     background-color: transparent;
     color: var(--col-txt-2);
+    --color: v-bind(Color);
   }
 
   .H_checkbox-labelLeft {
@@ -52,7 +56,16 @@ const modelValue = defineModel<boolean>({ default: false });
   .H_checkbox-input {
     aspect-ratio: 1 / 1;
     width: 19px;
-    accent-color: var(--current-bg-col);
+    accent-color: var(--color);
+  }
+
+  .H_checkbox[disabled] {
+    opacity: 0.8;
+    pointer-events: none;
+    cursor: none;
+  }
+  .H_checkbox[disabled] .H_checkbox-input {
+    opacity: 0.5;
   }
 
   .H_checkbox-input-sm {

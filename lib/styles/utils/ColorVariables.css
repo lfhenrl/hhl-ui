@@ -1,4 +1,8 @@
 :root {
+  --lcolor: oklch(100% 0 0);
+  --dcolor: rgb(37, 37, 61);
+  --bcolor1: var(--lcolor);
+  --bcolor2: var(--dcolor);
   --col-pri: #027bfd;
   --col-on-pri: #fff;
   --col-sec: #6c757d;
@@ -11,39 +15,26 @@
   --col-on-warn: black;
   --col-info: #17a2b8;
   --col-on-info: #fff;
-  --col-txt-0: hsl(0, 0%, 0%);
-  --col-txt-1: hsl(0, 0%, 17%);
-  --col-txt-2: hsl(0, 0%, 27%);
-  --col-txt-3: hsl(0, 0%, 37%);
-  --col-txt-4: hsl(0, 0%, 47%);
-  --col-txt-5: hsl(0, 0%, 57%);
-  --col-txt-6: hsl(0, 0%, 67%);
-  --col-bg-drawer: #f3f3f3;
-  --col-bg-0: hsl(0, 0%, 100%);
-  --col-bg-1: hsl(0, 0%, 95%);
-  --col-bg-2: hsl(0, 0%, 92%);
-  --col-bg-3: hsl(0, 0%, 88%);
-  --col-bg-4: hsl(0, 0%, 84%);
-  --col-bg-5: hsl(0, 0%, 80%);
-  --col-bg-6: hsl(0, 0%, 76%);
   color: var(--col-txt-0);
 }
+body {
+  --col-txt-0: color-mix(in lab, var(--bcolor1) 0%, var(--bcolor2));
+  --col-txt-1: color-mix(in lab, var(--bcolor1) 16%, var(--bcolor2));
+  --col-txt-2: color-mix(in lab, var(--bcolor1) 22%, var(--bcolor2));
+  --col-txt-3: color-mix(in lab, var(--bcolor1) 34%, var(--bcolor2));
+  --col-txt-4: color-mix(in lab, var(--bcolor1) 45%, var(--bcolor2));
+  --col-txt-5: color-mix(in lab, var(--bcolor1) 58%, var(--bcolor2));
+  --col-txt-6: color-mix(in lab, var(--bcolor1) 68%, var(--bcolor2));
+  --col-bg-0: color-mix(in lab, var(--bcolor2) 0%, var(--bcolor1));
+  --col-bg-1: color-mix(in lab, var(--bcolor2) 6%, var(--bcolor1));
+  --col-bg-2: color-mix(in lab, var(--bcolor2) 8%, var(--bcolor1));
+  --col-bg-3: color-mix(in lab, var(--bcolor2) 12%, var(--bcolor1));
+  --col-bg-4: color-mix(in lab, var(--bcolor2) 16%, var(--bcolor1));
+  --col-bg-5: color-mix(in lab, var(--bcolor2) 20%, var(--bcolor1));
+  --col-bg-6: color-mix(in lab, var(--bcolor2) 25%, var(--bcolor1));
+}
 .darkTheme {
-  --col-txt-0: hsl(0, 0%, 100%);
-  --col-txt-1: hsl(0, 0%, 90%);
-  --col-txt-2: hsl(0, 0%, 80%);
-  --col-txt-3: hsl(0, 0%, 70%);
-  --col-txt-4: hsl(0, 0%, 60%);
-  --col-txt-5: hsl(0, 0%, 50%);
-  --col-txt-6: hsl(0, 0%, 40%);
-  --col-bg-drawer: #1f1f1f;
-  --col-bg-0: hsl(231, 12%, 20%);
-  --col-bg-1: hsl(231, 12%, 23%);
-  --col-bg-2: hsl(231, 12%, 27%);
-  --col-bg-3: hsl(231, 12%, 32%);
-  --col-bg-4: hsl(231, 12%, 35%);
-  --col-bg-5: hsl(231, 12%, 39%);
-  --col-bg-6: hsl(231, 12%, 43%);
+  --bcolor1: var(--dcolor);
+  --bcolor2: var(--lcolor);
   color-scheme: dark;
-  color: var(--col-txt-0);
 }

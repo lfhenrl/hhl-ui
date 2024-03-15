@@ -17,7 +17,7 @@
         icon="info"
         btn="standard"
         title="Show Error."
-        class="col-err"
+        color="err"
         v-if="error !== '' && showCode"
         @click="hideError = !hideError"
       />

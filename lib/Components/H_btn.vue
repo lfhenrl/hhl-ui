@@ -1,6 +1,6 @@
 <template>
   <button
-    class="H_btn col-pri"
+    class="H_btn"
     type="button"
     :class="{
       'H_btn-xs': size === 'xs',
@@ -15,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
+import { PropType, computed } from "vue";
 
-defineProps({
+const P = defineProps({
   /** @type {type} The type of Btn it can be standard, outline or text default is standard */
   type: {
     type: String as PropType<"standard" | "outline" | "text">,
@@ -27,6 +27,16 @@ defineProps({
     type: String as PropType<"lg" | "md" | "sm" | "xs">,
     default: "md",
   },
+  color: {
+    type: String as PropType<"pri" | "sec" | "ok" | "err" | "warn" | "info">,
+    default: "pri",
+  },
+});
+const bgColor = computed(() => {
+  return `var(--col-${P.color})`;
+});
+const txtColor = computed(() => {
+  return `var(--col-on-${P.color})`;
 });
 </script>
 <style>
@@ -44,6 +54,10 @@ defineProps({
     padding: 0 10px;
     height: 36px;
     --btn-icon-size: 1rem;
+    --color-bg: v-bind(bgColor);
+    --color-txt: v-bind(txtColor);
+    background-color: var(--color-bg);
+    color: var(--color-txt);
   }
 
   .H_btn:hover {
@@ -52,19 +66,25 @@ defineProps({
     backdrop-filter: drop-shadow(4px 4px 10px blue);
   }
 
+  .H_btn[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: none;
+  }
+
   .H_btn:active {
     transform: scale(0.95);
   }
 
   .H_btn.H_btn-outline {
     background-color: transparent;
-    color: var(--current-bg-col);
+    color: var(--color-bg);
     border: 1px solid currentColor;
   }
 
   .H_btn.H_btn-text {
     background-color: transparent;
-    color: var(--current-bg-col);
+    color: var(--color-bg);
   }
 
   button.H_btn.H_btn-xs {
