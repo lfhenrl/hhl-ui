@@ -15,7 +15,6 @@
   --col-on-warn: black;
   --col-info: #17a2b8;
   --col-on-info: #fff;
-  color: var(--col-txt-0);
 }
 body {
   --col-txt-0: color-mix(in lab, var(--bcolor1) 0%, var(--bcolor2));
@@ -32,6 +31,7 @@ body {
   --col-bg-4: color-mix(in lab, var(--bcolor2) 16%, var(--bcolor1));
   --col-bg-5: color-mix(in lab, var(--bcolor2) 20%, var(--bcolor1));
   --col-bg-6: color-mix(in lab, var(--bcolor2) 25%, var(--bcolor1));
+  color: var(--col-txt-0);
 }
 .darkTheme {
   --bcolor1: var(--dcolor);

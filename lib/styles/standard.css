@@ -1,5 +1,5 @@
 @layer hhl-base,hhl-components;
-@import "./utils/base.css";
+@import "./utils/base.css" layer(hhl-base);
 @import "utils/ColorVariables.css" layer(hhl-components);
 
 @layer hhl-base {
