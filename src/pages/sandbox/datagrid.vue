@@ -6,7 +6,7 @@
       :dataHandler="lData"
       :filter-list="['id', 'val1', 'val2', 'val3', 'val4', 'val7']"
       :filterstring="seek"
-      :group-list="[]"
+      :group-list="['val2', 'val4']"
       :row_style="rowStyle"
       data-key="id"
     >
@@ -55,7 +55,7 @@ const lData = new localData();
 
 async function load() {
   await lData.startLoading();
-  const data = await getData(500);
+  const data = await getData(5000);
   lData.setData(data);
   lData.loadData();
 }

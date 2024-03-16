@@ -49,7 +49,7 @@ const props = defineProps({
   },
   overscan: {
     type: Number,
-    default: 18,
+    default: 20,
   },
   estimateSize: {
     type: Number,
@@ -151,6 +151,7 @@ watch(
   () => {
     virtual.updateParam("uniqueIds", getUniqueIdFromDataSources());
     virtual.handleDataSourcesChange();
+    calcKeeps();
   }
 );
 

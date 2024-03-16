@@ -20,6 +20,7 @@ export class Dgrid {
   public Filter: iFilterData[] = [];
   public SeekList: string[] = [];
   public SeekString: string = "";
+  public StickyGroups: boolean = true;
   public dataHandler?: iDatahandler;
   public Vscroller?: any;
   public ColumnWidthAdjustment = ColumnWidthAdjustment(this);

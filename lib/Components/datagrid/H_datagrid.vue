@@ -12,9 +12,11 @@
         :item_style="rowStyle"
         data-key="id"
         @scroll="onScroll"
+        :overscan="overscan"
         item-class="H_dataRow"
         :data-sources="DG.dataHandler?.outData.value"
         :selectedId="selectedId"
+        :estimateSize="parseInt(row_height)"
         ref="vscroll"
         @click="bodyClick"
       >
@@ -57,11 +59,16 @@ const P = defineProps({
     required: true,
     default: null,
   },
+  overscan: {
+    type: Number,
+    default: 20,
+  },
   row_style: { type: Function, default: null },
   row_height: { type: String, default: "26px" },
   filterList: { type: Array as PropType<string[]>, default: [] },
   filterstring: { type: String, default: "" },
   groupList: { type: Array as PropType<string[]>, default: [] },
+  stickyGroups: { type: Boolean, default: true },
 });
 
 const E = defineEmits<{
@@ -80,6 +87,7 @@ const selectedId = ref("");
 provide("DG", DG);
 const ClickHandler = new datagridClickHandler(DG);
 DG.SeekList = P.filterList;
+DG.StickyGroups = P.stickyGroups;
 DG.dataHandler!.dataKey = P.dataKey;
 DG.dataHandler!.groupList = P.groupList;
 

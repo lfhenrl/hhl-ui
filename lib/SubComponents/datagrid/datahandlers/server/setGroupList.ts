@@ -12,7 +12,6 @@ export async function setGroupList(DH: iDatahandler) {
     Select: __select,
     GroupBy: __groupBy,
   };
-  console.log("Filter2 ", Qpara);
   const data: any = await DH.dataFetch.post("", Qpara);
 
   const gData = data.data.map((item: any) => {

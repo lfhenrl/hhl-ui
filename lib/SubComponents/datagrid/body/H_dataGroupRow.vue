@@ -21,6 +21,7 @@ import { iDgrid } from "../provide/Dgrid";
 import H_icon from "../../../Components/H_icon.vue";
 
 const instace = getCurrentInstance();
+
 const P = defineProps({
   row: { type: Object, default: {} },
 });
@@ -30,19 +31,24 @@ const DG = inject("DG") as iDgrid;
 async function expand() {
   await DG.dataHandler?.expanding(P.row);
 }
-onMounted(() => {
-  if (true) {
-    const t: any = instace?.parent?.parent ?? {};
 
-    if (P.row.__level === 0) {
-      t.ctx.$el.classList.add("sticky-0");
-    }
-    if (P.row.__level === 1) {
-      t.ctx.$el.classList.add("sticky-1");
-    }
-    if (P.row.__level === 2) {
-      t.ctx.$el.classList.add("sticky-2");
-    }
+function addSticky() {
+  const n: any = instace?.parent?.parent?.vnode;
+
+  if (P.row.__level === 0) {
+    n.el.classList.add("sticky-0");
+  }
+  if (P.row.__level === 1) {
+    n.el.classList.add("sticky-1");
+  }
+  if (P.row.__level === 2) {
+    n.el.classList.add("sticky-2");
+  }
+}
+
+onMounted(() => {
+  if (DG.StickyGroups) {
+    addSticky();
   }
 });
 </script>

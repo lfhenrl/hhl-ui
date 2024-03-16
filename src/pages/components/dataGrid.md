@@ -54,13 +54,15 @@ It use a virtual scoller so it can handle big dataset.
 
 | Name       | Describtion                                                                       |
 | ---------- | --------------------------------------------------------------------------------- | 
-| dataKey | Required. A data key from the datasource that should be unik. | 
-| dataHandler | Required. A data function you need to import from the libery. |
-|row_height| The height of the row the default is 33px.|
-| row_style | A function to be called if you want to style the row, you will recieve the rowData so you can use this as conditions |
+| dataKey    | Required. A data key from the datasource that should be unik. | 
+| dataHandler| Required. A data function you need to import from the libery. |
+| overscan   | Default 20. The amount of rows to render outside the view.|
+| row_height | The height of the row the default is 33px.|
+| row_style  | A function to be called if you want to style the row, you will recieve the rowData so you can use this as conditions |
 | filterList | A string array with the field names you want to filter by with a global filter |
 | filterstring | The filter string to use with the global filter|
 | groupList | A string array with the field names you want to group by max 3 fields |
+| stickyGroups | When a group is expanded with stickyGroups="true" (default) it will stay in the top when scrolling|
 
 
 <br/>
@@ -475,8 +477,18 @@ You can group your data to max 3 levels.<br>
 Up front you can set the grouping by the property `group-list` with a string array order by the levels.<br>
 In the columns menu you get by cliking the <hicon icon="columns" style="margin-bottom: -7px;"/> icon in the bottom toolbar.<br>
 You can drag columns to or from the column list to the group list.<br>
-you can drag the column up and down to adjust the order the data will be grouped.
+you can drag the column up and down to adjust the order the data will be grouped.<br>
+By default the group rows when expanded will stick to top until all the expanded rows are outside the view.
+You can disable this by the property `stickyGroups="false"`<br>
 <br>
+::: warning
+Please observe that with stickyGroups the amount of rows matters here.<br>
+If the amount of expanded rows are bigger than the rows in the virtual view,<br>
+The sticky group row will disappear.<br>
+You can try to adjust the property `overscan` (default 50) to a higher number, but if it get to high it will reduce performance.<br>
+If that the case set `stickyGroups="false"`.
+
+:::
 <br>
 
 

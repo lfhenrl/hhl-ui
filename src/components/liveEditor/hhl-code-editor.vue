@@ -39,7 +39,6 @@ const hhlCodeEditor = defineComponent({
             vue(),
             EditorView.updateListener.of((v: any) => {
               if (v.docChanged) {
-                console.log("CODEMIRROR Changed ", v);
                 debouncedUpdate();
               }
             }),
