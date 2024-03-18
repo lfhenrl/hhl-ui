@@ -1,40 +1,49 @@
 <template>
   <div class="colors">
     <div class="flexRow flexWrap">
-      <div class="colors-bgBox bg-bg0">bg-bg0</div>
-      <div class="colors-bgBox bg-bg1">bg-bg1</div>
-      <div class="colors-bgBox bg-bg2">bg-bg2</div>
-      <div class="colors-bgBox bg-bg3">bg-bg3</div>
-      <div class="colors-bgBox bg-bg4">bg-bg4</div>
-      <div class="colors-bgBox bg-bg5">bg-bg5</div>
-      <div class="colors-bgBox bg-bg6">bg-bg6</div>
+      <div class="bgBox" style="background-color: var(--col-pri)">bg0</div>
+      <div class="bgBox pri">bg1</div>
+      <div class="bgBox" style="background-color: var(--col-ok)">bg2</div>
+      <div class="bgBox" style="background-color: var(--col-err)">bg3</div>
+      <div class="bgBox" style="background-color: var(--col-warn)">bg4</div>
+      <div class="bgBox" style="background-color: var(--col-info)">bg5</div>
+      <div class="bgBox pri bg-darker">bg6</div>
     </div>
     <div class="flexRow flexWrap">
-      <div class="colors-bgBox bg0">bg-bg0</div>
-      <div class="colors-bgBox bg1">bg-bg1</div>
-      <div class="colors-bgBox bg2">bg-bg2</div>
-      <div class="colors-bgBox bg3">bg-bg3</div>
-      <div class="colors-bgBox bg4">bg-bg4</div>
-      <div class="colors-bgBox bg5">bg-bg5</div>
-      <div class="colors-bgBox bg6">bg-bg6</div>
+      <div class="bgBox" style="background-color: var(--col-bg-0)">bg0</div>
+      <div class="bgBox" style="background-color: var(--col-bg-1)">bg1</div>
+      <div class="bgBox" style="background-color: var(--col-bg-2)">bg2</div>
+      <div class="bgBox" style="background-color: var(--col-bg-3)">bg3</div>
+      <div class="bgBox" style="background-color: var(--col-bg-4)">bg4</div>
+      <div class="bgBox" style="background-color: var(--col-bg-5)">bg5</div>
+      <div class="bgBox" style="background-color: var(--col-bg-6)">bg6</div>
     </div>
     <div class="flexRow flexWrap">
-      <div class="colors-bgBox" style="background-color: var(--col-txt-0)">bg-bg0</div>
-      <div class="colors-bgBox text-txt1" style="background-color: var(--col-txt-1)">bg-bg1</div>
-      <div class="colors-bgBox bg-bg2" style="background-color: var(--col-txt-2)">bg-bg2</div>
-      <div class="colors-bgBox bg-bg3" style="background-color: var(--col-txt-3)">bg-bg3</div>
-      <div class="colors-bgBox bg-bg4" style="background-color: var(--col-txt-4)">bg-bg4</div>
-      <div class="colors-bgBox bg-bg5" style="background-color: var(--col-txt-5)">bg-bg5</div>
-      <div class="colors-bgBox bg-bg6" style="background-color: var(--col-txt-6)">bg-bg6</div>
+      <div class="bgBox bg0">bg0</div>
+      <div class="bgBox bg1">bg1</div>
+      <div class="bgBox bg2">bg2</div>
+      <div class="bgBox bg3">bg3</div>
+      <div class="bgBox bg4">bg4</div>
+      <div class="bgBox bg5">bg5</div>
+      <div class="bgBox bg6">bg-bg6</div>
+    </div>
+    <div class="flexRow flexWrap" style="margin-top: 10px">
+      <div class="bgBox" style="background-color: var(--col-txt-0)">txt0</div>
+      <div class="bgBox" style="background-color: var(--col-txt-1)">txt1</div>
+      <div class="bgBox" style="background-color: var(--col-txt-2)">txt2</div>
+      <div class="bgBox" style="background-color: var(--col-txt-3)">txt3</div>
+      <div class="bgBox" style="background-color: var(--col-txt-4)">txt4</div>
+      <div class="bgBox" style="background-color: var(--col-txt-5)">txt5</div>
+      <div class="bgBox" style="background-color: var(--col-txt-6)">txt6</div>
     </div>
     <div class="flexRow flexWrap">
-      <div class="colors-bgBox txt0">bg-bg0</div>
-      <div class="colors-bgBox txt1">bg-bg1</div>
-      <div class="colors-bgBox txt2">bg-bg2</div>
-      <div class="colors-bgBox txt3">bg-bg3</div>
-      <div class="colors-bgBox txt4">bg-bg4</div>
-      <div class="colors-bgBox txt5">bg-bg5</div>
-      <div class="colors-bgBox txt6">bg-bg6</div>
+      <div class="bgBox txt0">txt0</div>
+      <div class="bgBox txt1">txt1</div>
+      <div class="bgBox txt2">txt2</div>
+      <div class="bgBox txt3">txt3</div>
+      <div class="bgBox txt4">txt4</div>
+      <div class="bgBox txt5">txt5</div>
+      <div class="bgBox txt6">txt6</div>
     </div>
   </div>
 </template>
@@ -44,35 +53,52 @@
 <style>
 .colors {
   overflow: auto;
+  --col-lightness: 60%;
+  --col-chroma: 0;
+  --col-hue: 0;
+  --col-space: 0.05;
+  --col-lightCalc: calc(-100% * 0.05);
+  --colx-pri: oklch(var(--col-lightness) 0.3362 252.98);
 }
-.colors-bgBox {
+.bgBox {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 40px;
   width: 112px;
 }
+
+.pri {
+  background-color: var(--colx-pri);
+}
+
+.bg-darker {
+  --col-lightness: 33%;
+  filter: brightness(1.75);
+}
+
 .bg0 {
-  background-color: color-mix(in srgb, var(--bcolor2) 0%, var(--bcolor1));
+  background-color: oklab(var(--col-lightness) var(--col-chroma) var(--col-hue));
 }
 .bg1 {
-  background-color: color-mix(in srgb, var(--bcolor2) 6%, var(--bcolor1));
+  background-color: oklab(calc(var(--col-lightness) + var(--col-lightCalc)) var(--col-chroma) var(--col-hue));
 }
 .bg2 {
-  background-color: color-mix(in srgb, var(--bcolor2) 8%, var(--bcolor1));
+  background-color: oklab(calc(var(--col-lightness) + calc(var(--col-lightCalc) * 2)) var(--col-chroma) var(--col-hue));
 }
 .bg3 {
-  background-color: color-mix(in srgb, var(--bcolor2) 12%, var(--bcolor1));
+  background-color: oklab(calc(var(--col-lightness) + calc(var(--col-lightCalc) * 3)) var(--col-chroma) var(--col-hue));
 }
 .bg4 {
-  background-color: color-mix(in srgb, var(--bcolor2) 16%, var(--bcolor1));
+  background-color: oklab(calc(var(--col-lightness) + calc(var(--col-lightCalc) * 4)) var(--col-chroma) var(--col-hue));
 }
 .bg5 {
-  background-color: color-mix(in srgb, var(--bcolor2) 20%, var(--bcolor1));
+  background-color: oklab(calc(var(--col-lightness) + calc(var(--col-lightCalc) * 5)) var(--col-chroma) var(--col-hue));
 }
 .bg6 {
-  background-color: color-mix(in srgb, var(--bcolor2) 25%, var(--bcolor1));
+  background-color: oklab(calc(var(--col-lightness) + calc(var(--col-lightCalc) * 6)) var(--col-chroma) var(--col-hue));
 }
+
 .txt0 {
   background-color: color-mix(in srgb, var(--bcolor1) 0%, var(--bcolor2));
 }

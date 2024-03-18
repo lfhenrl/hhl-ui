@@ -4,7 +4,7 @@
     <H_virtualList data-key="id" :data-sources="data" ref="vscroll">
       <template v-slot:footer>FOOTER</template>
       <template v-slot="{ item }">
-        <div class="listItem shadow">
+        <div class="listItem">
           <div>Id: {{ item.id }}</div>
           <div>Row: {{ item.val1 }}</div>
           <div>Group: {{ item.val2 }}</div>
@@ -37,16 +37,17 @@ async function load() {
   height: 500px;
 }
 .header {
-  background-color: gray;
+  background-color: rgb(245, 113, 113);
   width: 100%;
 }
 
 .listItem {
   display: flex;
-  gap: 50px;
-  background-color: rgb(95, 95, 95);
+  background-color: var(--col-bg-2);
   max-height: 30px;
   overflow: visible;
+  margin: 2px 0;
+  align-items: center;
 }
 .listItem div {
   width: 200px;

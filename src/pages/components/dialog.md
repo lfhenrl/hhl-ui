@@ -1,6 +1,6 @@
 # Dialog
 
-The `H_dialog` is a styled version of hhl-modal all the properties from modal can be used.
+The `H_dialog` is a styled version of H_pop all the properties from H_pop can be used.
 
 ## Using
 

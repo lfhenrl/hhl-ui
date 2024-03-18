@@ -7,11 +7,7 @@
     :class="{ 'H_modal-pop__shake': shake }"
     v-movable="movable"
   >
-    <div
-      class="H_dialog__header"
-      moveable-drag
-      :class="{ 'cursor-move': movable }"
-    >
+    <div class="H_dialog__header" moveable-drag :class="{ 'cursor-move': movable }">
       <slot name="header" />
     </div>
     <div class="H_dialog__body"><slot /></div>
@@ -49,7 +45,7 @@ watch(
       dialogRef.value.close();
       E("close");
     }
-  },
+  }
 );
 
 function click(e: any) {
@@ -99,10 +95,12 @@ function overlayClick() {
     font-weight: bold;
   }
 
+  .H_dialog__header[moveable-drag] {
+    cursor: move;
+  }
+
   .H_dialog.H_modal-pop__shake {
-    animation:
-      fadein 0.2s ease-in 1,
-      shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+    animation: fadein 0.2s ease-in 1, shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
   }
 
   .H_dialog__body {

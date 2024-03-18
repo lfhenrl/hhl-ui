@@ -53,6 +53,10 @@ export function DateDiffDays(date1: Date, date2: Date) {
   const differenceMs = Math.abs(date1.valueOf() - date2.valueOf());
   return Math.round(differenceMs / day);
 }
+export function DateDiffHours(date1: Date, date2: Date) {
+  const differenceMs = Math.abs(date1.valueOf() - date2.valueOf());
+  return Math.round(differenceMs / hour);
+}
 
 export function DateWorkingDays(date1: Date, date2: Date) {
   // clone date to avoid messing up original date and time

@@ -13,13 +13,12 @@ const props = defineProps({
   icon: { default: "", type: String },
   tab_class: { default: "", type: String },
   keepAlive: { default: false, type: Boolean },
-  disabled: { default: false, type: Boolean },
   selected: { default: false, type: Boolean },
 });
 
 watch(
   () => props.tab_class,
-  () => tabData.changed(),
+  () => tabData.changed()
 );
 
 const tabData: any = inject("tabData");
@@ -32,6 +31,12 @@ const selected = computed(() => tabData.selected.value === props.name);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
+  }
+
+  .H_tabs__tab[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: none;
   }
 }
 </style>

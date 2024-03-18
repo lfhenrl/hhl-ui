@@ -15,7 +15,7 @@ It use a virtual scoller so it can handle big dataset.
         >
             <H_column field="id" type="number"></H_column>
             <H_column field="val1" type="string"></H_column>
-            <H_column field="val2" type="string"></H_column>
+            <H_column field="val2" type="string" filter="select"></H_column>
             <H_column field="val3" type="string"></H_column>
             <H_column field="val4" type="string"></H_column>
             <H_column field="val5" type="bool"></H_column>
@@ -516,14 +516,14 @@ If that the case set `stickyGroups="false"`.
               :group-list="[`val2`,`val4`]"
               data-key="id"                 
         >
-          <H_column field="val2" title="Value 2" type="string" filter_type="select"></H_column>
-          <H_column field="val4" title="Value 4" type="string" filter_type="select"></H_column>
-            <H_column field="id" title="Id" type="number" filter_type="number" cell-class="text-err" width="100px"></H_column>
+          <H_column field="val2" title="Value 2" type="string" filter="select""></H_column>
+          <H_column field="val4" title="Value 4" type="string" ></H_column>
+            <H_column field="id" title="Id" type="number"  cell-class="text-err" width="100px"></H_column>
             <H_column field="val1" title="Value 1" type="string" filter_type="string" width="auto"></H_column>          
-            <H_column field="val3" title="Value 3" type="string" filter_type="string" ></H_column>            
-            <H_column field="val5" title="Value 5" type="bool" filter_type="bool"></H_column>
-            <H_column field="val6" title="Value 6" type="date" filter_type="datetime"></H_column>
-            <H_column field="val7" title="Value 7" type="string" filter_type="select"></H_column>
+            <H_column field="val3" title="Value 3" type="string"  ></H_column>            
+            <H_column field="val5" title="Value 5" type="bool" ></H_column>
+            <H_column field="val6" title="Value 6" type="date" ></H_column>
+            <H_column field="val7" title="Value 7" type="string" ></H_column>
       </H_datagrid>
     </div>
   </div>
