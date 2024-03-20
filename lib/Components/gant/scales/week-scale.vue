@@ -53,8 +53,8 @@ function getWeek(item: iScaleItem) {
   position: sticky;
   top: 0;
   background-color: var(--col-bg-1);
-  max-height: 38px;
-  min-height: 38px;
+  max-height: var(--gantt-head-height);
+  min-height: var(--gantt-head-height);
   border-bottom: 1px solid var(--col-bg-3);
 }
 .week-scale-head {
@@ -64,16 +64,16 @@ function getWeek(item: iScaleItem) {
 .week-scale-body {
   display: flex;
 }
+
+.week-scale-grid {
+  display: flex;
+  min-height: var(--gantt-scroll-height);
+}
 .week-scale-item {
   padding: 0 4px;
   width: 35px;
   text-align: center;
   border-right: 1px solid var(--col-bg-3);
-}
-
-.week-scale-grid {
-  display: flex;
-  height: var(--gantt-scroll-height);
 }
 
 .holyday {

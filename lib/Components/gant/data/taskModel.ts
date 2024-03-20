@@ -4,5 +4,7 @@ export class Task {
   public Name: string = "";
   public StartTime: Date = new Date();
   public EndTime: Date = new Date();
-  public progress: number = 0;
+  public Progress: number = 0;
+  public Expanded: boolean = false;
+  public Children: iTask[] = [];
 }

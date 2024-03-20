@@ -106,30 +106,6 @@ let leftScroll = 0;
 let scrollHeight = 0;
 let keeps = 50;
 
-const resizeObserver = new ResizeObserver((entries) => {
-  for (const entry of entries) {
-    if (entry.contentBoxSize) {
-      scrollHeight = entry.contentRect.height;
-      calcKeeps();
-    }
-  }
-});
-
-const calcKeeps = debounce(async () => {
-  let _keeps;
-  if (virtual) {
-    _keeps = Math.ceil(scrollHeight / virtual.getEstimateSize()) + props.overscan;
-  } else {
-    _keeps = Math.ceil(scrollHeight / props.estimateSize) + props.overscan;
-  }
-  if (_keeps !== keeps) {
-    keeps = _keeps;
-    virtual.updateParam("keeps", keeps);
-    virtual.updateParam("buffer", props.overscan);
-    virtual.handleSlotSizeChange();
-  }
-});
-
 function update() {
   virtual.handleDataSourcesChange();
 }
@@ -151,7 +127,6 @@ watch(
   () => {
     virtual.updateParam("uniqueIds", getUniqueIdFromDataSources());
     virtual.handleDataSourcesChange();
-    calcKeeps();
   }
 );
 
@@ -179,12 +154,10 @@ onMounted(() => {
   } else if (props.offset) {
     scrollToOffset(props.offset);
   }
-  resizeObserver.observe(root.value!);
   installVirtual();
 });
 
 onBeforeUnmount(() => {
-  resizeObserver.unobserve(root.value!);
   virtual.destroy();
 });
 

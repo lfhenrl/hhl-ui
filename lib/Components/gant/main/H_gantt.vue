@@ -1,6 +1,6 @@
 <template>
-  <div class="H_gantt">
-    <data-grid :data="data" :scrollTop="scrollTop" class="henrik" ref="dgdom" />
+  <div class="H_gantt" ref="MainDom">
+    <data-grid :data="data" :scrollTop="scrollTop" ref="dgdom" />
     <div class="H_gantt-spitPane" v-splitpane />
     <div class="H_gantt-gantt">
       <H_virtual-list
@@ -8,8 +8,8 @@
         ref="scrollDom"
         data-key="id"
         :data-sources="scaleList"
-        :overscan="4"
-        :estimateSize="245"
+        :overscan="6"
+        :estimateSize="250"
         direction="horizontal"
         class="H_gantt-gantt-scale"
       >
@@ -18,7 +18,7 @@
         </template>
         <template #absoluteItems>
           <div class="gantt-lines">
-            <div class="gantt-line" v-for="item in data" :key="item.Id" />
+            <div class="gantt-line" v-for="item in GT.ActiveRows.value" :key="item" />
             <div class="gantt-space" />
           </div>
         </template>
@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { PropType, onMounted, provide, ref, watch } from "vue";
 import { iTask } from "../data/taskModel";
-import dataGrid from "./data-grid.vue";
+import dataGrid from "../datagrid/data-grid.vue";
 import weekScale from "../scales/week-scale.vue";
 import { iScaleItem, makeTimelist } from "../scales/getScaleList";
 import { DateAddDays, DateGetToday } from "../../../utils/dateFunctions";
@@ -39,17 +39,24 @@ import H_virtualList from "../../H_virtualList.vue";
 import { Gantt } from "../provide/gantt";
 
 const P = defineProps({
-  data: { type: Array as PropType<iTask[]> },
+  data: { type: Array as PropType<iTask[]>, default: [] },
+  headHeight: { type: Number, default: 38 },
+  rowHeight: { type: Number, default: 30 },
 });
 
-const dgdom: any = ref(null);
+const MainDom = ref();
+const dgdom = ref();
 const scrollDom = ref();
 
 const scrollTop = ref(0);
 
 let startDate = DateGetToday();
 let endDate = DateAddDays(startDate, 333);
-const scaleList = ref<iScaleItem[]>(makeTimelist(startDate, endDate, "week"));
+const scaleList = ref<iScaleItem[]>([]);
+
+setTimeout(() => {
+  scaleList.value = makeTimelist(startDate, endDate, "week");
+});
 
 const GT = new Gantt();
 provide("GT", GT);
@@ -57,9 +64,11 @@ provide("GT", GT);
 watch(
   () => P.data,
   () => {
+    GT.ActiveRows.value = {};
+    GT.Data = P.data;
     setTimeout(() => {
       GT.newData();
-    }, 500);
+    });
   },
   { immediate: true }
 );
@@ -69,8 +78,12 @@ function onScroll(e: any) {
 }
 
 onMounted(() => {
+  GT.MainDom = MainDom.value;
   GT.vScrollDom = scrollDom.value;
   GT.dGridDom = dgdom.value;
+  GT.headHeight = P.headHeight;
+  GT.rowHeight = P.rowHeight;
+  GT.init();
 });
 </script>
 
@@ -80,7 +93,6 @@ onMounted(() => {
   overflow: hidden;
   border-top: 1px solid var(--col-bg-3);
   border-right: 1px solid var(--col-bg-3);
-  --gantt-scroll-height: v-bind(GT.scrollHight.value);
 }
 
 .H_gantt-gantt {
@@ -105,19 +117,18 @@ onMounted(() => {
 
 .gantt-lines {
   position: absolute;
-  top: 38px;
+  top: var(--gantt-head-height);
   bottom: 30px;
-  left: 0;
-  right: 0;
+  min-width: var(--gantt-scroll-width);
   z-index: 20;
   pointer-events: none;
 }
 
 .gantt-line {
   display: flex;
-  max-height: 30px;
-  min-height: 30px;
-  min-width: 100%;
+  max-height: var(--gantt-row-height);
+  min-height: var(--gantt-row-height);
+  min-width: var(--gantt-scroll-width);
   border-bottom: solid 1px var(--col-bg-3);
 }
 
@@ -126,8 +137,10 @@ onMounted(() => {
 }
 
 .H_gantt-spitPane {
-  width: 4px;
+  min-width: 4px;
+  max-width: 4px;
   background-color: var(--col-bg-3);
   cursor: ew-resize;
+  z-index: 11;
 }
 </style>

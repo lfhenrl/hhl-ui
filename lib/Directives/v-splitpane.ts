@@ -24,7 +24,8 @@ export const vSplitpane = {
       const parent = el.parentNode as HTMLElement;
       const parentWidth = parent.getBoundingClientRect().width;
       const newLeftWidth = ((leftWidth + dx) * 100) / parentWidth;
-      leftSide.style.minWidth = `${newLeftWidth}%`;
+      leftSide.style.width = `${newLeftWidth + 1}%`;
+      leftSide.style.minWidth = `${newLeftWidth + 1}%`;
     }
 
     function closeDragElement() {
@@ -35,5 +36,5 @@ export const vSplitpane = {
   unmounted() {
     document.onmouseup = null;
     document.onmousemove = null;
-  }
+  },
 };

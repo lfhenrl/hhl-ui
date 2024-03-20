@@ -3,11 +3,13 @@ import { getIdGenerator } from "./id-generator";
 
 const draggableItemIdGenrator = getIdGenerator();
 
-export const toDraggableItems = (arr: Array<any>): Array<DraggableItem> => {
-  return arr.map((e) => ({
-    id: draggableItemIdGenrator(),
-    data: e,
-  }));
+export const toDraggableItems = (arr: Array<any>): Array<DraggableItem> | undefined => {
+  if (arr) {
+    return arr.map((e) => ({
+      id: draggableItemIdGenrator(),
+      data: e,
+    }));
+  }
 };
 
 export const toOriginalArray = (arr: Array<DraggableItem>): Array<any> => {
