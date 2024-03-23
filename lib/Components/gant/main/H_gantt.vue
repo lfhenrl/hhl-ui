@@ -18,9 +18,11 @@
         </template>
         <template #absoluteItems>
           <div class="gantt-lines">
-            <div class="gantt-line" v-for="item in GT.ActiveRows.value" :key="item" />
+            <task :row="item" v-for="item in GT.Data.value" :key="item.Id" />
+
             <div class="gantt-space" />
           </div>
+          <div class="H_gantt_renderHTML"></div>
         </template>
       </H_virtual-list>
     </div>
@@ -37,6 +39,7 @@ import { DateAddDays, DateGetToday } from "../../../utils/dateFunctions";
 import { vSplitpane } from "../../../Directives/v-splitpane";
 import H_virtualList from "../../H_virtualList.vue";
 import { Gantt } from "../provide/gantt";
+import task from "../gantt/task.vue";
 
 const P = defineProps({
   data: { type: Array as PropType<iTask[]>, default: [] },
@@ -47,15 +50,18 @@ const P = defineProps({
 const MainDom = ref();
 const dgdom = ref();
 const scrollDom = ref();
-
 const scrollTop = ref(0);
 
 let startDate = DateGetToday();
-let endDate = DateAddDays(startDate, 333);
+let endDate = DateAddDays(startDate, 8);
 const scaleList = ref<iScaleItem[]>([]);
 
 setTimeout(() => {
-  scaleList.value = makeTimelist(startDate, endDate, "week");
+  const tList: any = makeTimelist(startDate, endDate, "week");
+  scaleList.value = tList.timelist;
+  GT.StartTime = tList.startTime;
+  GT.EndTime = tList.endTime;
+  GT.calcTime();
 });
 
 const GT = new Gantt();
@@ -64,8 +70,6 @@ provide("GT", GT);
 watch(
   () => P.data,
   () => {
-    GT.ActiveRows.value = {};
-    GT.Data = P.data;
     setTimeout(() => {
       GT.newData();
     });
@@ -102,6 +106,12 @@ onMounted(() => {
   flex: 1 1 100%;
   overflow: hidden;
 }
+
+.H_gantt-gantt .H_virtualListItem {
+  pointer-events: none;
+  user-select: none;
+}
+
 .H_gantt-gantt-scale {
   z-index: 2;
   display: flex;
@@ -112,7 +122,6 @@ onMounted(() => {
   position: relative;
   display: flex;
   height: 100%;
-  z-index: 6;
 }
 
 .gantt-lines {
@@ -120,7 +129,6 @@ onMounted(() => {
   top: var(--gantt-head-height);
   bottom: 30px;
   min-width: var(--gantt-scroll-width);
-  z-index: 20;
   pointer-events: none;
 }
 

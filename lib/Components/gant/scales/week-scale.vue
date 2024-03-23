@@ -48,6 +48,8 @@ function getWeek(item: iScaleItem) {
   flex-direction: column;
   height: 100%;
   font-size: 12px;
+  pointer-events: none;
+  user-select: none;
 }
 .week-scale-header {
   position: sticky;
@@ -56,6 +58,7 @@ function getWeek(item: iScaleItem) {
   max-height: var(--gantt-head-height);
   min-height: var(--gantt-head-height);
   border-bottom: 1px solid var(--col-bg-3);
+  z-index: 9;
 }
 .week-scale-head {
   text-align: center;
@@ -68,6 +71,7 @@ function getWeek(item: iScaleItem) {
 .week-scale-grid {
   display: flex;
   min-height: var(--gantt-scroll-height);
+  z-index: -1;
 }
 .week-scale-item {
   padding: 0 4px;

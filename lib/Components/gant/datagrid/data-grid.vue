@@ -5,20 +5,30 @@
         <head-cell v-for="col in Columns" :col="col" :key="col.Id" />
       </div>
 
-      <row-group :level="0" :row="item" v-for="item in rows" :key="item.Id" />
+      <row-group :level="0" :row="item" :parent-row="undefined" v-for="item in rows" :key="item.Id" />
 
       <div class="gantt-space" />
     </div>
+    <H_pop placement="left" :inner="true" container="box" query-selector=".data-grid" v-model="moveDialogIsOpen">
+      <div class="data-grid-moveDialog">
+        <H_btn size="sm" @click="insertOver">Over</H_btn>
+        <H_btn size="sm" @click="insertAsChild">As a child</H_btn>
+        <H_btn size="sm" @click="insertUnder">Under</H_btn>
+      </div>
+    </H_pop>
   </div>
 </template>
 
 <script setup lang="ts">
-import { PropType, ref, watch } from "vue";
+import { PropType, inject, ref, watch } from "vue";
 import { iTask } from "../data/taskModel";
 import { Columns } from "../data/Columns";
 import headCell from "./headCell.vue";
 import rowGroup from "./rowGroup.vue";
-
+import H_pop from "../../popup/H_pop.vue";
+import H_btn from "../../H_btn.vue";
+import { iMoveTask } from "../data/moveTaskModel";
+import { iGantt } from "../provide/gantt";
 const dataGrid = ref<HTMLElement>();
 
 const P = defineProps({
@@ -26,12 +36,27 @@ const P = defineProps({
   scrollTop: { type: Number, default: 0 },
 });
 
-const rows: any = ref();
+const rows: any = ref([]);
+const moveDialogIsOpen: any = ref(false);
+let sorceArray: any = [];
+let destArray: any = [];
+let sorce: iMoveTask;
+let dest: iMoveTask;
+
+const GT = inject("GT") as iGantt;
 
 watch(
   () => P.data,
   () => {
     rows.value = P.data;
+    GT.Data.value = rows.value;
+  },
+  { immediate: true }
+);
+watch(
+  () => rows,
+  () => {
+    GT.Data.value = rows.value;
   },
   { immediate: true }
 );
@@ -43,6 +68,56 @@ watch(
     dataGrid.value.scrollTop = P.scrollTop;
   }
 );
+
+function moveDialogOpen(_source: iMoveTask, _dest: iMoveTask) {
+  sorceArray = _source.parentRow === null ? rows.value : _source.parentRow.Children;
+  destArray = _dest.parentRow === null ? rows.value : _dest.parentRow.Children;
+  sorce = _source;
+  dest = _dest;
+
+  setTimeout(() => {
+    moveDialogIsOpen.value = true;
+  });
+}
+
+function move(under: number) {
+  sorce.rowComp.classList.add("start-remove");
+  setTimeout(() => {
+    sorceArray.splice(sorceArray.indexOf(sorce.row), 1);
+    destArray.splice(destArray.indexOf(dest.row) + under, 0, sorce.row);
+    rows.value = [...rows.value];
+    setTimeout(() => {
+      sorce.rowComp.classList.remove("start-remove");
+    }, 5);
+  }, 300);
+}
+
+function insertOver() {
+  move(0);
+}
+
+function insertUnder() {
+  move(1);
+}
+
+function insertAsChild() {
+  if (!sorce.row) return;
+  setTimeout(() => {
+    sorceArray.splice(sorceArray.indexOf(sorce.row), 1);
+    if (!sorce.row) return;
+    dest.row!.Expanded = true;
+    dest.row?.Children.push(sorce.row);
+
+    rows.value = [...rows.value];
+    setTimeout(() => {
+      sorce.rowComp.classList.remove("start-remove");
+    }, 5);
+  }, 300);
+}
+
+defineExpose({
+  moveDialogOpen,
+});
 </script>
 
 <style>
@@ -83,19 +158,12 @@ watch(
   min-height: 30px;
   border-bottom: 1px solid var(--col-bg-3);
 }
-.fade-move,
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
-}
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: scaleY(0.01) translate(30px, 0);
-}
-
-.fade-leave-active {
-  position: absolute;
+.data-grid-moveDialog {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  background-color: var(--col-bg-3);
+  padding: 12px;
 }
 </style>

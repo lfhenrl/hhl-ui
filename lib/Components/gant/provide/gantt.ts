@@ -1,29 +1,34 @@
-import { ref, watch, toRaw } from "vue";
+import { ref, watch } from "vue";
 import { iColumn } from "../data/columnModel";
 import { Columns } from "../data/Columns";
 import { iTask } from "../data/taskModel";
+import dataGrid from "../datagrid/data-grid.vue";
+import { iMoveTask } from "../data/moveTaskModel";
 
 export type iGantt = InstanceType<typeof Gantt>;
-//type iVscroller = InstanceType<typeof H_virtualList>;
+type iDataGrid = InstanceType<typeof dataGrid>;
 
 export class Gantt {
   public MainDom?: any;
   public vScrollDom?: any;
-  public dGridDom?: any;
+  public dGridDom?: iDataGrid;
   public MainDomStyle?: any;
-  public Data: iTask[] = [];
+  public Data = ref<iTask[]>([]);
   public headHeight = 38;
   public Columns: iColumn[];
-  public ActiveRows: any = ref({});
   public rowHeight = 30;
   public scrollHight = 200;
   public scrollTotHight = 238;
-  public scrollGanttWidth = 1000;
-  public DragSourceId: number = -1;
+  public scrollGanttWidth = 0;
+  public DragSourceRow: iMoveTask | null = null;
+  public StartTime: Date = new Date();
+  public EndTime: Date = new Date();
+  public pixelPrSec = 0;
 
   constructor() {
     this.Columns = Columns;
-    watch(this.ActiveRows, () => {
+
+    watch(this.Data, () => {
       this.scrollTotHight = this.dGridDom?.$el.scrollHeight;
       this.scrollHight = this.scrollTotHight - this.headHeight;
       if (this.MainDomStyle) {
@@ -37,8 +42,23 @@ export class Gantt {
     this.update();
   }
 
+  public calcTime() {
+    if (this.scrollGanttWidth < 10) return;
+    const day = 24 * 60 * 60;
+    const secStartToEnd = (this.EndTime.valueOf() - this.StartTime.valueOf()) / 1000;
+    this.pixelPrSec = 35 / day;
+    const t = {
+      startDate: this.StartTime,
+      endDate: this.EndTime,
+      secStartToEnd,
+      pixelPrSec: this.pixelPrSec,
+    };
+    console.log("calcTime ", t);
+  }
+
   public newData() {
     this.update();
+    this.calcTime();
   }
 
   update() {
@@ -46,15 +66,7 @@ export class Gantt {
     this.MainDomStyle.setProperty("--gantt-scroll-width", this.scrollGanttWidth + "px");
     this.MainDomStyle.setProperty("--gantt-head-height", this.headHeight + "px");
     this.MainDomStyle.setProperty("--gantt-row-height", this.rowHeight + "px");
-    console.log("hhhhh ", this.ActiveRows.value);
-  }
-
-  public SearchTree(data: any[], id: number) {
-    return data.filter((el) => {
-      if (el.Id === id) return el;
-      if (el.Children.length > 0) this.SearchTree(el.Children, id);
-    });
-    return null;
+    console.log("hhhhh ", this.scrollGanttWidth);
   }
 
   public findId(children: any, id: any, p: any) {

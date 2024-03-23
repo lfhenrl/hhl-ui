@@ -21,26 +21,27 @@ export function makeTimelist(startTime: Date, endTime: Date, span: string = "mon
   }
 }
 
-function makeWeeklist(_startTime: Date, endTime: Date) {
+function makeWeeklist(_startTime: Date, _endTime: Date) {
   const x_startTime = new Date(_startTime.getFullYear(), _startTime.getMonth(), _startTime.getDate());
   const dayNumber = _startTime.getDay();
   const calcStartDay = dayNumber === 0 ? 6 : dayNumber === 1 ? 0 : dayNumber - 1;
   const startTime = DateAddDays(x_startTime, -calcStartDay);
   const timelist: Array<iScaleItem> = [];
-  for (var d = new Date(startTime); d <= endTime; d.setDate(d.getDate() + 7)) {
+  let endTime;
+  for (var d = new Date(startTime); d <= _endTime; d.setDate(d.getDate() + 7)) {
     //d.setDate(1);
-
+    endTime = DateAddDays(d, 6);
     const rec: iScaleItem = {
       id: d.valueOf(),
       year: d.getFullYear(),
       month: d.getMonth(),
       dayFirst: new Date(d),
-      dayLast: DateAddDays(d, 6),
+      dayLast: endTime,
     };
     timelist.push(rec);
   }
 
-  return timelist;
+  return { timelist, startTime, endTime };
 }
 
 function makeMonthlist(_startTime: Date, endTime: Date) {

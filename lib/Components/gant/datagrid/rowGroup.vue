@@ -1,23 +1,25 @@
 <template>
   <div
+    ref="me"
     class="rowGroup"
     :class="dropStyle"
-    draggable="true"
-    @dragstart="startDrag($event)"
-    @drop="drop($event)"
+    @drop="drop()"
     @dragover="dragOver($event)"
     @dragleave="dragLeave($event)"
   >
     <div class="rowGroup-content" :style="{ minWidth: thisCol[0].Width.value, maxWidth: thisCol[0].Width.value }">
+      <div draggable="true" @dragstart="startDrag($event)">
+        <H_icon icon="drag" size="18px" style="margin-left: -2px; cursor: move" />
+      </div>
       <div class="rowGroup-icon" :style="{ marginLeft: level * 12 + 'px' }">
         <div v-if="row.Children.length > 0" @click="click">
           <H_icon v-if="row.Expanded" icon="expand_down" size="24px" style="margin-left: -6px" />
           <H_icon v-else icon="expand_right" size="24px" style="margin-left: -6px" />
         </div>
-        <H_icon v-else icon="event" size="12px" style="margin-left: 1px" />
+        <H_icon v-else icon="event" size="14px" style="margin-left: -1px" />
       </div>
       <div class="rowGroup-title">
-        {{ row.Name }}
+        {{ row?.Name }}
       </div>
     </div>
     <body-cell v-for="col in gColumns" :col="col" :row="row" />
@@ -26,24 +28,29 @@
     v-if="row.Children.length > 0 && P.row.Expanded"
     :level="level + 1"
     :row="item"
-    v-for="item in row.Children"
+    :parent-row="row"
+    v-for="item in row?.Children"
     :key="item.Id"
   />
 </template>
 
 <script setup lang="ts">
-import { computed, inject, onMounted, onUnmounted, ref, toRaw } from "vue";
+import { PropType, computed, inject, onMounted, ref } from "vue";
 import H_icon from "../../H_icon.vue";
 import bodyCell from "../datagrid/bodyCell.vue";
 import { iGantt } from "../provide/gantt";
 import { iColumn } from "../data/columnModel";
 import { debounce } from "../../../utils/debounce";
+import { iTask } from "../data/taskModel";
+import { MoveTask } from "../data/moveTaskModel";
 
 const P = defineProps({
-  row: { type: Object, default: {} },
+  row: { type: Object as PropType<iTask>, default: null },
+  parentRow: { type: Object as PropType<iTask>, default: null },
   level: { type: Number, default: 0 },
 });
 
+const me = ref();
 const dropStyle = ref("");
 const GT = inject("GT") as iGantt;
 
@@ -56,6 +63,7 @@ const gColumns = computed(() => {
 });
 
 function click() {
+  if (!P.row) return;
   P.row.Expanded = !P.row.Expanded;
 }
 
@@ -63,24 +71,26 @@ const setDropStyle = debounce((name: string) => {
   dropStyle.value = name;
 }, 10);
 
-function startDrag(e: DragEvent) {
+function startDrag(e: any) {
   e.dataTransfer!.dropEffect = "move";
   e.dataTransfer!.effectAllowed = "move";
-  GT.DragSourceId = P.row.Id;
-  console.log("sss ", GT.DragSourceId, P.row.Id);
+  GT.DragSourceRow = new MoveTask(P.row, P.parentRow, me.value);
+  e.dataTransfer!.setDragImage(e.target.parentElement, 0, 0);
+  //console.log("sss ", e);
 }
 
-function drop(e: DragEvent) {
+function drop() {
   setDropStyle("");
-  console.log("sss ", GT.DragSourceId, P.row.Id);
-  const item = GT.findId(toRaw(GT.Data), P.row.Id, null);
-  console.log("node ", item);
+  console.log("sss ", GT.DragSourceRow?.row?.Id, P.row?.Id);
+  //const item = GT.findId(toRaw(GT.Data), P.row?.Id, null);
+  const dest = new MoveTask(P.row, P.parentRow, me.value);
+  if (GT.DragSourceRow) GT.dGridDom?.moveDialogOpen(GT.DragSourceRow, dest);
+
   // console.log("dragOver", "pos:", pos, "target:", props.id, "source:", dg.draggedItemId);
 }
 
 function dragOver(e: DragEvent) {
-  if (GT.DragSourceId === P.row.Id) return;
-
+  if (GT.DragSourceRow?.row?.Id === P.row?.Id) return;
   setDropStyle("dropGroup");
   e.preventDefault();
 }
@@ -90,13 +100,11 @@ function dragLeave(_e: DragEvent) {
 }
 
 onMounted(() => {
-  GT.ActiveRows.value[P.row.Id] = 0;
-  GT.ActiveRows.value = { ...GT.ActiveRows.value };
-});
-
-onUnmounted(() => {
-  delete GT.ActiveRows.value[P.row.Id];
-  GT.ActiveRows.value = { ...GT.ActiveRows.value };
+  me.value.classList.add("start-remove");
+  if (!P.row) return;
+  setTimeout(() => {
+    me.value.classList.remove("start-remove");
+  }, 5);
 });
 </script>
 
@@ -109,11 +117,17 @@ onUnmounted(() => {
   max-height: var(--gantt-row-height);
   pointer-events: all;
   border-bottom: 1px solid var(--col-bg-4);
+  transition: all 300ms;
+}
+
+.start-remove {
+  translate: -100px;
+  opacity: 0;
 }
 
 .rowGroup.dropGroup {
   outline: 2px solid var(--col-pri);
-  outline-offset: 1px;
+  outline-offset: -1px;
 }
 
 .rowGroup-content {
@@ -125,8 +139,11 @@ onUnmounted(() => {
 }
 
 .rowGroup-icon {
+  display: flex;
+  align-items: center;
+  padding-top: 1px;
+  padding-left: 3px;
   width: 18px;
-  pointer-events: all;
 }
 .rowGroup-icon:hover {
   zoom: 1.1;
