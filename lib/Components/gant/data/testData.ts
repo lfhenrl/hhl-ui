@@ -1,7 +1,7 @@
 import { DateAddDays, DateGetToday } from "../../../utils/dateFunctions";
-import { iTask } from "./taskModel";
+import { iRow } from "./rowModel";
 const tidNu = DateGetToday();
-export const testData: iTask[] = [
+export const testData: iRow[] = [
   {
     Id: 1,
     Name: "Task 1",

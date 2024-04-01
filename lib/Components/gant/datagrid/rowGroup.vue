@@ -41,12 +41,12 @@ import bodyCell from "../datagrid/bodyCell.vue";
 import { iGantt } from "../provide/gantt";
 import { iColumn } from "../data/columnModel";
 import { debounce } from "../../../utils/debounce";
-import { iTask } from "../data/taskModel";
-import { MoveTask } from "../data/moveTaskModel";
+import { iRow } from "../data/rowModel";
+import { MoveRow } from "../data/moveRowModel";
 
 const P = defineProps({
-  row: { type: Object as PropType<iTask>, default: null },
-  parentRow: { type: Object as PropType<iTask>, default: null },
+  row: { type: Object as PropType<iRow>, default: null },
+  parentRow: { type: Object as PropType<iRow>, default: null },
   level: { type: Number, default: 0 },
 });
 
@@ -74,7 +74,7 @@ const setDropStyle = debounce((name: string) => {
 function startDrag(e: any) {
   e.dataTransfer!.dropEffect = "move";
   e.dataTransfer!.effectAllowed = "move";
-  GT.DragSourceRow = new MoveTask(P.row, P.parentRow, me.value);
+  GT.DragSourceRow = new MoveRow(P.row, P.parentRow, me.value);
   e.dataTransfer!.setDragImage(e.target.parentElement, 0, 0);
   //console.log("sss ", e);
 }
@@ -83,7 +83,7 @@ function drop() {
   setDropStyle("");
   console.log("sss ", GT.DragSourceRow?.row?.Id, P.row?.Id);
   //const item = GT.findId(toRaw(GT.Data), P.row?.Id, null);
-  const dest = new MoveTask(P.row, P.parentRow, me.value);
+  const dest = new MoveRow(P.row, P.parentRow, me.value);
   if (GT.DragSourceRow) GT.dGridDom?.moveDialogOpen(GT.DragSourceRow, dest);
 
   // console.log("dragOver", "pos:", pos, "target:", props.id, "source:", dg.draggedItemId);
@@ -149,3 +149,4 @@ onMounted(() => {
   zoom: 1.1;
 }
 </style>
+../data/rowModel ../data/moveRowModel

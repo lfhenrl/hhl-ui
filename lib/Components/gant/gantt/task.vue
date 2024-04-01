@@ -1,39 +1,35 @@
 <template>
   <div class="task">
-    <div class="task-item" :style="{ left: left + 'px', width: width + 'px' }">
-      <div class="task-inner" @mousedown="resizeLeft">{{ row.Id }}</div>
-      <div class="task-adjust-right" @mousedown="resizeRight" />
+    <div ref="task" class="task-item" :data-id="row.Id" data-type="task_container">
+      <div class="task-inner" data-type="task">{{ row.Id }}</div>
+      <div class="task-adjust-right" data-type="task_adjustRight" />
+      <div class="task-connector" data-type="task_connectorRight" />
     </div>
   </div>
-  <task v-if="row.Children.length > 0 && P.row.Expanded" v-for="it in row.Children" :key="it.Id" :row="it" />
+  <template v-if="row.Children.length > 0 && P.row.Expanded">
+    <task v-for="it in row.Children" :key="it.Id" :row="it" />
+  </template>
 </template>
 
 <script setup lang="ts">
-import { PropType, inject, onMounted, ref } from "vue";
-import { iTask } from "../data/taskModel";
+import { PropType, inject, onMounted, onUpdated, ref } from "vue";
+import { iRow } from "../data/rowModel";
 import { iGantt } from "../provide/gantt";
-import { TaskResize } from "../gantt/taskResize";
+import { Task } from "../data/Task";
 
 const P = defineProps({
-  row: { type: Object as PropType<iTask>, default: null },
+  row: { type: Object as PropType<iRow>, default: null },
 });
-const E = defineEmits([]);
-
 const GT = inject("GT") as iGantt;
-const width = ref(0);
-const left = ref(0);
+const task = ref();
 
-function resizeLeft(e: MouseEvent) {
-  TaskResize(left, e);
-}
-
-function resizeRight(e: MouseEvent) {
-  TaskResize(width, e);
-}
+onUpdated(() => {
+  console.log("UPDATED ", P.row.Name);
+});
 
 onMounted(() => {
-  width.value = ((P.row.EndTime.valueOf() - P.row.StartTime.valueOf()) / 1000) * GT.pixelPrSec;
-  left.value = ((P.row.StartTime.valueOf() - GT.StartTime.valueOf()) / 1000) * GT.pixelPrSec;
+  const t = new Task(GT, task.value, P.row);
+  GT.Tasks[P.row.Id] = t;
 });
 </script>
 
@@ -47,6 +43,7 @@ onMounted(() => {
   border-bottom: solid 1px var(--col-bg-3);
   align-items: center;
   z-index: 1;
+  pointer-events: none;
 }
 .task-item {
   display: flex;
@@ -81,7 +78,15 @@ onMounted(() => {
   cursor: move;
 }
 
-.task-item:hover {
-  color: red;
+.task-connector {
+  position: absolute;
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  right: -10px;
+}
+.task-connector:hover {
+  background-color: aqua;
 }
 </style>
+../data/rowModel

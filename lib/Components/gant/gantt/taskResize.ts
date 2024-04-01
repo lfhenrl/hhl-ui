@@ -10,6 +10,8 @@ export function TaskResize(size: any, mousePos: any) {
   }
 
   function MouseUp() {
+    const clamp = Math.round(size.value / (35 / 2));
+    size.value = clamp * (35 / 2);
     document.removeEventListener("mousemove", ResizeMouseMove, false);
     document.removeEventListener("mouseup", MouseUp, false);
   }

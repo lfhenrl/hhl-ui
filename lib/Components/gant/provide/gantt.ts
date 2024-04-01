@@ -1,32 +1,41 @@
 import { ref, watch } from "vue";
 import { iColumn } from "../data/columnModel";
 import { Columns } from "../data/Columns";
-import { iTask } from "../data/taskModel";
+import { iRow } from "../data/rowModel";
 import dataGrid from "../datagrid/data-grid.vue";
-import { iMoveTask } from "../data/moveTaskModel";
+import { iMoveRow } from "../data/moveRowModel";
+import { mouseHandler } from "./mouseHandler";
+import { calc } from "./calc";
 
 export type iGantt = InstanceType<typeof Gantt>;
 type iDataGrid = InstanceType<typeof dataGrid>;
+type iCalc = ReturnType<typeof calc>;
 
 export class Gantt {
   public MainDom?: any;
   public vScrollDom?: any;
   public dGridDom?: iDataGrid;
   public MainDomStyle?: any;
-  public Data = ref<iTask[]>([]);
+  public Data = ref<iRow[]>([]);
   public headHeight = 38;
   public Columns: iColumn[];
+  public Tasks: any = {};
   public rowHeight = 30;
   public scrollHight = 200;
   public scrollTotHight = 238;
   public scrollGanttWidth = 0;
-  public DragSourceRow: iMoveTask | null = null;
+  public DragSourceRow: iMoveRow | null = null;
   public StartTime: Date = new Date();
   public EndTime: Date = new Date();
   public pixelPrSec = 0;
+  public mouseHandler;
+  public calc: iCalc;
+  public lineTool: SVGLineElement | null = null;
 
   constructor() {
     this.Columns = Columns;
+    this.mouseHandler = mouseHandler(this);
+    this.calc = calc(this);
 
     watch(this.Data, () => {
       this.scrollTotHight = this.dGridDom?.$el.scrollHeight;
@@ -53,10 +62,10 @@ export class Gantt {
       secStartToEnd,
       pixelPrSec: this.pixelPrSec,
     };
-    console.log("calcTime ", t);
   }
 
   public newData() {
+    // this.Tasks = {};
     this.update();
     this.calcTime();
   }
@@ -66,7 +75,13 @@ export class Gantt {
     this.MainDomStyle.setProperty("--gantt-scroll-width", this.scrollGanttWidth + "px");
     this.MainDomStyle.setProperty("--gantt-head-height", this.headHeight + "px");
     this.MainDomStyle.setProperty("--gantt-row-height", this.rowHeight + "px");
-    console.log("hhhhh ", this.scrollGanttWidth);
+  }
+
+  public addTask(dom: HTMLElement, row: iRow) {
+    const t = {
+      row,
+      dom,
+    };
   }
 
   public findId(children: any, id: any, p: any) {

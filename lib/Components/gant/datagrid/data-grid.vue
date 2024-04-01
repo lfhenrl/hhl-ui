@@ -21,18 +21,18 @@
 
 <script setup lang="ts">
 import { PropType, inject, ref, watch } from "vue";
-import { iTask } from "../data/taskModel";
+import { iRow } from "../data/rowModel";
 import { Columns } from "../data/Columns";
 import headCell from "./headCell.vue";
 import rowGroup from "./rowGroup.vue";
 import H_pop from "../../popup/H_pop.vue";
 import H_btn from "../../H_btn.vue";
-import { iMoveTask } from "../data/moveTaskModel";
+import { iMoveRow } from "../data/moveRowModel";
 import { iGantt } from "../provide/gantt";
 const dataGrid = ref<HTMLElement>();
 
 const P = defineProps({
-  data: { type: Array as PropType<iTask[]> },
+  data: { type: Array as PropType<iRow[]> },
   scrollTop: { type: Number, default: 0 },
 });
 
@@ -40,8 +40,8 @@ const rows: any = ref([]);
 const moveDialogIsOpen: any = ref(false);
 let sorceArray: any = [];
 let destArray: any = [];
-let sorce: iMoveTask;
-let dest: iMoveTask;
+let sorce: iMoveRow;
+let dest: iMoveRow;
 
 const GT = inject("GT") as iGantt;
 
@@ -69,7 +69,7 @@ watch(
   }
 );
 
-function moveDialogOpen(_source: iMoveTask, _dest: iMoveTask) {
+function moveDialogOpen(_source: iMoveRow, _dest: iMoveRow) {
   sorceArray = _source.parentRow === null ? rows.value : _source.parentRow.Children;
   destArray = _dest.parentRow === null ? rows.value : _dest.parentRow.Children;
   sorce = _source;
@@ -167,3 +167,4 @@ defineExpose({
   padding: 12px;
 }
 </style>
+../data/rowModel ../data/moveRowModel
