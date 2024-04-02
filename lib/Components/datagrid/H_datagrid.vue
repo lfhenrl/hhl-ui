@@ -150,6 +150,7 @@ onMounted(() => {
 
   .H_datagrid-header {
     display: flex;
+    flex-direction: column;
     height: 35px;
     max-height: 35px;
     overflow-x: hidden;
