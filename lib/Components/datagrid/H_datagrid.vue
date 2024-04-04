@@ -5,7 +5,7 @@
     </div>
     <div ref="header" class="H_datagrid-header">
       <H_headerRow role="heading" aria-level="2" :key="DG.changeCounter.value" @click="headerClick" />
-      <H_progressBar :show="DG.dataHandler?.rowsLoading.value" />
+      <H_progressBar :show="DG.dataHandler?.rowsLoading.value" class="H_datagrid-header-progress" />
     </div>
     <div class="H_datagrid-body">
       <H_virtualList
@@ -150,6 +150,7 @@ onMounted(() => {
 
   .H_datagrid-header {
     display: flex;
+    position: relative;
     flex-direction: column;
     height: 35px;
     max-height: 35px;
@@ -158,6 +159,12 @@ onMounted(() => {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border: 1px solid var(--col-bg-6);
+  }
+
+  .H_datagrid-header-progress {
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
   }
 
   .H_datagrid-header::-webkit-scrollbar {
