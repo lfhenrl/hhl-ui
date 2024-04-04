@@ -137,6 +137,7 @@ const cancel = () => close();
     background-color: transparent;
     padding-left: 4px;
     color: var(--col-txt-1);
+    border: none;
   }
   .H_datePicker__popup {
     border-radius: 4px;
