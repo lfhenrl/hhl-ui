@@ -87,7 +87,7 @@ function calculateInputHeight() {
     input.value.style.height = "0";
     const scrollHeight = input.value.scrollHeight;
     const scrollHeightEnd = scrollHeight < input.value.style.minHeight ? input.value.style.minHeight : scrollHeight;
-    input.value.style.minHeight = scrollHeightEnd + "px";
+    input.value.style.height = scrollHeightEnd + "px";
   }
 }
 </script>
