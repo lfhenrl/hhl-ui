@@ -37,9 +37,9 @@ export class localData {
     const newData = await this.getFilt_sortData(this.Dgrid!.Filter);
     if (this.groupList.length > 0) {
       const result = await groupBy(this.groupList[0], newData, 0, "");
-      this.outData.value = result;
+      this.outData.value = [...result];
     } else {
-      this.outData.value = newData;
+      this.outData.value = [...newData];
     }
     this.rowsCount.value = this.outData.value.length ?? 0;
     this.rowsLoading.value = false;
@@ -59,6 +59,11 @@ export class localData {
 
   public async startLoading() {
     this.rowsLoading.value = true;
+    return new Promise((resolve) => setTimeout(resolve));
+  }
+
+  public async stopLoading() {
+    this.rowsLoading.value = false;
     return new Promise((resolve) => setTimeout(resolve));
   }
 

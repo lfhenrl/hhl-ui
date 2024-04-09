@@ -2,11 +2,6 @@
   outline: none;
 }
 
-*:focus-visible {
-  outline-offset: 2px;
-  outline: 2px ridge rgba(170, 50, 220, 1);
-}
-
 :fullscreen {
   background-color: var(--col-bg-0);
   padding: 10px;

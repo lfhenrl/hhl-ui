@@ -15,7 +15,7 @@
         :overscan="overscan"
         item-class="H_dataRow"
         :data-sources="DG.dataHandler?.outData.value"
-        :selectedId="selectedId"
+        :selectedId="selected_Id"
         :estimateSize="parseInt(row_height)"
         ref="vscroll"
         @click="bodyClick"
@@ -69,6 +69,7 @@ const P = defineProps({
   filterstring: { type: String, default: "" },
   groupList: { type: Array as PropType<string[]>, default: [] },
   stickyGroups: { type: Boolean, default: true },
+  selectedId: { type: String },
 });
 
 const E = defineEmits<{
@@ -82,7 +83,14 @@ const row_styleActive = P.row_style ? true : false;
 const vscroll = ref<iVscroller | null>(null);
 const slots = useSlots();
 const DG = new Dgrid(slots, P.dataHandler);
-const selectedId = ref("");
+const selected_Id = ref("");
+
+watch(
+  () => P.selectedId,
+  () => {
+    selected_Id.value = P.selectedId ?? "";
+  }
+);
 
 provide("DG", DG);
 const ClickHandler = new datagridClickHandler(DG);
@@ -94,7 +102,7 @@ DG.dataHandler!.groupList = P.groupList;
 function bodyClick(e: MouseEvent) {
   const data = ClickHandler.click(e);
   if (data && data.type.startsWith("row")) {
-    selectedId.value = data?.dataId;
+    selected_Id.value = data?.dataId;
     E("rowClick", data);
   }
 }

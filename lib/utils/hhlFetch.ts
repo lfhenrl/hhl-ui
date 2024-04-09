@@ -5,7 +5,9 @@ function queryStringify(params: any) {
   return Object.entries(params).reduce((acc, entry, index) => {
     const [param, value] = entry;
     const encoded =
-      index === 0 ? `${param}=${encodeURIComponent(value as string)}` : `&${param}=${encodeURIComponent(value as string)}`;
+      index === 0
+        ? `${param}=${encodeURIComponent(value as string)}`
+        : `&${param}=${encodeURIComponent(value as string)}`;
     return `${acc}${encoded}`;
   }, "");
 }
@@ -30,7 +32,7 @@ const codeList: any = {
   404: "The requested resource could not be found.",
   500: "Internal Server Error.",
   503: "The server is currently unavailable.",
-  777: "Unknown Error please see console.log"
+  777: "Unknown Error please see console.log",
 };
 
 function getSuccessCode(code: number) {
@@ -41,16 +43,28 @@ function getErrorCode(code: number) {
   return codeList[code] || "Unknown failure";
 }
 
-async function getReq(baseUrl: string, url: string, method: string, params?: any, body?: any, token?: string, timeout?: number) {
+async function getReq(
+  baseUrl: string,
+  url: string,
+  method: string,
+  params?: any,
+  body?: any,
+  token?: string,
+  credentials?: boolean,
+  timeout?: number
+) {
   const controller = new AbortController();
   const id = setTimeout(() => isTimeout(), timeout);
   const uri = createURL(url, params, baseUrl);
   let timeoutError = false;
   const opt: any = {};
+  if (credentials) {
+    opt.credentials = "include";
+  }
+
   opt.method = method;
   opt.headers = new Headers({
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*"
   });
   if (token) {
     opt.headers.append("Authorization", "Bearer " + token);
@@ -74,7 +88,7 @@ async function getReq(baseUrl: string, url: string, method: string, params?: any
             data: json,
             ok: true,
             statusCode: response.status,
-            message: `${getSuccessCode(response.status)}`
+            message: `${getSuccessCode(response.status)}`,
           };
         });
       } else if (response.ok && response.status < 300) {
@@ -82,7 +96,7 @@ async function getReq(baseUrl: string, url: string, method: string, params?: any
           data: null,
           ok: true,
           statusCode: response.status,
-          message: `${getSuccessCode(response.status)}`
+          message: `${getSuccessCode(response.status)}`,
         };
       } else if (type.includes("json")) {
         return response.json().then((json: any) => {
@@ -92,7 +106,7 @@ async function getReq(baseUrl: string, url: string, method: string, params?: any
             data: null,
             ok: false,
             statusCode: response.status,
-            message: `${getErrorCode(response.status)} ${info}`
+            message: `${getErrorCode(response.status)} ${info}`,
           };
         });
       } else if (type.includes("text")) {
@@ -101,7 +115,7 @@ async function getReq(baseUrl: string, url: string, method: string, params?: any
             data: null,
             ok: false,
             statusCode: response.status,
-            message: `${getErrorCode(response.status)} ${txt}`
+            message: `${getErrorCode(response.status)} ${txt}`,
           };
         });
       } else {
@@ -109,7 +123,7 @@ async function getReq(baseUrl: string, url: string, method: string, params?: any
           data: null,
           ok: false,
           statusCode: 500,
-          message: `${getErrorCode(response.status)}`
+          message: `${getErrorCode(response.status)}`,
         };
       }
     })
@@ -119,14 +133,14 @@ async function getReq(baseUrl: string, url: string, method: string, params?: any
           data: null,
           ok: false,
           statusCode: 503,
-          message: getErrorCode(503)
+          message: getErrorCode(503),
         };
       } else {
         return {
           data: null,
           ok: false,
           statusCode: 777,
-          message: getErrorCode(777)
+          message: getErrorCode(777),
         };
       }
     });
@@ -139,6 +153,7 @@ export class hhlFetch {
   _errorHandler: any = null;
   _baseUrl = "";
   _token = "";
+  _credentials = false;
   TimeOut = 8000;
   /**
    * @param {string} baseUrl - the baseUrl
@@ -178,6 +193,17 @@ export class hhlFetch {
     return this._token;
   }
 
+  /**
+   * Set the token
+   * @type {boolean}
+   */
+  set credentials(value) {
+    this._credentials = value;
+  }
+  get credentials() {
+    return this._credentials;
+  }
+
   _reportError(data: any) {
     if (this._errorHandler) this._errorHandler(data);
   }
@@ -199,7 +225,7 @@ export class hhlFetch {
    * @return {Promise} This is the result
    */
   async get(url: string, param?: any) {
-    const d = await getReq(this._baseUrl, url, "get", param, null, this._token, this.TimeOut);
+    const d = await getReq(this._baseUrl, url, "get", param, null, this._token, this._credentials, this.TimeOut);
     if (d.ok === false) this._reportError(d);
     return d;
   }
@@ -211,7 +237,7 @@ export class hhlFetch {
    * @return {Promise} This is the result
    */
   async post(url: string, data: any) {
-    const d = await getReq(this.baseUrl, url, "post", {}, data, this._token, this.TimeOut);
+    const d = await getReq(this.baseUrl, url, "post", {}, data, this._token, this._credentials, this.TimeOut);
     if (d.ok === false) this._reportError(d);
     return d;
   }
@@ -223,7 +249,7 @@ export class hhlFetch {
    * @return {Promise} This is the result
    */
   async delete(url: string, param: any) {
-    const d = await getReq(this.baseUrl, url, "delete", param, null, this._token, this.TimeOut);
+    const d = await getReq(this.baseUrl, url, "delete", param, null, this._token, this._credentials, this.TimeOut);
     if (d.ok === false) this._reportError(d);
     return d;
   }
