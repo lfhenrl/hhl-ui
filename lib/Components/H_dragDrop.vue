@@ -45,11 +45,7 @@ const context = {
 };
 
 const { modelValue, maxItems } = toRefs(props);
-const { id, items, onDragOver, onItemDragOver } = useDraggableContainer(
-  modelValue!,
-  context,
-  props.maxItems
-);
+const { id, items, onDragOver, onItemDragOver } = useDraggableContainer(modelValue!, context, props.maxItems);
 
 const transitionStyle = computed(() => `transform ${props.transition}ms`);
 </script>
