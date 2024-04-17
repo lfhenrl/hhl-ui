@@ -65,8 +65,7 @@ defineExpose({
   KeyEnter,
 });
 const valueList: any = ref(P.modelValue.split(","));
-const sortAlphaNum = (a: any, b: any) =>
-  a.localeCompare(b, "en", { numeric: true });
+const sortAlphaNum = (a: any, b: any) => a.localeCompare(b, "en", { numeric: true });
 
 const optionlist = computed(() => {
   return P.list.map((ele: any) => {
@@ -106,7 +105,7 @@ watch(
   () => P.filter,
   () => {
     activeFocus = -1;
-  },
+  }
 );
 
 watch(
@@ -121,11 +120,10 @@ watch(
       .toString();
     E("update:labelValue", val);
   },
-  { immediate: true },
+  { immediate: true }
 );
 
-const filterFunc = (item: any) =>
-  item.label.toLowerCase().includes(P.filter.toLowerCase());
+const filterFunc = (item: any) => item.label.toLowerCase().includes(P.filter.toLowerCase());
 const filterList = computed(() => optionlist.value.filter(filterFunc));
 
 function selected(item: any) {
@@ -216,6 +214,10 @@ function setMultivalue(val: string) {
     padding-left: 3px;
     padding-right: 3px;
     color: var(--col-txt-3);
+  }
+
+  .H_baseSelectList-item:hover {
+    background-color: var(--col-bg-5);
   }
 
   .H_baseSelectList-item.selected {

@@ -81,6 +81,7 @@ function overlayClick() {
     top: v-bind(offsetTop);
     left: v-bind(offsetLeft);
     opacity: 1;
+    margin: auto;
   }
 
   .H_dialog[open] {

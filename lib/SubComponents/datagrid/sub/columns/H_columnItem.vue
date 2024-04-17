@@ -1,10 +1,6 @@
 <template>
   <div class="H_columnItem">
-    <div
-      class="H_columnItem-check"
-      :class="{ 'H_columnItem-checked': data.visibel }"
-      @click="checkClick"
-    >
+    <div class="H_columnItem-check" :class="{ 'H_columnItem-checked': data.visibel }" @click="checkClick">
       <H_icon icon="check" size="15px" btn="standard" v-if="data.visibel" />
     </div>
     <H_icon icon="drag" size="16px" btn="standard" />
@@ -63,6 +59,7 @@ function checkClick() {
   }
   .H_columnItem-checked {
     background-color: var(--col-pri);
+    color: var(--col-on-pri);
     border: none;
   }
 }
