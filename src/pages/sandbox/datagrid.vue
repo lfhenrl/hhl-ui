@@ -6,7 +6,7 @@
       :dataHandler="lData"
       :filter-list="['id', 'val1', 'val2', 'val3', 'val4', 'val7']"
       :filterstring="seek"
-      :group-list="['val2', 'val4']"
+      :group-list="[]"
       :row_style="rowStyle"
       data-key="id"
     >

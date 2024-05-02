@@ -10,7 +10,7 @@
     <div class="H_datagrid-body">
       <H_virtualList
         :item_style="rowStyle"
-        data-key="id"
+        :data-key="dataKey"
         @scroll="onScroll"
         :overscan="overscan"
         item-class="H_dataRow"
@@ -52,7 +52,7 @@ const P = defineProps({
   dataKey: {
     type: String,
     required: true,
-    default: "",
+    default: "id",
   },
   dataHandler: {
     type: Object as PropType<any>,
@@ -167,6 +167,7 @@ onMounted(() => {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border: 1px solid var(--col-bg-6);
+    background-color: var(--col-bg-2);
   }
 
   .H_datagrid-header-progress {
