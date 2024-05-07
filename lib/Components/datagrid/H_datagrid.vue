@@ -163,7 +163,7 @@ onMounted(() => {
     height: 35px;
     max-height: 35px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border: 1px solid var(--col-bg-6);
