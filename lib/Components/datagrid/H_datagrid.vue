@@ -12,6 +12,7 @@
         :item_style="rowStyle"
         :data-key="dataKey"
         @scroll="onScroll"
+        :keeps="keeps"
         :overscan="overscan"
         item-class="H_dataRow"
         :data-sources="DG.dataHandler?.outData.value"
@@ -58,6 +59,10 @@ const P = defineProps({
     type: Object as PropType<any>,
     required: true,
     default: null,
+  },
+  keeps: {
+    type: Number,
+    default: 50,
   },
   overscan: {
     type: Number,
@@ -129,7 +134,7 @@ function adjustColumnsWidth(row: any) {
 watch(
   () => P.filterstring,
   () => {
-    DG.SeekString = P.filterstring;
+    DG.SeekString = P.filterstring.toLocaleUpperCase();
     DG.updateFilter();
   }
 );

@@ -33,7 +33,6 @@
 
 <script setup lang="ts">
 import { onActivated, onBeforeUnmount, onMounted, ref, watch } from "vue";
-import { debounce } from "../utils/debounce";
 import Virtual from "../SubComponents/virtualList/virtual";
 import H_virtualListItem from "../SubComponents/virtualList/H_virtualListItem.vue";
 
@@ -46,6 +45,10 @@ const props = defineProps({
   dataSources: {
     type: Array,
     required: true,
+  },
+  keeps: {
+    type: Number,
+    default: 50,
   },
   overscan: {
     type: Number,
@@ -104,7 +107,6 @@ const isHorizontal = props.direction === "horizontal";
 const directionKey = isHorizontal ? "scrollLeft" : "scrollTop";
 let leftScroll = 0;
 let scrollHeight = 0;
-let keeps = 50;
 
 function update() {
   virtual.handleDataSourcesChange();
@@ -164,9 +166,9 @@ onBeforeUnmount(() => {
 function installVirtual() {
   virtual = new Virtual(
     {
-      keeps: keeps,
+      keeps: props.keeps,
       estimateSize: props.estimateSize,
-      buffer: Math.round(keeps / 5), // recommend for a third of keeps
+      buffer: Math.round(props.keeps / 5), // recommend for a third of keeps
       uniqueIds: getUniqueIdFromDataSources(),
     },
 
