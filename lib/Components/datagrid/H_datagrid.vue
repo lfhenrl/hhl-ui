@@ -134,7 +134,7 @@ function adjustColumnsWidth(row: any) {
 watch(
   () => P.filterstring,
   () => {
-    DG.SeekString = P.filterstring.toLocaleUpperCase();
+    DG.SeekString = P.filterstring.toLocaleLowerCase();
     DG.updateFilter();
   }
 );
