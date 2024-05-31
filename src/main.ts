@@ -3,6 +3,7 @@
 import { createApp, defineAsyncComponent } from "vue";
 import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router/auto";
+import { routes } from "vue-router/auto-routes";
 import "./components/mdStyle/index.css";
 import "../lib/styles/standard.css";
 import { themeSelector } from "../lib/utils/themeSelector";
@@ -11,8 +12,7 @@ themeSelector().loadTheme;
 
 const router = createRouter({
   history: createWebHistory(),
-  // You don't need to pass the routes anymore,
-  // the plugin writes it for you 🤖
+  routes,
 });
 
 const app = createApp(App).use(router);
