@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import H_btn from "../H_btn.vue";
-import H_dialog from "../popup/H_dialog.vue";
+import H_dialog from "../H_dialog.vue";
 import H_snack from "../dialogService/H_snack.vue";
 
 const dialogPop = ref(false);

@@ -1,54 +1,73 @@
 <template>
-  <div class="colors">
-    <div class="flexRow flexWrap">
-      <div class="bgBox" style="background-color: var(--col-pri)">bg0</div>
-      <div class="bgBox pri">bg1</div>
-      <div class="bgBox" style="background-color: var(--col-ok)">bg2</div>
-      <div class="bgBox" style="background-color: var(--col-err)">bg3</div>
-      <div class="bgBox" style="background-color: var(--col-warn)">bg4</div>
-      <div class="bgBox" style="background-color: var(--col-info)">bg5</div>
-      <div class="bgBox pri bg-darker">bg6</div>
+  <div>
+    <div class="colors">
+      <div class="flexRow flexWrap">
+        <div class="bgBox" style="background-color: var(--col-pri)">bg0</div>
+        <div class="bgBox pri">bg1</div>
+        <div class="bgBox" style="background-color: var(--col-ok)">bg2</div>
+        <div class="bgBox" style="background-color: var(--col-err)">bg3</div>
+        <div class="bgBox" style="background-color: var(--col-warn)">bg4</div>
+        <div class="bgBox" style="background-color: var(--col-info)">bg5</div>
+        <div class="bgBox pri bg-darker">bg6</div>
+      </div>
+      <div class="flexRow flexWrap">
+        <div class="bgBox" style="background-color: var(--col-bg-0)">bg0</div>
+        <div class="bgBox" style="background-color: var(--col-bg-1)">bg1</div>
+        <div class="bgBox" style="background-color: var(--col-bg-2)">bg2</div>
+        <div class="bgBox" style="background-color: var(--col-bg-3)">bg3</div>
+        <div class="bgBox" style="background-color: var(--col-bg-4)">bg4</div>
+        <div class="bgBox" style="background-color: var(--col-bg-5)">bg5</div>
+        <div class="bgBox" style="background-color: var(--col-bg-6)">bg6</div>
+      </div>
+      <div class="flexRow flexWrap">
+        <div class="bgBox bg0">bg0</div>
+        <div class="bgBox bg1">bg1</div>
+        <div class="bgBox bg2">bg2</div>
+        <div class="bgBox bg3">bg3</div>
+        <div class="bgBox bg4">bg4</div>
+        <div class="bgBox bg5">bg5</div>
+        <div class="bgBox bg6">bg-bg6</div>
+      </div>
+      <div class="flexRow flexWrap" style="margin-top: 10px">
+        <div class="bgBox" style="background-color: var(--col-txt-0)">txt0</div>
+        <div class="bgBox" style="background-color: var(--col-txt-1)">txt1</div>
+        <div class="bgBox" style="background-color: var(--col-txt-2)">txt2</div>
+        <div class="bgBox" style="background-color: var(--col-txt-3)">txt3</div>
+        <div class="bgBox" style="background-color: var(--col-txt-4)">txt4</div>
+        <div class="bgBox" style="background-color: var(--col-txt-5)">txt5</div>
+        <div class="bgBox" style="background-color: var(--col-txt-6)">txt6</div>
+      </div>
+      <div class="flexRow flexWrap">
+        <div class="bgBox txt0">txt0</div>
+        <div class="bgBox txt1">txt1</div>
+        <div class="bgBox txt2">txt2</div>
+        <div class="bgBox txt3">txt3</div>
+        <div class="bgBox txt4">txt4</div>
+        <div class="bgBox txt5">txt5</div>
+        <div class="bgBox txt6">txt6</div>
+      </div>
     </div>
-    <div class="flexRow flexWrap">
-      <div class="bgBox" style="background-color: var(--col-bg-0)">bg0</div>
-      <div class="bgBox" style="background-color: var(--col-bg-1)">bg1</div>
-      <div class="bgBox" style="background-color: var(--col-bg-2)">bg2</div>
-      <div class="bgBox" style="background-color: var(--col-bg-3)">bg3</div>
-      <div class="bgBox" style="background-color: var(--col-bg-4)">bg4</div>
-      <div class="bgBox" style="background-color: var(--col-bg-5)">bg5</div>
-      <div class="bgBox" style="background-color: var(--col-bg-6)">bg6</div>
+    <div style="border: 1px solid gray; display: flex; align-items: center; margin-top: 20px">
+      <H_input v-model="txt" label="TEXT"> </H_input>
     </div>
-    <div class="flexRow flexWrap">
-      <div class="bgBox bg0">bg0</div>
-      <div class="bgBox bg1">bg1</div>
-      <div class="bgBox bg2">bg2</div>
-      <div class="bgBox bg3">bg3</div>
-      <div class="bgBox bg4">bg4</div>
-      <div class="bgBox bg5">bg5</div>
-      <div class="bgBox bg6">bg-bg6</div>
+    <div style="border: 1px solid gray; display: flex; align-items: center; margin-top: 20px">
+      <H_textarea v-model="txt" label="TEXT"> </H_textarea>
     </div>
-    <div class="flexRow flexWrap" style="margin-top: 10px">
-      <div class="bgBox" style="background-color: var(--col-txt-0)">txt0</div>
-      <div class="bgBox" style="background-color: var(--col-txt-1)">txt1</div>
-      <div class="bgBox" style="background-color: var(--col-txt-2)">txt2</div>
-      <div class="bgBox" style="background-color: var(--col-txt-3)">txt3</div>
-      <div class="bgBox" style="background-color: var(--col-txt-4)">txt4</div>
-      <div class="bgBox" style="background-color: var(--col-txt-5)">txt5</div>
-      <div class="bgBox" style="background-color: var(--col-txt-6)">txt6</div>
-    </div>
-    <div class="flexRow flexWrap">
-      <div class="bgBox txt0">txt0</div>
-      <div class="bgBox txt1">txt1</div>
-      <div class="bgBox txt2">txt2</div>
-      <div class="bgBox txt3">txt3</div>
-      <div class="bgBox txt4">txt4</div>
-      <div class="bgBox txt5">txt5</div>
-      <div class="bgBox txt6">txt6</div>
+    <div style="border: 1px solid gray; display: flex; align-items: center; margin-top: 20px">
+      <H_datetime v-model="date" label="DATE"> </H_datetime>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+import H_input from "../../../lib/Components/H_input.vue";
+import H_textarea from "../../../lib/Components/H_textarea.vue";
+import H_datetime from "../../../lib/Components/H_datetime.vue";
+
+const txt = ref("text");
+const date = ref();
+</script>
 
 <style>
 .colors {

@@ -32,6 +32,7 @@ import { localData } from "../lib/Components/datagrid";
 const H_icon = defineAsyncComponent(() => import("../lib/Components/H_icon.vue"));
 const H_btn = defineAsyncComponent(() => import("../lib/Components/H_btn.vue"));
 const H_pop = defineAsyncComponent(() => import("../lib/Components/popup/H_pop.vue"));
+const H_popover = defineAsyncComponent(() => import("../lib/Components/H_popover.vue"));
 const H_radio = defineAsyncComponent(() => import("../lib/Components/H_radio.vue"));
 const H_switch = defineAsyncComponent(() => import("../lib/Components/H_switch.vue"));
 const H_checkbox = defineAsyncComponent(() => import("../lib/Components/H_checkbox.vue"));
@@ -43,7 +44,7 @@ const H_selectBox = defineAsyncComponent(() => import("../lib/Components/select/
 
 const iconList = defineAsyncComponent(() => import("./components/icon-list.vue"));
 const H_datePicker = defineAsyncComponent(() => import("../lib/Components/H_datePicker.vue"));
-const H_dialog = defineAsyncComponent(() => import("../lib/Components/popup/H_dialog.vue"));
+const H_dialog = defineAsyncComponent(() => import("../lib/Components/H_dialog.vue"));
 const H_dialogService = defineAsyncComponent(() => import("../lib/Components/dialogService/H_dialogService.vue"));
 const H_tabs = defineAsyncComponent(() => import("../lib/Components/navigation/H_tabs.vue"));
 const H_tab = defineAsyncComponent(() => import("../lib/Components/navigation/H_tab.vue"));
@@ -67,6 +68,7 @@ app.component("H_icon", H_icon);
 app.component("Hicon", H_icon);
 app.component("H_btn", H_btn);
 app.component("H_pop", H_pop);
+app.component("H_popover", H_popover);
 app.component("H_radio", H_radio);
 app.component("H_switch", H_switch);
 app.component("H_checkbox", H_checkbox);

@@ -1,5 +1,5 @@
 <template>
-  <H_dialog v-model="open" offsetTop="-20px" class="H_menuColumns" movable>
+  <H_dialog v-model="open" offset-up="-20px" class="H_menuColumns" movable>
     <template #header>
       <div class="H_menuColumns-header">
         <div>Columns</div>
@@ -8,11 +8,7 @@
     </template>
     <div class="H_menuColumns-body">
       <H_inputbase label="Grouping" movelabel>
-        <H_dragDrop
-          v-model="groupColumns"
-          :max-items="3"
-          class="H_menuColumns-drag H_menuColumns-dragH90"
-        >
+        <H_dragDrop v-model="groupColumns" :max-items="3" class="H_menuColumns-drag H_menuColumns-dragH90">
           <template v-slot:item="{ item, index }">
             <H_columnItem :item="item" :index="index" />
           </template>
@@ -21,10 +17,7 @@
 
       <H_inputbase label="Columns" class="" movelabel>
         <div class="">
-          <H_dragDrop
-            v-model="sourceColumns"
-            class="H_menuColumns-drag H_menuColumns-dragH200"
-          >
+          <H_dragDrop v-model="sourceColumns" class="H_menuColumns-drag H_menuColumns-dragH200">
             <template v-slot:item="{ item, index }">
               <H_columnItem :item="item" :index="index" />
             </template>
@@ -34,16 +27,14 @@
     </div>
     <template #footer>
       <div class="H_menuColumns-footer">
-        <H_btn @click="columnsSave" class="bg-ok" :disabled="!canSave"
-          >OK</H_btn
-        >
+        <H_btn @click="columnsSave" class="bg-ok" :disabled="!canSave">OK</H_btn>
       </div>
     </template>
   </H_dialog>
 </template>
 
 <script setup lang="ts">
-import H_dialog from "../../../../Components/popup/H_dialog.vue";
+import H_dialog from "../../../../Components/H_dialog.vue";
 import H_btn from "../../../../Components/H_btn.vue";
 import H_icon from "../../../../Components/H_icon.vue";
 import H_dragDrop from "../../../../Components/H_dragDrop.vue";
@@ -66,16 +57,12 @@ const orgSourceArrayString = ref("");
 const orgGroupArrayString = ref("");
 
 const sourceColumnsString = computed(() => {
-  const x = sourceColumns.value
-    .map((item: any) => item.orgIndex + "-" + item.visibel)
-    .toString();
+  const x = sourceColumns.value.map((item: any) => item.orgIndex + "-" + item.visibel).toString();
   return x;
 });
 
 const groupColumnsString = computed(() => {
-  const x = groupColumns.value
-    .map((item: any) => item.orgIndex + "-" + item.visibel)
-    .toString();
+  const x = groupColumns.value.map((item: any) => item.orgIndex + "-" + item.visibel).toString();
   return x;
 });
 
@@ -134,9 +121,7 @@ function columnsSave() {
   });
 
   if (groupHaveChanged.value) {
-    DG.dataHandler!.groupList = groupColumns.value.map(
-      (item: any) => item.field
-    );
+    DG.dataHandler!.groupList = groupColumns.value.map((item: any) => item.field);
   }
 
   if (columnsHaveChanged.value) {

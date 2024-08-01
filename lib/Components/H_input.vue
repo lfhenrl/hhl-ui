@@ -8,25 +8,36 @@
     :HelpTextStart="hintStart"
     :HelpTextEnd="stringCounter"
     :ErrorMessage="validate"
-    class="H_textarea"
+    class="H_input"
   >
     <slot> </slot>
-    <template v-slot:input>
-      <textarea
-        ref="el"
+    <template #input>
+      <input
         v-model="model"
         class="H_inputbase-input no-slot"
-        rows="1"
-        spellcheck="false"
+        size="30"
+        :maxlength="counter"
         :readonly="readonly"
+        :disabled="disabled"
+        autocomplete="off"
+        :type="type"
         :placeholder="placeholder"
       />
+    </template>
+    <template #undertext>
+      <template v-if="validate == ''">
+        <div>hej</div>
+        <div>hej end</div>
+      </template>
+      <template v-else>
+        <div class="H_inputbase-err">{{ validate }}</div>
+      </template>
     </template>
   </H_inputbase>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watchEffect } from "vue";
+import { PropType, computed } from "vue";
 import H_inputbase from "./H_inputbase.vue";
 import { validateFunc } from "../utils/validateFunc";
 const P = defineProps({
@@ -39,34 +50,18 @@ const P = defineProps({
   hintStart: { type: String, default: "Start" },
   hintEnd: { type: String, default: "End" },
   validator: Array,
+  type: {
+    type: String as PropType<"string" | "number" | "password" | "color">,
+    default: "string",
+  },
 });
-const E = defineEmits([]);
+
 const model: any = defineModel();
-const el = ref<HTMLInputElement | null>(null);
-
-watchEffect(() => {
-  if (el.value) {
-    model.value;
-    calculateInputHeight(el.value);
-  }
-});
-
-function calculateInputHeight(input: HTMLInputElement) {
-  input.style.height = "0";
-  const parent = input.parentElement;
-  if (model.value === null) return;
-  const scrollHeight = input.scrollHeight;
-  if (parent && parent.style.height) {
-    input.style.height = "100%";
-  } else {
-    input.style.height = scrollHeight + "px";
-  }
-}
 
 const showClear = computed(() => {
   if (P.clearable === false) return false;
-  if (model.value !== null) return true;
-
+  if (P.type === "number" && model.value !== null) return true;
+  if (P.type !== "number" && model.value !== null) return true;
   return false;
 });
 
@@ -79,16 +74,20 @@ const stringCounter = computed(() => {
 const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
 <style>
-.H_textarea .H_inputbase-input {
+.H_input .H_inputbase-input {
   font-family: Arial, Helvetica, sans-serif;
-  height: 100%;
-  max-height: none;
-  padding-top: 2px;
 }
 
-.H_textarea .H_inputbase-inputBox {
-  resize: vertical;
-  overflow: hidden;
-  align-items: start;
+.h_inputx input[type="color"] {
+  width: 3em;
+  height: 1em;
+  padding: 0 3px;
+}
+
+.h_inputx input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.h_inputx input[type="color"]::-webkit-color-swatch {
+  border: none;
 }
 </style>
