@@ -16,6 +16,7 @@ export type ipos = {
 
 export class Pop {
   private pos?: Ref;
+  private opserveTimer: any = null;
   public wWidth: number = 0;
   public wHeight: number = 0;
   public referance?: HTMLElement;
@@ -96,11 +97,36 @@ export class Pop {
     };
   }
 
+  startOpserve() {
+    if (!this.opserveTimer) {
+      this.opserveTimer = setInterval(this.onOpserve.bind(this), 20);
+    }
+  }
+  stopOpserve() {
+    clearInterval(this.opserveTimer);
+    this.opserveTimer = null;
+  }
+
+  onOpserve() {
+    if (this.hasResized()) {
+      this.getPos();
+      return;
+    }
+    if (this.hasScrolled()) {
+      this.getPos();
+      return;
+    }
+  }
+
   startPos() {
-    this.diaRect = this.dialog?.getBoundingClientRect() ?? undefined;
     this.dialog?.classList.add("open");
     this.dialog?.classList.remove("close", "top", "bottom");
+    this.diaRect = this.dialog?.getBoundingClientRect() ?? undefined;
     this.getPos();
+    setTimeout(() => {
+      this.getPos();
+      this.startOpserve();
+    });
     setTimeout(() => {
       this.dialog?.classList.add("open-end");
     }, 800);
@@ -111,12 +137,14 @@ export class Pop {
       this.dialog?.classList.remove("open", "open-end");
       this.dialog?.classList.add("close");
     }
+    this.stopOpserve();
   }
 
   getPos() {
     this.wWidth = window.innerWidth;
     this.wHeight = window.innerHeight;
     this.refRect = this.getRefRect();
+    this.diaRect = this.dialog?.getBoundingClientRect() ?? undefined;
 
     if (this.widthAsRef) {
       this.minWidth = this.refRect?.width + "px";

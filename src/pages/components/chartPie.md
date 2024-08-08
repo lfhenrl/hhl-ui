@@ -102,8 +102,8 @@ By the `"font-size"`=`"px/em/rem etc"` property you chose the font size of the l
           <H_chart-pie :data="list" :font-size="fontSize" :pie-width="Number(pWidth)" legend-placement="bottom" />
         </div>
          <div class="flexRow items-center gap-4 flexWrap">
-          <H_inputNumber v-model="pWidth" label="Pie width." max="64" min="2"></H_inputNumber>
-          <H_inputNumber v-model="fSize" label="Font size. (px)" max="30" min="4"></H_inputNumber>
+          <H_input type="number" v-model="pWidth" label="Pie width." max="64" min="2"></H_input>
+          <H_input type="number" v-model="fSize" label="Font size. (px)" max="30" min="4"></H_input>
         </div>
       </div>
     </template>

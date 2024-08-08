@@ -1,16 +1,9 @@
 <template>
   <div :focused="focused" :readonly="readonly">
-    <H_pop
-      v-model="popupOpen"
-      trigger="click"
-      :offset-top="8"
-      :modal="noOutsideClick"
-      position="fixed"
-      :readonly="readonly"
-    >
+    <H_popover v-model="popupOpen" :offset-top="8" :readonly="readonly">
       <template v-slot:referance>
         <div class="H_datePicker__inputcontainer" title="Datepicker" tabindex="0">
-          <H_icon icon="event" v-if="!hideIcon" tabindex="-1" />
+          <H_icon icon="event" size="20px" v-if="!hideIcon" tabindex="-1" />
           <input
             name="datepicker"
             title="Datepicker"
@@ -41,7 +34,7 @@
           <H_btn tabindex="0" size="sm" @click="ok">OK</H_btn>
         </div>
       </div>
-    </H_pop>
+    </H_popover>
   </div>
 </template>
 
@@ -49,7 +42,7 @@
 import { computed, ref, watch } from "vue";
 import { D_01_dec_2021, D_mon_01_dec_2021 } from "../../utils/dateFormat";
 import { DateGetToday } from "../../utils/dateFunctions";
-import H_pop from "../../Components/popup/H_pop.vue";
+import H_popover from "../../Components/H_popover.vue";
 import H_icon from "../../Components/H_icon.vue";
 import H_btn from "../../Components/H_btn.vue";
 import H_dateTable from "./H_dateTable.vue";
@@ -137,7 +130,7 @@ const cancel = () => close();
     background-color: transparent;
     padding-left: 4px;
     color: var(--col-txt-1);
-    border: none;
+    /*     border: none; */
   }
   .H_datePicker__popup {
     border-radius: 4px;

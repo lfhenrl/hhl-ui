@@ -5,8 +5,8 @@
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap">
-            <H_inputText v-model="txt" label="Text input"></H_inputText>
-            <H_inputText v-model="txt" label="Text input"></H_inputText>
+            <H_input v-model="txt" label="Text input"></H_input>
+            <H_input v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -18,28 +18,6 @@
 
 <br>
 
-## Debounce Data binding
-
-The default for updating the v-model is 200Ms.
-You can change this by the proberty `debounce`
-<br>
-Here the debounce is set to `debounce="1000"`
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-      <div class="flexRow items-center gap-4 flexWrap">
-            <H_inputText v-model="txt" label="Text input" :debounce="1000"></H_inputText>
-            <H_inputText v-model="txt" label="Text input"></H_inputText>
-      </div>
-      </template>
-      <script>
-            const txt = ref("Data binding");
-            return {txt}
-      </script>
-'>
-</hhl-live-editor>
-
-<br>
 
 ## Clearable
 
@@ -48,7 +26,7 @@ Add input clear functionality by adding `clearable`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap">
-            <H_inputText clearable v-model="txt" label="Text input"></H_inputText>
+            <H_input clearable v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -67,7 +45,7 @@ Disabled by adding `disabled`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap">
-            <H_inputText disabled v-model="txt" label="Text input"></H_inputText>
+            <H_input disabled v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -86,7 +64,7 @@ Readonly by adding `readonly`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap">
-            <H_inputText readonly v-model="txt" label="Text input"></H_inputText>
+            <H_input readonly v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -105,7 +83,7 @@ Input Click by adding @input-click=""
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap">
-            <H_inputText @input-click="click(txt)" v-model="txt" label="Text input"></H_inputText>
+            <H_input @click="click(txt)" v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -127,11 +105,10 @@ You can add a Icon or other stoff with the start slot.
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap">
-            <H_inputText  v-model="txt" label="Text input">
-                  <template v-slot:start>
+            <H_input  v-model="txt" label="Text input"> 
                         <H_icon icon="mail" btn="standard" @click="click(txt)"></H_icon>
-                  </template>
-            </H_inputText>
+                         <H_icon icon="mail" btn="standard" @click="click(`end icon`)"></H_icon>
+            </H_input>
       </div>
       </template>
       <script>
@@ -154,11 +131,9 @@ You can add a Icon or other stoff with the end slot.
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap">
-            <H_inputText v-model="txt" label="Text input">
-                  <template v-slot:end>
-                        <H_icon icon="mail" btn="standard" @click="click(txt)"></H_icon>
-                  </template>
-            </H_inputText>
+            <H_input v-model="txt" label="Text input">
+                        <H_icon set-end icon="mail" btn="standard" @click="click(txt)"></H_icon>
+            </H_input>
       </div>
       </template>
       <script>
@@ -181,7 +156,7 @@ Hint text by adding `hint-start=""` and `hint-end=""`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap">
-            <H_inputText hint-start="hint-start." hint-end="hint-end."  v-model="txt" label="Text input"></H_inputText>
+            <H_input hint-start="hint-start." hint-end="hint-end."  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -200,7 +175,7 @@ Character counter by adding `counter=""`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap">
-            <H_inputText counter="10"  v-model="txt" label="Text input"></H_inputText>
+            <H_input counter="10"  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>
@@ -222,10 +197,10 @@ Validation by adding `validator=""`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexCol gap-12">
-      <H_inputText v-model="txt" label="required" :validator="[v.required]"></H_inputText>
-      <H_inputText v-model="txt" label="email" :validator="[v.email]"></H_inputText>
-      <H_inputText v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></H_inputText>
-      <H_inputText v-model="txt" label="strMax(8)" :validator="[v.strMax(8)]"></H_inputText>
+      <H_input v-model="txt" label="required" :validator="[v.required]"></H_input>
+      <H_input v-model="txt" label="email" :validator="[v.email]"></H_input>
+      <H_input v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></H_input>
+      <H_input v-model="txt" label="strMax(8)" :validator="[v.strMax(8)]"></H_input>
       </div>
       </template>
       <script>

@@ -1,7 +1,7 @@
 import { iPop, ipos } from "./Pop";
 
 export function adjustLeftRight(Pop: iPop, rect: ipos) {
-  const refBox = Pop.getRefRect();
+  const refBox = Pop.refRect;
   if (refBox) {
     if (rect.left < Pop.padding) {
       rect.left = Pop.padding;

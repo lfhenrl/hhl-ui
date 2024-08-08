@@ -1,7 +1,7 @@
 import { iPop, ipos } from "./Pop";
 
 export function adjustUpDown(Pop: iPop, rect: ipos) {
-  const refBox = Pop.getRefRect();
+  const refBox = Pop.refRect;
   if (refBox) {
     if (rect.top < Pop.padding) {
       rect.top = Pop.padding;

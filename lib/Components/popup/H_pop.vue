@@ -234,7 +234,7 @@ onMounted(() => {
       refBox = H_popRef.value.children[0];
     }
   }
-  dialogPos.init(refBox, dialogBox, P, modelValue, pos);
+  dialogPos.init(refBox, dialogBox, P, pos);
 
   if (P.trigger === "hover") {
     refBox.addEventListener("mouseover", mouseOver);

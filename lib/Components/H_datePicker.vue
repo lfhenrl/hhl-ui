@@ -1,10 +1,7 @@
 <template>
   <H_inputBase
-    :movelabel="true"
     :clearable="clearable"
     :validator="validator"
-    :disabled="disabled"
-    :readonly="$attrs.readonly"
     :label="label"
     :HelpTextStart="hintStart"
     :HelpTextEnd="hintEnd"
@@ -12,33 +9,34 @@
     @isValid="$emit('isValid', $event)"
     class="H_datePicker"
   >
-    <div class="H_datePicker_container">
-      <H_baseDatePicker
-        :modelValue="dato"
-        @dateChanged="setDate"
-        :long-date="longDate"
-        :hide-icon="hideIcon"
-        :readonly="readonly"
-        :no-outside-click="noOutsideClick"
-        v-if="type === 'dateTime' || type === 'date'"
-      />
-      <H_baseTimePicker
-        :time="time"
-        @timeChanged="setTime"
-        :hide-icon="hideIcon"
-        :readonly="readonly"
-        :show-seconds="showSeconds"
-        :no-outside-click="noOutsideClick"
-        v-if="type === 'dateTime' || type === 'time'"
-      />
-    </div>
+    <template v-slot:input>
+      <div class="H_inputbase-input no-slot">
+        <H_baseDatePicker
+          class="no-slot"
+          :modelValue="dato"
+          @dateChanged="setDate"
+          :long-date="longDate"
+          :hide-icon="hideIcon"
+          :readonly="readonly"
+          v-if="type === 'dateTime' || type === 'date'"
+        />
+        <H_baseTimePicker
+          :time="time"
+          @timeChanged="setTime"
+          :hide-icon="hideIcon"
+          :readonly="readonly"
+          :show-seconds="showSeconds"
+          v-if="type === 'dateTime' || type === 'time'"
+        />
+      </div>
+    </template>
   </H_inputBase>
 </template>
 
 <script setup lang="ts">
 import { PropType, ref, watch, computed } from "vue";
 import { validateFunc } from "../utils/validateFunc";
-import H_inputBase from "../SubComponents/H_inputBase.vue";
+import H_inputBase from "./H_inputbase.vue";
 import H_baseDatePicker from "../SubComponents/date/H_baseDatePicker.vue";
 import H_baseTimePicker from "../SubComponents/date/H_baseTimePicker.vue";
 
@@ -126,7 +124,7 @@ const validate = computed(() => validateFunc(P.validator, P.modelValue));
     flex: 1 1 0%;
   }
 
-  .H_datePicker_container {
+  .H_datePicker .H_datePicker_container {
     display: flex;
     gap: 3px;
     align-items: center;

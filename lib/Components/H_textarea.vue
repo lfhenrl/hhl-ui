@@ -17,6 +17,7 @@
         v-model="model"
         class="H_inputbase-input no-slot"
         rows="1"
+        :maxlength="counter"
         spellcheck="false"
         :readonly="readonly"
         :placeholder="placeholder"

@@ -11,7 +11,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
             :list="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
       </H_select>
-      <H_inputText readonly v-model="selection" label="Selector"></H_inputText>
+      <H_input readonly v-model="selection" label="Selector"></H_input>
       </div>
       </template>
       <script>
@@ -36,7 +36,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
                         ]" 
             v-model="selection" label="Selector">
             </H_select>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
+            <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -55,11 +55,11 @@ Multi selections by adding `multi`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap"> 
-            <H_select multi
+            <H_select multi show-filter
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
             </H_select>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
+            <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -78,7 +78,7 @@ Multi selections by adding `multi`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap"> 
-            <H_select multi
+            <H_select 
             :list="[
                         {value:`nr1`, label: `Number 1`},
                         {value:`nr2`, label: `Number 2`},
@@ -86,7 +86,7 @@ Multi selections by adding `multi`
                         ]" 
             v-model="selection" label="Selector">
             </H_select>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
+            <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -112,11 +112,9 @@ You can add a Icon or other stoff with the start slot.
                         {value:`nr3`, label: `Number 3`}
                         ]" 
             v-model="selection" label="Selector">
-             <template #start>
-                  <H_icon btn="standard" icon="mail" @click.stop.prevent="click" />
-            </template>
+            <H_icon btn="standard" icon="mail" @click="click"></H_icon> 
             </H_select>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
+            <H_input readonly v-model="selection" label="Value" style="margin-top: 50px"></H_input>
       </div>
       </template>
       <script>
@@ -131,18 +129,18 @@ You can add a Icon or other stoff with the start slot.
 
 <br>
 
-## Hide filter
+## Show filter
 
-Hide filter by adding `hide-filter`
+Show filter by adding `showFilter`
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap"> 
-            <H_select hide-filter
+            <H_select show-filter
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
             </H_select>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
+            <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -165,7 +163,7 @@ Disabled by adding `disabled`
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
             </H_select>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
+            <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -188,7 +186,7 @@ Readonly by adding `readonly`
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
             </H_select>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
+            <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>

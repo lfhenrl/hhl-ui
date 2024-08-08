@@ -5,7 +5,7 @@
 <hhl-live-editor title="" htmlCode='
     <template>
     <div class="flexRow items-center gap-4 flexWrap">
-        <H_switch label="Switch 1" v-model="check"></H_switch>
+        <H_switch label="Switch 1" switch v-model="check"></H_switch>
         <H_switch label="Switch 2" v-model="check"></H_switch>    
         <H_switch label="Switch 3" v-model="check"></H_switch>
     </div>

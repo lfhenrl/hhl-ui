@@ -1,6 +1,6 @@
 <template>
   <div :focused="focused" :readonly="readonly">
-    <H_pop
+    <H_popover
       v-model="popupOpen"
       trigger="click"
       :offset-top="8"
@@ -10,7 +10,7 @@
     >
       <template v-slot:referance>
         <div class="H_timePicker__inputcontainer">
-          <H_icon icon="clock" v-if="!hideIcon" />
+          <H_icon icon="clock" size="20px" v-if="!hideIcon" />
           <input
             name="timepicker"
             title="Timepicker"
@@ -30,13 +30,13 @@
           <H_btn size="sm" @click="ok">OK</H_btn>
         </div>
       </div>
-    </H_pop>
+    </H_popover>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import H_pop from "../../Components/popup/H_pop.vue";
+import H_popover from "../../Components/H_popover.vue";
 import H_icon from "../../Components/H_icon.vue";
 import H_btn from "../../Components/H_btn.vue";
 import H_timeTable from "./H_timeTable.vue";
@@ -90,7 +90,6 @@ const formattetTime = computed(() => {
 
   .H_timePicker__inputcontainer .H_icon {
     color: var(--col-txt-3);
-    width: 20px;
   }
 
   .H_timePicker__inputcontainer:hover .H_icon {

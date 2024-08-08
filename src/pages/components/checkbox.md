@@ -8,7 +8,7 @@
         <H_checkbox label="CheckBox 1" v-model="check"></H_checkbox>
         <H_checkbox label="CheckBox 2" v-model="check"></H_checkbox>    
         <H_checkbox label="CheckBox 3" v-model="check"></H_checkbox>
-        <H_inputText :model-value="check ? `true` : `false`" label="value"></H_inputText>
+        <H_input :model-value="check ? `true` : `false`" label="value"></H_input>
     </div>
     </template>
     <script>
