@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit  && vite build",
+    "buildRaw": "vite build",
     "serve": "vite preview",
     "npmPublish": "cd lib && npm version patch && npm publish"
   },
@@ -16,7 +17,7 @@
     "vue-router": "^4.4.3"
   },
   "devDependencies": {
-    "@types/node": "^22.1.0",
+    "@types/node": "^22.2.0",
     "@vitejs/plugin-vue": "^5.1.2",
     "markdown-it-anchor": "^9.0.1",
     "markdown-it-container": "^4.0.0",

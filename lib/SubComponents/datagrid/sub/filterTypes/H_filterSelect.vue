@@ -1,6 +1,6 @@
 <template>
   <div class="H_filterSelect">
-    <H_inputText v-model="searchValue" end-icon="search" clearable />
+    <H_input v-model="searchValue" end-icon="search" clearable />
     <H_checkbox size="sm" label="Select All." :model-value="AllSelected" @click.prevent="SelectToggle" />
     <H_selectBox multi list-gap="2px" label-gap="2px" label-left v-model="value1" :list="filter" />
   </div>
@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from "vue";
-import H_inputText from "../../../../Components/H_inputText.vue";
+import H_input from "../../../../Components/H_input.vue";
 import H_checkbox from "../../../../Components/H_checkbox.vue";
 import H_selectBox from "../../../../Components/select/H_selectBox.vue";
 import { iDgrid } from "../../provide/Dgrid";

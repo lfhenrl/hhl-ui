@@ -1,4 +1,4 @@
-# Input Text
+# Input
 
 ## Data binding
 
@@ -18,6 +18,49 @@
 
 <br>
 
+## Type
+
+The H_input can handle 4 different types by setting the property `type="string(default) | number | password | color"`
+
+<hhl-live-editor title="" htmlCode='
+      <template>
+      <div class="flexRow items-center gap-4 flexWrap">
+       <H_input  v-model="txt"  label="string"></H_input>
+        <H_input  v-model="txt" type="password"  label="password"></H_input>
+         <H_input  v-model="num" type="number"  label="number"></H_input>
+         <H_input  v-model="col" type="color"  label="color"></H_input>
+      </div>
+      </template>
+      <script>
+            const txt = ref("Hello");
+            const num = ref(99);
+            const col = ref("#ff0000");
+            return {txt,num,col}
+      </script>
+'>
+</hhl-live-editor>
+
+<br>
+
+
+## Placeholder
+
+Add Placeholder text by adding `placeholder="placeholder!!!"`
+
+<hhl-live-editor title="" htmlCode='
+      <template>
+      <div class="flexRow items-center gap-4 flexWrap">
+            <H_input  v-model="txt" placeholder="placeholder!!!" label="Text input"></H_input>
+      </div>
+      </template>
+      <script>
+            const txt = ref("");
+            return {txt}
+      </script>
+'>
+</hhl-live-editor>
+
+<br>
 
 ## Clearable
 
@@ -78,12 +121,15 @@ Readonly by adding `readonly`
 
 ## Input Click
 
-Input Click by adding @input-click=""
+Input Click by adding @input_click=""
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap">
-            <H_input @click="click(txt)" v-model="txt" label="Text input"></H_input>
+            <H_input @input_click="click(`Input Click`)" v-model="txt" label="Text input">
+              <H_icon icon="mail" btn="standard" @click="click(`start icon`)"></H_icon>
+              <H_icon icon="mail" btn="standard" @click="click(`end icon`)"></H_icon>
+            </H_input>
       </div>
       </template>
       <script>
@@ -200,18 +246,20 @@ Validation by adding `validator=""`
       <H_input v-model="txt" label="required" :validator="[v.required]"></H_input>
       <H_input v-model="txt" label="email" :validator="[v.email]"></H_input>
       <H_input v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></H_input>
-      <H_input v-model="txt" label="strMax(8)" :validator="[v.strMax(8)]"></H_input>
+      <H_input v-model="num" type="number" label="Min value 2" :validator="[v.numMin(2)]"></H_input>
+       <H_input v-model="num" type="number" label="Max value 11" :validator="[v.numMax(11)]"></H_input>
       </div>
       </template>
       <script>
       // import { validator } from "components/utils/validator";
       const {validator} = fakeImport;
       const txt = ref("");
+      const num = ref(5);
       const v = validator;
       function click(e) {
       alert(e);
       }
-      return {txt, click, v}
+      return {txt, num, click, v}
       </script>
 '>
 </hhl-live-editor>

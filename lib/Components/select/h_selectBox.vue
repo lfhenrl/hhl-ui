@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import H_baseSelectList from "../../SubComponents/H_baseSelectList.vue";
-import H_inputbase from "../../SubComponents/H_inputBase.vue";
+import H_inputbase from "../H_inputbase.vue";
 import { validateFunc } from "../../utils/validateFunc";
 
 const P = defineProps({

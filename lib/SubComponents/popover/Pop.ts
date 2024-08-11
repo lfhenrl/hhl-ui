@@ -119,17 +119,15 @@ export class Pop {
   }
 
   startPos() {
+    this.dialog?.classList.remove("close");
     this.dialog?.classList.add("open");
-    this.dialog?.classList.remove("close", "top", "bottom");
-    this.diaRect = this.dialog?.getBoundingClientRect() ?? undefined;
+
     this.getPos();
-    setTimeout(() => {
-      this.getPos();
-      this.startOpserve();
-    });
+    this.startOpserve();
+
     setTimeout(() => {
       this.dialog?.classList.add("open-end");
-    }, 800);
+    }, 500);
   }
 
   endPos() {

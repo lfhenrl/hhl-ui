@@ -124,82 +124,84 @@ onMounted(() => {
 });
 </script>
 <style>
-.H_dialog {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
-  z-index: 1;
-  border: none;
-  padding: 0;
-  border-radius: 4px;
-  background-color: var(--col-bg-0);
-  inset-block: v-bind(insetBlock);
-  inset-inline: v-bind(insetInline);
-  outline: none;
-  transform: scaleY(0);
-  transition: opacity 0.3s, transform 0.2s, display 0.3s allow-discrete;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
-}
-
-.H_dialog__header {
-  background-color: var(--col-pri);
-  color: var(--col-on-pri);
-  text-align: center;
-  font-weight: bold;
-}
-
-.H_dialog__header[moveable-drag] {
-  cursor: move;
-}
-
-.H_dialog__body {
-  padding: 12px;
-}
-
-.H_dialog__footer {
-  padding: 0 12px 12px 12px;
-}
-
-.H_dialog[open] {
-  opacity: 1;
-  transform: scaleY(1);
-}
-
-.H_dialog.shake {
-  animation: shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
-}
-
-@starting-style {
-  .H_dialog[open] {
-    opacity: 0;
+@layer hhl-components {
+  .H_dialog {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    z-index: 1;
+    border: none;
+    padding: 0;
+    border-radius: 4px;
+    background-color: var(--col-bg-0);
+    inset-block: v-bind(insetBlock);
+    inset-inline: v-bind(insetInline);
+    outline: none;
     transform: scaleY(0);
-  }
-}
-
-@keyframes shaking {
-  10%,
-  90% {
-    transform: rotate(-1deg);
+    transition: opacity 0.3s, transform 0.2s, display 0.3s allow-discrete;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
   }
 
-  20%,
-  80% {
-    transform: rotate(1deg);
+  .H_dialog__header {
+    background-color: var(--col-pri);
+    color: var(--col-on-pri);
+    text-align: center;
+    font-weight: bold;
   }
 
-  30%,
-  50%,
-  70% {
-    transform: rotate(-1deg);
+  .H_dialog__header[moveable-drag] {
+    cursor: move;
   }
 
-  40%,
-  60% {
-    transform: rotate(1deg);
+  .H_dialog__body {
+    padding: 12px;
   }
-}
 
-.H_dialog.modal::backdrop {
-  background-color: rgba(0, 0, 0, 0.3);
+  .H_dialog__footer {
+    padding: 0 12px 12px 12px;
+  }
+
+  .H_dialog[open] {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  .H_dialog.shake {
+    animation: shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+  }
+
+  @starting-style {
+    .H_dialog[open] {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+  }
+
+  @keyframes shaking {
+    10%,
+    90% {
+      transform: rotate(-1deg);
+    }
+
+    20%,
+    80% {
+      transform: rotate(1deg);
+    }
+
+    30%,
+    50%,
+    70% {
+      transform: rotate(-1deg);
+    }
+
+    40%,
+    60% {
+      transform: rotate(1deg);
+    }
+  }
+
+  .H_dialog.modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 }
 </style>

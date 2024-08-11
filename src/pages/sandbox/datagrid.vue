@@ -14,11 +14,11 @@
         <div style="display: flex; padding: 10px 0; flex: 1">
           <H_btn @click="load" style="width: 100px" type="outline">Load</H_btn>
           <div style="flex: 1" />
-          <H_inputText v-model="seek" :debounce="300" clearable style="max-width: 200px">
+          <H_input v-model="seek" :debounce="300" clearable style="max-width: 200px">
             <template v-slot:end>
               <H_icon icon="search"></H_icon>
             </template>
-          </H_inputText>
+          </H_input>
         </div>
       </template>
       <H_column field="id" title="Id" type="number" />
@@ -44,7 +44,7 @@
 import H_datagrid from "../../../lib/Components/datagrid/H_datagrid.vue";
 import H_column from "../../../lib/Components/datagrid/H_column.vue";
 import H_btn from "../../../lib/Components/H_btn.vue";
-import H_inputText from "../../../lib/Components/H_inputText.vue";
+import H_input from "../../../lib/Components/H_input.vue";
 import { getData } from "../../testData/data";
 import { localData } from "../../../lib/Components/datagrid";
 import { ref } from "vue";

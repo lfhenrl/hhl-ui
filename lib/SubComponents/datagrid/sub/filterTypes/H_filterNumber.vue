@@ -1,7 +1,7 @@
 <template>
   <div class="H_filterNumber">
     <H_select v-model="condition1" :list="list" hide-filter />
-    <H_inputNumber v-model="value1" />
+    <H_input type="number" v-model="value1" />
     <H_selectBox
       row
       list-gap="20px"
@@ -13,14 +13,14 @@
       ]"
     />
     <H_select v-model="condition2" :list="list" hide-filter />
-    <H_inputNumber v-model="value2" />
+    <H_input type="number" v-model="value2" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from "vue";
-import H_inputNumber from "../../../../Components/H_inputNumber.vue";
-import H_select from "../../../../Components/select/H_select.vue";
+import H_input from "../../../../Components/H_input.vue";
+import H_select from "../../../../Components/H_select.vue";
 import H_selectBox from "../../../../Components/select/H_selectBox.vue";
 import { iDgrid } from "../../provide/Dgrid";
 import { iColumn } from "../../provide/Column";
@@ -49,11 +49,7 @@ const logical = ref("and");
 
 const canSave = computed(() => {
   if (value1.value === null && col.filter.value1 === null) return false;
-  if (
-    value1.value !== col.filter.value1 ||
-    condition1.value !== col.filter.condition1
-  )
-    return true;
+  if (value1.value !== col.filter.value1 || condition1.value !== col.filter.condition1) return true;
   if (value2.value === col.filter.value2 && value2.value === "") return false;
   if (
     value2.value !== col.filter.value2 ||
@@ -93,10 +89,8 @@ function open() {
 function close() {}
 
 onMounted(() => {
-  col.filter.condition1 =
-    col.filter.condition1 === "" ? "equal" : col.filter.condition1;
-  col.filter.condition2 =
-    col.filter.condition2 === "" ? "equal" : col.filter.condition2;
+  col.filter.condition1 = col.filter.condition1 === "" ? "equal" : col.filter.condition1;
+  col.filter.condition2 = col.filter.condition2 === "" ? "equal" : col.filter.condition2;
   col.filter.value1 = col.filter.value1 === "" ? null : col.filter.value1;
   col.filter.value2 = col.filter.value2 === "" ? null : col.filter.value2;
 });

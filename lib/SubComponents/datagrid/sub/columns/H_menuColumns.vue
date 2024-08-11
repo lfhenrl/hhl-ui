@@ -38,7 +38,7 @@ import H_dialog from "../../../../Components/H_dialog.vue";
 import H_btn from "../../../../Components/H_btn.vue";
 import H_icon from "../../../../Components/H_icon.vue";
 import H_dragDrop from "../../../../Components/H_dragDrop.vue";
-import H_inputbase from "../../../../SubComponents/H_inputBase.vue";
+import H_inputbase from "../../../../Components/H_inputbase.vue";
 import H_columnItem from "./H_columnItem.vue";
 import { ref, inject, computed } from "vue";
 import { iDgrid } from "../../provide/Dgrid";

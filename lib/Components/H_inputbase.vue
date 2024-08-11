@@ -3,7 +3,9 @@
     <span class="H_inputbase-label">{{ label }}</span>
     <div class="H_inputbase-inputBox">
       <slot> </slot>
-      <slot name="input"> </slot>
+      <div class="H_inputbase-input">
+        <slot name="input"> </slot>
+      </div>
       <span @click="$emit('clear')" v-if="clearable" class="H_inputbase-clear no-slot">⛌</span>
     </div>
     <div class="H_inputbase-info">
@@ -79,9 +81,7 @@ const E = defineEmits(["clear"]);
     align-items: center;
     color: var(--col-txt-2);
     transition: all 0.1s ease-in-out;
-    height: 30px;
     min-height: 30px;
-    max-height: 30px;
   }
 
   .H_inputbase-inputBox:hover {

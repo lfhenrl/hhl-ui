@@ -1,7 +1,7 @@
 <template>
   <div class="H_filterString">
     <H_select v-model="condition1" :list="list" hide-filter />
-    <H_inputText v-model="value1" />
+    <H_input v-model="value1" />
     <H_selectBox
       row
       list-gap="20px"
@@ -13,14 +13,14 @@
       ]"
     />
     <H_select v-model="condition2" :list="list" hide-filter />
-    <H_inputText v-model="value2" />
+    <H_input v-model="value2" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from "vue";
-import H_inputText from "../../../../Components/H_inputText.vue";
-import H_select from "../../../../Components/select/H_select.vue";
+import H_input from "../../../../Components/H_input.vue";
+import H_select from "../../../../Components/H_select.vue";
 import H_selectBox from "../../../../Components/select/H_selectBox.vue";
 import { iDgrid } from "../../provide/Dgrid";
 import { iColumn } from "../../provide/Column";
@@ -102,8 +102,7 @@ defineExpose({ save, clear, open, close, canSave });
   .H_filterString {
     display: grid;
     grid-template-rows: auto auto 1fr;
-    height: 100%;
-    gap: 12px;
+    gap: 0;
     overflow: hidden;
     padding: 20px 20px 0 20px;
   }

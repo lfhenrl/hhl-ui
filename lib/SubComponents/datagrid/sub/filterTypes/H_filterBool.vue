@@ -49,8 +49,7 @@ function clear() {
 }
 
 function open() {
-  value1.value =
-    col.filter.value1 === "" ? "true,false,null" : col.filter.value1;
+  value1.value = col.filter.value1 === "" ? "true,false,null" : col.filter.value1;
 }
 
 function close() {}

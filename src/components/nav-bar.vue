@@ -1,11 +1,6 @@
 <template>
   <nav class="nav-bar">
-    <H_icon
-      btn="standard"
-      icon="menu"
-      @click.stop="$emit('update:modelValue', !modelValue)"
-      v-if="small"
-    />
+    <H_icon btn="standard" icon="menu" @click.stop="$emit('update:modelValue', !modelValue)" v-if="small" />
     <router-link to="/" class="nav-bar-home">
       <img src="/icon.svg" height="30" width="32" alt="Logo" href="#" />
       <div>HHL-UI</div>
@@ -21,18 +16,18 @@
         :class="{ activ: activeRoute === route.id }"
         >{{ route.name }}</router-link
       >
-      <H_pop class="popUp-external">
+      <H_popover class="popUp-external">
         <template v-slot:referance>
-          External <H_icon btn="standard" icon="expand_down" />
+          <div style="display: flex; align-items: center">
+            <span> External</span> <H_icon btn="standard" icon="expand_down" />
+          </div>
         </template>
         <div class="popUp-external-body">
-          <a href="https://v3.vuejs.org/guide/introduction.html" target="blank"
-            >Vue 3 Docs</a
-          >
+          <a href="https://v3.vuejs.org/guide/introduction.html" target="blank">Vue 3 Docs</a>
           <a href="https://vitejs.dev/" target="blank">Vite</a>
           <a href="https://materialdesignicons.com/" target="blank">Icons</a>
         </div>
-      </H_pop>
+      </H_popover>
     </div>
     <H_themeSelector style="margin-left: 17px" />
   </nav>
@@ -40,12 +35,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import H_pop from "../../lib/Components/popup/H_pop.vue";
+import H_popover from "../../lib/Components/H_popover.vue";
 import H_icon from "../../lib/Components/H_icon.vue";
 import H_themeSelector from "../../lib/Components/H_themeSelector.vue";
 
 export default defineComponent({
-  components: { H_pop },
+  components: { H_popover, H_icon },
   name: "nav-bar",
   props: {
     activeRoute: { type: String, default: "" },

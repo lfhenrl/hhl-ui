@@ -31,14 +31,11 @@ import { localData } from "../lib/Components/datagrid";
 
 const H_icon = defineAsyncComponent(() => import("../lib/Components/H_icon.vue"));
 const H_btn = defineAsyncComponent(() => import("../lib/Components/H_btn.vue"));
-const H_pop = defineAsyncComponent(() => import("../lib/Components/popup/H_pop.vue"));
 const H_popover = defineAsyncComponent(() => import("../lib/Components/H_popover.vue"));
 const H_radio = defineAsyncComponent(() => import("../lib/Components/H_radio.vue"));
 const H_switch = defineAsyncComponent(() => import("../lib/Components/H_switch.vue"));
 const H_checkbox = defineAsyncComponent(() => import("../lib/Components/H_checkbox.vue"));
 const H_input = defineAsyncComponent(() => import("../lib/Components/H_input.vue"));
-const H_inputText = defineAsyncComponent(() => import("../lib/Components/H_inputText.vue"));
-const H_inputNumber = defineAsyncComponent(() => import("../lib/Components/H_inputNumber.vue"));
 const H_textarea = defineAsyncComponent(() => import("../lib/Components/H_textarea.vue"));
 const H_select = defineAsyncComponent(() => import("../lib/Components/H_select.vue"));
 const H_selectBox = defineAsyncComponent(() => import("../lib/Components/select/H_selectBox.vue"));
@@ -52,7 +49,6 @@ const H_tab = defineAsyncComponent(() => import("../lib/Components/navigation/H_
 const H_chartPie = defineAsyncComponent(() => import("../lib/Components/charts/H_chartPie.vue"));
 const H_virtualList = defineAsyncComponent(() => import("../lib/Components/H_virtualList.vue"));
 const H_dragDrop = defineAsyncComponent(() => import("../lib/Components/H_dragDrop.vue"));
-//const H_slider = defineAsyncComponent(() => import("../lib/Components/H_slider.vue"));
 const H_range = defineAsyncComponent(() => import("../lib/Components/H_range.vue"));
 const H_progressBar = defineAsyncComponent(() => import("../lib/Components/H_progressBar.vue"));
 const H_form = defineAsyncComponent(() => import("../lib/Components/H_form.vue"));
@@ -67,16 +63,12 @@ const menuRight = defineAsyncComponent(() => import("./components/menu-right.vue
 const HhlLiveEditor = defineAsyncComponent(() => import("./components/liveEditor/hhl-live-editor.vue"));
 
 app.component("H_icon", H_icon);
-app.component("Hicon", H_icon);
 app.component("H_btn", H_btn);
-app.component("H_pop", H_pop);
 app.component("H_popover", H_popover);
 app.component("H_radio", H_radio);
 app.component("H_switch", H_switch);
 app.component("H_checkbox", H_checkbox);
-app.component("H_inputtext", H_inputText);
 app.component("H_input", H_input);
-app.component("H_inputnumber", H_inputNumber);
 app.component("H_textarea", H_textarea);
 app.component("H_select", H_select);
 app.component("H_selectbox", H_selectBox);
@@ -89,7 +81,6 @@ app.component("H_tabs", H_tabs);
 app.component("H_chartPie", H_chartPie);
 app.component("H_virtualList", H_virtualList);
 app.component("H_dragDrop", H_dragDrop);
-//app.component("H_slider", H_slider);
 app.component("H_range", H_range);
 app.component("H_progressBar", H_progressBar);
 app.component("H_form", H_form);

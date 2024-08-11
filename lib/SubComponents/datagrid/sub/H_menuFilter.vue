@@ -1,6 +1,6 @@
 <template>
-  <H_pop :offset-left="-20" v-model="isOpen" movable>
-    <div class="H_menuFilter">
+  <H_popover :offset-left="-20" v-model="isOpen" movable class="H_menuFilter">
+    <div class="H_menuFilter_innerbox">
       <div moveable-drag class="H_menuFilter-header">
         <div>{{ col.props.title }}</div>
         <H_icon btn="standard" @click="isOpen = false" />
@@ -13,12 +13,12 @@
         <H_btn @click="filterClear" :disabled="!col.filter.active">CLEAR</H_btn>
       </div>
     </div>
-  </H_pop>
+  </H_popover>
 </template>
 
 <script setup lang="ts">
 import { computed, inject, ref } from "vue";
-import H_pop from "../../../Components/popup/H_pop.vue";
+import H_popover from "../../../Components/H_popover.vue";
 import H_icon from "../../../Components/H_icon.vue";
 import H_btn from "../../../Components/H_btn.vue";
 import H_filterString from "./filterTypes/H_filterString.vue";
@@ -81,7 +81,7 @@ const filtComponent = computed(() => {
 </script>
 <style>
 @layer hhl-components {
-  .H_menuFilter {
+  .H_menuFilter_innerbox {
     display: grid;
     grid-template-rows: auto 1fr auto;
     color: var(--col-txt-1);
@@ -89,6 +89,11 @@ const filtComponent = computed(() => {
     font-weight: 400;
     overflow: hidden;
     max-height: 100%;
+    background-color: transparent;
+  }
+  .H_menuFilter .H_popover-popup {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
   }
   .H_menuFilter_comp {
     overflow: hidden;
@@ -96,6 +101,7 @@ const filtComponent = computed(() => {
 
   .H_menuFilter-header {
     display: flex;
+    align-items: center;
     background-color: var(--col-pri);
     color: var(--col-on-pri);
     font-weight: bold;

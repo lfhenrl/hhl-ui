@@ -8,12 +8,12 @@
     :HelpTextStart="hintStart"
     :HelpTextEnd="stringCounter"
     :ErrorMessage="validate"
+    class="H_input"
   >
     <slot> </slot>
     <template v-slot:input>
       <input
         v-model="model"
-        class="H_inputbase-input no-slot"
         size="30"
         :max
         :min
@@ -23,6 +23,8 @@
         :maxlength="counter"
         :type="type"
         :placeholder="placeholder"
+        :name="label === '' ? 'No name' : label"
+        @click="$emit('input_click')"
       />
     </template>
   </H_inputbase>
@@ -49,13 +51,14 @@ const P = defineProps({
     default: "string",
   },
 });
-
+const E = defineEmits(["input_click"]);
 const model: any = defineModel();
 
 const showClear = computed(() => {
   if (P.clearable === false) return false;
-  if (model.value !== null) return true;
-  return false;
+  if (model.value === null) return false;
+  if (model.value === "") return false;
+  return true;
 });
 
 const stringCounter = computed(() => {
@@ -67,20 +70,27 @@ const stringCounter = computed(() => {
 const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
 <style>
-.h_inputx .H_inputbase-input {
-  font-family: Arial, Helvetica, sans-serif;
-}
+@layer hhl-components {
+  .H_input .H_inputbase-input {
+    font-family: Arial, Helvetica, sans-serif;
+  }
 
-.h_inputx input[type="color"] {
-  width: 3em;
-  height: 1em;
-  padding: 0 3px;
-}
+  .H_input .H_inputbase-input input {
+    width: 100%;
+    background-color: transparent;
+  }
 
-.h_inputx input[type="color"]::-webkit-color-swatch-wrapper {
-  padding: 0;
-}
-.h_inputx input[type="color"]::-webkit-color-swatch {
-  border: none;
+  .H_input .H_inputbase-input input[type="color"] {
+    width: 3em;
+    height: 1em;
+    padding: 0 3px;
+  }
+
+  .H_input .H_inputbase-input input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  .H_input .H_inputbase-input input[type="color"]::-webkit-color-swatch {
+    border: none;
+  }
 }
 </style>

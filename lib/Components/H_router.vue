@@ -67,27 +67,29 @@ getcachedPages();
 </script>
 
 <style>
-.H_router {
-  overflow: auto;
-  height: 100%;
-  width: 100%;
-}
+@layer hhl-components {
+  .H_router {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+  }
 
-.H_router-slide-fade-enter-active {
-  transition: all 0.2s ease-out;
-}
+  .H_router-slide-fade-enter-active {
+    transition: all 0.2s ease-out;
+  }
 
-.H_router-slide-fade-leave-active {
-  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
-}
+  .H_router-slide-fade-leave-active {
+    transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+  }
 
-.H_router-slide-fade-enter-from {
-  transform: translateY(-40px);
-  opacity: 0;
-}
+  .H_router-slide-fade-enter-from {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
 
-.H_router-slide-fade-leave-to {
-  transform: translateY(40px);
-  opacity: 0;
+  .H_router-slide-fade-leave-to {
+    transform: translateY(40px);
+    opacity: 0;
+  }
 }
 </style>

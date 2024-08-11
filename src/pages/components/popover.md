@@ -10,6 +10,7 @@
 
 The `H_popover` will give you a popUp as a dropdown or dropup box.<br>
 The `H_popover` will display the popup relative to the `v-slot:referance`.<br>
+If you want to relate to something else inside the v-slot you van use the property `query-selector` to specify a css selector.<br>
 If there not is place enough it will automatically change the position.<br>
 
 ## By click.

@@ -55,7 +55,7 @@ Multi selections by adding `multi`
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flexRow items-center gap-4 flexWrap"> 
-            <H_select multi show-filter
+            <H_select multi
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
             </H_select>
@@ -84,7 +84,7 @@ Multi selections by adding `multi`
                         {value:`nr2`, label: `Number 2`},
                         {value:`nr3`, label: `Number 3`}
                         ]" 
-            v-model="selection" label="Selector">
+            v-model="selection" label="Selector" multi>
             </H_select>
             <H_input readonly v-model="selection" label="Value"></H_input>
       </div>

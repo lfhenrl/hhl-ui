@@ -1,6 +1,6 @@
 <template>
   <div class="H_select">
-    <H_popover ref="popup" v-model="selectOpen" trigger="none" offsetUp="-0.9em" :readonly>
+    <H_popover ref="popup" v-model="selectOpen" trigger="none" :readonly query-selector=".H_inputbase-inputBox">
       <template #referance>
         <H_inputbase
           @clear="model = null"
@@ -14,14 +14,12 @@
             <input
               ref="el"
               :value="labelValue"
-              class="H_inputbase-input no-slot"
               size="30"
               readonly
               :disabled="disabled"
               autocomplete="off"
               type="string"
               :placeholder="placeholder"
-              @click="selectOpen = !selectOpen"
             />
           </template>
           <div set-end class="H_select-dropdownArrow">
@@ -30,17 +28,11 @@
         </H_inputbase>
       </template>
       <div class="H_select-list">
-        <div class="H_select-filterbox">
-          <div v-if="multi" @click="SelectAll" class="H_selectbase-item" :selected="allSelected ? '' : undefined">
-            <span v-if="!showFilter">Select All.</span>
+        <div class="H_select-filterbox" v-if="showFilter || selectAll">
+          <div v-if="selectAll" @click="SelectAll" class="H_selectbase-item" :selected="allSelected ? '' : undefined">
+            <span>Select All.</span>
           </div>
-          <H_input
-            v-if="showFilter"
-            v-model="filterValue"
-            class="H_selectBox-filter"
-            placeholder="Filter the list"
-            clearable
-          >
+          <H_input v-if="showFilter" v-model="filterValue" class="H_selectBox-filter" clearable>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -71,6 +63,7 @@ const P = defineProps({
   label: { type: String, default: "" },
   list: { type: Array, default: [] },
   multi: { type: Boolean, default: false },
+  selectAll: { type: Boolean, default: false },
   placeholder: { type: String, default: "" },
   showFilter: { type: Boolean, default: false },
   clearable: { type: Boolean, default: false },
@@ -113,9 +106,16 @@ function SelectAll() {
 <style>
 @layer hhl-components {
   .H_select {
-    flex: 1 1 0%;
+    flex: 1 1 100%;
+    width: 100%;
     font-size: 1rem;
   }
+
+  .H_select .H_inputbase-input input {
+    width: 100%;
+    background-color: transparent;
+  }
+
   .H_select .H_popover .H_popover-popup {
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
     border-radius: 4px;
@@ -165,7 +165,7 @@ function SelectAll() {
     display: flex;
     gap: 8px;
     align-items: center;
-    padding: 0;
+    padding: 10px 0;
   }
 
   .H_selectBox-filter {

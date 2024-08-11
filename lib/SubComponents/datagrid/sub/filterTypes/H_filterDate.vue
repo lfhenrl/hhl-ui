@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from "vue";
 import H_datePicker from "../../../../Components/H_datePicker.vue";
-import H_select from "../../../../Components/select/H_select.vue";
+import H_select from "../../../../Components/H_select.vue";
 import H_selectBox from "../../../../Components/select/H_selectBox.vue";
 import { iDgrid } from "../../provide/Dgrid";
 import { iColumn } from "../../provide/Column";

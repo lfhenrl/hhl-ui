@@ -15,8 +15,8 @@
       <textarea
         ref="el"
         v-model="model"
-        class="H_inputbase-input no-slot"
-        rows="1"
+        :rows="rows"
+        @click="$emit('input_click')"
         :maxlength="counter"
         spellcheck="false"
         :readonly="readonly"
@@ -40,14 +40,17 @@ const P = defineProps({
   hintStart: { type: String, default: "Start" },
   hintEnd: { type: String, default: "End" },
   validator: Array,
+  rows: { type: String, default: "1" },
+  noGrow: { type: Boolean, default: false },
 });
-const E = defineEmits([]);
+const E = defineEmits(["input_click"]);
 const model: any = defineModel();
 const el = ref<HTMLInputElement | null>(null);
 
 watchEffect(() => {
   if (el.value) {
     model.value;
+    if (P.noGrow) return;
     calculateInputHeight(el.value);
   }
 });
@@ -80,16 +83,17 @@ const stringCounter = computed(() => {
 const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
 <style>
-.H_textarea .H_inputbase-input {
-  font-family: Arial, Helvetica, sans-serif;
-  height: 100%;
-  max-height: none;
-  padding-top: 2px;
-}
+@layer hhl-components {
+  .H_textarea .H_inputbase-input {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    max-height: none;
+    padding-top: 2px;
+  }
 
-.H_textarea .H_inputbase-inputBox {
-  resize: vertical;
-  overflow: hidden;
-  align-items: start;
+  .H_textarea textarea {
+    resize: vertical;
+    width: 100%;
+  }
 }
 </style>
