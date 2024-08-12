@@ -38,7 +38,7 @@ const H_checkbox = defineAsyncComponent(() => import("../lib/Components/H_checkb
 const H_input = defineAsyncComponent(() => import("../lib/Components/H_input.vue"));
 const H_textarea = defineAsyncComponent(() => import("../lib/Components/H_textarea.vue"));
 const H_select = defineAsyncComponent(() => import("../lib/Components/H_select.vue"));
-const H_selectBox = defineAsyncComponent(() => import("../lib/Components/select/H_selectBox.vue"));
+const H_selectbox = defineAsyncComponent(() => import("../lib/Components/H_selectbox.vue"));
 
 const iconList = defineAsyncComponent(() => import("./components/icon-list.vue"));
 const H_datePicker = defineAsyncComponent(() => import("../lib/Components/H_datePicker.vue"));
@@ -71,7 +71,7 @@ app.component("H_checkbox", H_checkbox);
 app.component("H_input", H_input);
 app.component("H_textarea", H_textarea);
 app.component("H_select", H_select);
-app.component("H_selectbox", H_selectBox);
+app.component("H_selectbox", H_selectbox);
 app.component("icon-list", iconList);
 app.component("H_datePicker", H_datePicker);
 app.component("H_dialog", H_dialog);

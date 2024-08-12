@@ -14,7 +14,6 @@
     <template v-slot:input>
       <input
         v-model="model"
-        size="30"
         :max
         :min
         :readonly

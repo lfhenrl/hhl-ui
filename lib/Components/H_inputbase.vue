@@ -34,6 +34,7 @@ const E = defineEmits(["clear"]);
 <style>
 @layer hhl-components {
   .H_inputbase {
+    position: relative;
     display: inline-grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: 0.9em auto 0.9em;

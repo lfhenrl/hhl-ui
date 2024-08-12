@@ -1,6 +1,6 @@
 <template>
   <div class="H_filterBool">
-    <H_selectBox
+    <H_selectbox
       multi
       list-gap="10px"
       label-gap="5px"
@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from "vue";
-import H_selectBox from "../../../../Components/select/H_selectBox.vue";
+import H_selectbox from "../../../../Components/H_selectbox.vue";
 import { iDgrid } from "../../provide/Dgrid";
 import { iColumn } from "../../provide/Column";
 

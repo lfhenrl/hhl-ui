@@ -11,6 +11,9 @@
   >
     <div
       class="H_selectbase-item"
+      :class="{
+        reverse: labelLeft,
+      }"
       v-for="(item, index) in filterList"
       :key="item.value as string"
       :focused="activeFocus === index ? '' : undefined"
@@ -31,6 +34,8 @@ const P = defineProps({
   list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] },
   multi: { type: Boolean, default: true },
   filter: { type: String, default: "" },
+  labelLeft: { type: Boolean, default: false },
+  readonly: { type: Boolean, default: false },
 });
 
 const model: any = defineModel();
@@ -78,6 +83,7 @@ const filterList = computed(() => {
 });
 
 function Click(e: any) {
+  if (P.readonly) return;
   let T: HTMLElement = e.target;
   if (!T.classList.contains("H_selectbase-item")) return;
   setValue(T.getAttribute("value"));
@@ -110,18 +116,21 @@ function selected(item: any) {
 }
 
 function KeyUp() {
+  if (P.readonly) return;
   if (activeFocus.value > 0) {
     activeFocus.value = activeFocus.value - 1;
   }
 }
 
 function KeyDown() {
+  if (P.readonly) return;
   if (activeFocus.value < P.list.length - 1) {
     activeFocus.value = activeFocus.value + 1;
   }
 }
 
 function KeyEnter() {
+  if (P.readonly) return;
   if (activeFocus.value < P.list.length && activeFocus.value >= 0) {
     setValue(listOfValues.value[activeFocus.value]);
   }
@@ -131,6 +140,8 @@ function KeyEnter() {
 <style>
 @layer hhl-components {
   .H_selectbase {
+    display: flex;
+    flex-direction: column;
     font-size: 1rem;
   }
   .H_selectbase:focus {
@@ -144,6 +155,10 @@ function KeyEnter() {
     gap: 5px;
     box-sizing: border-box;
     line-height: 1.5em;
+  }
+
+  .H_selectbase-item.reverse {
+    flex-direction: row-reverse;
   }
   .H_selectbase-item::before {
     content: "";

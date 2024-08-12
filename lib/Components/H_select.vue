@@ -3,6 +3,7 @@
     <H_popover ref="popup" v-model="selectOpen" trigger="none" :readonly query-selector=".H_inputbase-inputBox">
       <template #referance>
         <H_inputbase
+          class="H_select_input"
           @clear="model = null"
           :label="label"
           :clearable="clearable && model !== null"
@@ -14,7 +15,6 @@
             <input
               ref="el"
               :value="labelValue"
-              size="30"
               readonly
               :disabled="disabled"
               autocomplete="off"

@@ -2,7 +2,7 @@
   <div class="H_filterNumber">
     <H_select v-model="condition1" :list="list" hide-filter />
     <H_input type="number" v-model="value1" />
-    <H_selectBox
+    <H_selectbox
       row
       list-gap="20px"
       label-gap="5px"
@@ -21,7 +21,7 @@
 import { computed, inject, onMounted, ref } from "vue";
 import H_input from "../../../../Components/H_input.vue";
 import H_select from "../../../../Components/H_select.vue";
-import H_selectBox from "../../../../Components/select/H_selectBox.vue";
+import H_selectbox from "../../../../Components/H_selectbox.vue";
 import { iDgrid } from "../../provide/Dgrid";
 import { iColumn } from "../../provide/Column";
 

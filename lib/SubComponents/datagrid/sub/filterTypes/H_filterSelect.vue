@@ -1,16 +1,19 @@
 <template>
   <div class="H_filterSelect">
-    <H_input v-model="searchValue" end-icon="search" clearable />
-    <H_checkbox size="sm" label="Select All." :model-value="AllSelected" @click.prevent="SelectToggle" />
-    <H_selectBox multi list-gap="2px" label-gap="2px" label-left v-model="value1" :list="filter" />
+    <H_input v-model="searchValue" clearable>
+      <H_icon set-end icon="search" />
+    </H_input>
+    <H_switch size="sm" label="Select All." :model-value="AllSelected" @click.prevent="SelectToggle" />
+    <H_selectbase multi v-model="value1" :list="filter" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from "vue";
 import H_input from "../../../../Components/H_input.vue";
-import H_checkbox from "../../../../Components/H_checkbox.vue";
-import H_selectBox from "../../../../Components/select/H_selectBox.vue";
+import H_icon from "../../../../Components/H_icon.vue";
+import H_switch from "../../../../Components/H_switch.vue";
+import H_selectbase from "../../../../Components/H_selectbase.vue";
 import { iDgrid } from "../../provide/Dgrid";
 import { iColumn } from "../../provide/Column";
 
@@ -136,9 +139,11 @@ defineExpose({ save, clear, open, close, canSave });
     padding: 20px 20px 0 20px;
   }
 
-  .H_filterSelect .H_selectBox {
+  .H_filterSelect .H_selectbase {
     border: 1px solid var(--col-txt-5);
+    max-height: 100%;
     overflow: auto;
+    padding: 6px;
   }
 }
 </style>

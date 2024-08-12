@@ -7,8 +7,8 @@ The `H_selectBox` component is selector box for singel selection or multi select
 <hhl-live-editor title="" htmlCode='
       <template>
        <div class="flexRow items-center gap-4 flexWrap"> 
-            <H_selectBox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectBox>
-            <H_inputText readonly v-model="selection" label="Selector"></H_inputText>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectbox>
+            <H_input readonly v-model="selection" label="Selector"></H_input>
       </div>
       </template>
       <script>
@@ -27,8 +27,8 @@ By adding attribute "LabelLeft"
 <hhl-live-editor title="" htmlCode='
       <template>
        <div class="flexRow items-center gap-4 flexWrap"> 
-            <H_selectBox label-left :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectBox>
-            <H_inputText readonly v-model="selection" label="Selector"></H_inputText>
+            <H_selectbox label-left :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectbox>
+            <H_input readonly v-model="selection" label="Selector"></H_input>
       </div>
       </template>
       <script>
@@ -47,8 +47,8 @@ By adding attribute "row"
 <hhl-live-editor title="" htmlCode='
       <template>
        <div class="flexRow items-center gap-4 flexWrap"> 
-            <H_selectBox row :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectBox>
-            <H_inputText readonly v-model="selection" label="Selector"></H_inputText>
+            <H_selectbox row :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectbox>
+            <H_input readonly v-model="selection" label="Selector"></H_input>
       </div>
       </template>
       <script>
@@ -65,15 +65,15 @@ By adding attribute "row"
 <hhl-live-editor title="" htmlCode='
       <template>
        <div class="flexRow items-center gap-4 flexWrap">
-            <H_selectBox 
+            <H_selectbox 
             :list="[
                         {value:`nr1`, label: `Number 1`},
                         {value:`nr2`, label: `Number 2`},
                         {value:`nr3`, label: `Number 3`}
                         ]" 
             v-model="selection" label="Selector">
-            </H_selectBox>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
+            </H_selectbox>
+            <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -92,11 +92,11 @@ Multi selections by adding `multi`
 <hhl-live-editor title="" htmlCode='
       <template>
        <div class="flexRow items-center gap-4 flexWrap"> 
-            <H_selectBox multi
+            <H_selectbox multi
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
-            </H_selectBox>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
+            </H_selectbox>
+            <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -115,15 +115,15 @@ Multi selections by adding `multi`
 <hhl-live-editor title="" htmlCode='
       <template>
        <div class="flexRow items-center gap-4 flexWrap"> 
-            <H_selectBox multi
+            <H_selectbox multi
             :list="[
                         {value:`nr1`, label: `Number 1`},
                         {value:`nr2`, label: `Number 2`},
                         {value:`nr3`, label: `Number 3`}
                         ]" 
             v-model="selection" label="Selector">
-            </H_selectBox>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
+            </H_selectbox>
+            <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -142,11 +142,11 @@ Disabled by adding `disabled`
 <hhl-live-editor title="" htmlCode='
       <template>
        <div class="flexRow items-center gap-4 flexWrap"> 
-            <H_selectBox disabled
+            <H_selectbox disabled
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
-            </H_selectBox>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
+            </H_selectbox>
+            <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
@@ -165,11 +165,11 @@ Readonly by adding `readonly`
 <hhl-live-editor title="" htmlCode='
       <template>
        <div class="flexRow items-center gap-4 flexWrap"> 
-            <H_selectBox readonly
+            <H_selectbox readonly
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
-            </H_selectBox>
-            <H_inputText readonly v-model="selection" label="Value"></H_inputText>
+            </H_selectbox>
+            <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>

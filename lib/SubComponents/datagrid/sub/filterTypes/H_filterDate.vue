@@ -2,7 +2,7 @@
   <div class="H_filterDate">
     <H_select v-model="condition1" :list="list" hide-filter />
     <H_datePicker v-model="value1" :type="col.filter.type === 'date' ? 'date' : 'dateTime'" />
-    <H_selectBox
+    <H_selectbox
       row
       list-gap="20px"
       label-gap="5px"
@@ -21,7 +21,7 @@
 import { computed, inject, onMounted, ref } from "vue";
 import H_datePicker from "../../../../Components/H_datePicker.vue";
 import H_select from "../../../../Components/H_select.vue";
-import H_selectBox from "../../../../Components/select/H_selectBox.vue";
+import H_selectbox from "../../../../Components/H_selectbox.vue";
 import { iDgrid } from "../../provide/Dgrid";
 import { iColumn } from "../../provide/Column";
 

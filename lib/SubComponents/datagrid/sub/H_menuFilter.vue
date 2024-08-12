@@ -88,9 +88,15 @@ const filtComponent = computed(() => {
     background-color: var(--col-bg-0);
     font-weight: 400;
     overflow: hidden;
-    max-height: 100%;
     background-color: transparent;
+    max-height: 50%;
   }
+
+  .H_menuFilter .H_inputbase.H_input,
+  .H_menuFilter .H_inputbase.H_select_input {
+    max-height: 3rem;
+  }
+
   .H_menuFilter .H_popover-popup {
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
     border-radius: 4px;
