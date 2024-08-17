@@ -1,9 +1,6 @@
 <template>
-  <component
-    :is="ic"
+  <div
     class="H_icon"
-    :disabled="disabled ? '' : undefined"
-    :tabindex="btn === 'none' || $attrs.disabled == true ? '' : '0'"
     :class="{
       btn: btn !== 'none',
       'btn-standard': btn === 'standard',
@@ -12,7 +9,13 @@
       'btn-outline': btn === 'outline',
       'btn-outline-round': btn === 'outline-round',
     }"
-  />
+  >
+    <component
+      :is="ic"
+      :disabled="disabled ? '' : undefined"
+      :tabindex="btn === 'none' || $attrs.disabled == true ? '' : '0'"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -60,9 +63,15 @@ const ic: any = Icons[P.icon];
     min-height: var(--icon-size);
     min-width: var(--icon-size);
     aspect-ratio: 1 / 1;
-    --btn-icon-size: 1rem;
     background-color: v-bind(bgColor);
     color: v-bind(txtColor);
+    display: flex;
+    align-items: center;
+  }
+
+  .H_icon svg {
+    height: 100%;
+    width: 100%;
   }
 
   .H_icon[disabled] {

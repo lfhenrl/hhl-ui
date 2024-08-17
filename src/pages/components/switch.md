@@ -1,11 +1,13 @@
 # Switch
 
-## Data binding Boolean
+The H_switch van be a checkbox or a radio, the apperance can be standard or a switch.<br>
+
+## Type = checkbox
 
 <hhl-live-editor title="" htmlCode='
     <template>
     <div class="flexRow items-center gap-4 flexWrap">
-        <H_switch label="Switch 1" switch v-model="check"></H_switch>
+        <H_switch label="Switch 1"  v-model="check"></H_switch>
         <H_switch label="Switch 2" v-model="check"></H_switch>    
         <H_switch label="Switch 3" v-model="check"></H_switch>
     </div>
@@ -13,6 +15,64 @@
     <script>
         const check = ref(true);
         return {check}
+    </script>
+'>
+</hhl-live-editor>
+
+<br>
+
+## Type = checkbox and apperance as a switch by adding the property `switch`
+
+<hhl-live-editor title="" htmlCode='
+    <template>
+    <div class="flexRow items-center gap-4 flexWrap">
+        <H_switch switch label="Switch 1"  v-model="check"></H_switch>
+        <H_switch switch label="Switch 2" v-model="check"></H_switch>    
+        <H_switch switch label="Switch 3" v-model="check"></H_switch>
+    </div>
+    </template>
+    <script>
+        const check = ref(true);
+        return {check}
+    </script>
+'>
+</hhl-live-editor>
+
+<br>
+
+
+## Type = radio
+
+<hhl-live-editor title="" htmlCode='
+    <template>
+    <div class="flexRow items-center gap-4 flexWrap">
+        <H_switch type="radio" label="Radio 1"  v-model="radioVal" value="val1"></H_switch>
+        <H_switch type="radio" label="Radio 2" v-model="radioVal" value="val2"></H_switch>    
+        <H_switch type="radio" label="Radio 3" v-model="radioVal" value="val3"></H_switch>
+    </div>
+    </template>
+    <script>
+               const radioVal = ref("val1");
+        return {radioVal}
+    </script>
+'>
+</hhl-live-editor>
+
+<br>
+
+## Type = radio and apperance as a switch by adding the property `switch`
+
+<hhl-live-editor title="" htmlCode='
+    <template>
+    <div class="flexRow items-center gap-4 flexWrap">
+        <H_switch switch type="radio" label="Radio 1"  v-model="radioVal" value="val1"></H_switch>
+        <H_switch switch type="radio" label="Radio 2" v-model="radioVal" value="val2"></H_switch>    
+        <H_switch switch type="radio" label="Radio 3" v-model="radioVal" value="val3"></H_switch>
+    </div>
+    </template>
+    <script>
+               const radioVal = ref("val1");
+        return {radioVal}
     </script>
 '>
 </hhl-live-editor>
@@ -78,6 +138,15 @@ If you need a special color then just use `style="--color: purple"`
         <H_switch color="warn" label="col-warn" v-model="check"></H_switch>
         <H_switch color="info" label="col-info" v-model="check"></H_switch>
         <H_switch style="--color: purple" label="purple" v-model="check"></H_switch>
+    </div>
+        <div class="flexRow items-center gap-4 flexWrap" style="margin-top:20px">
+        <H_switch switch color="pri" label="col-pri" v-model="check"></H_switch>
+        <H_switch switch color="sec" label="col-sec" v-model="check"></H_switch>    
+        <H_switch switch color="ok" label="col-ok" v-model="check"></H_switch>
+        <H_switch switch color="err" label="col-err" v-model="check"></H_switch>
+        <H_switch switch color="warn" label="col-warn" v-model="check"></H_switch>
+        <H_switch switch color="info" label="col-info" v-model="check"></H_switch>
+        <H_switch switch style="--color: purple" label="purple" v-model="check"></H_switch>
     </div>
     </template>
     <script>

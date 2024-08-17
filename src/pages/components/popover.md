@@ -46,7 +46,7 @@ You can also use the v-model to control the open/close of the popup.
         <H_popover v-model="open">
           <div class="popUpBox">Hello</div>
         </H_popover>
-        <H_checkbox v-model="open" label="open">
+        <H_switch v-model="open" label="open"> </H_switch>
       </div>
     </template>
     <script>

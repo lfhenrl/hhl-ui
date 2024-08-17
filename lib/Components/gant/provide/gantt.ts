@@ -54,14 +54,14 @@ export class Gantt {
   public calcTime() {
     if (this.scrollGanttWidth < 10) return;
     const day = 24 * 60 * 60;
-    const secStartToEnd = (this.EndTime.valueOf() - this.StartTime.valueOf()) / 1000;
+    //const secStartToEnd = (this.EndTime.valueOf() - this.StartTime.valueOf()) / 1000;
     this.pixelPrSec = 35 / day;
-    const t = {
+    /*     const t = {
       startDate: this.StartTime,
       endDate: this.EndTime,
       secStartToEnd,
       pixelPrSec: this.pixelPrSec,
-    };
+    }; */
   }
 
   public newData() {
@@ -77,12 +77,9 @@ export class Gantt {
     this.MainDomStyle.setProperty("--gantt-row-height", this.rowHeight + "px");
   }
 
-  public addTask(dom: HTMLElement, row: iRow) {
-    const t = {
-      row,
-      dom,
-    };
-  }
+  /*   public addTask(dom: HTMLElement, row: iRow) {
+
+  } */
 
   public findId(children: any, id: any, p: any) {
     if (Array.isArray(children)) {

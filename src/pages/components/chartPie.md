@@ -65,8 +65,8 @@ By the `"legend-placement"="bottom/center/top/right/left"` property you chose th
             :legend-stacked="legendStacked"/>
         </div>
        <div class="flexRow items-center gap-4 flexWrap">
-          <H_checkbox v-model="hideLegend" label="Hide legend."></H_checkbox>
-          <H_checkbox v-model="legendStacked" label="legend-stacked."></H_checkbox>
+          <H_switch v-model="hideLegend" label="Hide legend."></H_checkbox>
+          <H_switch v-model="legendStacked" label="legend-stacked."></H_checkbox>
           <H_select v-model="placeMent" label="placment" :list="placements"></H_select>
         </div>
       </div>

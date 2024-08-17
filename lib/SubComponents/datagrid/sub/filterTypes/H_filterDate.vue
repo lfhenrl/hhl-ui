@@ -1,7 +1,7 @@
 <template>
   <div class="H_filterDate">
     <H_select v-model="condition1" :list="list" hide-filter />
-    <H_datePicker v-model="value1" :type="col.filter.type === 'date' ? 'date' : 'dateTime'" />
+    <H_datetime v-model="value1" :type="col.filter.type === 'date' ? 'date' : 'datetime'" />
     <H_selectbox
       row
       list-gap="20px"
@@ -13,13 +13,13 @@
       ]"
     />
     <H_select v-model="condition2" :list="list" hide-filter />
-    <H_datePicker v-model="value2" :type="col.filter.type === 'date' ? 'date' : 'dateTime'" />
+    <H_datetime v-model="value2" :type="col.filter.type === 'date' ? 'date' : 'datetime'" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from "vue";
-import H_datePicker from "../../../../Components/H_datePicker.vue";
+import H_datetime from "../../../../Components/H_datetime.vue";
 import H_select from "../../../../Components/H_select.vue";
 import H_selectbox from "../../../../Components/H_selectbox.vue";
 import { iDgrid } from "../../provide/Dgrid";
@@ -108,6 +108,10 @@ defineExpose({ save, clear, open, close, canSave });
     gap: 12px;
     overflow: hidden;
     padding: 20px 20px 0 20px;
+  }
+
+  .H_filterDate .H_inputbase.H_selectbox {
+    max-height: 3rem;
   }
 }
 </style>

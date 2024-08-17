@@ -103,9 +103,13 @@ defineExpose({ save, clear, open, close, canSave });
     display: grid;
     grid-template-rows: auto auto 1fr;
     height: 100%;
-    gap: 12px;
+    gap: 0;
     overflow: hidden;
     padding: 20px 20px 0 20px;
+  }
+
+  .H_filterNumber .H_inputbase.H_selectbox {
+    max-height: 2.7rem;
   }
 }
 </style>

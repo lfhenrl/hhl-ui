@@ -9,13 +9,13 @@
 
       <div class="gantt-space" />
     </div>
-    <H_pop placement="left" :inner="true" container="box" query-selector=".data-grid" v-model="moveDialogIsOpen">
+    <H_popover placement="left" :inner="true" container="box" query-selector=".data-grid" v-model="moveDialogIsOpen">
       <div class="data-grid-moveDialog">
         <H_btn size="sm" @click="insertOver">Over</H_btn>
         <H_btn size="sm" @click="insertAsChild">As a child</H_btn>
         <H_btn size="sm" @click="insertUnder">Under</H_btn>
       </div>
-    </H_pop>
+    </H_popover>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ import { iRow } from "../data/rowModel";
 import { Columns } from "../data/Columns";
 import headCell from "./headCell.vue";
 import rowGroup from "./rowGroup.vue";
-import H_pop from "../../popup/H_pop.vue";
+import H_popover from "../../H_popover.vue";
 import H_btn from "../../H_btn.vue";
 import { iMoveRow } from "../data/moveRowModel";
 import { iGantt } from "../provide/gantt";

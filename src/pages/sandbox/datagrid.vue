@@ -14,10 +14,8 @@
         <div style="display: flex; padding: 10px 0; flex: 1">
           <H_btn @click="load" style="width: 100px" type="outline">Load</H_btn>
           <div style="flex: 1" />
-          <H_input v-model="seek" :debounce="300" clearable style="max-width: 200px">
-            <template v-slot:end>
-              <H_icon icon="search"></H_icon>
-            </template>
+          <H_input v-model="seek" clearable style="max-width: 200px">
+            <H_icon icon="search"></H_icon>
           </H_input>
         </div>
       </template>

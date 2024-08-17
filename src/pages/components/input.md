@@ -127,8 +127,6 @@ Input Click by adding @input_click=""
       <template>
       <div class="flexRow items-center gap-4 flexWrap">
             <H_input @input_click="click(`Input Click`)" v-model="txt" label="Text input">
-              <H_icon icon="mail" btn="standard" @click="click(`start icon`)"></H_icon>
-              <H_icon icon="mail" btn="standard" @click="click(`end icon`)"></H_icon>
             </H_input>
       </div>
       </template>
@@ -153,7 +151,6 @@ You can add a Icon or other stoff with the start slot.
       <div class="flexRow items-center gap-4 flexWrap">
             <H_input  v-model="txt" label="Text input"> 
                         <H_icon icon="mail" btn="standard" @click="click(txt)"></H_icon>
-                         <H_icon icon="mail" btn="standard" @click="click(`end icon`)"></H_icon>
             </H_input>
       </div>
       </template>

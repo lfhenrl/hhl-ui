@@ -3,7 +3,7 @@
     <H_input v-model="searchValue" clearable>
       <H_icon set-end icon="search" />
     </H_input>
-    <H_switch size="sm" label="Select All." :model-value="AllSelected" @click.prevent="SelectToggle" />
+    <H_switch switch label="Select All." :model-value="AllSelected" @click.prevent="SelectToggle" />
     <H_selectbase multi v-model="value1" :list="filter" />
   </div>
 </template>
@@ -141,7 +141,7 @@ defineExpose({ save, clear, open, close, canSave });
 
   .H_filterSelect .H_selectbase {
     border: 1px solid var(--col-txt-5);
-    max-height: 100%;
+    max-height: 500px;
     overflow: auto;
     padding: 6px;
   }

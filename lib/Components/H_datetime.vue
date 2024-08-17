@@ -1,12 +1,17 @@
 <template>
-  <H_inputbase :label="label" :disabled="disabled ? '' : undefined" class="H_datetime">
+  <H_inputbase
+    :label="label"
+    :disabled="disabled ? '' : undefined"
+    :HelpTextStart="hintStart"
+    :HelpTextEnd="hintEnd"
+    :ErrorMessage="validate"
+    class="H_datetime"
+  >
     <slot> </slot>
     <template v-slot:input>
       <input
         ref="el"
         @input="onInput"
-        class="H_inputbase-input no-slot"
-        size="30"
         :readonly="readonly"
         autocomplete="off"
         :step="type === 'datetimesec' ? 1 : 0"
@@ -19,6 +24,7 @@
 <script setup lang="ts">
 import { PropType, ref, computed, watchEffect } from "vue";
 import H_inputbase from "./H_inputbase.vue";
+import { validateFunc } from "../utils/validateFunc";
 const P = defineProps({
   label: { type: String, default: "" },
   disabled: { type: Boolean, default: false },
@@ -27,6 +33,9 @@ const P = defineProps({
     type: String as PropType<"date" | "datetime" | "datetimesec">,
     default: "datetime",
   },
+  hintStart: { type: String, default: "" },
+  hintEnd: { type: String, default: "" },
+  validator: Array,
 });
 const E = defineEmits([]);
 const model: any = defineModel();
@@ -74,4 +83,18 @@ function isDateValid(dateS: string) {
 function getDateString(date: any, slice: number) {
   return new Date(date.getTime() + new Date().getTimezoneOffset() * -60 * 1000).toISOString().slice(0, slice);
 }
+
+const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
+<style>
+@layer hhl-components {
+  .H_datetime .H_inputbase-input {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .H_datetime .H_inputbase-input input {
+    width: 100%;
+    background-color: transparent;
+  }
+}
+</style>

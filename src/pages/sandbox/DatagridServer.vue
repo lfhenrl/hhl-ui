@@ -3,11 +3,11 @@
     <div style="display: flex; align-items: center">
       <H_btn @click="load" style="width: 100px">Load</H_btn>
       <div style="flex: 1" />
-      <H_inputText v-model="seek" :debounce="300" clearable style="max-width: 200px">
+      <H_input v-model="seek" clearable style="max-width: 200px">
         <template v-slot:end>
           <H_icon icon="search"></H_icon>
         </template>
-      </H_inputText>
+      </H_input>
     </div>
     <H_datagrid
       @head-click="headClick"
@@ -41,7 +41,7 @@
 import H_datagrid from "../../../lib/Components/datagrid/H_datagrid.vue";
 import H_column from "../../../lib/Components/datagrid/H_column.vue";
 import H_btn from "../../../lib/Components/H_btn.vue";
-import H_inputText from "../../../lib/Components/H_inputText.vue";
+import H_input from "../../../lib/Components/H_input.vue";
 import { serverData } from "../../../lib/Components/datagrid";
 
 import { ref } from "vue";

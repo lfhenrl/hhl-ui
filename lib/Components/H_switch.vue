@@ -71,6 +71,7 @@ const modelValue = defineModel();
     aspect-ratio: 1 / 1;
     width: var(--size);
     accent-color: var(--color);
+    border-radius: 4px;
   }
 
   .H_switch[disabled] {

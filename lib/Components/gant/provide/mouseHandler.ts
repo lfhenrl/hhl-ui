@@ -7,9 +7,9 @@ export function mouseHandler(_GT: iGantt) {
   let notActive = true;
   let Typ = "";
   let PosX = 0;
-  let PosY = 0;
+  //let PosY = 0;
   let SizeX = 0;
-  let points: any = null;
+  //let points: any = null;
 
   function mouseDown(e: MouseEvent) {
     const target = e.target as HTMLElement;
@@ -19,7 +19,7 @@ export function mouseHandler(_GT: iGantt) {
       if (ID > 0) {
         activeTask = GT.Tasks[ID];
         PosX = e.screenX;
-        PosY = e.screenY;
+        //PosY = e.screenY;
         notActive = false;
         if (Typ === "task") SizeX = activeTask?.left ?? 0;
         if (Typ === "task_adjustRight") SizeX = activeTask?.width ?? 0;
@@ -40,7 +40,7 @@ export function mouseHandler(_GT: iGantt) {
     if (Typ === "task_adjustRight") activeTask!.setWidth(SizeX + diff);
   }
 
-  function mouseUp(e: MouseEvent) {
+  function mouseUp() {
     if (notActive) return;
     notActive = true;
     activeTask = null;

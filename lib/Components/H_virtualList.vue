@@ -106,7 +106,7 @@ let range: any = {};
 const isHorizontal = props.direction === "horizontal";
 const directionKey = isHorizontal ? "scrollLeft" : "scrollTop";
 let leftScroll = 0;
-let scrollHeight = 0;
+//let scrollHeight = 0;
 
 function update() {
   virtual.handleDataSourcesChange();

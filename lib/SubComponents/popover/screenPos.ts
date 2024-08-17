@@ -1,6 +1,6 @@
 import { iPop } from "./Pop";
 
-function adjustLeft(place: string) {}
+//function adjustLeft(place: string) {}
 
 export function screenPos(Pop: iPop) {
   const oT = Pop.offsetTop;

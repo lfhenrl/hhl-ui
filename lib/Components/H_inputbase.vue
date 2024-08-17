@@ -41,8 +41,10 @@ const E = defineEmits(["clear"]);
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
+    height: min-content;
     box-sizing: border-box;
     background-color: transparent;
+    border: 1px solid red;
   }
 
   .H_inputbase * {
@@ -85,6 +87,25 @@ const E = defineEmits(["clear"]);
     min-height: 30px;
   }
 
+  .H_inputbase-input {
+    display: flex;
+    align-items: center;
+    grid-column-start: 2;
+    grid-row-start: 1;
+    padding: 0 6px;
+    margin: 0;
+    background-color: transparent;
+    font-size: 1em;
+    min-height: 1.2em;
+    line-height: 1em;
+    resize: none;
+  }
+
+  .H_inputbase-input input {
+    appearance: none;
+    border: none;
+  }
+
   .H_inputbase-inputBox:hover {
     border-color: var(--col-txt-2);
   }
@@ -121,8 +142,8 @@ const E = defineEmits(["clear"]);
     transform: scale(0.9);
   }
 
-  /*  .H_inputbase-inputBox > * {
-    max-height: 1.3em;
+  /*   .H_inputbase-inputBox > :not(.H_inputbase-input) {
+    max-height: 1em;
   } */
 
   .H_inputbase-inputBox > :not(.H_inputbase-input) :nth-child(1 of :not(.no-slot)) {
@@ -140,25 +161,6 @@ const E = defineEmits(["clear"]);
   .H_inputbase-inputBox > [set-end] {
     grid-column-start: 5;
     grid-row-start: 1;
-  }
-
-  .H_inputbase-input {
-    display: flex;
-    align-items: center;
-    grid-column-start: 2;
-    grid-row-start: 1;
-    padding: 0 6px;
-    margin: 0;
-    border: none;
-    -webkit-appearance: none;
-    appearance: none;
-    outline: none;
-    min-width: 30px;
-    background-color: transparent;
-    font-size: 1em;
-    min-height: 1.2em;
-    line-height: 1em;
-    resize: none;
   }
 
   .H_inputbase-info {

@@ -10,9 +10,9 @@ let containerIdCurrentlyDraggedOver = ref<number | null>(null);
 let transitioning = false;
 const containerIdGenerator = getIdGenerator();
 
-const useDraggableContainer = (originalItems: Ref<Array<any>>, context: any, maxItems: number) => {
+const useDraggableContainer = (originalItems: Ref<Array<DraggableItem>>, context: any, maxItems: number) => {
   const id = containerIdGenerator();
-  const items = ref<Array<DraggableItem>>(toDraggableItems(originalItems.value));
+  const items = ref<Array<DraggableItem> | undefined>(toDraggableItems(originalItems.value));
 
   watch(originalItems, () => {
     items.value = toDraggableItems(originalItems.value);
@@ -23,7 +23,7 @@ const useDraggableContainer = (originalItems: Ref<Array<any>>, context: any, max
     if (itemCurrentlyDragging.value !== null) {
       return;
     }
-    context.emit("update:modelValue", toOriginalArray(items.value));
+    context.emit("update:modelValue", toOriginalArray(items.value!));
   });
 
   // case when an item is being dragged to another container
@@ -31,7 +31,7 @@ const useDraggableContainer = (originalItems: Ref<Array<any>>, context: any, max
     if (containerIdCurrentlyDraggedOver.value === id) {
       return;
     }
-    items.value = items.value.filter((item) => item.id !== itemCurrentlyDragging.value?.id);
+    items.value = items.value?.filter((item) => item.id !== itemCurrentlyDragging.value?.id);
   });
 
   // when an item is moved to an empty container
@@ -44,9 +44,9 @@ const useDraggableContainer = (originalItems: Ref<Array<any>>, context: any, max
       return;
     }
 
-    if (items.value.length > 0) {
+    if (items.value!.length > 0) {
       containerIdCurrentlyDraggedOver.value = id;
-      items.value.push(itemCurrentlyDragging.value);
+      items.value!.push(itemCurrentlyDragging.value);
       return;
     }
     containerIdCurrentlyDraggedOver.value = id;
@@ -58,18 +58,24 @@ const useDraggableContainer = (originalItems: Ref<Array<any>>, context: any, max
     if (transitioning || !itemCurrentlyDragging.value) {
       return;
     }
-    items.value = changeArrayOrder(items.value, itemCurrentlyDragging.value, position);
+    items.value = changeArrayOrder(items.value!, itemCurrentlyDragging.value, position);
   };
 
   return {
     id,
     items,
     onDragOver,
-    onItemDragOver
+    onItemDragOver,
   };
 };
 
-const useDraggableItem = (item: Ref<any>, position: Ref<number>, containerId: Ref<number>, context: any, maxItems: number) => {
+const useDraggableItem = (
+  item: Ref<any>,
+  position: Ref<number>,
+  containerId: Ref<number>,
+  context: any,
+  maxItems: number
+) => {
   const draggableItemEl = ref<HTMLElement | null>(null);
   const isDragging = ref(item.value?.id === itemCurrentlyDragging.value?.id ? true : false);
   const middleY = ref<Number | null>(null);
@@ -113,7 +119,7 @@ const useDraggableItem = (item: Ref<any>, position: Ref<number>, containerId: Re
 
     const offset = middleY.value ?? 0 - e.clientY;
     context.emit("itemDragOver", {
-      position: (offset as number) > 0 ? position.value : position.value + 1
+      position: (offset as number) > 0 ? position.value : position.value + 1,
     });
   }, 50);
 
@@ -139,7 +145,7 @@ const useDraggableItem = (item: Ref<any>, position: Ref<number>, containerId: Re
     onDragOver,
     onDragEnd,
     transitionStart,
-    transitionEnd
+    transitionEnd,
   };
 };
 

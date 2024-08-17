@@ -6,7 +6,7 @@
       <template>
       <div class="flexRow items-center gap-4 flexWrap">
             <H_textarea v-model="txt" label="Text input"></H_textarea>
-            <H_inputText v-model="txt" label="Text input"></H_inputText>
+            <H_input v-model="txt" label="Text input"></H_input>
       </div>
       </template>
       <script>

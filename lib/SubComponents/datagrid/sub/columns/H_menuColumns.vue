@@ -1,5 +1,5 @@
 <template>
-  <H_dialog v-model="open" offset-up="-20px" class="H_menuColumns" movable>
+  <H_dialog v-model="open" class="H_menuColumns" movable>
     <template #header>
       <div class="H_menuColumns-header">
         <div>Columns</div>
@@ -8,21 +8,23 @@
     </template>
     <div class="H_menuColumns-body">
       <H_inputbase label="Grouping" movelabel>
-        <H_dragDrop v-model="groupColumns" :max-items="3" class="H_menuColumns-drag H_menuColumns-dragH90">
-          <template v-slot:item="{ item, index }">
-            <H_columnItem :item="item" :index="index" />
-          </template>
-        </H_dragDrop>
+        <template v-slot:input>
+          <H_dragDrop v-model="groupColumns" :max-items="3" class="H_menuColumns-drag H_menuColumns-dragH90">
+            <template v-slot:item="{ item, index }">
+              <H_columnItem :item="item" :index="index" />
+            </template>
+          </H_dragDrop>
+        </template>
       </H_inputbase>
 
       <H_inputbase label="Columns" class="" movelabel>
-        <div class="">
+        <template v-slot:input>
           <H_dragDrop v-model="sourceColumns" class="H_menuColumns-drag H_menuColumns-dragH200">
             <template v-slot:item="{ item, index }">
               <H_columnItem :item="item" :index="index" />
             </template>
           </H_dragDrop>
-        </div>
+        </template>
       </H_inputbase>
     </div>
     <template #footer>
@@ -138,22 +140,31 @@ function columnsSave() {
 @layer hhl-components {
   .H_menuColumns-header {
     display: flex;
+    align-items: center;
     min-width: 200px;
+    height: 2.5em;
+    width: 100%;
   }
   .H_menuColumns-header div {
     flex: 1 1 100%;
+    font-size: 1.2em;
   }
   .H_menuColumns-header .H_icon {
+    flex: 0;
     cursor: pointer;
   }
   .H_menuColumns-body {
     display: flex;
     flex-direction: column;
-    padding-top: 16px;
-    gap: 29px;
+    padding-top: 6px;
+    gap: 10px;
     background-color: var(--col-bg-0);
   }
   .H_menuColumns-drag {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 100%;
     overflow: auto;
     padding: 8px;
     padding-top: 4px;
@@ -169,6 +180,10 @@ function columnsSave() {
   .H_menuColumns-footer {
     display: flex;
     justify-content: end;
+
+    .H_btn {
+      min-width: 5em;
+    }
   }
 }
 </style>

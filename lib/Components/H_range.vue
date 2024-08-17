@@ -15,8 +15,7 @@
         :min="min"
         :max="max"
         v-model="model"
-        class="H_inputbase-input no-slot"
-        size="30"
+        class="H_inputbase-input"
         :readonly="readonly"
         autocomplete="off"
         type="range"
@@ -79,10 +78,11 @@ const validate = computed(() => validateFunc(P.validator, model.value));
     font-size: 1.1em;
     line-height: 1em;
     padding: 0 5px 0 5px;
+    min-width: 2em;
     color: var(--col-txt-0);
   }
 
-  .H_range .H_inputbase-input {
+  .H_range input {
     cursor: pointer;
     border-radius: 15px;
     max-height: 6px;
@@ -90,6 +90,7 @@ const validate = computed(() => validateFunc(P.validator, model.value));
     background: #ccc;
     padding: 0;
     margin: 0 5px;
+    width: 100%;
   }
 
   .H_range .H_inputbase-input::-webkit-slider-thumb {

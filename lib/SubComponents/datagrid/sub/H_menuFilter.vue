@@ -93,6 +93,7 @@ const filtComponent = computed(() => {
   }
 
   .H_menuFilter .H_inputbase.H_input,
+  .H_menuFilter .H_inputbase.H_datetime,
   .H_menuFilter .H_inputbase.H_select_input {
     max-height: 3rem;
   }
@@ -116,10 +117,11 @@ const filtComponent = computed(() => {
   .H_menuFilter-header div {
     flex: 1 1 100%;
     text-align: center;
-    font-size: 16px;
+    font-size: 1.2em;
   }
   .H_menuFilter-header .H_icon {
     cursor: pointer;
+    flex: 0;
   }
   .H_menuFilter-footer {
     display: flex;
