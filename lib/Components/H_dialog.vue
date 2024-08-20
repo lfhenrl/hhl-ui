@@ -4,7 +4,6 @@
     :class="{
       modal: backdrop,
     }"
-    popover="manual"
     v-movable="movable"
     class="H_dialog"
     @close="onClose"
@@ -132,6 +131,7 @@ onMounted(() => {
     z-index: 1;
     border: none;
     padding: 0;
+    margin: auto;
     border-radius: 4px;
     background-color: var(--col-bg-0);
     inset-block: v-bind(insetBlock);

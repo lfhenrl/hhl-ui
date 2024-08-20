@@ -68,7 +68,7 @@ const E = defineEmits(["clear"]);
     font-size: 0.8em;
     padding: 0 0 0 2px;
     margin: 0;
-    line-height: 0.8em;
+    line-height: 1em;
     color: var(--col-txt-3);
   }
 
@@ -105,7 +105,8 @@ const E = defineEmits(["clear"]);
     resize: none;
   }
 
-  .H_inputbase-input input {
+  .H_inputbase-input input,
+  .H_inputbase-input textarea {
     appearance: none;
     border: none;
   }
