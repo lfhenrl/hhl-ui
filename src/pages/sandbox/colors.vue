@@ -47,7 +47,9 @@
         <div class="bgBox txt6">txt6</div>
       </div>
     </div>
-    <div style="border: 1px solid gray; display: flex; margin-top: 20px; height: 200px">
+    <div style="border: 1px solid gray; display: flex; margin-top: 20px; flex-direction: column; height: 200px">
+      <H_input v-model="txt" label="TEXT"> </H_input>
+      <div style="background-color: aqua; width: 100px; height: 50px">ddd</div>
       <H_input v-model="txt" label="TEXT"> </H_input>
     </div>
     <div style="border: 1px solid gray; display: flex; align-items: center; margin-top: 20px">

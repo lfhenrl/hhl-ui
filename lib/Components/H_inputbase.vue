@@ -1,5 +1,5 @@
 <template>
-  <label class="H_inputbase" :data-error="ErrorMessage != '' ? true : undefined">
+  <label class="H_inputbase" :data-error="ErrorMessage != '' ? true : undefined" :narrow="narrow ? '' : undefined">
     <span class="H_inputbase-label">{{ label }}</span>
     <div class="H_inputbase-inputBox">
       <slot> </slot>
@@ -24,6 +24,7 @@
 defineProps({
   label: { type: String, default: "" },
   clearable: { type: Boolean, default: false },
+  narrow: { type: Boolean, default: false },
   HelpTextStart: { type: String, default: "" },
   HelpTextEnd: { type: String, default: "" },
   ErrorMessage: { type: String, default: "" },
@@ -44,7 +45,10 @@ const E = defineEmits(["clear"]);
     height: min-content;
     box-sizing: border-box;
     background-color: transparent;
-    border: 1px solid red;
+  }
+
+  .H_inputbase[narrow] {
+    margin: -0.8em 0;
   }
 
   .H_inputbase * {
@@ -64,7 +68,7 @@ const E = defineEmits(["clear"]);
     font-size: 0.8em;
     padding: 0 0 0 2px;
     margin: 0;
-    line-height: 0.8em;
+    line-height: 1em;
     color: var(--col-txt-3);
   }
 
@@ -101,7 +105,8 @@ const E = defineEmits(["clear"]);
     resize: none;
   }
 
-  .H_inputbase-input input {
+  .H_inputbase-input input,
+  .H_inputbase-input textarea {
     appearance: none;
     border: none;
   }
