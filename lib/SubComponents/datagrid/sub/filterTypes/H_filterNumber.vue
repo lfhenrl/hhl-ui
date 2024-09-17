@@ -98,18 +98,16 @@ onMounted(() => {
 defineExpose({ save, clear, open, close, canSave });
 </script>
 <style>
-@layer hhl-components {
-  .H_filterNumber {
-    display: grid;
-    grid-template-rows: auto auto 1fr;
-    height: 100%;
-    gap: 0;
-    overflow: hidden;
-    padding: 20px 20px 0 20px;
-  }
+.H_filterNumber {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  height: 100%;
+  gap: 0;
+  overflow: hidden;
+  padding: 20px 20px 0 20px;
+}
 
-  .H_filterNumber .H_inputbase.H_selectbox {
-    max-height: 2.7rem;
-  }
+.H_filterNumber .H_inputbase.H_selectbox {
+  max-height: 2.7rem;
 }
 </style>

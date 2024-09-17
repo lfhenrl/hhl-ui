@@ -1,24 +1,11 @@
 <template>
   <div>
     <div class="H_dateTable__innerHeader">
-      <H_icon
-        icon="expand_left"
-        type="icon-text"
-        btn="standard"
-        @click="changeMonth(-1)"
-      />
+      <H_icon icon="expand_left" type="icon-text" btn="standard" @click="changeMonth(-1)" />
       <div class="H_dateTable__innerHeaderValue" @click="$emit('month-click')">
-        {{
-          tempDatomy.toLocaleString("en-us", { month: "long", year: "numeric" })
-        }}
+        {{ tempDatomy.toLocaleString("en-us", { month: "long", year: "numeric" }) }}
       </div>
-      <H_icon
-        btn="standard"
-        icon="expand_right"
-        type="icon-text"
-        @click="changeMonth(1)"
-        round
-      />
+      <H_icon btn="standard" icon="expand_right" type="icon-text" @click="changeMonth(1)" round />
     </div>
     <div class="H_dateTable__table" @click="itemClick">
       <div
@@ -59,11 +46,7 @@ const props = defineProps({
   tempDatomy: { type: Date, default: new Date() },
 });
 
-const emit = defineEmits([
-  "update:tempDatomy",
-  "update:modelValue",
-  "month-click",
-]);
+const emit = defineEmits(["update:tempDatomy", "update:modelValue", "month-click"]);
 
 const tempDato = ref(props.modelValue);
 watch(
@@ -72,7 +55,7 @@ watch(
     if (props.modelValue) {
       tempDato.value = props.modelValue;
     }
-  },
+  }
 );
 watch(
   () => props.tempDatomy,
@@ -80,7 +63,7 @@ watch(
     if (props.tempDatomy) {
       tempDato.value = props.tempDatomy;
     }
-  },
+  }
 );
 
 const dates: any = computed(() => {
@@ -124,59 +107,57 @@ const isToday = (dato: any) => (dato === toDayDate.value ? true : null);
 const isHolyday = (dato: any) => HHL_isHolyDay(dato);
 </script>
 <style>
-@layer hhl-components {
-  .H_dateTable__innerHeader {
-    display: flex;
-    flex: 1 1 0%;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-    font-weight: 700;
-    padding: 4px;
-  }
-  .H_dateTable__innerHeaderValue {
-    display: flex;
-    justify-content: center;
-    flex: 1 1 0%;
-    cursor: pointer;
-  }
-  .H_dateTable__table {
-    display: grid;
-    grid-template-columns: repeat(8, 32px);
-    grid-template-rows: repeat(7, 32px);
-  }
-  .H_dateTable__tableItem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .H_dateTable__tableItem.day {
-    cursor: pointer;
-    border-radius: 50%;
-    opacity: 90%;
-  }
-  .H_dateTable__tableItem.day:hover {
-    background-color: var(--col-warn);
-    color: var(--col-on-warn);
-  }
-  .H_dateTable__tableItem.activeMonth {
-    opacity: 100%;
-    font-weight: 700;
-  }
-  .H_dateTable__tableItem.weekend {
-    opacity: 70%;
-    font-weight: normal;
-  }
-  .H_dateTable__tableItem.isSelected {
-    background-color: var(--col-pri);
-    color: var(--col-on-pri);
-  }
-  .H_dateTable__tableItem.isToday {
-    background-color: var(--col-sec);
-    color: var(--col-on-sec);
-  }
-  .H_dateTable__tableItem.isHolyday {
-    color: var(--col-err);
-  }
+.H_dateTable__innerHeader {
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 4px;
+}
+.H_dateTable__innerHeaderValue {
+  display: flex;
+  justify-content: center;
+  flex: 1 1 0%;
+  cursor: pointer;
+}
+.H_dateTable__table {
+  display: grid;
+  grid-template-columns: repeat(8, 32px);
+  grid-template-rows: repeat(7, 32px);
+}
+.H_dateTable__tableItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.H_dateTable__tableItem.day {
+  cursor: pointer;
+  border-radius: 50%;
+  opacity: 90%;
+}
+.H_dateTable__tableItem.day:hover {
+  background-color: var(--col-warn);
+  color: var(--col-on-warn);
+}
+.H_dateTable__tableItem.activeMonth {
+  opacity: 100%;
+  font-weight: 700;
+}
+.H_dateTable__tableItem.weekend {
+  opacity: 70%;
+  font-weight: normal;
+}
+.H_dateTable__tableItem.isSelected {
+  background-color: var(--col-pri);
+  color: var(--col-on-pri);
+}
+.H_dateTable__tableItem.isToday {
+  background-color: var(--col-sec);
+  color: var(--col-on-sec);
+}
+.H_dateTable__tableItem.isHolyday {
+  color: var(--col-err);
 }
 </style>

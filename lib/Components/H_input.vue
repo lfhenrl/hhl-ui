@@ -69,27 +69,25 @@ const stringCounter = computed(() => {
 const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
 <style>
-@layer hhl-components {
-  .H_input .H_inputbase-input {
-    font-family: Arial, Helvetica, sans-serif;
-  }
+.H_input .H_inputbase-input {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  .H_input .H_inputbase-input input {
-    width: 100%;
-    background-color: transparent;
-  }
+.H_input .H_inputbase-input input {
+  width: 100%;
+  background-color: transparent;
+}
 
-  .H_input .H_inputbase-input input[type="color"] {
-    width: 3em;
-    height: 1em;
-    padding: 0 3px;
-  }
+.H_input .H_inputbase-input input[type="color"] {
+  width: 3em;
+  height: 1em;
+  padding: 0 3px;
+}
 
-  .H_input .H_inputbase-input input[type="color"]::-webkit-color-swatch-wrapper {
-    padding: 0;
-  }
-  .H_input .H_inputbase-input input[type="color"]::-webkit-color-swatch {
-    border: none;
-  }
+.H_input .H_inputbase-input input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.H_input .H_inputbase-input input[type="color"]::-webkit-color-swatch {
+  border: none;
 }
 </style>

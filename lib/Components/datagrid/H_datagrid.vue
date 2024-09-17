@@ -145,75 +145,73 @@ onMounted(() => {
 </script>
 
 <style>
-@layer hhl-components {
-  .H_datagrid {
-    position: relative;
-    display: grid;
-    grid-template-rows: auto auto 1fr auto;
-    grid-template-columns: 1fr;
-    height: 100%;
-    font-size: 14px;
-    overflow: hidden;
-    --dgrid-row-height: v-bind(row_height);
-  }
+.H_datagrid {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: 1fr;
+  height: 100%;
+  font-size: 14px;
+  overflow: hidden;
+  --dgrid-row-height: v-bind(row_height);
+}
 
-  .H_datagrid-head {
-    display: flex;
-  }
+.H_datagrid-head {
+  display: flex;
+}
 
-  .H_datagrid-header {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    height: 35px;
-    max-height: 35px;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border: 1px solid var(--col-bg-6);
-    background-color: var(--col-bg-2);
-  }
+.H_datagrid-header {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 35px;
+  max-height: 35px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border: 1px solid var(--col-bg-6);
+  background-color: var(--col-bg-2);
+}
 
-  .H_datagrid-header-progress {
-    position: absolute;
-    z-index: 10;
-    bottom: 0;
-  }
+.H_datagrid-header-progress {
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+}
 
-  .H_datagrid-header::-webkit-scrollbar {
-    border-radius: 0;
-    border-top-right-radius: 4px;
-  }
+.H_datagrid-header::-webkit-scrollbar {
+  border-radius: 0;
+  border-top-right-radius: 4px;
+}
 
-  .H_datagrid-header::-webkit-scrollbar-track {
-    border-radius: 0;
-    border-top-right-radius: 4px;
-    background-color: var(--col-bg-2);
-  }
+.H_datagrid-header::-webkit-scrollbar-track {
+  border-radius: 0;
+  border-top-right-radius: 4px;
+  background-color: var(--col-bg-2);
+}
 
-  .H_datagrid-header::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    opacity: 0;
-  }
+.H_datagrid-header::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  opacity: 0;
+}
 
-  .H_datagrid-body-spacer {
-    display: flex;
-    max-height: 0;
-  }
+.H_datagrid-body-spacer {
+  display: flex;
+  max-height: 0;
+}
 
-  .H_datagrid-noRows {
-    display: flex;
-    align-items: end;
-    justify-content: center;
-    font-size: 18px;
-    height: 99px;
-  }
+.H_datagrid-noRows {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  font-size: 18px;
+  height: 99px;
+}
 
-  .H_datagrid-body {
-    overflow: hidden;
-    border-right: 1px solid var(--col-bg-6);
-    border-left: 1px solid var(--col-bg-6);
-  }
+.H_datagrid-body {
+  overflow: hidden;
+  border-right: 1px solid var(--col-bg-6);
+  border-left: 1px solid var(--col-bg-6);
 }
 </style>

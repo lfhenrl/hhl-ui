@@ -39,69 +39,67 @@ defineExpose({ close });
 </script>
 
 <style>
-@layer hhl-components {
-  .H_snack {
-    display: flex;
-    position: fixed;
-    padding: 6px 6px 12px 6px;
-    border-radius: 4px;
-    min-width: 330px;
-    max-width: 330px;
-    width: 330px;
-    z-index: 50;
-    right: 20px;
-    top: 20px;
+.H_snack {
+  display: flex;
+  position: fixed;
+  padding: 6px 6px 12px 6px;
+  border-radius: 4px;
+  min-width: 330px;
+  max-width: 330px;
+  width: 330px;
+  z-index: 50;
+  right: 20px;
+  top: 20px;
+}
+
+.H_snack-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 0%;
+}
+
+.H_snack-info-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.alert-leave-active {
+  animation: slide-out 0.5s reverse;
+}
+.alert-enter-active /* .fade-leave-active below version 2.1.8 */ {
+  animation: slide-up 0.5s;
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-10px);
   }
 
-  .H_snack-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1 1 0%;
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-10px);
   }
 
-  .H_snack-info-title {
-    font-size: 18px;
-    font-weight: bold;
-  }
-
-  .alert-leave-active {
-    animation: slide-out 0.5s reverse;
-  }
-  .alert-enter-active /* .fade-leave-active below version 2.1.8 */ {
-    animation: slide-up 0.5s;
-  }
-
-  @keyframes slide-up {
-    0% {
-      opacity: 0;
-      transform: translateY(60px);
-    }
-    60% {
-      opacity: 1;
-      transform: translateY(-10px);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slide-out {
-    0% {
-      opacity: 0;
-      transform: translateX(60px);
-    }
-    60% {
-      opacity: 1;
-      transform: translateX(-10px);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 </style>

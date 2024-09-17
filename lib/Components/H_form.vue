@@ -21,22 +21,21 @@ watch(
     emit("update:dirty", true);
     isvalid();
   },
-  { deep: true },
+  { deep: true }
 );
 
 watch(
   () => props.dirty,
   () => {
     isvalid();
-  },
+  }
 );
 
 function _isvalid() {
   const w = hform.value;
   const errors = w.querySelectorAll("*[data-error=true]");
   const isvalid = errors.length < 1 ? true : false;
-  const isdirtyAndValid =
-    props.dirty === true && isvalid === true ? true : false;
+  const isdirtyAndValid = props.dirty === true && isvalid === true ? true : false;
   emit("valid", isvalid);
   emit("dirtyValid", isdirtyAndValid);
 }
@@ -46,11 +45,9 @@ onMounted(() => {
 });
 </script>
 <style>
-@layer hhl-components {
-  .H_form {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
+.H_form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 </style>

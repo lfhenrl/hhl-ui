@@ -53,23 +53,21 @@ onMounted(() => {
 });
 </script>
 <style>
-@layer hhl-components {
-  .H_dataGroupRow {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    min-height: var(--dgrid-row-height);
-    max-height: var(--dgrid-row-height);
-    padding: 0 2px;
-  }
-  .H_dataGroupRow-expandBtn {
-    display: flex;
-    align-items: center;
-  }
-  .H_dataGroupRow span {
-    font-size: 12px;
-  }
+.H_dataGroupRow {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: var(--dgrid-row-height);
+  max-height: var(--dgrid-row-height);
+  padding: 0 2px;
+}
+.H_dataGroupRow-expandBtn {
+  display: flex;
+  align-items: center;
+}
+.H_dataGroupRow span {
+  font-size: 12px;
 }
 </style>

@@ -28,12 +28,10 @@ function filterOpen() {
 </script>
 
 <style>
-@layer hhl-components {
-  .H_menu-pop {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    max-width: 30px;
-  }
+.H_menu-pop {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  max-width: 30px;
 }
 </style>

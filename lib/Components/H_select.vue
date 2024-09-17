@@ -104,83 +104,81 @@ function SelectAll() {
 </script>
 
 <style>
-@layer hhl-components {
-  .H_select {
-    flex: 1 1 100%;
-    width: 100%;
-    font-size: 1rem;
-  }
+.H_select {
+  flex: 1 1 100%;
+  width: 100%;
+  font-size: 1rem;
+}
 
-  .H_select .H_inputbase-input input {
-    width: 100%;
-    background-color: transparent;
-  }
+.H_select .H_inputbase-input input {
+  width: 100%;
+  background-color: transparent;
+}
 
-  .H_select .H_popover .H_popover-popup {
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    padding: 8px;
-    line-height: 0;
-  }
+.H_select .H_popover .H_popover-popup {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 8px;
+  line-height: 0;
+}
 
-  .H_select-input-reset {
-    outline: none;
-    color: var(--col-txt-1);
-    vertical-align: bottom;
-    background-color: transparent;
-    border-style: none;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    appearance: none;
-  }
+.H_select-input-reset {
+  outline: none;
+  color: var(--col-txt-1);
+  vertical-align: bottom;
+  background-color: transparent;
+  border-style: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  appearance: none;
+}
 
-  .H_select-dropdownArrow {
-    font-family: monospace;
-    font-weight: bold;
-    padding-right: 8px;
-    pointer-events: none;
-  }
-  .H_select .H_select-dropdownArrow-span {
-    transform: rotate(-90deg);
-  }
-  .H_select:has(.H_popover-popup:popover-open) .H_select-dropdownArrow-span {
-    transform: rotate(90deg);
-  }
+.H_select-dropdownArrow {
+  font-family: monospace;
+  font-weight: bold;
+  padding-right: 8px;
+  pointer-events: none;
+}
+.H_select .H_select-dropdownArrow-span {
+  transform: rotate(-90deg);
+}
+.H_select:has(.H_popover-popup:popover-open) .H_select-dropdownArrow-span {
+  transform: rotate(90deg);
+}
 
-  .H_select-input {
-    align-items: center;
-    flex: 1 1 0%;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 100%;
-  }
+.H_select-input {
+  align-items: center;
+  flex: 1 1 0%;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+}
 
-  .H_select-list {
-    background-color: var(--col-bg-0);
-    border-radius: 4px;
-  }
+.H_select-list {
+  background-color: var(--col-bg-0);
+  border-radius: 4px;
+}
 
-  .H_select-filterbox {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    padding: 10px 0;
-  }
+.H_select-filterbox {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 0;
+}
 
-  .H_selectBox-filter {
-    display: inline-flex;
-    margin: 0;
-    margin-top: -10px;
-    margin-bottom: -10px;
-  }
+.H_selectBox-filter {
+  display: inline-flex;
+  margin: 0;
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
 
-  .H_select-icon {
-    color: var(--col-txt-3);
-  }
+.H_select-icon {
+  color: var(--col-txt-3);
+}
 
-  .H_selectPop .H_baseSelectList-item.focused {
-    border: 1px solid var(--col-pri);
-  }
+.H_selectPop .H_baseSelectList-item.focused {
+  border: 1px solid var(--col-pri);
 }
 </style>

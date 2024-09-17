@@ -21,10 +21,8 @@ onMounted(() => {
 });
 </script>
 <style>
-@layer hhl-components {
-  .H_themeSelector {
-    display: flex;
-    align-items: center;
-  }
+.H_themeSelector {
+  display: flex;
+  align-items: center;
 }
 </style>

@@ -63,72 +63,70 @@ function format(value: any, col: iColumn, row: any) {
 </script>
 
 <style>
-@layer hhl-components {
-  .H_dataRow {
-    display: flex;
-    flex: 1;
-    height: min-content;
-    min-height: var(--dgrid-row-height);
-    max-height: var(--dgrid-row-height);
-    width: 100%;
-    line-height: 1.1;
-    background: var(--col-bg-0);
-  }
+.H_dataRow {
+  display: flex;
+  flex: 1;
+  height: min-content;
+  min-height: var(--dgrid-row-height);
+  max-height: var(--dgrid-row-height);
+  width: 100%;
+  line-height: 1.1;
+  background: var(--col-bg-0);
+}
 
-  .H_dataRow:nth-child(odd) {
-    background: var(--col-bg-1);
-  }
+.H_dataRow:nth-child(odd) {
+  background: var(--col-bg-1);
+}
 
-  .H_dataRow[selected="true"] {
-    background-color: var(--col-bg-4);
-  }
+.H_dataRow[selected="true"] {
+  background-color: var(--col-bg-4);
+}
 
-  .H_dataRow:hover {
-    background-color: var(--col-bg-2);
-  }
+.H_dataRow:hover {
+  background-color: var(--col-bg-2);
+}
 
-  .H_dataRow[selected="true"]:hover {
-    background-color: var(--col-bg-5);
-  }
+.H_dataRow[selected="true"]:hover {
+  background-color: var(--col-bg-5);
+}
 
-  .H_vscroll-item[selected="true"]:hover {
-    background-color: var(--col-bg-5);
-  }
+.H_vscroll-item[selected="true"]:hover {
+  background-color: var(--col-bg-5);
+}
 
-  .H_dataRow-Cell {
-    border-right: solid 1px var(--col-bg-3);
-    border-bottom: solid 1px var(--col-bg-3);
-    padding: 4px 8px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    /* flex: 1; */
-  }
+.H_dataRow-Cell {
+  border-right: solid 1px var(--col-bg-3);
+  border-bottom: solid 1px var(--col-bg-3);
+  padding: 4px 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* flex: 1; */
+}
 
-  .H_dataRow-Cell.H_dataRow-CellAutoHeight {
-    white-space: break-spaces;
-  }
+.H_dataRow-Cell.H_dataRow-CellAutoHeight {
+  white-space: break-spaces;
+}
 
-  .H_dataRow-Cell.H_dataRow-slotCell {
-    display: flex;
-    padding: 0 8px;
-    align-items: center;
-  }
+.H_dataRow-Cell.H_dataRow-slotCell {
+  display: flex;
+  padding: 0 8px;
+  align-items: center;
+}
 
-  .sticky-0 {
-    position: sticky;
-    top: 0;
-    opacity: 1;
-  }
-  .sticky-1 {
-    position: sticky;
-    top: var(--dgrid-row-height);
-    opacity: 1;
-  }
-  .sticky-2 {
-    position: sticky;
-    top: calc(var(--dgrid-row-height) * 2);
-    opacity: 1;
-  }
+.sticky-0 {
+  position: sticky;
+  top: 0;
+  opacity: 1;
+}
+.sticky-1 {
+  position: sticky;
+  top: var(--dgrid-row-height);
+  opacity: 1;
+}
+.sticky-2 {
+  position: sticky;
+  top: calc(var(--dgrid-row-height) * 2);
+  opacity: 1;
 }
 </style>

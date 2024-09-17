@@ -51,24 +51,22 @@ function fullScreen() {
 </script>
 
 <style>
-@layer hhl-components {
-  .H_datagridFooter {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    color: var(--col-txt-3);
-    font-size: 14px;
-    padding-right: 10px;
-    padding-left: 6px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    border: 1px solid var(--col-bg-6);
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
-  .H_datagrid__rowcount {
-    display: flex;
-  }
+.H_datagridFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: var(--col-txt-3);
+  font-size: 14px;
+  padding-right: 10px;
+  padding-left: 6px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border: 1px solid var(--col-bg-6);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.H_datagrid__rowcount {
+  display: flex;
 }
 </style>

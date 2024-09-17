@@ -108,56 +108,54 @@ const ok = () => {
 const cancel = () => close();
 </script>
 <style>
-@layer hhl-components {
-  .H_datePicker__inputcontainer {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-  }
+.H_datePicker__inputcontainer {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
 
-  .H_datePicker__inputcontainer .H_icon {
-    color: var(--col-txt-3);
-    width: 20px;
-  }
+.H_datePicker__inputcontainer .H_icon {
+  color: var(--col-txt-3);
+  width: 20px;
+}
 
-  .H_datePicker__inputcontainer:hover .H_icon {
-    scale: 1.2;
-  }
+.H_datePicker__inputcontainer:hover .H_icon {
+  scale: 1.2;
+}
 
-  .H_datePicker__input {
-    cursor: pointer;
-    overflow: hidden;
-    background-color: transparent;
-    padding-left: 4px;
-    color: var(--col-txt-1);
-    /*     border: none; */
-  }
-  .H_datePicker__popup {
-    border-radius: 4px;
-    background-color: var(--col-bg-0);
-    border: 1px solid var(--col-bg-5);
-  }
-  .H_datePicker__header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--col-bg-5);
-    padding: 4px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--col-txt-1);
-  }
-  .H_datePicker__footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    border-top: 1px solid var(--col-bg-4);
-    padding: 12px;
-  }
+.H_datePicker__input {
+  cursor: pointer;
+  overflow: hidden;
+  background-color: transparent;
+  padding-left: 4px;
+  color: var(--col-txt-1);
+  /*     border: none; */
+}
+.H_datePicker__popup {
+  border-radius: 4px;
+  background-color: var(--col-bg-0);
+  border: 1px solid var(--col-bg-5);
+}
+.H_datePicker__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--col-bg-5);
+  padding: 4px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--col-txt-1);
+}
+.H_datePicker__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid var(--col-bg-4);
+  padding: 12px;
+}
 
-  .H_datePicker__footer .H_btn {
-    width: 64px;
-  }
+.H_datePicker__footer .H_btn {
+  width: 64px;
 }
 </style>

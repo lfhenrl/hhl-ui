@@ -138,60 +138,58 @@ function KeyEnter() {
 </script>
 
 <style>
-@layer hhl-components {
-  .H_selectbase {
-    display: flex;
-    flex-direction: column;
-    font-size: 1rem;
-  }
-  .H_selectbase:focus {
-    outline: none;
-  }
+.H_selectbase {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+}
+.H_selectbase:focus {
+  outline: none;
+}
 
-  .H_selectbase-item {
-    display: flex;
-    align-items: center;
-    padding: 0;
-    gap: 5px;
-    box-sizing: border-box;
-    line-height: 1.5em;
-  }
+.H_selectbase-item {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  gap: 5px;
+  box-sizing: border-box;
+  line-height: 1.5em;
+}
 
-  .H_selectbase-item.reverse {
-    flex-direction: row-reverse;
-  }
-  .H_selectbase-item::before {
-    content: "";
-    font-size: 0.9em;
-    font-weight: bold;
-    line-height: 1.2em;
-    font-family: monospace;
-    max-height: 1.2em;
-    min-height: 1.2em;
-    max-width: 1.2em;
-    min-width: 1.2em;
-    border-radius: 4px;
-    text-align: center;
-    border: 1px solid var(--col-bg-5);
-  }
+.H_selectbase-item.reverse {
+  flex-direction: row-reverse;
+}
+.H_selectbase-item::before {
+  content: "";
+  font-size: 0.9em;
+  font-weight: bold;
+  line-height: 1.2em;
+  font-family: monospace;
+  max-height: 1.2em;
+  min-height: 1.2em;
+  max-width: 1.2em;
+  min-width: 1.2em;
+  border-radius: 4px;
+  text-align: center;
+  border: 1px solid var(--col-bg-5);
+}
 
-  .H_selectbase-item[selected]::before {
-    content: "✓";
-    color: white;
-    background-color: var(--col-pri);
-    border-color: var(--col-pri);
-  }
+.H_selectbase-item[selected]::before {
+  content: "✓";
+  color: white;
+  background-color: var(--col-pri);
+  border-color: var(--col-pri);
+}
 
-  .H_selectbase-item[focused] {
-    background-color: var(--col-bg-2);
-  }
+.H_selectbase-item[focused] {
+  background-color: var(--col-bg-2);
+}
 
-  .H_selectbase-item:hover {
-    background-color: var(--col-bg-3);
-  }
+.H_selectbase-item:hover {
+  background-color: var(--col-bg-3);
+}
 
-  .H_selectbase-item-label {
-    pointer-events: none;
-  }
+.H_selectbase-item-label {
+  pointer-events: none;
 }
 </style>

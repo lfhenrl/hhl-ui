@@ -19,7 +19,7 @@
       <H_popover class="popUp-external">
         <template v-slot:referance>
           <div style="display: flex; align-items: center">
-            <span> External</span> <H_icon btn="standard" icon="expand_down" />
+            <span class="text-pri"> External</span> <H_icon btn="standard" icon="expand_down" />
           </div>
         </template>
         <div class="popUp-external-body">

@@ -45,40 +45,38 @@ const col: iColumn = DG.columns[P.index];
 </script>
 
 <style>
-@layer hhl-components {
-  .H_menuHead {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: visible;
-    cursor: pointer;
-    color: var(--col-bg-6);
-    min-width: 24px;
-    overflow: visible;
-  }
-  .H_menuHead:hover {
-    background-color: var(--col-bg-5);
-  }
+.H_menuHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  cursor: pointer;
+  color: var(--col-bg-6);
+  min-width: 24px;
+  overflow: visible;
+}
+.H_menuHead:hover {
+  background-color: var(--col-bg-5);
+}
 
-  .H_HeadCellActive {
-    color: var(--col-pri);
-  }
+.H_HeadCellActive {
+  color: var(--col-pri);
+}
 
-  .H_HeadCell-sorting {
-    display: flex;
-    overflow: visible;
-    align-items: start;
-    flex: 1 1 0%;
-    font-size: 12px;
-    max-height: 16px;
-  }
-  .H_HeadCell-sorting_icon {
-    margin-left: -5px;
-    margin-right: -5px;
-  }
-  .H_HeadCell-sortingText {
-    color: var(--col-pri);
-  }
+.H_HeadCell-sorting {
+  display: flex;
+  overflow: visible;
+  align-items: start;
+  flex: 1 1 0%;
+  font-size: 12px;
+  max-height: 16px;
+}
+.H_HeadCell-sorting_icon {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+.H_HeadCell-sortingText {
+  color: var(--col-pri);
 }
 </style>
