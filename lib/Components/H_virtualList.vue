@@ -291,25 +291,27 @@ function emitEvent(offset: number, clientSize: number, scrollSize: number, evt: 
 }
 </script>
 <style>
-.H_virtualList {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  grid-template-columns: auto;
-  height: 100%;
-  min-height: 200px;
-  border-radius: 4px;
-}
+@layer hhl-components {
+  .H_virtualList {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: auto;
+    height: 100%;
+    min-height: 200px;
+    border-radius: 4px;
+  }
 
-.H_virtualList-body {
-  position: relative;
-  display: inline-block;
-  overflow: scroll;
-  height: 100%;
-}
+  .H_virtualList-body {
+    position: relative;
+    display: inline-block;
+    overflow: scroll;
+    height: 100%;
+  }
 
-.H_virtualList-scroller {
-  position: relative;
-  display: inline-block;
-  min-width: 100%;
+  .H_virtualList-scroller {
+    position: relative;
+    display: inline-block;
+    min-width: 100%;
+  }
 }
 </style>

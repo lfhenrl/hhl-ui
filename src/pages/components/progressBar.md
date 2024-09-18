@@ -4,8 +4,8 @@
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <div class="flexRow items-center gap-4 flexWrap">
-      <H_switch v-model="show"></H_switch>
+      <div class="flex items-center gap-4 flex-wrap">
+      <H_switch v-model="show" label="Show"></H_switch>
       <H_progress-bar :show="show" ></H_progress-bar>
       </div>
     </template>
@@ -23,7 +23,7 @@
 Just set the height off the component (h-4).
 <hhl-live-editor title="" htmlCode='
     <template>
-      <div class="flexRow items-center gap-4 flexWrap">
+      <div class="flex items-center gap-4 flex-wrap">
       <H_progress-bar show class="h-4"></H_progress-bar>
       </div>
     </template>
@@ -39,7 +39,7 @@ color_fg: the foreground-color.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <div class="flexRow items-center gap-4 flexWrap">
+      <div class="flex items-center gap-4 flex-wrap">
       <H_progress-bar show color_bg="red" color_fg="lime"></H_progress-bar>
       </div>
     </template>

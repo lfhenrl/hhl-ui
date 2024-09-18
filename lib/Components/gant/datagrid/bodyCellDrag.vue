@@ -14,15 +14,17 @@ defineProps({
 </script>
 
 <style>
-.bodyCell-drag {
-  pointer-events: all;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  border-right: 1px solid var(--col-bg-4);
-  min-height: var(--gantt-row-height);
-  max-height: var(--gantt-row-height);
-  width: 30px;
-  padding: 3px;
+@layer hhl-components {
+  .bodyCell-drag {
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-right: 1px solid var(--col-bg-4);
+    min-height: var(--gantt-row-height);
+    max-height: var(--gantt-row-height);
+    width: 30px;
+    padding: 3px;
+  }
 }
 </style>

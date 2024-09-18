@@ -1,44 +1,29 @@
 <template>
-  <div class="icon-list">
-    <div :name="item" v-for="item in iconList.toSorted()" :key="item" class="icon-list-item shadow">
-      <H_icon :icon="String(item)"></H_icon>
-      <div>{{ item }}</div>
+  <div>
+    <div class="flex flex-wrap gap-3">
+      <div
+        class="flex flex-col items-center w-40 border border-pri border-solid rounded text-3xl p-2"
+        v-for="icon in icons"
+        :key="icon.key"
+      >
+        <div :class="[icon.class]"></div>
+        <div class="text-xs">{{ icon.class }}</div>
+      </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
-import H_icon from "../../lib/Components/H_icon.vue";
-import { iconList } from "../../lib/SubComponents/icons/iconNames";
+<script setup lang="ts">
+import { ref } from "vue";
+import ico from "../../lib/tw/icons/icons.json";
 
-const IconList = defineComponent({
-  name: "icon-list",
-  components: { H_icon },
-  setup() {
-    const icon = ref<any>(null);
-    return {
-      icon,
-      iconList,
-    };
-  },
-});
+const icons: any = ref([]);
 
-export type iIconList = InstanceType<typeof IconList>;
-export default IconList;
+for (const [key] of Object.entries(ico.icons)) {
+  const val = {
+    name: key,
+    class: `ico-${key}`,
+  };
+  icons.value.push(val);
+}
 </script>
-<style>
-.icon-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding-top: 20px;
-}
-.icon-list-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 144px;
-  padding: 4px;
-}
-</style>

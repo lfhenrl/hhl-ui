@@ -34,59 +34,61 @@ onMounted(() => {
 </script>
 
 <style>
-.task {
-  position: relative;
-  display: flex;
-  max-height: var(--gantt-row-height);
-  min-height: var(--gantt-row-height);
-  min-width: var(--gantt-scroll-width);
-  border-bottom: solid 1px var(--col-bg-3);
-  align-items: center;
-  z-index: 1;
-  pointer-events: none;
-}
-.task-item {
-  display: flex;
-  position: absolute;
-  align-items: center;
-  height: 20px;
-  font-size: 10px;
-  background-color: rgb(13, 101, 101);
-  color: white;
-  pointer-events: all;
-  user-select: auto;
-  z-index: 1;
-  border-radius: 4px;
-}
+@layer hhl-components {
+  .task {
+    position: relative;
+    display: flex;
+    max-height: var(--gantt-row-height);
+    min-height: var(--gantt-row-height);
+    min-width: var(--gantt-scroll-width);
+    border-bottom: solid 1px var(--col-bg-3);
+    align-items: center;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .task-item {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    height: 20px;
+    font-size: 10px;
+    background-color: rgb(13, 101, 101);
+    color: white;
+    pointer-events: all;
+    user-select: auto;
+    z-index: 1;
+    border-radius: 4px;
+  }
 
-.task-adjust-right {
-  height: 100%;
-  width: 4px;
-  cursor: col-resize;
-  background-color: aqua;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  opacity: 0;
-}
-.task-adjust-right:hover {
-  opacity: 1;
-}
+  .task-adjust-right {
+    height: 100%;
+    width: 4px;
+    cursor: col-resize;
+    background-color: aqua;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    opacity: 0;
+  }
+  .task-adjust-right:hover {
+    opacity: 1;
+  }
 
-.task-inner {
-  flex: 1;
-  text-align: center;
-  cursor: move;
-}
+  .task-inner {
+    flex: 1;
+    text-align: center;
+    cursor: move;
+  }
 
-.task-connector {
-  position: absolute;
-  border-radius: 50%;
-  height: 10px;
-  width: 10px;
-  right: -10px;
-}
-.task-connector:hover {
-  background-color: aqua;
+  .task-connector {
+    position: absolute;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    right: -10px;
+  }
+  .task-connector:hover {
+    background-color: aqua;
+  }
 }
 </style>
 ../data/rowModel

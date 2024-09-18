@@ -1,0 +1,6 @@
+.o-flex {
+  display: flex;
+}
+.o-col-pri {
+  @apply col-pri;
+}

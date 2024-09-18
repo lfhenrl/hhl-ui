@@ -74,59 +74,61 @@ function changeTab(e: string) {
 </script>
 
 <style>
-.H_tabs {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  height: 100%;
-  width: 100%;
-}
+@layer hhl-components {
+  .H_tabs {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    width: 100%;
+  }
 
-.H_tabs__tabs {
-  display: flex;
-}
+  .H_tabs__tabs {
+    display: flex;
+  }
 
-.H_tabs__tab {
-  display: inline-flex;
-  position: relative;
-  padding: 4px 12px;
-  cursor: pointer;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
+  .H_tabs__tab {
+    display: inline-flex;
+    position: relative;
+    padding: 4px 12px;
+    cursor: pointer;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
 
-.H_tabs__tab_label {
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-  border-color: transparent;
-  border-bottom-width: 4px;
-}
+  .H_tabs__tab_label {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    border-color: transparent;
+    border-bottom-width: 4px;
+  }
 
-.H_tabs-details {
-  border-radius: 4px;
-  border: 1px solid var(--col-txt-4);
-  background-color: var(--col-bg-0);
-}
+  .H_tabs-details {
+    border-radius: 4px;
+    border: 1px solid var(--col-txt-4);
+    background-color: var(--col-bg-0);
+  }
 
-.H_tabs__tab[selected="true"] {
-  font-weight: bold;
-  border: solid 1px var(--col-txt-4);
-  border-bottom: none;
-  background-color: var(--col-bg-0);
-  top: 1px;
-}
+  .H_tabs__tab[selected="true"] {
+    font-weight: bold;
+    border: solid 1px var(--col-txt-4);
+    border-bottom: none;
+    background-color: var(--col-bg-0);
+    top: 1px;
+  }
 
-.H_tabs__tab[selected="true"] .H_tabs__tab_label {
-  border-bottom-color: var(--col-pri);
-}
+  .H_tabs__tab[selected="true"] .H_tabs__tab_label {
+    border-bottom-color: var(--col-pri);
+  }
 
-.H_tabsFade-enter-active,
-.H_tabsFade-leave-active {
-  transition: opacity 0.2s ease;
-}
+  .H_tabsFade-enter-active,
+  .H_tabsFade-leave-active {
+    transition: opacity 0.2s ease;
+  }
 
-.H_tabsFade-enter-from,
-.H_tabsFade-leave-to {
-  opacity: 0;
+  .H_tabsFade-enter-from,
+  .H_tabsFade-leave-to {
+    opacity: 0;
+  }
 }
 </style>

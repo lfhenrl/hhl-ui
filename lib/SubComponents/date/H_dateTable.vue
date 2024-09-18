@@ -107,57 +107,59 @@ const isToday = (dato: any) => (dato === toDayDate.value ? true : null);
 const isHolyday = (dato: any) => HHL_isHolyDay(dato);
 </script>
 <style>
-.H_dateTable__innerHeader {
-  display: flex;
-  flex: 1 1 0%;
-  flex-direction: row;
-  align-items: center;
-  cursor: pointer;
-  font-weight: 700;
-  padding: 4px;
-}
-.H_dateTable__innerHeaderValue {
-  display: flex;
-  justify-content: center;
-  flex: 1 1 0%;
-  cursor: pointer;
-}
-.H_dateTable__table {
-  display: grid;
-  grid-template-columns: repeat(8, 32px);
-  grid-template-rows: repeat(7, 32px);
-}
-.H_dateTable__tableItem {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.H_dateTable__tableItem.day {
-  cursor: pointer;
-  border-radius: 50%;
-  opacity: 90%;
-}
-.H_dateTable__tableItem.day:hover {
-  background-color: var(--col-warn);
-  color: var(--col-on-warn);
-}
-.H_dateTable__tableItem.activeMonth {
-  opacity: 100%;
-  font-weight: 700;
-}
-.H_dateTable__tableItem.weekend {
-  opacity: 70%;
-  font-weight: normal;
-}
-.H_dateTable__tableItem.isSelected {
-  background-color: var(--col-pri);
-  color: var(--col-on-pri);
-}
-.H_dateTable__tableItem.isToday {
-  background-color: var(--col-sec);
-  color: var(--col-on-sec);
-}
-.H_dateTable__tableItem.isHolyday {
-  color: var(--col-err);
+@layer hhl-components {
+  .H_dateTable__innerHeader {
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 4px;
+  }
+  .H_dateTable__innerHeaderValue {
+    display: flex;
+    justify-content: center;
+    flex: 1 1 0%;
+    cursor: pointer;
+  }
+  .H_dateTable__table {
+    display: grid;
+    grid-template-columns: repeat(8, 32px);
+    grid-template-rows: repeat(7, 32px);
+  }
+  .H_dateTable__tableItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .H_dateTable__tableItem.day {
+    cursor: pointer;
+    border-radius: 50%;
+    opacity: 90%;
+  }
+  .H_dateTable__tableItem.day:hover {
+    background-color: var(--col-warn);
+    color: var(--col-on-warn);
+  }
+  .H_dateTable__tableItem.activeMonth {
+    opacity: 100%;
+    font-weight: 700;
+  }
+  .H_dateTable__tableItem.weekend {
+    opacity: 70%;
+    font-weight: normal;
+  }
+  .H_dateTable__tableItem.isSelected {
+    background-color: var(--col-pri);
+    color: var(--col-on-pri);
+  }
+  .H_dateTable__tableItem.isToday {
+    background-color: var(--col-sec);
+    color: var(--col-on-sec);
+  }
+  .H_dateTable__tableItem.isHolyday {
+    color: var(--col-err);
+  }
 }
 </style>

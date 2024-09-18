@@ -116,32 +116,21 @@ watch(
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
 <style>
-.H_datePicker {
-  max-height: 36px;
-  min-height: 36px;
-  height: 36px;
-  flex: 1 1 0%;
-}
+@layer hhl-components {
+  .H_datePicker {
+    max-height: 36px;
+    min-height: 36px;
+    height: 36px;
+    flex: 1 1 0%;
+  }
 
-.H_datePicker .H_datePicker_container {
-  display: flex;
-  gap: 3px;
-  align-items: center;
-  padding-left: 8px;
-  min-height: 36px;
-  padding-bottom: 1px;
-}
-
-.col-pri {
-  background-color: var(--col-pri);
-  color: var(--col-on-pri);
-  --current-bg-col: var(--col-pri);
-  --current-txt-col: var(--col-on-pri);
-}
-.col-sec {
-  background-color: var(--col-sec);
-  color: var(--col-on-sec);
-  --current-bg-col: var(--col-sec);
-  --current-txt-col: var(--col-on-sec);
+  .H_datePicker .H_datePicker_container {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    padding-left: 8px;
+    min-height: 36px;
+    padding-bottom: 1px;
+  }
 }
 </style>

@@ -20,19 +20,21 @@ const E = defineEmits([]);
 </script>
 
 <style>
-.bodyCell {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  border-right: 1px solid var(--col-bg-4);
-  min-height: var(--gantt-row-height);
-  max-height: var(--gantt-row-height);
-  padding: 3px;
-}
-.bodyCell-text {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: block-axis;
+@layer hhl-components {
+  .bodyCell {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-right: 1px solid var(--col-bg-4);
+    min-height: var(--gantt-row-height);
+    max-height: var(--gantt-row-height);
+    padding: 3px;
+  }
+  .bodyCell-text {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: block-axis;
+  }
 }
 </style>

@@ -121,50 +121,52 @@ defineExpose({
 </script>
 
 <style>
-.data-grid {
-  display: inline-block;
-  border-left: 1px solid var(--col-bg-3);
-  font-size: 14px;
-  overflow-x: scroll;
-  overflow-y: scroll;
-  font-size: 12px;
-  line-height: 1;
-}
-.data-grid-head {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  max-height: 38px;
-  min-height: 38px;
-  background-color: var(--col-bg-1);
-  border-bottom: 1px solid var(--col-bg-3);
-}
+@layer hhl-components {
+  .data-grid {
+    display: inline-block;
+    border-left: 1px solid var(--col-bg-3);
+    font-size: 14px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    font-size: 12px;
+    line-height: 1;
+  }
+  .data-grid-head {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    max-height: 38px;
+    min-height: 38px;
+    background-color: var(--col-bg-1);
+    border-bottom: 1px solid var(--col-bg-3);
+  }
 
-.drag-head {
-  width: 30px;
-  text-align: center;
-  border-right: 1px solid var(--col-bg-4);
-  min-height: var(--gantt-row-height);
-  max-height: var(--gantt-row-height);
-}
+  .drag-head {
+    width: 30px;
+    text-align: center;
+    border-right: 1px solid var(--col-bg-4);
+    min-height: var(--gantt-row-height);
+    max-height: var(--gantt-row-height);
+  }
 
-.data-grid-row {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  max-height: 30px;
-  min-height: 30px;
-  border-bottom: 1px solid var(--col-bg-3);
-}
+  .data-grid-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    max-height: 30px;
+    min-height: 30px;
+    border-bottom: 1px solid var(--col-bg-3);
+  }
 
-.data-grid-moveDialog {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  background-color: var(--col-bg-3);
-  padding: 12px;
+  .data-grid-moveDialog {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    background-color: var(--col-bg-3);
+    padding: 12px;
+  }
 }
 </style>
 ../data/rowModel ../data/moveRowModel

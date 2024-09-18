@@ -22,7 +22,7 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-     <div class="flexRow items-center gap-4">
+     <div class="flex items-center gap-4">
         <H_drag-drop v-model="list1" class="dragContainer">
           <template v-slot:item="{ item }">
             <!-- example -->

@@ -100,69 +100,71 @@ onMounted(() => {
 </script>
 
 <style>
-.H_gantt {
-  display: flex;
-  overflow: hidden;
-  border-top: 1px solid var(--col-bg-3);
-  border-right: 1px solid var(--col-bg-3);
-}
+@layer hhl-components {
+  .H_gantt {
+    display: flex;
+    overflow: hidden;
+    border-top: 1px solid var(--col-bg-3);
+    border-right: 1px solid var(--col-bg-3);
+  }
 
-.H_gantt-gantt {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 100%;
-  overflow: hidden;
-}
+  .H_gantt-gantt {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 100%;
+    overflow: hidden;
+  }
 
-.H_gantt-gantt .H_virtualListItem {
-  pointer-events: none;
-  user-select: none;
-}
+  .H_gantt-gantt .H_virtualListItem {
+    pointer-events: none;
+    user-select: none;
+  }
 
-.H_gantt-gantt-scale {
-  z-index: 2;
-  display: flex;
-  height: 100%;
-}
+  .H_gantt-gantt-scale {
+    z-index: 2;
+    display: flex;
+    height: 100%;
+  }
 
-.H_gantt-gantt-scale .H_virtualList-scroller {
-  position: relative;
-  display: flex;
-  height: 100%;
-}
+  .H_gantt-gantt-scale .H_virtualList-scroller {
+    position: relative;
+    display: flex;
+    height: 100%;
+  }
 
-.H_chartGantt_html {
-  position: absolute;
-  top: var(--gantt-head-height);
-  height: var(--gantt-scroll-height);
-  min-width: var(--gantt-scroll-width);
-  bottom: 30px;
-  pointer-events: fill;
-}
+  .H_chartGantt_html {
+    position: absolute;
+    top: var(--gantt-head-height);
+    height: var(--gantt-scroll-height);
+    min-width: var(--gantt-scroll-width);
+    bottom: 30px;
+    pointer-events: fill;
+  }
 
-.gantt-space {
-  min-height: 5px;
-}
+  .gantt-space {
+    min-height: 5px;
+  }
 
-.H_gantt-spitPane {
-  min-width: 4px;
-  max-width: 4px;
-  background-color: var(--col-bg-3);
-  cursor: ew-resize;
-  z-index: 11;
-}
+  .H_gantt-spitPane {
+    min-width: 4px;
+    max-width: 4px;
+    background-color: var(--col-bg-3);
+    cursor: ew-resize;
+    z-index: 11;
+  }
 
-.H_chartGantt_svg {
-  position: absolute;
-  left: 0;
-  user-select: none;
-  top: 0;
-  height: var(--gantt-scroll-height);
-  min-width: var(--gantt-scroll-width);
+  .H_chartGantt_svg {
+    position: absolute;
+    left: 0;
+    user-select: none;
+    top: 0;
+    height: var(--gantt-scroll-height);
+    min-width: var(--gantt-scroll-width);
 
-  overflow: visible;
-  pointer-events: none;
+    overflow: visible;
+    pointer-events: none;
+  }
 }
 </style>
 ../data/rowModel

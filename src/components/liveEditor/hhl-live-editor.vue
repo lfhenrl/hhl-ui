@@ -1,5 +1,5 @@
 <template>
-  <div class="hhl-live-editor shadow" ref="el">
+  <div class="hhl-live-editor shadow-lg border border-bg3 rounded border-solid" ref="el">
     <div class="hhl-live-editor_errBox" v-show="showError" v-movable>
       <div class="hhl-live-editor_errBox_title" moveable-drag>
         <div>Error</div>

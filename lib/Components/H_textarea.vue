@@ -21,6 +21,7 @@
         spellcheck="false"
         :readonly="readonly"
         :placeholder="placeholder"
+        class="focus:outline-none"
       />
     </template>
   </H_inputbase>
@@ -83,15 +84,17 @@ const stringCounter = computed(() => {
 const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
 <style>
-.H_textarea .H_inputbase-input {
-  font-family: Arial, Helvetica, sans-serif;
-  height: 100%;
-  max-height: none;
-  padding-top: 2px;
-}
+@layer hhl-components {
+  .H_textarea .H_inputbase-input {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    max-height: none;
+    padding-top: 2px;
+  }
 
-.H_textarea textarea {
-  resize: vertical;
-  width: 100%;
+  .H_textarea textarea {
+    resize: vertical;
+    width: 100%;
+  }
 }
 </style>

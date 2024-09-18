@@ -80,52 +80,54 @@ const filtComponent = computed(() => {
 });
 </script>
 <style>
-.H_menuFilter_innerbox {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  color: var(--col-txt-1);
-  background-color: var(--col-bg-0);
-  font-weight: 400;
-  overflow: hidden;
-  background-color: transparent;
-  max-height: 50%;
-}
+@layer hhl-components {
+  .H_menuFilter_innerbox {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    color: var(--col-txt-1);
+    background-color: var(--col-bg-0);
+    font-weight: 400;
+    overflow: hidden;
+    background-color: transparent;
+    max-height: 50%;
+  }
 
-.H_menuFilter .H_inputbase.H_input,
-.H_menuFilter .H_inputbase.H_datetime,
-.H_menuFilter .H_inputbase.H_select_input {
-  max-height: 3rem;
-}
+  .H_menuFilter .H_inputbase.H_input,
+  .H_menuFilter .H_inputbase.H_datetime,
+  .H_menuFilter .H_inputbase.H_select_input {
+    max-height: 3rem;
+  }
 
-.H_menuFilter .H_popover-popup {
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-}
-.H_menuFilter_comp {
-  overflow: hidden;
-}
+  .H_menuFilter .H_popover-popup {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  .H_menuFilter_comp {
+    overflow: hidden;
+  }
 
-.H_menuFilter-header {
-  display: flex;
-  align-items: center;
-  background-color: var(--col-pri);
-  color: var(--col-on-pri);
-  font-weight: bold;
-  padding: 4px;
-}
-.H_menuFilter-header div {
-  flex: 1 1 100%;
-  text-align: center;
-  font-size: 1.2em;
-}
-.H_menuFilter-header .H_icon {
-  cursor: pointer;
-  flex: 0;
-}
-.H_menuFilter-footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  padding: 20px;
+  .H_menuFilter-header {
+    display: flex;
+    align-items: center;
+    background-color: var(--col-pri);
+    color: var(--col-on-pri);
+    font-weight: bold;
+    padding: 4px;
+  }
+  .H_menuFilter-header div {
+    flex: 1 1 100%;
+    text-align: center;
+    font-size: 1.2em;
+  }
+  .H_menuFilter-header .H_icon {
+    cursor: pointer;
+    flex: 0;
+  }
+  .H_menuFilter-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 20px;
+  }
 }
 </style>

@@ -115,126 +115,127 @@ onMounted(() => {
 </script>
 
 <style>
-.H_popover {
-  position: relative;
-  line-height: 0;
-}
-.H_popover-referance {
-  display: inline-block;
-  width: 100%;
-}
-
-.H_popover-popup {
-  position: absolute;
-  box-sizing: border-box;
-  border: none;
-  padding: 0;
-  line-height: 1;
-  opacity: 0;
-  --scaleversion: scaleY-display;
-  transition: overlay 0.7s allow-discrete, display 0.7s allow-discrete;
-}
-
-.H_popover-popup::backdrop {
-  inset: auto;
-}
-
-.H_popover-popup.open-end {
-  opacity: 1;
-}
-
-.H_popover-popup[pos="bottom"] {
-  --scaleversion: scaleY-display;
-  transform-origin: top;
-}
-
-.H_popover-popup[pos="top"] {
-  --scaleversion: scaleY-display;
-  transform-origin: bottom;
-}
-
-.H_popover-popup[pos="left"] {
-  --scaleversion: scaleX-display;
-  transform-origin: right;
-}
-
-.H_popover-popup[pos="right"] {
-  --scaleversion: scaleX-display;
-  transform-origin: left;
-}
-
-.H_popover-popup:popover-open {
-  animation: var(--scaleversion) 0.4s forwards;
-}
-
-.H_popover-popup.close:not(:popover-open) {
-  animation: var(--scaleversion) reverse 0.3s forwards;
-}
-
-@keyframes scaleY-display {
-  0% {
-    opacity: 0;
-    transform: scaleY(1);
+@layer hhl-components {
+  .H_popover {
+    position: relative;
+  }
+  .H_popover-referance {
+    display: inline-block;
+    width: 100%;
   }
 
-  20% {
+  .H_popover-popup {
+    position: absolute;
+    box-sizing: border-box;
+    border: none;
+    padding: 0;
+    line-height: 1;
     opacity: 0;
-    transform: scaleY(0);
+    --scaleversion: scaleY-display;
+    transition: overlay 0.7s allow-discrete, display 0.7s allow-discrete;
   }
 
-  100% {
+  .H_popover-popup::backdrop {
+    inset: auto;
+  }
+
+  .H_popover-popup.open-end {
     opacity: 1;
-    transform: scaleY(1);
-  }
-}
-@keyframes scaleY-display--reversed {
-  0% {
-    opacity: 1;
-    transform: scaleY(1);
   }
 
-  50% {
-    opacity: 0;
-    transform: scaleY(0);
+  .H_popover-popup[pos="bottom"] {
+    --scaleversion: scaleY-display;
+    transform-origin: top;
   }
 
-  100% {
-    opacity: 0;
-    transform: scaleY(0);
-  }
-}
-
-@keyframes scaleX-display {
-  0% {
-    opacity: 0;
-    transform: scaleX(1);
+  .H_popover-popup[pos="top"] {
+    --scaleversion: scaleY-display;
+    transform-origin: bottom;
   }
 
-  20% {
-    opacity: 0;
-    transform: scaleX(0);
+  .H_popover-popup[pos="left"] {
+    --scaleversion: scaleX-display;
+    transform-origin: right;
   }
 
-  100% {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-}
-
-@keyframes scaleX-display--reversed {
-  0% {
-    opacity: 1;
-    transform: scaleX(1);
+  .H_popover-popup[pos="right"] {
+    --scaleversion: scaleX-display;
+    transform-origin: left;
   }
 
-  50% {
-    opacity: 0;
-    transform: scaleX(0);
+  .H_popover-popup:popover-open {
+    animation: var(--scaleversion) 0.4s forwards;
   }
 
-  100% {
-    opacity: 0;
-    transform: scaleX(0);
+  .H_popover-popup.close:not(:popover-open) {
+    animation: var(--scaleversion) reverse 0.3s forwards;
+  }
+
+  @keyframes scaleY-display {
+    0% {
+      opacity: 0;
+      transform: scaleY(1);
+    }
+
+    20% {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+  @keyframes scaleY-display--reversed {
+    0% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+
+    50% {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+  }
+
+  @keyframes scaleX-display {
+    0% {
+      opacity: 0;
+      transform: scaleX(1);
+    }
+
+    20% {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes scaleX-display--reversed {
+    0% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    50% {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scaleX(0);
+    }
   }
 }
 </style>

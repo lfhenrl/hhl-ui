@@ -129,19 +129,21 @@ onMounted(() => {
 defineExpose({ save, clear, open, close, canSave });
 </script>
 <style>
-.H_filterSelect {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  height: 100%;
-  gap: 12px;
-  padding: 20px 20px 0 20px;
-}
+@layer hhl-components {
+  .H_filterSelect {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+    gap: 12px;
+    padding: 20px 20px 0 20px;
+  }
 
-.H_filterSelect .H_selectbase {
-  border: 1px solid var(--col-txt-5);
-  max-height: 500px;
-  overflow: auto;
-  padding: 6px;
+  .H_filterSelect .H_selectbase {
+    border: 1px solid var(--col-txt-5);
+    max-height: 500px;
+    overflow: auto;
+    padding: 6px;
+  }
 }
 </style>

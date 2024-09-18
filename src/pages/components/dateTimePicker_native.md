@@ -4,7 +4,7 @@
 
 <hhl-live-editor title="" style="overflow:none" htmlCode='
     <template>
-    <div class="flexRow items-center gap-8 flexWrap"> 
+    <div class="flex items-center gap-8 flex-wrap"> 
           <H_datetime label="Date" v-model="dato"></H_datetime>
           <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
     </div>
@@ -31,7 +31,7 @@
 
 <hhl-live-editor title="" style="overflow:none" htmlCode='
     <template>
-    <div class="flexRow items-center gap-8 flexWrap"> 
+    <div class="flex items-center gap-8 flex-wrap"> 
           <H_datetime type="date" label="Date" v-model="dato"></H_datetime>
           <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
     </div>
@@ -58,7 +58,7 @@
 
 <hhl-live-editor title="" style="overflow:none" htmlCode='
     <template>
-    <div class="flexRow items-center gap-8 flexWrap"> 
+    <div class="flex items-center gap-8 flex-wrap"> 
           <H_datetime type="datetime" label="Date" v-model="dato"></H_datetime>
           <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
     </div>
@@ -85,7 +85,7 @@
 
 <hhl-live-editor title="" style="overflow:none" htmlCode='
     <template>
-    <div class="flexRow items-center gap-8 flexWrap"> 
+    <div class="flex items-center gap-8 flex-wrap"> 
           <H_datetime type="datetimesec" label="Date" v-model="dato"></H_datetime>
           <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
     </div>
@@ -114,7 +114,7 @@ By adding the attribute `disabled` you will disable the dateTime-picker
 
 <hhl-live-editor title="" style="overflow:none" htmlCode='
     <template>
-    <div class="flexRow items-center gap-8 flexWrap"> 
+    <div class="flex items-center gap-8 flex-wrap"> 
           <H_datetime disabled label="Date" v-model="dato"></H_datetime>
           <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
     </div>
@@ -143,7 +143,7 @@ By adding the attribute `readonly` it will be in readonly mode.
 
 <hhl-live-editor title="" style="overflow:none" htmlCode='
     <template>
-    <div class="flexRow items-center gap-8 flexWrap"> 
+    <div class="flex items-center gap-8 flex-wrap"> 
           <H_datetime readonly label="Date" v-model="dato"></H_datetime>
           <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
     </div>
@@ -174,7 +174,7 @@ You can show a hint text at the bottom of the datepicker by adding `hint-start="
 
 <hhl-live-editor title="" style="overflow:none" htmlCode='
     <template>
-    <div class="flexRow items-center gap-8 flexWrap"> 
+    <div class="flex items-center gap-8 flex-wrap"> 
           <H_datetime  hint-start="hint-start." hint-end="hint-end." label="Date" v-model="dato"></H_datetime>
           <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
     </div>
@@ -204,7 +204,7 @@ Validation by adding `validator=""`
 
 <hhl-live-editor title="" style="overflow:none" htmlCode='
     <template>
-    <div class="flexRow items-center gap-8 flexWrap"> 
+    <div class="flex items-center gap-8 flex"> 
           <H_datetime  label="Date" v-model="dato" :validator="[v.dateRequired]"></H_datetime>
           <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
     </div>

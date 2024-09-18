@@ -26,15 +26,17 @@ const selected = computed(() => tabData.selected.value === props.name);
 </script>
 
 <style>
-.H_tab {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-}
+@layer hhl-components {
+  .H_tab {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
 
-.H_tabs__tab[disabled] {
-  opacity: 0.5;
-  pointer-events: none;
-  cursor: none;
+  .H_tabs__tab[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: none;
+  }
 }
 </style>

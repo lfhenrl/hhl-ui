@@ -45,9 +45,11 @@ onMounted(() => {
 });
 </script>
 <style>
-.H_form {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
+@layer hhl-components {
+  .H_form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
 }
 </style>

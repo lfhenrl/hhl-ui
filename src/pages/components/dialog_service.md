@@ -107,7 +107,7 @@ timeout: "Number" the amount of millisecond the snack is open.<br>
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flexRow items-center gap-4 flexWrap">
+      <div class="flex items-center gap-4 flex-wrap">
             <H_btn @click="open(`info`)">Snack Info</H_btn>
             <H_btn @click="open(`warn`)">Snack Warning</H_btn>
             <H_btn @click="open(`err`)">Snack Error</H_btn>

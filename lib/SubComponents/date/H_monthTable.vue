@@ -55,35 +55,37 @@ const changeYear = (val: number) => {
 };
 </script>
 <style>
-.H_monthTable__innerHeader {
-  display: flex;
-  flex: 1 1 0%;
-  flex-direction: row;
-  align-items: center;
-  font-weight: 700;
-  padding: 4px;
-}
-.H_monthTable__innerHeaderValue {
-  display: flex;
-  flex: 1 1 0%;
-  justify-content: center;
-}
-.H_monthTable__table {
-  display: grid;
-  grid-template-columns: repeat(3, 72px);
-  grid-template-rows: repeat(4, 36px);
-  margin: 10px;
-  gap: 10px;
-}
-.H_monthTable__tableItem {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-weight: 700;
-}
-.H_monthTable__tableItem:hover {
-  background-color: var(--col-warn);
-  color: var(--col-on-warn);
+@layer hhl-components {
+  .H_monthTable__innerHeader {
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 700;
+    padding: 4px;
+  }
+  .H_monthTable__innerHeaderValue {
+    display: flex;
+    flex: 1 1 0%;
+    justify-content: center;
+  }
+  .H_monthTable__table {
+    display: grid;
+    grid-template-columns: repeat(3, 72px);
+    grid-template-rows: repeat(4, 36px);
+    margin: 10px;
+    gap: 10px;
+  }
+  .H_monthTable__tableItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .H_monthTable__tableItem:hover {
+    background-color: var(--col-warn);
+    color: var(--col-on-warn);
+  }
 }
 </style>

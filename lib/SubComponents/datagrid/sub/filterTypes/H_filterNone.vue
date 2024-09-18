@@ -8,9 +8,11 @@ defineProps({
 });
 </script>
 <style>
-.H_filterNone {
-  text-align: center;
-  font-size: 20px;
-  padding: 48px;
+@layer hhl-components {
+  .H_filterNone {
+    text-align: center;
+    font-size: 20px;
+    padding: 48px;
+  }
 }
 </style>

@@ -50,8 +50,10 @@ const { id, items, onDragOver, onItemDragOver } = useDraggableContainer(modelVal
 const transitionStyle = computed(() => `transform ${props.transition}ms`);
 </script>
 
-<style scoped>
-.draggable-item-list-move {
-  transition: v-bind(transitionStyle);
+<style>
+@layer hhl-components {
+  .draggable-item-list-move {
+    transition: v-bind(transitionStyle);
+  }
 }
 </style>

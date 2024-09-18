@@ -16,6 +16,7 @@
         autocomplete="off"
         :step="type === 'datetimesec' ? 1 : 0"
         :type="inputType"
+        class="focus:outline-none"
       />
     </template>
   </H_inputbase>

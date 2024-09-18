@@ -110,55 +110,57 @@ const itemClick = (index: number) => {
 };
 </script>
 <style>
-.H_timetable__header {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: center;
-  background-color: var(--col-bg-3);
-  text-align: center;
-  font-size: 24px;
-  line-height: 32px;
-  font-weight: 700;
-  color: var(--col-txt-1);
-}
-.H_timetable__value {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-.H_timetable__semiColon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.H_timeTable__table {
-  display: grid;
-  grid-template-columns: repeat(8, 28px);
-  grid-template-rows: repeat(8, 28px);
-  padding: 4px;
-  gap: 4px;
-}
-.H_timeTable__tableItem {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  border-radius: 50%;
-  font-weight: 700;
-  opacity: 0.2;
-}
-.H_timeTable__tableItem:hover {
-  background-color: var(--col-warn);
-}
-.H_timeTable__tableItem.activ {
-  pointer-events: auto;
-  cursor: pointer;
-  opacity: 1;
+@layer hhl-components {
+  .H_timetable__header {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    background-color: var(--col-bg-3);
+    text-align: center;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+    color: var(--col-txt-1);
+  }
+  .H_timetable__value {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .H_timetable__semiColon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .H_timeTable__table {
+    display: grid;
+    grid-template-columns: repeat(8, 28px);
+    grid-template-rows: repeat(8, 28px);
+    padding: 4px;
+    gap: 4px;
+  }
+  .H_timeTable__tableItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    border-radius: 50%;
+    font-weight: 700;
+    opacity: 0.2;
+  }
+  .H_timeTable__tableItem:hover {
+    background-color: var(--col-warn);
+  }
+  .H_timeTable__tableItem.activ {
+    pointer-events: auto;
+    cursor: pointer;
+    opacity: 1;
+  }
 }
 </style>

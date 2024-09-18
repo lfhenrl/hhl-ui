@@ -10,7 +10,7 @@
 </style>
 <hhl-live-editor title="Background colors" htmlCode='
     <template>
-    <div class="flexRow flexWrap"> 
+    <div class="flex flex-wrap"> 
       <div style="background: var(--col-bg-0)" class="bgBox">bg-bg0</div>
       <div style="background: var(--col-bg-1)" class="bgBox">bg-bg1</div>
       <div style="background: var(--col-bg-2)" class="bgBox">bg-bg2</div>
@@ -29,7 +29,7 @@
 <hhl-live-editor title="Text colors" htmlCode='
 <template>
 
-   <div class="flexRow flexWrap">
+   <div class="flex flex-wrap">
       <div style="background: var(--col-txt-0); color: var(--col-bg-0)" class="bgBox">txt0</div>
       <div style="background: var(--col-txt-1); color: var(--col-bg-0)" class="bgBox">txt1</div>
       <div style="background: var(--col-txt-2); color: var(--col-bg-0)" class="bgBox">txt2</div>

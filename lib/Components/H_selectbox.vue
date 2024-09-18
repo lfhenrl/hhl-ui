@@ -47,21 +47,23 @@ const labelValue = ref("");
 </script>
 
 <style>
-.H_selectbox {
-  font-size: 1rem;
-  line-height: 0;
-}
+@layer hhl-components {
+  .H_selectbox {
+    font-size: 1rem;
+    line-height: 0;
+  }
 
-.H_selectbox .H_selectbase {
-  padding: 6px;
-  font-size: 1rem;
-  line-height: 1;
-  gap: 6px;
-}
+  .H_selectbox .H_selectbase {
+    padding: 6px;
+    font-size: 1rem;
+    line-height: 1;
+    gap: 6px;
+  }
 
-.H_selectbox .H_selectbase[row] {
-  flex-direction: row;
-  gap: 14px;
-  padding: 0 10px;
+  .H_selectbox .H_selectbase[row] {
+    flex-direction: row;
+    gap: 14px;
+    padding: 0 10px;
+  }
 }
 </style>

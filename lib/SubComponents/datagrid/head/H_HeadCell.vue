@@ -45,47 +45,49 @@ onMounted(() => {
 });
 </script>
 <style>
-.H_HeaderCell {
-  display: flex;
-  flex-direction: column;
-  min-height: 34px;
-  border-right: 1px solid var(--col-bg-5);
-}
+@layer hhl-components {
+  .H_HeaderCell {
+    display: flex;
+    flex-direction: column;
+    min-height: 34px;
+    border-right: 1px solid var(--col-bg-5);
+  }
 
-.H_HeaderCell-inner {
-  position: relative;
-  display: flex;
-  flex: 1 1 0%;
-  align-items: center;
-  font-weight: bold;
-  width: 100%;
-}
-.H_HeadCell-text {
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 6px;
-}
-.H_HeadCell-resize {
-  z-index: 10;
-  height: 100%;
-  width: 8px;
-  right: -4px;
-  min-width: 6px;
-  cursor: w-resize;
-  overflow: visible;
-  position: absolute;
-  z-index: 2;
-}
-.H_HeadCell-space {
-  height: 0;
-  width: min-content;
-  overflow-x: hidden;
-  overflow-y: visible;
-  white-space: nowrap;
-  opacity: 0;
-  padding-left: 8px;
-  padding-right: 8px;
+  .H_HeaderCell-inner {
+    position: relative;
+    display: flex;
+    flex: 1 1 0%;
+    align-items: center;
+    font-weight: bold;
+    width: 100%;
+  }
+  .H_HeadCell-text {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 6px;
+  }
+  .H_HeadCell-resize {
+    z-index: 10;
+    height: 100%;
+    width: 8px;
+    right: -4px;
+    min-width: 6px;
+    cursor: w-resize;
+    overflow: visible;
+    position: absolute;
+    z-index: 2;
+  }
+  .H_HeadCell-space {
+    height: 0;
+    width: min-content;
+    overflow-x: hidden;
+    overflow-y: visible;
+    white-space: nowrap;
+    opacity: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }
 </style>

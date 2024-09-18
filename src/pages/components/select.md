@@ -6,7 +6,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flexRow items-center gap-4 flexWrap">
+      <div class="flex items-center gap-4 flex-wrap">
       <H_select
             :list="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
@@ -27,7 +27,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flexRow items-center gap-4 flexWrap"> 
+      <div class="flex items-center gap-4 flex-wrap"> 
             <H_select 
             :list="[
                         {value:`nr1`, label: `Number 1`},
@@ -54,7 +54,7 @@ Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flexRow items-center gap-4 flexWrap"> 
+      <div class="flex items-center gap-4 flex-wrap"> 
             <H_select multi
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
@@ -77,7 +77,7 @@ Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flexRow items-center gap-4 flexWrap"> 
+      <div class="flex items-center gap-4 flex-wrap"> 
             <H_select 
             :list="[
                         {value:`nr1`, label: `Number 1`},
@@ -104,7 +104,7 @@ You can add a Icon or other stoff with the start slot.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flexRow items-center gap-4 flexWrap"> 
+      <div class="flex items-center gap-4 flex-wrap"> 
             <H_select multi
             :list="[
                         {value:`nr1`, label: `Number 1`},
@@ -135,7 +135,7 @@ Show filter by adding `showFilter`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flexRow items-center gap-4 flexWrap"> 
+      <div class="flex items-center gap-4 flex-wrap"> 
             <H_select show-filter
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
@@ -158,7 +158,7 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flexRow items-center gap-4 flexWrap"> 
+      <div class="flex items-center gap-4 flex-wrap"> 
             <H_select disabled
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
@@ -181,7 +181,7 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flexRow items-center gap-4 flexWrap"> 
+      <div class="flex items-center gap-4 flex-wrap"> 
             <H_select readonly
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">

@@ -18,27 +18,29 @@ function resize(e: MouseEvent) {
 </script>
 
 <style>
-.headCell {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-height: var(--gantt-head-height);
-  min-height: var(--gantt-head-height);
-  border-right: 1px solid var(--col-bg-4);
-}
+@layer hhl-components {
+  .headCell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-height: var(--gantt-head-height);
+    min-height: var(--gantt-head-height);
+    border-right: 1px solid var(--col-bg-4);
+  }
 
-.headCell-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-align: left;
-  padding: 3px;
-}
+  .headCell-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    padding: 3px;
+  }
 
-.headCell-resizer {
-  max-height: var(--gantt-head-height);
-  min-height: var(--gantt-head-height);
-  width: 4px;
-  cursor: col-resize;
+  .headCell-resizer {
+    max-height: var(--gantt-head-height);
+    min-height: var(--gantt-head-height);
+    width: 4px;
+    cursor: col-resize;
+  }
 }
 </style>

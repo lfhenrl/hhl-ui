@@ -22,7 +22,7 @@ The default is that it toggle the popup when you click on the `v-slot:referance`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flexRow items-center gap-4 flexWrap">
+     <div class="flex  items-center gap-4 flex-wrap">
           <H_popover>
             <template v-slot:referance>
                 <H_btn>Toggle</H_btn>
@@ -42,7 +42,7 @@ You can also use the v-model to control the open/close of the popup.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flexRow items-center gap-4 flexWrap">
+     <div class="flex items-center gap-4 flex-wrap">
         <H_popover v-model="open">
           <div class="popUpBox">Hello</div>
         </H_popover>
@@ -65,7 +65,7 @@ The popover have a open and a close command.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flexRow items-center gap-4 flexWrap">
+     <div class="flex items-center gap-4 flex-wrap">
         <H_popover ref="pop" close-action="manual">
             <template v-slot:referance>
                 <div style="border: 1px solid red;line-height:2">referance</div>
@@ -103,7 +103,7 @@ You the have to possibillities to close the popup: by using the V-model or by ma
 
 <hhl-live-editor title="" htmlCode='
     <template>
-       <div class="flexRow items-center gap-4 flexWrap">
+       <div class="flex items-center gap-4 flex-wrap">
         <H_popover close-action="manual">
           <template v-slot:referance>
               <H_btn>close-action="manual"</H_btn>
@@ -155,8 +155,8 @@ By adding the property `offset-left` it will adjust the left position with the v
 <hhl-live-editor title="" htmlCode='
     <template>
     <div class="thisContainer" style="border: 1px red dashed">
-      <div class="flexCol gap-4 flexWrap">
-       <div class="flexRow gap-12 items-center">
+      <div class="flex flex-col gap-4 flex-wrap">
+       <div class="flex gap-12 items-center">
         <H_popover  :placement="placement" 
                 :padding="padding"
                 :offset-top="offsetTop"
@@ -167,7 +167,7 @@ By adding the property `offset-left` it will adjust the left position with the v
           <div class="popUpBox" >Hello</div>
         </H_popover>
       </div>
-     <div class="flexRow items-center gap-4 mt-4" >
+     <div class="flex items-center gap-4 mt-4" >
         <H_select hide-filter :list="selectData" v-model="placement" label="Placement"></H_select>
          <H_input type="number" v-model="padding" label="padding" style="max-width:150px"></H_input>
          <H_input type="number" v-model="offsetTop" label="offset-top" style="max-width:150px"></H_input>
@@ -218,7 +218,7 @@ By adding the property `moveable-drag` to one element in the Popup it will be he
 
 <hhl-live-editor title="" htmlCode='
     <template>
-      <div class="flexRow items-center gap-4 flexWrap">
+      <div class="flex items-center gap-4 flex-wrap">
         <H_popover movable>
           <template v-slot:referance>
               <H_btn>Drag</H_btn>
@@ -254,7 +254,7 @@ This is the default to disable add `:width-as-ref="false"`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-       <div class="flexRow items-center gap-4 flexWrap">
+       <div class="flex items-center gap-4 flex-wrap">
         <H_popover :width-as-ref="false">
           <template v-slot:referance>
               <H_btn>width-as-ref="false" .......</H_btn>

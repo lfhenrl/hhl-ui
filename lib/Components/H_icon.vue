@@ -55,60 +55,62 @@ const ic: any = Icons[P.icon];
 </script>
 
 <style>
-.H_icon {
-  --icon-size: v-bind(size);
-  height: var(--icon-size);
-  width: var(--icon-size);
-  min-height: var(--icon-size);
-  min-width: var(--icon-size);
-  aspect-ratio: 1 / 1;
-  background-color: v-bind(bgColor);
-  color: v-bind(txtColor);
-  display: flex;
-  align-items: center;
-}
+@layer hhl-components {
+  .H_icon {
+    --icon-size: v-bind(size);
+    height: var(--icon-size);
+    width: var(--icon-size);
+    min-height: var(--icon-size);
+    min-width: var(--icon-size);
+    aspect-ratio: 1 / 1;
+    background-color: v-bind(bgColor);
+    color: v-bind(txtColor);
+    display: flex;
+    align-items: center;
+  }
 
-.H_icon svg {
-  height: 100%;
-  width: 100%;
-}
+  .H_icon svg {
+    height: 100%;
+    width: 100%;
+  }
 
-.H_icon[disabled] {
-  opacity: 0.4;
-  pointer-events: none;
-  cursor: none;
-}
+  .H_icon[disabled] {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: none;
+  }
 
-.H_icon.btn {
-  border-radius: 50%;
-}
+  .H_icon.btn {
+    border-radius: 50%;
+  }
 
-.H_icon.btn-outline {
-  border: solid 1px currentColor;
-  border-radius: 4px;
-}
+  .H_icon.btn-outline {
+    border: solid 1px currentColor;
+    border-radius: 4px;
+  }
 
-.H_icon.btn-outline-round {
-  border: solid 1px currentColor;
-  padding: 3px;
-}
+  .H_icon.btn-outline-round {
+    border: solid 1px currentColor;
+    padding: 3px;
+  }
 
-.H_icon.btn-fill {
-  padding: 4px;
-  border-radius: 4px;
-}
+  .H_icon.btn-fill {
+    padding: 4px;
+    border-radius: 4px;
+  }
 
-.H_icon.fill-round {
-  padding: 4px;
-}
+  .H_icon.fill-round {
+    padding: 4px;
+  }
 
-.H_icon.btn:hover {
-  outline: 2px solid var(--col-pri);
-  outline-offset: 1px;
-  aspect-ratio: 1 / 1;
-}
+  .H_icon.btn:hover {
+    outline: 2px solid var(--col-pri);
+    outline-offset: 1px;
+    aspect-ratio: 1 / 1;
+  }
 
-.H_icon.btn:active {
-  transform: scale(0.9);
+  .H_icon.btn:active {
+    transform: scale(0.9);
+  }
 }
 </style>

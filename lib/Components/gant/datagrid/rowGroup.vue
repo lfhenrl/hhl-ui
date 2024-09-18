@@ -109,44 +109,46 @@ onMounted(() => {
 </script>
 
 <style>
-.rowGroup {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  min-height: var(--gantt-row-height);
-  max-height: var(--gantt-row-height);
-  pointer-events: all;
-  border-bottom: 1px solid var(--col-bg-4);
-  transition: all 300ms;
-}
+@layer hhl-components {
+  .rowGroup {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    min-height: var(--gantt-row-height);
+    max-height: var(--gantt-row-height);
+    pointer-events: all;
+    border-bottom: 1px solid var(--col-bg-4);
+    transition: all 300ms;
+  }
 
-.start-remove {
-  translate: -100px;
-  opacity: 0;
-}
+  .start-remove {
+    translate: -100px;
+    opacity: 0;
+  }
 
-.rowGroup.dropGroup {
-  outline: 2px solid var(--col-pri);
-  outline-offset: -1px;
-}
+  .rowGroup.dropGroup {
+    outline: 2px solid var(--col-pri);
+    outline-offset: -1px;
+  }
 
-.rowGroup-content {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  border-right: 1px solid var(--col-bg-4);
-  padding: 3px;
-}
+  .rowGroup-content {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-right: 1px solid var(--col-bg-4);
+    padding: 3px;
+  }
 
-.rowGroup-icon {
-  display: flex;
-  align-items: center;
-  padding-top: 1px;
-  padding-left: 3px;
-  width: 18px;
-}
-.rowGroup-icon:hover {
-  zoom: 1.1;
+  .rowGroup-icon {
+    display: flex;
+    align-items: center;
+    padding-top: 1px;
+    padding-left: 3px;
+    width: 18px;
+  }
+  .rowGroup-icon:hover {
+    zoom: 1.1;
+  }
 }
 </style>
 ../data/rowModel ../data/moveRowModel

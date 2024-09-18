@@ -40,15 +40,5 @@ This is how I define my main.css when using Tailwind.<br>
       --color-white: white;
     }
 
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--col-bg-0);
-      height: 100vh;
-      color: var(--col-txt-0);
-      border-radius: 4px;
-    }
-
 
 ```

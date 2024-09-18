@@ -13,6 +13,7 @@
     <slot> </slot>
     <template v-slot:input>
       <input
+        class="focus:outline-none"
         v-model="model"
         :max
         :min

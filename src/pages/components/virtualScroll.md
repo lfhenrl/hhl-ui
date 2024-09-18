@@ -21,9 +21,9 @@
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flexCol  gap-4">
+    <div class="flex  gap-4">
     <H_btn @click="load">Load</H_btn>
-     <div class="flexCol  gap-4">
+     <div class="flex flex-col  gap-4">
       <H_virtual-list data-key="id" :data-sources="list" class="list shadow">
         <template v-slot:header>
           <div>Headline..</div>

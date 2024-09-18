@@ -15,15 +15,17 @@ onMounted(() => {
 </script>
 
 <style>
-.H_chartGantt_lineTool {
-  stroke: orange;
-  stroke-width: 2;
-  fill: none;
-  pointer-events: all;
-}
+@layer hhl-components {
+  .H_chartGantt_lineTool {
+    stroke: orange;
+    stroke-width: 2;
+    fill: none;
+    pointer-events: all;
+  }
 
-.H_chartGantt_lineTool:hover {
-  stroke: red;
-  pointer-events: all;
+  .H_chartGantt_lineTool:hover {
+    stroke: red;
+    pointer-events: all;
+  }
 }
 </style>

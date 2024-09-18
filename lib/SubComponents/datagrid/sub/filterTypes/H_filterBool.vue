@@ -61,12 +61,14 @@ onMounted(() => {
 defineExpose({ save, clear, open, close, canSave });
 </script>
 <style>
-.H_filterBool {
-  display: grid;
-  grid-template-rows: auto auto;
-  height: 100%;
-  gap: 12px;
-  overflow: hidden;
-  padding: 20px 20px 0 20px;
+@layer hhl-components {
+  .H_filterBool {
+    display: grid;
+    grid-template-rows: auto auto;
+    height: 100%;
+    gap: 12px;
+    overflow: hidden;
+    padding: 20px 20px 0 20px;
+  }
 }
 </style>

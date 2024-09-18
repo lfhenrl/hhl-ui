@@ -7,7 +7,7 @@ The default is `"24px"`.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_icon icon="edit" size="14px"></H_icon>
         <H_icon icon="edit"></H_icon>
         <H_icon icon="edit" size="44px"></H_icon>
@@ -26,7 +26,7 @@ The default is `"standard"`.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flexRow items-center gap-4 flexWrap">
+      <div class="flex items-center gap-4 flex-wrap">
         <H_icon icon="edit" btn="standard" ></H_icon>
         <H_icon icon="edit" btn="outline" ></H_icon>
         <H_icon icon="edit" btn="outline-round" ></H_icon>
@@ -47,8 +47,8 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flexCol gap-4">
-    <div class="flexRow items-center gap-4 flexWrap">
+     <div class="flex flex-col gap-4">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_icon icon="edit" btn></H_icon>
         <H_icon icon="edit" color="pri" btn></H_icon>
         <H_icon icon="edit" color="sec" btn></H_icon>
@@ -58,7 +58,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
         <H_icon icon="edit" color="info" btn></H_icon>
         <H_icon icon="edit" btn style="color: purple"></H_icon>
     </div>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_icon icon="edit" btn="outline"></H_icon>
         <H_icon icon="edit" color="pri" btn="outline"></H_icon>
         <H_icon icon="edit" color="sec" btn="outline"></H_icon>
@@ -68,7 +68,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
         <H_icon icon="edit" color="info" btn="outline"></H_icon>
         <H_icon icon="edit" style="color: purple" btn="outline"></H_icon>
     </div>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_icon icon="edit" btn="outline-round"></H_icon>
         <H_icon icon="edit" color="pri" btn="outline-round"></H_icon>
         <H_icon icon="edit" color="sec" btn="outline-round"></H_icon>
@@ -78,7 +78,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
         <H_icon icon="edit" color="info" btn="outline-round"></H_icon>
         <H_icon icon="edit" style="color: purple" btn="outline-round"></H_icon>
     </div>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_icon icon="edit" btn="fill"></H_icon>
         <H_icon icon="edit" color="pri" btn="fill"></H_icon>
         <H_icon icon="edit" color="sec" btn="fill"></H_icon>
@@ -88,7 +88,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
         <H_icon icon="edit" color="info" btn="fill"></H_icon>
         <H_icon icon="edit" style="background: purple;color: white" btn="fill"></H_icon>
     </div>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_icon icon="edit" btn="fill-round"></H_icon>
         <H_icon icon="edit" color="pri" btn="fill-round"></H_icon>
         <H_icon icon="edit" color="sec" btn="fill-round"></H_icon>
@@ -109,8 +109,8 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flexCol gap-4">
-    <div class="flexRow items-center gap-4 flexWrap">
+     <div class="flex flex-col gap-4">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_icon icon="edit" btn disabled></H_icon>
         <H_icon icon="edit" color="pri" btn disabled></H_icon>
         <H_icon icon="edit" color="sec" btn disabled></H_icon>
@@ -120,7 +120,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
         <H_icon icon="edit" color="info" btn disabled></H_icon>
         <H_icon icon="edit" btn style="color: purple" disabled></H_icon>
     </div>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_icon icon="edit" btn="outline" disabled></H_icon>
         <H_icon icon="edit" color="pri" btn="outline" disabled></H_icon>
         <H_icon icon="edit" color="sec" btn="outline" disabled></H_icon>
@@ -130,7 +130,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
         <H_icon icon="edit" color="info" btn="outline" disabled></H_icon>
         <H_icon icon="edit" style="color: purple" btn="outline" disabled></H_icon>
     </div>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_icon icon="edit" btn="outline-round" disabled></H_icon>
         <H_icon icon="edit" color="pri" btn="outline-round" disabled></H_icon>
         <H_icon icon="edit" color="sec" btn="outline-round" disabled></H_icon>
@@ -140,7 +140,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
         <H_icon icon="edit" color="info" btn="outline-round" disabled></H_icon>
         <H_icon icon="edit" style="color: purple" btn="outline-round" disabled></H_icon>
     </div>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_icon icon="edit" btn="fill" disabled></H_icon>
         <H_icon icon="edit" color="pri" btn="fill" disabled></H_icon>
         <H_icon icon="edit" color="sec" btn="fill" disabled></H_icon>
@@ -150,7 +150,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
         <H_icon icon="edit" color="info" btn="fill" disabled></H_icon>
         <H_icon icon="edit" style="background: purple;color: white" btn="fill" disabled></H_icon>
     </div>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_icon icon="edit" btn="fill-round" disabled></H_icon>
         <H_icon icon="edit" color="pri" btn="fill-round" disabled></H_icon>
         <H_icon icon="edit" color="sec" btn="fill-round" disabled></H_icon>

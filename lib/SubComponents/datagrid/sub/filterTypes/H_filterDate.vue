@@ -100,16 +100,18 @@ defineExpose({ save, clear, open, close, canSave });
 </script>
 
 <style>
-.H_filterDate {
-  display: grid;
-  grid-template-rows: auto auto 1fr;
-  height: 100%;
-  gap: 12px;
-  overflow: hidden;
-  padding: 20px 20px 0 20px;
-}
+@layer hhl-components {
+  .H_filterDate {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    height: 100%;
+    gap: 12px;
+    overflow: hidden;
+    padding: 20px 20px 0 20px;
+  }
 
-.H_filterDate .H_inputbase.H_selectbox {
-  max-height: 3rem;
+  .H_filterDate .H_inputbase.H_selectbox {
+    max-height: 3rem;
+  }
 }
 </style>

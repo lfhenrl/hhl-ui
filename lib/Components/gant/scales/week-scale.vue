@@ -42,45 +42,47 @@ function getWeek(item: iScaleItem) {
 </script>
 
 <style>
-.week-scale {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  font-size: 12px;
-  pointer-events: none;
-  user-select: none;
-}
-.week-scale-header {
-  position: sticky;
-  top: 0;
-  background-color: var(--col-bg-1);
-  max-height: var(--gantt-head-height);
-  min-height: var(--gantt-head-height);
-  border-bottom: 1px solid var(--col-bg-3);
-  z-index: 9;
-}
-.week-scale-head {
-  text-align: center;
-  border-bottom: 1px solid var(--col-bg-3);
-}
-.week-scale-body {
-  display: flex;
-}
+@layer hhl-components {
+  .week-scale {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    font-size: 12px;
+    pointer-events: none;
+    user-select: none;
+  }
+  .week-scale-header {
+    position: sticky;
+    top: 0;
+    background-color: var(--col-bg-1);
+    max-height: var(--gantt-head-height);
+    min-height: var(--gantt-head-height);
+    border-bottom: 1px solid var(--col-bg-3);
+    z-index: 9;
+  }
+  .week-scale-head {
+    text-align: center;
+    border-bottom: 1px solid var(--col-bg-3);
+  }
+  .week-scale-body {
+    display: flex;
+  }
 
-.week-scale-grid {
-  display: flex;
-  min-height: var(--gantt-scroll-height);
-  z-index: -1;
-}
-.week-scale-item {
-  padding: 0 4px;
-  width: 35px;
-  text-align: center;
-  border-right: 1px solid var(--col-bg-3);
-}
+  .week-scale-grid {
+    display: flex;
+    min-height: var(--gantt-scroll-height);
+    z-index: -1;
+  }
+  .week-scale-item {
+    padding: 0 4px;
+    width: 35px;
+    text-align: center;
+    border-right: 1px solid var(--col-bg-3);
+  }
 
-.holyday {
-  background-color: var(--col-bg-1);
+  .holyday {
+    background-color: var(--col-bg-1);
+  }
 }
 </style>

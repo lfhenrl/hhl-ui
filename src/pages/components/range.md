@@ -7,7 +7,7 @@ here the values are: `min="0"` and `min="100"`
 
 <hhl-live-editor title="" htmlCode=' 
     <template>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex flex-col items-center gap-4 ">
         <H_range v-model="value" :min="0" :max="100" label="Slider Label"></H_range>
         <H_input type="number" v-model="value" label="Slider value"></H_input>
     </div>
@@ -33,7 +33,7 @@ If you need a special color then just use `style="--bgcolor: purple; color: whit
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flexCol gap-8 flexWrap">
+    <div class="flex flex-col gap-8">
         <H_range v-model="value" :min="0" :max="100" label="col-pri" color="pri"></H_range>
         <H_range v-model="value" :min="0" :max="100" label="col-sec" color="sec"></H_range>
         <H_range v-model="value" :min="0" :max="100" label="col-ok" color="ok"></H_range>

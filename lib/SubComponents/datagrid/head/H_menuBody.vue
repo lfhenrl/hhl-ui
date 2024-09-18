@@ -83,32 +83,34 @@ function menuClick(e: MouseEvent) {
 </script>
 
 <style>
-.H_menuBody {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--col-bg-2);
-  background-color: var(--col-bg-0);
-  padding-top: 4px;
-  color: var(--col-txt-1);
-  font-size: 12px;
-  font-weight: 400;
-}
-.H_menu-popup-item {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  gap: 8px;
-  border-bottom: 1px solid var(--col-bg-4);
-  padding: 2px 8px;
-}
-.H_menu-popup-item[data-selected="true"] {
-  background-color: var(--col-pri);
-  color: var(--col-on-pri);
-}
-.H_menu-popup-item:hover {
-  background-color: var(--col-bg-3);
-}
-.H_menu-noPointerEvents {
-  pointer-events: none;
+@layer hhl-components {
+  .H_menuBody {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--col-bg-2);
+    background-color: var(--col-bg-0);
+    padding-top: 4px;
+    color: var(--col-txt-1);
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .H_menu-popup-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+    border-bottom: 1px solid var(--col-bg-4);
+    padding: 2px 8px;
+  }
+  .H_menu-popup-item[data-selected="true"] {
+    background-color: var(--col-pri);
+    color: var(--col-on-pri);
+  }
+  .H_menu-popup-item:hover {
+    background-color: var(--col-bg-3);
+  }
+  .H_menu-noPointerEvents {
+    pointer-events: none;
+  }
 }
 </style>

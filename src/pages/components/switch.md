@@ -6,7 +6,7 @@ The H_switch van be a checkbox or a radio, the apperance can be standard or a sw
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_switch label="Switch 1"  v-model="check"></H_switch>
         <H_switch label="Switch 2" v-model="check"></H_switch>    
         <H_switch label="Switch 3" v-model="check"></H_switch>
@@ -25,7 +25,7 @@ The H_switch van be a checkbox or a radio, the apperance can be standard or a sw
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_switch switch label="Switch 1"  v-model="check"></H_switch>
         <H_switch switch label="Switch 2" v-model="check"></H_switch>    
         <H_switch switch label="Switch 3" v-model="check"></H_switch>
@@ -45,7 +45,7 @@ The H_switch van be a checkbox or a radio, the apperance can be standard or a sw
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_switch type="radio" label="Radio 1"  v-model="radioVal" value="val1"></H_switch>
         <H_switch type="radio" label="Radio 2" v-model="radioVal" value="val2"></H_switch>    
         <H_switch type="radio" label="Radio 3" v-model="radioVal" value="val3"></H_switch>
@@ -64,7 +64,7 @@ The H_switch van be a checkbox or a radio, the apperance can be standard or a sw
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_switch switch type="radio" label="Radio 1"  v-model="radioVal" value="val1"></H_switch>
         <H_switch switch type="radio" label="Radio 2" v-model="radioVal" value="val2"></H_switch>    
         <H_switch switch type="radio" label="Radio 3" v-model="radioVal" value="val3"></H_switch>
@@ -85,7 +85,7 @@ You can change the label position to left by adding the prop `label-left`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flexRow items-center gap-4 flexWrap">
+    <div class="flex items-center gap-4 flex-wrap">
         <H_switch label="label standard" v-model="check"></H_switch>
         <H_switch label-left label="Label left" v-model="check"></H_switch>  
        <div class="flex-1" /> 
@@ -102,15 +102,28 @@ You can change the label position to left by adding the prop `label-left`
 
 ## Size
 
-You can change the size by the prop `size="/sm/md/lg"`<br>
-The default is `"md"`.
+You can change the size by the font-size `text-xs sm,base,lg,2xl,3xl....`<br>
+Default is `text-base`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flexRow items-center gap-4 flexWrap">
-        <H_switch size="sm" label="Switch small (sm)" v-model="check"></H_switch>
-        <H_switch size="md"  label="Switch standard (md)" v-model="check"></H_switch>    
-        <H_switch size="lg" label="Switch large (lg)" v-model="check"></H_switch>
+    <div class="flex items-center gap-4 flex-wrap">
+        <H_switch class="text-xs" label="XS" v-model="check"></H_switch>
+        <H_switch class="text-sm"  label="SM" v-model="check"></H_switch>    
+        <H_switch label="Base default" v-model="check"></H_switch>
+        <H_switch class="text-lg"  label="LG)" v-model="check"></H_switch>  
+         <H_switch class="text-xl"  label="XL" v-model="check"></H_switch>  
+        <H_switch class="text-2xl"  label="2XL" v-model="check"></H_switch> 
+        <H_switch class="text-3xl"  label="3XL" v-model="check"></H_switch> 
+    </div>
+        <div class="flex items-center gap-4 flex-wrap mt-9">
+        <H_switch switch class="text-xs" label="XS" v-model="check"></H_switch>
+        <H_switch switch class="text-sm"  label="SM" v-model="check"></H_switch>    
+        <H_switch switch label="Base default" v-model="check"></H_switch>
+        <H_switch switch class="text-lg"  label="LG)" v-model="check"></H_switch>  
+         <H_switch switch class="text-xl"  label="XL" v-model="check"></H_switch>  
+        <H_switch switch class="text-2xl"  label="2XL" v-model="check"></H_switch> 
+        <H_switch switch class="text-3xl"  label="3XL" v-model="check"></H_switch> 
     </div>
     </template>
     <script>
@@ -124,29 +137,29 @@ The default is `"md"`.
 
 ## Color
 
-You can change the color by the prop `color="/pri/sec/ok/err/warn/info/"`<br>
+You can change the color by the class `"col-pri,sec,ok,err,warn,info"`<br>
 The default is `pri`.<br>
-If you need a special color then just use `style="--color: purple"`
+If you need a special color then just use `style="--current-bg-col: purple"`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flexRow items-center gap-4 flexWrap">
-        <H_switch color="pri" label="col-pri" v-model="check"></H_switch>
-        <H_switch color="sec" label="col-sec" v-model="check"></H_switch>    
-        <H_switch color="ok" label="col-ok" v-model="check"></H_switch>
-        <H_switch color="err" label="col-err" v-model="check"></H_switch>
-        <H_switch color="warn" label="col-warn" v-model="check"></H_switch>
-        <H_switch color="info" label="col-info" v-model="check"></H_switch>
-        <H_switch style="--color: purple" label="purple" v-model="check"></H_switch>
+    <div class="flex items-center gap-4 flexWrap">
+        <H_switch label="col-pri" v-model="check"></H_switch>
+        <H_switch class="col-sec" label="col-sec" v-model="check"></H_switch>    
+        <H_switch class="col-ok" label="col-ok" v-model="check"></H_switch>
+        <H_switch class="col-err" label="col-err" v-model="check"></H_switch>
+        <H_switch class="col-warn" label="col-warn" v-model="check"></H_switch>
+        <H_switch class="col-info" label="col-info" v-model="check"></H_switch>
+        <H_switch style="--current-bg-col: purple" label="purple" v-model="check"></H_switch>
     </div>
-        <div class="flexRow items-center gap-4 flexWrap" style="margin-top:20px">
-        <H_switch switch color="pri" label="col-pri" v-model="check"></H_switch>
-        <H_switch switch color="sec" label="col-sec" v-model="check"></H_switch>    
-        <H_switch switch color="ok" label="col-ok" v-model="check"></H_switch>
-        <H_switch switch color="err" label="col-err" v-model="check"></H_switch>
-        <H_switch switch color="warn" label="col-warn" v-model="check"></H_switch>
-        <H_switch switch color="info" label="col-info" v-model="check"></H_switch>
-        <H_switch switch style="--color: purple" label="purple" v-model="check"></H_switch>
+        <div class="flex items-center gap-4 flexWrap" style="margin-top:20px">
+        <H_switch switch label="col-pri" v-model="check"></H_switch>
+        <H_switch switch class="col-sec" label="col-sec" v-model="check"></H_switch>    
+        <H_switch switch class="col-ok" label="col-ok" v-model="check"></H_switch>
+        <H_switch switch class="col-err" label="col-err" v-model="check"></H_switch>
+        <H_switch switch class="col-warn" label="col-warn" v-model="check"></H_switch>
+        <H_switch switch class="col-info" label="col-info" v-model="check"></H_switch>
+        <H_switch switch style="--current-bg-col: purple" label="purple" v-model="check"></H_switch>
     </div>
     </template>
     <script>
@@ -164,15 +177,24 @@ You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-        <div class="flexRow items-center gap-4 flexWrap">
-            <H_switch disabled color="pri" label="col-pri" v-model="check"></H_switch>
-            <H_switch disabled color="sec" label="col-sec" v-model="check"></H_switch>    
-            <H_switch disabled color="ok" label="col-ok" v-model="check"></H_switch>
-            <H_switch disabled color="err" label="col-err" v-model="check"></H_switch>
-            <H_switch disabled color="warn" label="col-warn" v-model="check"></H_switch>
-            <H_switch disabled color="info" label="col-info" v-model="check"></H_switch>
-            <H_switch disabled style="--color: purple" label="purple" v-model="check"></H_switch>
-        </div>
+            <div class="flex items-center gap-4 flexWrap">
+        <H_switch disabled label="col-pri" v-model="check"></H_switch>
+        <H_switch disabled class="col-sec" label="col-sec" v-model="check"></H_switch>    
+        <H_switch disabled class="col-ok" label="col-ok" v-model="check"></H_switch>
+        <H_switch disabled class="col-err" label="col-err" v-model="check"></H_switch>
+        <H_switch disabled class="col-warn" label="col-warn" v-model="check"></H_switch>
+        <H_switch disabled class="col-info" label="col-info" v-model="check"></H_switch>
+        <H_switch disabled style="--current-bg-col: purple" label="purple" v-model="check"></H_switch>
+    </div>
+        <div class="flex items-center gap-4 flexWrap" style="margin-top:20px">
+        <H_switch disabled switch label="col-pri" v-model="check"></H_switch>
+        <H_switch disabled switch class="col-sec" label="col-sec" v-model="check"></H_switch>    
+        <H_switch disabled switch class="col-ok" label="col-ok" v-model="check"></H_switch>
+        <H_switch disabled switch class="col-err" label="col-err" v-model="check"></H_switch>
+        <H_switch disabled switch class="col-warn" label="col-warn" v-model="check"></H_switch>
+        <H_switch disabled switch class="col-info" label="col-info" v-model="check"></H_switch>
+        <H_switch disabled switch style="--current-bg-col: purple" label="purple" v-model="check"></H_switch>
+    </div>
     </template>
     <script>
         const check = ref(true);

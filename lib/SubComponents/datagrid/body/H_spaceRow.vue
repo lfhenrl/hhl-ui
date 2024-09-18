@@ -22,15 +22,17 @@ import { iDgrid } from "../provide/Dgrid";
 const DG = inject("DG") as iDgrid;
 </script>
 <style>
-.H_spaceRow {
-  display: flex;
-  max-height: 1px;
-  opacity: 0;
-}
-.H_spaceRow-Cell {
-  display: inline-block;
-  border-right: solid 1px var(--col-bg-3);
-  max-height: 1px;
-  overflow: hidden;
+@layer hhl-components {
+  .H_spaceRow {
+    display: flex;
+    max-height: 1px;
+    opacity: 0;
+  }
+  .H_spaceRow-Cell {
+    display: inline-block;
+    border-right: solid 1px var(--col-bg-3);
+    max-height: 1px;
+    overflow: hidden;
+  }
 }
 </style>

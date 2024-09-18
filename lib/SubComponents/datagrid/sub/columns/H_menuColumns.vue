@@ -137,49 +137,50 @@ function columnsSave() {
 }
 </script>
 <style>
-.H_menuColumns-header {
-  display: flex;
-  align-items: center;
-  min-width: 200px;
-  height: 2.5em;
-  width: 100%;
-}
-.H_menuColumns-header div {
-  flex: 1 1 100%;
-  font-size: 1.2em;
-}
-.H_menuColumns-header .H_icon {
-  flex: 0;
-  cursor: pointer;
-}
-.H_menuColumns-body {
-  display: flex;
-  flex-direction: column;
-  padding-top: 6px;
-  gap: 10px;
-  background-color: var(--col-bg-0);
-}
-.H_menuColumns-drag {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  width: 100%;
-  overflow: auto;
-  padding: 8px;
-  padding-top: 4px;
-}
-.H_menuColumns-dragH90 {
-  max-height: 90px;
-  min-height: 90px;
-}
-.H_menuColumns-dragH200 {
-  max-height: 200px;
-  min-height: 200px;
-}
-.H_menuColumns-footer {
-  display: flex;
-  justify-content: end;
-
+@layer hhl-components {
+  .H_menuColumns-header {
+    display: flex;
+    align-items: center;
+    min-width: 200px;
+    height: 2.5em;
+    width: 100%;
+  }
+  .H_menuColumns-header div {
+    flex: 1 1 100%;
+    font-size: 1.2em;
+  }
+  .H_menuColumns-header .H_icon {
+    flex: 0;
+    cursor: pointer;
+  }
+  .H_menuColumns-body {
+    display: flex;
+    flex-direction: column;
+    padding-top: 6px;
+    gap: 10px;
+    background-color: var(--col-bg-0);
+  }
+  .H_menuColumns-drag {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 100%;
+    overflow: auto;
+    padding: 8px;
+    padding-top: 4px;
+  }
+  .H_menuColumns-dragH90 {
+    max-height: 90px;
+    min-height: 90px;
+  }
+  .H_menuColumns-dragH200 {
+    max-height: 200px;
+    min-height: 200px;
+  }
+  .H_menuColumns-footer {
+    display: flex;
+    justify-content: end;
+  }
   .H_btn {
     min-width: 5em;
   }

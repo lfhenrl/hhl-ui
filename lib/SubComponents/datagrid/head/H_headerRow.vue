@@ -20,10 +20,12 @@ onMounted(() => {
 });
 </script>
 <style>
-.H_headerRow {
-  display: flex;
-  flex: 1 1 100%;
+@layer hhl-components {
+  .H_headerRow {
+    display: flex;
+    flex: 1 1 100%;
 
-  border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+  }
 }
 </style>
