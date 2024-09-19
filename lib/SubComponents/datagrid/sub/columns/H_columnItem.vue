@@ -1,16 +1,15 @@
 <template>
   <div class="H_columnItem">
     <div class="H_columnItem-check" :class="{ 'H_columnItem-checked': data.visibel }" @click="checkClick">
-      <H_icon icon="check" size="15px" btn="standard" v-if="data.visibel" />
+      <div class="ico-check iconBtn" v-if="data.visibel" />
     </div>
-    <H_icon icon="drag" size="16px" btn="standard" />
+    <div class="ico-drag iconBtn" />
     {{ data?.title }}
   </div>
 </template>
 
 <script setup lang="ts">
 import { PropType, ref } from "vue";
-import H_icon from "../../../../Components/H_icon.vue";
 
 type iGroupdata = {
   field: string;

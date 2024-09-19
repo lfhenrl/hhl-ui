@@ -1,8 +1,8 @@
 <template>
-  <div class="H_virtualList">
-    <div class="H_virtualList-body" ref="root" @scroll="onScroll">
+  <div class="H_virtualList grid grid-rows-[1fr_auto] grid-col w-full h-full min-h-80 rounded">
+    <div class="H_virtualList-body relative inline-block overflow-scroll h-full" ref="root" @scroll="onScroll">
       <slot name="header" />
-      <div class="H_virtualList-scroller" role="group" :style="paddingStyle">
+      <div class="H_virtualList-scroller relative inline-block min-w-full" role="group" :style="paddingStyle">
         <H_virtualListItem
           v-for="item in items"
           :key="getId(item)"
@@ -290,28 +290,3 @@ function emitEvent(offset: number, clientSize: number, scrollSize: number, evt: 
   }
 }
 </script>
-<style>
-@layer hhl-components {
-  .H_virtualList {
-    display: grid;
-    grid-template-rows: 1fr auto;
-    grid-template-columns: auto;
-    height: 100%;
-    min-height: 200px;
-    border-radius: 4px;
-  }
-
-  .H_virtualList-body {
-    position: relative;
-    display: inline-block;
-    overflow: scroll;
-    height: 100%;
-  }
-
-  .H_virtualList-scroller {
-    position: relative;
-    display: inline-block;
-    min-width: 100%;
-  }
-}
-</style>

@@ -150,7 +150,7 @@ You can add a Icon or other stoff with the start slot.
       <template>
       <div class="flex items-center gap-4 flex-wrap">
             <H_input  v-model="txt" label="Text input"> 
-                        <H_icon icon="mail" btn="standard" @click="click(txt)"></H_icon>
+                        <div class="ico-mail iconBtn" @click="click(txt)"></div>
             </H_input>
       </div>
       </template>
@@ -174,8 +174,8 @@ You can add a Icon or other stoff with the end slot.
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4 flex-wrap">
-            <H_input v-model="txt" label="Text input">
-                        <H_icon set-end icon="mail" btn="standard" @click="click(txt)"></H_icon>
+            <H_input v-model="txt" label="Text input">                        
+                <div class="ico-mail iconBtn" @click="click(txt)"></div>
             </H_input>
       </div>
       </template>

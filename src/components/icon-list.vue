@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import ico from "../../lib/tw/icons/icons.json";
+import ico from "../../lib/styles/tw/icons/icons.json";
 
 const icons: any = ref([]);
 

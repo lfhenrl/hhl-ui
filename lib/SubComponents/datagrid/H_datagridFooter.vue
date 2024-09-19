@@ -1,9 +1,9 @@
 <template>
   <div class="H_datagridFooter">
-    <H_icon btn="standard" icon="columns" title="Edit Columns" @click="editColumns" />
-    <H_icon btn="standard" icon="expand_horizontal" title="Auto adjust all columns" @click="autoAdjustColumns" />
-    <H_icon btn="standard" icon="excel" title="Download to excel" @click="excel" />
-    <H_icon btn="standard" icon="zoom_out_map" title="fullScreen" @click="fullScreen" />
+    <div class="ico-columns iconBtn" title="Edit Columns" @click="editColumns" />
+    <div class="ico-expand_horizontal iconBtn" title="Auto adjust all columns" @click="autoAdjustColumns" />
+    <div class="ico-excel iconBtn" title="Download to excel" @click="excel" />
+    <div class="ico-zoom_out_map iconBtn" title="fullScreen" @click="fullScreen" />
     <div style="flex: 1" />
     <div class="H_datagrid__rowcount">
       <b>{{ DG.dataHandler?.rowsCount }}</b
@@ -18,7 +18,6 @@
 import { inject, ref } from "vue";
 import { iDgrid } from "./provide/Dgrid";
 import csv from "../../utils/exportToExcel";
-import H_icon from "../../Components/H_icon.vue";
 import H_menuColumns from "./sub/columns/H_menuColumns.vue";
 import { iColumn } from "./provide/Column";
 

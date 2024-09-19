@@ -7,8 +7,8 @@
     :row-level="row.__level"
   >
     <div class="H_dataGroupRow-expandBtn" @click.stop="expand">
-      <H_icon v-if="row.__expanded" icon="expand_down" btn="standard" />
-      <H_icon v-else icon="expand_right" btn="standard" />
+      <div class="ico-expand_down iconBtn" v-if="row.__expanded" />
+      <div class="ico-expand_right iconBtn" v-else />
     </div>
     <div>{{ row.__title }}</div>
     <span> ({{ row.__count }}/{{ row.__count_total }})</span>
@@ -18,7 +18,6 @@
 <script setup lang="ts">
 import { getCurrentInstance, inject, onMounted } from "vue";
 import { iDgrid } from "../provide/Dgrid";
-import H_icon from "../../../Components/H_icon.vue";
 
 const instace = getCurrentInstance();
 

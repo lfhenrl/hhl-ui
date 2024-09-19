@@ -10,8 +10,8 @@
       }"
       @click="$emit('update:modelValue', false)"
     >
-      <H_icon icon="check" size="28px" btn="standard" v-if="type === 'info'" />
-      <H_icon icon="info" size="28px" btn="standard" v-else />
+      <div class="ico-check iconBtn" v-if="type === 'info'" />
+      <div class="ico-info iconBtn" v-else />
       <div class="H_snack-info">
         <span class="H_snack-info-title">{{ title }}</span>
         <span class="H_snack__text">{{ text }}</span>
@@ -21,8 +21,6 @@
 </template>
 
 <script setup lang="ts">
-import H_icon from "../H_icon.vue";
-
 defineProps({
   modelValue: { type: Boolean, default: false, required: true },
   type: { default: "warn", type: String },

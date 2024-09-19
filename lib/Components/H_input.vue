@@ -13,7 +13,8 @@
     <slot> </slot>
     <template v-slot:input>
       <input
-        class="focus:outline-none"
+        class="w-full bg-transparent focus:outline-none"
+        :class="{ 'w-[3em] h-[1em] p-0': type === 'color' }"
         v-model="model"
         :max
         :min
@@ -69,26 +70,3 @@ const stringCounter = computed(() => {
 
 const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
-<style>
-.H_input .H_inputbase-input {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.H_input .H_inputbase-input input {
-  width: 100%;
-  background-color: transparent;
-}
-
-.H_input .H_inputbase-input input[type="color"] {
-  width: 3em;
-  height: 1em;
-  padding: 0 3px;
-}
-
-.H_input .H_inputbase-input input[type="color"]::-webkit-color-swatch-wrapper {
-  padding: 0;
-}
-.H_input .H_inputbase-input input[type="color"]::-webkit-color-swatch {
-  border: none;
-}
-</style>

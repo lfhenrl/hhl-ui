@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="H_dateTable__innerHeader">
-      <H_icon icon="expand_left" type="icon-text" btn="standard" @click="changeMonth(-1)" />
+      <div class="ico-expand_left iconBtn" @click="changeMonth(-1)" />
       <div class="H_dateTable__innerHeaderValue" @click="$emit('month-click')">
         {{ tempDatomy.toLocaleString("en-us", { month: "long", year: "numeric" }) }}
       </div>
-      <H_icon btn="standard" icon="expand_right" type="icon-text" @click="changeMonth(1)" round />
+      <div class="ico-expand_right iconBtn" @click="changeMonth(1)" round />
     </div>
     <div class="H_dateTable__table" @click="itemClick">
       <div
@@ -39,7 +39,6 @@ import { getDaysArray } from "./getDaysArray";
 import { DateAddMonths } from "../../utils/dateFunctions";
 import { HHL_isHolyDay } from "./holyDays";
 import { computed, ref, watch } from "vue";
-import H_icon from "../../Components/H_icon.vue";
 
 const props = defineProps({
   modelValue: { type: Date, default: new Date() },

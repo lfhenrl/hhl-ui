@@ -142,7 +142,7 @@ You can add a Icon or other stoff with the start slot.
       <template>
       <div class="flex items-center gap-4 flex-wrap">
             <H_textarea v-model="txt" label="Text input">
-                <H_icon icon="mail" btn="standard" @click="click(txt)"></H_icon>
+                <div class="ico-mail iconBtn" @click="click(txt)"></div>
             </H_textarea>
       </div>
       </template>
@@ -166,7 +166,7 @@ You can add a Icon or other stoff with the end slot.
       <template>
       <div class="flex items-center gap-4 flex-wrap">
             <H_textarea end-icon="mail"  v-model="txt" label="Text input">
-                <H_icon set-end icon="mail" btn="standard" @click="click(txt)"></H_icon>
+                <div class="ico-mail iconBtn" @click="click(txt)"></div>
             </H_textarea>
       </div>
       </template>

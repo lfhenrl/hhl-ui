@@ -1,6 +1,6 @@
 <template>
   <button
-    class="H_btn o-col-pri cursor-pointer rounded hover:brightness-90 active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
+    class="H_btn inline-flex flex-grow-0 gap-[.3em] py-[.4em] px-[.9em] items-center justify-center self-center whitespace-nowrap o-col-pri cursor-pointer rounded hover:brightness-90 active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
     type="button"
     :class="{
       'bg-transparent border text-currentBg border-currentBg border-solid ': type === 'outline',
@@ -22,15 +22,3 @@ defineProps({
   },
 });
 </script>
-<style>
-@layer hhl-components {
-  .H_btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    white-space: nowrap;
-    padding: 0.4em 0.9em;
-  }
-}
-</style>

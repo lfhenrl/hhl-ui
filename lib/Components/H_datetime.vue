@@ -16,7 +16,7 @@
         autocomplete="off"
         :step="type === 'datetimesec' ? 1 : 0"
         :type="inputType"
-        class="focus:outline-none"
+        class="w-full bg-transparent focus:outline-none"
       />
     </template>
   </H_inputbase>
@@ -69,7 +69,6 @@ watchEffect(() => {
       el.value.value = getDateString(model.value, 10);
     } else if (P.type == "datetime") {
       el.value.value = getDateString(model.value, 16);
-      console.log("datetime ", el.value.value);
     } else if (P.type == "datetimesec") {
       el.value.value = getDateString(model.value, 19);
     }
@@ -87,15 +86,3 @@ function getDateString(date: any, slice: number) {
 
 const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
-<style>
-@layer hhl-components {
-  .H_datetime .H_inputbase-input {
-    font-family: Arial, Helvetica, sans-serif;
-  }
-
-  .H_datetime .H_inputbase-input input {
-    width: 100%;
-    background-color: transparent;
-  }
-}
-</style>

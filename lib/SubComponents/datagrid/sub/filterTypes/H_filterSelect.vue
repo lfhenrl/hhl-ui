@@ -1,7 +1,7 @@
 <template>
   <div class="H_filterSelect">
     <H_input v-model="searchValue" clearable>
-      <H_icon set-end icon="search" />
+      <div class="ico-search" set-end />
     </H_input>
     <H_switch switch label="Select All." :model-value="AllSelected" @click.prevent="SelectToggle" />
     <H_selectbase multi v-model="value1" :list="filter" />
@@ -11,7 +11,6 @@
 <script setup lang="ts">
 import { computed, inject, onMounted, ref } from "vue";
 import H_input from "../../../../Components/H_input.vue";
-import H_icon from "../../../../Components/H_icon.vue";
 import H_switch from "../../../../Components/H_switch.vue";
 import H_selectbase from "../../../../Components/H_selectbase.vue";
 import { iDgrid } from "../../provide/Dgrid";

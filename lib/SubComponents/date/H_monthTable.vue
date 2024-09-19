@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="H_monthTable__innerHeader">
-      <H_icon btn="standard" icon="expand_left" @click="changeYear(-1)" round />
+      <div class="ico-expand_left iconBtn" @click="changeYear(-1)" round />
       <div class="H_monthTable__innerHeaderValue">
         {{ tempDato.toLocaleString("en-us", { year: "numeric" }) }}
       </div>
-      <H_icon btn="standard" icon="expand_right" @click="changeYear(1)" />
+      <div class="ico-expand_right iconBtn" @click="changeYear(1)" />
     </div>
     <div class="H_monthTable__table" @click="itemClick">
       <div
@@ -26,7 +26,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { DateAddYears } from "../../utils/dateFunctions";
-import H_icon from "../../Components/H_icon.vue";
 
 const props = defineProps({
   modelValue: { type: Date, default: new Date() },

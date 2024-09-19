@@ -9,13 +9,13 @@ Default is `text-base`
 <hhl-live-editor title=""  htmlCode='
 <template>
       <div class="flex items-center gap-4 flex-wrap">
-            <H_btn class="text-xs">XS</H_btn>
-            <H_btn class="text-sm">SM</H_btn>
-            <H_btn >Base (Default)</H_btn>
-            <H_btn class="text-lg">LG</H_btn>
-            <H_btn class="text-xl">XL</H_btn>
-            <H_btn class="text-2xl">2xl</H_btn>
-            <H_btn class="text-3xl">3xl</H_btn>
+            <H_btn class="text-xs"><div class="ico-mail"></div>XS</H_btn>
+            <H_btn class="text-sm"><div class="ico-mail"></div>SM</H_btn>
+            <H_btn ><div class="ico-mail"></div>Base (Default)</H_btn>
+            <H_btn class="text-lg"><div class="ico-mail"></div>LG</H_btn>
+            <H_btn class="text-xl"><div class="ico-mail"></div>XL</H_btn>
+            <H_btn class="text-2xl"><div class="ico-mail"></div>2xl</H_btn>
+            <H_btn class="text-3xl"><div class="ico-mail"></div>3xl</H_btn>
       </div>
 </template>
 '>

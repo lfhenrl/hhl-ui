@@ -3,7 +3,7 @@
     <H_popover v-model="popupOpen" :offset-top="8" :readonly="readonly">
       <template v-slot:referance>
         <div class="H_datePicker__inputcontainer" title="Datepicker" tabindex="0">
-          <H_icon icon="event" size="20px" v-if="!hideIcon" tabindex="-1" />
+          <div class="ico-event" v-if="!hideIcon" tabindex="-1" />
           <input
             name="datepicker"
             title="Datepicker"
@@ -43,7 +43,6 @@ import { computed, ref, watch } from "vue";
 import { D_01_dec_2021, D_mon_01_dec_2021 } from "../../utils/dateFormat";
 import { DateGetToday } from "../../utils/dateFunctions";
 import H_popover from "../../Components/H_popover.vue";
-import H_icon from "../../Components/H_icon.vue";
 import H_btn from "../../Components/H_btn.vue";
 import H_dateTable from "./H_dateTable.vue";
 import H_monthTable from "./H_monthTable.vue";
@@ -113,15 +112,6 @@ const cancel = () => close();
     display: inline-flex;
     align-items: center;
     cursor: pointer;
-  }
-
-  .H_datePicker__inputcontainer .H_icon {
-    color: var(--col-txt-3);
-    width: 20px;
-  }
-
-  .H_datePicker__inputcontainer:hover .H_icon {
-    scale: 1.2;
   }
 
   .H_datePicker__input {

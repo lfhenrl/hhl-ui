@@ -1,7 +1,7 @@
 <template>
   <Transition name="H_router-slide-fade" mode="out-in">
     <keep-alive :include="cachedPages">
-      <component :is="currentView" class="H_router" />
+      <component :is="currentView" class="overflow-auto h-full w-full" />
     </keep-alive>
   </Transition>
 </template>
@@ -9,7 +9,7 @@
 <script lang="ts">
 const beforenavigateList: any[] = [];
 let cachedPages: string[] = [];
-export const Pages = ref<{ name: string; path: string }[]>([]);
+export const Pages = ref<{ name: string; icon?: string; path: string }[]>([]);
 export const activeRoute = ref(window.location.hash.slice(1));
 
 export const beforenavigate = (fn: (to: string, from: string) => boolean) => {
@@ -39,6 +39,7 @@ function getcachedPages() {
     const val = P.routes[item];
     const page = {
       name: val["name"],
+      icon: val["icon"],
       path: "#" + item,
     };
     Pages.value.push(page);
@@ -68,12 +69,6 @@ getcachedPages();
 
 <style>
 @layer hhl-components {
-  .H_router {
-    overflow: auto;
-    height: 100%;
-    width: 100%;
-  }
-
   .H_router-slide-fade-enter-active {
     transition: all 0.2s ease-out;
   }

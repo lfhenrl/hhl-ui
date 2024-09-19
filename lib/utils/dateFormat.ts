@@ -25,17 +25,6 @@ const _29_01_2021_HHMMSS = new Intl.DateTimeFormat("en-GB", {
 });
 export const D_29_01_2021_HHMMSS = (D: Date) => _29_01_2021_HHMMSS.format(new Date(D));
 
-const _29_01_2021_HHMMSSms = new Intl.DateTimeFormat("en-GB", {
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-  fractionalSecondDigits: 3,
-});
-export const D_29_01_2021_HHMMSSms = (D: Date) => _29_01_2021_HHMMSSms.format(new Date(D));
-
 const _01_dec_2021 = new Intl.DateTimeFormat("en-GB", {
   year: "numeric",
   month: "short",
@@ -61,17 +50,6 @@ const _01_dec_2021_HHMMSS = new Intl.DateTimeFormat("en-GB", {
   second: "2-digit",
 });
 export const D_01_dec_2021_HHMMSS = (D: Date) => _01_dec_2021_HHMMSS.format(new Date(D));
-
-const _01_dec_2021_HHMMSSms = new Intl.DateTimeFormat("en-GB", {
-  year: "numeric",
-  month: "short",
-  day: "2-digit",
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-  fractionalSecondDigits: 3,
-});
-export const D_01_dec_2021_HHMMSSms = (D: Date) => _01_dec_2021_HHMMSSms.format(new Date(D));
 
 const _mon_01_dec_2021 = new Intl.DateTimeFormat("en-GB", {
   year: "numeric",
@@ -101,18 +79,6 @@ const _mon_01_dec_2021_HHMMSS = new Intl.DateTimeFormat("en-GB", {
   second: "2-digit",
 });
 export const D_mon_01_dec_2021_HHMMSS = (D: Date) => _mon_01_dec_2021_HHMMSS.format(new Date(D));
-
-const _mon_01_dec_2021_HHMMSSms = new Intl.DateTimeFormat("en-GB", {
-  year: "numeric",
-  month: "short",
-  day: "2-digit",
-  weekday: "short",
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-  fractionalSecondDigits: 3,
-});
-export const D_mon_01_dec_2021_HHMMSSms = (D: Date) => _mon_01_dec_2021_HHMMSSms.format(new Date(D));
 
 const _01_dec = new Intl.DateTimeFormat("en-GB", { month: "short", day: "numeric" });
 export const D_01_dec = (D: Date) => _01_dec.format(new Date(D));

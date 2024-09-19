@@ -1,12 +1,10 @@
 <template>
   <div class="bodyCell-drag">
-    <H_icon icon="drag" size="20px" btn="standard" style="color: var(--col-txt-6)" />
+    <div class="ico-drag iconBtn text-txt6" />
   </div>
 </template>
 
 <script setup lang="ts">
-import H_icon from "../../H_icon.vue";
-
 defineProps({
   row: { type: Object, default: {} },
   col: { type: Object, default: {} },

@@ -8,7 +8,7 @@ here the values are: `min="0"` and `min="100"`
 <hhl-live-editor title="" htmlCode=' 
     <template>
     <div class="flex flex-col items-center gap-4 ">
-        <H_range v-model="value" :min="0" :max="100" label="Slider Label"></H_range>
+        <H_range  v-model="value" :min="0" :max="100" label="Slider Label"></H_range>
         <H_input type="number" v-model="value" label="Slider value"></H_input>
     </div>
     </template>

@@ -6,7 +6,7 @@
     :HelpTextStart="hintStart"
     :HelpTextEnd="hintEnd"
     :ErrorMessage="validate"
-    class="H_range"
+    class="H_range [&[readonly]]:pointer-events-none"
   >
     <slot> </slot>
     <template v-slot:input>
@@ -15,13 +15,13 @@
         :min="min"
         :max="max"
         v-model="model"
-        class="H_inputbase-input"
+        class="H_inputbase-input cursor-pointer w-full rounded-lg mx-1 max-h-1 min-h-1"
         :readonly="readonly"
         autocomplete="off"
         type="range"
       />
     </template>
-    <span class="H_range-rangeValue no-slot">{{ model }}</span>
+    <span class="col-start-3 row-start-1 text-txt-0 py-0 px-1 min-[2em]">{{ model }}</span>
   </H_inputbase>
 </template>
 
@@ -65,32 +65,6 @@ const validate = computed(() => validateFunc(P.validator, model.value));
     --range-color: v-bind(bgColor);
     --range-shadow-hover: 0 0 0 10px color-mix(in srgb, var(--range-color) var(--transparency, 10%), transparent);
     --range-shadow-focus: 0 0 0 10px color-mix(in srgb, var(--range-color) var(--transparency, 20%), transparent);
-  }
-
-  .H_range[readonly] {
-    pointer-events: none;
-    cursor: none;
-  }
-
-  .H_range-rangeValue {
-    grid-column-start: 3;
-    grid-row-start: 1;
-    font-size: 1.1em;
-    line-height: 1em;
-    padding: 0 5px 0 5px;
-    min-width: 2em;
-    color: var(--col-txt-0);
-  }
-
-  .H_range input {
-    cursor: pointer;
-    border-radius: 15px;
-    max-height: 6px;
-    min-height: 6px;
-    background: #ccc;
-    padding: 0;
-    margin: 0 5px;
-    width: 100%;
   }
 
   .H_range .H_inputbase-input::-webkit-slider-thumb {

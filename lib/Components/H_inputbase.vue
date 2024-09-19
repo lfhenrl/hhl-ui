@@ -105,6 +105,7 @@ const E = defineEmits(["clear"]);
   .H_inputbase-input textarea {
     appearance: none;
     border: none;
+    background-color: transparent;
   }
 
   .H_inputbase-inputBox:hover {

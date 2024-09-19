@@ -1,6 +1,6 @@
 <template>
-  <div class="H_progressBar" v-if="show">
-    <div class="H_progressBar-value"></div>
+  <div class="H_progressBar overflow-hidden min-h-1 w-full rounded" v-if="show">
+    <div class="H_progressBar-value min-h-1 w-full h-full"></div>
   </div>
 </template>
 
@@ -17,17 +17,10 @@ defineProps({
 <style>
 @layer hhl-components {
   .H_progressBar {
-    min-height: 4px;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 4px;
     background-color: v-bind(color_bg);
   }
 
   .H_progressBar-value {
-    height: 100%;
-    min-height: 4px;
-    width: 100%;
     background-color: v-bind(color_fg);
     animation: indeterminateAnimation 1s infinite linear;
     transform-origin: 0% 50%;

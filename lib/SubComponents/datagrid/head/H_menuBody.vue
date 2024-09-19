@@ -7,7 +7,7 @@
       :data-selected="col.sortDirection.value === 'asc'"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_icon class="H_menu-noPointerEvents" btn="standard" icon="arrow_upward" size="18px" />
+      <div class="ico-arrow_upward iconBtn pointer-events-none" />
       <div class="H_menu-noPointerEvents">Sort Ascending</div>
     </div>
     <div
@@ -17,16 +17,16 @@
       :data-selected="col.sortDirection.value === 'desc'"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_icon class="H_menu-noPointerEvents" btn="standard" icon="arrow_downward" size="18px" />
+      <div class="ico-arrow_downward iconBtn pointer-events-none" />
       <div class="H_menu-noPointerEvents">Sort Descending</div>
     </div>
     <div class="H_menu-popup-item" data-action="filter" v-if="col.filter.type !== 'none'" data-subtype="menuFilter">
-      <H_icon class="H_menu-noPointerEvents" btn="standard" icon="filter" size="18px" />
+      <div class="ico-filter iconBtn pointer-events-none" />
       <div class="H_menu-noPointerEvents">Filter</div>
     </div>
 
     <div class="H_menu-popup-item" data-action="autoSize" data-subtype="menuAutoSize">
-      <H_icon class="H_menu-noPointerEvents" btn="standard" icon="expand_horizontal" size="18px" />
+      <div class="ico-expand_horizontal iconBtn pointer-events-none" />
       <div class="H_menu-noPointerEvents">Auto size</div>
     </div>
   </div>
@@ -34,7 +34,6 @@
 
 <script setup lang="ts">
 import { inject } from "vue";
-import H_icon from "../../../Components/H_icon.vue";
 import { iColumn } from "../provide/Column";
 import { iDgrid } from "../provide/Dgrid";
 
@@ -108,9 +107,6 @@ function menuClick(e: MouseEvent) {
   }
   .H_menu-popup-item:hover {
     background-color: var(--col-bg-3);
-  }
-  .H_menu-noPointerEvents {
-    pointer-events: none;
   }
 }
 </style>

@@ -29,7 +29,6 @@ import { localData } from "../lib/Components/datagrid";
   localData,
 };
 
-const H_icon = defineAsyncComponent(() => import("../lib/Components/H_icon.vue"));
 const H_btn = defineAsyncComponent(() => import("../lib/Components/H_btn.vue"));
 const H_popover = defineAsyncComponent(() => import("../lib/Components/H_popover.vue"));
 const H_switch = defineAsyncComponent(() => import("../lib/Components/H_switch.vue"));
@@ -60,7 +59,6 @@ const menuLeft = defineAsyncComponent(() => import("./components/menu-left.vue")
 const menuRight = defineAsyncComponent(() => import("./components/menu-right.vue"));
 const HhlLiveEditor = defineAsyncComponent(() => import("./components/liveEditor/hhl-live-editor.vue"));
 
-app.component("H_icon", H_icon);
 app.component("H_btn", H_btn);
 app.component("H_popover", H_popover);
 app.component("H_switch", H_switch);

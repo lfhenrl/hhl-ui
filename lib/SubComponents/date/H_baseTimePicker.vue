@@ -10,7 +10,7 @@
     >
       <template v-slot:referance>
         <div class="H_timePicker__inputcontainer">
-          <H_icon icon="clock" size="20px" v-if="!hideIcon" />
+          <div class="ico-clock" v-if="!hideIcon" />
           <input
             name="timepicker"
             title="Timepicker"
@@ -37,7 +37,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import H_popover from "../../Components/H_popover.vue";
-import H_icon from "../../Components/H_icon.vue";
 import H_btn from "../../Components/H_btn.vue";
 import H_timeTable from "./H_timeTable.vue";
 
@@ -86,14 +85,6 @@ const formattetTime = computed(() => {
     display: inline-flex;
     align-items: center;
     cursor: pointer;
-  }
-
-  .H_timePicker__inputcontainer .H_icon {
-    color: var(--col-txt-3);
-  }
-
-  .H_timePicker__inputcontainer:hover .H_icon {
-    scale: 1.2;
   }
 
   .H_timePicker__input {

@@ -13,7 +13,7 @@ It is very important it's only added one time and in the main page (app.vue).
   <div class="app">
     <div class="app-toolbar">
       <H_btn  @click="menuOpen()">
-        <H_icon icon="menu" />
+        <div class="ico-menu" />
       </H_btn>
     </div>
 

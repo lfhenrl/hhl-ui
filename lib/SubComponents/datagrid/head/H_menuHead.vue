@@ -1,17 +1,13 @@
 <template>
   <div class="H_menuHead" data-subtype="menu">
     <div class="H_HeadCell-sorting" v-if="col.props.sorting !== 'none'">
-      <H_icon
-        icon="arrow_upward"
-        size="18px"
-        class="H_HeadCell-sorting_icon"
+      <div
+        class="H_HeadCell-sorting_icon ico-arrow_upward iconBtn"
         :class="{ H_HeadCellActive: col.sortDirection.value === 'asc' }"
         v-if="col.sortDirection.value === 'asc' || col.sortDirection.value === 'none'"
       />
-      <H_icon
-        icon="arrow_downward"
-        size="18px"
-        class="H_HeadCell-sorting_icon"
+      <div
+        class="H_HeadCell-sorting_icon ico-arrow_downward"
         :class="{ H_HeadCellActive: col.sortDirection.value === 'desc' }"
         v-if="col.sortDirection.value === 'desc' || col.sortDirection.value === 'none'"
       />
@@ -19,19 +15,13 @@
         {{ col.sortIndex.value + 1 }}
       </div>
     </div>
-    <H_icon
-      icon="filter"
-      size="14px"
-      v-if="col.filter.type !== 'none'"
-      :class="{ H_HeadCellActive: col.filter.active }"
-    />
-    <H_icon icon="menuSmall" size="18px" v-if="col.filter.type === 'none' && col.props.sorting === 'none'" />
+    <div class="ico-filter" v-if="col.filter.type !== 'none'" :class="{ H_HeadCellActive: col.filter.active }" />
+    <div class="ico-menuSmall" v-if="col.filter.type === 'none' && col.props.sorting === 'none'" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { inject } from "vue";
-import H_icon from "../../../Components/H_icon.vue";
 import { iColumn } from "../provide/Column";
 import { iDgrid } from "../provide/Dgrid";
 

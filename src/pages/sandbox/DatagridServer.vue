@@ -1,11 +1,11 @@
 <template>
-  <div class="_page">
+  <div class="_page w-full">
     <div style="display: flex; align-items: center">
       <H_btn @click="load" style="width: 100px">Load</H_btn>
       <div style="flex: 1" />
       <H_input v-model="seek" clearable style="max-width: 200px">
         <template v-slot:end>
-          <H_icon icon="search"></H_icon>
+          <div class="ico-search" />
         </template>
       </H_input>
     </div>
@@ -70,12 +70,3 @@ function styleCell(val: string) {
     };
 }
 </script>
-<style scoped>
-._page {
-  display: flex;
-  padding: 32px;
-  gap: 18px;
-  background-color: var(--col-bg-0);
-  height: 100%;
-}
-</style>

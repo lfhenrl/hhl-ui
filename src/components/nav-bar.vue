@@ -1,6 +1,6 @@
 <template>
   <nav class="nav-bar">
-    <H_icon btn="standard" icon="menu" @click.stop="$emit('update:modelValue', !modelValue)" v-if="small" />
+    <div class="ico-menu iconBtn" @click.stop="$emit('update:modelValue', !modelValue)" v-if="small" />
     <router-link to="/" class="nav-bar-home">
       <img src="/icon.svg" height="30" width="32" alt="Logo" href="#" />
       <div>HHL-UI</div>
@@ -19,7 +19,8 @@
       <H_popover class="popUp-external">
         <template v-slot:referance>
           <div style="display: flex; align-items: center">
-            <span class="text-pri"> External</span> <H_icon btn="standard" icon="expand_down" />
+            <span class="text-pri"> External</span>
+            <div class="ico-expand_down iconBtn" />
           </div>
         </template>
         <div class="popUp-external-body">
@@ -36,11 +37,10 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import H_popover from "../../lib/Components/H_popover.vue";
-import H_icon from "../../lib/Components/H_icon.vue";
 import H_themeSelector from "../../lib/Components/H_themeSelector.vue";
 
 export default defineComponent({
-  components: { H_popover, H_icon },
+  components: { H_popover },
   name: "nav-bar",
   props: {
     activeRoute: { type: String, default: "" },

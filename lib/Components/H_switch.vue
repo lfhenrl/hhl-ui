@@ -1,19 +1,19 @@
 <template>
   <label
-    class="H_switch inline-flex items-center o-col-pri cursor-pointer [&[disabled]]:opacity-40 [&[disabled]]:pointer-events-none"
+    class="H_switch inline-flex items-center gap-[.3em] !bg-transparent o-col-pri cursor-pointer [&[disabled]]:opacity-40 [&[disabled]]:pointer-events-none"
     :class="{ 'flex-row-reverse': labelLeft }"
     :disabled="disabled ? '' : undefined"
   >
     <input
       v-show="P.switch === false"
       :type
-      class="H_switch-input accent-currentBg aspect-square rounded"
+      class="H_switch-input accent-currentBg aspect-square rounded h-[1.2em]"
       :aria-label="label === '' ? 'No label' : label"
       :value="value"
       v-model="modelValue"
     />
-    <span v-if="switch" class="slider relative inline-flex items-center"></span>
-    <div class="H_switch-label overflow-hidden line-clamp-1 text-txt2">{{ label }}</div>
+    <span v-if="switch" class="slider relative inline-flex items-center bg-bg6"></span>
+    <div class="H_switch-label overflow-hidden line-clamp-1 text-txt2 text-[.9em]">{{ label }}</div>
   </label>
 </template>
 
@@ -40,24 +40,9 @@ const modelValue = defineModel();
 
 <style>
 @layer hhl-components {
-  .H_switch {
-    gap: 0.3em;
-    background-color: transparent !important;
-  }
-
-  input.H_switch-input {
-    height: 1.2em;
-  }
-
-  .H_switch-label {
-    font-size: 0.9em;
-    padding-bottom: 0.1em;
-  }
-
   .slider {
     height: 1.2em;
     aspect-ratio: 20 / 12;
-    background-color: var(--col-bg-6);
     -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: 1em;

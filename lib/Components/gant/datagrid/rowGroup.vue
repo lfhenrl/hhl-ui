@@ -9,14 +9,14 @@
   >
     <div class="rowGroup-content" :style="{ minWidth: thisCol[0].Width.value, maxWidth: thisCol[0].Width.value }">
       <div draggable="true" @dragstart="startDrag($event)">
-        <H_icon icon="drag" size="18px" style="margin-left: -2px; cursor: move" />
+        <div class="ico-drag iconBtn cursor-move" style="margin-left: -2px" />
       </div>
       <div class="rowGroup-icon" :style="{ marginLeft: level * 12 + 'px' }">
         <div v-if="row.Children.length > 0" @click="click">
-          <H_icon v-if="row.Expanded" icon="expand_down" size="24px" style="margin-left: -6px" />
-          <H_icon v-else icon="expand_right" size="24px" style="margin-left: -6px" />
+          <div class="ico-expand_down iconBtn" v-if="row.Expanded" style="margin-left: -6px" />
+          <div class="ico-expand_right iconBtn" v-else style="margin-left: -6px" />
         </div>
-        <H_icon v-else icon="event" size="14px" style="margin-left: -1px" />
+        <div class="ico-event iconBtn" v-else style="margin-left: -1px" />
       </div>
       <div class="rowGroup-title">
         {{ row?.Name }}
@@ -36,7 +36,6 @@
 
 <script setup lang="ts">
 import { PropType, computed, inject, onMounted, ref } from "vue";
-import H_icon from "../../H_icon.vue";
 import bodyCell from "../datagrid/bodyCell.vue";
 import { iGantt } from "../provide/gantt";
 import { iColumn } from "../data/columnModel";

@@ -3,7 +3,8 @@
     <div class="H_menuFilter_innerbox">
       <div moveable-drag class="H_menuFilter-header">
         <div>{{ col.props.title }}</div>
-        <H_icon btn="standard" @click="isOpen = false" />
+        <div class="flex-1" />
+        <div class="ico-close iconBtn cursor-pointer" @click="isOpen = false" />
       </div>
       <div class="H_menuFilter_comp">
         <component ref="filterCompRef" :is="filtComponent" :index="index" />
@@ -19,7 +20,6 @@
 <script setup lang="ts">
 import { computed, inject, ref } from "vue";
 import H_popover from "../../../Components/H_popover.vue";
-import H_icon from "../../../Components/H_icon.vue";
 import H_btn from "../../../Components/H_btn.vue";
 import H_filterString from "./filterTypes/H_filterString.vue";
 import H_filterNumber from "./filterTypes/H_filterNumber.vue";
@@ -114,15 +114,7 @@ const filtComponent = computed(() => {
     font-weight: bold;
     padding: 4px;
   }
-  .H_menuFilter-header div {
-    flex: 1 1 100%;
-    text-align: center;
-    font-size: 1.2em;
-  }
-  .H_menuFilter-header .H_icon {
-    cursor: pointer;
-    flex: 0;
-  }
+
   .H_menuFilter-footer {
     display: flex;
     justify-content: flex-end;

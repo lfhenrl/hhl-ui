@@ -1,5 +1,5 @@
 <template>
-  <div class="_page">
+  <div class="_page h-full">
     <H_datagrid
       @head-click="headClick"
       @row-click="rowClick"
@@ -11,11 +11,11 @@
       data-key="id"
     >
       <template v-slot:head>
-        <div style="display: flex; padding: 10px 0; flex: 1">
-          <H_btn @click="load" style="width: 100px" type="outline">Load</H_btn>
+        <div style="display: flex; padding: 2px 0; flex: 1">
+          <H_btn @click="load" style="width: 100px">Load</H_btn>
           <div style="flex: 1" />
           <H_input v-model="seek" clearable style="max-width: 200px">
-            <H_icon icon="search"></H_icon>
+            <div class="ico-search" />
           </H_input>
         </div>
       </template>
@@ -84,16 +84,3 @@ function rowStyle(row: any) {
     };
 }
 </script>
-<style>
-._page {
-  display: flex;
-  padding: 32px;
-  gap: 18px;
-  background-color: var(--col-bg-0);
-  height: 100%;
-}
-
-.text1-err {
-  color: lime;
-}
-</style>

@@ -3,7 +3,7 @@
     <template #header>
       <div class="H_menuColumns-header">
         <div>Columns</div>
-        <H_icon btn="standard" @click="open = false" />
+        <div class="ico-close iconBtn cursor-pointer" @click="open = false" />
       </div>
     </template>
     <div class="H_menuColumns-body">
@@ -38,7 +38,6 @@
 <script setup lang="ts">
 import H_dialog from "../../../../Components/H_dialog.vue";
 import H_btn from "../../../../Components/H_btn.vue";
-import H_icon from "../../../../Components/H_icon.vue";
 import H_dragDrop from "../../../../Components/H_dragDrop.vue";
 import H_inputbase from "../../../../Components/H_inputbase.vue";
 import H_columnItem from "./H_columnItem.vue";
@@ -149,10 +148,7 @@ function columnsSave() {
     flex: 1 1 100%;
     font-size: 1.2em;
   }
-  .H_menuColumns-header .H_icon {
-    flex: 0;
-    cursor: pointer;
-  }
+
   .H_menuColumns-body {
     display: flex;
     flex-direction: column;
