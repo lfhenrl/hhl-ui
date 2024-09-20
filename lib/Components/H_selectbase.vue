@@ -1,7 +1,8 @@
 <template>
   <div
     ref="selectbox"
-    class="H_selectbase"
+    class="H_selectbase flex p-0 focus:outline-none"
+    :class="{ '!flex-row gap-4': row, '!flex-col': !row }"
     @click="Click"
     tabindex="0"
     @keydown.up.prevent="KeyUp"
@@ -10,9 +11,9 @@
     @keyup.space.prevent="KeyEnter"
   >
     <div
-      class="H_selectbase-item"
+      class="H_selectbase-item flex items-center p-0 gap-2 hover:bg-bg3 [&[focused]]:bg-bg2"
       :class="{
-        reverse: labelLeft,
+        'flex-row-reverse': labelLeft,
       }"
       v-for="(item, index) in filterList"
       :key="item.value as string"
@@ -20,7 +21,7 @@
       :selected="selected(item.value) ? '' : undefined"
       :value="item.value"
     >
-      <div class="H_selectbase-item-label">
+      <div class="pointer-events-none">
         {{ item.label }}
       </div>
     </div>
@@ -36,6 +37,7 @@ const P = defineProps({
   filter: { type: String, default: "" },
   labelLeft: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
+  row: { type: Boolean, default: false },
 });
 
 const model: any = defineModel();
@@ -139,27 +141,6 @@ function KeyEnter() {
 
 <style>
 @layer hhl-components {
-  .H_selectbase {
-    display: flex;
-    flex-direction: column;
-    font-size: 1rem;
-  }
-  .H_selectbase:focus {
-    outline: none;
-  }
-
-  .H_selectbase-item {
-    display: flex;
-    align-items: center;
-    padding: 0;
-    gap: 5px;
-    box-sizing: border-box;
-    line-height: 1.5em;
-  }
-
-  .H_selectbase-item.reverse {
-    flex-direction: row-reverse;
-  }
   .H_selectbase-item::before {
     content: "";
     font-size: 0.9em;
@@ -180,18 +161,6 @@ function KeyEnter() {
     color: white;
     background-color: var(--col-pri);
     border-color: var(--col-pri);
-  }
-
-  .H_selectbase-item[focused] {
-    background-color: var(--col-bg-2);
-  }
-
-  .H_selectbase-item:hover {
-    background-color: var(--col-bg-3);
-  }
-
-  .H_selectbase-item-label {
-    pointer-events: none;
   }
 }
 </style>

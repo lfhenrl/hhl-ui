@@ -7,7 +7,7 @@
     :disabled="disabled ? '' : undefined"
   >
     <H_selectbase
-      :row="row ? '' : undefined"
+      :row="row"
       v-model:label="labelValue"
       :multi
       v-model="model"
@@ -17,6 +17,8 @@
       :labelLeft="labelLeft"
       :list="list"
       :readonly
+      class="gap-1.5 px-1"
+      :class="{ 'py-1': !row }"
     />
   </H_inputbase>
 </template>
@@ -25,7 +27,6 @@
 import H_selectbase from "./H_selectbase.vue";
 import H_inputbase from "./H_inputbase.vue";
 import { ref } from "vue";
-/* import { validateFunc } from "../utils/validateFunc"; */
 defineProps({
   label: { type: String, default: "" },
   row: { type: Boolean, default: false },
@@ -45,25 +46,3 @@ const E = defineEmits([]);
 const model: any = defineModel();
 const labelValue = ref("");
 </script>
-
-<style>
-@layer hhl-components {
-  .H_selectbox {
-    font-size: 1rem;
-    line-height: 0;
-  }
-
-  .H_selectbox .H_selectbase {
-    padding: 6px;
-    font-size: 1rem;
-    line-height: 1;
-    gap: 6px;
-  }
-
-  .H_selectbox .H_selectbase[row] {
-    flex-direction: row;
-    gap: 14px;
-    padding: 0 10px;
-  }
-}
-</style>

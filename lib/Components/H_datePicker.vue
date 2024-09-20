@@ -10,9 +10,9 @@
     class="H_datePicker"
   >
     <template v-slot:input>
-      <div class="H_inputbase-input no-slot">
+      <div class="H_inputbase-input">
         <H_baseDatePicker
-          class="no-slot"
+          class=""
           :modelValue="dato"
           @dateChanged="setDate"
           :long-date="longDate"
@@ -115,22 +115,3 @@ watch(
 
 const validate = computed(() => validateFunc(P.validator, P.modelValue));
 </script>
-<style>
-@layer hhl-components {
-  .H_datePicker {
-    max-height: 36px;
-    min-height: 36px;
-    height: 36px;
-    flex: 1 1 0%;
-  }
-
-  .H_datePicker .H_datePicker_container {
-    display: flex;
-    gap: 3px;
-    align-items: center;
-    padding-left: 8px;
-    min-height: 36px;
-    padding-bottom: 1px;
-  }
-}
-</style>

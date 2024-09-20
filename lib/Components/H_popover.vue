@@ -1,10 +1,17 @@
 <template>
-  <div class="H_popover">
-    <div ref="referance" class="H_popover-referance" @mouseup="click" :readonly>
+  <div class="H_popover relative">
+    <div ref="referance" class="H_popover-referance inline-block w-full" @mouseup="click" :readonly>
       <slot name="referance"></slot>
     </div>
 
-    <div ref="popup" @toggle="toggle" :pos="pos" v-movable="movable" class="H_popover-popup" :popover="popoverType">
+    <div
+      ref="popup"
+      @toggle="toggle"
+      :pos="pos"
+      v-movable="movable"
+      class="H_popover-popup absolute border-none p-0 opacity-0 shadow-lg"
+      :popover="popoverType"
+    >
       <slot></slot>
     </div>
   </div>
@@ -116,21 +123,7 @@ onMounted(() => {
 
 <style>
 @layer hhl-components {
-  .H_popover {
-    position: relative;
-  }
-  .H_popover-referance {
-    display: inline-block;
-    width: 100%;
-  }
-
   .H_popover-popup {
-    position: absolute;
-    box-sizing: border-box;
-    border: none;
-    padding: 0;
-    line-height: 1;
-    opacity: 0;
     --scaleversion: scaleY-display;
     transition: overlay 0.7s allow-discrete, display 0.7s allow-discrete;
   }

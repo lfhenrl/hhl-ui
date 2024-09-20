@@ -5,14 +5,14 @@
       modal: backdrop,
     }"
     v-movable="movable"
-    class="H_dialog"
+    class="H_dialog grid grid-cols-1 grid-rows-[auto_1fr_auto] border-none m-auto rounded bg-bg0 outline-none"
     @close="onClose"
   >
-    <div class="H_dialog__header" moveable-drag>
+    <div class="H_dialog__header col-pri text-center font-bold py-1 [&[moveable-drag]]:cursor-move" moveable-drag>
       <slot name="header" />
     </div>
-    <div class="H_dialog__body"><slot /></div>
-    <div class="H_dialog__footer">
+    <div class="H_dialog__body p-3"><slot /></div>
+    <div class="H_dialog__footer px-3 pb-3">
       <slot name="footer" />
     </div>
   </dialog>
@@ -125,40 +125,11 @@ onMounted(() => {
 <style>
 @layer hhl-components {
   .H_dialog {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    z-index: 1;
-    border: none;
-    padding: 0;
-    margin: auto;
-    border-radius: 4px;
-    background-color: var(--col-bg-0);
     inset-block: v-bind(insetBlock);
     inset-inline: v-bind(insetInline);
-    outline: none;
     transform: scaleY(0);
     transition: opacity 0.3s, transform 0.2s, display 0.3s allow-discrete;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
-  }
-
-  .H_dialog__header {
-    background-color: var(--col-pri);
-    color: var(--col-on-pri);
-    text-align: center;
-    font-weight: bold;
-  }
-
-  .H_dialog__header[moveable-drag] {
-    cursor: move;
-  }
-
-  .H_dialog__body {
-    padding: 12px;
-  }
-
-  .H_dialog__footer {
-    padding: 0 12px 12px 12px;
   }
 
   .H_dialog[open] {
