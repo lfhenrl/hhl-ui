@@ -4,11 +4,11 @@
       <template #header>{{ dialog.title }}</template>
       {{ dialog.info }}
       <template #footer>
-        <div class="H_dialogService-footer">
-          <H_btn size="sm" :class="dialog.buttons.cancel.Color" @click="dialogCancel">
+        <div class="H_dialogService-footer flex gap-4 justify-end">
+          <H_btn class="w-20 text-sm" :class="dialog.buttons.cancel.Color" @click="dialogCancel">
             {{ dialog.buttons.cancel.Text }}
           </H_btn>
-          <H_btn size="sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
+          <H_btn class="w-20 text-sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
             {{ dialog.buttons.ok.Text }}
           </H_btn>
         </div>
@@ -164,16 +164,3 @@ function updateButtons(data: any) {
   return data;
 }
 </script>
-<style>
-@layer hhl-components {
-  .H_dialogService-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 16px;
-  }
-
-  .H_dialogService-footer .H_btn {
-    width: 66px;
-  }
-}
-</style>
