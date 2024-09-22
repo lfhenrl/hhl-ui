@@ -7,6 +7,7 @@ import { routes } from "vue-router/auto-routes";
 import "./components/mdStyle/index.css";
 import "../lib/styles/standard.css";
 import { themeSelector } from "../lib/utils/themeSelector";
+import twMergeDirective from "tailwind-merge-vue-directive";
 
 themeSelector().loadTheme;
 
@@ -16,7 +17,7 @@ const router = createRouter({
 });
 
 const app = createApp(App).use(router);
-/* app.use(createPinia()); */
+app.use(twMergeDirective);
 
 import { validator } from "../lib/utils/validator";
 import * as dateFormat from "../lib/utils/dateFormat";
