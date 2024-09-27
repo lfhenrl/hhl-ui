@@ -4,17 +4,16 @@
     :label="label"
     :clearable="showClear"
     :disabled="disabled ? '' : undefined"
-    :readonly
+    :readonly="readonly ? '' : undefined"
     :HelpTextStart="hintStart"
     :HelpTextEnd="stringCounter"
     :ErrorMessage="validate"
-    :narrow
     class="H_input"
   >
-    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1">
-      <slot> </slot>
+    <slot> </slot>
+    <template v-slot:input>
       <input
-        class="col-start-2 w-full bg-transparent border-none appearance-none focus:outline-none"
+        class="w-full bg-transparent focus:outline-none"
         :class="{ 'w-[3em] h-[1em] p-0': type === 'color' }"
         v-model="model"
         :max
@@ -28,7 +27,7 @@
         :name="label === '' ? 'No name' : label"
         @click="$emit('input_click')"
       />
-    </div>
+    </template>
   </H_inputbase>
 </template>
 
@@ -47,7 +46,6 @@ const P = defineProps({
   min: { type: String, default: "" },
   hintStart: { type: String, default: "" },
   hintEnd: { type: String, default: "" },
-  narrow: { type: Boolean, default: false },
   validator: Array,
   type: {
     type: String as PropType<"string" | "number" | "password" | "color">,

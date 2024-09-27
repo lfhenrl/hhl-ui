@@ -4,7 +4,7 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
+      <div class="flex w-full items-center flex-wrap">
             <H_input v-model="txt" label="Text input"></H_input>
             <H_input v-model="txt" label="Text input"></H_input>
       </div>
@@ -24,7 +24,7 @@ The H_input can handle 4 different types by setting the property `type="string(d
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
+      <div class="flex items-center flex-wrap">
        <H_input  v-model="txt"  label="string"></H_input>
         <H_input  v-model="txt" type="password"  label="password"></H_input>
          <H_input  v-model="num" type="number"  label="number"></H_input>
@@ -142,15 +142,16 @@ Input Click by adding @input_click=""
 
 <br>
 
-## Start slot
+## Icons
 
-You can add a Icon or other stoff with the start slot.
+You can add a Icon or other stoff the first child will be in front and the second will be in the end.
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4 flex-wrap">
             <H_input  v-model="txt" label="Text input"> 
-                        <div class="ico-mail iconBtn" @click="click(txt)"></div>
+                <div class="ico-mail iconBtn" @click="click(txt)"></div>
+                <div class="ico-clock iconBtn" @click="click(txt)"></div>
             </H_input>
       </div>
       </template>
@@ -167,15 +168,15 @@ You can add a Icon or other stoff with the start slot.
 <br>
 
 
-## End slot
+## End Icon
 
-You can add a Icon or other stoff with the end slot.
+If you have on child you can force it to the end by adding `set-end` attribute.
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4 flex-wrap">
             <H_input v-model="txt" label="Text input">                        
-                <div class="ico-mail iconBtn" @click="click(txt)"></div>
+                <div set-end  class="ico-mail iconBtn" @click="click(txt)"></div>
             </H_input>
       </div>
       </template>
