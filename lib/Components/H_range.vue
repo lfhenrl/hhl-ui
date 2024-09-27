@@ -2,25 +2,25 @@
   <H_inputbase
     :label="label"
     :disabled="disabled ? '' : undefined"
-    :readonly="readonly ? '' : undefined"
+    :readonly
     :HelpTextStart="hintStart"
     :HelpTextEnd="hintEnd"
     :ErrorMessage="validate"
     class="H_range [&[readonly]]:pointer-events-none"
   >
-    <slot> </slot>
-    <template v-slot:input>
+    <div class="grid grid-cols-[auto_1fr_auto] items-center w-full h-full *:row-start-1 mr-2 max-h-[1.875em]">
+      <slot> </slot>
       <input
         ref="el"
         :min="min"
         :max="max"
         v-model="model"
-        class="H_inputbase-input cursor-pointer w-full rounded-lg mx-1 max-h-1 min-h-1"
+        class="H_inputbase-input cursor-pointer rounded-lg mx-1 max-h-1 min-h-1 col-start-2 w-full bg-transparent border-none appearance-none focus:outline-none"
         :readonly="readonly"
         autocomplete="off"
         type="range"
       />
-    </template>
+    </div>
     <span class="col-start-3 row-start-1 text-txt-0 py-0 px-1 min-[2em]">{{ model }}</span>
   </H_inputbase>
 </template>

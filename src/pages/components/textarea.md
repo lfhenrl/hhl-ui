@@ -158,15 +158,15 @@ You can add a Icon or other stoff with the start slot.
 
 <br>
 
-## End slot
+## End Icon
 
-You can add a Icon or other stoff with the end slot.
+If you have on child you can force it to the end by adding `set-end` attribute.
 
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4 flex-wrap">
             <H_textarea end-icon="mail"  v-model="txt" label="Text input">
-                <div class="ico-mail iconBtn" @click="click(txt)"></div>
+                <div set-end class="ico-mail iconBtn" @click="click(txt)"></div>
             </H_textarea>
       </div>
       </template>

@@ -164,7 +164,7 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-       <div class="flex items-center gap-4flex-wrap"> 
+       <div class="flex items-center gap-4 flex-wrap"> 
             <H_selectbox readonly
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">

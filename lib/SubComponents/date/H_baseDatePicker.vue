@@ -3,7 +3,7 @@
     <H_popover v-model="popupOpen" :offset-top="8" :readonly="readonly">
       <template v-slot:referance>
         <div class="H_datePicker__inputcontainer" title="Datepicker" tabindex="0">
-          <div class="ico-event" v-if="!hideIcon" tabindex="-1" />
+          <div class="ico-event text-xs mt-0.5" v-if="!hideIcon" tabindex="-1" />
           <input
             name="datepicker"
             title="Datepicker"

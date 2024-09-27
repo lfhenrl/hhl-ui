@@ -7,8 +7,8 @@
     :ErrorMessage="validate"
     class="H_datetime"
   >
-    <slot> </slot>
-    <template v-slot:input>
+    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 max-h-[1.875em]">
+      <slot> </slot>
       <input
         ref="el"
         @input="onInput"
@@ -16,9 +16,9 @@
         autocomplete="off"
         :step="type === 'datetimesec' ? 1 : 0"
         :type="inputType"
-        class="w-full bg-transparent focus:outline-none"
+        class="col-start-2 w-full bg-transparent border-none appearance-none focus:outline-none"
       />
-    </template>
+    </div>
   </H_inputbase>
 </template>
 

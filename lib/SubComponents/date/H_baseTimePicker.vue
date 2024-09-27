@@ -10,7 +10,7 @@
     >
       <template v-slot:referance>
         <div class="H_timePicker__inputcontainer">
-          <div class="ico-clock" v-if="!hideIcon" />
+          <div class="ico-clock text-xs mt-[1px]" v-if="!hideIcon" />
           <input
             name="timepicker"
             title="Timepicker"

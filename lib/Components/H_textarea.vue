@@ -4,14 +4,14 @@
     :label="label"
     :clearable="showClear"
     :disabled="disabled ? '' : undefined"
-    :readonly="readonly ? '' : undefined"
+    :readonly
     :HelpTextStart="hintStart"
     :HelpTextEnd="stringCounter"
     :ErrorMessage="validate"
     class="H_textarea"
   >
-    <slot> </slot>
-    <template v-slot:input>
+    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1">
+      <slot> </slot>
       <textarea
         ref="el"
         v-model="model"
@@ -21,9 +21,9 @@
         spellcheck="false"
         :readonly="readonly"
         :placeholder="placeholder"
-        class="focus:outline-none resize-y w-full pt-0.5"
+        class="col-start-2 w-full bg-transparent border-none appearance-none focus:outline-none"
       />
-    </template>
+    </div>
   </H_inputbase>
 </template>
 
@@ -38,8 +38,8 @@ const P = defineProps({
   disabled: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
   counter: { type: String, default: "" },
-  hintStart: { type: String, default: "Start" },
-  hintEnd: { type: String, default: "End" },
+  hintStart: { type: String, default: "" },
+  hintEnd: { type: String, default: "" },
   validator: Array,
   rows: { type: String, default: "1" },
   noGrow: { type: Boolean, default: false },

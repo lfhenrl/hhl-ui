@@ -7,12 +7,13 @@
     :HelpTextEnd="hintEnd"
     :ErrorMessage="validate"
     @isValid="$emit('isValid', $event)"
-    class="H_datePicker"
+    class="H_datePicker max-h-[1.875em]"
   >
-    <template v-slot:input>
-      <div class="H_inputbase-input">
+    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 max-h-[1.875em]">
+      <slot> </slot>
+      <div class="H_inputbase-input col-start-2 flex items-center">
         <H_baseDatePicker
-          class=""
+          class="mr-2"
           :modelValue="dato"
           @dateChanged="setDate"
           :long-date="longDate"
@@ -29,7 +30,7 @@
           v-if="type === 'dateTime' || type === 'time'"
         />
       </div>
-    </template>
+    </div>
   </H_inputBase>
 </template>
 

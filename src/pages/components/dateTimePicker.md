@@ -15,7 +15,7 @@
       const dato = ref(new Date());
       function formatDate(date) {
             if (date) {
-                  return dateFormat.D_01_dec_2021_HHMMSSms(date); 
+                  return dateFormat.D_01_dec_2021_HHMMSS(date); 
             } else {
                   return "undefined"
             }            
@@ -43,7 +43,7 @@
             const dato = ref();
                   function formatDate(date) {
                   if (date) {
-                        return dateFormat.D_01_dec_2021_HHMMSSms(date); 
+                        return dateFormat.D_01_dec_2021_HHMMSS(date); 
                   } else {
                         return "undefined"
                   }            
@@ -73,7 +73,7 @@ By adding the property `long-date` you will get the week day name incluted
             const dato = ref(new Date());
             function formatDate(date) {
                   if (date) {
-                        return dateFormat.D_01_dec_2021_HHMMSSms(date); 
+                        return dateFormat.D_01_dec_2021_HHMMSS(date); 
                   } else {
                         return "undefined"
                   }            
@@ -103,7 +103,7 @@ By adding the property `show-seconds`.
             const dato = ref();
                   function formatDate(date) {
                   if (date) {
-                        return dateFormat.D_01_dec_2021_HHMMSSms(date); 
+                        return dateFormat.D_01_dec_2021_HHMMSS(date); 
                   } else {
                         return "undefined"
                   }            
@@ -134,7 +134,7 @@ You can select "datetime" (default) "date" or "time"
             const dato = ref(new Date());
                   function formatDate(date) {
                   if (date) {
-                        return dateFormat.D_01_dec_2021_HHMMSSms(date); 
+                        return dateFormat.D_01_dec_2021_HHMMSS(date); 
                   } else {
                         return "undefined"
                   }            
@@ -165,7 +165,7 @@ You can select "datetime" (default) "date" or "time"
             const dato = ref(new Date());
                   function formatDate(date) {
                   if (date) {
-                        return dateFormat.D_01_dec_2021_HHMMSSms(date); 
+                        return dateFormat.D_01_dec_2021_HHMMSS(date); 
                   } else {
                         return "undefined"
                   }            
@@ -195,7 +195,7 @@ By adding the property `hide-icon` you will remove the icon.
             const dato = ref(new Date());
                   function formatDate(date) {
                   if (date) {
-                        return dateFormat.D_01_dec_2021_HHMMSSms(date); 
+                        return dateFormat.D_01_dec_2021_HHMMSS(date); 
                   } else {
                         return "undefined"
                   }            
@@ -225,7 +225,7 @@ By adding the attribute `disabled` you will disable the dateTime-picker
             const dato = ref(new Date());
                   function formatDate(date) {
                   if (date) {
-                        return dateFormat.D_01_dec_2021_HHMMSSms(date); 
+                        return dateFormat.D_01_dec_2021_HHMMSS(date); 
                   } else {
                         return "undefined"
                   }            
@@ -255,7 +255,7 @@ By adding the attribute `readonly` it will be in readonly mode.
             const dato = ref(new Date());
                   function formatDate(date) {
                   if (date) {
-                        return dateFormat.D_01_dec_2021_HHMMSSms(date); 
+                        return dateFormat.D_01_dec_2021_HHMMSS(date); 
                   } else {
                         return "undefined"
                   }            
@@ -285,7 +285,7 @@ You can show a hint text at the bottom of the datepicker by adding `hint-start="
             const dato = ref(new Date());
                   function formatDate(date) {
                   if (date) {
-                        return dateFormat.D_01_dec_2021_HHMMSSms(date); 
+                        return dateFormat.D_01_dec_2021_HHMMSS(date); 
                   } else {
                         return "undefined"
                   }            
@@ -317,7 +317,7 @@ Validation by adding `validator=""`
             const dato = ref();
             function formatDate(date) {
                   if (date) {
-                        return dateFormat.D_01_dec_2021_HHMMSSms(date); 
+                        return dateFormat.D_01_dec_2021_HHMMSS(date); 
                   } else {
                         return "undefined"
                   }            

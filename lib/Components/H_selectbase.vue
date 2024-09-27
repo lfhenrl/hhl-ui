@@ -147,10 +147,10 @@ function KeyEnter() {
     font-weight: bold;
     line-height: 1.2em;
     font-family: monospace;
-    max-height: 1.2em;
-    min-height: 1.2em;
-    max-width: 1.2em;
-    min-width: 1.2em;
+    max-height: 1.4em;
+    min-height: 1.4em;
+    max-width: 1.4em;
+    min-width: 1.4em;
     border-radius: 4px;
     text-align: center;
     border: 1px solid var(--col-bg-5);
