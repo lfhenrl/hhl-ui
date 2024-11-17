@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, ref, watchEffect, computed } from "vue";
+import { PropType, ref, watchEffect, computed, onMounted } from "vue";
 import H_inputbase from "./H_inputbase.vue";
 import { validateFunc } from "../utils/validateFunc";
 
@@ -46,7 +46,7 @@ const P = defineProps({
 });
 const E = defineEmits([]);
 const el = ref<HTMLInputElement | null>(null);
-const model: any = defineModel();
+const model: any = defineModel({ default: 50 });
 
 watchEffect(() => {
   if (el.value) {
@@ -58,6 +58,7 @@ watchEffect(() => {
 
 const bgColor = computed(() => `var(--col-${P.color})`);
 const validate = computed(() => validateFunc(P.validator, model.value));
+onMounted(() => (model.value = model.value));
 </script>
 <style>
 @layer hhl-components {

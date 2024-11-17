@@ -2,5 +2,12 @@
   display: flex;
 }
 .o-col-pri {
-  @apply col-pri;
+  background-color: var(--col-pri);
+  color: var(--col-on-pri);
+  --current-bg-col: var(--col-pri);
+  --current-txt-col: var(--col-on-pri);
+}
+
+.o-col-err {
+  @apply col-err;
 }

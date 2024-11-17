@@ -39,8 +39,10 @@ defineProps({
 });
 </script>
 <style>
-.H_inputbase [set-end] {
-  grid-column-start: 3;
-  grid-row-start: 1;
+@layer hhl-components {
+  .H_inputbase [set-end] {
+    grid-column-start: 3;
+    grid-row-start: 1;
+  }
 }
 </style>

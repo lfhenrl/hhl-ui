@@ -1,6 +1,6 @@
 <template>
   <label
-    class="H_switch inline-flex items-center gap-[.3em] !bg-transparent o-col-pri cursor-pointer [&[disabled]]:opacity-40 [&[disabled]]:pointer-events-none"
+    class="H_switch inline-flex items-center gap-[.3em] !bg-transparent col-pri cursor-pointer [&[disabled]]:opacity-40 [&[disabled]]:pointer-events-none"
     :class="{ 'flex-row-reverse': labelLeft }"
     :disabled="disabled ? '' : undefined"
   >
@@ -40,7 +40,7 @@ const modelValue = defineModel();
 
 <style>
 @layer hhl-components {
-  .slider {
+  .H_switch .slider {
     height: 1.2em;
     aspect-ratio: 20 / 12;
     -webkit-transition: 0.4s;
@@ -48,7 +48,7 @@ const modelValue = defineModel();
     border-radius: 1em;
   }
 
-  .slider:before {
+  .H_switch .slider:before {
     position: absolute;
     content: "";
     height: 70%;
@@ -60,15 +60,15 @@ const modelValue = defineModel();
     border-radius: 50%;
   }
 
-  input:checked + .slider {
+  .H_switch input:checked + .slider {
     background-color: color-mix(in srgb, var(--current-bg-col) 30%, white);
   }
 
-  input:focus + .slider {
+  .H_switch input:focus + .slider {
     box-shadow: 0 0 1px #2196f3;
   }
 
-  input:checked + .slider:before {
+  .H_switch input:checked + .slider:before {
     -webkit-transform: translateX(86%);
     -ms-transform: translateX((86%));
     transform: translateX((86%));
