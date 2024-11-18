@@ -79,6 +79,7 @@ function changeTab(e: string) {
     grid-template-rows: auto 1fr;
     height: 100%;
     width: 100%;
+    overflow: hidden;
   }
 
   .H_tabs__tabs {
@@ -106,6 +107,8 @@ function changeTab(e: string) {
     border-radius: 4px;
     border: 1px solid var(--col-txt-4);
     background-color: var(--col-bg-0);
+    overflow: hidden;
+    height: 100%;
   }
 
   .H_tabs__tab[selected="true"] {
