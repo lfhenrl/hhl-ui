@@ -31,6 +31,7 @@ const selected = computed(() => tabData.selected.value === props.name);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
+    height: 100%;
   }
 
   .H_tabs__tab[disabled] {
