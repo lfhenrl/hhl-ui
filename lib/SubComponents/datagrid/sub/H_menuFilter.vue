@@ -10,8 +10,8 @@
         <component ref="filterCompRef" :is="filtComponent" :index="index" />
       </div>
       <div class="H_menuFilter-footer">
-        <H_btn @click="filterSave" class="bg-ok" :disabled="!filterCompRef?.canSave">OK</H_btn>
-        <H_btn @click="filterClear" :disabled="!col.filter.active">CLEAR</H_btn>
+        <H_btn @click="filterSave" class="bg-ok text-sm" :disabled="!filterCompRef?.canSave">OK</H_btn>
+        <H_btn @click="filterClear" :disabled="!col.filter.active" class="text-sm">CLEAR</H_btn>
       </div>
     </div>
   </H_popover>
@@ -80,15 +80,14 @@ const filtComponent = computed(() => {
 });
 </script>
 <style>
-@layer hhl-components {
+@layer components {
   .H_menuFilter_innerbox {
     display: grid;
     grid-template-rows: auto 1fr auto;
-    color: var(--col-txt-1);
-    background-color: var(--col-bg-0);
+    color: var(--color-txt1);
+    background-color: var(--color-bg2);
     font-weight: 400;
     overflow: hidden;
-    background-color: transparent;
     max-height: 50%;
   }
 
@@ -109,8 +108,8 @@ const filtComponent = computed(() => {
   .H_menuFilter-header {
     display: flex;
     align-items: center;
-    background-color: var(--col-pri);
-    color: var(--col-on-pri);
+    background-color: var(--color-pri);
+    color: var(--color-priTxt);
     font-weight: bold;
     padding: 4px;
   }

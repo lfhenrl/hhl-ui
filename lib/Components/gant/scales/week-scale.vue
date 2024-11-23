@@ -42,7 +42,7 @@ function getWeek(item: iScaleItem) {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .week-scale {
     position: relative;
     display: flex;
@@ -55,15 +55,15 @@ function getWeek(item: iScaleItem) {
   .week-scale-header {
     position: sticky;
     top: 0;
-    background-color: var(--col-bg-1);
+    background-color: var(--color-bg1);
     max-height: var(--gantt-head-height);
     min-height: var(--gantt-head-height);
-    border-bottom: 1px solid var(--col-bg-3);
+    border-bottom: 1px solid var(--color-bg3);
     z-index: 9;
   }
   .week-scale-head {
     text-align: center;
-    border-bottom: 1px solid var(--col-bg-3);
+    border-bottom: 1px solid var(--color-bg3);
   }
   .week-scale-body {
     display: flex;
@@ -78,11 +78,11 @@ function getWeek(item: iScaleItem) {
     padding: 0 4px;
     width: 35px;
     text-align: center;
-    border-right: 1px solid var(--col-bg-3);
+    border-right: 1px solid var(--color-bg3);
   }
 
   .holyday {
-    background-color: var(--col-bg-1);
+    background-color: var(--color-bg1);
   }
 }
 </style>

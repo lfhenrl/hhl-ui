@@ -145,19 +145,19 @@ export default defineComponent({
   z-index: 10;
   height: 208px;
   width: 208px;
-  background-color: var(--col-warn);
+  background-color: var(--color-warn);
 }
 .hhl-live-editor_errBox_title {
   display: flex;
   align-items: center;
-  background-color: var(--col-err);
-  color: var(--col-on-err);
+  background-color: var(--color-err);
+  color: var(--color-errTxt);
   cursor: grab;
   overflow: hidden;
   padding-left: 8px;
 }
 .hhl-live-editor_errBox_body {
-  color: var(--col-err);
+  color: var(--color-err);
   font-size: 14p;
   margin: 8px;
 }
@@ -167,8 +167,8 @@ export default defineComponent({
   gap: 8px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  background-color: var(--col-bg-2);
-  color: var(--col-txt-3);
+  background-color: var(--color-bg2);
+  color: var(--color-txt3);
   padding: 4px;
 }
 .hhl-live-editor_spacer {
@@ -194,6 +194,6 @@ export default defineComponent({
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-  background-color: var(--col-bg-2);
+  background-color: var(--color-bg2);
 }
 </style>

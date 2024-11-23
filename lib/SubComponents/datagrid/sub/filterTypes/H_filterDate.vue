@@ -67,7 +67,6 @@ function save() {
   col.filter.value2 = value2.value;
   col.filter.logical = logical.value;
   col.filter.active = col.filter.value1 !== null;
-  debugger;
 }
 
 function clear() {
@@ -100,7 +99,7 @@ defineExpose({ save, clear, open, close, canSave });
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .H_filterDate {
     display: grid;
     grid-template-rows: auto auto 1fr;

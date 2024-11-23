@@ -59,7 +59,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   overflow: hidden;
-  background-color: var(--col-bg-3);
+  background-color: var(--color-bg3);
   padding-left: 8px;
   padding-right: 12px;
 }
@@ -82,7 +82,7 @@ export default defineComponent({
   cursor: pointer;
   border-bottom-style: solid;
   border-bottom-width: 0;
-  border-bottom-color: var(--col-ok);
+  border-bottom-color: var(--color-ok);
 }
 .nav-bar-items-item.activ {
   border-bottom-width: 4px;
@@ -98,6 +98,6 @@ export default defineComponent({
   flex-direction: column;
   gap: 16px;
   padding: 12px;
-  background-color: var(--col-bg-0);
+  background-color: var(--color-bg0);
 }
 </style>

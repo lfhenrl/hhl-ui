@@ -37,7 +37,7 @@ defineExpose({ close });
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .H_snack {
     display: flex;
     position: fixed;
@@ -46,7 +46,7 @@ defineExpose({ close });
     min-width: 330px;
     max-width: 330px;
     width: 330px;
-    z-index: 50;
+    z-index: 500;
     right: 20px;
     top: 20px;
   }

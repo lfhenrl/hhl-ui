@@ -13,9 +13,9 @@ It will load the Colors and a preflight reset.
     body {
       margin: 0;
       padding: 0;
-      background-color: var(--col-bg-0);
+      background-color: var(--color-bg0);
       height: 100vh;
-      color: var(--col-txt-0);
+      color: var(--color-txt0);
       border-radius: 4px;
     }
 

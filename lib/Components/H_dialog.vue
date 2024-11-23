@@ -123,7 +123,7 @@ onMounted(() => {
 });
 </script>
 <style>
-@layer hhl-components {
+@layer components {
   .H_dialog {
     inset-block: v-bind(insetBlock);
     inset-inline: v-bind(insetInline);

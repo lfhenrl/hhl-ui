@@ -64,8 +64,8 @@ export default MenuLeft;
   min-width: 160px;
   max-width: 160px;
   overflow: auto;
-  border-right: 1px solid var(--col-bg-4);
-  background-color: var(--col-bg-1);
+  border-right: 1px solid var(--color-bg4);
+  background-color: var(--color-bg1);
   padding: 8px;
   font-size: 14px;
 }
@@ -84,7 +84,7 @@ export default MenuLeft;
   margin-bottom: 15px;
 }
 .menu-left-links-selected {
-  color: var(--col-ok);
+  color: var(--color-ok);
   font-weight: bold;
 }
 </style>

@@ -93,7 +93,7 @@ If you add the class `iconBtn/iconBtn-outline/iconBtn-outline-round/iconBtn-fill
 
 You can change the color by the class `"col-pri,sec,ok,err,warn,info"`<br>
 
-If you need a special color then just use `style="--current-bg-col: purple;--current-txt-col: white"`
+If you need a special color then just use `style="--color-current-bg-col: purple;--color-current-txt-col: white"`
 
 <hhl-live-editor title="" htmlCode='
     <template>
@@ -106,7 +106,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
       <div class="ico-save iconBtn col-err"></div>
       <div class="ico-save iconBtn col-warn"></div>
       <div class="ico-save iconBtn col-info"></div>
-      <div class="ico-save iconBtn" style="--current-bg-col: purple;--current-txt-col: white"></div>
+      <div class="ico-save iconBtn" style="--color-current-bg-col: purple;--color-current-txt-col: white"></div>
     </div>
     <div class="flex items-center gap-4 flex-wrap">
       <div class="ico-save iconBtn-outline"></div>
@@ -116,7 +116,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
       <div class="ico-save iconBtn-outline col-err"></div>
       <div class="ico-save iconBtn-outline col-warn"></div>
       <div class="ico-save iconBtn-outline col-info"></div>
-      <div class="ico-save iconBtn-outline" style="--current-bg-col: purple;--current-txt-col: white"></div>
+      <div class="ico-save iconBtn-outline" style="--color-current-bg-col: purple;--color-current-txt-col: white"></div>
     </div>
     <div class="flex items-center gap-4 flex-wrap">
       <div class="ico-save iconBtn-outline-round"></div>
@@ -126,7 +126,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
       <div class="ico-save iconBtn-outline-round col-err"></div>
       <div class="ico-save iconBtn-outline-round col-warn"></div>
       <div class="ico-save iconBtn-outline-round col-info"></div>
-      <div class="ico-save iconBtn-outline-round" style="--current-bg-col: purple;--current-txt-col: white"></div>
+      <div class="ico-save iconBtn-outline-round" style="--color-current-bg-col: purple;--color-current-txt-col: white"></div>
     </div>
     <div class="flex items-center gap-4 flex-wrap">
       <div class="ico-save iconBtn-filled"></div>
@@ -136,7 +136,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
       <div class="ico-save iconBtn-filled col-err"></div>
       <div class="ico-save iconBtn-filled col-warn"></div>
       <div class="ico-save iconBtn-filled col-info"></div>
-      <div class="ico-save iconBtn-filled" style="--current-bg-col: purple;--current-txt-col: white"></div>
+      <div class="ico-save iconBtn-filled" style="--color-current-bg-col: purple;--color-current-txt-col: white"></div>
     </div>
     <div class="flex items-center gap-4 flex-wrap">
       <div class="ico-save iconBtn-filled-round"></div>
@@ -146,7 +146,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
       <div class="ico-save iconBtn-filled-round col-err"></div>
       <div class="ico-save iconBtn-filled-round col-warn"></div>
       <div class="ico-save iconBtn-filled-round col-info"></div>
-      <div class="ico-save iconBtn-filled-round" style="--current-bg-col: purple;--current-txt-col: white"></div>
+      <div class="ico-save iconBtn-filled-round" style="--color-current-bg-col: purple;--color-current-txt-col: white"></div>
     </div>
     </div>
     </template>
@@ -168,7 +168,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
       <div disabled class="ico-save iconBtn col-err"></div>
       <div disabled class="ico-save iconBtn col-warn"></div>
       <div disabled class="ico-save iconBtn col-info"></div>
-      <div disabled class="ico-save iconBtn" style="--current-bg-col: purple;--current-txt-col: white"></div>
+      <div disabled class="ico-save iconBtn" style="--color-current-bg-col: purple;--color-current-txt-col: white"></div>
     </div>
     <div class="flex items-center gap-4 flex-wrap">
       <div disabled class="ico-save iconBtn-outline"></div>
@@ -178,7 +178,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
       <div disabled class="ico-save iconBtn-outline col-err"></div>
       <div disabled class="ico-save iconBtn-outline col-warn"></div>
       <div disabled class="ico-save iconBtn-outline col-info"></div>
-      <div disabled class="ico-save iconBtn-outline" style="--current-bg-col: purple;--current-txt-col: white"></div>
+      <div disabled class="ico-save iconBtn-outline" style="--color-current-bg-col: purple;--color-current-txt-col: white"></div>
     </div>
     <div class="flex items-center gap-4 flex-wrap">
       <div disabled class="ico-save iconBtn-outline-round"></div>
@@ -188,7 +188,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
       <div disabled class="ico-save iconBtn-outline-round col-err"></div>
       <div disabled class="ico-save iconBtn-outline-round col-warn"></div>
       <div disabled class="ico-save iconBtn-outline-round col-info"></div>
-      <div disabled class="ico-save iconBtn-outline-round" style="--current-bg-col: purple;--current-txt-col: white"></div>
+      <div disabled class="ico-save iconBtn-outline-round" style="--color-current-bg-col: purple;--color-current-txt-col: white"></div>
     </div>
     <div class="flex items-center gap-4 flex-wrap">
       <div disabled class="ico-save iconBtn-filled"></div>
@@ -198,7 +198,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
       <div disabled class="ico-save iconBtn-filled col-err"></div>
       <div disabled class="ico-save iconBtn-filled col-warn"></div>
       <div disabled class="ico-save iconBtn-filled col-info"></div>
-      <div disabled class="ico-save iconBtn-filled" style="--current-bg-col: purple;--current-txt-col: white"></div>
+      <div disabled class="ico-save iconBtn-filled" style="--color-current-bg-col: purple;--color-current-txt-col: white"></div>
     </div>
     <div class="flex items-center gap-4 flex-wrap">
       <div disabled class="ico-save iconBtn-filled-round"></div>
@@ -208,7 +208,7 @@ If you need a special color then just use `style="--current-bg-col: purple;--cur
       <div disabled class="ico-save iconBtn-filled-round col-err"></div>
       <div disabled class="ico-save iconBtn-filled-round col-warn"></div>
       <div disabled class="ico-save iconBtn-filled-round col-info"></div>
-      <div disabled class="ico-save iconBtn-filled-round" style="--current-bg-col: purple;--current-txt-col: white"></div>
+      <div disabled class="ico-save iconBtn-filled-round" style="--color-current-bg-col: purple;--color-current-txt-col: white"></div>
     </div>
     </div>
     </template>

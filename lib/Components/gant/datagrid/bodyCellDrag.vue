@@ -12,13 +12,13 @@ defineProps({
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .bodyCell-drag {
     pointer-events: all;
     display: flex;
     align-items: center;
     overflow: hidden;
-    border-right: 1px solid var(--col-bg-4);
+    border-right: 1px solid var(--color-bg4);
     min-height: var(--gantt-row-height);
     max-height: var(--gantt-row-height);
     width: 30px;

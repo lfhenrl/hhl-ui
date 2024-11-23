@@ -5,6 +5,7 @@ import mdprism from "markdown-it-prism";
 import Markdown from "unplugin-vue-markdown/vite";
 import VueRouter from "unplugin-vue-router/vite";
 import { containerPlugin } from "./src/components/containers";
+import tailwindcss from "@tailwindcss/vite";
 import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
@@ -22,6 +23,7 @@ export default defineConfig({
     vue({
       include: [/\.vue$/, /\.md$/],
     }),
+    tailwindcss(),
     Markdown({
       markdownItSetup(md) {
         // for example

@@ -56,12 +56,12 @@ watchEffect(() => {
   }
 });
 
-const bgColor = computed(() => `var(--col-${P.color})`);
+const bgColor = computed(() => `var(--color-${P.color})`);
 const validate = computed(() => validateFunc(P.validator, model.value));
 onMounted(() => (model.value = model.value));
 </script>
 <style>
-@layer hhl-components {
+@layer components {
   .H_range {
     --range-color: v-bind(bgColor);
     --range-shadow-hover: 0 0 0 10px color-mix(in srgb, var(--range-color) var(--transparency, 10%), transparent);

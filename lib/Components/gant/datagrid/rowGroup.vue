@@ -108,7 +108,7 @@ onMounted(() => {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .rowGroup {
     display: flex;
     align-items: center;
@@ -116,7 +116,7 @@ onMounted(() => {
     min-height: var(--gantt-row-height);
     max-height: var(--gantt-row-height);
     pointer-events: all;
-    border-bottom: 1px solid var(--col-bg-4);
+    border-bottom: 1px solid var(--color-bg4);
     transition: all 300ms;
   }
 
@@ -126,7 +126,7 @@ onMounted(() => {
   }
 
   .rowGroup.dropGroup {
-    outline: 2px solid var(--col-pri);
+    outline: 2px solid var(--color-pri);
     outline-offset: -1px;
   }
 
@@ -134,7 +134,7 @@ onMounted(() => {
     display: flex;
     align-items: center;
     overflow: hidden;
-    border-right: 1px solid var(--col-bg-4);
+    border-right: 1px solid var(--coler-bg4);
     padding: 3px;
   }
 

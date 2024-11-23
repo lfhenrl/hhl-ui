@@ -8,7 +8,7 @@
   flex-direction: column;
   height:460px;
   width:160px;
-  border: 1px solid var(--col-bg-5);
+  border: 1px solid var(--color-bg5);
   border-radius: 4px;
   padding: 16px;
   gap: 10px;

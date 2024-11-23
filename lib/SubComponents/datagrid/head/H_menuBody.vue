@@ -8,7 +8,7 @@
       v-if="col.props.sorting !== 'none'"
     >
       <div class="ico-arrow_upward iconBtn pointer-events-none" />
-      <div class="H_menu-noPointerEvents">Sort Ascending</div>
+      <div class="pointer-events-none">Sort Ascending</div>
     </div>
     <div
       class="H_menu-popup-item"
@@ -18,16 +18,16 @@
       v-if="col.props.sorting !== 'none'"
     >
       <div class="ico-arrow_downward iconBtn pointer-events-none" />
-      <div class="H_menu-noPointerEvents">Sort Descending</div>
+      <div class="pointer-events-none">Sort Descending</div>
     </div>
     <div class="H_menu-popup-item" data-action="filter" v-if="col.filter.type !== 'none'" data-subtype="menuFilter">
       <div class="ico-filter iconBtn pointer-events-none" />
-      <div class="H_menu-noPointerEvents">Filter</div>
+      <div class="pointer-events-none">Filter</div>
     </div>
 
     <div class="H_menu-popup-item" data-action="autoSize" data-subtype="menuAutoSize">
       <div class="ico-expand_horizontal iconBtn pointer-events-none" />
-      <div class="H_menu-noPointerEvents">Auto size</div>
+      <div class="pointer-events-none">Auto size</div>
     </div>
   </div>
 </template>
@@ -82,14 +82,14 @@ function menuClick(e: MouseEvent) {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .H_menuBody {
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--col-bg-2);
-    background-color: var(--col-bg-0);
+    border: 1px solid var(--color-bg2);
+    background-color: var(--color-bg0);
     padding-top: 4px;
-    color: var(--col-txt-1);
+    color: var(--color-txt1);
     font-size: 12px;
     font-weight: 400;
   }
@@ -98,15 +98,15 @@ function menuClick(e: MouseEvent) {
     align-items: center;
     cursor: pointer;
     gap: 8px;
-    border-bottom: 1px solid var(--col-bg-4);
+    border-bottom: 1px solid var(--color-bg4);
     padding: 2px 8px;
   }
   .H_menu-popup-item[data-selected="true"] {
-    background-color: var(--col-pri);
-    color: var(--col-on-pri);
+    background-color: var(--color-pri);
+    color: var(--color-priTxt);
   }
   .H_menu-popup-item:hover {
-    background-color: var(--col-bg-3);
+    background-color: var(--color-bg3);
   }
 }
 </style>

@@ -11,7 +11,7 @@
     :narrow
     class="H_input"
   >
-    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 max-h-[1.875em]">
+    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 max-h-[1.875em] items-center">
       <slot> </slot>
       <input
         class="col-start-2 w-full bg-transparent border-none appearance-none focus:outline-none"

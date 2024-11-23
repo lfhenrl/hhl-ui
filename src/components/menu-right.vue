@@ -79,7 +79,7 @@ const MenuRight = defineComponent({
       () => route.path,
       async () => {
         updateIndex();
-      },
+      }
     );
 
     onMounted(() => {
@@ -108,7 +108,7 @@ export default MenuRight;
   min-width: 160px;
   max-width: 160px;
   overflow: auto;
-  background-color: var(--col-bg-1);
+  background-color: var(--color-bg1);
   padding: 8px;
   font-size: 14px;
 }
@@ -116,7 +116,7 @@ export default MenuRight;
   cursor: pointer;
 }
 .menu-right-links-selected {
-  color: var(--col-ok);
+  color: var(--color-ok);
   font-weight: bold;
 }
 </style>

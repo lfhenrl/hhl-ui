@@ -38,7 +38,7 @@ export class Gantt {
     this.calc = calc(this);
 
     watch(this.Data, () => {
-      this.scrollTotHight = this.dGridDom?.$el.scrollHeight;
+      this.scrollTotHight = this.dGridDom?.$el.scrollHeight ?? 0;
       this.scrollHight = this.scrollTotHight - this.headHeight;
       if (this.MainDomStyle) {
         this.MainDomStyle.setProperty("--gantt-scroll-height", this.scrollHight + "px");

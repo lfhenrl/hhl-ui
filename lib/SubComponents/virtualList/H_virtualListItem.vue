@@ -69,7 +69,7 @@ function dispatchSizeChange() {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity 0.3s ease;

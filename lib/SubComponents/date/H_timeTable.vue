@@ -110,18 +110,18 @@ const itemClick = (index: number) => {
 };
 </script>
 <style>
-@layer hhl-components {
+@layer components {
   .H_timetable__header {
     display: flex;
     flex-direction: row;
     align-items: stretch;
     justify-content: center;
-    background-color: var(--col-bg-3);
+    background-color: var(--color-bg3);
     text-align: center;
     font-size: 24px;
     line-height: 32px;
     font-weight: 700;
-    color: var(--col-txt-1);
+    color: var(--color-txt1);
   }
   .H_timetable__value {
     display: flex;
@@ -155,7 +155,7 @@ const itemClick = (index: number) => {
     opacity: 0.2;
   }
   .H_timeTable__tableItem:hover {
-    background-color: var(--col-warn);
+    background-color: var(--color-warn);
   }
   .H_timeTable__tableItem.activ {
     pointer-events: auto;

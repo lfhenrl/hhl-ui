@@ -9,7 +9,7 @@
     @isValid="$emit('isValid', $event)"
     class="H_datePicker max-h-[1.875em]"
   >
-    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 max-h-[1.875em]">
+    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 max-h-[1.875em] items-center">
       <slot> </slot>
       <div class="H_inputbase-input col-start-2 flex items-center">
         <H_baseDatePicker

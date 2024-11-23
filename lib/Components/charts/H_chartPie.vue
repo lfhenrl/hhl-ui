@@ -91,7 +91,7 @@ watch(
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .Placement_bottom {
     flex-direction: column;
   }

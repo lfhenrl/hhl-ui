@@ -33,19 +33,12 @@ const context = {
 };
 
 const { item, position, containerId } = toRefs(props);
-const {
-  draggableItemEl,
-  isDragging,
-  onDragStart,
-  onDragOver,
-  onDragEnd,
-  transitionStart,
-  transitionEnd,
-} = useDraggableItem(item, position, containerId, context, props.maxItems);
+const { draggableItemEl, isDragging, onDragStart, onDragOver, onDragEnd, transitionStart, transitionEnd } =
+  useDraggableItem(item, position, containerId, context, props.maxItems);
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .isDragging {
     opacity: 0.4;
   }

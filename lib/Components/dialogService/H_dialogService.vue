@@ -32,8 +32,8 @@ const dialog = ref({
   title: "Title",
   info: "Info",
   buttons: {
-    ok: { Text: "Ok", Color: "var(--col-bg-pri)" },
-    cancel: { Text: "Cancel", Color: "var(--col-bg-sec)" },
+    ok: { Text: "Ok", Color: "col-pri" },
+    cancel: { Text: "Cancel", Color: "col-sec" },
   },
   callback(ok: boolean) {
     return ok;

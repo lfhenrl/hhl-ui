@@ -73,7 +73,7 @@ function changeTab(e: string) {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .H_tabs {
     display: grid;
     grid-template-rows: auto 1fr;
@@ -105,22 +105,22 @@ function changeTab(e: string) {
 
   .H_tabs-details {
     border-radius: 4px;
-    border: 1px solid var(--col-txt-4);
-    background-color: var(--col-bg-0);
+    border: 1px solid var(--color-txt4);
+    background-color: var(--color-bg0);
     overflow: hidden;
     height: 100%;
   }
 
   .H_tabs__tab[selected="true"] {
     font-weight: bold;
-    border: solid 1px var(--col-txt-4);
+    border: solid 1px var(--color-txt4);
     border-bottom: none;
-    background-color: var(--col-bg-0);
+    background-color: var(--color-bg0);
     top: 1px;
   }
 
   .H_tabs__tab[selected="true"] .H_tabs__tab_label {
-    border-bottom-color: var(--col-pri);
+    border-bottom-color: var(--color-pri);
   }
 
   .H_tabsFade-enter-active,

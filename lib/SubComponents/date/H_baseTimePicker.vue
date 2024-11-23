@@ -26,8 +26,8 @@
       <div class="H_timePicker__popup">
         <H_timeTable v-model="tempDato" :show-seconds="showSeconds" />
         <div class="H_timePicker__footer">
-          <H_btn size="sm" @click="cancel" class="col-sec">CANCEL</H_btn>
-          <H_btn size="sm" @click="ok">OK</H_btn>
+          <H_btn size="sm" @click="cancel" class="col-sec text-sm">CANCEL</H_btn>
+          <H_btn size="sm" @click="ok" class="text-sm">OK</H_btn>
         </div>
       </div>
     </H_popover>
@@ -80,7 +80,7 @@ const formattetTime = computed(() => {
 });
 </script>
 <style>
-@layer hhl-components {
+@layer components {
   .H_timePicker__inputcontainer {
     display: inline-flex;
     align-items: center;
@@ -92,30 +92,30 @@ const formattetTime = computed(() => {
     overflow: hidden;
     background-color: transparent;
     padding-left: 4px;
-    color: var(--col-txt-1);
+    color: var(--color-txt1);
     border: none;
   }
   .H_timePicker__popup {
     border-radius: 4px;
-    background-color: var(--col-bg-0);
-    border: 1px solid var(--col-bg-5);
+    background-color: var(--color-bg0);
+    border: 1px solid var(--color-bg5);
   }
   .H_datePicker__header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--col-bg-5);
+    background-color: var(--color-bg5);
     padding: 4px;
     text-align: center;
     font-size: 20px;
     font-weight: 700;
-    color: var(--col-txt-1);
+    color: var(--color-txt1);
   }
   .H_timePicker__footer {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
-    border-top: 1px solid var(--col-bg-4);
+    border-top: 1px solid var(--color-bg4);
     padding: 12px;
   }
 

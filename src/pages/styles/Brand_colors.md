@@ -1,7 +1,7 @@
 ## Brand colors
 
-This is the Brand colors all defined as css properties, like `--col-xxx`.<br>
-For each color there is a color on `--col-on-xxx`, that have the text color that looks best on the background  color
+This is the Brand colors all defined as css properties, like `--color-xxx`.<br>
+For each color there is a color on `--color-xxxTxt`, that have the text color that looks best on the background  color
 
 <hhl-live-editor title="Theme colors" htmlCode='
     <template>
@@ -25,17 +25,17 @@ For each color there is a color on `--col-on-xxx`, that have the text color that
 
 | Name          | Color                                                                               | Describtion                   |
 | ------------- | ----------------------------------------------------------------------------------- | ----------------------------- |
-| --col-pri     | <div class="bgBox col-pri"></div> | The primary color.            |
-| --col-on-pri  | <div style="background: var(--col-on-pri)" class="flex items-center justify-center w-24 h-9"></div> | The text color for primary.   |
-| --col-sec     | <div style="background: var(--col-sec)" class="flex items-center justify-center w-24 h-9"></div> | The secondary color.          |
-| --col-on-sec  | <div style="background: var(--col-on-sec)" class="flex items-center justify-center w-24 h-9"></div> | The text color for secondary. |
-| --col-ok      | <div style="background: var(--col-ok)" class="flex items-center justify-center w-24 h-9"></div> | The ok color.                 |
-| --col-on-ok   | <div style="background: var(--col-on-ok)" class="flex items-center justify-center w-24 h-9"></div> | The text color for ok.        |
-| --col-err     | <div style="background: var(--col-err)" class="flex items-center justify-center w-24 h-9"></div> | The error color.              |
-| --col-on-err  | <div style="background: var(--col-on-err)" class="flex items-center justify-center w-24 h-9"></div> | The text color for error.     |
-| --col-warn    | <div style="background: var(--col-warn)" class="flex items-center justify-center w-24 h-9"></div> | The warning color.            |
-| --col-on-warn | <div style="background: var(--col-on-warn)" class="flex items-center justify-center w-24 h-9"></div> | The text color for warning.   |
-| --col-info    | <div style="background: var(--col-info)" class="flex items-center justify-center w-24 h-9"></div> | The info color.               |
-| --col-on-info | <div style="background: var(--col-on-info)" class="flex items-center justify-center w-24 h-9"></div> | The text color for info.      |
+| --color-pri     | <div class="bgBox col-pri"></div> | The primary color.            |
+| --color-priTxt  | <div style="background: var(--color-priTxt)" class="flex items-center justify-center w-24 h-9"></div> | The text color for primary.   |
+| --color-sec     | <div style="background: var(--color-sec)" class="flex items-center justify-center w-24 h-9"></div> | The secondary color.          |
+| --color-secTxt  | <div style="background: var(--color-secTxt)" class="flex items-center justify-center w-24 h-9"></div> | The text color for secondary. |
+| --color-ok      | <div style="background: var(--color-ok)" class="flex items-center justify-center w-24 h-9"></div> | The ok color.                 |
+| --color-okTxt   | <div style="background: var(--color-okTxt)" class="flex items-center justify-center w-24 h-9"></div> | The text color for ok.        |
+| --color-err     | <div style="background: var(--color-err)" class="flex items-center justify-center w-24 h-9"></div> | The error color.              |
+| --color-errTxt  | <div style="background: var(--color-errTxt)" class="flex items-center justify-center w-24 h-9"></div> | The text color for error.     |
+| --color-warn    | <div style="background: var(--color-warn)" class="flex items-center justify-center w-24 h-9"></div> | The warning color.            |
+| --coloe-warnTxt | <div style="background: var(--color-warnTxt)" class="flex items-center justify-center w-24 h-9"></div> | The text color for warning.   |
+| --color-info    | <div style="background: var(--color-info)" class="flex items-center justify-center w-24 h-9"></div> | The info color.               |
+| --color-infoTxt | <div style="background: var(--color-infoTxt)" class="flex items-center justify-center w-24 h-9"></div> | The text color for info.      |
 
 <br/>

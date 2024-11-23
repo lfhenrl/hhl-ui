@@ -54,7 +54,7 @@ const changeYear = (val: number) => {
 };
 </script>
 <style>
-@layer hhl-components {
+@layer components {
   .H_monthTable__innerHeader {
     display: flex;
     flex: 1 1 0%;
@@ -83,8 +83,8 @@ const changeYear = (val: number) => {
     font-weight: 700;
   }
   .H_monthTable__tableItem:hover {
-    background-color: var(--col-warn);
-    color: var(--col-on-warn);
+    background-color: var(--color-warn);
+    color: var(--color-warnTxt);
   }
 }
 </style>

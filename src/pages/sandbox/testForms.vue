@@ -45,13 +45,13 @@ const offsetLeft = ref(0);
 ._page {
   display: flex;
   padding: 32px;
-  background-color: var(--col-bg-0);
+  background-color: var(--color-bg0);
   height: 900px;
 }
 
 .pop {
   border-radius: 4px;
-  background-color: var(--col-bg-1);
+  background-color: var(--color-bg1);
   padding: 100px;
 }
 
@@ -62,7 +62,7 @@ const offsetLeft = ref(0);
 }
 
 .henrik input {
-  border: 1px solid var(--col-bg-5);
+  border: 1px solid var(--color-bg5);
   margin-left: 5px;
   padding: 3px 5px;
   border-radius: 4px;
@@ -80,7 +80,7 @@ const offsetLeft = ref(0);
   cursor: pointer;
 }
 textarea {
-  border: 1px solid var(--col-bg-5);
+  border: 1px solid var(--color-bg5);
   margin-left: 5px;
   padding: 3px 5px;
   border-radius: 4px;

@@ -1,0 +1,36 @@
+@theme {
+  --color-*: initial;
+  --color-pri: oklch(0.623 0.214 259.815);
+  --color-priTxt: #fff;
+  --color-sec: #6c757d;
+  --color-secTxt: #fff;
+  --color-ok: #28a745;
+  --color-okTxt: #fff;
+  --color-err: #dc3545;
+  --color-errTxt: #fff;
+  --color-warn: #ffc107;
+  --color-warnTxt: black;
+  --color-info: #17a2b8;
+  --color-infoTxt: #fff;
+
+  --color-txt0: hsl(0, 0%, 0%);
+  --color-txt1: hsl(0, 0%, 17%);
+  --color-txt2: hsl(0, 0%, 27%);
+  --color-txt3: hsl(0, 0%, 37%);
+  --color-txt4: hsl(0, 0%, 47%);
+  --color-txt5: hsl(0, 0%, 57%);
+  --color-txt6: hsl(0, 0%, 67%);
+  --color-bg0: hsl(0, 0%, 100%);
+  --color-bg1: hsl(0, 0%, 94%);
+  --color-bg2: hsl(0, 0%, 92%);
+  --color-bg3: hsl(0, 0%, 88%);
+  --color-bg4: hsl(0, 0%, 84%);
+  --color-bg5: hsl(0, 0%, 80%);
+  --color-bg6: hsl(0, 0%, 76%);
+
+  --color-black: black;
+  --color-white: white;
+  --color-transparent: black;
+  --color-current-txt-col: currentColor;
+  --color-current-bg-col: var(--color-pri);
+}

@@ -1,13 +1,13 @@
 <template>
   <label
-    class="H_switch inline-flex items-center gap-[.3em] !bg-transparent col-pri cursor-pointer [&[disabled]]:opacity-40 [&[disabled]]:pointer-events-none"
+    class="H_switch inline-flex items-center gap-[.3em] !bg-transparent cursor-pointer [&[disabled]]:opacity-40 [&[disabled]]:pointer-events-none"
     :class="{ 'flex-row-reverse': labelLeft }"
     :disabled="disabled ? '' : undefined"
   >
     <input
       v-show="P.switch === false"
       :type
-      class="H_switch-input accent-currentBg aspect-square rounded h-[1.2em]"
+      class="H_switch-input accent-current-bg-col aspect-square rounded h-[1.2em]"
       :aria-label="label === '' ? 'No label' : label"
       :value="value"
       v-model="modelValue"
@@ -39,7 +39,13 @@ const modelValue = defineModel();
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
+  .H_switch {
+    background-color: var(--color-pri);
+    color: var(--color-priTxt);
+    --color-current-bg-col: var(--color-pri);
+    --color-current-txt-col: var(--color-priTxt);
+  }
   .H_switch .slider {
     height: 1.2em;
     aspect-ratio: 20 / 12;
@@ -54,14 +60,14 @@ const modelValue = defineModel();
     height: 70%;
     aspect-ratio: 1 / 1;
     left: 5%;
-    background-color: var(--col-bg-0);
+    background-color: var(--color-bg0);
     -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: 50%;
   }
 
   .H_switch input:checked + .slider {
-    background-color: color-mix(in srgb, var(--current-bg-col) 30%, white);
+    background-color: color-mix(in srgb, var(--color-current-bg-col) 30%, white);
   }
 
   .H_switch input:focus + .slider {
@@ -73,7 +79,7 @@ const modelValue = defineModel();
     -ms-transform: translateX((86%));
     transform: translateX((86%));
     height: 78%;
-    background-color: var(--current-bg-col);
+    background-color: var(--color-current-bg-col);
   }
 }
 </style>

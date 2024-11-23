@@ -8,7 +8,7 @@ defineProps({
 });
 </script>
 <style>
-@layer hhl-components {
+@layer components {
   .H_filterNone {
     text-align: center;
     font-size: 20px;

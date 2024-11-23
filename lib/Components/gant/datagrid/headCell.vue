@@ -18,14 +18,14 @@ function resize(e: MouseEvent) {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .headCell {
     display: flex;
     align-items: center;
     justify-content: space-between;
     max-height: var(--gantt-head-height);
     min-height: var(--gantt-head-height);
-    border-right: 1px solid var(--col-bg-4);
+    border-right: 1px solid var(--color-bg4);
   }
 
   .headCell-text {

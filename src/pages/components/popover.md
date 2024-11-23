@@ -4,7 +4,7 @@
   .popUpBox {
     border-radius: 4px;
     padding: 20px;
-    background-color: var(--col-warn); 
+    background-color: var(--color-warn); 
   }
 </style>
 

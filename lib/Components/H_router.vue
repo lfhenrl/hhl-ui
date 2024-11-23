@@ -68,7 +68,7 @@ getcachedPages();
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .H_router-slide-fade-enter-active {
     transition: all 0.2s ease-out;
   }

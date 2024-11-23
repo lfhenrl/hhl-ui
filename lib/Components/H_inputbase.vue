@@ -31,15 +31,15 @@
 defineProps({
   label: { type: String, default: "label" },
   clearable: { type: Boolean, default: false },
-  HelpTextStart: { type: String, default: "HelpTextStart" },
-  HelpTextEnd: { type: String, default: "HelpTextEnd" },
-  ErrorMessage: { type: String, default: "sdfgdsg" },
+  HelpTextStart: { type: String, default: "" },
+  HelpTextEnd: { type: String, default: "" },
+  ErrorMessage: { type: String, default: "" },
   narrow: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
 });
 </script>
 <style>
-@layer hhl-components {
+@layer components {
   .H_inputbase [set-end] {
     grid-column-start: 3;
     grid-row-start: 1;

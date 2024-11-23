@@ -121,10 +121,10 @@ defineExpose({
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .data-grid {
     display: inline-block;
-    border-left: 1px solid var(--col-bg-3);
+    border-left: 1px solid var(--color-bg3);
     font-size: 14px;
     overflow-x: scroll;
     overflow-y: scroll;
@@ -139,14 +139,14 @@ defineExpose({
     align-items: center;
     max-height: 38px;
     min-height: 38px;
-    background-color: var(--col-bg-1);
-    border-bottom: 1px solid var(--col-bg-3);
+    background-color: var(--color-bg1);
+    border-bottom: 1px solid var(--color-bg3);
   }
 
   .drag-head {
     width: 30px;
     text-align: center;
-    border-right: 1px solid var(--col-bg-4);
+    border-right: 1px solid var(--color-bg4);
     min-height: var(--gantt-row-height);
     max-height: var(--gantt-row-height);
   }
@@ -157,14 +157,14 @@ defineExpose({
     align-items: center;
     max-height: 30px;
     min-height: 30px;
-    border-bottom: 1px solid var(--col-bg-3);
+    border-bottom: 1px solid var(--color-bg3);
   }
 
   .data-grid-moveDialog {
     display: flex;
     flex-direction: column;
     gap: 7px;
-    background-color: var(--col-bg-3);
+    background-color: var(--color-bg3);
     padding: 12px;
   }
 }

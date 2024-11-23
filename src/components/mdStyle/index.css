@@ -1,11 +1,10 @@
-/* purgecss start ignore */
-@import "code.css";
-@import "custom-blocks.css";
+@import "./code.css";
+@import "./custom-blocks.css";
 
 .linkList {
   display: flex;
   flex-direction: column;
-  color: var(--col-ok);
+  color: var(--color-ok);
 }
 
 .markdown-body h1,
@@ -55,16 +54,16 @@
 }
 
 .markdown-body tr {
-  border-top: 1px solid var(--col-bg-4);
+  border-top: 1px solid var(--coler-bg4);
 }
 
 .markdown-body tr:nth-child(2n) {
-  background-color: var(--col-bg-2);
+  background-color: var(--color-bg2);
 }
 
 .markdown-body th,
 .markdown-body td {
-  border: 1px solid var(--col-bg-4);
+  border: 1px solid var(--color-bg4);
   padding: 0.6em 1em;
 }
 

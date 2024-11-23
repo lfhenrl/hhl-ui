@@ -140,7 +140,7 @@ function KeyEnter() {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .H_selectbase-item::before {
     content: "";
     font-size: 0.9em;
@@ -153,14 +153,14 @@ function KeyEnter() {
     min-width: 1.4em;
     border-radius: 4px;
     text-align: center;
-    border: 1px solid var(--col-bg-5);
+    border: 1px solid var(--color-bg5);
   }
 
   .H_selectbase-item[selected]::before {
     content: "✓";
     color: white;
-    background-color: var(--col-pri);
-    border-color: var(--col-pri);
+    background-color: var(--color-pri);
+    border-color: var(--color-pri);
   }
 }
 </style>

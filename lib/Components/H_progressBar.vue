@@ -11,11 +11,11 @@ defineProps({
     default: false,
   },
   color_bg: { type: String, default: "" },
-  color_fg: { type: String, default: "var(--col-pri)" },
+  color_fg: { type: String, default: "var(--color-pri)" },
 });
 </script>
 <style>
-@layer hhl-components {
+@layer components {
   .H_progressBar {
     background-color: v-bind(color_bg);
   }

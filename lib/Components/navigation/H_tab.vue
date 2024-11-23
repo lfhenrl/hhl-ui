@@ -26,7 +26,7 @@ const selected = computed(() => tabData.selected.value === props.name);
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .H_tab {
     display: grid;
     grid-template-columns: 1fr;

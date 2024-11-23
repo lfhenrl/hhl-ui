@@ -63,7 +63,7 @@ function format(value: any, col: iColumn, row: any) {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .H_dataRow {
     display: flex;
     flex: 1;
@@ -72,32 +72,32 @@ function format(value: any, col: iColumn, row: any) {
     max-height: var(--dgrid-row-height);
     width: 100%;
     line-height: 1.1;
-    background: var(--col-bg-0);
+    background: var(--color-bg0);
   }
 
   .H_dataRow:nth-child(odd) {
-    background: var(--col-bg-1);
+    background: var(--color-bg1);
   }
 
   .H_dataRow[selected="true"] {
-    background-color: var(--col-bg-4);
+    background-color: var(--color-bg4);
   }
 
   .H_dataRow:hover {
-    background-color: var(--col-bg-2);
+    background-color: var(--color-bg2);
   }
 
   .H_dataRow[selected="true"]:hover {
-    background-color: var(--col-bg-5);
+    background-color: var(--color-bg5);
   }
 
   .H_vscroll-item[selected="true"]:hover {
-    background-color: var(--col-bg-5);
+    background-color: var(--color-bg5);
   }
 
   .H_dataRow-Cell {
-    border-right: solid 1px var(--col-bg-3);
-    border-bottom: solid 1px var(--col-bg-3);
+    border-right: solid 1px var(--color-bg3);
+    border-bottom: solid 1px var(--color-bg3);
     padding: 4px 8px;
     overflow: hidden;
     text-overflow: ellipsis;

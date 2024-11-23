@@ -80,12 +80,10 @@ function toggle(e: any) {
   if (e.newState === "open") {
     IsOpen = true;
     dialogPos.startPos();
-    console.log("open from toggle");
     if (!modelValue.value) modelValue.value = true;
   } else {
     IsOpen = false;
     dialogPos.endPos();
-    console.log("close from toggle");
     if (modelValue.value) modelValue.value = false;
   }
 }
@@ -98,13 +96,11 @@ const popoverType = computed(() => {
 function close() {
   if (!IsOpen) return;
   popup.value?.hidePopover();
-  console.log("close");
 }
 
 function open() {
   if (IsOpen) return;
   popup.value?.showPopover();
-  console.log("open");
 }
 
 onMounted(() => {
@@ -122,7 +118,7 @@ onMounted(() => {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .H_popover-popup {
     --scaleversion: scaleY-display;
     transition: overlay 0.7s allow-discrete, display 0.7s allow-discrete;

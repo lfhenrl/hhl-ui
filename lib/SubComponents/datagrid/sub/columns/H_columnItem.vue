@@ -1,7 +1,7 @@
 <template>
   <div class="H_columnItem">
     <div class="H_columnItem-check" :class="{ 'H_columnItem-checked': data.visibel }" @click="checkClick">
-      <div class="ico-check iconBtn" v-if="data.visibel" />
+      <div class="ico-check" v-if="data.visibel" />
     </div>
     <div class="ico-drag iconBtn" />
     {{ data?.title }}
@@ -35,30 +35,33 @@ function checkClick() {
 }
 </script>
 <style>
-@layer hhl-components {
+@layer components {
+  .H_columnItem .ico-check {
+    font-size: 10px;
+  }
   .H_columnItem {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     font-weight: 400;
-    color: var(--col-txt-1);
+    color: var(--color-txt1);
   }
   .H_columnItem:hover {
-    background-color: var(--col-bg-2);
+    background-color: var(--color-bg2);
   }
   .H_columnItem-check {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: solid 1px var(--col-txt-1);
+    border: solid 1px var(--color-txt1);
     width: 16px;
     height: 16px;
     border-radius: 4px;
-    margin-right: 3px;
+    margin-right: 1px;
   }
   .H_columnItem-checked {
-    background-color: var(--col-pri);
-    color: var(--col-on-pri);
+    background-color: var(--color-pri);
+    color: var(--color-priTxt);
     border: none;
   }
 }

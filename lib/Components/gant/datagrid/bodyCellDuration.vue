@@ -21,7 +21,7 @@ function getDays(item: any) {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .bodyCell {
     overflow: auto;
   }

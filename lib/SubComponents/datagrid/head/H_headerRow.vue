@@ -20,7 +20,7 @@ onMounted(() => {
 });
 </script>
 <style>
-@layer hhl-components {
+@layer components {
   .H_headerRow {
     display: flex;
     flex: 1 1 100%;

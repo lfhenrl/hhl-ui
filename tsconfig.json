@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
     "esModuleInterop": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -13,9 +14,10 @@
     "jsx": "preserve",
     "sourceMap": true,
     "lib": ["esnext", "dom"],
-    "types": ["vite/client", "node", "unplugin-vue-router/client"]
+    "types": ["unplugin-vue-router/client"]
   },
   "include": [
+    "vite.config.ts",
     "./typed-router.d.ts",
     "src/**/*.ts",
     "src/**/*.d.ts",

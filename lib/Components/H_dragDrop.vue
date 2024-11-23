@@ -51,7 +51,7 @@ const transitionStyle = computed(() => `transform ${props.transition}ms`);
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .draggable-item-list-move {
     transition: v-bind(transitionStyle);
   }

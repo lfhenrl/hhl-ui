@@ -18,7 +18,7 @@ function formatDate(d: Date) {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .bodyCell {
     overflow: auto;
   }

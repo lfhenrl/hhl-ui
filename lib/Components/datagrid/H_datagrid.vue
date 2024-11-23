@@ -145,7 +145,7 @@ onMounted(() => {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .H_datagrid {
     position: relative;
     display: grid;
@@ -171,8 +171,8 @@ onMounted(() => {
     overflow-y: hidden;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    border: 1px solid var(--col-bg-6);
-    background-color: var(--col-bg-2);
+    border: 1px solid var(--color-bg6);
+    background-color: var(--color-bg2);
   }
 
   .H_datagrid-header-progress {
@@ -189,7 +189,7 @@ onMounted(() => {
   .H_datagrid-header::-webkit-scrollbar-track {
     border-radius: 0;
     border-top-right-radius: 4px;
-    background-color: var(--col-bg-2);
+    background-color: var(--color-bg2);
   }
 
   .H_datagrid-header::-webkit-scrollbar-thumb {
@@ -212,8 +212,8 @@ onMounted(() => {
 
   .H_datagrid-body {
     overflow: hidden;
-    border-right: 1px solid var(--col-bg-6);
-    border-left: 1px solid var(--col-bg-6);
+    border-right: 1px solid var(--color-bg6);
+    border-left: 1px solid var(--color-bg6);
   }
 }
 </style>

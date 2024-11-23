@@ -3,9 +3,7 @@
     <h1>Sandbox</h1>
     <p>This is a sandbox area for development</p>
     <div class="linkList">
-      <router-link v-for="route in links" :key="route.id" :to="route.path"
-        >-{{ route.name }}</router-link
-      >
+      <router-link v-for="route in links" :key="route.id" :to="route.path">-{{ route.name }}</router-link>
     </div>
   </div>
 </template>
@@ -39,6 +37,6 @@ export default Index;
 .linkList {
   display: flex;
   flex-direction: column;
-  color: var(--col-ok);
+  color: var(--color-ok);
 }
 </style>

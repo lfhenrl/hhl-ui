@@ -15,7 +15,7 @@ onMounted(() => {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .H_chartGantt_lineTool {
     stroke: orange;
     stroke-width: 2;

@@ -34,14 +34,14 @@ onMounted(() => {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .task {
     position: relative;
     display: flex;
     max-height: var(--gantt-row-height);
     min-height: var(--gantt-row-height);
     min-width: var(--gantt-scroll-width);
-    border-bottom: solid 1px var(--col-bg-3);
+    border-bottom: solid 1px var(--color-bg3);
     align-items: center;
     z-index: 1;
     pointer-events: none;

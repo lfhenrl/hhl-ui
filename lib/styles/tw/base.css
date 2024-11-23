@@ -1,0 +1,59 @@
+@layer base {
+  .darkTheme {
+    --color-txt0: rgb(255, 255, 255);
+    --color-txt1: rgba(255, 255, 255, 0.87);
+    --color-txt2: rgba(255, 255, 255, 0.6);
+    --color-txt3: rgba(255, 255, 255, 0.45);
+    --color-txt4: rgba(255, 255, 255, 0.3);
+    --color-txt5: rgba(255, 255, 255, 0.2);
+    --color-txt6: rgba(255, 255, 255, 0.1);
+    --color-bg0: hsl(231, 12%, 20%);
+    --color-bg1: hsl(231, 12%, 23%);
+    --color-bg2: hsl(231, 12%, 27%);
+    --color-bg3: hsl(231, 12%, 32%);
+    --color-bg4: hsl(231, 12%, 35%);
+    --color-bg5: hsl(231, 12%, 39%);
+    --color-bg6: hsl(231, 12%, 43%);
+    color-scheme: dark;
+  }
+  div[class*="ico-"]::after {
+    content: "";
+    -webkit-mask: var(--svg) no-repeat;
+    mask: var(--svg) no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    color: inherit;
+    width: 1.4em;
+    height: 1.4em;
+    display: block;
+  }
+
+  div[class*="iconBtn"] {
+    display: inline-flex;
+    height: 1.4em;
+    align-items: center;
+    z-index: 99;
+    width: 1.4em;
+    &:hover {
+      outline: 2px solid var(--color-pri);
+    }
+    &:active {
+      outline: 2px solid var(--color-pri);
+      transform: scale(0.9);
+    }
+    &[disabled] {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+  }
+
+  div[class*="iconBtn-filled"] {
+    --color-current-txt-col: var(--color-txt2);
+    --color-current-bg-col: var(--color-bg3);
+  }
+
+  :fullscreen {
+    background-color: var(--color-bg0);
+  }
+}

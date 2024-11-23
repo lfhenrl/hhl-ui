@@ -7,13 +7,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  onErrorCaptured,
-  onUnmounted,
-  ref,
-  watchEffect,
-} from "vue";
+import { defineComponent, onErrorCaptured, onUnmounted, ref, watchEffect } from "vue";
 import { tryRender } from "./render/tryRender";
 
 function generateScope() {
@@ -110,7 +104,7 @@ export default defineComponent({
 </script>
 <style>
 .live-render {
-  background-color: var(--col-bg-0);
+  background-color: var(--color-bg0);
   padding: 32px 16px;
 }
 </style>

@@ -100,12 +100,12 @@ onMounted(() => {
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .H_gantt {
     display: flex;
     overflow: hidden;
-    border-top: 1px solid var(--col-bg-3);
-    border-right: 1px solid var(--col-bg-3);
+    border-top: 1px solid var(--color-bg3);
+    border-right: 1px solid var(--color-bg3);
   }
 
   .H_gantt-gantt {
@@ -149,7 +149,7 @@ onMounted(() => {
   .H_gantt-spitPane {
     min-width: 4px;
     max-width: 4px;
-    background-color: var(--col-bg-3);
+    background-color: var(--color-bg3);
     cursor: ew-resize;
     z-index: 11;
   }

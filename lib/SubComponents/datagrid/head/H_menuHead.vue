@@ -35,7 +35,7 @@ const col: iColumn = DG.columns[P.index];
 </script>
 
 <style>
-@layer hhl-components {
+@layer components {
   .H_menuHead {
     display: flex;
     flex-direction: column;
@@ -43,16 +43,16 @@ const col: iColumn = DG.columns[P.index];
     justify-content: center;
     overflow: visible;
     cursor: pointer;
-    color: var(--col-bg-6);
+    color: var(--color-bg6);
     min-width: 24px;
     overflow: visible;
   }
   .H_menuHead:hover {
-    background-color: var(--col-bg-5);
+    background-color: var(--color-bg5);
   }
 
   .H_HeadCellActive {
-    color: var(--col-pri);
+    color: var(--color-pri);
   }
 
   .H_HeadCell-sorting {
@@ -68,7 +68,7 @@ const col: iColumn = DG.columns[P.index];
     margin-right: -5px;
   }
   .H_HeadCell-sortingText {
-    color: var(--col-pri);
+    color: var(--color-pri);
   }
 }
 </style>

@@ -139,7 +139,7 @@ Default is `text-base`
 
 You can change the color by the class `"col-pri,sec,ok,err,warn,info"`<br>
 The default is `pri`.<br>
-If you need a special color then just use `style="--current-bg-col: purple"`
+If you need a special color then just use `style="--color-current-bg-col: purple"`
 
 <hhl-live-editor title="" htmlCode='
     <template>
@@ -150,7 +150,7 @@ If you need a special color then just use `style="--current-bg-col: purple"`
         <H_switch class="col-err" label="col-err" v-model="check"></H_switch>
         <H_switch class="col-warn" label="col-warn" v-model="check"></H_switch>
         <H_switch class="col-info" label="col-info" v-model="check"></H_switch>
-        <H_switch style="--current-bg-col: purple" label="purple" v-model="check"></H_switch>
+        <H_switch style="--color-current-bg-col: purple" label="purple" v-model="check"></H_switch>
     </div>
         <div class="flex items-center gap-4 flexWrap" style="margin-top:20px">
         <H_switch switch label="col-pri" v-model="check"></H_switch>
@@ -159,7 +159,7 @@ If you need a special color then just use `style="--current-bg-col: purple"`
         <H_switch switch class="col-err" label="col-err" v-model="check"></H_switch>
         <H_switch switch class="col-warn" label="col-warn" v-model="check"></H_switch>
         <H_switch switch class="col-info" label="col-info" v-model="check"></H_switch>
-        <H_switch switch style="--current-bg-col: purple" label="purple" v-model="check"></H_switch>
+        <H_switch switch style="--color-current-bg-col: purple" label="purple" v-model="check"></H_switch>
     </div>
     </template>
     <script>
@@ -184,7 +184,7 @@ You disable by adding the props `disabled`
         <H_switch disabled class="col-err" label="col-err" v-model="check"></H_switch>
         <H_switch disabled class="col-warn" label="col-warn" v-model="check"></H_switch>
         <H_switch disabled class="col-info" label="col-info" v-model="check"></H_switch>
-        <H_switch disabled style="--current-bg-col: purple" label="purple" v-model="check"></H_switch>
+        <H_switch disabled style="--color-current-bg-col: purple" label="purple" v-model="check"></H_switch>
     </div>
         <div class="flex items-center gap-4 flexWrap" style="margin-top:20px">
         <H_switch disabled switch label="col-pri" v-model="check"></H_switch>
@@ -193,7 +193,7 @@ You disable by adding the props `disabled`
         <H_switch disabled switch class="col-err" label="col-err" v-model="check"></H_switch>
         <H_switch disabled switch class="col-warn" label="col-warn" v-model="check"></H_switch>
         <H_switch disabled switch class="col-info" label="col-info" v-model="check"></H_switch>
-        <H_switch disabled switch style="--current-bg-col: purple" label="purple" v-model="check"></H_switch>
+        <H_switch disabled switch style="--color-current-bg-col: purple" label="purple" v-model="check"></H_switch>
     </div>
     </template>
     <script>

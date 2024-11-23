@@ -45,12 +45,12 @@ onMounted(() => {
 });
 </script>
 <style>
-@layer hhl-components {
+@layer components {
   .H_HeaderCell {
     display: flex;
     flex-direction: column;
     min-height: 34px;
-    border-right: 1px solid var(--col-bg-5);
+    border-right: 1px solid var(--color-bg5);
   }
 
   .H_HeaderCell-inner {

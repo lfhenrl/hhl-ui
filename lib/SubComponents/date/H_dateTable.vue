@@ -106,7 +106,7 @@ const isToday = (dato: any) => (dato === toDayDate.value ? true : null);
 const isHolyday = (dato: any) => HHL_isHolyDay(dato);
 </script>
 <style>
-@layer hhl-components {
+@layer components {
   .H_dateTable__innerHeader {
     display: flex;
     flex: 1 1 0%;
@@ -138,8 +138,8 @@ const isHolyday = (dato: any) => HHL_isHolyDay(dato);
     opacity: 90%;
   }
   .H_dateTable__tableItem.day:hover {
-    background-color: var(--col-warn);
-    color: var(--col-on-warn);
+    background-color: var(--color-warn);
+    color: var(--color-warnTxt);
   }
   .H_dateTable__tableItem.activeMonth {
     opacity: 100%;
@@ -150,15 +150,15 @@ const isHolyday = (dato: any) => HHL_isHolyDay(dato);
     font-weight: normal;
   }
   .H_dateTable__tableItem.isSelected {
-    background-color: var(--col-pri);
-    color: var(--col-on-pri);
+    background-color: var(--color-pri);
+    color: var(--color-priTxt);
   }
   .H_dateTable__tableItem.isToday {
-    background-color: var(--col-sec);
-    color: var(--col-on-sec);
+    background-color: var(--color-sec);
+    color: var(--color-secTxt);
   }
   .H_dateTable__tableItem.isHolyday {
-    color: var(--col-err);
+    color: var(--color-err);
   }
 }
 </style>
