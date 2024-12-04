@@ -1,5 +1,5 @@
 <template>
-  <div ref="hform" class="H_form flex flex-col gap-7"><slot /></div>
+  <div ref="hform" class="H_form flex flex-col"><slot /></div>
 </template>
 
 <script setup lang="ts">

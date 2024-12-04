@@ -243,6 +243,18 @@ export class hhlFetch {
   }
 
   /**
+   * call a HTTP API with put
+   * @param {string}  url - the api path.
+   * @param {object}  data - the data object to send.
+   * @return {Promise} This is the result
+   */
+  async put(url: string, data: any) {
+    const d = await getReq(this.baseUrl, url, "put", {}, data, this._token, this._credentials, this.TimeOut);
+    if (d.ok === false) this._reportError(d);
+    return d;
+  }
+
+  /**
    * call a HTTP API with delete
    * @param {string}  url - the api path.
    * @param {object}  params - Paremeters.
