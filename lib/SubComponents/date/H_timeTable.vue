@@ -1,7 +1,7 @@
 <template>
-  <div class="H_timetable__header">
+  <div class="flex items-center justify-center bg-bg3 text-txt1 text-xl leading-none p-1.5">
     <div
-      class="H_timetable__value"
+      class="p-0.5 rounded cursor-pointer"
       @click="timeBase = 'hour'"
       :class="{
         'col-pri': timeBase === 'hour',
@@ -9,9 +9,9 @@
     >
       {{ getZeroInFront(value.hour) }}
     </div>
-    <div class="H_timetable__semiColon">:</div>
+    <div>:</div>
     <div
-      class="H_timetable__value"
+      class="p-0.5 rounded cursor-pointer"
       @click="timeBase = 'minute'"
       :class="{
         'col-pri': timeBase === 'minute',
@@ -19,10 +19,10 @@
     >
       {{ getZeroInFront(value.minute) }}
     </div>
-    <div v-show="showSeconds" class="H_timetable__semiColon">:</div>
+    <div v-show="showSeconds">:</div>
     <div
       v-show="showSeconds"
-      class="H_timetable__value"
+      class="p-0.5 rounded cursor-pointer"
       @click="timeBase = 'second'"
       :class="{
         'col-pri': timeBase === 'second',
@@ -31,17 +31,17 @@
       {{ getZeroInFront(value.second) }}
     </div>
   </div>
-  <div class="H_timeTable__table">
+  <div class="H_timeTable__table grid p-1 gap-1">
     <div
       v-for="(item, index) in time"
       @click="itemClick(index)"
       :key="index"
       :data-value="index"
       :selected="selectedIndex === index"
-      class="H_timeTable__tableItem"
+      class="flex items-center justify-center rounded-full hover:bg-warn"
       :class="{
-        activ: (index < 24 && timeBase === 'hour') || timeBase !== 'hour',
-        'col-pri': selectedIndex === index,
+        'border-2 border-pri': selectedIndex === index,
+        'opacity-20 pointer-events-none': index > 23 && timeBase === 'hour',
       }"
     >
       {{ item }}
@@ -111,56 +111,9 @@ const itemClick = (index: number) => {
 </script>
 <style>
 @layer components {
-  .H_timetable__header {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    justify-content: center;
-    background-color: var(--color-bg3);
-    text-align: center;
-    font-size: 24px;
-    line-height: 32px;
-    font-weight: 700;
-    color: var(--color-txt1);
-  }
-  .H_timetable__value {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    padding-left: 4px;
-    padding-right: 4px;
-  }
-  .H_timetable__semiColon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
   .H_timeTable__table {
-    display: grid;
     grid-template-columns: repeat(8, 28px);
     grid-template-rows: repeat(8, 28px);
-    padding: 4px;
-    gap: 4px;
-  }
-  .H_timeTable__tableItem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    border-radius: 50%;
-    font-weight: 700;
-    opacity: 0.2;
-  }
-  .H_timeTable__tableItem:hover {
-    background-color: var(--color-warn);
-  }
-  .H_timeTable__tableItem.activ {
-    pointer-events: auto;
-    cursor: pointer;
-    opacity: 1;
   }
 }
 </style>

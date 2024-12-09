@@ -1,10 +1,12 @@
 <template>
-  <div class="H_filterSelect">
+  <div class="overflow-hidden">
     <H_input v-model="searchValue" clearable>
       <div class="ico-search" set-end />
     </H_input>
     <H_switch switch label="Select All." :model-value="AllSelected" @click.prevent="SelectToggle" />
-    <H_selectbase multi v-model="value1" :list="filter" />
+    <div class="overflow-auto max-h-96 mt-1">
+      <H_selectbase multi v-model="value1" :list="filter" />
+    </div>
   </div>
 </template>
 
@@ -127,22 +129,3 @@ onMounted(() => {
 
 defineExpose({ save, clear, open, close, canSave });
 </script>
-<style>
-@layer components {
-  .H_filterSelect {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    height: 100%;
-    gap: 12px;
-    padding: 20px 20px 0 20px;
-  }
-
-  .H_filterSelect .H_selectbase {
-    border: 1px solid var(--color-txt5);
-    max-height: 500px;
-    overflow: auto;
-    padding: 6px;
-  }
-}
-</style>

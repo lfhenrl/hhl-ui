@@ -1,5 +1,5 @@
 <template>
-  <div class="H_filterNone">Filter disabled....</div>
+  <div class="H_filterNone text-center text-xl pb-24">Filter disabled....</div>
 </template>
 
 <script setup lang="ts">
@@ -7,12 +7,3 @@ defineProps({
   index: { type: Number, default: 0 },
 });
 </script>
-<style>
-@layer components {
-  .H_filterNone {
-    text-align: center;
-    font-size: 20px;
-    padding: 48px;
-  }
-}
-</style>

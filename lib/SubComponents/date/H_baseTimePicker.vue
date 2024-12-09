@@ -5,12 +5,12 @@
       trigger="click"
       :offset-top="8"
       :modal="noOutsideClick"
-      position="fixed"
       :readonly="readonly"
+      class="flex items-center"
     >
       <template v-slot:referance>
-        <div class="H_timePicker__inputcontainer">
-          <div class="ico-clock text-xs mt-[1px]" v-if="!hideIcon" />
+        <div class="group inline-flex items-center cursor-pointer h-full" title="Timepicker">
+          <div class="ico-clock text-xs leading-tight group-hover:scale-120" v-if="!hideIcon" />
           <input
             name="timepicker"
             title="Timepicker"
@@ -19,15 +19,16 @@
             readonly
             @focus="focused = !readonly"
             @blur="focused = false"
-            class="H_timePicker__input focus:outline-none"
+            style="margin-bottom: 1px"
+            class="overflow-hidden cursor-pointer text-xm text-txt1 focus:outline-none leading-tight bg-transparent border-none appearance-none mb-px ml-1"
           />
         </div>
       </template>
-      <div class="H_timePicker__popup">
+      <div class="rounded bg-bg0 border-bg5 border">
         <H_timeTable v-model="tempDato" :show-seconds="showSeconds" />
-        <div class="H_timePicker__footer">
-          <H_btn size="sm" @click="cancel" class="col-sec text-sm">CANCEL</H_btn>
-          <H_btn size="sm" @click="ok" class="text-sm">OK</H_btn>
+        <div class="flex justify-end gap-4 p-4 border-t border-bg4">
+          <H_btn size="sm" @click="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
+          <H_btn size="sm" @click="ok" class="text-sm w-18">OK</H_btn>
         </div>
       </div>
     </H_popover>
@@ -79,48 +80,3 @@ const formattetTime = computed(() => {
   return xxx;
 });
 </script>
-<style>
-@layer components {
-  .H_timePicker__inputcontainer {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  .H_timePicker__input {
-    cursor: pointer;
-    overflow: hidden;
-    background-color: transparent;
-    padding-left: 4px;
-    color: var(--color-txt1);
-    border: none;
-  }
-  .H_timePicker__popup {
-    border-radius: 4px;
-    background-color: var(--color-bg0);
-    border: 1px solid var(--color-bg5);
-  }
-  .H_datePicker__header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-bg5);
-    padding: 4px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--color-txt1);
-  }
-  .H_timePicker__footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    border-top: 1px solid var(--color-bg4);
-    padding: 12px;
-  }
-
-  .H_timePicker__footer .H_btn {
-    width: 64px;
-  }
-}
-</style>

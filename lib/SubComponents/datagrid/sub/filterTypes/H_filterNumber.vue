@@ -1,7 +1,7 @@
 <template>
-  <div class="H_filterNumber">
+  <div>
     <H_select v-model="condition1" :list="list" hide-filter />
-    <H_input type="number" v-model="value1" />
+    <H_input type="number" v-model="value1" class="-mt-4" />
     <H_selectbox
       row
       list-gap="20px"
@@ -13,7 +13,7 @@
       ]"
     />
     <H_select v-model="condition2" :list="list" hide-filter />
-    <H_input type="number" v-model="value2" />
+    <H_input type="number" v-model="value2" class="-mt-4" />
   </div>
 </template>
 
@@ -97,19 +97,3 @@ onMounted(() => {
 
 defineExpose({ save, clear, open, close, canSave });
 </script>
-<style>
-@layer components {
-  .H_filterNumber {
-    display: grid;
-    grid-template-rows: auto auto 1fr;
-    height: 100%;
-    gap: 0;
-    overflow: hidden;
-    padding: 20px 20px 0 20px;
-  }
-
-  .H_filterNumber .H_inputbase.H_selectbox {
-    max-height: 2.7rem;
-  }
-}
-</style>

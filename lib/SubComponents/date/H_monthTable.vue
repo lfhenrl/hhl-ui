@@ -1,20 +1,20 @@
 <template>
   <div>
-    <div class="H_monthTable__innerHeader">
+    <div class="flex items-center p-1 font-bold">
       <div class="ico-expand_left iconBtn" @click="changeYear(-1)" round />
-      <div class="H_monthTable__innerHeaderValue">
+      <div class="flex justify-center flex-1">
         {{ tempDato.toLocaleString("en-us", { year: "numeric" }) }}
       </div>
-      <div class="ico-expand_right iconBtn" @click="changeYear(1)" />
+      <div class="ico-expand_right iconBtn border-pri" @click="changeYear(1)" />
     </div>
-    <div class="H_monthTable__table" @click="itemClick">
+    <div class="H_monthTable__table grid m-2 gap-2" @click="itemClick">
       <div
         v-for="(item, index) in month"
         :key="index"
         :data-value="index"
-        class="H_monthTable__tableItem"
+        class="flex items-center justify-center rounded cursor-pointer m-0.5 hover:border hover:border-warn"
         :class="{
-          'col-pri': tempDato.getMonth() === index,
+          'border border-pri': tempDato.getMonth() === index,
         }"
       >
         {{ item }}
@@ -55,36 +55,9 @@ const changeYear = (val: number) => {
 </script>
 <style>
 @layer components {
-  .H_monthTable__innerHeader {
-    display: flex;
-    flex: 1 1 0%;
-    flex-direction: row;
-    align-items: center;
-    font-weight: 700;
-    padding: 4px;
-  }
-  .H_monthTable__innerHeaderValue {
-    display: flex;
-    flex: 1 1 0%;
-    justify-content: center;
-  }
   .H_monthTable__table {
-    display: grid;
     grid-template-columns: repeat(3, 72px);
     grid-template-rows: repeat(4, 36px);
-    margin: 10px;
-    gap: 10px;
-  }
-  .H_monthTable__tableItem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-weight: 700;
-  }
-  .H_monthTable__tableItem:hover {
-    background-color: var(--color-warn);
-    color: var(--color-warnTxt);
   }
 }
 </style>

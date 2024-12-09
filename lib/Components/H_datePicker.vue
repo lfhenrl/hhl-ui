@@ -7,9 +7,9 @@
     :HelpTextEnd="hintEnd"
     :ErrorMessage="validate"
     @isValid="$emit('isValid', $event)"
-    class="H_datePicker max-h-[1.875em]"
+    class="H_datePicker"
   >
-    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 max-h-[1.875em] items-center">
+    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 items-center">
       <slot> </slot>
       <div class="H_inputbase-input col-start-2 flex items-center">
         <H_baseDatePicker

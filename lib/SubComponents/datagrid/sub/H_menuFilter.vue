@@ -1,15 +1,19 @@
 <template>
   <H_popover :offset-left="-20" v-model="isOpen" movable class="H_menuFilter">
-    <div class="H_menuFilter_innerbox">
-      <div moveable-drag class="H_menuFilter-header">
+    <div class="grid text-txt1 font-normal bg-bg2 overflow-hidden ring-1 ring-bg6 ring-inset rounded">
+      <div
+        moveable-drag
+        class="flex items-center text-base font-bold bg-pri text-priTxt [&[moveable-drag]]:cursor-move py-1"
+      >
+        <div class="flex-1" />
         <div>{{ col.props.title }}</div>
         <div class="flex-1" />
-        <div class="ico-close iconBtn cursor-pointer" @click="isOpen = false" />
+        <div class="ico-close iconBtn text-lg cursor-pointer" @click="isOpen = false" />
       </div>
-      <div class="H_menuFilter_comp">
+      <div class="H_menuFilter_comp overflow-hidden px-4">
         <component ref="filterCompRef" :is="filtComponent" :index="index" />
       </div>
-      <div class="H_menuFilter-footer">
+      <div class="flex items-center justify-end gap-2 p-4">
         <H_btn @click="filterSave" class="bg-ok text-sm" :disabled="!filterCompRef?.canSave">OK</H_btn>
         <H_btn @click="filterClear" :disabled="!col.filter.active" class="text-sm">CLEAR</H_btn>
       </div>
@@ -81,30 +85,7 @@ const filtComponent = computed(() => {
 </script>
 <style>
 @layer components {
-  .H_menuFilter_innerbox {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    color: var(--color-txt1);
-    background-color: var(--color-bg2);
-    font-weight: 400;
-    overflow: hidden;
-    max-height: 50%;
-  }
-
-  .H_menuFilter .H_inputbase.H_input,
-  .H_menuFilter .H_inputbase.H_datetime,
-  .H_menuFilter .H_inputbase.H_select_input {
-    max-height: 3rem;
-  }
-
-  .H_menuFilter .H_popover-popup {
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-  }
-  .H_menuFilter_comp {
-    overflow: hidden;
-  }
-
+  /*  
   .H_menuFilter-header {
     display: flex;
     align-items: center;
@@ -113,12 +94,6 @@ const filtComponent = computed(() => {
     font-weight: bold;
     padding: 4px;
   }
-
-  .H_menuFilter-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    padding: 20px;
-  }
+ */
 }
 </style>

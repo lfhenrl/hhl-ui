@@ -17,21 +17,6 @@ const HHL_holyDays: any = {
   "31/12": "New Years Eve",
   "1/1": "New Years Day",
 
-  // ********* 2021 *****************************
-  "01/04/2021": HHL_holyDayNames[0], // SkærTorsdag
-  "02/04/2021": HHL_holyDayNames[1], // Langfredag
-  "05/04/2021": HHL_holyDayNames[2], // Påske
-  "30/04/2021": HHL_holyDayNames[3], // Store Bededag
-  "13/05/2021": HHL_holyDayNames[4], // Kristi Himmelfart
-  "24/05/2021": HHL_holyDayNames[5], // 2. Pinsedag
-
-  // ********* 2022 *****************************
-  "14/04/2022": HHL_holyDayNames[0], // SkærTorsdag
-  "15/04/2022": HHL_holyDayNames[1], // Langfredag
-  "18/04/2022": HHL_holyDayNames[2], // Påske
-  "13/05/2022": HHL_holyDayNames[3], // Store Bededag
-  "26/05/2022": HHL_holyDayNames[4], // Kristi Himmelfart
-  "6/06/2022": HHL_holyDayNames[5], // 2. Pinsedag
 
   // ********* 2023 *****************************
   "6/04/2023": HHL_holyDayNames[0], // SkærTorsdag

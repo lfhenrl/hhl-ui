@@ -2,7 +2,7 @@
   <div class="H_menuHead" data-subtype="menu">
     <div class="H_HeadCell-sorting" v-if="col.props.sorting !== 'none'">
       <div
-        class="H_HeadCell-sorting_icon ico-arrow_upward iconBtn"
+        class="H_HeadCell-sorting_icon ico-arrow_upward"
         :class="{ H_HeadCellActive: col.sortDirection.value === 'asc' }"
         v-if="col.sortDirection.value === 'asc' || col.sortDirection.value === 'none'"
       />

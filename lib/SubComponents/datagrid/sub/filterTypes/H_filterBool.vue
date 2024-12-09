@@ -1,8 +1,8 @@
 <template>
-  <div class="H_filterBool">
+  <div class="gap-8">
     <H_selectbox
       multi
-      list-gap="10px"
+      list-gap="20px"
       label-gap="5px"
       v-model="value1"
       :list="[
@@ -60,15 +60,3 @@ onMounted(() => {
 
 defineExpose({ save, clear, open, close, canSave });
 </script>
-<style>
-@layer components {
-  .H_filterBool {
-    display: grid;
-    grid-template-rows: auto auto;
-    height: 100%;
-    gap: 12px;
-    overflow: hidden;
-    padding: 20px 20px 0 20px;
-  }
-}
-</style>

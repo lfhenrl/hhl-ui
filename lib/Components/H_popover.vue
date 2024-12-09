@@ -1,6 +1,6 @@
 <template>
   <div class="H_popover relative">
-    <div ref="referance" class="H_popover-referance inline-block w-full" @mouseup="click" :readonly>
+    <div ref="referance" class="H_popover-referance inline-flex items-center w-full" @mouseup="click" :readonly>
       <slot name="referance"></slot>
     </div>
 
