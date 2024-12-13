@@ -2,24 +2,27 @@
   <div
     ref="selectbox"
     class="H_selectbase flex p-0 focus:outline-none"
-    :class="{ '!flex-row gap-4': row, '!flex-col': !row }"
+    :class="{ '!flex-row ': row, '!flex-col': !row }"
     @click="Click"
     tabindex="0"
     @keydown.up.prevent="KeyUp"
     @keydown.down.prevent="KeyDown"
     @keyup.enter.prevent="KeyEnter"
     @keyup.space.prevent="KeyEnter"
+    :style="{ gap: listGap }"
   >
     <div
-      class="H_selectbase-item flex items-center p-0 gap-2 hover:bg-bg3 [&[focused]]:bg-bg2"
+      class="H_selectbase-item flex items-center p-0 hover:bg-bg3 [&[focused]]:bg-bg2"
       :class="{
         'flex-row-reverse': labelLeft,
+        'mr-4': row,
       }"
       v-for="(item, index) in filterList"
       :key="item.value as string"
       :focused="activeFocus === index ? '' : undefined"
       :selected="selected(item.value) ? '' : undefined"
       :value="item.value"
+      :style="{ gap: labelGap }"
     >
       <div class="pointer-events-none">
         {{ item.label }}
@@ -37,6 +40,8 @@ const P = defineProps({
   filter: { type: String, default: "" },
   labelLeft: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
+  labelGap: { type: String, default: "2px" },
+  listGap: { type: String, default: "2px" },
   row: { type: Boolean, default: false },
 });
 

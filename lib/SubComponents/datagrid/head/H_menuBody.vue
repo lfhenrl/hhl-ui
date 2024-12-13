@@ -1,31 +1,44 @@
 <template>
-  <div class="H_menuBody" @click="menuClick">
+  <div
+    class="flex flex-col ring-1 ring-bg6 ring-inset rounded bg-bg0 pt-1text-txt1 text-sm font-light"
+    @click="menuClick"
+  >
     <div
-      class="H_menu-popup-item"
+      class="flex items-center pl-1 pr-3 py-1.5 cursor-pointer gap-2 border-b border-b-bg4 hover:bg-bg3"
+      :class="{ 'bg-pri text-priTxt': col.sortDirection.value === 'asc' }"
       data-action="asc"
       data-subtype="menuSortAsc"
-      :data-selected="col.sortDirection.value === 'asc'"
       v-if="col.props.sorting !== 'none'"
     >
       <div class="ico-arrow_upward iconBtn pointer-events-none" />
       <div class="pointer-events-none">Sort Ascending</div>
     </div>
     <div
-      class="H_menu-popup-item"
+      class="flex items-center pl-1 pr-3 py-1.5 cursor-pointer gap-2 border-b border-b-bg4 hover:bg-bg3"
+      :class="{ 'bg-pri text-priTxt': col.sortDirection.value === 'desc' }"
       data-action="desc"
       data-subtype="menuSortDesc"
-      :data-selected="col.sortDirection.value === 'desc'"
       v-if="col.props.sorting !== 'none'"
     >
       <div class="ico-arrow_downward iconBtn pointer-events-none" />
       <div class="pointer-events-none">Sort Descending</div>
     </div>
-    <div class="H_menu-popup-item" data-action="filter" v-if="col.filter.type !== 'none'" data-subtype="menuFilter">
+    <div
+      class="flex items-center pl-1 pr-3 py-1.5 cursor-pointer gap-2 border-b border-b-bg4 hover:bg-bg3"
+      :class="{ 'bg-pri text-priTxt': col.filter.active }"
+      data-action="filter"
+      v-if="col.filter.type !== 'none'"
+      data-subtype="menuFilter"
+    >
       <div class="ico-filter iconBtn pointer-events-none" />
       <div class="pointer-events-none">Filter</div>
     </div>
 
-    <div class="H_menu-popup-item" data-action="autoSize" data-subtype="menuAutoSize">
+    <div
+      class="flex items-center pl-1 pr-3 py-1.5 cursor-pointer gap-2 hover:bg-bg3"
+      data-action="autoSize"
+      data-subtype="menuAutoSize"
+    >
       <div class="ico-expand_horizontal iconBtn pointer-events-none" />
       <div class="pointer-events-none">Auto size</div>
     </div>
@@ -80,33 +93,3 @@ function menuClick(e: MouseEvent) {
   }
 }
 </script>
-
-<style>
-@layer components {
-  .H_menuBody {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--color-bg2);
-    background-color: var(--color-bg0);
-    padding-top: 4px;
-    color: var(--color-txt1);
-    font-size: 12px;
-    font-weight: 400;
-  }
-  .H_menu-popup-item {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    gap: 8px;
-    border-bottom: 1px solid var(--color-bg4);
-    padding: 2px 8px;
-  }
-  .H_menu-popup-item[data-selected="true"] {
-    background-color: var(--color-pri);
-    color: var(--color-priTxt);
-  }
-  .H_menu-popup-item:hover {
-    background-color: var(--color-bg3);
-  }
-}
-</style>

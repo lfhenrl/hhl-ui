@@ -2,8 +2,7 @@
   <div class="gap-8">
     <H_selectbox
       multi
-      list-gap="20px"
-      label-gap="5px"
+      list-gap="6px"
       v-model="value1"
       :list="[
         { label: 'Is True', value: 'true' },

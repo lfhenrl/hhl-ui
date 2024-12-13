@@ -1,5 +1,11 @@
 <template>
-  <H_popover class="H_menu-pop" :offset-top="8" :offset-left="2" close-popup-click position="fixed">
+  <H_popover
+    class="flex items-center h-full max-w-12"
+    :offset-top="8"
+    :offset-left="2"
+    close-popup-click
+    position="fixed"
+  >
     <template v-slot:referance>
       <H_menuHead :index="index" />
     </template>
@@ -26,14 +32,3 @@ function filterOpen() {
   menuFilterRef.value!.filterOpen();
 }
 </script>
-
-<style>
-@layer components {
-  .H_menu-pop {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    max-width: 30px;
-  }
-}
-</style>

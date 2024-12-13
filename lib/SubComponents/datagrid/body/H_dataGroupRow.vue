@@ -1,17 +1,17 @@
 <template>
   <div
-    class="H_dataGroupRow"
+    class="H_dataGroupRow flex flex-1 items-center gap-2 w-full px-1"
     :style="{ paddingLeft: 17 * row.__level + 'px' }"
     :col-index="0"
     data-type="rowgroup"
     :row-level="row.__level"
   >
-    <div class="H_dataGroupRow-expandBtn" @click.stop="expand">
+    <div class="flex items-center pl-1" @click.stop="expand">
       <div class="ico-expand_down iconBtn" v-if="row.__expanded" />
       <div class="ico-expand_right iconBtn" v-else />
     </div>
     <div>{{ row.__title }}</div>
-    <span> ({{ row.__count }}/{{ row.__count_total }})</span>
+    <span class="text-xs text-txt3"> ({{ row.__count }}/{{ row.__count_total }})</span>
   </div>
 </template>
 
@@ -54,21 +54,8 @@ onMounted(() => {
 <style>
 @layer components {
   .H_dataGroupRow {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
     min-height: var(--dgrid-row-height);
     max-height: var(--dgrid-row-height);
-    padding: 0 2px;
-  }
-  .H_dataGroupRow-expandBtn {
-    display: flex;
-    align-items: center;
-  }
-  .H_dataGroupRow span {
-    font-size: 12px;
   }
 }
 </style>

@@ -15,7 +15,11 @@
         {{ col.sortIndex.value + 1 }}
       </div>
     </div>
-    <div class="ico-filter" v-if="col.filter.type !== 'none'" :class="{ H_HeadCellActive: col.filter.active }" />
+    <div
+      class="ico-filter text-xs"
+      v-if="col.filter.type !== 'none'"
+      :class="{ H_HeadCellActive: col.filter.active }"
+    />
     <div class="ico-menuSmall" v-if="col.filter.type === 'none' && col.props.sorting === 'none'" />
   </div>
 </template>

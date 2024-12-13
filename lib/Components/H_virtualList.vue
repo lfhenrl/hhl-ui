@@ -1,6 +1,6 @@
 <template>
   <div class="H_virtualList grid grid-rows-[1fr_auto] grid-col w-full h-full min-h-80 rounded">
-    <div class="H_virtualList-body relative inline-block overflow-scroll h-full" ref="root" @scroll="onScroll">
+    <div class="H_virtualList-body relative inline-block overflow-auto h-full" ref="root" @scroll="onScroll">
       <slot name="header" />
       <div class="H_virtualList-scroller relative inline-block min-w-full" role="group" :style="paddingStyle">
         <H_virtualListItem

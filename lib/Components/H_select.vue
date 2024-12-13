@@ -46,7 +46,16 @@
           <span class="text-sm ml-2">Select All.</span>
         </div>
 
-        <H_selectbase v-model:label="labelValue" :multi v-model="model" :list :filter="filterValue" class="px-3 py-2" />
+        <H_selectbase
+          v-model:label="labelValue"
+          :multi
+          v-model="model"
+          :list
+          :filter="filterValue"
+          :listGap="listGap"
+          :labelGap="labelGap"
+          class="px-3 py-2"
+        />
       </div>
     </H_popover>
   </div>
@@ -71,6 +80,8 @@ const P = defineProps({
   hintStart: { type: String, default: "" },
   hintEnd: { type: String, default: "" },
   narrow: { type: Boolean, default: false },
+  labelGap: { type: String, default: "8px" },
+  listGap: { type: String, default: "3px" },
   validator: Array,
 });
 
