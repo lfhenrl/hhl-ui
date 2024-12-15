@@ -13,7 +13,7 @@
           :data="item"
           :data-id="getId(item)"
           :itemClass="itemClass"
-          :selected="selectedId == getId(item) ? true : null"
+          :data-selected="selectedId == getId(item) ? true : null"
         >
           <slot :item="item" />
         </H_virtualListItem>

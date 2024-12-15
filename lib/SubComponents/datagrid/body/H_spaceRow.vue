@@ -1,8 +1,8 @@
 <template>
-  <div class="H_spaceRow">
+  <div class="flex max-h-[1px] opacity-0">
     <div
       v-for="col in DG.getVisibelColumns()"
-      class="H_spaceRow-Cell"
+      class="inline-block max-h-[1px] overflow-hidden border-r border-bg3"
       :style="[
         {
           minWidth: col.width.value ?? '',
@@ -21,18 +21,3 @@ import { iDgrid } from "../provide/Dgrid";
 
 const DG = inject("DG") as iDgrid;
 </script>
-<style>
-@layer components {
-  .H_spaceRow {
-    display: flex;
-    max-height: 1px;
-    opacity: 0;
-  }
-  .H_spaceRow-Cell {
-    display: inline-block;
-    border-right: solid 1px var(--color-bg-3);
-    max-height: 1px;
-    overflow: hidden;
-  }
-}
-</style>

@@ -54,7 +54,7 @@ const P = defineProps({
   index: { type: Number, default: 0 },
 });
 
-const E = defineEmits(["filteropen"]);
+const E = defineEmits(["filteropen", "popupClose"]);
 
 const DG = inject("DG") as iDgrid;
 const col: iColumn = DG.columns[P.index];
@@ -66,6 +66,7 @@ function menuClick(e: MouseEvent) {
   const action = ele.dataset.action;
 
   if (action === "asc") {
+    E("popupClose");
     if (col.sortDirection.value === "asc") {
       col.sortDirection.value = "none";
     } else {
@@ -75,6 +76,7 @@ function menuClick(e: MouseEvent) {
   }
 
   if (action === "desc") {
+    E("popupClose");
     if (col.sortDirection.value === "desc") {
       col.sortDirection.value = "none";
     } else {
@@ -84,10 +86,12 @@ function menuClick(e: MouseEvent) {
   }
 
   if (action === "filter") {
+    E("popupClose");
     E("filteropen");
   }
 
   if (action === "autoSize") {
+    E("popupClose");
     col.autoWidth = true;
     col.Dgrid.ColumnWidthAdjustment.findMaxSingelColumn(col);
   }

@@ -24,6 +24,7 @@ export function ColumnWidthAdjustment(_Dgrid: iDgrid) {
     if (col.props.autoWidth === true) {
       col.autoWidth = true;
       col.width.value = "auto";
+      col.head_width.value = "auto";
       col.setMaxValue(col.maxValue);
     }
   }
@@ -37,6 +38,7 @@ export function ColumnWidthAdjustment(_Dgrid: iDgrid) {
       if (col.props.autoWidth === true) {
         col.autoWidth = true;
         col.width.value = "auto";
+        col.head_width.value = "auto";
         col.setMaxValue(col.maxValue);
       }
     });

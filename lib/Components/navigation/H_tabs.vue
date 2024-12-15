@@ -1,16 +1,26 @@
 <template>
-  <div class="H_tabs">
-    <div class="H_tabs__tabs">
+  <div class="H_tabs grid grid-rows-[auto_1fr] h-full w-full overflow-hidden">
+    <div class="H_tabs__tabs flex">
       <div
         v-for="tab in tabs"
         :key="tab.props.name"
         :disabled="tab.props.disabled"
         :selected="tab.props.name === tabData.selected.value"
-        :class="tab.props.tab_class"
-        class="H_tabs__tab"
+        :class="[
+          tab.props.tab_class,
+          {
+            'font-black border border-txt4 border-b-transparent bg-bg0 top-[1px]':
+              tab.props.name === tabData.selected.value,
+            'opacity-50 pointer-events-none cursor-none': tab.props.disabled,
+          },
+        ]"
+        class="H_tabs__tab inline-flex relative py-1 px-3 rounded-t cursor-pointer"
         @click="changeTab(tab.props.name)"
       >
-        <div class="H_tabs__tab_label">
+        <div
+          class="H_tabs__tab_label inline-flex items-center relative border-b-4 border-transparent"
+          :class="{ 'border-b-pri': tab.props.name === tabData.selected.value }"
+        >
           <div class="iconBtn" :class="tab.props.icon" v-if="tab.props.icon" />
           {{ tab.props.label }}
         </div>
@@ -18,11 +28,9 @@
       <div class="flex-1" />
     </div>
 
-    <transition name="H_tabsFade" mode="out-in">
-      <div class="H_tabs-details">
-        <slot />
-      </div>
-    </transition>
+    <div class="rounded overflow-hidden h-full relative border border-txt4 bg-bg0">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -71,66 +79,3 @@ function changeTab(e: string) {
   }
 }
 </script>
-
-<style>
-@layer components {
-  .H_tabs {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .H_tabs__tabs {
-    display: flex;
-  }
-
-  .H_tabs__tab {
-    display: inline-flex;
-    position: relative;
-    padding: 4px 12px;
-    cursor: pointer;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-
-  .H_tabs__tab_label {
-    display: inline-flex;
-    align-items: center;
-    position: relative;
-    border-color: transparent;
-    border-bottom-width: 4px;
-  }
-
-  .H_tabs-details {
-    border-radius: 4px;
-    border: 1px solid var(--color-txt4);
-    background-color: var(--color-bg0);
-    overflow: hidden;
-    height: 100%;
-  }
-
-  .H_tabs__tab[selected="true"] {
-    font-weight: bold;
-    border: solid 1px var(--color-txt4);
-    border-bottom: none;
-    background-color: var(--color-bg0);
-    top: 1px;
-  }
-
-  .H_tabs__tab[selected="true"] .H_tabs__tab_label {
-    border-bottom-color: var(--color-pri);
-  }
-
-  .H_tabsFade-enter-active,
-  .H_tabsFade-leave-active {
-    transition: opacity 0.2s ease;
-  }
-
-  .H_tabsFade-enter-from,
-  .H_tabsFade-leave-to {
-    opacity: 0;
-  }
-}
-</style>

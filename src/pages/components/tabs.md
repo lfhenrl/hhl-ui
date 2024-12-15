@@ -22,7 +22,7 @@ Tabs are elements that help you organize and navigate multiple documents in a si
 		<template>
 			<div class="flex items-center gap-4 flex-wrap">
 				<H_tabs>
-					<H_tab name="tab1" label="Tab 1."><div class="p-10">This is TAB 1...</div></H_tab>
+					<H_tab name="tab1" label="Tab 1."><div class="p-10 h-full">This is TAB 1...</div></H_tab>
 					<H_tab name="tab2" label="Tab 2."><div class="p-10">This is TAB 2...</div></H_tab>
 					<H_tab name="tab3" label="Tab 3."><div class="p-10">This is TAB 3...</div></H_tab>
 				</H_tabs>
@@ -42,7 +42,7 @@ You can add `disabled` to a tab<br>
 			<div class="flex items-center gap-4 flex-wrap">
 				<H_tabs>
 					<H_tab name="tab1" label="Tab 1."><div class="p-10">This is TAB 1...</div></H_tab>
-					<H_tab disabled name="tab2" label="Tab 2."><div class="p-10">This is TAB 2...</div></H_tab>
+					<H_tab :disabled="true" name="tab2" label="Tab 2."><div class="p-10">This is TAB 2...</div></H_tab>
 					<H_tab name="tab3" label="Tab 3."><div class="p-10">This is TAB 3...</div></H_tab>
 				</H_tabs>
 			</div>

@@ -133,7 +133,7 @@ export class Column {
       const textW = spaceDiv?.offsetWidth! + 6;
       let headW = this.dom?.offsetWidth! + 1;
       this.width.value = Math.max(textW, headW) + "px";
-      this.head_width.value = this.width.value;
+      this.head_width.value = Math.max(textW, headW) + "px";
     }, 10);
   }, 20);
 }

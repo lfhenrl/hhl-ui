@@ -1,6 +1,16 @@
 <template>
-  <div v-if="selected || keepAlive" v-show="selected" class="H_tab">
-    <slot />
+  <div>
+    <transition
+      mode="out-in"
+      enter-from-class="translate-x-[-50%] opacity-0 absolute"
+      leave-to-class="translate-x-[50%] opacity-0 absolute"
+      enter-active-class="transition duration-300"
+      leave-active-class="transition duration-300"
+    >
+      <div v-if="selected || keepAlive" v-show="selected" class="H_tab grid grid-rows-1 grid-cols-1 h-full">
+        <slot />
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -14,6 +24,7 @@ const props = defineProps({
   tab_class: { default: "", type: String },
   keepAlive: { default: false, type: Boolean },
   selected: { default: false, type: Boolean },
+  disabled: { type: Boolean, default: false },
 });
 
 watch(
@@ -24,20 +35,3 @@ watch(
 const tabData: any = inject("tabData");
 const selected = computed(() => tabData.selected.value === props.name);
 </script>
-
-<style>
-@layer components {
-  .H_tab {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    height: 100%;
-  }
-
-  .H_tabs__tab[disabled] {
-    opacity: 0.5;
-    pointer-events: none;
-    cursor: none;
-  }
-}
-</style>

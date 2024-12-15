@@ -1,6 +1,6 @@
 <template>
   <div
-    class="H_dataGroupRow flex flex-1 items-center gap-2 w-full px-1"
+    class="flex flex-1 items-center gap-2 w-full px-1 min-h-(--dgrid-row-height) max-h-(--dgrid-row-height)"
     :style="{ paddingLeft: 17 * row.__level + 'px' }"
     :col-index="0"
     data-type="rowgroup"
@@ -53,9 +53,20 @@ onMounted(() => {
 </script>
 <style>
 @layer components {
-  .H_dataGroupRow {
-    min-height: var(--dgrid-row-height);
-    max-height: var(--dgrid-row-height);
+  .sticky-0 {
+    position: sticky;
+    top: 0;
+    opacity: 1;
+  }
+  .sticky-1 {
+    position: sticky;
+    top: var(--dgrid-row-height);
+    opacity: 1;
+  }
+  .sticky-2 {
+    position: sticky;
+    top: calc(var(--dgrid-row-height) * 2);
+    opacity: 1;
   }
 }
 </style>

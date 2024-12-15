@@ -1,6 +1,6 @@
 <template>
   <div
-    class="H_HeaderCell"
+    class="flex flex-col flex-0 border-r border-bg5 min-h-[34px] w-min"
     ref="headCellRef"
     :data-col-index="index"
     data-type="headcell"
@@ -9,14 +9,18 @@
       maxWidth: col.head_width.value ?? '',
     }"
   >
-    <div class="H_HeaderCell-inner">
-      <div class="H_HeadCell-text" data-subtype="title">
+    <div class="relative flex items-center flex-1 font-bold w-full">
+      <div class="w-full overflow-hidden p-1.5 text-ellipsis whitespace-nowrap" data-subtype="title">
         {{ col.props.title }}
       </div>
       <H_menu :index="index" />
-      <div class="H_HeadCell-resize" @mousedown="resize" data-subtype="resize"></div>
+      <div
+        class="z-2 h-full w-2 min-w-1.5 -right-1 cursor-e-resize overflow-visible absolute"
+        @mousedown="resize"
+        data-subtype="resize"
+      ></div>
     </div>
-    <div class="H_HeadCell-space">
+    <div class="H_HeadCell-space h-0 w-min overflow-x-hidden overflow-y-visible whitespace-nowrap opacity-0 px-2">
       {{ col.maxValueRef.value }}
     </div>
   </div>
@@ -44,50 +48,3 @@ onMounted(() => {
   col.dom = headCellRef.value;
 });
 </script>
-<style>
-@layer components {
-  .H_HeaderCell {
-    display: flex;
-    flex-direction: column;
-    min-height: 34px;
-    border-right: 1px solid var(--color-bg5);
-  }
-
-  .H_HeaderCell-inner {
-    position: relative;
-    display: flex;
-    flex: 1 1 0%;
-    align-items: center;
-    font-weight: bold;
-    width: 100%;
-  }
-  .H_HeadCell-text {
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding: 6px;
-  }
-  .H_HeadCell-resize {
-    z-index: 10;
-    height: 100%;
-    width: 8px;
-    right: -4px;
-    min-width: 6px;
-    cursor: w-resize;
-    overflow: visible;
-    position: absolute;
-    z-index: 2;
-  }
-  .H_HeadCell-space {
-    height: 0;
-    width: min-content;
-    overflow-x: hidden;
-    overflow-y: visible;
-    white-space: nowrap;
-    opacity: 0;
-    padding-left: 8px;
-    padding-right: 8px;
-  }
-}
-</style>

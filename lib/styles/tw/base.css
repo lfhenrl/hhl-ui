@@ -57,4 +57,20 @@
   :fullscreen {
     background-color: var(--color-bg0);
   }
+
+  /*   ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-txt4);
+    border-radius: 4px;
+    opacity: 0.1;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--color-bg4);
+    border-radius: 2px;
+  } */
 }

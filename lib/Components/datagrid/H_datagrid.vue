@@ -1,20 +1,23 @@
 <template>
-  <div class="H_datagrid" ref="datagridRef">
-    <div class="H_datagrid-head">
+  <div class="H_datagrid grid relative h-full text-sm" ref="datagridRef">
+    <div class="flex">
       <slot name="head"></slot>
     </div>
-    <div ref="header" class="H_datagrid-header">
+    <div
+      ref="header"
+      class="H_datagrid-header flex flex-col relative h-[36px] max-h-[36px] overflow-x-hidden overflow-y-scroll rounded-t bg-bg2 border border-bg6"
+    >
       <H_headerRow role="heading" aria-level="2" :key="DG.changeCounter.value" @click="headerClick" />
-      <H_progressBar :show="DG.dataHandler?.rowsLoading.value" class="H_datagrid-header-progress" />
+      <H_progressBar :show="DG.dataHandler?.rowsLoading.value" class="absolute bottom-0 z-10" />
     </div>
-    <div class="H_datagrid-body">
+    <div class="H_datagrid-body overflow-hidden border-r border-l border-bg6">
       <H_virtualList
         :item_style="rowStyle"
         :data-key="dataKey"
         @scroll="onScroll"
         :keeps="keeps"
         :overscan="overscan"
-        item-class="H_dataRow"
+        item-class="H_dataRow flex flex-1 h-min w-full bg-bg0 odd:bg-bg1 hover:bg-bg2 data-[selected]:bg-bg3 leading-4 min-h-(--dgrid-row-height) max-h-(--dgrid-row-height)"
         :data-sources="DG.dataHandler?.outData.value"
         :selectedId="selected_Id"
         :estimateSize="parseInt(row_height)"
@@ -23,7 +26,12 @@
       >
         <template v-slot:header
           ><H_spaceRow />
-          <div v-if="DG.dataHandler?.rowsCount.value === 0" class="H_datagrid-noRows">No rows loaded...</div>
+          <div
+            v-if="DG.dataHandler?.rowsCount.value === 0"
+            class="H_datagrid-noRows flex items-end justify-center text-xl h-24"
+          >
+            No rows loaded...
+          </div>
         </template>
         <template v-slot="{ item }">
           <H_dataRow :row="item" :key="DG.changeCounter.value" />
@@ -147,38 +155,9 @@ onMounted(() => {
 <style>
 @layer components {
   .H_datagrid {
-    position: relative;
-    display: grid;
     grid-template-rows: auto auto 1fr auto;
     grid-template-columns: 1fr;
-    height: 100%;
-    font-size: 14px;
-    overflow: hidden;
     --dgrid-row-height: v-bind(row_height);
-  }
-
-  .H_datagrid-head {
-    display: flex;
-  }
-
-  .H_datagrid-header {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    height: 35px;
-    max-height: 35px;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border: 1px solid var(--color-bg6);
-    background-color: var(--color-bg2);
-  }
-
-  .H_datagrid-header-progress {
-    position: absolute;
-    z-index: 10;
-    bottom: 0;
   }
 
   .H_datagrid-header::-webkit-scrollbar {
@@ -195,25 +174,6 @@ onMounted(() => {
   .H_datagrid-header::-webkit-scrollbar-thumb {
     background-color: transparent;
     opacity: 0;
-  }
-
-  .H_datagrid-body-spacer {
-    display: flex;
-    max-height: 0;
-  }
-
-  .H_datagrid-noRows {
-    display: flex;
-    align-items: end;
-    justify-content: center;
-    font-size: 18px;
-    height: 99px;
-  }
-
-  .H_datagrid-body {
-    overflow: hidden;
-    border-right: 1px solid var(--color-bg6);
-    border-left: 1px solid var(--color-bg6);
   }
 }
 </style>

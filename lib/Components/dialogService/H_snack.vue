@@ -1,8 +1,14 @@
 <template>
-  <transition name="alert" @after-leave="$emit('close')">
+  <transition
+    @after-leave="$emit('close')"
+    enter-from-class="translate-x-[150%] opacity-0 "
+    enter-active-class="transition duration-400 ease-in"
+    leave-to-class="translate-x-[150%] opacity-0"
+    leave-active-class="transition duration-500 ease-out"
+  >
     <div
       v-show="modelValue"
-      class="H_snack shadow"
+      class="drop-shadow-lg flex fixed pt-1.5 pr-1.5 pb-3 pl-1.5 rounded right-5 z-[500] top-5 w-80 max-w-80"
       :class="{
         'col-err': type === 'err',
         'col-warn': type === 'warn',
@@ -12,8 +18,8 @@
     >
       <div class="ico-check iconBtn" v-if="type === 'info'" />
       <div class="ico-info iconBtn" v-else />
-      <div class="H_snack-info">
-        <span class="H_snack-info-title">{{ title }}</span>
+      <div class="H_snack-info flex flex-col items-center flex-1">
+        <span class="text-lg font-bold">{{ title }}</span>
         <span class="H_snack__text">{{ text }}</span>
       </div>
     </div>
@@ -35,71 +41,3 @@ function close() {
 }
 defineExpose({ close });
 </script>
-
-<style>
-@layer components {
-  .H_snack {
-    display: flex;
-    position: fixed;
-    padding: 6px 6px 12px 6px;
-    border-radius: 4px;
-    min-width: 330px;
-    max-width: 330px;
-    width: 330px;
-    z-index: 500;
-    right: 20px;
-    top: 20px;
-  }
-
-  .H_snack-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1 1 0%;
-  }
-
-  .H_snack-info-title {
-    font-size: 18px;
-    font-weight: bold;
-  }
-
-  .alert-leave-active {
-    animation: slide-out 0.5s reverse;
-  }
-  .alert-enter-active /* .fade-leave-active below version 2.1.8 */ {
-    animation: slide-up 0.5s;
-  }
-
-  @keyframes slide-up {
-    0% {
-      opacity: 0;
-      transform: translateY(60px);
-    }
-    60% {
-      opacity: 1;
-      transform: translateY(-10px);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slide-out {
-    0% {
-      opacity: 0;
-      transform: translateX(60px);
-    }
-    60% {
-      opacity: 1;
-      transform: translateX(-10px);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-}
-</style>

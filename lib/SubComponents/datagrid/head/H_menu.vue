@@ -1,15 +1,9 @@
 <template>
-  <H_popover
-    class="flex items-center h-full max-w-12"
-    :offset-top="8"
-    :offset-left="2"
-    close-popup-click
-    position="fixed"
-  >
+  <H_popover ref="popupRef" class="flex items-center h-full max-w-12" :offset-top="8" :offset-left="2" position="fixed">
     <template v-slot:referance>
       <H_menuHead :index="index" />
     </template>
-    <H_menuBody :index="index" @filteropen="filterOpen" />
+    <H_menuBody :index="index" @filteropen="filterOpen" @popup-close="popupClose" />
   </H_popover>
   <H_menuFilter :index="index" ref="menuFilterRef" data-subtype="menu" />
 </template>
@@ -22,7 +16,9 @@ import H_menuFilter from "../sub/H_menuFilter.vue";
 import { ref } from "vue";
 
 type iH_menuFilter = InstanceType<typeof H_menuFilter>;
+type iH_popover = InstanceType<typeof H_popover>;
 const menuFilterRef = ref<iH_menuFilter | null>(null);
+const popupRef = ref<iH_popover | null>(null);
 
 defineProps({
   index: { type: Number, default: 0 },
@@ -30,5 +26,8 @@ defineProps({
 
 function filterOpen() {
   menuFilterRef.value!.filterOpen();
+}
+function popupClose() {
+  popupRef.value!.close();
 }
 </script>
