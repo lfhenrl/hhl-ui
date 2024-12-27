@@ -30,8 +30,8 @@
         />
         <H_monthTable v-show="activeView == 'month'" v-model="tempDatomy" @month-selected="activeView = 'day'" />
         <div class="flex justify-end gap-4 p-4 border-t border-bg4">
-          <H_btn tabindex="3" @click="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
-          <H_btn tabindex="0" @click="ok" class="text-sm w-18">OK</H_btn>
+          <H_btn tabindex="3" @click.stop="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
+          <H_btn tabindex="0" @click.stop="ok" class="text-sm w-18">OK</H_btn>
         </div>
       </div>
     </H_popover>

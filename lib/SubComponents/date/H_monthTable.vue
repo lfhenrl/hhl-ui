@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="flex items-center p-1 font-bold">
-      <div class="ico-expand_left iconBtn" @click="changeYear(-1)" round />
+      <div class="ico-expand_left iconBtn" @click.stop="changeYear(-1)" round />
       <div class="flex justify-center flex-1">
         {{ tempDato.toLocaleString("en-us", { year: "numeric" }) }}
       </div>
-      <div class="ico-expand_right iconBtn border-pri" @click="changeYear(1)" />
+      <div class="ico-expand_right iconBtn border-pri" @click.stop="changeYear(1)" />
     </div>
-    <div class="H_monthTable__table grid m-2 gap-2" @click="itemClick">
+    <div class="H_monthTable__table grid m-2 gap-2" @click.stop="itemClick">
       <div
         v-for="(item, index) in month"
         :key="index"
@@ -37,6 +37,7 @@ const month = ref(["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP"
 const tempDato = ref(props.modelValue);
 
 const itemClick = (e: any) => {
+  e.preventDefault();
   const data = e.target.dataset;
   if (data) {
     const newDate = new Date(tempDato.value);

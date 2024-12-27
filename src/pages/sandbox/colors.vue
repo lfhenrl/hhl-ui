@@ -6,6 +6,14 @@
         <div class="ico-account" />
       </H_input>
       <H_datePicker label="Date" v-model="date" show-seconds></H_datePicker>
+      {{ mytime }}
+      <input
+        type="time"
+        step="1"
+        v-model="mytime"
+        class="border border-txt5 rounded focus:outline-none px-1 py-0.5 focus:border-pri"
+      />
+      <H_timePicker label="Dato" v-model="mytime" />
     </div>
   </div>
 </template>
@@ -13,8 +21,10 @@
 <script setup lang="ts">
 import H_input from "../../../lib/Components/H_input.vue";
 import H_datePicker from "../../../lib/Components/H_datePicker.vue";
+import H_timePicker from "../../../lib/Components/H_timePicker.vue";
 import { ref } from "vue";
 const date = ref(new Date());
+const mytime = ref("00:11");
 </script>
 
 <style></style>

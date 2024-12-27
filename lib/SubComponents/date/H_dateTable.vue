@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="flex items-center p-1 justify-between">
-      <div class="ico-expand_left iconBtn" @click="changeMonth(-1)" />
-      <div class="cursor-pointer" @click="$emit('month-click')">
+      <div class="ico-expand_left iconBtn" @click.stop="changeMonth(-1)" />
+      <div class="cursor-pointer" @click.stop="$emit('month-click')">
         {{ tempDatomy.toLocaleString("en-us", { month: "long", year: "numeric" }) }}
       </div>
-      <div class="ico-expand_right iconBtn" @click="changeMonth(1)" round />
+      <div class="ico-expand_right iconBtn" @click.stop="changeMonth(1)" round />
     </div>
-    <div class="H_dateTable__table grid" @click="itemClick">
+    <div class="H_dateTable__table grid" @click.stop="itemClick">
       <div
         v-for="item in dates"
         :key="item.value"
@@ -80,6 +80,7 @@ const toDayDate = computed(() => {
 });
 
 const itemClick = (e: any) => {
+  e.preventDefault();
   const data = e.target.dataset;
   if (data && data.type === "day") {
     const dArr = data.value.split("/");

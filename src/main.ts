@@ -40,6 +40,7 @@ const H_select = defineAsyncComponent(() => import("../lib/Components/H_select.v
 const H_selectbox = defineAsyncComponent(() => import("../lib/Components/H_selectbox.vue"));
 const iconList = defineAsyncComponent(() => import("./components/icon-list.vue"));
 const H_datePicker = defineAsyncComponent(() => import("../lib/Components/H_datePicker.vue"));
+const H_timePicker = defineAsyncComponent(() => import("../lib/Components/H_timePicker.vue"));
 const H_datetime = defineAsyncComponent(() => import("../lib/Components/H_datetime.vue"));
 const H_dialog = defineAsyncComponent(() => import("../lib/Components/H_dialog.vue"));
 const H_dialogService = defineAsyncComponent(() => import("../lib/Components/dialogService/H_dialogService.vue"));
@@ -70,6 +71,7 @@ app.component("H_select", H_select);
 app.component("H_selectbox", H_selectbox);
 app.component("icon-list", iconList);
 app.component("H_datePicker", H_datePicker);
+app.component("H_timePicker", H_timePicker);
 app.component("H_datetime", H_datetime);
 app.component("H_dialog", H_dialog);
 app.component("H_dialogService", H_dialogService);

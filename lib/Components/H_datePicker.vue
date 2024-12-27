@@ -6,6 +6,7 @@
     :HelpTextStart="hintStart"
     :HelpTextEnd="hintEnd"
     :ErrorMessage="validate"
+    :disabled="disabled ? '' : undefined"
     @isValid="$emit('isValid', $event)"
     class="H_datePicker"
   >

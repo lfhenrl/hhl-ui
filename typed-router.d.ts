@@ -39,6 +39,7 @@ declare module 'vue-router/auto-routes' {
     '/components/switch': RouteRecordInfo<'/components/switch', '/components/switch', Record<never, never>, Record<never, never>>,
     '/components/tabs': RouteRecordInfo<'/components/tabs', '/components/tabs', Record<never, never>, Record<never, never>>,
     '/components/textarea': RouteRecordInfo<'/components/textarea', '/components/textarea', Record<never, never>, Record<never, never>>,
+    '/components/timePicker': RouteRecordInfo<'/components/timePicker', '/components/timePicker', Record<never, never>, Record<never, never>>,
     '/components/virtualScroll': RouteRecordInfo<'/components/virtualScroll', '/components/virtualScroll', Record<never, never>, Record<never, never>>,
     '/introduction/': RouteRecordInfo<'/introduction/', '/introduction', Record<never, never>, Record<never, never>>,
     '/introduction/main.css': RouteRecordInfo<'/introduction/main.css', '/introduction/main/css', Record<never, never>, Record<never, never>>,

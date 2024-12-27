@@ -2,7 +2,7 @@
   <div class="flex items-center justify-center bg-bg3 text-txt1 text-xl leading-none p-1.5">
     <div
       class="p-0.5 rounded cursor-pointer"
-      @click="timeBase = 'hour'"
+      @click.stop.prevent="timeBase = 'hour'"
       :class="{
         'col-pri': timeBase === 'hour',
       }"
@@ -12,7 +12,7 @@
     <div>:</div>
     <div
       class="p-0.5 rounded cursor-pointer"
-      @click="timeBase = 'minute'"
+      @click.stop.prevent="timeBase = 'minute'"
       :class="{
         'col-pri': timeBase === 'minute',
       }"
@@ -23,7 +23,7 @@
     <div
       v-show="showSeconds"
       class="p-0.5 rounded cursor-pointer"
-      @click="timeBase = 'second'"
+      @click.stop.prevent="timeBase = 'second'"
       :class="{
         'col-pri': timeBase === 'second',
       }"
@@ -34,7 +34,7 @@
   <div class="H_timeTable__table grid p-1 gap-1">
     <div
       v-for="(item, index) in time"
-      @click="itemClick(index)"
+      @click.stop.prevent="itemClick(index)"
       :key="index"
       :data-value="index"
       :selected="selectedIndex === index"

@@ -27,8 +27,8 @@
       <div class="rounded bg-bg0 border-bg5 border">
         <H_timeTable v-model="tempDato" :show-seconds="showSeconds" />
         <div class="flex justify-end gap-4 p-4 border-t border-bg4">
-          <H_btn size="sm" @click="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
-          <H_btn size="sm" @click="ok" class="text-sm w-18">OK</H_btn>
+          <H_btn size="sm" @click.stop="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
+          <H_btn size="sm" @click.stop="ok" class="text-sm w-18">OK</H_btn>
         </div>
       </div>
     </H_popover>
