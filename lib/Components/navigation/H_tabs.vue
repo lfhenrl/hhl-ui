@@ -9,16 +9,16 @@
         :class="[
           tab.props.tab_class,
           {
-            'font-black border border-txt4 border-b-transparent bg-bg0 top-[1px]':
+            'border border-txt4 border-b-transparent border-b-0   bg-bg0 -mb-[1px] z-10':
               tab.props.name === tabData.selected.value,
             'opacity-50 pointer-events-none cursor-none': tab.props.disabled,
           },
         ]"
-        class="H_tabs__tab inline-flex relative py-1 px-3 rounded-t cursor-pointer"
+        class="H_tabs__tab inline-flex relative py-1 px-1 rounded-t cursor-pointer"
         @click="changeTab(tab.props.name)"
       >
         <div
-          class="H_tabs__tab_label inline-flex items-center relative border-b-4 border-transparent"
+          class="H_tabs__tab_label inline-flex items-center relative border-b-3 border-transparent px-1"
           :class="{ 'border-b-pri': tab.props.name === tabData.selected.value }"
         >
           <div class="iconBtn" :class="tab.props.icon" v-if="tab.props.icon" />
@@ -28,7 +28,10 @@
       <div class="flex-1" />
     </div>
 
-    <div class="rounded overflow-hidden h-full relative border border-txt4 bg-bg0">
+    <div
+      class="rounded overflow-hidden h-full relative border border-txt4 bg-bg0"
+      :class="{ 'rounded-tl-none': firstChildx == tabData.selected.value }"
+    >
       <slot />
     </div>
   </div>
@@ -45,6 +48,7 @@ const props = defineProps({
 const slots = useSlots();
 const tabs = ref<any>([]);
 const show = ref(true);
+const firstChildx = ref("");
 
 const tabData = {
   selected: ref(),
@@ -61,6 +65,7 @@ onMounted(() => {
   if (props.defaultTab === "" && tabs.value) {
     const firstChild: any = tabs.value[0];
     selected = firstChild.props.name as string;
+    firstChildx.value = firstChild.props.name as string;
   }
   changeTab(selected);
 });
