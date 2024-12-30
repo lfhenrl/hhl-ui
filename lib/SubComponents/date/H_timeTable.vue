@@ -50,11 +50,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 
 const props = defineProps({
   modelValue: { type: Object, default: { hour: 0, minute: 0, second: 0 } },
   showSeconds: { default: false, type: Boolean },
+  isopen: { default: false, type: Boolean },
 });
 
 const emit = defineEmits(["update:modelValue"]);
@@ -65,6 +66,15 @@ const time: any = [];
 for (let i = 0; i < 60; i++) {
   time.push(getZeroInFront(i));
 }
+
+watch(
+  () => props.isopen,
+  (val) => {
+    if (val) {
+      timeBase.value = "hour";
+    }
+  }
+);
 
 const value = computed({
   get: () => props.modelValue,

@@ -17,30 +17,20 @@ const HHL_holyDays: any = {
   "31/12": "New Years Eve",
   "1/1": "New Years Day",
 
-
-  // ********* 2023 *****************************
-  "6/04/2023": HHL_holyDayNames[0], // SkærTorsdag
-  "7/04/2023": HHL_holyDayNames[1], // Langfredag
-  "10/04/2023": HHL_holyDayNames[2], // Påske
-  "5/05/2023": HHL_holyDayNames[3], // Store Bededag
-  "18/05/2023": HHL_holyDayNames[4], // Kristi Himmelfart
-  "29/05/2023": HHL_holyDayNames[5], // 2. Pinsedag
-
   // ********* 2024 *****************************
-  "28/03/2024": HHL_holyDayNames[0], // SkærTorsdag
-  "29/03/2024": HHL_holyDayNames[1], // Langfredag
-  "1/04/2024": HHL_holyDayNames[2], // Påske
-  "26/04/2024": HHL_holyDayNames[3], // Store Bededag
-  "9/05/2024": HHL_holyDayNames[4], // Kristi Himmelfart
-  "20/05/2024": HHL_holyDayNames[5], // 2. Pinsedag
+  "28/3/2024": HHL_holyDayNames[0], // SkærTorsdag
+  "29/3/2024": HHL_holyDayNames[1], // Langfredag
+  "1/4/2024": HHL_holyDayNames[2], // Påske
+  "26/4/2024": HHL_holyDayNames[3], // Store Bededag
+  "9/5/2024": HHL_holyDayNames[4], // Kristi Himmelfart
+  "20/5/2024": HHL_holyDayNames[5], // 2. Pinsedag
 
   // ********* 2025 *****************************
-  "17/04/2025": HHL_holyDayNames[0], // SkærTorsdag
-  "18/04/2025": HHL_holyDayNames[1], // Langfredag
-  "21/04/2025": HHL_holyDayNames[2], // Påske
-  "16/05/2025": HHL_holyDayNames[3], // Store Bededag
-  "29/05/2025": HHL_holyDayNames[4], // Kristi Himmelfart
-  "9/06/2025": HHL_holyDayNames[5], // 2. Pinsedag
+  "17/4/2025": HHL_holyDayNames[0], // SkærTorsdag
+  "18/4/2025": HHL_holyDayNames[1], // Langfredag
+  "21/4/2025": HHL_holyDayNames[2], // Påske
+  "29/5/2025": HHL_holyDayNames[4], // Kristi Himmelfart
+  "9/6/2025": HHL_holyDayNames[5], // 2. Pinsedag
 };
 
 export function HHL_isHolyDay(d: string) {

@@ -104,7 +104,12 @@ const changeMonth = (val: number) => {
 
 const isSelected = (dato: any) => (dato === selectedDate.value ? true : null);
 const isToday = (dato: any) => (dato === toDayDate.value ? true : null);
-const isHolyday = (dato: any) => HHL_isHolyDay(dato);
+const isHolyday = (dato: any) => {
+  const v = HHL_isHolyDay(dato);
+  console.log("HOLYDAY", dato, "result: ", v);
+
+  return v;
+};
 </script>
 <style>
 @layer components {

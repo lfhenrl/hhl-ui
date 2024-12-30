@@ -34,7 +34,7 @@ import H_baseTimePicker from "../SubComponents/date/H_baseTimePicker.vue";
 const P = defineProps({
   hideIcon: { default: false, type: Boolean },
   readonly: { type: Boolean, default: false },
-  hintStart: { type: String, default: "fdssdfhdf" },
+  hintStart: { type: String, default: "" },
   hintEnd: { type: String, default: "" },
   showSeconds: { default: false, type: Boolean },
   noOutsideClick: { type: Boolean, default: false },

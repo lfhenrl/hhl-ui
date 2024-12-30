@@ -24,7 +24,7 @@ import H_datePicker from "../../../lib/Components/H_datePicker.vue";
 import H_timePicker from "../../../lib/Components/H_timePicker.vue";
 import { ref } from "vue";
 const date = ref(new Date());
-const mytime = ref("00:11");
+const mytime = ref();
 </script>
 
 <style></style>

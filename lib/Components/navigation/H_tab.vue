@@ -6,14 +6,14 @@
     enter-active-class="transition duration-300"
     leave-active-class="transition duration-300"
   >
-    <div v-if="selected || keepAlive" v-show="selected" class="H_tab grid grid-rows-1 grid-cols-1 h-full">
+    <div v-if="v_ifSelected" v-show="selected" class="H_tab grid grid-rows-1 grid-cols-1 h-full">
       <slot />
     </div>
   </transition>
 </template>
 
 <script setup lang="ts">
-import { computed, inject, watch } from "vue";
+import { computed, inject, watch, ref } from "vue";
 
 const props = defineProps({
   label: { default: "???", type: String },
@@ -30,6 +30,21 @@ watch(
   () => tabData.changed()
 );
 
+//let haveBeenShowed = false;
 const tabData: any = inject("tabData");
 const selected = computed(() => tabData.selected.value === props.name);
+
+watch(selected, (v) => {
+  if (v === true) {
+    setTimeout(() => {
+      if (props.keepAlive) {
+        keepA.value = true;
+      }
+    }, 5);
+  }
+});
+
+const keepA = ref(false);
+
+const v_ifSelected = computed(() => selected.value || keepA.value);
 </script>

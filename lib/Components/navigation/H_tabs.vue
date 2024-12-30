@@ -49,14 +49,14 @@ const show = ref(true);
 const tabData = {
   selected: ref(),
   changed() {
-    tabs.value = slots.default?.();
+    tabs.value = slots.default?.({});
   },
 };
 
 provide("tabData", tabData);
 
 onMounted(() => {
-  tabs.value = slots.default?.();
+  tabs.value = slots.default?.({});
   let selected: string = props.defaultTab;
   if (props.defaultTab === "" && tabs.value) {
     const firstChild: any = tabs.value[0];

@@ -22,12 +22,41 @@ Tabs are elements that help you organize and navigate multiple documents in a si
 		<template>
 			<div class="flex items-center gap-4 flex-wrap">
 				<H_tabs>
-					<H_tab name="tab1" label="Tab 1."><div class="p-10 h-full">This is TAB 1...</div></H_tab>
-					<H_tab name="tab2" label="Tab 2."><div class="p-10">This is TAB 2...</div></H_tab>
-					<H_tab name="tab3" label="Tab 3."><div class="p-10">This is TAB 3...</div></H_tab>
+					<H_tab name="tab1" label="Tab 1."><div class="p-10 h-full" keep-alive>This is TAB 1...</div></H_tab>
+					<H_tab name="tab2" label="Tab 2."><div class="p-10" keep-alive>
+                    <H_datagrid
+                            :data-handler="lData"
+                            data-key="id"                 
+                        >
+                            <H_column field="id" type="number"></H_column>
+                            <H_column field="val1" type="string"></H_column>
+                            <H_column field="val2" type="string" filter="select"></H_column>
+                            <H_column field="val3" type="string"></H_column>
+                            <H_column field="val4" type="string"></H_column>
+                            <H_column field="val5" type="bool"></H_column>
+                            <H_column field="val6" type="date"></H_column>
+                            <H_column field="val7" type="string"></H_column>
+                    </H_datagrid>
+                    </div></H_tab>
+					<H_tab name="tab3" label="Tab 3."><div class="p-10" keep-alive>This is TAB 3...</div></H_tab>
 				</H_tabs>
 			</div>
 		</template>
+        <script>
+    // import { localData } from "HHL-UI/Components/datagrid";            
+    const { localData, getData, dateFormat } = fakeImport;
+    const lData = new localData();
+    async function load() {
+      await lData.startLoading();
+          const data = await getData(100);
+          lData.setData(data);
+          lData.loadData();
+    }
+    function formatDate(value) {
+        return dateFormat.D_01_dec_2021_HHMM(value);
+    }
+    return { lData,formatDate }
+</script>
 '>
 </hhl-live-editor>
 
