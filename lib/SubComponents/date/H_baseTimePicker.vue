@@ -25,7 +25,6 @@
         </div>
       </template>
       <div class="rounded bg-bg0 border-bg5 border">
-        {{ time }}
         <H_timeTable v-model="tempDato" :show-seconds="showSeconds" :isopen="popupOpen" />
         <div class="flex justify-end gap-4 p-4 border-t border-bg4">
           <H_btn size="sm" @click.stop="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
