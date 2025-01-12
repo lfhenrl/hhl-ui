@@ -7,12 +7,12 @@ export async function setGroupList(DH: iDatahandler) {
   const Qpara: any = {
     Take: DH.pageSize,
     Skip: 0,
-    Filter: DH.filterArray,
-    Order: DH.OrderArray,
+    Filter: JSON.stringify(DH.filterArray),
+    Order: JSON.stringify(DH.OrderArray),
     Select: __select,
     GroupBy: __groupBy,
   };
-  const data: any = await DH.dataFetch.post("", Qpara);
+  const data: any = await DH.dataFetch.get("", Qpara);
 
   const gData = data.data.map((item: any) => {
     return {

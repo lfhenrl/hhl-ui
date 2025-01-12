@@ -7,19 +7,19 @@ export async function setMoreRows(DH: iDatahandler, row: any, index: number = 0)
   const Qpara: any = {
     Take: DH.pageSize,
     Skip: skip,
-    Filter: DH.filterArray,
-    Order: DH.OrderArray,
+    Filter: JSON.stringify(DH.filterArray),
+    Order: JSON.stringify(DH.OrderArray),
     Select: row.__select,
     GroupBy: row.__groupBy,
   };
 
   if (!row.__isGroup) {
-    Qpara.Filter = row.__filter;
+    Qpara.Filter = JSON.stringify(row.__filter);
     Qpara.Select = null;
     Qpara.GroupBy = null;
   }
 
-  const data: any = await DH.dataFetch.post("", Qpara);
+  const data: any = await DH.dataFetch.get("", Qpara);
   let gData: any;
   if (row.__isGroup) {
     gData = data.data.map((item: any) => {

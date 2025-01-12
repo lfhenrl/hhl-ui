@@ -4,14 +4,14 @@ export async function setFlatList(DH: iDatahandler) {
   const Qpara: any = {
     Take: DH.pageSize,
     Skip: 0,
-    Filter: DH.filterArray,
-    Order: DH.OrderArray,
+    Filter: JSON.stringify(DH.filterArray),
+    Order: JSON.stringify(DH.OrderArray),
   };
 
   let __rowsLeft = 0;
   let dataCount = 0;
 
-  const { data, ok } = await DH.dataFetch.post("", Qpara);
+  const { data, ok } = await DH.dataFetch.get("", Qpara);
   if (ok) {
     if (data.length > 0) {
       dataCount = data.length;

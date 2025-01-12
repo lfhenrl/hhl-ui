@@ -19,13 +19,13 @@ export async function setGroupListExpand(DH: iDatahandler, row: any, index: numb
   const Qpara: any = {
     Take: DH.pageSize,
     Skip: 0,
-    Filter: filter,
-    Order: DH.OrderArray,
+    Filter: JSON.stringify(filter),
+    Order: JSON.stringify(DH.OrderArray),
     Select: [`${DH.groupList[level + 1]} AS title`, `Count(${DH.groupList[level + 1]}) AS count`],
     GroupBy: [DH.groupList[level + 1]],
   };
 
-  const data: any = await DH.dataFetch.post("", Qpara);
+  const data: any = await DH.dataFetch.get("", Qpara);
 
   const gData = data.data.map((item: any) => {
     const __id = row.__id + "/" + item.title;

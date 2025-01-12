@@ -17,11 +17,11 @@ export async function setFlatListExpand(DH: iDatahandler, row: any, index: numbe
   const Qpara: any = {
     Take: DH.pageSize,
     Skip: 0,
-    Filter: filter,
-    Order: DH.OrderArray,
+    Filter: JSON.stringify(filter),
+    Order: JSON.stringify(DH.OrderArray),
   };
 
-  const data: any = await DH.dataFetch.post("", Qpara);
+  const data: any = await DH.dataFetch.get("", Qpara);
   const dataCount = data.data.length;
   DH.rowsCount.value = DH.rowsCount.value + dataCount;
   const __rowsLeft = row.__count - dataCount;
