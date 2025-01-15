@@ -21,7 +21,7 @@ export class serverData {
   public rowsLevel0_Count = 0;
   public rowsLoading = ref(false);
   public groupList: string[] = [];
-  public pageSize = 50;
+  public pageSize = 200;
   public dataFetch: hhlFetch;
   public filterArray: any[] = [];
   public OrderArray: any[] = [];
@@ -34,20 +34,28 @@ export class serverData {
 
   init(_Dgrid: iDgrid) {
     this.Dgrid = _Dgrid;
+    this.pageSize = _Dgrid.PageSize;
   }
 
   public async loadData() {
+    this.pageSize = this.Dgrid?.PageSize ?? this.pageSize;
+    this.Dgrid?.Vscroller?.reset();
+    this.outData.value = [];
+
     await this.startLoading();
     this.filterArray = getFilterList(this.Dgrid?.Filter ?? []);
     this.OrderArray = getSortList(this.Dgrid?.Sorting.sortArray ?? []);
-    await setCounters(this);
-    if (this.groupList.length > 0) {
-      await setGroupList(this);
-    } else {
-      await setFlatList(this);
-    }
 
-    this.rowsLoading.value = false;
+    setTimeout(async () => {
+      this.Dgrid?.Vscroller?.reset();
+      await setCounters(this);
+      if (this.groupList.length > 0) {
+        await setGroupList(this);
+      } else {
+        await setFlatList(this);
+      }
+      this.rowsLoading.value = false;
+    }, 1);
   }
 
   public async moreRows(row: any) {
@@ -60,9 +68,11 @@ export class serverData {
   public async expanding(row: any) {
     const index = this.getIndexByItem(row);
     if (row.__expanded) {
-      this.outData.value = this.outData.value.filter((item: any) => !item.__pid.startsWith(row.__id));
+      var t = this.outData.value.filter((item: any) => !item.__pid.startsWith(row.__id));
       row.__expanded = false;
-      this.outData.value = [...this.outData.value];
+      this.Dgrid?.Vscroller?.reset();
+      this.outData.value = [...t];
+      this.rowsCount.value = this.outData.value.length;
     } else {
       if (this.groupList.length > row.__level + 1) {
         await setGroupListExpand(this, row, index);
@@ -86,8 +96,14 @@ export class serverData {
   public async getSelectList(field: string) {
     const selectPara: any = {
       Select: ["DISTINCT " + field],
+      Order: JSON.stringify([
+        {
+          Field: field,
+          Direction: "asc",
+        },
+      ]),
     };
-    const { data, message, ok } = await this.dataFetch.post("", selectPara);
+    const { data, message, ok } = await this.dataFetch.get("", selectPara);
     if (ok) {
       return data.map((a: any) => a[field]);
     } else {
@@ -105,6 +121,6 @@ export class serverData {
   }
 
   public async getExcel() {
-    return await [];
+    return this.outData.value;
   }
 }

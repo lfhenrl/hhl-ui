@@ -22,7 +22,7 @@ export async function setGroupListExpand(DH: iDatahandler, row: any, index: numb
     Filter: JSON.stringify(filter),
     Order: JSON.stringify(DH.OrderArray),
     Select: [`${DH.groupList[level + 1]} AS title`, `Count(${DH.groupList[level + 1]}) AS count`],
-    GroupBy: [DH.groupList[level + 1]],
+    GroupBy: JSON.stringify([DH.groupList[level + 1]]),
   };
 
   const data: any = await DH.dataFetch.get("", Qpara);

@@ -54,7 +54,7 @@ export default {
             row += ";";
           }
         }
-        if (typ === "date") {
+        if (typ === "date" || typ === "datetime") {
           if (dataField) {
             const D = new Date(dataField);
             // tslint:disable-next-line:max-line-length

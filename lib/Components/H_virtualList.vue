@@ -235,6 +235,7 @@ function scrollToBottom() {
 function reset() {
   virtual.destroy();
   scrollToOffset(0);
+  (root.value as HTMLElement).scrollLeft = 0;
   installVirtual();
 }
 

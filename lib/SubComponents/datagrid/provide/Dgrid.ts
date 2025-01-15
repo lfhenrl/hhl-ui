@@ -1,4 +1,4 @@
-import { Slots, ref } from "vue";
+import { Slots, ref, PropType } from "vue";
 import { Column, iColumn } from "./Column";
 import { iSorting, Sorting } from "./Sorting";
 import { iDatahandler } from "../datahandlers/server";
@@ -16,6 +16,7 @@ export class Dgrid {
   public Guid = "";
   public changeCounter = ref(0);
   public StyleSheet = {} as CSSStyleSheet;
+  public PageSize: number = 500;
   public Sorting: iSorting;
   public Filter: iFilterData[] = [];
   public SeekList: string[] = [];
@@ -25,7 +26,7 @@ export class Dgrid {
   public Vscroller?: any;
   public ColumnWidthAdjustment = ColumnWidthAdjustment(this);
 
-  constructor(slots: Slots, DHandler: iDatahandler) {
+  constructor(slots: Slots, DHandler: iDatahandler, P: any) {
     this.dataHandler = DHandler;
     this.Guid = `g${new Date().getTime().toString()}`;
     const style = document.createElement("style");
@@ -38,6 +39,11 @@ export class Dgrid {
       this.columns.push(col);
     });
     this.Sorting = new Sorting(this);
+    this.PageSize = P.pagesize;
+    this.SeekList = P.filterList;
+    this.StickyGroups = P.stickyGroups;
+    this.dataHandler!.dataKey = P.dataKey;
+    this.dataHandler!.groupList = P.groupList;
     this.updateFilter();
     this.dataHandler?.init(this);
   }

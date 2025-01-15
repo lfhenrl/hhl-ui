@@ -10,14 +10,14 @@ export async function setMoreRows(DH: iDatahandler, row: any, index: number = 0)
     Filter: JSON.stringify(DH.filterArray),
     Order: JSON.stringify(DH.OrderArray),
     Select: row.__select,
-    GroupBy: row.__groupBy,
+    GroupBy: JSON.stringify(row.__groupBy),
   };
 
-  if (!row.__isGroup) {
+  /*   if (!row.__isGroup) {
     Qpara.Filter = JSON.stringify(row.__filter);
     Qpara.Select = null;
     Qpara.GroupBy = null;
-  }
+  } */
 
   const data: any = await DH.dataFetch.get("", Qpara);
   let gData: any;
@@ -56,16 +56,17 @@ export async function setMoreRows(DH: iDatahandler, row: any, index: number = 0)
       __rowsLeft,
       __rowsLoaded: row.__rowsLoaded,
       __filter: row.__filter ?? [],
-      __Pid: row.__Pid,
       __id: crypto.randomUUID(),
-      __pid: row.__id,
+      __pid: row.__pid,
     });
   }
   if (row.__isGroup) {
-    const pRow: any = DH.outData.value.find((item: any) => item.__id === row.__Pid);
+    const pRow: any = DH.outData.value.find((item: any) => item.__id === row.__pid);
     pRow.__rowsLoaded = pRow.__rowsLoaded + dataCount;
   }
+  console.log("setMoreRows", gData);
   DH.outData.value.splice(index, 1);
   DH.outData.value.splice(index, 0, ...gData);
   DH.outData.value = [...DH.outData.value];
+  DH.rowsCount.value = DH.outData.value.length;
 }

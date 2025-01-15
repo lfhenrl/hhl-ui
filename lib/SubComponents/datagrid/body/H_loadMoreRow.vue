@@ -1,5 +1,5 @@
 <template>
-  <div :data-row="JSON.stringify(row)"></div>
+  <div :data-row="JSON.stringify(row)" class="flex items-center pl-10">Loding...</div>
 </template>
 
 <script setup lang="ts">

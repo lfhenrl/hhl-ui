@@ -54,6 +54,7 @@ import H_progressBar from "../H_progressBar.vue";
 import { Dgrid } from "../../SubComponents/datagrid/provide/Dgrid";
 import { datagridClickHandler } from "../../SubComponents/datagrid/provide/datagridClickHandler";
 import { iClickData } from "../../SubComponents/datagrid/provide/datagridTypes";
+import { debounce } from "../../utils/debounce";
 
 type iVscroller = InstanceType<typeof H_virtualList>;
 
@@ -67,6 +68,10 @@ const P = defineProps({
     type: Object as PropType<any>,
     required: true,
     default: null,
+  },
+  pagesize: {
+    type: Number,
+    default: 500,
   },
   keeps: {
     type: Number,
@@ -95,7 +100,7 @@ const header = ref();
 const row_styleActive = P.row_style ? true : false;
 const vscroll = ref<iVscroller | null>(null);
 const slots = useSlots();
-const DG = new Dgrid(slots, P.dataHandler);
+const DG = new Dgrid(slots, P.dataHandler, P);
 const selected_Id = ref("");
 
 watch(
@@ -107,10 +112,6 @@ watch(
 
 provide("DG", DG);
 const ClickHandler = new datagridClickHandler(DG);
-DG.SeekList = P.filterList;
-DG.StickyGroups = P.stickyGroups;
-DG.dataHandler!.dataKey = P.dataKey;
-DG.dataHandler!.groupList = P.groupList;
 
 function bodyClick(e: MouseEvent) {
   const data = ClickHandler.click(e);
@@ -142,10 +143,15 @@ function adjustColumnsWidth(row: any) {
 watch(
   () => P.filterstring,
   () => {
-    DG.SeekString = P.filterstring.toLocaleLowerCase();
-    DG.updateFilter();
+    DebounceFilterstring();
   }
 );
+
+const DebounceFilterstring = debounce(() => {
+  DG.SeekString = P.filterstring?.toLocaleLowerCase() ?? "";
+  DG.updateFilter();
+}, 800);
+
 onMounted(() => {
   DG.Vscroller = vscroll.value!;
   DG.datagridRef = datagridRef.value;

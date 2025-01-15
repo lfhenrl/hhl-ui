@@ -7,11 +7,24 @@ export function getFilterList(_filterArray: iFilterData[]) {
       const nFilt = {
         Front: "AND",
         Field: item.field,
-        Condition: item.condition1 === "equal" ? "IN" : "NOT IN (",
-        Value: item.value1?.split(","),
-        End: "",
+        Condition: item.condition1 === "equal" ? "IN (" : "NOT IN (",
+        Value: item.value1,
+        End: ")",
       };
       fList.push(nFilt);
+    } else if (item.type === "seek") {
+      const fields = item.field.split(",");
+      const count = fields.length;
+      for (let i = 0; i < count; i++) {
+        const nFilt = {
+          Front: i === 0 ? "AND (" : "OR",
+          Field: fields[i],
+          Condition: "LIKE",
+          Value: `%${item.value1}%`,
+          End: i === count - 1 ? " )" : "",
+        };
+        fList.push(nFilt);
+      }
     } else {
       const F1 = filterCondition(item.condition1, item.value1 ?? "");
       const F2 = filterCondition(item.condition2, item.value2 ?? "");
@@ -73,7 +86,8 @@ function filterCondition(condition: string, value: string) {
     condition: "",
     value: "",
   };
-  if (!value) return obj;
+  const isNotNumber = isNaN(Number(value));
+  if (!value && isNotNumber) return obj;
   const conditionList: any = {
     equal: () => ((obj.condition = "="), (obj.value = value)),
     notEqual: () => ((obj.condition = "<>"), (obj.value = value)),

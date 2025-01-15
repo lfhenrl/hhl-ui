@@ -10,7 +10,7 @@ export async function setGroupList(DH: iDatahandler) {
     Filter: JSON.stringify(DH.filterArray),
     Order: JSON.stringify(DH.OrderArray),
     Select: __select,
-    GroupBy: __groupBy,
+    GroupBy: JSON.stringify(__groupBy),
   };
   const data: any = await DH.dataFetch.get("", Qpara);
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="_page w-full">
+  <div class="h-[90%] w-full">
     <div style="display: flex; align-items: center">
       <H_btn @click="load" style="width: 100px">Load</H_btn>
       <div style="flex: 1" />
@@ -9,15 +9,27 @@
         </template>
       </H_input>
     </div>
-    <H_datagrid :dataHandler="datesData" data-key="id" @row-click="rowClick">
-      <H_column type="action" sorting="none" field="id">
-        <template #default>
-          <div class="ico-edit iconBtn text-pri text-xs" data-subtype="edit" />
-        </template>
-      </H_column>
-      <H_column field="id" title="Id" type="number" />
-      <H_column field="name" title="Name" type="string" />
-      <H_column field="date" title="Date" type="datetime" />
+    <H_datagrid
+      :dataHandler="datesData"
+      data-key="Id"
+      @row-click="rowClick"
+      :keeps="50"
+      :pagesize="50"
+      :filter-list="['Group1', 'Group2', 'Group3', 'Group4', 'Text']"
+      :filterstring="seek"
+    >
+      <H_column field="Id" title="Id" type="number" />
+      <H_column field="Msg_nr" title="Msg_nr" type="number" />
+      <H_column field="MsgType" title="MsgType" type="string" filter="select" />
+      <H_column field="StartTime" title="StartTime" type="datetime" />
+      <H_column field="EndTime" title="EndTime" type="datetime" />
+      <H_column field="Group1" title="Group1" type="string" filter="select" />
+      <H_column field="Group2" title="Group2" type="string" filter="select" />
+      <H_column field="Group3" title="Group3" type="string" filter="select" />
+      <H_column field="Group4" title="Group4" type="string" filter="select" />
+      <H_column field="Text" title="Text" type="string" />
+      <H_column field="State" title="State" type="string" />
+      <H_column field="DurProd" title="DurProd" type="number" filter_condition1="greater" filter_value1="0" />
     </H_datagrid>
   </div>
 </template>
@@ -33,7 +45,7 @@ import { iClickData } from "../../../lib/Components/datagrid";
 
 const seek = ref("");
 
-const datesData = new serverData("http://localhost:5000/dates");
+const datesData = new serverData("http://localhost:5000/alerts");
 
 async function load() {
   await datesData.startLoading();
