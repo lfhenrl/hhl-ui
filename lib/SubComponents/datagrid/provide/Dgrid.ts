@@ -44,7 +44,7 @@ export class Dgrid {
     this.StickyGroups = P.stickyGroups;
     this.dataHandler!.dataKey = P.dataKey;
     this.dataHandler!.groupList = P.groupList;
-    this.updateFilter();
+    // this.updateFilter();
     this.dataHandler?.init(this);
   }
 

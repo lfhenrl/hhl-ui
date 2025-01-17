@@ -98,8 +98,8 @@ async function open() {
   }
   list.value = arr.map((ele: any) => {
     return {
-      value: ele.value ? ele.value : ele,
-      label: ele.label ? ele.label : ele,
+      value: ele.value ? ele.value : ele === "" ? " " : ele,
+      label: ele.label ? ele.label : ele === "" ? "Empty" : ele,
     };
   });
   if (col.filter.value1 === "") {

@@ -19,6 +19,7 @@ export async function setFlatList(DH: iDatahandler) {
       __rowsLeft = DH.rowsCountTotal.value - DH.rowsCount.value;
     } else {
       DH.rowsCountTotal.value = 0;
+      DH.rowsCount.value = 0;
     }
   } else {
     return;

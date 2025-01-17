@@ -6,10 +6,11 @@ export function getFilterList(_filterArray: iFilterData[]) {
     if (item.type === "select") {
       const nFilt = {
         Front: "AND",
+        Type: item.type,
         Field: item.field,
-        Condition: item.condition1 === "equal" ? "IN (" : "NOT IN (",
+        Condition: item.condition1 === "equal" ? "IN" : "NOT IN",
         Value: item.value1,
-        End: ")",
+        End: "",
       };
       fList.push(nFilt);
     } else if (item.type === "seek") {
@@ -18,6 +19,7 @@ export function getFilterList(_filterArray: iFilterData[]) {
       for (let i = 0; i < count; i++) {
         const nFilt = {
           Front: i === 0 ? "AND (" : "OR",
+          Type: item.type,
           Field: fields[i],
           Condition: "LIKE",
           Value: `%${item.value1}%`,
@@ -32,6 +34,7 @@ export function getFilterList(_filterArray: iFilterData[]) {
         if (item.logical === "and") {
           const nFilt1 = {
             Front: "AND",
+            Type: item.type,
             Field: item.field,
             Condition: F1.condition,
             Value: F1.value,
@@ -39,6 +42,7 @@ export function getFilterList(_filterArray: iFilterData[]) {
           };
           const nFilt2 = {
             Front: "AND",
+            Type: item.type,
             Field: item.field,
             Condition: F2.condition,
             Value: F2.value,
@@ -49,6 +53,7 @@ export function getFilterList(_filterArray: iFilterData[]) {
         } else {
           const nFilt1 = {
             Front: "AND(",
+            Type: item.type,
             Field: item.field,
             Condition: F1.condition,
             Value: F1.value,
@@ -56,6 +61,7 @@ export function getFilterList(_filterArray: iFilterData[]) {
           };
           const nFilt2 = {
             Front: "OR",
+            Type: item.type,
             Field: item.field,
             Condition: F2.condition,
             Value: F2.value,
@@ -67,6 +73,7 @@ export function getFilterList(_filterArray: iFilterData[]) {
       } else {
         const nFilt = {
           Front: "AND",
+          Type: item.type,
           Field: item.field,
           Condition: F1.condition,
           Value: F1.value,

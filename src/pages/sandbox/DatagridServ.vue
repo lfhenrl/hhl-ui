@@ -13,14 +13,14 @@
       :dataHandler="datesData"
       data-key="Id"
       @row-click="rowClick"
-      :keeps="50"
-      :pagesize="50"
+      :keeps="100"
+      :pagesize="500"
       :filter-list="['Group1', 'Group2', 'Group3', 'Group4', 'Text']"
       :filterstring="seek"
     >
       <H_column field="Id" title="Id" type="number" />
       <H_column field="Msg_nr" title="Msg_nr" type="number" />
-      <H_column field="MsgType" title="MsgType" type="string" filter="select" />
+      <H_column field="MsgType" title="MsgType" type="string" filter="select" :select_list="['Alert', 'Warning']" />
       <H_column field="StartTime" title="StartTime" type="datetime" />
       <H_column field="EndTime" title="EndTime" type="datetime" />
       <H_column field="Group1" title="Group1" type="string" filter="select" />
@@ -28,7 +28,7 @@
       <H_column field="Group3" title="Group3" type="string" filter="select" />
       <H_column field="Group4" title="Group4" type="string" filter="select" />
       <H_column field="Text" title="Text" type="string" />
-      <H_column field="State" title="State" type="string" />
+      <H_column field="State" title="State" type="string" filter="select" :select_list="['active', 'history']" />
       <H_column field="DurProd" title="DurProd" type="number" filter_condition1="greater" filter_value1="0" />
     </H_datagrid>
   </div>
