@@ -14,7 +14,7 @@
       data-key="Id"
       @row-click="rowClick"
       :keeps="100"
-      :pagesize="500"
+      :pagesize="100"
       :filter-list="['Group1', 'Group2', 'Group3', 'Group4', 'Text']"
       :filterstring="seek"
     >

@@ -44,7 +44,7 @@ export class Dgrid {
     this.StickyGroups = P.stickyGroups;
     this.dataHandler!.dataKey = P.dataKey;
     this.dataHandler!.groupList = P.groupList;
-    // this.updateFilter();
+    this.setFilter();
     this.dataHandler?.init(this);
   }
 
@@ -68,7 +68,7 @@ export class Dgrid {
     this.Vscroller!.scrollToOffset(offset);
   }
 
-  updateFilter() {
+  setFilter() {
     const sArray: iFilterData[] = [];
     this.columns.forEach((item) => {
       if (item.filter.active) {
@@ -77,6 +77,10 @@ export class Dgrid {
     });
     this.updateSeekFilter(sArray);
     this.Filter = sArray;
+  }
+
+  updateFilter() {
+    this.setFilter();
     this.dataHandler?.loadData();
   }
 

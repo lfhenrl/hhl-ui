@@ -3,12 +3,12 @@ import { iDgrid } from "../../provide/Dgrid";
 import { hhlFetch } from "../../../../utils/hhlFetch";
 import { getFilterList } from "./getFilterList";
 import { getSortList } from "./getSortList";
-import { setCounters } from "./setCounters";
 import { setFlatList } from "./setFlatList";
 import { setMoreRows } from "./setMoreRows";
 import { setGroupList } from "./setGroupList";
 import { setGroupListExpand } from "./setGroupListExpand";
 import { setFlatListExpand } from "./setFlatListExpand";
+import type { iServerData } from "../../provide/datagridTypes";
 
 export type iDatahandler = InstanceType<typeof serverData>;
 export class serverData {
@@ -18,7 +18,6 @@ export class serverData {
   public outData: Ref<unknown[]> = ref([]);
   public rowsCount = ref(0);
   public rowsCountTotal = ref(0);
-  public rowsLevel0_Count = 0;
   public rowsLoading = ref(false);
   public groupList: string[] = [];
   public pageSize = 200;
@@ -48,7 +47,7 @@ export class serverData {
 
     setTimeout(async () => {
       this.Dgrid?.Vscroller?.reset();
-      await setCounters(this);
+      // await setCounters(this);
       if (this.groupList.length > 0) {
         await setGroupList(this);
       } else {
@@ -105,7 +104,8 @@ export class serverData {
     };
     const { data, message, ok } = await this.dataFetch.get("", selectPara);
     if (ok) {
-      return data.map((a: any) => a[field]);
+      const Server: iServerData = data;
+      return Server.rows.map((a: any) => a[field]);
     } else {
       window["hhl"].alert("err", "Server Error", message);
       return;

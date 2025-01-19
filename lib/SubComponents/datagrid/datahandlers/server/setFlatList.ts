@@ -1,4 +1,5 @@
 import { iDatahandler } from "../server";
+import type { iServerData } from "../../provide/datagridTypes";
 
 export async function setFlatList(DH: iDatahandler) {
   const Qpara: any = {
@@ -11,31 +12,35 @@ export async function setFlatList(DH: iDatahandler) {
   let __rowsLeft = 0;
   let dataCount = 0;
 
-  const { data, ok } = await DH.dataFetch.get("", Qpara);
+  const { data, ok, message } = await DH.dataFetch.get("", Qpara);
+
   if (ok) {
-    if (data.length > 0) {
-      dataCount = data.length;
+    const Server: iServerData = data;
+    if (Server.rows.length > 0) {
+      dataCount = Server.rows.length;
       DH.rowsCount.value = dataCount;
+      DH.rowsCountTotal.value = Server.totalCount;
       __rowsLeft = DH.rowsCountTotal.value - DH.rowsCount.value;
+
+      if (__rowsLeft > 0) {
+        Server.rows.push({
+          __type: "loadmore",
+          __nextPage: DH.pageSize,
+          __level: 0,
+          __rowsLeft,
+          __rowsLoaded: dataCount,
+          __isGroup: false,
+          __id: crypto.randomUUID(),
+          __pid: "",
+        });
+      }
+      DH.outData.value = [...Server.rows];
     } else {
       DH.rowsCountTotal.value = 0;
       DH.rowsCount.value = 0;
     }
   } else {
+    hhl.alert("err", "Server Error", message);
     return;
   }
-
-  if (__rowsLeft > 0) {
-    data.push({
-      __type: "loadmore",
-      __nextPage: DH.pageSize,
-      __level: 0,
-      __rowsLeft,
-      __rowsLoaded: dataCount,
-      __isGroup: false,
-      __id: crypto.randomUUID(),
-      __pid: "",
-    });
-  }
-  DH.outData.value = [...data];
 }

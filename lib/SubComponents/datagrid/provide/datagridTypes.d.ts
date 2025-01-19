@@ -14,6 +14,12 @@ export type iSortData = {
   direction: string;
 };
 
+export type iServerData = {
+  rows: object[];
+  count: number;
+  totalCount: number;
+};
+
 export type iClickData = {
   type: string;
   colIndex: number;
