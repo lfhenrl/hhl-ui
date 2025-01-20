@@ -94,7 +94,8 @@ export class serverData {
 
   public async getSelectList(field: string) {
     const selectPara: any = {
-      Select: ["DISTINCT " + field],
+      Select: ["selectlist"],
+      GroupBy: JSON.stringify([field]),
       Order: JSON.stringify([
         {
           Field: field,
