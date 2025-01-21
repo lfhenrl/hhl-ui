@@ -19,7 +19,7 @@ export function getFilterList(_filterArray: iFilterData[]) {
       for (let i = 0; i < count; i++) {
         const nFilt = {
           Front: i === 0 ? "AND (" : "OR",
-          Type: item.type,
+          Type: "string",
           Field: fields[i],
           Condition: "LIKE",
           Value: `%${item.value1}%`,

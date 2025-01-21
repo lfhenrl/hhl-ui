@@ -18,11 +18,18 @@ export async function setGroupListExpand(DH: iDatahandler, row: any, index: numb
     filter.push(F);
   }
 
+  const __order: string[] = [];
+  if (DH.OrderArray.length > 0) {
+    DH.OrderArray.forEach((item) => {
+      if (item.Field === DH.groupList[level + 1]) __order.push(item);
+    });
+  }
+
   const Qpara: any = {
     Take: DH.pageSize,
     Skip: 0,
     Filter: JSON.stringify([...DH.filterArray, ...filter]),
-    Order: JSON.stringify(DH.OrderArray),
+    Order: JSON.stringify(__order),
     Select: ["grouping"],
     GroupBy: JSON.stringify([DH.groupList[level + 1]]),
   };

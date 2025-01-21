@@ -1,4 +1,4 @@
-import { Slots, ref, PropType } from "vue";
+import { Slots, ref } from "vue";
 import { Column, iColumn } from "./Column";
 import { iSorting, Sorting } from "./Sorting";
 import { iDatahandler } from "../datahandlers/server";

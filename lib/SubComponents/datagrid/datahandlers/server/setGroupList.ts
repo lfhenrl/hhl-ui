@@ -2,15 +2,20 @@ import { iDatahandler } from "../server";
 import type { iServerData } from "../../provide/datagridTypes";
 
 export async function setGroupList(DH: iDatahandler) {
-  //const __select = [`${DH.groupList[0]} AS title`, `Count(${DH.groupList[0]}) AS count`];
   const __select = "grouping";
   const __groupBy = [DH.groupList[0]];
+  const __order: string[] = [];
+  if (DH.OrderArray.length > 0) {
+    DH.OrderArray.forEach((item) => {
+      if (item.Field === DH.groupList[0]) __order.push(item);
+    });
+  }
 
   const Qpara: any = {
     Take: DH.pageSize,
     Skip: 0,
     Filter: JSON.stringify(DH.filterArray),
-    Order: JSON.stringify(DH.OrderArray),
+    Order: JSON.stringify(__order),
     Select: __select,
     GroupBy: JSON.stringify(__groupBy),
   };

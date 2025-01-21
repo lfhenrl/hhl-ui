@@ -154,7 +154,7 @@ export class hhlFetch {
   _baseUrl = "";
   _token = "";
   _credentials = false;
-  TimeOut = 8000;
+  TimeOut = 20000;
   /**
    * @param {string} baseUrl - the baseUrl
    */

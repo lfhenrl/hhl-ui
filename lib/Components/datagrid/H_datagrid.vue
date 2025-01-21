@@ -150,7 +150,7 @@ watch(
 const DebounceFilterstring = debounce(() => {
   DG.SeekString = P.filterstring?.toLocaleLowerCase() ?? "";
   DG.updateFilter();
-}, 800);
+}, 1000);
 
 onMounted(() => {
   DG.Vscroller = vscroll.value!;
