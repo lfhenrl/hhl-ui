@@ -124,4 +124,9 @@ export class serverData {
   public async getExcel() {
     return this.outData.value;
   }
+
+  public async SetUrl(url: string) {
+    this.Url = url;
+    this.dataFetch = new hhlFetch(url);
+  }
 }
