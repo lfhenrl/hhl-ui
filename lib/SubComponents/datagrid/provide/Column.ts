@@ -2,7 +2,7 @@ import { Ref, reactive, ref, watch } from "vue";
 import { iDgrid } from "./Dgrid";
 import { iFilterData } from "./datagridTypes";
 import { debounce } from "../../../utils/debounce";
-import { D_01_dec_2021, D_01_dec_2021_HHMM } from "../../../utils/dateFormat";
+import { D_01_dec_2021, D_01_dec_2021_HHMMSS } from "../../../utils/dateFormat";
 
 export type iColumn = InstanceType<typeof Column>;
 
@@ -117,7 +117,7 @@ export class Column {
   }
 
   formatDateTime(value: any) {
-    return D_01_dec_2021_HHMM(value);
+    return D_01_dec_2021_HHMMSS(value);
   }
 
   setMaxValue(val: string) {
