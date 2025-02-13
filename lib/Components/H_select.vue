@@ -29,7 +29,7 @@
           <div set-end class="H_select-dropdownArrow ico-expand_down" :class="{ 'ico-expand_up': selectOpen }" />
         </H_inputbase>
       </template>
-      <div class="H_select-list bg-bg0 rounded w-full border border-solid border-bg4">
+      <div @click.stop class="H_select-list bg-bg0 rounded w-full border border-solid border-bg4">
         <div
           v-if="showFilter"
           class="flex w-full items-center border-b border-bg4 border-solid h-8 pl-1 mb-2 rounded-t"

@@ -20,7 +20,7 @@ export async function setCounters(DH: iDatahandler) {
   }
   if (DH.groupList.length > 0) {
     CountPara.GroupBy = JSON.stringify([DH.groupList[0]]);
-    const count: any = await DH.dataFetch.get("", CountPara);
+    //const count: any = await DH.dataFetch.get("", CountPara);
     //DH.rowsLevel0_Count = count.data[0].count;
   }
 }

@@ -17,7 +17,7 @@
           />
         </div>
       </template>
-      <div class="rounded bg-bg0 border-bg5 border">
+      <div @click.stop class="rounded bg-bg0 border-bg5 border">
         <div class="flex items-center text-lg text-txt1 font-bold justify-center bg-bg3 p-1">
           {{ formattetTempDate }}
         </div>
