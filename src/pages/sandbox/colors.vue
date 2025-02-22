@@ -5,6 +5,7 @@
         <div class="ico-account" />
         <div class="ico-account" />
       </H_input>
+      <H_select label="Select" />
       <H_datePicker label="Date" v-model="date" show-seconds></H_datePicker>
       {{ mytime }}
       <input
