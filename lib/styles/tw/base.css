@@ -34,7 +34,6 @@
     border-radius: 4px;
     height: 1.4em;
     align-items: center;
-    z-index: 99;
     width: 1.4em;
     &:hover {
       outline: 2px solid var(--color-pri);
