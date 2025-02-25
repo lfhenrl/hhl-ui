@@ -27,13 +27,13 @@ const P = defineProps({
   noShake: { default: false, type: Boolean },
   noClickOutsite: { type: Boolean, default: true },
   movable: { default: true, type: Boolean },
-  offsetUp: {
+  insetLeft: {
     type: String,
-    default: "0",
+    default: "0 0",
   },
-  offsetLeft: {
+  insetTop: {
     type: String,
-    default: "0",
+    default: "0 0",
   },
 });
 
@@ -102,22 +102,6 @@ function outsideClick(e: any) {
   return false;
 }
 
-const insetBlock = computed(() => {
-  if (P.offsetUp === "0") {
-    return "0 0";
-  } else {
-    return P.offsetUp + " auto";
-  }
-});
-
-const insetInline = computed(() => {
-  if (P.offsetLeft === "0") {
-    return "0 0";
-  } else {
-    return P.offsetLeft + " auto";
-  }
-});
-
 onMounted(() => {
   document.addEventListener("click", onClick);
 });
@@ -125,8 +109,8 @@ onMounted(() => {
 <style>
 @layer components {
   .H_dialog {
-    inset-block: v-bind(insetBlock);
-    inset-inline: v-bind(insetInline);
+    inset-block: v-bind(insetTop);
+    inset-inline: v-bind(insetLeft);
     transform: scaleY(0);
     transition: opacity 0.3s, transform 0.2s, display 0.3s allow-discrete;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
