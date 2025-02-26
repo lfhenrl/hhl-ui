@@ -8,7 +8,10 @@
     class="H_dialog grid grid-cols-1 grid-rows-[auto_1fr_auto] border-none m-auto rounded bg-bg0 outline-none"
     @close="onClose"
   >
-    <div class="H_dialog__header col-pri text-center font-bold py-1 [&[moveable-drag]]:cursor-move" moveable-drag>
+    <div
+      class="H_dialog__header col-pri text-center font-bold py-1 [&[moveable-drag]]:cursor-move rounded-t"
+      moveable-drag
+    >
       <slot name="header" />
     </div>
     <div class="H_dialog__body p-3"><slot /></div>
