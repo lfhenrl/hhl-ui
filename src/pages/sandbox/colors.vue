@@ -16,16 +16,38 @@
       />
       <H_timePicker label="Dato" v-model="mytime" />
     </div>
+    <div class="flex items-center gap-4 flex-wrap">
+      <H_tabs :default-tab="tab">
+        <H_tab name="tab1" label="Tab 1."
+          ><div class="p-10 h-full" keep-alive>
+            This is TAB 1... <H_btn @click="changeTab('tab2')">{{ tab }}</H_btn>
+          </div></H_tab
+        >
+        <H_tab name="tab2" label="Tab 2."><div class="p-10" keep-alive>This is TAB 2...</div></H_tab>
+        <H_tab name="tab3" label="Tab 3."><div class="p-10" keep-alive>This is TAB 3...</div></H_tab>
+      </H_tabs>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import H_input from "../../../lib/Components/H_input.vue";
+import H_btn from "../../../lib/Components/H_btn.vue";
+import H_tabs from "../../../lib/Components/navigation/H_tabs.vue";
+import H_tab from "../../../lib/Components/navigation/H_tab.vue";
 import H_datePicker from "../../../lib/Components/H_datePicker.vue";
 import H_timePicker from "../../../lib/Components/H_timePicker.vue";
 import { ref } from "vue";
 const date = ref(new Date());
 const mytime = ref();
+const tab = ref("tab1");
+
+function changeTab(tabName: string) {
+  tab.value = "";
+  setTimeout(() => {
+    tab.value = tabName;
+  }, 0);
+}
 </script>
 
 <style></style>

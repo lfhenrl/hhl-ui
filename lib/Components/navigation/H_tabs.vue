@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, provide, onMounted, useSlots } from "vue";
+import { ref, provide, onMounted, useSlots, watch } from "vue";
 
 const props = defineProps({
   defaultTab: { type: String, default: "" },
@@ -49,6 +49,13 @@ const slots = useSlots();
 const tabs = ref<any>([]);
 const show = ref(true);
 const firstChildx = ref("");
+
+watch(
+  () => props.defaultTab,
+  () => {
+    changeTab(props.defaultTab);
+  }
+);
 
 const tabData = {
   selected: ref(),
