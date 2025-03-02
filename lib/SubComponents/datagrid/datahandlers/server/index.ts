@@ -67,7 +67,7 @@ export class serverData {
   public async expanding(row: any) {
     const index = this.getIndexByItem(row);
     if (row.__expanded) {
-      var t = this.outData.value.filter((item: any) => !item.__pid.startsWith(row.__id));
+      var t = this.outData.value.filter((item: any) => !item.__pid.toString().startsWith(row.__id.toString()));
       row.__expanded = false;
       this.Dgrid?.Vscroller?.reset();
       this.outData.value = [...t];
