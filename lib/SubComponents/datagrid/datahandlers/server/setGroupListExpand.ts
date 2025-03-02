@@ -3,7 +3,7 @@ import type { iServerData } from "../../provide/datagridTypes";
 
 export async function setGroupListExpand(DH: iDatahandler, row: any, index: number = 0) {
   const level = row.__level ?? 0;
-  const parentId = row.__id.tostring();
+  const parentId = row.__id.toString();
   const parentArr = parentId.split("/");
   const filter = [];
 

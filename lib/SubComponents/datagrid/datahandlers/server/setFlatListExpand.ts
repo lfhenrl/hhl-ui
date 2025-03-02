@@ -2,7 +2,7 @@ import { iDatahandler } from "../server";
 import type { iServerData } from "../../provide/datagridTypes";
 
 export async function setFlatListExpand(DH: iDatahandler, row: any, index: number = 0) {
-  const parentId = row.__id.tostring();
+  const parentId = row.__id.toString();
   const parentArr = parentId.split("/");
   const filter = [];
 
