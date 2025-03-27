@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PropType } from "vue";
-import { iColumn } from "../../SubComponents/datagrid/provide/Column";
+//import { iColumn } from "../../SubComponents/datagrid/provide/Column";
 
 defineOptions({ name: "H_column" });
 defineProps({
@@ -71,8 +71,8 @@ defineProps({
   filter_value2: { type: String, default: "" },
   visibel: { type: Boolean, default: true },
 });
-const slots = defineSlots<{
+/* const slots = defineSlots<{
   default(props: { col: iColumn; value: any; row: any }): any;
-}>();
+}>(); */
 </script>
 <template>&#32;</template>

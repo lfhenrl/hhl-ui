@@ -7,6 +7,8 @@ import VueRouter from "unplugin-vue-router/vite";
 import { containerPlugin } from "./src/components/containers";
 import tailwindcss from "@tailwindcss/vite";
 import { visualizer } from "rollup-plugin-visualizer";
+import Components from "unplugin-vue-components/vite";
+import AutoImport from "unplugin-auto-import/vite";
 
 export default defineConfig({
   // base: "/hhl-ui/",
@@ -24,6 +26,14 @@ export default defineConfig({
       include: [/\.vue$/, /\.md$/],
     }),
     tailwindcss(),
+    Components({
+      dts: true,
+      dirs: ["src/components", "src/pages", "./lib/Components", "./lib/Directives"],
+    }),
+    AutoImport({
+      imports: ["vue"],
+      dirs: ["./lib/utils"],
+    }),
     Markdown({
       markdownItSetup(md) {
         // for example
