@@ -1,5 +1,5 @@
-import { ref, onMounted, onUpdated, watch, Ref } from "vue";
-import { DraggableItem } from "../types/draggable-item.interface";
+import { ref, onMounted, onUpdated, watch, type Ref } from "vue";
+import { type DraggableItem } from "../types/draggable-item.interface";
 import { changeArrayOrder } from "../utils/change-order";
 import { getIdGenerator } from "../utils/id-generator";
 import { throttle } from "../utils/throttle";

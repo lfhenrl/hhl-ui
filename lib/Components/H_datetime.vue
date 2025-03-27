@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, ref, computed, watchEffect } from "vue";
+import { type PropType, ref, computed, watchEffect } from "vue";
 import H_inputbase from "./H_inputbase.vue";
 import { validateFunc } from "../utils/validateFunc";
 const P = defineProps({

@@ -12,9 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, inject, onMounted, onUpdated, ref } from "vue";
-import { iRow } from "../data/rowModel";
-import { iGantt } from "../provide/gantt";
+import { type PropType, inject, onMounted, onUpdated, ref } from "vue";
+import { type iRow } from "../data/rowModel";
+import { type iGantt } from "../provide/gantt";
 import { Task } from "../data/Task";
 
 const P = defineProps({

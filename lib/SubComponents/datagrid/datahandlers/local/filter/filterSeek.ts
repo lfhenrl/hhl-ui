@@ -1,4 +1,4 @@
-import { iFilterData } from "../../../provide/datagridTypes";
+import { type iFilterData } from "../../../provide/datagridTypes";
 
 export default function filterSeek(filter: iFilterData) {
   const fieldList = filter.field?.split(",");

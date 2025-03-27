@@ -1,9 +1,9 @@
 import { ref, watch } from "vue";
-import { iColumn } from "../data/columnModel";
+import { type iColumn } from "../data/columnModel";
 import { Columns } from "../data/Columns";
-import { iRow } from "../data/rowModel";
+import { type iRow } from "../data/rowModel";
 import dataGrid from "../datagrid/data-grid.vue";
-import { iMoveRow } from "../data/moveRowModel";
+import { type iMoveRow } from "../data/moveRowModel";
 import { mouseHandler } from "./mouseHandler";
 import { calc } from "./calc";
 

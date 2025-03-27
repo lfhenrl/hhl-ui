@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { inject, onMounted } from "vue";
-import { iDgrid } from "../provide/Dgrid";
+import { type iDgrid } from "../provide/Dgrid";
 
 const P = defineProps({
   row: { type: Object, default: {} },

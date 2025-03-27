@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType, ref, watch } from "vue";
+import { computed, type PropType, ref, watch } from "vue";
 
 type iPieItem = {
   name: string;

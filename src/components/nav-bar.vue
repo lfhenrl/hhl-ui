@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, type PropType } from "vue";
 import H_popover from "../../lib/Components/H_popover.vue";
 import H_themeSelector from "../../lib/Components/H_themeSelector.vue";
 

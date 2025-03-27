@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PropType } from "vue";
+import { type PropType } from "vue";
 //import { iColumn } from "../../SubComponents/datagrid/provide/Column";
 
 defineOptions({ name: "H_column" });

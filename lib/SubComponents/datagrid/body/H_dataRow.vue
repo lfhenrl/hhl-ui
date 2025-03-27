@@ -22,10 +22,10 @@
 
 <script setup lang="ts">
 import { inject } from "vue";
-import { iDgrid } from "../provide/Dgrid";
+import { type iDgrid } from "../provide/Dgrid";
 import H_dataGroupRow from "./H_dataGroupRow.vue";
 import H_loadMoreRow from "./H_loadMoreRow.vue";
-import { iColumn } from "../provide/Column";
+import { type iColumn } from "../provide/Column";
 
 const P = defineProps({
   row: { type: Object, default: {} },

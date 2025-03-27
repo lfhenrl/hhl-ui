@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType } from "vue";
+import { computed, type PropType } from "vue";
 import H_inputbase from "./H_inputbase.vue";
 import { validateFunc } from "../utils/validateFunc";
 const P = defineProps({

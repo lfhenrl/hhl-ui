@@ -1,6 +1,6 @@
-import { Ref, reactive, ref, watch } from "vue";
-import { iDgrid } from "./Dgrid";
-import { iFilterData } from "./datagridTypes";
+import { type Ref, reactive, ref, watch } from "vue";
+import { type iDgrid } from "./Dgrid";
+import { type iFilterData } from "./datagridTypes";
 import { debounce } from "../../../utils/debounce";
 import { D_01_dec_2021, D_01_dec_2021_HHMMSS } from "../../../utils/dateFormat";
 

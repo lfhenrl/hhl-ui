@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { inject, onMounted, ref } from "vue";
-import { iDgrid } from "../provide/Dgrid";
+import { type iDgrid } from "../provide/Dgrid";
 import { ColResize } from "./ColResize";
 import H_menu from "./H_menu.vue";
 

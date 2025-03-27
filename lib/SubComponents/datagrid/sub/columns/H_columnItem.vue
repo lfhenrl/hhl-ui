@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, ref } from "vue";
+import { type PropType, ref } from "vue";
 
 type iGroupdata = {
   field: string;

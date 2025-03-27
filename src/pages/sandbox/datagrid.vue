@@ -46,7 +46,7 @@ import H_input from "../../../lib/Components/H_input.vue";
 import { getData } from "../../testData/data";
 import { localData } from "../../../lib/Components/datagrid";
 import { ref } from "vue";
-import { iClickData } from "../../../lib/Components/datagrid";
+import { type iClickData } from "../../../lib/Components/datagrid";
 
 const seek = ref("");
 const lData = new localData();

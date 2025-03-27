@@ -35,12 +35,12 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, computed, inject, onMounted, ref } from "vue";
+import { type PropType, computed, inject, onMounted, ref } from "vue";
 import bodyCell from "../datagrid/bodyCell.vue";
-import { iGantt } from "../provide/gantt";
-import { iColumn } from "../data/columnModel";
+import { type iGantt } from "../provide/gantt";
+import { type iColumn } from "../data/columnModel";
 import { debounce } from "../../../utils/debounce";
-import { iRow } from "../data/rowModel";
+import { type iRow } from "../data/rowModel";
 import { MoveRow } from "../data/moveRowModel";
 
 const P = defineProps({

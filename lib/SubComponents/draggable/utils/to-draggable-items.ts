@@ -1,4 +1,4 @@
-import { DraggableItem } from "../types/draggable-item.interface";
+import { type DraggableItem } from "../types/draggable-item.interface";
 import { getIdGenerator } from "./id-generator";
 
 const draggableItemIdGenrator = getIdGenerator();

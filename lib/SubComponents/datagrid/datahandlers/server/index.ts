@@ -1,5 +1,5 @@
-import { Ref, ref } from "vue";
-import { iDgrid } from "../../provide/Dgrid";
+import { type Ref, ref } from "vue";
+import { type iDgrid } from "../../provide/Dgrid";
 import { hhlFetch } from "../../../../utils/hhlFetch";
 import { getFilterList } from "./getFilterList";
 import { getSortList } from "./getSortList";

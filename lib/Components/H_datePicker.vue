@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, ref, watch, computed } from "vue";
+import { type PropType, ref, watch, computed } from "vue";
 import { validateFunc } from "../utils/validateFunc";
 import H_inputBase from "./H_inputbase.vue";
 import H_baseDatePicker from "../SubComponents/date/H_baseDatePicker.vue";

@@ -1,4 +1,4 @@
-import { iRow } from "./rowModel";
+import { type iRow } from "./rowModel";
 
 export type iMoveRow = InstanceType<typeof MoveRow>;
 export class MoveRow {

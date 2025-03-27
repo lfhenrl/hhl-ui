@@ -20,15 +20,15 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, inject, ref, watch } from "vue";
-import { iRow } from "../data/rowModel";
+import { type PropType, inject, ref, watch } from "vue";
+import { type iRow } from "../data/rowModel";
 import { Columns } from "../data/Columns";
 import headCell from "./headCell.vue";
 import rowGroup from "./rowGroup.vue";
 import H_popover from "../../H_popover.vue";
 import H_btn from "../../H_btn.vue";
-import { iMoveRow } from "../data/moveRowModel";
-import { iGantt } from "../provide/gantt";
+import { type iMoveRow } from "../data/moveRowModel";
+import { type iGantt } from "../provide/gantt";
 const dataGrid = ref<HTMLElement>();
 
 const P = defineProps({

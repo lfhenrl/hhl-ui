@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { iColumn } from "./columnModel";
+import { type iColumn } from "./columnModel";
 
 export const Columns: iColumn[] = [
   {

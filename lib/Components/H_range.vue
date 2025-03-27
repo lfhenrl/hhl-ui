@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, ref, watchEffect, computed, onMounted } from "vue";
+import { type PropType, ref, watchEffect, computed, onMounted } from "vue";
 import H_inputbase from "./H_inputbase.vue";
 import { validateFunc } from "../utils/validateFunc";
 

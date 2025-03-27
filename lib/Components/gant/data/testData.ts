@@ -1,5 +1,5 @@
 import { DateAddDays, DateGetToday } from "../../../utils/dateFunctions";
-import { iRow } from "./rowModel";
+import { type iRow } from "./rowModel";
 const tidNu = DateGetToday();
 export const testData: iRow[] = [
   {

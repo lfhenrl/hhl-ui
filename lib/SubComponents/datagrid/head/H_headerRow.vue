@@ -9,7 +9,7 @@
 <script setup lang="ts">
 import { inject, onMounted, ref } from "vue";
 import H_HeadCell from "./H_HeadCell.vue";
-import { iDgrid } from "../provide/Dgrid";
+import { type iDgrid } from "../provide/Dgrid";
 
 const dom = ref();
 

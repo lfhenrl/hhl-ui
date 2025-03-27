@@ -4,7 +4,7 @@ import filterBool from "./filterBool";
 import filterDate from "./filterDate";
 import filterSelect from "./filterSelect";
 import filterSeek from "./filterSeek";
-import { iFilterData } from "../../../provide/datagridTypes";
+import { type iFilterData } from "../../../provide/datagridTypes";
 
 export default function getFilterFunctions(filterList: any[]) {
   const fList: any = [];

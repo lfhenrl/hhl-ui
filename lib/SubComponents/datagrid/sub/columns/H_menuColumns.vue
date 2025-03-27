@@ -44,7 +44,7 @@ import H_dragDrop from "../../../../Components/H_dragDrop.vue";
 import H_inputbase from "../../../../Components/H_inputbase.vue";
 import H_columnItem from "./H_columnItem.vue";
 import { ref, inject, computed } from "vue";
-import { iDgrid } from "../../provide/Dgrid";
+import { type iDgrid } from "../../provide/Dgrid";
 /* import { iColumn } from "../../provide/Column"; */
 
 // const E = defineEmits([]);

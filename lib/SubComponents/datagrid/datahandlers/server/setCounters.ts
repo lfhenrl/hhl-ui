@@ -1,4 +1,4 @@
-import { iDatahandler } from ".";
+import { type iDatahandler } from ".";
 
 export async function setCounters(DH: iDatahandler) {
   const CountPara: any = {

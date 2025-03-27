@@ -1,6 +1,6 @@
-import { iColumn } from "./Column";
-import { iDgrid } from "./Dgrid";
-import { iSortData } from "../../../utils/sorting";
+import { type iColumn } from "./Column";
+import { type iDgrid } from "./Dgrid";
+import { type iSortData } from "../../../utils/sorting";
 
 export type iSorting = InstanceType<typeof Sorting>;
 export class Sorting {
@@ -24,9 +24,7 @@ export class Sorting {
       }
     });
     sArray.sort((a, b) => a.index - b.index);
-    sArray
-      .sort((a, b) => a.index - b.index)
-      .map((item) => ({ field: item.field, direction: item.direction }));
+    sArray.sort((a, b) => a.index - b.index).map((item) => ({ field: item.field, direction: item.direction }));
 
     this.sortArray = sArray;
     this.updateIndexes();
@@ -34,9 +32,7 @@ export class Sorting {
 
   updateIndexes() {
     this.Dgrid.columns.forEach((col: iColumn) => {
-      col.sortIndex.value = this.sortArray.findIndex(
-        (i) => i.field === col.props.field
-      );
+      col.sortIndex.value = this.sortArray.findIndex((i) => i.field === col.props.field);
     });
   }
 
@@ -51,10 +47,7 @@ export class Sorting {
       }
     } else {
       const oldValue = this.sortArray[index];
-      if (
-        col.sortDirection.value === "none" ||
-        oldValue.direction === col.sortDirection.value
-      ) {
+      if (col.sortDirection.value === "none" || oldValue.direction === col.sortDirection.value) {
         this.sortArray.splice(index, 1);
       } else {
         oldValue.direction = col.sortDirection.value;

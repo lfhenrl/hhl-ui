@@ -16,10 +16,10 @@
 
 <script setup lang="ts">
 import { inject, ref } from "vue";
-import { iDgrid } from "./provide/Dgrid";
+import { type iDgrid } from "./provide/Dgrid";
 import csv from "../../utils/exportToExcel";
 import H_menuColumns from "./sub/columns/H_menuColumns.vue";
-import { iColumn } from "./provide/Column";
+import { type iColumn } from "./provide/Column";
 
 const DG = inject("DG") as iDgrid;
 const menuColumnsRef = ref();

@@ -1,4 +1,4 @@
-import { iPop } from "./Pop";
+import { type iPop } from "./Pop";
 
 //function adjustLeft(place: string) {}
 

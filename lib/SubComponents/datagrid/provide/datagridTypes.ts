@@ -1,3 +1,5 @@
+import type { iColumn } from "./Column";
+
 export type iFilterData = {
   active: boolean;
   field: string;
@@ -27,6 +29,6 @@ export type iClickData = {
   subType: string;
   dataId: any;
   dataItem: unknown;
-  column: icolumnData;
+  column: iColumn;
   field: string;
 };

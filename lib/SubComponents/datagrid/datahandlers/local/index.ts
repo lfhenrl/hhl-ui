@@ -1,9 +1,9 @@
-import { Ref, ref } from "vue";
-import { iDgrid } from "../../provide/Dgrid";
+import { type Ref, ref } from "vue";
+import { type iDgrid } from "../../provide/Dgrid";
 import { filtering } from "./filter/filtering";
 import { groupBy } from "./grouping";
 import { Sorting } from "../../../../utils/sorting";
-import { iFilterData } from "../../provide/datagridTypes";
+import { type iFilterData } from "../../provide/datagridTypes";
 
 export type iDatahandler = InstanceType<typeof localData>;
 

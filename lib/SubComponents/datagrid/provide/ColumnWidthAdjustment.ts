@@ -1,5 +1,5 @@
-import { iColumn } from "./Column";
-import { iDgrid } from "./Dgrid";
+import { type iColumn } from "./Column";
+import { type iDgrid } from "./Dgrid";
 
 export function ColumnWidthAdjustment(_Dgrid: iDgrid) {
   const Dgrid: iDgrid = _Dgrid;

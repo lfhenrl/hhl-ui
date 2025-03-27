@@ -45,7 +45,7 @@ import H_input from "../../../lib/Components/H_input.vue";
 import { serverData } from "../../../lib/Components/datagrid";
 
 import { ref } from "vue";
-import { iClickData } from "../../../lib/Components/datagrid";
+import { type iClickData } from "../../../lib/Components/datagrid";
 
 const seek = ref("");
 const sData = new serverData("http://localhost:5000/hhl");

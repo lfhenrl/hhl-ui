@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { inject, onMounted, ref } from "vue";
-import { iGantt } from "../provide/gantt";
+import { type iGantt } from "../provide/gantt";
 
 const GT = inject("GT") as iGantt;
 const lineTool = ref();

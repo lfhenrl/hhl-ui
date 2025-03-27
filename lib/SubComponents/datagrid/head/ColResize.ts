@@ -1,4 +1,4 @@
-import { iColumn } from "../provide/Column";
+import { type iColumn } from "../provide/Column";
 
 export function ColResize(col: iColumn, mousePos: any) {
   const PosX: number = mousePos.screenX;

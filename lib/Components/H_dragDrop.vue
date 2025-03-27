@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs, PropType } from "vue";
+import { computed, toRefs, type PropType } from "vue";
 import H_dragDropItem from "../SubComponents/draggable/H_dragDropItem.vue";
 import { useDraggableContainer } from "../SubComponents/draggable/composables/draggable";
 

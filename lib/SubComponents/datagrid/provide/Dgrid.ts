@@ -1,10 +1,10 @@
-import { Slots, ref } from "vue";
-import { Column, iColumn } from "./Column";
-import { iSorting, Sorting } from "./Sorting";
-import { iDatahandler } from "../datahandlers/server";
+import { type Slots, ref } from "vue";
+import { Column, type iColumn } from "./Column";
+import { type iSorting, Sorting } from "./Sorting";
+import { type iDatahandler } from "../datahandlers/server";
 //import H_virtualList from "../../../Components/H_virtualList.vue";
 import { ColumnWidthAdjustment } from "./ColumnWidthAdjustment";
-import { iFilterData } from "./datagridTypes";
+import { type iFilterData } from "./datagridTypes";
 
 export type iDgrid = InstanceType<typeof Dgrid>;
 //type iVscroller = InstanceType<typeof H_virtualList>;

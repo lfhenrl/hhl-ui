@@ -1,4 +1,4 @@
-import { iPop, ipos } from "./Pop";
+import { type iPop, type ipos } from "./Pop";
 
 export function flipTop(Pop: iPop, rect: ipos) {
   const refBox = Pop.refRect;

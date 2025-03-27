@@ -1,4 +1,4 @@
-import { iValidateNode, logError } from ".";
+import { type iValidateNode, logError } from ".";
 
 export function attributes(node: iValidateNode) {
   if (node.nodeType > 1) return true;

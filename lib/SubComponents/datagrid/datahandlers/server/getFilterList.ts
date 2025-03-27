@@ -1,4 +1,4 @@
-import { iFilterData } from "../../provide/datagridTypes";
+import { type iFilterData } from "../../provide/datagridTypes";
 
 export function getFilterList(_filterArray: iFilterData[]) {
   const fList: any = [];

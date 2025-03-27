@@ -1,4 +1,4 @@
-import { iPop, ipos } from "./Pop";
+import { type iPop, type ipos } from "./Pop";
 import { flipTop } from "./flipTop";
 import { flipBottom } from "./flipBottom";
 import { adjustLeftRight } from "./adjustLeftRight";

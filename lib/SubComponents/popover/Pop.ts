@@ -1,4 +1,4 @@
-import { Ref, watch } from "vue";
+import { type Ref, watch } from "vue";
 import { screenPos } from "./screenPos";
 import { flip } from "./flip";
 

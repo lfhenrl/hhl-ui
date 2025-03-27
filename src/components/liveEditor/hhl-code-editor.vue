@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType, ref } from "vue";
+import { defineComponent, onMounted, type PropType, ref } from "vue";
 import { basicSetup, EditorView } from "codemirror";
 import { vue } from "@codemirror/lang-vue";
 import { debounce } from "../../../lib/utils/debounce";

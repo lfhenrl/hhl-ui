@@ -1,5 +1,5 @@
-import { iGantt } from "../provide/gantt";
-import { iRow } from "./rowModel";
+import { type iGantt } from "../provide/gantt";
+import { type iRow } from "./rowModel";
 
 export type iTask = InstanceType<typeof Task>;
 export class Task {

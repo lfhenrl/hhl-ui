@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vue-tsc --noEmit  && vite build",
-    "buildTjek": "vue-tsc --noEmit && vite build",
+    "buildTjek": "vue-tsc --noEmit",
     "buildRaw": "vite build",
     "serve": "vite preview",
     "makeIcon css": "node ./lib/styles/tw/icons/makeCss.js",
@@ -31,8 +31,6 @@
     "typescript": "5.6.2",
     "unplugin-vue-markdown": "^0.26.3",
     "unplugin-vue-router": "^0.10.9",
-    "unplugin-auto-import": "^0.18.6",
-    "unplugin-vue-components": "^0.27.5",
     "vite": "^6.2.3",
     "vue-tsc": "^2.2.8"
   },

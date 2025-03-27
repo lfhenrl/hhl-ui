@@ -1,4 +1,4 @@
-import { iDatahandler } from "../server";
+import { type iDatahandler } from "../server";
 import type { iServerData } from "../../provide/datagridTypes";
 
 export async function setFlatListExpand(DH: iDatahandler, row: any, index: number = 0) {

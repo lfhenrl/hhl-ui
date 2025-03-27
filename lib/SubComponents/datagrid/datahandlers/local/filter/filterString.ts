@@ -1,4 +1,4 @@
-import { iFilterData } from "../../../provide/datagridTypes";
+import { type iFilterData } from "../../../provide/datagridTypes";
 import { getStringFunction } from "./stringFunctions";
 
 export default function filterString(filter: iFilterData) {

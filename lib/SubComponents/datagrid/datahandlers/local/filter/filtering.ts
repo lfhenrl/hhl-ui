@@ -1,6 +1,6 @@
 import getFilterFunctions from "./getFilterFunctions";
-import { iDatahandler } from "../index";
-import { iFilterData } from "../../../provide/datagridTypes";
+import { type iDatahandler } from "../index";
+import { type iFilterData } from "../../../provide/datagridTypes";
 
 export async function filtering(DH: iDatahandler, filterList: iFilterData[]) {
   const filtFuncs = getFilterFunctions(filterList);

@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { inject } from "vue";
-import { iDgrid } from "../provide/Dgrid";
+import { type iDgrid } from "../provide/Dgrid";
 
 const DG = inject("DG") as iDgrid;
 </script>

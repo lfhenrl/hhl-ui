@@ -1,4 +1,4 @@
-import { iGantt } from "./gantt";
+import { type iGantt } from "./gantt";
 
 export function calc(_GT: iGantt) {
   const GT = _GT;

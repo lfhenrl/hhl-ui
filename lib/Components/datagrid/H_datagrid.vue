@@ -18,7 +18,7 @@
         :keeps="keeps"
         :overscan="overscan"
         item-class="H_dataRow flex flex-1 h-min w-full bg-bg0 odd:bg-bg1 hover:bg-bg2 data-[selected]:bg-bg3 leading-4 min-h-(--dgrid-row-height) max-h-(--dgrid-row-height)"
-        :data-sources="DG.dataHandler?.outData.value"
+        :data-sources="DG.dataHandler!.outData.value"
         :selectedId="selected_Id"
         :estimateSize="parseInt(row_height)"
         ref="vscroll"
@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, onMounted, provide, ref, useSlots, watch } from "vue";
+import { type PropType, onMounted, provide, ref, useSlots, watch } from "vue";
 import H_virtualList from "../H_virtualList.vue";
 import H_headerRow from "../../SubComponents/datagrid/head/H_headerRow.vue";
 import H_dataRow from "../../SubComponents/datagrid/body/H_dataRow.vue";
@@ -53,7 +53,7 @@ import H_datagridFooter from "../../SubComponents/datagrid/H_datagridFooter.vue"
 import H_progressBar from "../H_progressBar.vue";
 import { Dgrid } from "../../SubComponents/datagrid/provide/Dgrid";
 import { datagridClickHandler } from "../../SubComponents/datagrid/provide/datagridClickHandler";
-import { iClickData } from "../../SubComponents/datagrid/provide/datagridTypes";
+import { type iClickData } from "../../SubComponents/datagrid/provide/datagridTypes";
 import { debounce } from "../../utils/debounce";
 
 type iVscroller = InstanceType<typeof H_virtualList>;

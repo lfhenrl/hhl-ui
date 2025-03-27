@@ -25,8 +25,8 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
-import { iScaleItem } from "./getScaleList";
+import { type PropType } from "vue";
+import { type iScaleItem } from "./getScaleList";
 import { DateGetWeek } from "../../../utils/dateFunctions";
 import { D_01_dec_2021 } from "../../../utils/dateFormat";
 

@@ -1,5 +1,5 @@
-import { iTask } from "../data/Task";
-import { iGantt } from "./gantt";
+import { type iTask } from "../data/Task";
+import { type iGantt } from "./gantt";
 
 export function mouseHandler(_GT: iGantt) {
   const GT = _GT;

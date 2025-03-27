@@ -1,4 +1,4 @@
-import { iValidateNode, logError } from ".";
+import { type iValidateNode, logError } from ".";
 
 export function vDirectives(node: iValidateNode) {
   if (node.nodeType > 1) return true;
@@ -20,7 +20,7 @@ export function vDirectives(node: iValidateNode) {
     "v-pre",
     "v-cloak",
     "v-once",
-    "v-is"
+    "v-is",
   ];
 
   const isOk = attr.every((a: string) => {

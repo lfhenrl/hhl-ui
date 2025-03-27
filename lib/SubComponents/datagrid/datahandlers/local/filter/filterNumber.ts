@@ -1,4 +1,4 @@
-import { iFilterData } from "../../../provide/datagridTypes";
+import { type iFilterData } from "../../../provide/datagridTypes";
 import { getNumberFunction } from "./numberFunctions";
 
 export default function filterNumber(filter: iFilterData) {

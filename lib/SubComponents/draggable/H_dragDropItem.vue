@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, toRefs } from "vue";
+import { type PropType, toRefs } from "vue";
 import { useDraggableItem } from "./composables/draggable";
 
 const props = defineProps({

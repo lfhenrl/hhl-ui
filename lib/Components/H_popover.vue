@@ -17,7 +17,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, onMounted, PropType, ref, watch } from "vue";
+import { computed, onMounted, type PropType, ref, watch } from "vue";
 import { Pop } from "../SubComponents/popover/Pop";
 import { vMovable } from "../Directives/v-movable";
 

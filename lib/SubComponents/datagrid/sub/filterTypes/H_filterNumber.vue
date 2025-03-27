@@ -22,8 +22,8 @@ import { computed, inject, onMounted, ref } from "vue";
 import H_input from "../../../../Components/H_input.vue";
 import H_select from "../../../../Components/H_select.vue";
 import H_selectbox from "../../../../Components/H_selectbox.vue";
-import { iDgrid } from "../../provide/Dgrid";
-import { iColumn } from "../../provide/Column";
+import { type iDgrid } from "../../provide/Dgrid";
+import { type iColumn } from "../../provide/Column";
 
 const P = defineProps({
   index: { type: Number, default: 0 },

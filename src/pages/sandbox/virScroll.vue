@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import H_virtualList from "../../../lib/Components/H_virtualList.vue";
-import { getData, testDataItem } from "../../testData/data";
+import { getData, type testDataItem } from "../../testData/data";
 import H_btn from "../../../lib/Components/H_btn.vue";
 
 const data = ref<testDataItem[]>([]);

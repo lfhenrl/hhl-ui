@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
+import { type PropType } from "vue";
 
 defineProps({
   /** @type {type} The type of Btn it can be standard, outline or text default is standard */

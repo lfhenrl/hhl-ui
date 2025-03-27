@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { getCurrentInstance, inject, onMounted } from "vue";
-import { iDgrid } from "../provide/Dgrid";
+import { type iDgrid } from "../provide/Dgrid";
 
 const instace = getCurrentInstance();
 

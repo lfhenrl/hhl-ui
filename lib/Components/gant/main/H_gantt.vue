@@ -37,11 +37,11 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, onMounted, provide, ref, watch } from "vue";
-import { iRow } from "../data/rowModel";
+import { type PropType, onMounted, provide, ref, watch } from "vue";
+import { type iRow } from "../data/rowModel";
 import dataGrid from "../datagrid/data-grid.vue";
 import weekScale from "../scales/week-scale.vue";
-import { iScaleItem, makeTimelist } from "../scales/getScaleList";
+import { type iScaleItem, makeTimelist } from "../scales/getScaleList";
 import { DateAddDays, DateGetToday } from "../../../utils/dateFunctions";
 import { vSplitpane } from "../../../Directives/v-splitpane";
 import H_virtualList from "../../H_virtualList.vue";

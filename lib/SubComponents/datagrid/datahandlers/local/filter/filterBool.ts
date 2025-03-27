@@ -1,4 +1,4 @@
-import { iFilterData } from "../../../provide/datagridTypes";
+import { type iFilterData } from "../../../provide/datagridTypes";
 
 export default function filterBool(filter: iFilterData) {
   const filtList = filter.value1?.split(",");

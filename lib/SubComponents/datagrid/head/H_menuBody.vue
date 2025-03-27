@@ -47,8 +47,8 @@
 
 <script setup lang="ts">
 import { inject } from "vue";
-import { iColumn } from "../provide/Column";
-import { iDgrid } from "../provide/Dgrid";
+import { type iColumn } from "../provide/Column";
+import { type iDgrid } from "../provide/Dgrid";
 
 const P = defineProps({
   index: { type: Number, default: 0 },

@@ -1,4 +1,4 @@
-import { iValidateNode, logError } from ".";
+import { type iValidateNode, logError } from ".";
 
 export function testContent(node: iValidateNode) {
   let isOk = true;
@@ -7,7 +7,7 @@ export function testContent(node: iValidateNode) {
   if (str.includes(">")) isOk = false;
   if (str.includes("<")) isOk = false;
 
-  if (isOk) return true
+  if (isOk) return true;
 
   logError("text er ikke rigtig", node);
 }

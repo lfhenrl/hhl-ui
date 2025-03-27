@@ -1,6 +1,6 @@
-import { iColumn } from "./Column";
-import { iDgrid } from "./Dgrid";
-import { iClickData } from "./datagridTypes";
+import { type iColumn } from "./Column";
+import { type iDgrid } from "./Dgrid";
+import { type iClickData } from "./datagridTypes";
 
 export class datagridClickHandler {
   public DG: iDgrid;
