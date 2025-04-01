@@ -1,6 +1,19 @@
 <template>
   <div>
-    <div class="m-6 p-2 flex items-center gap-8 border border-err border-solid">
+    <div class="m-6 p-2 flex items-center gap-8 border border-err border-solid font-normal text-base">
+      <H_iconAdd color="err" size="2em" />
+      <H_iconAdd color="pri" size="2em" outline />
+      <H_iconAdd color="pri" size="2em" outline round />
+      <H_iconAdd color="pri" size="2em" filled />
+      <H_iconAdd color="pri" size="2em" filled />
+      <H_iconAdd color="pri" size="2em" round filled />
+
+      <H_iconAdd color="ok" size="2em" btn />
+      <H_iconAdd color="ok" size="2em" outline btn />
+      <H_iconAdd color="ok" size="2em" outline round btn />
+      <H_iconAdd color="ok" size="2em" filled btn />
+      <H_iconAdd color="ok" size="2em" filled btn />
+      <H_iconAdd color="ok" size="2em" round filled btn />
       <H_input label="Input">
         <div class="ico-account" />
         <div class="ico-account" />
@@ -38,6 +51,7 @@ import H_tab from "../../../lib/Components/navigation/H_tab.vue";
 import H_datePicker from "../../../lib/Components/H_datePicker.vue";
 import H_timePicker from "../../../lib/Components/H_timePicker.vue";
 import { ref } from "vue";
+import H_iconAdd from "../../../lib/Components/icons/H_iconAdd.vue";
 const date = ref(new Date());
 const mytime = ref();
 const tab = ref("tab1");
