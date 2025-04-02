@@ -10,7 +10,10 @@
       data-subtype="menuSortAsc"
       v-if="col.props.sorting !== 'none'"
     >
-      <div class="ico-arrow_upward iconBtn pointer-events-none" />
+      <H_iconArrow_upward
+        class="pointer-events-none"
+        :style="{ color: col.sortDirection.value === 'asc' ? 'white' : '' }"
+      />
       <div class="pointer-events-none">Sort Ascending</div>
     </div>
     <div
@@ -20,7 +23,10 @@
       data-subtype="menuSortDesc"
       v-if="col.props.sorting !== 'none'"
     >
-      <div class="ico-arrow_downward iconBtn pointer-events-none" />
+      <H_iconArrow_downward
+        class="pointer-events-none"
+        :style="{ color: col.sortDirection.value === 'desc' ? 'white' : '' }"
+      />
       <div class="pointer-events-none">Sort Descending</div>
     </div>
     <div
@@ -30,7 +36,7 @@
       v-if="col.filter.type !== 'none'"
       data-subtype="menuFilter"
     >
-      <div class="ico-filter iconBtn pointer-events-none" />
+      <H_iconFilter class="pointer-events-none" :color="col.filter.active ? 'white' : 'pri'" />
       <div class="pointer-events-none">Filter</div>
     </div>
 
@@ -39,7 +45,7 @@
       data-action="autoSize"
       data-subtype="menuAutoSize"
     >
-      <div class="ico-expand_horizontal iconBtn pointer-events-none" />
+      <H_iconExpand_horizontal class="pointer-events-none" />
       <div class="pointer-events-none">Auto size</div>
     </div>
   </div>

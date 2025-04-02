@@ -26,7 +26,8 @@
               class="col-start-2 w-full bg-transparent border-none appearance-none focus:outline-none"
             />
           </div>
-          <div set-end class="H_select-dropdownArrow ico-expand_down" :class="{ 'ico-expand_up': selectOpen }" />
+          <H_iconExpand_up color="txt1" set-end v-if="selectOpen" />
+          <H_iconExpand_down color="txt1" set-end v-else />
         </H_inputbase>
       </template>
       <div @click.stop class="H_select-list bg-bg0 rounded w-full border border-solid border-bg4">

@@ -23,21 +23,19 @@ defineProps({
 });
 </script>
 <style>
-@layer components {
-  .H_btn {
-    display: inline-flex;
-    flex-grow: 0;
-    align-items: center;
-    align-self: center;
-    justify-content: center;
-    gap: 0.3em;
-    padding-block: 0.4em;
-    padding-inline: 0.9em;
-    cursor: pointer;
-    white-space: nowrap;
-    border-radius: 0.25rem;
-    background-color: var(--color-pri);
-    color: var(--color-priTxt);
-  }
+.H_btn {
+  display: inline-flex;
+  flex-grow: 0;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  gap: 0.3em;
+  padding-block: 0.4em;
+  padding-inline: 0.9em;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  background-color: var(--color-pri);
+  color: var(--color-priTxt);
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div class="flex items-center flex-wrap gap-2 text-txt3 border border-bg6 p-2 rounded-b">
-    <div class="ico-columns iconBtn" title="Edit Columns" @click="editColumns" />
-    <div class="ico-expand_horizontal iconBtn" title="Auto adjust all columns" @click="autoAdjustColumns" />
-    <div class="ico-excel iconBtn" title="Download to excel" @click="excel" />
-    <div class="ico-zoom_out_map iconBtn" title="fullScreen" @click="fullScreen" />
+    <H_iconColumns size="1.6rem" btn title="Edit Columns" @click="editColumns" />
+    <H_iconExpand_horizontal size="1.6rem" btn title="Auto adjust all columns" @click="autoAdjustColumns" />
+    <H_iconExcel size="1.6rem" btn title="Download to excel" @click="excel" />
+    <H_iconZoom_out_map size="1.6rem" btn title="fullScreen" @click="fullScreen" />
     <div style="flex: 1" />
     <div class="flex">
       <b>{{ DG.dataHandler?.rowsCount }}</b

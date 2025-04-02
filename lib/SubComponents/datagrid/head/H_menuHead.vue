@@ -4,21 +4,21 @@
     data-subtype="menu"
   >
     <div class="flex overflow-visible items-start flex-1 text-xs max-h-4" v-if="col.props.sorting !== 'none'">
-      <div
-        class="mx-[-5px] ico-arrow_upward"
-        :class="{ 'text-pri': col.sortDirection.value === 'asc' }"
+      <H_iconArrow_upward
+        class="mx-[-5px]"
+        :color="col.sortDirection.value === 'asc' ? 'pri' : 'bg6'"
         v-if="col.sortDirection.value === 'asc' || col.sortDirection.value === 'none'"
       />
-      <div
-        class="mx-[-5px] ico-arrow_downward"
-        :class="{ 'text-pri': col.sortDirection.value === 'desc' }"
+      <H_iconArrow_downward
+        class="mx-[-5px]"
+        :color="col.sortDirection.value === 'desc' ? 'pri' : 'bg6'"
         v-if="col.sortDirection.value === 'desc' || col.sortDirection.value === 'none'"
       />
       <div class="text-pri" v-if="col.sortDirection.value !== 'none'">
         {{ col.sortIndex.value + 1 }}
       </div>
     </div>
-    <div class="ico-filter text-xs" v-if="col.filter.type !== 'none'" :class="{ 'text-pri': col.filter.active }" />
+    <H_iconFilter size="1rem" :color="col.filter.active ? 'pri' : 'bg6'" v-if="col.filter.type !== 'none'" />
     <div class="ico-menuSmall" v-if="col.filter.type === 'none' && col.props.sorting === 'none'" />
   </div>
 </template>

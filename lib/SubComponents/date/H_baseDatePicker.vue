@@ -3,7 +3,7 @@
     <H_popover v-model="popupOpen" :offset-top="8" :readonly="readonly" class="flex items-center">
       <template v-slot:referance>
         <div class="group inline-flex items-center cursor-pointer h-full" title="Datepicker" tabindex="0">
-          <div class="ico-event text-xs leading-tight group-hover:scale-120" v-if="!hideIcon" tabindex="-1" />
+          <H_iconEvent size="1.1rem" color="txt1" v-if="!hideIcon" />
           <input
             name="datepicker"
             title="Datepicker"

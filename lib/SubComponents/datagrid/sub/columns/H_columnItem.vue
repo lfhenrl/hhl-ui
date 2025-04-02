@@ -5,9 +5,10 @@
       :class="{ 'col-pri border-none': data.visibel }"
       @click="checkClick"
     >
-      <div class="ico-check text-[10px]" v-if="data.visibel" />
+      <!--      <div class="ico-check text-[10px]" v-if="data.visibel" /> -->
+      <H_iconCheck size="0.95em" v-if="data.visibel" color="white" />
     </div>
-    <div class="ico-drag iconBtn" />
+    <H_iconDrag btn />
     {{ data?.title }}
   </div>
 </template>

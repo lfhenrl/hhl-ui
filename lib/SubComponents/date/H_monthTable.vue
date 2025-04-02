@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="flex items-center p-1 font-bold">
-      <div class="ico-expand_left iconBtn" @click.stop="changeYear(-1)" round />
+      <H_iconExpand_left size="1.6rem" btn @click.stop="changeYear(-1)" />
       <div class="flex justify-center flex-1">
         {{ tempDato.toLocaleString("en-us", { year: "numeric" }) }}
       </div>
-      <div class="ico-expand_right iconBtn border-pri" @click.stop="changeYear(1)" />
+      <H_iconExpand_right size="1.6rem" btn @click.stop="changeYear(1)" />
     </div>
     <div class="H_monthTable__table grid m-2 gap-2" @click.stop="itemClick">
       <div

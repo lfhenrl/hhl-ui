@@ -16,8 +16,8 @@
       }"
       @click="$emit('update:modelValue', false)"
     >
-      <div class="ico-check iconBtn" v-if="type === 'info'" />
-      <div class="ico-info iconBtn" v-else />
+      <H_iconCheck size="2rem" color="white" v-if="type === 'info'" />
+      <H_iconInfo size="2rem" :color="type === 'warn' ? 'black' : 'white'" v-else />
       <div class="H_snack-info flex flex-col items-center flex-1">
         <span class="text-lg font-bold">{{ title }}</span>
         <span class="H_snack__text">{{ text }}</span>

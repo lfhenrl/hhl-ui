@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-hidden">
     <H_input v-model="searchValue" clearable>
-      <div class="ico-search" set-end />
+      <H_iconSearch color="txt1" set-end />
     </H_input>
     <H_switch switch label="Select All." :model-value="AllSelected" @click.prevent="SelectToggle" />
     <div class="overflow-auto max-h-96 mt-1">

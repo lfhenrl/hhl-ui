@@ -9,7 +9,8 @@ export const Props = {
       | "warn"
       | "err"
       | "info"
-      | "info"
+      | "white"
+      | "black"
       | "txt0"
       | "txt1"
       | "txt2"
@@ -17,6 +18,13 @@ export const Props = {
       | "txt4"
       | "txt5"
       | "txt6"
+      | "bg0"
+      | "bg1"
+      | "bg2"
+      | "bg3"
+      | "bg4"
+      | "bg5"
+      | "bg6"
     >,
     default: "pri",
   },

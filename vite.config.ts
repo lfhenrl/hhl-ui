@@ -7,6 +7,7 @@ import VueRouter from "unplugin-vue-router/vite";
 import { containerPlugin } from "./src/components/containers";
 import tailwindcss from "@tailwindcss/vite";
 import { visualizer } from "rollup-plugin-visualizer";
+import Components from "unplugin-vue-components/vite";
 
 export default defineConfig({
   // base: "/hhl-ui/",
@@ -31,6 +32,10 @@ export default defineConfig({
         md.use(containerPlugin);
         md.use(mdprism);
       },
+    }),
+    Components({
+      dts: true,
+      dirs: ["src/components", "src/pages", "./lib/Components", "./lib/Directives"],
     }),
     visualizer({ filename: "./analyse/index.html" }) as any,
   ],

@@ -15,6 +15,7 @@ Default is `text-base`
         <div class="ico-edit text-xl">xl</div>
         <div class="ico-edit text-2xl">2xl</div>
         <div class="ico-edit text-3xl">3xl</div>
+        <H_icon-add color="ok" size="2em" round filled btn></H_icon-add>
     </div>
     </template>
 '>

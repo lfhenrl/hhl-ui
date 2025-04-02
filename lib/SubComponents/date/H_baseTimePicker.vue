@@ -10,7 +10,7 @@
     >
       <template v-slot:referance>
         <div class="group inline-flex items-center cursor-pointer h-full" title="Timepicker">
-          <div class="ico-clock text-xs leading-tight group-hover:scale-120" v-if="!hideIcon" />
+          <H_iconClock size="1.1rem" color="txt1" v-if="!hideIcon" />
           <input
             name="timepicker"
             title="Timepicker"

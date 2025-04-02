@@ -34,7 +34,8 @@ const tColor = computed(() => {
   display: block;
   min-width: v-bind(size);
   max-width: v-bind(size);
-  height: auto;
+  min-height: v-bind(size);
+  max-height: v-bind(size);
   color: v-bind(bColor);
   aspect-ratio: 1/1;
   border-radius: 4px;
@@ -53,6 +54,7 @@ const tColor = computed(() => {
   color: v-bind(tColor);
   background-color: v-bind(bColor);
   border: none;
+  padding: 0.4%;
 }
 
 .H_iconBase[btn]:hover {

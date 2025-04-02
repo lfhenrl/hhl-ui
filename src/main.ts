@@ -32,7 +32,24 @@ import { localData } from "../lib/Components/datagrid";
   localData,
 };
 
-const H_btn = defineAsyncComponent(() => import("../lib/Components/H_btn.vue"));
+// Dynamically import all components from the DynamicComponents folder
+const requireComponent = import.meta.glob("../lib/Components/**/*.vue");
+Object.keys(requireComponent).forEach((fileName: string) => {
+  const componentConfig = requireComponent[fileName];
+  const componentName = (fileName.split("/").pop() ?? "").replace(/\.\w+$/, "");
+  //console.log(componentConfig, "---", componentName);
+  app.component(
+    componentName,
+    defineAsyncComponent(() => componentConfig().then((mod) => (mod as { default: any }).default))
+  );
+});
+
+const HhlLiveEditor = defineAsyncComponent(() => import("./components/liveEditor/hhl-live-editor.vue"));
+const iconList = defineAsyncComponent(() => import("./components/icon-list.vue"));
+app.component("HhlLiveEditor", HhlLiveEditor);
+app.component("icon-list", iconList);
+
+/* const H_btn = defineAsyncComponent(() => import("../lib/Components/H_btn.vue"));
 const H_popover = defineAsyncComponent(() => import("../lib/Components/H_popover.vue"));
 const H_switch = defineAsyncComponent(() => import("../lib/Components/H_switch.vue"));
 const H_input = defineAsyncComponent(() => import("../lib/Components/H_input.vue"));
@@ -90,6 +107,6 @@ app.component("H_themeSelector", H_themeSelector);
 app.component("nav-bar", navBar);
 app.component("menu-left", menuLeft);
 app.component("menu-right", menuRight);
-app.component("HhlLiveEditor", HhlLiveEditor);
+app.component("HhlLiveEditor", HhlLiveEditor); */
 
 router.isReady().then(() => app.mount("#app"));

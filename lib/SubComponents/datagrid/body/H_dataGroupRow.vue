@@ -7,8 +7,8 @@
     :row-level="row.__level"
   >
     <div class="flex items-center pl-1" @click.stop="expand">
-      <div class="ico-expand_down iconBtn" v-if="row.__expanded" />
-      <div class="ico-expand_right iconBtn" v-else />
+      <H_iconExpand_down size="1.4rem" btn v-if="row.__expanded" />
+      <H_iconExpand_right size="1.4rem" btn v-else />
     </div>
     <div>{{ row.__title }}</div>
     <span class="text-xs text-txt3"> ({{ row.__count }}/{{ row.__count_total }})</span>

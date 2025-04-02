@@ -14,6 +14,7 @@
       <H_iconAdd color="ok" size="2em" filled btn />
       <H_iconAdd color="ok" size="2em" filled btn />
       <H_iconAdd color="ok" size="2em" round filled btn />
+
       <H_input label="Input">
         <div class="ico-account" />
         <div class="ico-account" />
@@ -40,18 +41,15 @@
         <H_tab name="tab3" label="Tab 3."><div class="p-10" keep-alive>This is TAB 3...</div></H_tab>
       </H_tabs>
     </div>
+    <div class="text-base">
+      <IcoList />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import H_input from "../../../lib/Components/H_input.vue";
-import H_btn from "../../../lib/Components/H_btn.vue";
-import H_tabs from "../../../lib/Components/navigation/H_tabs.vue";
-import H_tab from "../../../lib/Components/navigation/H_tab.vue";
-import H_datePicker from "../../../lib/Components/H_datePicker.vue";
-import H_timePicker from "../../../lib/Components/H_timePicker.vue";
 import { ref } from "vue";
-import H_iconAdd from "../../../lib/Components/icons/H_iconAdd.vue";
+
 const date = ref(new Date());
 const mytime = ref();
 const tab = ref("tab1");

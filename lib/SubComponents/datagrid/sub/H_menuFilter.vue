@@ -8,7 +8,7 @@
         <div class="flex-1" />
         <div>{{ col.props.title }}</div>
         <div class="flex-1" />
-        <div class="ico-close iconBtn text-lg cursor-pointer outline-txt3 mr-1" @click="isOpen = false" />
+        <H_iconClose btn color="white" class="cursor-pointer mr-0.5" @click="isOpen = false" />
       </div>
       <div class="H_menuFilter_comp overflow-hidden px-4">
         <component ref="filterCompRef" :is="filtComponent" :index="index" />

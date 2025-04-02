@@ -158,7 +158,7 @@ function KeyEnter() {
     min-width: 1.4em;
     border-radius: 4px;
     text-align: center;
-    border: 1px solid var(--color-bg5);
+    border: 1px solid var(--color-bg6) !important;
   }
 
   .H_selectbase-item[selected]::before {

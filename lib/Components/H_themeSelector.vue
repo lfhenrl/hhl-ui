@@ -1,7 +1,7 @@
 <template>
   <div class="H_themeSelector flex items-center" @click="click" title="Change Theme: Light ot Dark">
-    <div class="ico-night iconBtn text-xl" icon="night" v-if="dark" style="color: aqua" />
-    <div class="ico-day iconBtn text-xl" v-else="dark" size="30px" style="color: rgb(255, 119, 0)" />
+    <H_iconNight size="28px" btn v-if="dark" style="color: aqua" />
+    <H_iconDay size="28px" btn v-else style="color: rgb(255, 119, 0)" />
   </div>
 </template>
 

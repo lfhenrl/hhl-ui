@@ -5,7 +5,7 @@
         <div class="flex-1" />
         <div class="">Columns</div>
         <div class="flex-1" />
-        <div class="ico-close iconBtn cursor-pointer outline-txt3 mr-1" @click="open = false" />
+        <H_iconClose btn color="white" class="cursor-pointer" @click="open = false" />
       </div>
     </template>
     <div class="flex flex-col bg-bg0">

@@ -1,6 +1,6 @@
 <template>
   <div class="bodyCell-drag">
-    <div class="ico-drag iconBtn text-txt6" />
+    <H_iconDrag color="txt6" />
   </div>
 </template>
 
