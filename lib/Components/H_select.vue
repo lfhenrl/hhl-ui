@@ -35,7 +35,7 @@
           v-if="showFilter"
           class="flex w-full items-center border-b border-bg4 border-solid h-8 pl-1 mb-2 rounded-t"
         >
-          <div class="ico-search" />
+          <H_iconSearch color="txt3" />
           <input v-model="filterValue" class="H_selectBox-filter focus:outline-none bg-transparent w-full pl-2" />
         </div>
         <div

@@ -1,6 +1,6 @@
 <template>
   <nav class="nav-bar">
-    <div class="ico-menu iconBtn" @click.stop="$emit('update:modelValue', !modelValue)" v-if="small" />
+    <H_iconMenu size="1.8rem" btn @click.stop="$emit('update:modelValue', !modelValue)" v-if="small" />
     <router-link to="/" class="nav-bar-home">
       <img src="/icon.svg" height="30" width="32" alt="Logo" href="#" />
       <div>HHL-UI</div>
@@ -20,7 +20,7 @@
         <template v-slot:referance>
           <div style="display: flex; align-items: center">
             <span class="text-pri"> External</span>
-            <div class="ico-expand_down iconBtn" />
+            <H_iconExpand_down size="1.8rem" btn />
           </div>
         </template>
         <div class="popUp-external-body">

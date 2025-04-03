@@ -112,7 +112,7 @@ You can add a Icon or other stoff with the start slot.
                         {value:`nr3`, label: `Number 3`}
                         ]" 
             v-model="selection" label="Selector">
-                <div class="ico-mail iconBtn" @click="click"></div>
+                <H_icon-mail></H_icon-mail>
             </H_select>
             <H_input readonly v-model="selection" label="Value" style="margin-top: 50px"></H_input>
       </div>

@@ -12,9 +12,7 @@ It is very important it's only added one time and in the main page (app.vue).
 <template>
   <div class="app">
     <div class="app-toolbar">
-      <H_btn  @click="menuOpen()">
-        <div class="ico-menu" />
-      </H_btn>
+      <H_btn  @click="menuOpen()"></H_btn>
     </div>
 
     <div class="app-menu">

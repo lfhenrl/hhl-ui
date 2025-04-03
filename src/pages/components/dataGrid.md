@@ -95,7 +95,7 @@ It use a virtual scoller so it can handle big dataset.
 | type    | Required. The type of data |
 | title    | If you want another Title than the field name |
 | width    | The width of the column default "auto", so it will adjust to content |
-| autoWidth    | by default the width of the column will be auto adjusted if you click <div class="ico-expand_horizontal" style="margin-bottom: -7px;"/> icon in the bottom toolbar you can prevent this by adding auto-width="false"|
+| autoWidth    | by default the width of the column will be auto adjusted if you click expand_horizontal icon in the bottom toolbar you can prevent this by adding auto-width="false"|
 | autoHeight    | If you have set the row_height on the datagrid to have space for more lines in a row cell, you can set auto-width=true if you want the text split to more lines  |
 | visibel    | If you want to hide the column up front, it can controlled later by the column menu |
 | cell_class    | To add a class to a cell in the datagrid |
@@ -124,25 +124,25 @@ Next set the data with `localdata.setData(data)` and call `localdata.loadData()`
   ## Column resize
   You can resize the column width dragging the border.<br>
   In the dropDown menu you can select `Auto size` that will adjust the size to the content.<br>
-  You can auto adjust all columns by clicking the <div class="ico-expand_horizontal"  style="margin-bottom: -7px;"/> icon in the bottom toolbar.<br>
+  You can auto adjust all columns by clicking the expand_horizontal icon in the bottom toolbar.<br>
   You can prevent this by adding auto-width="false"
 <br>
   <br>
 
   ## Column Toggle
-In the columns menu you get by cliking the <div class="ico-columns" style="margin-bottom: -7px;"/> icon in the bottom toolbar.<br>
+In the columns menu you get by cliking the columns icon in the bottom toolbar.<br>
 You can toggle the columns on or off by the checkbox.
 <br>
 <br>
 
 ## Column Reorder
-In the columns menu you get by cliking the <div class="ico-columns"  style="margin-bottom: -7px;"/> icon in the bottom toolbar.<br>
+In the columns menu you get by cliking the columns icon in the bottom toolbar.<br>
 you can drag the column up and down to adjust the order of the columns.
 <br>
 <br>
 
   ## Export to Excel
-In the columns menu you get by cliking the <div class="ico-excel"  style="margin-bottom: -7px;"/> icon in the bottom toolbar.<br>
+In the columns menu you get by cliking the excel icon in the bottom toolbar.<br>
 you can drag the column up and down to adjust the order of the columns.
 <br>
 <br>
@@ -475,7 +475,7 @@ In the property `filter-list` you should add an string array with the fields you
 ## Grouping
 You can group your data to max 3 levels.<br>
 Up front you can set the grouping by the property `group-list` with a string array order by the levels.<br>
-In the columns menu you get by cliking the <div class="ico-columns" style="margin-bottom: -7px;"/> icon in the bottom toolbar.<br>
+In the columns menu you get by cliking the columns icon in the bottom toolbar.<br>
 You can drag columns to or from the column list to the group list.<br>
 you can drag the column up and down to adjust the order the data will be grouped.<br>
 By default the group rows when expanded will stick to top until all the expanded rows are outside the view.
@@ -503,9 +503,7 @@ If that the case set `stickyGroups="false"`.
         <H_btn @click="load" style="width: 100px">Load</H_btn>
         <div style="flex: 1" ></div>
         <H_input v-model="seek" :debounce="300" clearable style="max-width: 200px">
-            <template v-slot:end>
-              <div class="ico-search" ></div>
-            </template>
+              <H_icon-search set-end color=txt3></H_icon-search>
         </H_input>
       </div>
     <div style="height: 400px;">

@@ -9,13 +9,13 @@ Default is `text-base`
 <hhl-live-editor title=""  htmlCode='
 <template>
       <div class="flex items-center gap-4 flex-wrap">
-            <H_btn class="text-xs"><div class="ico-mail"></div>XS</H_btn>
-            <H_btn class="text-sm"><div class="ico-mail"></div>SM</H_btn>
-            <H_btn ><div class="ico-mail"></div>Base (Default)</H_btn>
-            <H_btn class="text-lg"><div class="ico-mail"></div>LG</H_btn>
-            <H_btn class="text-xl"><div class="ico-mail"></div>XL</H_btn>
-            <H_btn class="text-2xl"><div class="ico-mail"></div>2xl</H_btn>
-            <H_btn class="text-3xl"><div class="ico-mail"></div>3xl</H_btn>
+            <H_btn class="text-xs"><H_icon-mail color="white" size="1.6em"></H_icon-mail>XS</H_btn>
+            <H_btn class="text-sm"><H_icon-mail color="white" size="1.6em"></H_icon-mail>SM</H_btn>
+            <H_btn ><H_icon-mail color="white" size="1.6em"></H_icon-mail>Base (Default)</H_btn>
+            <H_btn class="text-lg"><H_icon-mail color="white" size="1.6em"></H_icon-mail>LG</H_btn>
+            <H_btn class="text-xl"><H_icon-mail color="white" size="1.6em"></H_icon-mail>XL</H_btn>
+            <H_btn class="text-2xl"><H_icon-mail color="white" size="1.6em"></H_icon-mail>2xl</H_btn>
+            <H_btn class="text-3xl"><H_icon-mail color="white" size="1.6em"></H_icon-mail>3xl</H_btn>
       </div>
 </template>
 '>
@@ -24,14 +24,14 @@ Default is `text-base`
 
 ## Icon
 
-You can add a icon by a div with the class `ico-{icon name}`<br>
+You can add a icon <br>
 
 <hhl-live-editor title="" htmlCode='
       <template>
             <div class="flex items-center gap-4 flex-wrap">
-            <H_btn><div class="ico-mail"></div>ICON mail</H_btn>
-            <H_btn><div class="ico-save text-err"></div>ICON save Red</H_btn>
-            <H_btn>icon save right <div class="ico-save"></div></H_btn>
+            <H_btn><H_icon-mail color="white" size="1.6em"></H_icon-mail>ICON mail</H_btn>
+            <H_btn><H_icon-save color="err" size="1.6em"></H_icon-save>ICON save Red</H_btn>
+            <H_btn>icon save right <H_icon-save color="white" size="1.6em"></H_icon-save></H_btn>
       </div>
       </template>
 '>

@@ -5,11 +5,13 @@
       class="H_inputbase-slot flex items-center text-txt1 border border-txt5 border-solid rounded px-1.5 min-h-[1.875em] focus-within:border-pri"
     >
       <slot />
-      <div
+      <H_iconClose
+        size="1.6rem"
+        color="txt3"
+        btn
         v-if="clearable"
-        @click="$emit('clear')"
-        class="ico-close iconBtn"
         :class="{ 'pointer-events-none': readonly }"
+        @click="$emit('clear')"
       />
     </div>
     <div v-if="!narrow" class="text-[.9em] text-txt2 ml-1 mr-1 flex justify-between min-h-[1.3em] max-h-[1.3em]">

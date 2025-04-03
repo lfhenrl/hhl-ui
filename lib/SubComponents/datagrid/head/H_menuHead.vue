@@ -19,7 +19,7 @@
       </div>
     </div>
     <H_iconFilter size="1rem" :color="col.filter.active ? 'pri' : 'bg6'" v-if="col.filter.type !== 'none'" />
-    <div class="ico-menuSmall" v-if="col.filter.type === 'none' && col.props.sorting === 'none'" />
+    <H_iconMenu_small btn v-if="col.filter.type === 'none' && col.props.sorting === 'none'" />
   </div>
 </template>
 

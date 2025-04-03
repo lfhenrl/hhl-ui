@@ -9,14 +9,14 @@
   >
     <div class="rowGroup-content" :style="{ minWidth: thisCol[0].Width.value, maxWidth: thisCol[0].Width.value }">
       <div draggable="true" @dragstart="startDrag($event)">
-        <div class="ico-drag iconBtn cursor-move" style="margin-left: -2px" />
+        <H_iconDrag btn class="cursor-move" style="margin-left: -2px" />
       </div>
       <div class="rowGroup-icon" :style="{ marginLeft: level * 12 + 'px' }">
         <div v-if="row.Children.length > 0" @click="click">
-          <div class="ico-expand_down iconBtn" v-if="row.Expanded" style="margin-left: -6px" />
-          <div class="ico-expand_right iconBtn" v-else style="margin-left: -6px" />
+          <H_iconExpand_down btn v-if="row.Expanded" style="margin-left: -6px" />
+          <H_iconExpand_right btn v-else style="margin-left: -6px" />
         </div>
-        <div class="ico-event iconBtn" v-else style="margin-left: -1px" />
+        <H_iconEvent btn v-else style="margin-left: -1px" />
       </div>
       <div class="rowGroup-title">
         {{ row?.Name }}

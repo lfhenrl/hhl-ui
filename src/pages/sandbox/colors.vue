@@ -15,10 +15,7 @@
       <H_iconAdd color="ok" size="2em" filled btn />
       <H_iconAdd color="ok" size="2em" round filled btn />
 
-      <H_input label="Input">
-        <div class="ico-account" />
-        <div class="ico-account" />
-      </H_input>
+      <H_input label="Input"> </H_input>
       <H_select label="Select" />
       <H_datePicker label="Date" v-model="date" show-seconds></H_datePicker>
       {{ mytime }}
@@ -34,7 +31,7 @@
       <H_tabs :default-tab="tab">
         <H_tab name="tab1" label="Tab 1."
           ><div class="p-10 h-full" keep-alive>
-            This is TAB 1... <H_btn @click="changeTab('tab2')">{{ tab }}</H_btn>
+            This is TAB 1... <H_btn @click="changeTab('tab2')" class="justify-end w-96 bg-warn">{{ tab }}</H_btn>
           </div></H_tab
         >
         <H_tab name="tab2" label="Tab 2."><div class="p-10" keep-alive>This is TAB 2...</div></H_tab>

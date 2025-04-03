@@ -8,6 +8,7 @@
     :round="round ? '' : undefined"
     :filled="filled ? '' : undefined"
     :btn="btn ? '' : undefined"
+    :disabled="disabled ? '' : undefined"
     fill="none"
   >
     <slot />
@@ -40,6 +41,10 @@ const tColor = computed(() => {
   aspect-ratio: 1/1;
   border-radius: 4px;
 }
+.H_iconBase[disabled] {
+  pointer-events: none;
+  opacity: 0.35;
+}
 
 .H_iconBase[outline] {
   border: 1px solid currentColor;
@@ -47,14 +52,14 @@ const tColor = computed(() => {
 
 .H_iconBase[round] {
   border-radius: 50%;
-  padding: 0.2%;
+  padding: 0.2em;
 }
 
 .H_iconBase[filled] {
   color: v-bind(tColor);
   background-color: v-bind(bColor);
   border: none;
-  padding: 0.4%;
+  padding: 0.2em;
 }
 
 .H_iconBase[btn]:hover {

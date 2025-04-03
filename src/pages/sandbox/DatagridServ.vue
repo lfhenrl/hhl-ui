@@ -5,7 +5,7 @@
       <div style="flex: 1" />
       <H_input v-model="seek" clearable style="max-width: 200px">
         <template v-slot:end>
-          <div class="ico-search" />
+          <H_iconSearch set-end color="txt3" />
         </template>
       </H_input>
     </div>

@@ -30,7 +30,7 @@ export const Props = {
   },
   size: {
     type: String,
-    default: "1.4em",
+    default: "1.8rem",
   },
   outline: {
     type: Boolean,
@@ -48,4 +48,5 @@ export const Props = {
     type: Boolean,
     default: false,
   },
+  disabled: { type: Boolean, default: false },
 };

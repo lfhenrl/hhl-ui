@@ -7,6 +7,7 @@
     <div class="col-start-1 row-start-1 row-end-3 h-full w-full" :class="{ 'bg-pri': isSelected }" />
     <div class="H_route_link_img flex items-center justify-center col-start-2 row-start-1">
       <div :class="icon" />
+      <component :is="icon" />
     </div>
     <div class="H_route_link_text flex items-center justify-center text-xs col-start-2 col-row-2">{{ title }}</div>
   </a>
@@ -16,7 +17,7 @@
 defineProps({
   title: { type: String, default: "Title" },
   to: { type: String, default: "#/" },
-  icon: { type: String, default: "ico-home" },
+  icon: { type: String, default: "H_iconHome" },
   disabled: { type: Boolean, default: false },
   isSelected: { type: Boolean, default: false },
 });

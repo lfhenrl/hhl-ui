@@ -15,7 +15,7 @@
           <H_btn @click="load" style="width: 100px">Load</H_btn>
           <div style="flex: 1" />
           <H_input v-model="seek" clearable style="max-width: 200px">
-            <div class="ico-search" />
+            <H_iconSearch set-end color="txt3" />
           </H_input>
         </div>
       </template>
