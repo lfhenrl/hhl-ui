@@ -40,6 +40,7 @@ import { computed, ref } from "vue";
 import H_popover from "../../Components/H_popover.vue";
 import H_btn from "../../Components/H_btn.vue";
 import H_timeTable from "./H_timeTable.vue";
+import H_iconClock from "../../Components/icons/H_iconClock.vue";
 
 const props = defineProps({
   time: { type: Object, default: { hour: 0, minute: 0, second: 0 } },

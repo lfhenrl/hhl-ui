@@ -63,6 +63,9 @@
 </template>
 
 <script setup lang="ts">
+import H_iconExpand_up from "./icons/H_iconExpand_up.vue";
+import H_iconExpand_down from "./icons/H_iconExpand_down.vue";
+import H_iconSearch from "./icons/H_iconSearch.vue";
 import { computed, ref, watch } from "vue";
 import H_popover from "./H_popover.vue";
 import H_inputbase from "./H_inputbase.vue";

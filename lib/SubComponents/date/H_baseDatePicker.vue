@@ -46,6 +46,7 @@ import H_popover from "../../Components/H_popover.vue";
 import H_btn from "../../Components/H_btn.vue";
 import H_dateTable from "./H_dateTable.vue";
 import H_monthTable from "./H_monthTable.vue";
+import H_iconEvent from "../../Components/icons/H_iconEvent.vue";
 
 const props = defineProps({
   modelValue: { type: Date, default: null },

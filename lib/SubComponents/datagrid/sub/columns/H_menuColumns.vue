@@ -40,6 +40,7 @@
 <script setup lang="ts">
 import H_dialog from "../../../../Components/H_dialog.vue";
 import H_btn from "../../../../Components/H_btn.vue";
+import H_iconClose from "../../../../Components/icons/H_iconClose.vue";
 import H_dragDrop from "../../../../Components/H_dragDrop.vue";
 import H_inputbase from "../../../../Components/H_inputbase.vue";
 import H_columnItem from "./H_columnItem.vue";

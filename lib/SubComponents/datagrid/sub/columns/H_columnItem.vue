@@ -13,6 +13,8 @@
 </template>
 
 <script setup lang="ts">
+import H_iconCheck from "../../../../Components/icons/H_iconCheck.vue";
+import H_iconDrag from "../../../../Components/icons/H_iconDrag.vue";
 import { type PropType, ref } from "vue";
 
 type iGroupdata = {

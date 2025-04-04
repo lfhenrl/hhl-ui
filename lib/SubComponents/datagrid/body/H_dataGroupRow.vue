@@ -16,6 +16,8 @@
 </template>
 
 <script setup lang="ts">
+import H_iconExpand_down from "../../../Components/icons/H_iconExpand_down.vue";
+import H_iconExpand_right from "../../../Components/icons/H_iconExpand_right.vue";
 import { getCurrentInstance, inject, onMounted } from "vue";
 import { type iDgrid } from "../provide/Dgrid";
 

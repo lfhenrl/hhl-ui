@@ -39,6 +39,8 @@ import { getDaysArray } from "./getDaysArray";
 import { DateAddMonths } from "../../utils/dateFunctions";
 import { HHL_isHolyDay } from "./holyDays";
 import { computed, ref, watch } from "vue";
+import H_iconExpand_left from "../../Components/icons/H_iconExpand_left.vue";
+import H_iconExpand_right from "../../Components/icons/H_iconExpand_right.vue";
 
 const props = defineProps({
   modelValue: { type: Date, default: new Date() },

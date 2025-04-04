@@ -54,6 +54,10 @@
 </template>
 
 <script setup lang="ts">
+import H_iconArrow_upward from "../../../Components/icons/H_iconArrow_upward.vue";
+import H_iconArrow_downward from "../../../Components/icons/H_iconArrow_downward.vue";
+import H_iconFilter from "../../../Components/icons/H_iconFilter.vue";
+import H_iconExpand_horizontal from "../../../Components/icons/H_iconExpand_horizontal.vue";
 import { inject } from "vue";
 import { type iColumn } from "../provide/Column";
 import { type iDgrid } from "../provide/Dgrid";

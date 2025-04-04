@@ -27,6 +27,7 @@
 </template>
 
 <script setup lang="ts">
+import H_iconClose from "./icons/H_iconClose.vue";
 defineProps({
   label: { type: String, default: "label" },
   clearable: { type: Boolean, default: false },

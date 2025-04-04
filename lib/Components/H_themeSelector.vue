@@ -7,6 +7,8 @@
 
 <script setup lang="ts">
 import { themeSelector } from "../utils/themeSelector";
+import H_iconDay from "./icons/H_iconDay.vue";
+import H_iconNight from "./icons/H_iconNight.vue";
 import { onMounted } from "vue";
 const E = defineEmits(["changed"]);
 const dark = themeSelector().darkTheme;

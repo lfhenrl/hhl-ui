@@ -37,6 +37,10 @@
 <script setup lang="ts">
 import { type PropType, computed, inject, onMounted, ref } from "vue";
 import bodyCell from "../datagrid/bodyCell.vue";
+import H_iconDrag from "../../../Components/icons/H_iconDrag.vue";
+import H_iconExpand_down from "../../../Components/icons/H_iconExpand_down.vue";
+import H_iconExpand_right from "../../../Components/icons/H_iconExpand_right.vue";
+import H_iconEvent from "../../../Components/icons/H_iconEvent.vue";
 import { type iGantt } from "../provide/gantt";
 import { type iColumn } from "../data/columnModel";
 import { debounce } from "../../../utils/debounce";

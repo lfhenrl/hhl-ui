@@ -15,6 +15,10 @@
 </template>
 
 <script setup lang="ts">
+import H_iconColumns from "../../Components/icons/H_iconArrow_upward.vue";
+import H_iconExpand_horizontal from "../../Components/icons/H_iconExpand_horizontal.vue";
+import H_iconExcel from "../../Components/icons/H_iconExcel.vue";
+import H_iconZoom_out_map from "../../Components/icons/H_iconZoom_out_map.vue";
 import { inject, ref } from "vue";
 import { type iDgrid } from "./provide/Dgrid";
 import csv from "../../utils/exportToExcel";

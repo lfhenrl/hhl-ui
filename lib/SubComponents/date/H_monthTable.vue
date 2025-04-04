@@ -26,6 +26,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { DateAddYears } from "../../utils/dateFunctions";
+import H_iconExpand_left from "../../Components/icons/H_iconExpand_left.vue";
+import H_iconExpand_right from "../../Components/icons/H_iconExpand_right.vue";
 
 const props = defineProps({
   modelValue: { type: Date, default: new Date() },

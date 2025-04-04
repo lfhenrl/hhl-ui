@@ -27,6 +27,8 @@
 </template>
 
 <script setup lang="ts">
+import H_iconCheck from "../icons/H_iconCheck.vue";
+import H_iconInfo from "../icons/H_iconInfo.vue";
 defineProps({
   modelValue: { type: Boolean, default: false, required: true },
   type: { default: "warn", type: String },

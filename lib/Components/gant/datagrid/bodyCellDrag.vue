@@ -5,6 +5,8 @@
 </template>
 
 <script setup lang="ts">
+import H_iconDrag from "../../../Components/icons/H_iconDrag.vue";
+
 defineProps({
   row: { type: Object, default: {} },
   col: { type: Object, default: {} },
