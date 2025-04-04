@@ -29,7 +29,7 @@ declare module 'vue-router/auto-routes' {
     '/components/dialog_service': RouteRecordInfo<'/components/dialog_service', '/components/dialog_service', Record<never, never>, Record<never, never>>,
     '/components/dragDrop': RouteRecordInfo<'/components/dragDrop', '/components/dragDrop', Record<never, never>, Record<never, never>>,
     '/components/form': RouteRecordInfo<'/components/form', '/components/form', Record<never, never>, Record<never, never>>,
-    '/components/iconClass': RouteRecordInfo<'/components/iconClass', '/components/iconClass', Record<never, never>, Record<never, never>>,
+    '/components/icons': RouteRecordInfo<'/components/icons', '/components/icons', Record<never, never>, Record<never, never>>,
     '/components/input': RouteRecordInfo<'/components/input', '/components/input', Record<never, never>, Record<never, never>>,
     '/components/popover': RouteRecordInfo<'/components/popover', '/components/popover', Record<never, never>, Record<never, never>>,
     '/components/progressBar': RouteRecordInfo<'/components/progressBar', '/components/progressBar', Record<never, never>, Record<never, never>>,

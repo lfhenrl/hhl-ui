@@ -22,10 +22,16 @@ import { Props } from "./shProps";
 const P = defineProps(Props);
 
 const bColor = computed(() => {
+  if (P.color === "current") {
+    return `var(--color-current`;
+  }
   return `var(--color-${P.color})`;
 });
 
 const tColor = computed(() => {
+  if (P.color === "current") {
+    return `var(--color-currentBg`;
+  }
   return `var(--color-${P.color}Txt)`;
 });
 </script>
@@ -48,11 +54,11 @@ const tColor = computed(() => {
 
 .H_iconBase[outline] {
   border: 1px solid currentColor;
+  padding: 0.15em;
 }
 
 .H_iconBase[round] {
   border-radius: 50%;
-  padding: 0.2em;
 }
 
 .H_iconBase[filled] {

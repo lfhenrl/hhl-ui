@@ -11,6 +11,7 @@
       v-if="col.props.sorting !== 'none'"
     >
       <H_iconArrow_upward
+        size="1.2rem"
         class="pointer-events-none"
         :style="{ color: col.sortDirection.value === 'asc' ? 'white' : '' }"
       />
@@ -24,6 +25,7 @@
       v-if="col.props.sorting !== 'none'"
     >
       <H_iconArrow_downward
+        size="1.2rem"
         class="pointer-events-none"
         :style="{ color: col.sortDirection.value === 'desc' ? 'white' : '' }"
       />
@@ -36,7 +38,7 @@
       v-if="col.filter.type !== 'none'"
       data-subtype="menuFilter"
     >
-      <H_iconFilter class="pointer-events-none" :color="col.filter.active ? 'white' : 'pri'" />
+      <H_iconFilter size="1.2rem" class="pointer-events-none" :color="col.filter.active ? 'white' : 'current'" />
       <div class="pointer-events-none">Filter</div>
     </div>
 
@@ -45,7 +47,7 @@
       data-action="autoSize"
       data-subtype="menuAutoSize"
     >
-      <H_iconExpand_horizontal class="pointer-events-none" />
+      <H_iconExpand_horizontal size="1.2rem" class="pointer-events-none" />
       <div class="pointer-events-none">Auto size</div>
     </div>
   </div>

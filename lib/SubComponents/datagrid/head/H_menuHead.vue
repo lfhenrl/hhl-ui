@@ -6,11 +6,13 @@
     <div class="flex overflow-visible items-start flex-1 text-xs max-h-4" v-if="col.props.sorting !== 'none'">
       <H_iconArrow_upward
         class="mx-[-5px]"
+        size="1.2rem"
         :color="col.sortDirection.value === 'asc' ? 'pri' : 'bg6'"
         v-if="col.sortDirection.value === 'asc' || col.sortDirection.value === 'none'"
       />
       <H_iconArrow_downward
         class="mx-[-5px]"
+        size="1.2rem"
         :color="col.sortDirection.value === 'desc' ? 'pri' : 'bg6'"
         v-if="col.sortDirection.value === 'desc' || col.sortDirection.value === 'none'"
       />
@@ -18,8 +20,8 @@
         {{ col.sortIndex.value + 1 }}
       </div>
     </div>
-    <H_iconFilter size="1rem" :color="col.filter.active ? 'pri' : 'bg6'" v-if="col.filter.type !== 'none'" />
-    <H_iconMenu_small btn v-if="col.filter.type === 'none' && col.props.sorting === 'none'" />
+    <H_iconFilter size="1.1rem" :color="col.filter.active ? 'pri' : 'bg6'" v-if="col.filter.type !== 'none'" />
+    <H_iconMenu_small size="1.1rem" btn v-if="col.filter.type === 'none' && col.props.sorting === 'none'" />
   </div>
 </template>
 

@@ -7,7 +7,6 @@ import { routes } from "vue-router/auto-routes";
 
 import "./components/mdStyle/index.css";
 import "./assets/main.css";
-import "../lib/styles/tw/iconsRaw.css";
 import { themeSelector } from "../lib/utils/themeSelector";
 //import twMergeDirective from "tailwind-merge-vue-directive/src/entry.js";
 
@@ -47,10 +46,10 @@ Object.keys(requireComponent).forEach((fileName: string) => {
 });
 
 const HhlLiveEditor = defineAsyncComponent(() => import("./components/liveEditor/hhl-live-editor.vue"));
-const iconList = defineAsyncComponent(() => import("./components/icon-list.vue"));
+const iconList = defineAsyncComponent(() => import("./components/icoList.vue"));
 import H_column from "../lib/Components/datagrid/H_column.vue";
 app.component("HhlLiveEditor", HhlLiveEditor);
-app.component("icon-list", iconList);
+app.component("ico-list", iconList);
 app.component("H_column", H_column);
 
 /* const H_btn = defineAsyncComponent(() => import("../lib/Components/H_btn.vue"));

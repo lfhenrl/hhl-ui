@@ -43,8 +43,8 @@ const modelValue = defineModel();
   .H_switch {
     background-color: var(--color-pri);
     color: var(--color-priTxt);
-    --color-current-bg-col: var(--color-pri);
-    --color-current-txt-col: var(--color-priTxt);
+    --color-currentBg: var(--color-pri);
+    --color-current: var(--color-priTxt);
   }
   .H_switch .slider {
     height: 1.2em;
@@ -67,7 +67,7 @@ const modelValue = defineModel();
   }
 
   .H_switch input:checked + .slider {
-    background-color: color-mix(in srgb, var(--color-current-bg-col) 30%, white);
+    background-color: color-mix(in srgb, var(--color-currentBg) 30%, white);
   }
 
   .H_switch input:focus + .slider {
@@ -79,7 +79,7 @@ const modelValue = defineModel();
     -ms-transform: translateX((86%));
     transform: translateX((86%));
     height: 78%;
-    background-color: var(--color-current-bg-col);
+    background-color: var(--color-currentBg);
   }
 }
 </style>

@@ -16,42 +16,6 @@
     --color-bg6: hsl(231, 12%, 43%);
     color-scheme: dark;
   }
-  div[class*="ico-"]::after {
-    content: "";
-    -webkit-mask: var(--svg) no-repeat;
-    mask: var(--svg) no-repeat;
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    background-color: currentColor;
-    color: inherit;
-    width: 1.4em;
-    height: 1.4em;
-    display: block;
-  }
-
-  div[class*="iconBtn"] {
-    display: inline-flex;
-    border-radius: 4px;
-    height: 1.4em;
-    align-items: center;
-    width: 1.4em;
-    &:hover {
-      outline: 2px solid var(--color-pri);
-    }
-    &:active {
-      outline: 2px solid var(--color-pri);
-      transform: scale(0.9);
-    }
-    &[disabled] {
-      opacity: 0.35;
-      pointer-events: none;
-    }
-  }
-
-  div[class*="iconBtn-filled"] {
-    --color-current-txt-col: var(--color-txt2);
-    --color-current-bg-col: var(--color-bg3);
-  }
 
   :fullscreen {
     background-color: var(--color-bg0);

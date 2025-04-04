@@ -2,18 +2,6 @@
   <div>
     <div class="m-6 p-2 flex items-center gap-8 border border-err border-solid font-normal text-base">
       <H_iconAdd color="err" size="2em" />
-      <H_iconAdd color="pri" size="2em" outline />
-      <H_iconAdd color="pri" size="2em" outline round />
-      <H_iconAdd color="pri" size="2em" filled />
-      <H_iconAdd color="pri" size="2em" filled />
-      <H_iconAdd color="pri" size="2em" round filled />
-
-      <H_iconAdd color="ok" size="2em" btn />
-      <H_iconAdd color="ok" size="2em" outline btn />
-      <H_iconAdd color="ok" size="2em" outline round btn />
-      <H_iconAdd color="ok" size="2em" filled btn />
-      <H_iconAdd color="ok" size="2em" filled btn />
-      <H_iconAdd color="ok" size="2em" round filled btn />
 
       <H_input label="Input"> </H_input>
       <H_select label="Select" />

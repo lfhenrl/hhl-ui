@@ -20,7 +20,7 @@
         <template v-slot:referance>
           <div style="display: flex; align-items: center">
             <span class="text-pri"> External</span>
-            <H_iconExpand_down size="1.8rem" btn />
+            <H_iconExpand_down size="1.4rem" btn />
           </div>
         </template>
         <div class="popUp-external-body">

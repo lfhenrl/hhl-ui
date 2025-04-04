@@ -1,91 +1,54 @@
 @utility col-pri {
   background-color: var(--color-pri);
   color: var(--color-priTxt);
-  --color-current-bg-col: var(--color-pri);
-  --color-current-txt-col: var(--color-priTxt);
+  --color-currentBg: var(--color-pri);
+  --color-current: var(--color-priTxt);
 }
 
 @utility col-sec {
   background-color: var(--color-sec);
   color: var(--color-secTxt);
-  --color-current-bg-col: var(--color-sec);
-  --color-current-txt-col: var(--color-secTxt);
+  --color-currentBg: var(--color-sec);
+  --color-current: var(--color-secTxt);
 }
 
 @utility col-ok {
   background-color: var(--color-ok);
   color: var(--color-okTxt);
-  --color-current-bg-col: var(--color-ok);
-  --color-current-txt-col: var(--color-okTxt);
+  --color-currentBg: var(--color-ok);
+  --color-current: var(--color-okTxt);
 }
 
 @utility col-err {
   background-color: var(--color-err);
   color: var(--color-errTxt);
-  --color-current-bg-col: var(--color-err);
-  --color-current-txt-col: var(--color-errTxt);
+  --color-currentBg: var(--color-err);
+  --color-current: var(--color-errTxt);
 }
 
 @utility col-warn {
   background-color: var(--color-warn);
   color: var(--color-warnTxt);
-  --color-current-bg-col: var(--color-warn);
-  --color-current-txt-col: var(--color-warnTxt);
+  --color-currentBg: var(--color-warn);
+  --color-current: var(--color-warnTxt);
 }
 @utility col-info {
   background-color: var(--color-info);
   color: var(--color-infoTxt);
-  --color-current-bg-col: var(--color-info);
-  --color-current-txt-col: var(--color-infoTxt);
+  --color-currentBg: var(--color-info);
+  --color-current: var(--color-infoTxt);
 }
 
 @utility col-black {
   background-color: var(--color-black);
   color: var(--color-white);
-  --color-current-bg-col: var(--color-black);
-  --color-current-txt-col: var(--color-white);
+  --color-currentBg: var(--color-black);
+  --color-current: var(--color-white);
 }
 
 @utility col-white {
   background-color: var(--color-white);
   color: var(--color-black);
-  --color-current-bg-col: var(--color-white);
-  --color-current-txt-col: var(--color-black);
-}
-
-@utility iconBtn {
-  border-radius: 50%;
-  background-color: transparent;
-  color: var(--color-current-bg-col);
-}
-
-@utility iconBtn-outline {
-  background-color: transparent;
-  color: var(--color-current-bg-col);
-  border: solid 1px currentColor;
-  border-radius: 4px;
-  padding: 2px;
-}
-
-@utility iconBtn-outline-round {
-  border-radius: 50%;
-  background-color: transparent;
-  color: var(--color-current-bg-col);
-  border: solid 1px currentColor;
-  padding: 2px;
-}
-
-@utility iconBtn-filled {
-  background-color: var(--color-current-bg-col);
-  color: var(--color-current-txt-col);
-  border: solid 1px currentColor;
-  border-radius: 4px;
-  padding: 3px;
-}
-
-@utility iconBtn-filled-round {
-  border-radius: 50%;
-  background-color: var(--color-current-bg-col);
-  color: var(--color-current-txt-col);
-  padding: 3px;
+  --color-currentBg: var(--color-white);
+  --color-current: var(--color-black);
 }

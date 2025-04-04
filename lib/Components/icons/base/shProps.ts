@@ -25,12 +25,13 @@ export const Props = {
       | "bg4"
       | "bg5"
       | "bg6"
+      | "current"
     >,
-    default: "pri",
+    default: "current",
   },
   size: {
     type: String,
-    default: "1.8rem",
+    default: "1.4rem",
   },
   outline: {
     type: Boolean,

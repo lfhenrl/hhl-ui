@@ -30,7 +30,6 @@
 
   --color-black: black;
   --color-white: white;
-  --color-transparent: black;
-  --color-current-txt-col: currentColor;
-  --color-current-bg-col: var(--color-pri);
+  --color-current: var(--color-txt2);
+  --color-currentBg: var(--color-bg0);
 }

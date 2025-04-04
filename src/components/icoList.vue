@@ -5,7 +5,7 @@
       :key="index"
       class="flex flex-col items-center w-40 border border-pri border-solid rounded p-2 text-2xl"
     >
-      <component :is="view" />
+      <component :is="view" size="2rem" />
       <div class="text-sm">{{ view }}</div>
     </div>
   </div>
@@ -22,7 +22,6 @@ onMounted(() => {
   list.value = [];
   Object.keys(requireComponent).forEach((fileName: string) => {
     const componentName = (fileName.split("/").pop() ?? "").replace(/\.\w+$/, "");
-    console.log(componentName);
     list.value.push(componentName);
   });
 });

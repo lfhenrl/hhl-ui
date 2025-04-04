@@ -7,7 +7,7 @@
     >
       <H_iconCheck size="0.95em" v-if="data.visibel" color="white" />
     </div>
-    <H_iconDrag btn />
+    <H_iconDrag size="1.2rem" btn />
     {{ data?.title }}
   </div>
 </template>
