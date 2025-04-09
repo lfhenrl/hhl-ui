@@ -10,7 +10,7 @@
     @isValid="$emit('isValid', $event)"
     class="H_datePicker"
   >
-    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 items-center">
+    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 items-center px-1.5">
       <slot> </slot>
       <div class="H_inputbase-input col-start-2 flex items-center">
         <H_baseDatePicker

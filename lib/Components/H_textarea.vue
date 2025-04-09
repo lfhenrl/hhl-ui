@@ -21,7 +21,7 @@
         spellcheck="false"
         :readonly="readonly"
         :placeholder="placeholder"
-        class="col-start-2 w-full bg-transparent border-none appearance-none focus:outline-none"
+        class="col-start-2 w-full bg-transparent border-none appearance-none focus:outline-none px-1.5"
       />
     </div>
   </H_inputbase>

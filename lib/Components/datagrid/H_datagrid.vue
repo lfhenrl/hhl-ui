@@ -1,5 +1,5 @@
 <template>
-  <div class="H_datagrid grid relative h-full text-sm" ref="datagridRef">
+  <div class="H_datagrid" ref="datagridRef">
     <div class="flex">
       <slot name="head"></slot>
     </div>
@@ -161,6 +161,10 @@ onMounted(() => {
 <style>
 @layer components {
   .H_datagrid {
+    display: grid;
+    position: relative;
+    height: 100%;
+    font-size: 0.875rem;
     grid-template-rows: auto auto 1fr auto;
     grid-template-columns: 1fr;
     --dgrid-row-height: v-bind(row_height);

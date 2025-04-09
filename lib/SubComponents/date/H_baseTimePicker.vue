@@ -10,7 +10,7 @@
     >
       <template v-slot:referance>
         <div class="group inline-flex items-center cursor-pointer h-full" title="Timepicker">
-          <H_iconClock size="1.1rem" color="txt1" v-if="!hideIcon" />
+          <H_icon name="clock" size="1.1rem" color="txt1" v-if="!hideIcon" />
           <input
             name="timepicker"
             title="Timepicker"
@@ -40,7 +40,7 @@ import { computed, ref } from "vue";
 import H_popover from "../../Components/H_popover.vue";
 import H_btn from "../../Components/H_btn.vue";
 import H_timeTable from "./H_timeTable.vue";
-import H_iconClock from "../../Components/icons/H_iconClock.vue";
+import H_icon from "../../Components/H_icon.vue";
 
 const props = defineProps({
   time: { type: Object, default: { hour: 0, minute: 0, second: 0 } },

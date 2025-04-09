@@ -6,7 +6,7 @@
     enter-active-class="transition duration-300"
     leave-active-class="transition duration-300"
   >
-    <div v-if="v_ifSelected" v-show="selected" class="H_tab grid grid-rows-1 grid-cols-1 h-full">
+    <div v-if="v_ifSelected" v-show="selected" class="H_tab">
       <slot />
     </div>
   </transition>
@@ -48,3 +48,13 @@ const keepA = ref(false);
 
 const v_ifSelected = computed(() => selected.value || keepA.value);
 </script>
+<style>
+@layer components {
+  .H_tab {
+    display: grid;
+    grid-template-rows: repeat(1, minmax(0, 1fr));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    height: 100%;
+  }
+}
+</style>

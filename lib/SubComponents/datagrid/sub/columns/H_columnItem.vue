@@ -5,16 +5,15 @@
       :class="{ 'col-pri border-none': data.visibel }"
       @click="checkClick"
     >
-      <H_iconCheck size="0.95em" v-if="data.visibel" color="white" />
+      <H_icon name="check" size="0.95em" v-if="data.visibel" color="white" />
     </div>
-    <H_iconDrag size="1.2rem" btn />
+    <H_icon name="drag" size="1.2rem" btn />
     {{ data?.title }}
   </div>
 </template>
 
 <script setup lang="ts">
-import H_iconCheck from "../../../../Components/icons/H_iconCheck.vue";
-import H_iconDrag from "../../../../Components/icons/H_iconDrag.vue";
+import H_icon from "../../../../Components/H_icon.vue";
 import { type PropType, ref } from "vue";
 
 type iGroupdata = {

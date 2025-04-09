@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="flex items-center p-1 justify-between">
-      <H_iconExpand_left size="1.6rem" btn @click.stop="changeMonth(-1)" />
+      <H_icon name="expand_left" size="1.6rem" btn @click.stop="changeMonth(-1)" />
       <div class="cursor-pointer" @click.stop="$emit('month-click')">
         {{ tempDatomy.toLocaleString("en-us", { month: "long", year: "numeric" }) }}
       </div>
-      <H_iconExpand_right size="1.6rem" btn @click.stop="changeMonth(1)" />
+      <H_icon name="expand_right" size="1.6rem" btn @click.stop="changeMonth(1)" />
     </div>
     <div class="H_dateTable__table grid" @click.stop="itemClick">
       <div
@@ -39,8 +39,7 @@ import { getDaysArray } from "./getDaysArray";
 import { DateAddMonths } from "../../utils/dateFunctions";
 import { HHL_isHolyDay } from "./holyDays";
 import { computed, ref, watch } from "vue";
-import H_iconExpand_left from "../../Components/icons/H_iconExpand_left.vue";
-import H_iconExpand_right from "../../Components/icons/H_iconExpand_right.vue";
+import H_icon from "../../Components/H_icon.vue";
 
 const props = defineProps({
   modelValue: { type: Date, default: new Date() },

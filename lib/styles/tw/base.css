@@ -14,6 +14,8 @@
     --color-bg4: hsl(231, 12%, 35%);
     --color-bg5: hsl(231, 12%, 39%);
     --color-bg6: hsl(231, 12%, 43%);
+    --color-current: var(--color-txt2);
+    --color-currentBg: var(--color-bg0);
     color-scheme: dark;
   }
 

@@ -7,8 +7,8 @@
     :row-level="row.__level"
   >
     <div class="flex items-center pl-1" @click.stop="expand">
-      <H_iconExpand_down size="1.4rem" btn v-if="row.__expanded" />
-      <H_iconExpand_right size="1.4rem" btn v-else />
+      <H_icon name="expand_down" size="1.4rem" btn v-if="row.__expanded" />
+      <H_icon name="expand_right" size="1.4rem" btn v-else />
     </div>
     <div>{{ row.__title }}</div>
     <span class="text-xs text-txt3"> ({{ row.__count }}/{{ row.__count_total }})</span>
@@ -16,8 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import H_iconExpand_down from "../../../Components/icons/H_iconExpand_down.vue";
-import H_iconExpand_right from "../../../Components/icons/H_iconExpand_right.vue";
+import H_icon from "../../../Components/H_icon.vue";
 import { getCurrentInstance, inject, onMounted } from "vue";
 import { type iDgrid } from "../provide/Dgrid";
 

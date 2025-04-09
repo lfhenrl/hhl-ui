@@ -10,7 +10,8 @@
       data-subtype="menuSortAsc"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_iconArrow_upward
+      <H_icon
+        name="arrow_upward"
         size="1.2rem"
         class="pointer-events-none"
         :style="{ color: col.sortDirection.value === 'asc' ? 'white' : '' }"
@@ -24,7 +25,8 @@
       data-subtype="menuSortDesc"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_iconArrow_downward
+      <H_icon
+        name="arrow_downward"
         size="1.2rem"
         class="pointer-events-none"
         :style="{ color: col.sortDirection.value === 'desc' ? 'white' : '' }"
@@ -38,7 +40,12 @@
       v-if="col.filter.type !== 'none'"
       data-subtype="menuFilter"
     >
-      <H_iconFilter size="1.2rem" class="pointer-events-none" :color="col.filter.active ? 'white' : 'current'" />
+      <H_icon
+        name="filter"
+        size="1.2rem"
+        class="pointer-events-none"
+        :color="col.filter.active ? 'white' : 'current'"
+      />
       <div class="pointer-events-none">Filter</div>
     </div>
 
@@ -47,17 +54,14 @@
       data-action="autoSize"
       data-subtype="menuAutoSize"
     >
-      <H_iconExpand_horizontal size="1.2rem" class="pointer-events-none" />
+      <H_icon name="expand_horizontal" size="1.2rem" class="pointer-events-none" />
       <div class="pointer-events-none">Auto size</div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import H_iconArrow_upward from "../../../Components/icons/H_iconArrow_upward.vue";
-import H_iconArrow_downward from "../../../Components/icons/H_iconArrow_downward.vue";
-import H_iconFilter from "../../../Components/icons/H_iconFilter.vue";
-import H_iconExpand_horizontal from "../../../Components/icons/H_iconExpand_horizontal.vue";
+import H_icon from "../../../Components/H_icon.vue";
 import { inject } from "vue";
 import { type iColumn } from "../provide/Column";
 import { type iDgrid } from "../provide/Dgrid";

@@ -1,9 +1,9 @@
 <template>
   <div class="flex items-center flex-wrap gap-2 text-txt3 border border-bg6 p-2 rounded-b">
-    <H_iconColumns size="1.6rem" btn title="Edit Columns" @click="editColumns" />
-    <H_iconExpand_horizontal size="1.6rem" btn title="Auto adjust all columns" @click="autoAdjustColumns" />
-    <H_iconExcel size="1.6rem" btn title="Download to excel" @click="excel" />
-    <H_iconZoom_out_map size="1.6rem" btn title="fullScreen" @click="fullScreen" />
+    <H_icon name="columns" size="1.6rem" btn title="Edit Columns" @click="editColumns" />
+    <H_icon name="expand_horizontal" size="1.6rem" btn title="Auto adjust all columns" @click="autoAdjustColumns" />
+    <H_icon name="excel" size="1.6rem" btn title="Download to excel" @click="excel" />
+    <H_icon name="zoom_out_map" size="1.6rem" btn title="fullScreen" @click="fullScreen" />
     <div style="flex: 1" />
     <div class="flex">
       <b>{{ DG.dataHandler?.rowsCount }}</b
@@ -15,10 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import H_iconColumns from "../../Components/icons/H_iconArrow_upward.vue";
-import H_iconExpand_horizontal from "../../Components/icons/H_iconExpand_horizontal.vue";
-import H_iconExcel from "../../Components/icons/H_iconExcel.vue";
-import H_iconZoom_out_map from "../../Components/icons/H_iconZoom_out_map.vue";
+import H_icon from "../../Components/H_icon.vue";
 import { inject, ref } from "vue";
 import { type iDgrid } from "./provide/Dgrid";
 import csv from "../../utils/exportToExcel";

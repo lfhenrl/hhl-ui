@@ -150,8 +150,8 @@ You can add a Icon or other stoff the first child will be in front and the secon
       <template>
       <div class="flex items-center gap-4 flex-wrap">
             <H_input  v-model="txt" label="Text input"> 
-                <H_icon-mail size="1.6em" @click="click(txt)"></H_icon-mail>
-                <H_icon-clock size="1.6em" @click="click(`end icon`)"></H_icon-clock>
+                <H_icon name="mail" size="1.6em" @click="click(txt)"></H_icon>
+                <H_icon name="clock" size="1.6em" @click="click(`end icon`)"></H_icon>
             </H_input>
       </div>
       </template>
@@ -176,7 +176,7 @@ If you have on child you can force it to the end by adding `set-end` attribute.
       <template>
       <div class="flex items-center gap-4 flex-wrap">
             <H_input v-model="txt" label="Text input">                        
-                <H_icon-mail set-end size="1.6em" @click="click(`end icon`)"></H_icon-mail>
+                <H_icon name="mail" set-end size="1.6em" @click="click(`end icon`)"></H_icon>
             </H_input>
       </div>
       </template>

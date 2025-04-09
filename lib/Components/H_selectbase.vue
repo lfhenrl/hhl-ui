@@ -1,7 +1,7 @@
 <template>
   <div
     ref="selectbox"
-    class="H_selectbase flex p-0 focus:outline-none"
+    class="H_selectbase focus:outline-none"
     :class="{ '!flex-row ': row, '!flex-col': !row }"
     @click="Click"
     tabindex="0"
@@ -146,6 +146,12 @@ function KeyEnter() {
 
 <style>
 @layer components {
+  .H_selectbase {
+    display: flex;
+    padding: 0;
+    outline-style: none;
+  }
+
   .H_selectbase-item::before {
     content: "";
     font-size: 0.9em;

@@ -64,7 +64,7 @@ By adding the property `hide-icon` you will remove the icon.
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center flex-wrap"> 
-            <H_time-picker label="Time" v-model="time show-seconds" hide-icon></H_time-picker>
+            <H_time-picker label="Time" v-model="time" show-seconds hide-icon></H_time-picker>
             <H_input readonly :model-value="time" label="Value"></H_input>
       </div>
       </template>

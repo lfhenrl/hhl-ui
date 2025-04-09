@@ -6,7 +6,7 @@
     :HelpTextStart="hintStart"
     :HelpTextEnd="hintEnd"
     :ErrorMessage="validate"
-    class="H_range [&[readonly]]:pointer-events-none"
+    class="H_range"
   >
     <div class="grid grid-cols-[auto_1fr_auto] items-center w-full h-full *:row-start-1 mr-2 max-h-[1.875em]">
       <slot> </slot>
@@ -66,6 +66,10 @@ onMounted(() => (model.value = model.value));
     --range-color: v-bind(bgColor);
     --range-shadow-hover: 0 0 0 10px color-mix(in srgb, var(--range-color) var(--transparency, 10%), transparent);
     --range-shadow-focus: 0 0 0 10px color-mix(in srgb, var(--range-color) var(--transparency, 20%), transparent);
+  }
+
+  .H_range[readonly] {
+    pointer-events: none;
   }
 
   .H_range .H_inputbase-input::-webkit-slider-thumb {

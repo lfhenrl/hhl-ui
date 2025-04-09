@@ -4,7 +4,7 @@
       <div class="hhl-live-editor_errBox_title" moveable-drag>
         <div>Error</div>
         <div class="flex-1" />
-        <h_icon-close color="white" class="cursor-pointer" btn @click="hideError = !hideError" />
+        <h_icon name="close" color="white" class="cursor-pointer" btn @click="hideError = !hideError" />
       </div>
 
       <span class="hhl-live-editor_errBox_body">{{ error }}</span>
@@ -13,10 +13,17 @@
     <div class="hhl-live-editor_topBar">
       <div>{{ title }}</div>
       <div class="hhl-live-editor_spacer" />
-      <H_iconInfo color="err" btn title="Show Error." v-if="error !== '' && showCode" @click="hideError = !hideError" />
-      <H_iconZoom_out_map size="1.4rem" btn title="Fullscreen." @click="toggleFullScreen" />
-      <H_iconSplit btn title="Change Horisont or Vertical." :disabled="!showCode" @click="changeHorisont" />
-      <H_iconExpand_down btn title="Show Code." @click="codeShow" />
+      <H_icon
+        name="info"
+        color="err"
+        btn
+        title="Show Error."
+        v-if="error !== '' && showCode"
+        @click="hideError = !hideError"
+      />
+      <H_icon name="zoom_out_map" size="1.4rem" btn title="Fullscreen." @click="toggleFullScreen" />
+      <H_icon name="split" btn title="Change Horisont or Vertical." :disabled="!showCode" @click="changeHorisont" />
+      <H_icon name="expand_down" btn title="Show Code." @click="codeShow" />
     </div>
 
     <div class="hhl-live-editor_renderBox" :class="{ 'hhl-live-editor_renderBox-column': column }">

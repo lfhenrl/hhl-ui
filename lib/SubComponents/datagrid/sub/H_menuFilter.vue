@@ -8,7 +8,7 @@
         <div class="flex-1" />
         <div>{{ col.props.title }}</div>
         <div class="flex-1" />
-        <H_iconClose btn color="white" class="cursor-pointer mr-0.5" @click="isOpen = false" />
+        <H_icon name="close" btn color="white" class="cursor-pointer mr-0.5" @click="isOpen = false" />
       </div>
       <div class="H_menuFilter_comp overflow-hidden px-4">
         <component ref="filterCompRef" :is="filtComponent" :index="index" />
@@ -25,7 +25,7 @@
 import { computed, inject, ref } from "vue";
 import H_popover from "../../../Components/H_popover.vue";
 import H_btn from "../../../Components/H_btn.vue";
-import H_iconClose from "../../../Components/icons/H_iconClose.vue";
+import H_icon from "../../../Components/H_icon.vue";
 import H_filterString from "./filterTypes/H_filterString.vue";
 import H_filterNumber from "./filterTypes/H_filterNumber.vue";
 import H_filterDate from "./filterTypes/H_filterDate.vue";

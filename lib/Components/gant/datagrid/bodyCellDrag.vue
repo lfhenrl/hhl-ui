@@ -1,11 +1,11 @@
 <template>
   <div class="bodyCell-drag">
-    <H_iconDrag color="txt6" />
+    <H_icon name="drag" color="txt6" />
   </div>
 </template>
 
 <script setup lang="ts">
-import H_iconDrag from "../../../Components/icons/H_iconDrag.vue";
+import H_icon from "../../../Components/H_icon.vue";
 
 defineProps({
   row: { type: Object, default: {} },

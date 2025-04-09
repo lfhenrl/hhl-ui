@@ -2,10 +2,11 @@
   <label class="H_inputbase" :data-error="ErrorMessage != '' ? true : undefined">
     <span v-if="!narrow" class="text-[.9em] text-txt2 ml-1 min-h-[1.3em] max-h-[1.3em] leading-none">{{ label }}</span>
     <div
-      class="H_inputbase-slot flex items-center text-txt1 border border-txt5 border-solid rounded px-1.5 min-h-[1.875em] focus-within:border-pri"
+      class="H_inputbase-slot flex items-center text-txt1 border border-txt5 border-solid rounded min-h-[1.875em] focus-within:border-pri"
     >
       <slot />
-      <H_iconClose
+      <H_icon
+        name="close"
         size="1.6rem"
         color="txt3"
         btn
@@ -27,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import H_iconClose from "./icons/H_iconClose.vue";
+import H_icon from "./H_icon.vue";
 defineProps({
   label: { type: String, default: "label" },
   clearable: { type: Boolean, default: false },

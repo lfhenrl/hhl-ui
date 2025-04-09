@@ -7,7 +7,7 @@
     :ErrorMessage="validate"
     class="H_datetime"
   >
-    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 max-h-[1.875em]">
+    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 max-h-[1.875em] px-1.5">
       <slot> </slot>
       <input
         ref="el"

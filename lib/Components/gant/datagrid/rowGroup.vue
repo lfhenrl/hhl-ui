@@ -9,14 +9,14 @@
   >
     <div class="rowGroup-content" :style="{ minWidth: thisCol[0].Width.value, maxWidth: thisCol[0].Width.value }">
       <div draggable="true" @dragstart="startDrag($event)">
-        <H_iconDrag btn class="cursor-move" style="margin-left: -2px" />
+        <H_icon name="drag" btn class="cursor-move" style="margin-left: -2px" />
       </div>
       <div class="rowGroup-icon" :style="{ marginLeft: level * 12 + 'px' }">
         <div v-if="row.Children.length > 0" @click="click">
-          <H_iconExpand_down btn v-if="row.Expanded" style="margin-left: -6px" />
-          <H_iconExpand_right btn v-else style="margin-left: -6px" />
+          <H_icon name="expand_down" btn v-if="row.Expanded" style="margin-left: -6px" />
+          <H_icon name="expand_right" btn v-else style="margin-left: -6px" />
         </div>
-        <H_iconEvent btn v-else style="margin-left: -1px" />
+        <H_icon name="event" btn v-else style="margin-left: -1px" />
       </div>
       <div class="rowGroup-title">
         {{ row?.Name }}
@@ -37,10 +37,7 @@
 <script setup lang="ts">
 import { type PropType, computed, inject, onMounted, ref } from "vue";
 import bodyCell from "../datagrid/bodyCell.vue";
-import H_iconDrag from "../../../Components/icons/H_iconDrag.vue";
-import H_iconExpand_down from "../../../Components/icons/H_iconExpand_down.vue";
-import H_iconExpand_right from "../../../Components/icons/H_iconExpand_right.vue";
-import H_iconEvent from "../../../Components/icons/H_iconEvent.vue";
+import H_icon from "../../../Components/H_icon.vue";
 import { type iGantt } from "../provide/gantt";
 import { type iColumn } from "../data/columnModel";
 import { debounce } from "../../../utils/debounce";

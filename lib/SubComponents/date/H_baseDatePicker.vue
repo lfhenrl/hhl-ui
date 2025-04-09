@@ -1,15 +1,14 @@
 <template>
-  <div :focused="focused" :readonly="readonly">
+  <div :focused :readonly="readonly">
     <H_popover v-model="popupOpen" :offset-top="8" :readonly="readonly" class="flex items-center">
       <template v-slot:referance>
-        <div class="group inline-flex items-center cursor-pointer h-full" title="Datepicker" tabindex="0">
-          <H_iconEvent size="1.1rem" color="txt1" v-if="!hideIcon" />
+        <div class="group inline-flex items-center cursor-pointer h-full" title="Datepicker">
+          <H_icon name="event" size="1.1rem" color="txt1" v-if="!hideIcon" />
           <input
             name="datepicker"
             title="Datepicker"
             :value="formattetValueDate"
             :size="setSize()"
-            tabindex="-1"
             readonly
             @focus="focused = !readonly"
             @blur="focused = false"
@@ -46,7 +45,7 @@ import H_popover from "../../Components/H_popover.vue";
 import H_btn from "../../Components/H_btn.vue";
 import H_dateTable from "./H_dateTable.vue";
 import H_monthTable from "./H_monthTable.vue";
-import H_iconEvent from "../../Components/icons/H_iconEvent.vue";
+import H_icon from "../../Components/H_icon.vue";
 
 const props = defineProps({
   modelValue: { type: Date, default: null },

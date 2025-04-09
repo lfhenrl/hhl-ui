@@ -1,9 +1,5 @@
 <template>
-  <label
-    class="H_switch inline-flex items-center gap-[.3em] !bg-transparent cursor-pointer [&[disabled]]:opacity-40 [&[disabled]]:pointer-events-none"
-    :class="{ 'flex-row-reverse': labelLeft }"
-    :disabled="disabled ? '' : undefined"
-  >
+  <label class="H_switch" :class="{ 'flex-row-reverse': labelLeft }" :disabled="disabled ? '' : undefined">
     <input
       v-show="P.switch === false"
       :type
@@ -45,6 +41,15 @@ const modelValue = defineModel();
     color: var(--color-priTxt);
     --color-currentBg: var(--color-pri);
     --color-current: var(--color-priTxt);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    background-color: transparent !important;
+    cursor: pointer;
+  }
+  .H_switch[disabled] {
+    opacity: 40%;
+    pointer-events: none;
   }
   .H_switch .slider {
     height: 1.2em;

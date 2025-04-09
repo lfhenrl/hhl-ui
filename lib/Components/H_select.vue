@@ -1,5 +1,5 @@
 <template>
-  <div class="H_select w-full">
+  <div class="H_select">
     <H_popover ref="popup" v-model="selectOpen" trigger="none" :readonly query-selector=".H_inputbase-slot">
       <template #referance>
         <H_inputbase
@@ -13,7 +13,9 @@
           :ErrorMessage="validate"
           :narrow
         >
-          <div class="H_inputbase-inputBox grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 max-h-[1.875em]">
+          <div
+            class="H_inputbase-inputBox grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 max-h-[1.875em] px-1.5"
+          >
             <slot> </slot>
             <input
               ref="el"
@@ -26,8 +28,8 @@
               class="col-start-2 w-full bg-transparent border-none appearance-none focus:outline-none"
             />
           </div>
-          <H_iconExpand_up color="txt1" set-end v-if="selectOpen" />
-          <H_iconExpand_down color="txt1" set-end v-else />
+          <H_icon name="expand_up" color="txt1" set-end v-if="selectOpen" />
+          <H_icon name="expand_down" color="txt1" set-end v-else />
         </H_inputbase>
       </template>
       <div @click.stop class="H_select-list bg-bg0 rounded w-full border border-solid border-bg4">
@@ -35,7 +37,7 @@
           v-if="showFilter"
           class="flex w-full items-center border-b border-bg4 border-solid h-8 pl-1 mb-2 rounded-t"
         >
-          <H_iconSearch color="txt3" />
+          <H_icon name="search" color="txt3" />
           <input v-model="filterValue" class="H_selectBox-filter focus:outline-none bg-transparent w-full pl-2" />
         </div>
         <div
@@ -63,9 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import H_iconExpand_up from "./icons/H_iconExpand_up.vue";
-import H_iconExpand_down from "./icons/H_iconExpand_down.vue";
-import H_iconSearch from "./icons/H_iconSearch.vue";
+import H_icon from "./H_icon.vue";
 import { computed, ref, watch } from "vue";
 import H_popover from "./H_popover.vue";
 import H_inputbase from "./H_inputbase.vue";
@@ -122,3 +122,10 @@ function SelectAll() {
 
 const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
+<style>
+@layer components {
+  .H_select {
+    width: 100%;
+  }
+}
+</style>

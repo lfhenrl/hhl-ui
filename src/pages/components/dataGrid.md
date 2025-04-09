@@ -503,7 +503,7 @@ If that the case set `stickyGroups="false"`.
         <H_btn @click="load" style="width: 100px">Load</H_btn>
         <div style="flex: 1" ></div>
         <H_input v-model="seek" :debounce="300" clearable style="max-width: 200px">
-              <H_icon-search set-end color=txt3></H_icon-search>
+              <H_icon name=search" set-end color=txt3></H_icon>
         </H_input>
       </div>
     <div style="height: 400px;">

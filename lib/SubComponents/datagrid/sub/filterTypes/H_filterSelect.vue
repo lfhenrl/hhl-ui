@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-hidden">
     <H_input v-model="searchValue" clearable>
-      <H_iconSearch color="txt1" set-end />
+      <H_icon name="search" color="txt1" set-end />
     </H_input>
     <H_switch switch label="Select All." :model-value="AllSelected" @click.prevent="SelectToggle" />
     <div class="overflow-auto max-h-96 mt-1">
@@ -15,7 +15,7 @@ import { computed, inject, onMounted, ref } from "vue";
 import H_input from "../../../../Components/H_input.vue";
 import H_switch from "../../../../Components/H_switch.vue";
 import H_selectbase from "../../../../Components/H_selectbase.vue";
-import H_iconSearch from "../../../../Components/icons/H_iconSearch.vue";
+import H_icon from "../../../../Components/H_icon.vue";
 import { type iDgrid } from "../../provide/Dgrid";
 import { type iColumn } from "../../provide/Column";
 

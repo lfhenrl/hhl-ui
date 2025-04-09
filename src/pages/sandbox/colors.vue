@@ -1,9 +1,11 @@
 <template>
   <div>
     <div class="m-6 p-2 flex items-center gap-8 border border-err border-solid font-normal text-base">
-      <H_iconAdd color="err" size="2em" />
+      <H_icon color="err" size="2em" />
 
       <H_input label="Input"> </H_input>
+      <H_icon name="edit" color="err" size="2em" />
+
       <H_select label="Select" />
       <H_datePicker label="Date" v-model="date" show-seconds></H_datePicker>
       {{ mytime }}
@@ -25,9 +27,6 @@
         <H_tab name="tab2" label="Tab 2."><div class="p-10" keep-alive>This is TAB 2...</div></H_tab>
         <H_tab name="tab3" label="Tab 3."><div class="p-10" keep-alive>This is TAB 3...</div></H_tab>
       </H_tabs>
-    </div>
-    <div class="text-base">
-      <IcoList />
     </div>
   </div>
 </template>

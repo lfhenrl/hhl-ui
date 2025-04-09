@@ -1,5 +1,5 @@
 <template>
-  <div class="H_virtualList grid grid-rows-[1fr_auto] grid-col w-full h-full min-h-80 rounded">
+  <div class="H_virtualList">
     <div class="H_virtualList-body relative inline-block overflow-auto h-full" ref="root" @scroll="onScroll">
       <slot name="header" />
       <div class="H_virtualList-scroller relative inline-block min-w-full" role="group" :style="paddingStyle">
@@ -291,3 +291,15 @@ function emitEvent(offset: number, clientSize: number, scrollSize: number, evt: 
   }
 }
 </script>
+<style>
+@layer components {
+  .H_virtualList {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    border-radius: 0.25rem;
+  }
+}
+</style>

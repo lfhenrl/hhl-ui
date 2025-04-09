@@ -1,5 +1,5 @@
 <template>
-  <div class="H_tabs grid grid-rows-[auto_1fr] h-full w-full overflow-hidden">
+  <div class="H_tabs">
     <div class="H_tabs__tabs flex">
       <div
         v-for="tab in tabs"
@@ -91,3 +91,14 @@ function changeTab(e: string) {
   }
 }
 </script>
+<style>
+@layer components {
+  .H_tabs {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+  }
+}
+</style>

@@ -20,7 +20,7 @@
       :labelLeft="labelLeft"
       :list="list"
       :readonly
-      class="px-1"
+      class="px-2"
       :class="{ 'py-1': !row }"
     />
   </H_inputbase>
