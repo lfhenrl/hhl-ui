@@ -2,54 +2,32 @@
   <svg
     viewBox="0 0 24 24"
     class="H_icon"
+    :class="{
+      'pointer-events-none opacity-35': disabled,
+      'border border-current p-[0.15em]': outline,
+      'rounded-full': round,
+      'border-none p-[0.2em] text-(--icon-bgcolor) bg-(--icon-color)': filled,
+      'hover:outline-2 hover:outline-offset-2 hover:outline-(--color-pri) active:scale-90': btn,
+    }"
+    :style="{ '--icon-color': txtColor, '--icon-bgcolor': bgColor, '--icon-size': size }"
     height="24"
     width="24"
     fill="none"
-    :outline="outline ? '' : undefined"
-    :round="round ? '' : undefined"
-    :filled="filled ? '' : undefined"
-    :disabled="disabled ? '' : undefined"
-    :btn="btn ? '' : undefined"
   >
     <path fill="currentColor" :d="icon" />
   </svg>
 </template>
 
 <script setup lang="ts">
-import { sharedProps } from "../SubComponents/icons/props";
-import { computed, ref, watch, type PropType } from "vue";
+import { iconsProp } from "../SubComponents/icons/iconProp";
+import { colorProp } from "../SubComponents/icons/colorProp";
+import { useColor } from "../SubComponents/icons/useColors";
 import { icons } from "../SubComponents/icons/icons";
+import { ref, toRef, watch } from "vue";
 
 const P = defineProps({
-  ...sharedProps,
-  color: {
-    type: String as PropType<
-      | "pri"
-      | "ok"
-      | "sec"
-      | "warn"
-      | "err"
-      | "info"
-      | "white"
-      | "black"
-      | "txt0"
-      | "txt1"
-      | "txt2"
-      | "txt3"
-      | "txt4"
-      | "txt5"
-      | "txt6"
-      | "bg0"
-      | "bg1"
-      | "bg2"
-      | "bg3"
-      | "bg4"
-      | "bg5"
-      | "bg6"
-      | "current"
-    >,
-    default: "current",
-  },
+  ...iconsProp,
+  ...colorProp,
   size: {
     type: String,
     default: "1.4rem",
@@ -73,20 +51,9 @@ const P = defineProps({
   disabled: { type: Boolean, default: false },
 });
 
-const icon = ref("");
-const bColor = computed(() => {
-  if (P.color === "current") {
-    return `var(--color-current)`;
-  }
-  return `var(--color-${P.color})`;
-});
+const { bgColor, txtColor } = useColor(toRef(() => P.color));
 
-const tColor = computed(() => {
-  if (P.color === "current") {
-    return `var(--color-currentBg)`;
-  }
-  return `var(--color-${P.color}Txt)`;
-});
+const icon = ref("");
 
 watch(
   () => P.name,
@@ -99,45 +66,16 @@ watch(
 );
 </script>
 <style>
-.H_icon {
-  display: block;
-  min-width: v-bind(size);
-  max-width: v-bind(size);
-  min-height: v-bind(size);
-  max-height: v-bind(size);
-  color: v-bind(bColor);
-  aspect-ratio: 1/1;
-  border-radius: 4px;
-}
-.H_icon[disabled] {
-  pointer-events: none;
-  opacity: 0.35;
-}
-
-.H_icon[outline] {
-  border: 1px solid currentColor;
-  padding: 0.15em;
-}
-
-.H_icon[round] {
-  border-radius: 50%;
-}
-
-.H_icon[filled] {
-  color: v-bind(tColor);
-  background-color: v-bind(bColor);
-  border: none;
-  padding: 0.2em;
-}
-
-.H_icon[btn]:hover {
-  outline: 2px solid var(--color-pri);
-  outline-offset: 2px;
-  /*  transform: scale(1.5); */
-}
-
-.H_icon[btn]:active {
-  border: 2px solid currentColor;
-  transform: scale(0.9);
+@layer components {
+  .H_icon {
+    display: block;
+    min-width: var(--icon-size);
+    max-width: var(--icon-size);
+    min-height: var(--icon-size);
+    max-height: var(--icon-size);
+    color: var(--icon-color);
+    aspect-ratio: 1/1;
+    border-radius: 4px;
+  }
 }
 </style>
