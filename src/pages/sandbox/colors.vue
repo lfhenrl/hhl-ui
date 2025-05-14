@@ -1,11 +1,16 @@
 <template>
   <div>
-    <div class="m-6 p-2 flex items-center gap-8 border border-err border-solid font-normal text-base">
+    <div class="m-6 p-2 flex items-center gap-1 border border-err border-solid font-normal text-base">
       <H_icon color="err" size="2em" />
 
       <H_input label="Input"> </H_input>
-      <H_icon name="edit" color="err" size="2em" />
-
+      <H_icon name="edit" color="err" size="2em" btn variant="filled-round" />
+      <H_btn size="xs"><H_icon name="edit" color="neutral" size="1.1em" /> XXX-xs</H_btn>
+      <H_btn size="xs">XXX-xs</H_btn>
+      <H_btn size="sm">XXX-sm</H_btn>
+      <H_btn size="md">XXX-md</H_btn>
+      <H_btn size="lg">XXX-lg</H_btn>
+      <H_btn size="xl" color="err">XXX-xl</H_btn>
       <H_select label="Select" />
       <H_datePicker label="Date" v-model="date" show-seconds></H_datePicker>
       {{ mytime }}
