@@ -4,6 +4,7 @@
       <H_icon color="err" size="2em" />
 
       <H_input label="Input"> </H_input>
+      <input type="radio" class="aspect-square h-[1.2em]" />
       <H_icon name="edit" color="err" size="2em" btn variant="filled-round" />
       <H_btn size="xs"><H_icon name="edit" color="neutral" size="1.1em" /> XXX-xs</H_btn>
       <H_btn size="xs">XXX-xs</H_btn>
@@ -21,6 +22,17 @@
         class="border border-txt5 rounded focus:outline-none px-1 py-0.5 focus:border-pri"
       />
       <H_timePicker label="Dato" v-model="mytime" />
+    </div>
+    <div class="m-6 p-2 flex items-center gap-1 border text-err border-solid">
+      <div class="">
+        <H_switch label="Switch" v-model="sw" variant="radio" value="n1" />
+        <H_switch label="Switch" v-model="sw" variant="radio" value="n2" />
+        <H_switch label="Switch" v-model="sw" variant="radio" value="n3" />
+        <H_switch label="Switch" v-model="sw" variant="radio" value="n4" />
+        <H_switch label="Switch" v-model="sw" variant="radio" value="n5" />
+        <H_switch label="Switch" v-model="sw" variant="radio" value="n6" />
+        {{ sw }}
+      </div>
     </div>
     <div class="flex items-center gap-4 flex-wrap">
       <H_tabs :default-tab="tab">
@@ -42,6 +54,8 @@ import { ref } from "vue";
 const date = ref(new Date());
 const mytime = ref();
 const tab = ref("tab1");
+
+const sw = ref(["n1"]);
 
 function changeTab(tabName: string) {
   tab.value = "";

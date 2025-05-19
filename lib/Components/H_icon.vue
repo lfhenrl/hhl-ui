@@ -22,7 +22,7 @@
 import { iconsProp } from "../SubComponents/icons/iconProp";
 import { useColor, useColorProp } from "../SubComponents/props/colorProp";
 import { icons } from "../SubComponents/icons/icons";
-import { ref, toRef, watch, type PropType } from "vue";
+import { shallowRef, toRef, watch, type PropType } from "vue";
 
 const P = defineProps({
   ...iconsProp,
@@ -44,7 +44,7 @@ const P = defineProps({
 
 const { bgColor, txtColor } = useColor(toRef(() => P.color));
 
-const icon = ref("");
+const icon = shallowRef("");
 
 watch(
   () => P.name,

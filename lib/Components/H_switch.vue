@@ -1,52 +1,62 @@
 <template>
-  <label class="H_switch" :class="{ 'flex-row-reverse': labelLeft }" :disabled="disabled ? '' : undefined">
+  <label
+    class="H_switch"
+    :style="{ '--switch-size': endSize, '--color-currentBg': txtColor, '--color-current': bgColor, gap: labelGap }"
+    :class="{ 'flex-row-reverse': labelLeft }"
+    :disabled="disabled ? '' : undefined"
+  >
     <input
-      v-show="P.switch === false"
-      :type
-      class="H_switch-input accent-current-bg-col aspect-square rounded h-[1.2em]"
+      v-show="P.variant !== 'switch'"
+      :type="P.variant === 'switch' ? 'checkbox' : P.variant"
+      class="H_switch-input accent-currentBg aspect-square h-[1.2em]"
       :aria-label="label === '' ? 'No label' : label"
       :value="value"
       v-model="modelValue"
     />
-    <span v-if="switch" class="slider relative inline-flex items-center bg-bg6"></span>
+    <span v-show="P.variant === 'switch'" class="slider relative inline-flex items-center bg-bg6"></span>
     <div class="H_switch-label overflow-hidden line-clamp-1 text-txt2 text-[.9em]">{{ label }}</div>
   </label>
 </template>
 
 <script setup lang="ts">
-import { type PropType } from "vue";
+import { toRef, type PropType } from "vue";
+import { useColor, useColorProp } from "../SubComponents/props/colorProp";
+import { sizeProp, useSize } from "../SubComponents/props/sizeProp";
 
 const P = defineProps({
+  ...useColorProp("pri"),
+  ...sizeProp,
+  value: {
+    type: [String, Number],
+    default: "",
+  },
   label: { type: String, default: "" },
   labelGap: { type: String, default: "6px" },
   labelLeft: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
-  switch: { type: Boolean, default: false },
-  value: {
-    type: [String, Number],
-  },
-  type: {
-    type: String as PropType<"checkbox" | "radio">,
+  variant: {
+    type: String as PropType<"checkbox" | "radio" | "switch">,
     default: "checkbox",
   },
 });
 
 const modelValue = defineModel();
+
+const { bgColor, txtColor } = useColor(toRef(() => P.color));
+const { endSize } = useSize(toRef(() => P.size));
 </script>
 
 <style>
 @layer components {
   .H_switch {
-    background-color: var(--color-pri);
-    color: var(--color-priTxt);
-    --color-currentBg: var(--color-pri);
-    --color-current: var(--color-priTxt);
     display: inline-flex;
     align-items: center;
     gap: 0.3em;
     background-color: transparent !important;
     cursor: pointer;
+    font-size: var(--switch-size);
   }
+
   .H_switch[disabled] {
     opacity: 40%;
     pointer-events: none;

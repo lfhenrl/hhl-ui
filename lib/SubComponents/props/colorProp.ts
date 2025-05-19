@@ -1,11 +1,5 @@
 import type { PropType, Ref } from "vue";
 import { ref, watch } from "vue";
-export const colorProp = {
-  color: {
-    type: String as PropType<"pri" | "ok" | "sec" | "warn" | "err" | "info" | "neutral" | "neutral-light">,
-    default: "neutral",
-  },
-};
 
 export function useColorProp(_default: string) {
   return {

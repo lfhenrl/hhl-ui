@@ -23,6 +23,7 @@ declare module 'vue' {
     Gantt: typeof import('./src/pages/sandbox/gantt.vue')['default']
     H_btn: typeof import('./lib/Components/H_btn.vue')['default']
     H_chartPie: typeof import('./lib/Components/charts/H_chartPie.vue')['default']
+    H_checkbox: typeof import('./lib/Components/H_checkbox.vue')['default']
     H_column: typeof import('./lib/Components/datagrid/H_column.vue')['default']
     H_datagrid: typeof import('./lib/Components/datagrid/H_datagrid.vue')['default']
     H_datePicker: typeof import('./lib/Components/H_datePicker.vue')['default']
