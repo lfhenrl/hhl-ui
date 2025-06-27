@@ -1,5 +1,5 @@
 <template>
-  <div class="_page h-full">
+  <div class="h-full">
     <H_datagrid
       @head-click="headClick"
       @row-click="rowClick"
