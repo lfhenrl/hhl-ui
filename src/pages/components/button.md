@@ -5,7 +5,6 @@
 You can change the size by the size property `"xs" | "sm" | "md" | "lg" | "xl"`<br>
 Default is `md`
 
-
 <hhl-live-editor title=""  htmlCode='
 <template>
       <div class="flex items-center gap-4 flex-wrap">
@@ -74,7 +73,7 @@ You disable by adding the props `disabled`
 
 ## Color
 
-You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "neutral" | "neutral-light"`. <br>
+You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6"`. <br>
 The default is `pri`.<br>
 
 If you need a special color then just use `style="background-color: purple: color: white"`

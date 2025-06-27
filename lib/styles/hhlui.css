@@ -2,3 +2,7 @@
 @import "./tw/utils.css";
 @import "./tw/colors.css";
 @source "../Components/";
+
+@theme {
+  --font-sans: "Public Sans", sans-serif;
+}

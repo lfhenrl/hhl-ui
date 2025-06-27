@@ -3,7 +3,7 @@
     <H_popover
       v-model="popupOpen"
       trigger="click"
-      :offset-top="8"
+      offset-top="8px"
       :modal="noOutsideClick"
       :readonly="readonly"
       class="flex items-center"
@@ -19,8 +19,7 @@
             readonly
             @focus="focused = !readonly"
             @blur="focused = false"
-            style="margin-bottom: 1px"
-            class="overflow-hidden cursor-pointer text-xm text-txt1 focus:outline-none leading-tight bg-transparent border-none appearance-none mb-px ml-1"
+            class="overflow-hidden cursor-pointer text-xm text-txt1 focus:outline-none leading-tight bg-transparent border-none appearance-none pointer-events-none"
           />
         </div>
       </template>

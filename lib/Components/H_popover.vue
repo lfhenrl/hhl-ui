@@ -1,26 +1,40 @@
 <template>
-  <div class="H_popover relative">
-    <div ref="referance" class="H_popover-referance flex items-center w-full" @mouseup="click" :readonly>
-      <slot name="referance"></slot>
-    </div>
-
-    <div
-      ref="popup"
-      @toggle="toggle"
-      :pos="pos"
-      v-movable="movable"
-      class="H_popover-popup absolute border-none p-0 opacity-0 shadow-lg"
-      :popover="popoverType"
-    >
-      <slot></slot>
-    </div>
+  <button
+    ref="referance"
+    :popovertarget="id"
+    type="button"
+    role="popover"
+    class="H_pop-referance appearance-none focus:ring-0 outline-none flex items-center"
+    :disabled="disabled || readonly"
+  >
+    <slot name="referance"></slot>
+  </button>
+  <div
+    :popover="closeAction"
+    v-bind="$attrs"
+    ref="popup"
+    :id="id"
+    class="H_pop-popup w-full drop-shadow-bg4 drop-shadow-md"
+    :class="{
+      top: placement.startsWith('top'),
+      bottom: placement.startsWith('bottom'),
+      right: placement.startsWith('right'),
+      left: placement.startsWith('left'),
+      widthAsRef: widthAsRef,
+    }"
+    :placement
+    :offsettop="offsetTop"
+    :offsetleft="offsetLeft"
+    @toggle="toggleEvent"
+  >
+    <slot></slot>
   </div>
 </template>
-<script setup lang="ts">
-import { computed, onMounted, type PropType, ref, watch } from "vue";
-import { Pop } from "../SubComponents/popover/Pop";
-import { vMovable } from "../Directives/v-movable";
 
+<script setup lang="ts">
+import { useId, useTemplateRef, watch, onMounted, type PropType } from "vue";
+
+const id = useId();
 const P = defineProps({
   placement: {
     type: String as PropType<
@@ -36,32 +50,30 @@ const P = defineProps({
       | "left"
       | "left-start"
       | "left-end"
-      | "center"
     >,
     default: "bottom-start",
   },
-  querySelector: { type: String, default: "" },
   closeAction: {
-    type: String as PropType<"auto" | "manual">,
+    type: String as PropType<"auto" | "manual" | "hint">,
     default: "auto",
   },
-  offsetTop: { type: Number, default: 0 },
-  offsetLeft: { type: Number, default: 0 },
-  padding: { type: Number, default: 20 },
-  widthAsRef: { type: Boolean, default: true },
   readonly: { type: Boolean, default: false },
+  disabled: { type: Boolean, default: false },
+  offsetTop: { type: String, default: "0" },
+  offsetLeft: { type: String, default: "0" },
+  widthAsRef: { type: Boolean, default: false },
   movable: { default: false, type: Boolean },
 });
-const modelValue = defineModel();
 defineExpose({
   open,
   close,
 });
-const dialogPos = new Pop();
-const pos = ref("NA");
-const referance = ref<HTMLInputElement | null>(null);
-const popup = ref<HTMLInputElement | null>(null);
-let IsOpen = false;
+const E = defineEmits(["toggled"]);
+const modelValue = defineModel();
+const popup = useTemplateRef("popup");
+
+let lastTop = 0;
+let lastLeft = 0;
 
 watch(modelValue, () => {
   if (modelValue.value === true) {
@@ -71,160 +83,155 @@ watch(modelValue, () => {
   }
 });
 
-function click() {
-  if (P.readonly) return;
-  popup.value?.togglePopover(!modelValue.value) ?? false;
-}
-
-function toggle(e: any) {
-  if (e.newState === "open") {
-    IsOpen = true;
-    dialogPos.startPos();
-    if (!modelValue.value) modelValue.value = true;
-  } else {
-    IsOpen = false;
-    dialogPos.endPos();
-    if (modelValue.value) modelValue.value = false;
+function open() {
+  if (popup.value) {
+    (popup.value as any).showPopover();
   }
 }
 
-const popoverType = computed(() => {
-  if (P.readonly) return "manual";
-  return P.closeAction;
-});
-
 function close() {
-  if (!IsOpen) return;
-  popup.value?.hidePopover();
+  if (popup.value) {
+    (popup.value as any).hidePopover?.();
+  }
 }
 
-function open() {
-  if (IsOpen) return;
-  popup.value?.showPopover();
+function toggleEvent(e: ToggleEvent) {
+  if (e.newState === "open") {
+    modelValue.value = true;
+    E("toggled", true);
+  } else if (e.newState === "closed") {
+    modelValue.value = false;
+    E("toggled", false);
+  }
 }
 
 onMounted(() => {
-  if (popup.value && referance.value) {
-    let cRef: any;
-    if (P.querySelector === "") {
-      cRef = referance.value;
-    } else {
-      cRef = referance.value.querySelector(P.querySelector) ?? referance.value;
+  if (popup.value && P.movable) {
+    const dragInitTest = popup.value.querySelector("[moveable-drag]") as HTMLElement;
+    let dragInit = {} as HTMLElement;
+    if (dragInitTest) {
+      dragInit = dragInitTest;
+      dragInit.onmousedown = dragMouseDown;
     }
-
-    dialogPos.init(cRef, popup.value, P, pos);
   }
 });
+
+function dragMouseDown(e: any) {
+  e.preventDefault();
+  if (modelValue.value !== true || !popup.value) return;
+  lastTop = e.clientY - parseInt(window.getComputedStyle(popup.value, null).getPropertyValue("top"));
+  lastLeft = e.clientX - parseInt(window.getComputedStyle(popup.value, null).getPropertyValue("left"));
+  document.addEventListener("mouseup", closeDragElement);
+  document.addEventListener("mousemove", elementDrag);
+}
+
+function elementDrag(e: MouseEvent) {
+  e.preventDefault();
+  if (!popup.value) return;
+
+  popup.value.style.top = -(lastTop - e.clientY) + "px";
+  popup.value.style.left = -(lastLeft - e.clientX) + "px";
+}
+
+function closeDragElement() {
+  document.removeEventListener("mouseup", closeDragElement);
+  document.removeEventListener("mousemove", elementDrag);
+}
 </script>
 
 <style>
-@layer components {
-  .H_popover-popup {
-    --scaleversion: scaleY-display;
-    transition: overlay 0.7s allow-discrete, display 0.7s allow-discrete;
-  }
+/* stylelint-disable declaration-property-value-no-unknown */
+/* stylelint-disable function-no-unknown */
+/* stylelint-disable custom-property-no-missing-var-function */
 
-  .H_popover-popup::backdrop {
-    inset: auto;
-  }
+.H_pop-referance {
+  anchor-name: v-bind("--" + id);
+}
 
-  .H_popover-popup.open-end {
-    opacity: 1;
-  }
+[moveable-drag] {
+  cursor: move;
+}
 
-  .H_popover-popup[pos="bottom"] {
-    --scaleversion: scaleY-display;
+.H_pop-popup {
+  position: absolute;
+  width: max-content;
+
+  background-color: transparent;
+  position-anchor: v-bind("--" + id);
+  margin-block: attr(offsettop type(<length>));
+  margin-inline: attr(offsetleft type(<length>));
+  --placement: attr(placement type(<custom-ident>));
+  position-area: if(
+    style(--placement: top): top; style(--placement: top-start): top span-right; style(--placement: top-end): top
+      span-left; style(--placement: right): right center; style(--placement: right-start): right span-bottom;
+      style(--placement: right-end): right span-top; style(--placement: bottom): bottom center;
+      style(--placement: bottom-start): bottom span-right; style(--placement: bottom-end): bottom span-left;
+      style(--placement: left): left center; style(--placement: left-start): left span-bottom;
+      style(--placement: left-end): left span-top; else: center;
+  );
+  position-try-fallbacks: flip-block, flip-inline;
+
+  transition: transform 0.3s, overlay 0.3s allow-discrete, display 0.5s allow-discrete;
+}
+
+.H_pop-popup.widthAsRef {
+  width: anchor-size(width);
+}
+
+.H_pop-popup.top {
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+.H_pop-popup.bottom {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.H_pop-popup.right {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.H_pop-popup.left {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.H_pop-popup.top:popover-open {
+  transform: scaleY(1);
+  transform-origin: bottom;
+}
+
+.H_pop-popup.bottom:popover-open {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+.H_pop-popup.right:popover-open {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.H_pop-popup.left:popover-open {
+  transform: scaleX(1);
+  transform-origin: right;
+}
+
+@starting-style {
+  .H_pop-popup.top:popover-open {
+    transform: scaleY(0);
+  }
+  .H_pop-popup.bottom:popover-open {
+    transform: scaleY(0);
     transform-origin: top;
   }
-
-  .H_popover-popup[pos="top"] {
-    --scaleversion: scaleY-display;
-    transform-origin: bottom;
-  }
-
-  .H_popover-popup[pos="left"] {
-    --scaleversion: scaleX-display;
-    transform-origin: right;
-  }
-
-  .H_popover-popup[pos="right"] {
-    --scaleversion: scaleX-display;
+  .H_pop-popup.right:popover-open {
+    transform: scaleX(0);
     transform-origin: left;
   }
-
-  .H_popover-popup:popover-open {
-    animation: var(--scaleversion) 0.4s forwards;
-  }
-
-  .H_popover-popup.close:not(:popover-open) {
-    animation: var(--scaleversion) reverse 0.3s forwards;
-  }
-
-  @keyframes scaleY-display {
-    0% {
-      opacity: 0;
-      transform: scaleY(1);
-    }
-
-    20% {
-      opacity: 0;
-      transform: scaleY(0);
-    }
-
-    100% {
-      opacity: 1;
-      transform: scaleY(1);
-    }
-  }
-  @keyframes scaleY-display--reversed {
-    0% {
-      opacity: 1;
-      transform: scaleY(1);
-    }
-
-    50% {
-      opacity: 0;
-      transform: scaleY(0);
-    }
-
-    100% {
-      opacity: 0;
-      transform: scaleY(0);
-    }
-  }
-
-  @keyframes scaleX-display {
-    0% {
-      opacity: 0;
-      transform: scaleX(1);
-    }
-
-    20% {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-
-    100% {
-      opacity: 1;
-      transform: scaleX(1);
-    }
-  }
-
-  @keyframes scaleX-display--reversed {
-    0% {
-      opacity: 1;
-      transform: scaleX(1);
-    }
-
-    50% {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-
-    100% {
-      opacity: 0;
-      transform: scaleX(0);
-    }
+  .H_pop-popup.left:popover-open {
+    transform: scaleX(0);
+    transform-origin: right;
   }
 }
 </style>

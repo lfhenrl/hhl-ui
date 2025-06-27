@@ -40,12 +40,7 @@
       v-if="col.filter.type !== 'none'"
       data-subtype="menuFilter"
     >
-      <H_icon
-        name="filter"
-        size="1.2rem"
-        class="pointer-events-none"
-        :color="col.filter.active ? 'white' : 'current'"
-      />
+      <H_icon name="filter" size="1.2rem" class="pointer-events-none" />
       <div class="pointer-events-none">Filter</div>
     </div>
 

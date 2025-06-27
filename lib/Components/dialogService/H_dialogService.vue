@@ -1,18 +1,18 @@
 <template>
   <div class="H_dialogService">
     <H_dialog v-model="dialogPop">
-      <template #header>{{ dialog.title }}</template>
-      {{ dialog.info }}
-      <template #footer>
-        <div class="H_dialogService-footer flex gap-4 justify-end">
-          <H_btn class="w-20 text-sm" :class="dialog.buttons.cancel.Color" @click="dialogCancel">
-            {{ dialog.buttons.cancel.Text }}
-          </H_btn>
-          <H_btn class="w-20 text-sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
-            {{ dialog.buttons.ok.Text }}
-          </H_btn>
-        </div>
-      </template>
+      <div moveable-drag class="col-pri py-1 text-center">{{ dialog.title }}</div>
+      <div class="p-3">
+        {{ dialog.info }}
+      </div>
+      <div class="H_dialogService-footer flex gap-4 justify-end px-3 pb-3">
+        <H_btn class="w-20 text-sm" :class="dialog.buttons.cancel.Color" @click="dialogCancel">
+          {{ dialog.buttons.cancel.Text }}
+        </H_btn>
+        <H_btn class="w-20 text-sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
+          {{ dialog.buttons.ok.Text }}
+        </H_btn>
+      </div>
     </H_dialog>
     <H_snack v-model="snackPop" :title="snack.title" :type="snack.type" :text="snack.text" @close="snackClose" />
   </div>

@@ -2,7 +2,7 @@
 
 The H_switch van be a checkbox, radio or a switch.<br>
 
-## Variant = checkbox (Default)
+## Variant checkbox (Default)
 
 <hhl-live-editor title="" htmlCode='
     <template>
@@ -21,7 +21,7 @@ The H_switch van be a checkbox, radio or a switch.<br>
 
 <br>
 
-## Variant = radio
+## Variant radio
 
 <hhl-live-editor title="" htmlCode='
     <template>
@@ -40,8 +40,7 @@ The H_switch van be a checkbox, radio or a switch.<br>
 
 <br>
 
-
-## Variant = switch
+## Variant switch
 
 <hhl-live-editor title="" htmlCode='
     <template>
@@ -57,7 +56,6 @@ The H_switch van be a checkbox, radio or a switch.<br>
     </script>
 '>
 </hhl-live-editor>
-
 
 <br>
 
@@ -111,18 +109,18 @@ Default is `md`
 <hhl-live-editor title="" htmlCode='
     <template>
     <div class="flex items-center gap-4 flex-wrap">
+        <H_switch size="xs" label="XS" v-model="radio" value="n1" variant="radio"></H_switch>
+        <H_switch size="sm"  label="SM" v-model="radio" value="n2" variant="radio"></H_switch>    
+        <H_switch size="md" label="MD default" v-model="radio" value="n3" variant="radio"></H_switch>
+        <H_switch size="lg"  label="LG" v-model="radio" value="n4" variant="radio"></H_switch>  
+        <H_switch size="xl"  label="XL" v-model="radio" value="n6" variant="radio"></H_switch>  
+    </div>
+    <div class="flex items-center gap-4 flex-wrap mt-9">
         <H_switch size="xs" label="XS" v-model="check"></H_switch>
         <H_switch size="sm"  label="SM" v-model="check"></H_switch>    
         <H_switch size="md" label="MD default" v-model="check"></H_switch>
         <H_switch size="lg"  label="LG" v-model="check"></H_switch>  
         <H_switch size="xl"  label="XL" v-model="check"></H_switch>  
-    </div>
-    <div class="flex items-center gap-4 flex-wrap mt-9">
-        <H_switch size="xs" label="XS" v-model="radio" value="n1" variant="radio"></H_switch>
-        <H_switch size="sm"  label="SM" v-model="radio" value="n2" variant="radio"></H_switch>    
-        <H_switch size="md" label="MD default" v-model="radio" value="n3" variant="radio"></H_switch>
-        <H_switch size="lg"  label="LG" v-model="radio" value="n4" variant="radio"></H_switch>  
-        <H_switch size="xl"  label="XL" v-model="radio" value="n5" variant="radio"></H_switch>  
     </div>
      <div class="flex items-center gap-4 flex-wrap mt-9">
         <H_switch size="xs" label="XS" v-model="sw" variant="switch"></H_switch>
@@ -144,44 +142,60 @@ Default is `md`
 <br>
 
 ## Color
-You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "neutral" | "neutral-light"`. <br>
+
+You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6"`. <br>
 The default is `pri`.<br>
-If you need a special color then just use `style="--color-currentBg: purple"`
+If you need a special color then just use `style="--color-pri: purple"`
 
 <hhl-live-editor title="" htmlCode='
     <template>
     <div class="flex items-center gap-4 flexWrap">
-        <H_switch label="col-pri" v-model="check" color="pri"></H_switch>
-        <H_switch label="col-sec" v-model="check" color="sec"></H_switch>    
-        <H_switch label="col-ok" v-model="check" color="ok"></H_switch>
-        <H_switch label="col-err" v-model="check" color="err"></H_switch>
-        <H_switch label="col-warn" v-model="check" color="warn"></H_switch>
-        <H_switch label="col-info" v-model="check" color="info"></H_switch>
-        <H_switch label="neutral" v-model="check" color="neutral"></H_switch>
-        <H_switch label="neutral-light" v-model="check" color="neutral-light"></H_switch>
-        <H_switch style="--color-currentBg: purple" label="purple" v-model="check"></H_switch>
+        <H_switch label="pri" v-model="check" variant="radio" color="pri" size="xs"></H_switch>
+        <H_switch label="sec" v-model="check" variant="radio" color="sec" size="xs"></H_switch>    
+        <H_switch label="ok" v-model="check" variant="radio" color="ok" size="xs"></H_switch>
+        <H_switch label="err" v-model="check" variant="radio" color="err" size="xs"></H_switch>
+        <H_switch label="warn" v-model="check" variant="radio" color="warn" size="xs"></H_switch>
+        <H_switch label="info" v-model="check" variant="radio" color="info" size="xs"></H_switch>
+        <H_switch label="txt0" v-model="check" variant="radio" color="txt0" size="xs"></H_switch>
+        <H_switch label="txt1" v-model="check" variant="radio" color="txt1" size="xs"></H_switch>
+        <H_switch label="txt2" v-model="check" variant="radio" color="txt2" size="xs"></H_switch>
+        <H_switch label="txt3" v-model="check" variant="radio" color="txt3" size="xs"></H_switch>
+        <H_switch label="txt4" v-model="check" variant="radio" color="txt4" size="xs"></H_switch>
+        <H_switch label="txt5" v-model="check" variant="radio" color="txt5" size="xs"></H_switch>
+        <H_switch label="txt6" v-model="check" variant="radio" color="txt6" size="xs"></H_switch>
+        <H_switch style="--color-pri: purple" variant="radio" label="purple" v-model="check" size="xs"></H_switch>
     </div>
     <div class="flex items-center gap-4 flexWrap mt-9">
-        <H_switch label="col-pri" v-model="radio" color="pri" variant="radio"></H_switch>
-        <H_switch label="col-sec" v-model="radio" color="sec" variant="radio"></H_switch>    
-        <H_switch label="col-ok" v-model="radio" color="ok" variant="radio"></H_switch>
-        <H_switch label="col-err" v-model="radio" color="err" variant="radio"></H_switch>
-        <H_switch label="col-warn" v-model="radio" color="warn" variant="radio"></H_switch>
-        <H_switch label="col-info" v-model="radio" color="info" variant="radio"></H_switch>
-        <H_switch label="neutral" v-model="radio" color="neutral" variant="radio"></H_switch>
-        <H_switch label="neutral-light" v-model="radio" color="neutral-light" variant="radio"></H_switch>
-        <H_switch style="--color-currentBg: purple" label="purple" v-model="radio" variant="radio"></H_switch>
+        <H_switch label="pri" v-model="radio" color="pri" size="xs"></H_switch>
+        <H_switch label="sec" v-model="radio" color="sec" size="xs"></H_switch>    
+        <H_switch label="ok" v-model="radio" color="ok" size="xs"></H_switch>
+        <H_switch label="err" v-model="radio" color="err" size="xs"></H_switch>
+        <H_switch label="warn" v-model="radio" color="warn" size="xs"></H_switch>
+        <H_switch label="info" v-model="radio" color="info" size="xs"></H_switch>
+        <H_switch label="txt0" v-model="radio" color="txt0" size="xs"></H_switch>
+        <H_switch label="txt1" v-model="radio" color="txt1" size="xs"></H_switch>
+        <H_switch label="txt2" v-model="radio" color="txt2" size="xs"></H_switch>
+        <H_switch label="txt3" v-model="radio" color="txt3" size="xs"></H_switch>
+        <H_switch label="txt4" v-model="radio" color="txt4" size="xs"></H_switch>
+        <H_switch label="txt5" v-model="radio" color="txt5" size="xs"></H_switch>
+        <H_switch label="txt6" v-model="radio" color="txt6" size="xs"></H_switch>
+        <H_switch style="--color-pri: purple" label="purple" v-model="radio"  size="xs"></H_switch>
     </div>
         <div class="flex items-center gap-4 flexWrap  mt-9">
-        <H_switch label="col-pri" v-model="sw" color="pri" variant="switch"></H_switch>
-        <H_switch label="col-sec" v-model="sw" color="sec" variant="switch"></H_switch>    
-        <H_switch label="col-ok" v-model="sw" color="ok" variant="switch"></H_switch>
-        <H_switch label="col-err" v-model="sw" color="err" variant="switch"></H_switch>
-        <H_switch label="col-warn" v-model="sw" color="warn" variant="switch"></H_switch>
-        <H_switch label="col-info" v-model="sw" color="info" variant="switch"></H_switch>
-        <H_switch label="neutral" v-model="sw" color="neutral" variant="switch"></H_switch>
-        <H_switch label="neutral-light" v-model="sw" color="neutral-light" variant="switch"></H_switch>
-        <H_switch style="--color-currentBg: purple" label="purple" v-model="sw" variant="switch"></H_switch>
+        <H_switch label="pri" v-model="sw" color="pri" variant="switch" size="xs"></H_switch>
+        <H_switch label="sec" v-model="sw" color="sec" variant="switch" size="xs"></H_switch>    
+        <H_switch label="ok" v-model="sw" color="ok" variant="switch" size="xs"></H_switch>
+        <H_switch label="err" v-model="sw" color="err" variant="switch" size="xs"></H_switch>
+        <H_switch label="warn" v-model="sw" color="warn" variant="switch" size="xs"></H_switch>
+        <H_switch label="info" v-model="sw" color="info" variant="switch" size="xs"></H_switch>
+        <H_switch label="txt0" v-model="sw" color="txt0" variant="switch" size="xs"></H_switch>
+        <H_switch label="txt1" v-model="sw" color="txt1" variant="switch" size="xs"></H_switch>
+        <H_switch label="txt2" v-model="sw" color="txt2" variant="switch" size="xs"></H_switch>
+        <H_switch label="txt3" v-model="sw" color="txt3" variant="switch" size="xs"></H_switch>
+        <H_switch label="txt4" v-model="sw" color="txt4" variant="switch" size="xs"></H_switch>
+        <H_switch label="txt5" v-model="sw" color="txt5" variant="switch" size="xs"></H_switch>
+        <H_switch label="txt6" v-model="sw" color="txt6" variant="switch" size="xs"></H_switch>
+        <H_switch style="--color-pri: purple" label="purple" v-model="sw" variant="switch" size="xs"></H_switch>
     </div>
     </template>
     <script>
@@ -200,39 +214,54 @@ If you need a special color then just use `style="--color-currentBg: purple"`
 You disable by adding the props `disabled`
 
 <hhl-live-editor title="" htmlCode='
-    <template>
-   <div class="flex items-center gap-4 flexWrap">
-        <H_switch disabled label="col-pri" v-model="check" color="pri"></H_switch>
-        <H_switch disabled label="col-sec" v-model="check" color="sec"></H_switch>    
-        <H_switch disabled label="col-ok" v-model="check" color="ok"></H_switch>
-        <H_switch disabled label="col-err" v-model="check" color="err"></H_switch>
-        <H_switch disabled label="col-warn" v-model="check" color="warn"></H_switch>
-        <H_switch disabled label="col-info" v-model="check" color="info"></H_switch>
-        <H_switch disabled label="neutral" v-model="check" color="neutral"></H_switch>
-        <H_switch disabled label="neutral-light" v-model="check" color="neutral-light"></H_switch>
-        <H_switch disabled style="--color-currentBg: purple" label="purple" v-model="check"></H_switch>
+<template>
+    <div class="flex items-center gap-4 flexWrap">
+        <H_switch label="pri" v-model="check" variant="radio" color="pri" size="xs" disabled></H_switch>
+        <H_switch label="sec" v-model="check" variant="radio" color="sec" size="xs" disabled></H_switch>    
+        <H_switch label="ok" v-model="check" variant="radio" color="ok" size="xs" disabled></H_switch>
+        <H_switch label="err" v-model="check" variant="radio" color="err" size="xs" disabled></H_switch>
+        <H_switch label="warn" v-model="check" variant="radio" color="warn" size="xs" disabled></H_switch>
+        <H_switch label="info" v-model="check" variant="radio" color="info" size="xs" disabled></H_switch>
+        <H_switch label="txt0" v-model="check" variant="radio" color="txt0" size="xs" disabled></H_switch>
+        <H_switch label="txt1" v-model="check" variant="radio" color="txt1" size="xs" disabled></H_switch>
+        <H_switch label="txt2" v-model="check" variant="radio" color="txt2" size="xs" disabled></H_switch>
+        <H_switch label="txt3" v-model="check" variant="radio" color="txt3" size="xs" disabled></H_switch>
+        <H_switch label="txt4" v-model="check" variant="radio" color="txt4" size="xs" disabled></H_switch>
+        <H_switch label="txt5" v-model="check" variant="radio" color="txt5" size="xs" disabled></H_switch>
+        <H_switch label="txt6" v-model="check" variant="radio" color="txt6" size="xs" disabled></H_switch>
+        <H_switch style="--color-currentBg: purple" variant="radio" label="purple" v-model="check" size="xs" disabled></H_switch>
     </div>
     <div class="flex items-center gap-4 flexWrap mt-9">
-        <H_switch disabled label="col-pri" v-model="radio" color="pri" variant="radio"></H_switch>
-        <H_switch disabled label="col-sec" v-model="radio" color="sec" variant="radio"></H_switch>    
-        <H_switch disabled label="col-ok" v-model="radio" color="ok" variant="radio"></H_switch>
-        <H_switch disabled label="col-err" v-model="radio" color="err" variant="radio"></H_switch>
-        <H_switch disabled label="col-warn" v-model="radio" color="warn" variant="radio"></H_switch>
-        <H_switch disabled label="col-info" v-model="radio" color="info" variant="radio"></H_switch>
-        <H_switch disabled label="neutral" v-model="radio" color="neutral" variant="radio"></H_switch>
-        <H_switch disabled label="neutral-light" v-model="radio" color="neutral-light" variant="radio"></H_switch>
-        <H_switch disabled style="--color-currentBg: purple" label="purple" v-model="radio" variant="radio"></H_switch>
+        <H_switch label="pri" v-model="radio" color="pri" size="xs" disabled></H_switch>
+        <H_switch label="sec" v-model="radio" color="sec" size="xs" disabled></H_switch>    
+        <H_switch label="ok" v-model="radio" color="ok" size="xs" disabled></H_switch>
+        <H_switch label="err" v-model="radio" color="err" size="xs" disabled></H_switch>
+        <H_switch label="warn" v-model="radio" color="warn" size="xs" disabled></H_switch>
+        <H_switch label="info" v-model="radio" color="info" size="xs" disabled></H_switch>
+        <H_switch label="txt0" v-model="radio" color="txt0" size="xs" disabled></H_switch>
+        <H_switch label="txt1" v-model="radio" color="txt1" size="xs" disabled></H_switch>
+        <H_switch label="txt2" v-model="radio" color="txt2" size="xs" disabled></H_switch>
+        <H_switch label="txt3" v-model="radio" color="txt3" size="xs" disabled></H_switch>
+        <H_switch label="txt4" v-model="radio" color="txt4" size="xs" disabled></H_switch>
+        <H_switch label="txt5" v-model="radio" color="txt5" size="xs" disabled></H_switch>
+        <H_switch label="txt6" v-model="radio" color="txt6" size="xs" disabled></H_switch>
+        <H_switch style="--color-currentBg: purple" label="purple" v-model="radio" variant="radio" size="xs" disabled></H_switch>
     </div>
         <div class="flex items-center gap-4 flexWrap  mt-9">
-        <H_switch disabled label="col-pri" v-model="sw" color="pri" variant="switch"></H_switch>
-        <H_switch disabled label="col-sec" v-model="sw" color="sec" variant="switch"></H_switch>    
-        <H_switch disabled label="col-ok" v-model="sw" color="ok" variant="switch"></H_switch>
-        <H_switch disabled label="col-err" v-model="sw" color="err" variant="switch"></H_switch>
-        <H_switch disabled label="col-warn" v-model="sw" color="warn" variant="switch"></H_switch>
-        <H_switch disabled label="col-info" v-model="sw" color="info" variant="switch"></H_switch>
-        <H_switch disabled label="neutral" v-model="sw" color="neutral" variant="switch"></H_switch>
-        <H_switch disabled label="neutral-light" v-model="sw" color="neutral-light" variant="switch"></H_switch>
-        <H_switch disabled style="--color-currentBg: purple" label="purple" v-model="sw" variant="switch"></H_switch>
+        <H_switch label="pri" v-model="sw" color="pri" variant="switch" size="xs" disabled></H_switch>
+        <H_switch label="sec" v-model="sw" color="sec" variant="switch" size="xs" disabled></H_switch>    
+        <H_switch label="ok" v-model="sw" color="ok" variant="switch" size="xs" disabled></H_switch>
+        <H_switch label="err" v-model="sw" color="err" variant="switch" size="xs" disabled></H_switch>
+        <H_switch label="warn" v-model="sw" color="warn" variant="switch" size="xs" disabled></H_switch>
+        <H_switch label="info" v-model="sw" color="info" variant="switch" size="xs" disabled></H_switch>
+        <H_switch label="txt0" v-model="sw" color="txt0" variant="switch" size="xs" disabled></H_switch>
+        <H_switch label="txt1" v-model="sw" color="txt1" variant="switch" size="xs" disabled></H_switch>
+        <H_switch label="txt2" v-model="sw" color="txt2" variant="switch" size="xs" disabled></H_switch>
+        <H_switch label="txt3" v-model="sw" color="txt3" variant="switch" size="xs" disabled></H_switch>
+        <H_switch label="txt4" v-model="sw" color="txt4" variant="switch" size="xs" disabled></H_switch>
+        <H_switch label="txt5" v-model="sw" color="txt5" variant="switch" size="xs" disabled></H_switch>
+        <H_switch label="txt6" v-model="sw" color="txt6" variant="switch" size="xs" disabled></H_switch>
+        <H_switch style="--color-currentBg: purple" label="purple" v-model="sw" variant="switch" size="xs" disabled></H_switch>
     </div>
     </template>
     <script>

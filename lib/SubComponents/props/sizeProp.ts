@@ -1,5 +1,5 @@
 import type { PropType, Ref } from "vue";
-import { ref, watch } from "vue";
+import { computed } from "vue";
 export const sizeProp = {
   size: {
     type: String as PropType<"xs" | "sm" | "md" | "lg" | "xl">,
@@ -14,16 +14,10 @@ const sizes: any = {
   lg: "1.25rem",
   xl: "1.5rem",
 };
+
 export function useSize(sizeProp: Ref<string>) {
-  const endSize = ref("1rem");
-
-  watch(
-    sizeProp,
-    (newSize) => {
-      endSize.value = sizes[newSize] || "1rem";
-    },
-    { immediate: true }
-  );
-
-  return { endSize };
+  const size = computed(() => {
+    return sizes[sizeProp.value] || sizes["md"];
+  });
+  return size as Ref<string>;
 }

@@ -1,100 +1,99 @@
-<template>
-  <label
-    class="H_switch"
-    :style="{ '--switch-size': endSize, '--color-currentBg': txtColor, '--color-current': bgColor, gap: labelGap }"
-    :class="{ 'flex-row-reverse': labelLeft }"
-    :disabled="disabled ? '' : undefined"
-  >
-    <input
-      v-show="P.variant !== 'switch'"
-      :type="P.variant === 'switch' ? 'checkbox' : P.variant"
-      class="H_switch-input accent-currentBg aspect-square h-[1.2em]"
-      :aria-label="label === '' ? 'No label' : label"
-      :value="value"
-      v-model="modelValue"
-    />
-    <span v-show="P.variant === 'switch'" class="slider relative inline-flex items-center bg-bg6"></span>
-    <div class="H_switch-label overflow-hidden line-clamp-1 text-txt2 text-[.9em]">{{ label }}</div>
-  </label>
-</template>
-
 <script setup lang="ts">
-import { toRef, type PropType } from "vue";
+import { computed, toRef, type PropType } from "vue";
 import { useColor, useColorProp } from "../SubComponents/props/colorProp";
 import { sizeProp, useSize } from "../SubComponents/props/sizeProp";
+import H_switchbase from "./H_switchbase.vue";
 
 const P = defineProps({
   ...useColorProp("pri"),
   ...sizeProp,
-  value: {
-    type: [String, Number],
-    default: "",
+  variant: {
+    type: String as PropType<"switch" | "checkbox" | "radio">,
+    default: "checkbox",
   },
-  label: { type: String, default: "" },
+  label: { type: String, default: "Label" },
   labelGap: { type: String, default: "6px" },
   labelLeft: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
-  variant: {
-    type: String as PropType<"checkbox" | "radio" | "switch">,
-    default: "checkbox",
+  setFocus: { type: Boolean, default: false },
+  value: {
+    type: [String, Number],
   },
 });
+const E = defineEmits(["update:modelValue"]);
+const model = defineModel();
 
-const modelValue = defineModel();
+const col = useColor(toRef(() => P.color));
+const endSize = useSize(toRef(() => P.size));
 
-const { bgColor, txtColor } = useColor(toRef(() => P.color));
-const { endSize } = useSize(toRef(() => P.size));
+const check = computed(() => {
+  if (P.value !== undefined) {
+    if (Array.isArray(model.value)) {
+      return model.value.includes(P.value);
+    }
+    return P.value === model.value;
+  } else {
+    return model.value !== undefined && model.value !== false;
+  }
+});
+
+function onClick() {
+  if (P.value !== undefined) {
+    if (Array.isArray(model.value)) {
+      const haveValue = model.value.includes(P.value);
+      if (haveValue) {
+        const newValue = model.value.filter((v: any) => v !== P.value);
+        E("update:modelValue", newValue);
+        return;
+      } else {
+        const newValue = [...model.value, P.value];
+        E("update:modelValue", newValue);
+        return;
+      }
+    }
+    if (model.value === P.value) {
+      E("update:modelValue", undefined);
+    } else {
+      E("update:modelValue", P.value);
+    }
+  } else {
+    E("update:modelValue", !model.value);
+  }
+}
 </script>
 
+<template>
+  <label
+    :size="endSize"
+    class="H_switch"
+    :class="{ 'flex-row-reverse': labelLeft }"
+    :style="{ gap: labelGap }"
+    :disabled="disabled ? '' : undefined"
+    @click.prevent="onClick"
+  >
+    <H_switchbase
+      :check
+      tabindex="0"
+      :variant
+      :disabled
+      :color="col.txt"
+      class="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pri"
+    />
+    <span class="text-txt2 whitespace-nowrap">{{ label }}</span>
+  </label>
+</template>
+
 <style>
-@layer components {
-  .H_switch {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3em;
-    background-color: transparent !important;
-    cursor: pointer;
-    font-size: var(--switch-size);
-  }
+/* stylelint-disable declaration-property-value-no-unknown */
+.H_switch {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  font-size: attr(size type(<length>));
+}
 
-  .H_switch[disabled] {
-    opacity: 40%;
-    pointer-events: none;
-  }
-  .H_switch .slider {
-    height: 1.2em;
-    aspect-ratio: 20 / 12;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-    border-radius: 1em;
-  }
-
-  .H_switch .slider:before {
-    position: absolute;
-    content: "";
-    height: 70%;
-    aspect-ratio: 1 / 1;
-    left: 5%;
-    background-color: var(--color-bg0);
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-    border-radius: 50%;
-  }
-
-  .H_switch input:checked + .slider {
-    background-color: color-mix(in srgb, var(--color-currentBg) 30%, white);
-  }
-
-  .H_switch input:focus + .slider {
-    box-shadow: 0 0 1px #2196f3;
-  }
-
-  .H_switch input:checked + .slider:before {
-    -webkit-transform: translateX(86%);
-    -ms-transform: translateX((86%));
-    transform: translateX((86%));
-    height: 78%;
-    background-color: var(--color-currentBg);
-  }
+.H_switch[disabled] {
+  pointer-events: none;
+  opacity: 50%;
 }
 </style>

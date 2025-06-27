@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <div class="flex flex-col">
     <H_select v-model="condition1" :list="list" hide-filter />
-    <H_datePicker v-model="value1" :show-seconds="col.filter.type === 'datetime'" class="-mt-4" />
+    <H_datePicker v-model="value1" :show-seconds="col.filter.type === 'datetime'" class="-mt-4 w-full" />
     <H_selectbox
       row
+      narrow
+      class="w-full mt-1 mb-1"
       list-gap="20px"
       label-gap="5px"
       v-model="logical"
@@ -13,7 +15,7 @@
       ]"
     />
     <H_select v-model="condition2" :list="list" hide-filter />
-    <H_datePicker v-model="value2" :show-seconds="col.filter.type === 'datetime'" class="-mt-4" />
+    <H_datePicker v-model="value2" :show-seconds="col.filter.type === 'datetime'" class="-mt-4 w-full" />
   </div>
 </template>
 

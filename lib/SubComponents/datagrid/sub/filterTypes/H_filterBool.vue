@@ -4,6 +4,7 @@
       multi
       list-gap="6px"
       v-model="value1"
+      class="w-full"
       :list="[
         { label: 'Is True', value: 'true' },
         { label: 'Is False', value: 'false' },

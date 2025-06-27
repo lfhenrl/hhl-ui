@@ -12,37 +12,33 @@ export const vMovable = {
     const dragInitTest = el.querySelector("[moveable-drag]") as HTMLElement;
     if (dragInitTest) {
       dragInit = dragInitTest;
-    } else {
-      dragInit = el;
-    }
-
-    dragInit.onmousedown = dragMouseDown;
-    function dragMouseDown(e: any) {
-      e = e || window.event;
-      e.preventDefault();
-      // get the mouse cursor position at startup:
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      if (el.offsetParent) {
-        maxRight = el.offsetParent?.clientWidth || 0;
-        maxBottom = el.offsetParent?.clientHeight || 0;
-      } else {
-        const pageContainer = document.querySelector("#page-container") as HTMLElement;
-        if (pageContainer) {
-          maxRight = pageContainer.offsetWidth + pageContainer.offsetLeft;
-          maxBottom = pageContainer.offsetHeight+ pageContainer.offsetTop;
+      dragInit.onmousedown = dragMouseDown;
+      function dragMouseDown(e: any) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        if (el.offsetParent) {
+          maxRight = el.offsetParent?.clientWidth || 0;
+          maxBottom = el.offsetParent?.clientHeight || 0;
         } else {
-          maxRight = document.body.offsetWidth;
-          maxBottom = document.body.clientHeight;
+          const pageContainer = document.querySelector("#page-container") as HTMLElement;
+          if (pageContainer) {
+            maxRight = pageContainer.offsetWidth + pageContainer.offsetLeft;
+            maxBottom = pageContainer.offsetHeight + pageContainer.offsetTop;
+          } else {
+            maxRight = document.body.offsetWidth;
+            maxBottom = document.body.clientHeight;
+          }
         }
-      }
 
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
     }
 
     function elementDrag(e: any) {
-      e = e || window.event;
       e.preventDefault();
       // calculate the new cursor position:
       pos1 = pos3 - e.clientX;
@@ -85,5 +81,5 @@ export const vMovable = {
   unmounted() {
     document.onmouseup = null;
     document.onmousemove = null;
-  }
+  },
 };

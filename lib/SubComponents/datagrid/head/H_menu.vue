@@ -1,5 +1,5 @@
 <template>
-  <H_popover ref="popupRef" class="flex items-center h-full max-w-12" :offset-top="8" :offset-left="2" position="fixed">
+  <H_popover ref="popupRef" offset-top="8px" offset-left="2px">
     <template v-slot:referance>
       <H_menuHead :index="index" />
     </template>

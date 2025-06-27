@@ -1,12 +1,6 @@
 <template>
-  <div class="flex items-center text-txt1 hover:bg-bg2">
-    <div
-      class="flex items-center justify-center w-4 h-4 rounded mr-0.5 border-txt1 border"
-      :class="{ 'col-pri border-none': data.visibel }"
-      @click="checkClick"
-    >
-      <H_icon name="check" size="0.95em" v-if="data.visibel" color="white" />
-    </div>
+  <div class="flex items-center text-txt1 hover:bg-bg2 ml-0.5">
+    <H_switchbase variant="checkbox" size="0.9em" :check="data.visibel" @click="checkClick" />
     <H_icon name="drag" size="1.2rem" btn />
     {{ data?.title }}
   </div>
@@ -14,6 +8,7 @@
 
 <script setup lang="ts">
 import H_icon from "../../../../Components/H_icon.vue";
+import H_switchbase from "../../../../Components/H_switchbase.vue";
 import { type PropType, ref } from "vue";
 
 type iGroupdata = {

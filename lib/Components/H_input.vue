@@ -1,6 +1,6 @@
 <template>
   <H_inputbase
-    @clear="model = null"
+    @clear="model = ''"
     :label="label"
     :clearable="showClear"
     :disabled="disabled ? '' : undefined"
@@ -11,7 +11,10 @@
     :narrow
     class="H_input"
   >
-    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 max-h-[1.875em] items-center px-1.5">
+    <div
+      class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 max-h-[1.875em] items-center px-1.5"
+      tabindex="-1"
+    >
       <slot> </slot>
       <input
         class="col-start-2 w-full bg-transparent border-none appearance-none focus:outline-none"

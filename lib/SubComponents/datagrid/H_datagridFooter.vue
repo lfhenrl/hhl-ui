@@ -1,9 +1,16 @@
 <template>
   <div class="flex items-center flex-wrap gap-2 text-txt3 border border-bg6 p-2 rounded-b">
-    <H_icon name="columns" size="1.6rem" btn title="Edit Columns" @click="editColumns" />
-    <H_icon name="expand_horizontal" size="1.6rem" btn title="Auto adjust all columns" @click="autoAdjustColumns" />
-    <H_icon name="excel" size="1.6rem" btn title="Download to excel" @click="excel" />
-    <H_icon name="zoom_out_map" size="1.6rem" btn title="fullScreen" @click="fullScreen" />
+    <H_icon name="columns" color="txt3" size="1.6rem" btn title="Edit Columns" @click="editColumns" />
+    <H_icon
+      name="expand_horizontal"
+      color="txt3"
+      size="1.6rem"
+      btn
+      title="Auto adjust all columns"
+      @click="autoAdjustColumns"
+    />
+    <H_icon name="excel" color="txt3" size="1.6rem" btn title="Download to excel" @click="excel" />
+    <H_icon name="zoom_out_map" color="txt3" size="1.6rem" btn title="fullScreen" @click="fullScreen" />
     <div style="flex: 1" />
     <div class="flex">
       <b>{{ DG.dataHandler?.rowsCount }}</b

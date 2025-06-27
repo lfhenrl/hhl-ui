@@ -1,6 +1,6 @@
 <template>
-  <H_popover :offset-left="-20" v-model="isOpen" movable class="H_menuFilter">
-    <div class="grid text-txt1 font-normal bg-bg2 overflow-hidden ring-1 ring-bg6 ring-inset rounded">
+  <H_popover offset-left="-20px" v-model="isOpen" movable class="H_menuFilter">
+    <div class="grid text-txt1 font-normal bg-bg0 overflow-hidden ring-1 ring-bg3 ring-inset rounded">
       <div
         moveable-drag
         class="flex items-center text-base font-bold bg-pri text-priTxt [&[moveable-drag]]:cursor-move py-1"
@@ -8,12 +8,12 @@
         <div class="flex-1" />
         <div>{{ col.props.title }}</div>
         <div class="flex-1" />
-        <H_icon name="close" btn color="white" class="cursor-pointer mr-0.5" @click="isOpen = false" />
+        <H_icon name="close" btn color="white" class="cursor-pointer mr-1" @click="isOpen = false" />
       </div>
       <div class="H_menuFilter_comp overflow-hidden px-4">
         <component ref="filterCompRef" :is="filtComponent" :index="index" />
       </div>
-      <div class="flex items-center justify-end gap-2 p-4">
+      <div class="flex items-center justify-end gap-2 p-4 pt-1">
         <H_btn @click="filterSave" class="bg-ok text-sm" :disabled="!filterCompRef?.canSave">OK</H_btn>
         <H_btn @click="filterClear" :disabled="!col.filter.active" class="text-sm">CLEAR</H_btn>
       </div>

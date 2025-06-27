@@ -13,7 +13,6 @@
       <template v-slot:head>
         <div style="display: flex; padding: 2px 0; flex: 1">
           <H_btn @click="load" style="width: 100px">Load</H_btn>
-          <H_icon name="edit" color="current" />
           <div style="flex: 1" />
           <H_input v-model="seek" clearable style="max-width: 200px">
             <H_icon name="search" set-end color="txt3" />

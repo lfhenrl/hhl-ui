@@ -1,7 +1,7 @@
 <template>
   <button
-    :style="{ '--color-currentBg': txtColor, '--color-current': bgColor, '--btn-size': endSize }"
-    class="H_btn hover:brightness-90 active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
+    :style="{ '--color-currentBg': col.txt, '--color-current': col.bg, '--btn-size': endSize }"
+    class="H_btn outline-none hover:brightness-90 active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
     type="button"
     :class="{
       'bg-transparent border text-currentBg border-currentBg border-solid ': variant === 'outline',
@@ -29,8 +29,8 @@ const P = defineProps({
   disabled: { type: Boolean, default: false },
 });
 
-const { bgColor, txtColor } = useColor(toRef(() => P.color));
-const { endSize } = useSize(toRef(() => P.size));
+const col = useColor(toRef(() => P.color));
+const endSize = useSize(toRef(() => P.size));
 </script>
 <style>
 @layer components {

@@ -16,14 +16,14 @@
         :class="{ activ: activeRoute === route.id }"
         >{{ route.name }}</router-link
       >
-      <H_popover class="popUp-external">
+      <H_popover offset-top="14px" offset-left="-8px">
         <template v-slot:referance>
           <div style="display: flex; align-items: center">
             <span class="text-pri"> External</span>
             <H_icon name="expand_down" size="1.4rem" btn />
           </div>
         </template>
-        <div class="popUp-external-body">
+        <div class="bg-bg3 p-2 rounded flex flex-col">
           <a href="https://v3.vuejs.org/guide/introduction.html" target="blank">Vue 3 Docs</a>
           <a href="https://vitejs.dev/" target="blank">Vite</a>
           <a href="https://materialdesignicons.com/" target="blank">Icons</a>
@@ -86,18 +86,5 @@ export default defineComponent({
 }
 .nav-bar-items-item.activ {
   border-bottom-width: 4px;
-}
-
-.popUp-external .H_pop-referance {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-.popUp-external .popUp-external-body {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 12px;
-  background-color: var(--color-bg0);
 }
 </style>

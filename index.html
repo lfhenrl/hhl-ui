@@ -17,11 +17,19 @@
         background-color: var(--color-bg0);
         color: var(--color-txt-0);
       }
+      #browserNotSupported {
+        display: none;
+      }
     </style>
   </head>
 
   <body>
     <div id="app"></div>
+    <div id="browserNotSupported">
+      <h1><b>Browser Not Supported</b></h1>
+      <p>This application requires the newest CCS features, which are not supported by your current browser.</p>
+      <p>Please use Chrome or Edge version >= 136.</p>
+    </div>
     <script type="module" src="/src/main.ts" type="text/javascript"></script>
   </body>
 </html>

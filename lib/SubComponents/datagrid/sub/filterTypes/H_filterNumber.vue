@@ -1,11 +1,13 @@
 <template>
   <div>
     <H_select v-model="condition1" :list="list" hide-filter />
-    <H_input type="number" v-model="value1" class="-mt-4" />
+    <H_input type="number" v-model="value1" class="-mt-4 w-full" />
     <H_selectbox
       row
       list-gap="20px"
       label-gap="5px"
+      class="w-full mt-1 mb-1"
+      narrow
       v-model="logical"
       :list="[
         { label: 'AND', value: 'and' },
@@ -13,7 +15,7 @@
       ]"
     />
     <H_select v-model="condition2" :list="list" hide-filter />
-    <H_input type="number" v-model="value2" class="-mt-4" />
+    <H_input type="number" v-model="value2" class="-mt-4 w-full" />
   </div>
 </template>
 

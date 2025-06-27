@@ -8,6 +8,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
       <template>
       <div class="flex items-center gap-4 flex-wrap">
       <H_select
+      variant="switch"
             :list="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
       </H_select>
@@ -15,7 +16,37 @@ The `H_select` component is dropdown selector for singel selection or multi sele
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
+            return { selection }
+      </script>
+'>
+</hhl-live-editor>
+
+<br>
+
+## Variant = checkbox (Default)
+
+<hhl-live-editor title="" htmlCode='
+      <template>
+      <div class="flex items-center gap-4 flex-wrap">
+      <H_select
+            :list="[`nr1`, `nr2`, `nr3`]" 
+            v-model="selection" label="checkbox default">
+      </H_select>
+            <H_select
+      variant="radio"
+            :list="[`nr1`, `nr2`, `nr3`]" 
+            v-model="selection" label="radio">
+      </H_select>
+            <H_select
+      variant="switch"
+            :list="[`nr1`, `nr2`, `nr3`]" 
+            v-model="selection" label="switch">
+      </H_select>
+      </div>
+      </template>
+      <script>
+            const selection = ref("nr2");
             return { selection }
       </script>
 '>
@@ -40,7 +71,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
             return { selection }
       </script>
 '>
@@ -63,7 +94,7 @@ Multi selections by adding `multi`
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
             return { selection }
       </script>
 '>
@@ -90,7 +121,7 @@ Multi selections by adding `multi`
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
             return { selection }
       </script>
 '>
@@ -114,11 +145,11 @@ You can add a Icon or other stoff with the start slot.
             v-model="selection" label="Selector">
                 <H_icon name="mail"></H_icon>
             </H_select>
-            <H_input readonly v-model="selection" label="Value" style="margin-top: 50px"></H_input>
+            <H_input readonly v-model="selection" label="Value"></H_input>
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
                function click(e) {
                   alert("Start Icon Clicked");
             }
@@ -144,7 +175,7 @@ Show filter by adding `showFilter`
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
             return { selection }
       </script>
 '>
@@ -167,7 +198,7 @@ Disabled by adding `disabled`
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
             return { selection }
       </script>
 '>

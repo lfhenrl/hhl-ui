@@ -1,15 +1,14 @@
 <template>
   <H_dialog v-model="open" movable>
-    <template #header>
-      <div class="flex items-center min-w-64 text-lg">
-        <div class="flex-1" />
-        <div class="">Columns</div>
-        <div class="flex-1" />
-        <H_icon name="close" btn color="white" class="cursor-pointer" @click="open = false" />
-      </div>
-    </template>
-    <div class="flex flex-col bg-bg0">
-      <H_inputbase label="Grouping" movelabel>
+    <div moveable-drag class="flex items-center min-w-64 text-lg col-pri text-center py-1">
+      <div class="flex-1" />
+      <div class="">Columns</div>
+      <div class="flex-1" />
+      <H_icon name="close" btn color="white" class="cursor-pointer mr-1" @click="open = false" />
+    </div>
+
+    <div class="flex flex-col p-3">
+      <H_inputbase label="Grouping" class="w-full mb-3" narrow>
         <H_dragDrop
           v-model="groupColumns"
           :max-items="3"
@@ -21,7 +20,7 @@
         </H_dragDrop>
       </H_inputbase>
 
-      <H_inputbase label="Columns" class="" movelabel>
+      <H_inputbase label="Columns" class="w-full" narrow>
         <H_dragDrop v-model="sourceColumns" class="flex flex-col gap-0.5 w-full p-1 overflow-auto max-h-80 min-h-80">
           <template v-slot:item="{ item, index }">
             <H_columnItem :item="item" :index="index" />
@@ -29,11 +28,10 @@
         </H_dragDrop>
       </H_inputbase>
     </div>
-    <template #footer>
-      <div class="flex justify-end">
-        <H_btn @click="columnsSave" class="bg-ok text-sm" :disabled="!canSave">OK</H_btn>
-      </div>
-    </template>
+
+    <div class="flex gap-4 justify-end px-3 pb-3">
+      <H_btn @click="columnsSave" class="bg-ok text-sm" :disabled="!canSave">OK</H_btn>
+    </div>
   </H_dialog>
 </template>
 

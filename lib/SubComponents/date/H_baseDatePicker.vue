@@ -1,6 +1,6 @@
 <template>
   <div :focused :readonly="readonly">
-    <H_popover v-model="popupOpen" :offset-top="8" :readonly="readonly" class="flex items-center">
+    <H_popover v-model="popupOpen" offset-top="8px" :readonly="readonly" class="flex items-center">
       <template v-slot:referance>
         <div class="group inline-flex items-center cursor-pointer h-full" title="Datepicker">
           <H_icon name="event" size="1.1rem" color="txt1" v-if="!hideIcon" />
@@ -12,7 +12,7 @@
             readonly
             @focus="focused = !readonly"
             @blur="focused = false"
-            class="overflow-hidden cursor-pointer text-xm text-txt1 focus:outline-none leading-tight bg-transparent border-none appearance-none mb-px ml-1"
+            class="overflow-hidden cursor-pointer text-xm text-txt1 focus:outline-none bg-transparent border-none appearance-none pointer-events-none"
           />
         </div>
       </template>

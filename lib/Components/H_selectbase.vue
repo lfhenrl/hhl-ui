@@ -1,55 +1,58 @@
 <template>
   <div
-    ref="selectbox"
-    class="H_selectbase focus:outline-none"
+    ref="baselist"
+    :size
+    class="H_selBase border-solid rounded"
     :class="{ '!flex-row ': row, '!flex-col': !row }"
-    @click="Click"
-    tabindex="0"
-    @keydown.up.prevent="KeyUp"
-    @keydown.down.prevent="KeyDown"
-    @keyup.enter.prevent="KeyEnter"
-    @keyup.space.prevent="KeyEnter"
     :style="{ gap: listGap }"
+    @click="Click"
   >
-    <div
-      class="H_selectbase-item flex items-center p-0 hover:bg-bg3 [&[focused]]:bg-bg2"
-      :class="{
-        'flex-row-reverse': labelLeft,
-        'mr-4': row,
-      }"
-      v-for="(item, index) in filterList"
-      :key="item.value as string"
-      :focused="activeFocus === index ? '' : undefined"
-      :selected="selected(item.value) ? '' : undefined"
-      :value="item.value"
+    <label
+      v-for="item in filterList"
+      class="inline-flex items-center justify-items-center hover:bg-bg3 rounded focus-within:outline-1 focus-within:outline-offset-1 focus-within:outline-pri w-fit"
+      :class="{ 'flex-row-reverse': labelLeft, 'justify-between w-full': justifyBetween }"
       :style="{ gap: labelGap }"
     >
-      <div class="pointer-events-none">
-        {{ item.label }}
-      </div>
-    </div>
+      <H_switchbase
+        :check="selected(item.value) ? true : false"
+        :variant
+        :color
+        :bgcolor
+        :value="item.value"
+        class="H_selectbase-item pointer-events-none outline-none"
+      />
+      <span class="text-txt2 whitespace-nowrap pointer-events-none">{{ item.label }}</span>
+    </label>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from "vue";
+import { computed, watch, type PropType } from "vue";
+import H_switchbase from "./H_switchbase.vue";
 
 const P = defineProps({
+  color: { String, default: "var(--color-pri)" },
+  bgcolor: { String, default: "var(--color-priTxt)" },
+  size: { type: String, default: "1em" },
   list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] },
   multi: { type: Boolean, default: true },
-  filter: { type: String, default: "" },
-  labelLeft: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
-  labelGap: { type: String, default: "2px" },
+  disabled: { type: Boolean, default: false },
+  filter: { type: String, default: "" },
+  justifyBetween: { type: Boolean, default: false },
+  labelLeft: { type: Boolean, default: false },
+  labelGap: { type: String, default: "6px" },
   listGap: { type: String, default: "2px" },
   row: { type: Boolean, default: false },
+  variant: {
+    type: String as PropType<"switch" | "checkbox" | "radio">,
+    default: "switch",
+  },
 });
 
-const model: any = defineModel();
+const E = defineEmits(["keyupTop"]);
+const modelValue: any = defineModel();
 const label: any = defineModel("label");
-const sortAlphaNum = (a: any, b: any) => a.localeCompare(b, "en", { numeric: true });
-const selectbox = ref<HTMLInputElement | null>(null);
-const activeFocus = ref(-1);
 
 const optionlist = computed(() => {
   return P.list.map((ele: any) => {
@@ -60,26 +63,6 @@ const optionlist = computed(() => {
   });
 });
 
-const listOfValues = computed(() => {
-  return optionlist.value.map((ele: any) => {
-    return ele.value;
-  });
-});
-
-watch(
-  model,
-  () => {
-    const valueList = model.value ? model.value.split(",") : [];
-    const val = optionlist.value
-      .filter((ele: any) => {
-        return valueList.includes(ele.value);
-      })
-      .map((ele: any) => ele.label);
-    label.value = val.toString();
-  },
-  { immediate: true }
-);
-
 const filterFunc = (item: any) => item.label.toLowerCase().includes(P.filter.toLowerCase());
 const filterList = computed(() => {
   if (P.filter && P.filter !== "") {
@@ -89,89 +72,63 @@ const filterList = computed(() => {
   }
 });
 
+watch(
+  modelValue,
+  () => {
+    const valueList = modelValue.value ? modelValue.value.split(",") : [];
+    const val = optionlist.value
+      .filter((ele: any) => {
+        return valueList.includes(ele.value);
+      })
+      .map((ele: any) => ele.label);
+    setTimeout(() => {
+      label.value = val.toString();
+    }, 0);
+  },
+  { immediate: true }
+);
+
+function selected(item: any) {
+  if (P.multi) {
+    if (modelValue.value) {
+      return modelValue.value.split(",").includes(item);
+    }
+  } else {
+    return item === modelValue.value ? true : null;
+  }
+}
+
 function Click(e: any) {
-  if (P.readonly) return;
+  if (P.readonly || P.disabled) return;
   let T: HTMLElement = e.target;
   if (!T.classList.contains("H_selectbase-item")) return;
+
   setValue(T.getAttribute("value"));
 }
 
 function setValue(val: any) {
   if (P.multi) {
-    const valueList = model.value ? model.value.split(",") : [];
+    const valueList = modelValue.value ? modelValue.value.split(",") : [];
     if (valueList.includes(val)) {
       const index = valueList.indexOf(val);
       valueList.splice(index, 1);
     } else {
       valueList.push(val);
     }
-    const valSort = valueList.sort(sortAlphaNum) ?? [];
-    model.value = valSort.toString();
+    //const valSort = valueList.sort(sortAlphaNum) ?? [];
+    modelValue.value = valueList.toString();
   } else {
-    model.value = val;
-  }
-}
-
-function selected(item: any) {
-  if (P.multi) {
-    if (model.value) {
-      return model.value.split(",").includes(item);
-    }
-  } else {
-    return item === model.value ? true : null;
-  }
-}
-
-function KeyUp() {
-  if (P.readonly) return;
-  if (activeFocus.value > 0) {
-    activeFocus.value = activeFocus.value - 1;
-  }
-}
-
-function KeyDown() {
-  if (P.readonly) return;
-  if (activeFocus.value < P.list.length - 1) {
-    activeFocus.value = activeFocus.value + 1;
-  }
-}
-
-function KeyEnter() {
-  if (P.readonly) return;
-  if (activeFocus.value < P.list.length && activeFocus.value >= 0) {
-    setValue(listOfValues.value[activeFocus.value]);
+    modelValue.value = val;
   }
 }
 </script>
 
 <style>
-@layer components {
-  .H_selectbase {
-    display: flex;
-    padding: 0;
-    outline-style: none;
-  }
-
-  .H_selectbase-item::before {
-    content: "";
-    font-size: 0.9em;
-    font-weight: bold;
-    line-height: 1.2em;
-    font-family: monospace;
-    max-height: 1.4em;
-    min-height: 1.4em;
-    max-width: 1.4em;
-    min-width: 1.4em;
-    border-radius: 4px;
-    text-align: center;
-    border: 1px solid var(--color-bg6) !important;
-  }
-
-  .H_selectbase-item[selected]::before {
-    content: "✓";
-    color: white;
-    background-color: var(--color-pri);
-    border-color: var(--color-pri);
-  }
+/* stylelint-disable declaration-property-value-no-unknown */
+.H_selBase {
+  display: flex;
+  width: 100%;
+  outline-style: none;
+  font-size: attr(size type(<length>));
 }
 </style>

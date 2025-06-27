@@ -12,7 +12,7 @@ The `H_selectBox` component is selector box for singel selection or multi select
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
             return { selection }
       </script>
 '>
@@ -32,7 +32,47 @@ By adding attribute "LabelLeft"
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
+            return { selection }
+      </script>
+'>
+</hhl-live-editor>
+
+<br>
+
+## Label gap
+
+By adding attribute "label gap"
+
+<hhl-live-editor title="" htmlCode='
+      <template>
+       <div class="flex items-center gap-4 flex-wrap"> 
+            <H_selectbox label-left :list="[`nr1`, `nr2`, `nr3`]" label-gap="22px" v-model="selection" label="Selector"></H_selectbox>
+            <H_input readonly v-model="selection" label="Selector"></H_input>
+      </div>
+      </template>
+      <script>
+            const selection = ref("nr2");
+            return { selection }
+      </script>
+'>
+</hhl-live-editor>
+
+<br>
+
+## List gap
+
+By adding attribute "list gap"
+
+<hhl-live-editor title="" htmlCode='
+      <template>
+       <div class="flex items-center gap-4 flex-wrap"> 
+            <H_selectbox label-left :list="[`nr1`, `nr2`, `nr3`]" list-gap="2px" v-model="selection" label="Selector"></H_selectbox>
+            <H_input readonly v-model="selection" label="Selector"></H_input>
+      </div>
+      </template>
+      <script>
+            const selection = ref("nr2");
             return { selection }
       </script>
 '>
@@ -52,9 +92,39 @@ By adding attribute "row"
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
             return { selection }
       </script>
+'>
+</hhl-live-editor>
+
+<br>
+
+## Color
+
+You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6"`. <br>
+The default is `pri`.<br>
+If you need a special color then just use `style="--color-pri: purple"`
+
+<hhl-live-editor title="" htmlCode='
+    <template>
+            <div class="flex items-center gap-4 flex-wrap">
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" color="pri" label="pri"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" color="ok" label="ok"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" color="sec" label="sec"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" color="warn" label="warn"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" color="err" label="err"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" color="info" label="info"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" color="black" label="black"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" color="txt3" label="txt3"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" color="txt6" label="txt6"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" style="--color-pri: purple" label="purple"></H_selectbox>
+        </div>
+    </template>
+    <script>
+    const selection = ref("nr2");
+    return { selection }
+    </script>
 '>
 </hhl-live-editor>
 
@@ -77,7 +147,7 @@ By adding attribute "row"
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
             return { selection }
       </script>
 '>
@@ -100,7 +170,7 @@ Multi selections by adding `multi`
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
             return { selection }
       </script>
 '>
@@ -127,7 +197,7 @@ Multi selections by adding `multi`
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
             return { selection }
       </script>
 '>
@@ -150,7 +220,7 @@ Disabled by adding `disabled`
       </div>
       </template>
       <script>
-            const selection = ref("");
+            const selection = ref("nr2");
             return { selection }
       </script>
 '>
