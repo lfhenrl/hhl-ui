@@ -15,6 +15,7 @@
       <textarea
         ref="el"
         v-model="model"
+        :autofocus
         :rows="rows"
         @click="$emit('input_click')"
         :maxlength="counter"
@@ -35,6 +36,7 @@ const P = defineProps({
   label: { type: String, default: "" },
   placeholder: { type: String, default: "" },
   clearable: { type: Boolean, default: false },
+  autofocus: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
   counter: { type: String, default: "" },

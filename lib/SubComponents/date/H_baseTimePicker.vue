@@ -6,28 +6,31 @@
       offset-top="8px"
       :modal="noOutsideClick"
       :readonly="readonly"
+      :autofocus
       class="flex items-center"
+      :ref-class="{ 'focus:outline-none': true, 'focus:bg-pri/30 rounded': !solo }"
     >
       <template v-slot:referance>
-        <div class="group inline-flex items-center cursor-pointer h-full" title="Timepicker">
+        <div class="group inline-flex items-center cursor-pointer h-full pl-1.5 pr-1" title="Timepicker">
           <H_icon name="clock" size="1.1rem" color="txt1" v-if="!hideIcon" />
           <input
             name="timepicker"
             title="Timepicker"
             :value="formattetTime"
             :size="setSize()"
+            tabindex="-1"
             readonly
             @focus="focused = !readonly"
             @blur="focused = false"
-            class="overflow-hidden cursor-pointer text-xm text-txt1 focus:outline-none leading-tight bg-transparent border-none appearance-none pointer-events-none"
+            class="overflow-hidden cursor-pointer text-xm text-txt1 bg-transparent border-none appearance-none"
           />
         </div>
       </template>
       <div @click.stop class="rounded bg-bg0 border-bg5 border">
         <H_timeTable v-model="tempDato" :show-seconds="showSeconds" :isopen="popupOpen" />
         <div class="flex justify-end gap-4 p-4 border-t border-bg4">
-          <H_btn size="sm" @click.stop="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
-          <H_btn size="sm" @click.stop="ok" class="text-sm w-18">OK</H_btn>
+          <H_btn tabindex="-1" size="sm" @click.stop="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
+          <H_btn tabindex="-1" size="sm" @click.stop="ok" class="text-sm w-18">OK</H_btn>
         </div>
       </div>
     </H_popover>
@@ -43,7 +46,9 @@ import H_icon from "../../Components/H_icon.vue";
 
 const props = defineProps({
   time: { type: Object, default: { hour: 0, minute: 0, second: 0 } },
+  autofocus: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
+  solo: { type: Boolean, default: false },
   hideIcon: { default: false, type: Boolean },
   showSeconds: { default: true, type: Boolean },
   noOutsideClick: { type: Boolean, default: false },

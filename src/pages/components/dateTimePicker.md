@@ -5,7 +5,7 @@
 <hhl-live-editor title="" style="overflow:none" htmlCode='
     <template>
     <div class="flex items-center gap-8 flex-wrap"> 
-          <H_date-picker label="Date" v-model="dato"></H_date-picker>
+          <H_date-picker autofocus label="Date" v-model="dato"></H_date-picker>
           <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
     </div>
     </template>

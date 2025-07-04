@@ -7,7 +7,7 @@ The H_switch van be a checkbox, radio or a switch.<br>
 <hhl-live-editor title="" htmlCode='
     <template>
     <div class="flex items-center gap-4 flex-wrap">
-        <H_switch label="Switch 1"  v-model="check" variant="checkbox"></H_switch>
+        <H_switch autofocus label="Switch 1"  v-model="check" variant="checkbox"></H_switch>
         <H_switch label="Switch 2" v-model="check" variant="checkbox"></H_switch>    
         <H_switch label="Switch 3" v-model="check" variant="checkbox"></H_switch>
     </div>

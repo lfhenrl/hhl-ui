@@ -36,6 +36,7 @@
 
 <script setup lang="ts">
 import type { PropType } from "vue";
+import H_icon from "./H_icon.vue";
 
 defineProps({
   check: { type: Boolean, default: false },
@@ -51,9 +52,11 @@ const E = defineEmits([]);
 
 <style>
 /* stylelint-disable declaration-property-value-no-unknown */
-.H_switchbase {
-  font-size: attr(size type(<length>));
-  --switch-color: attr(color type(<color>));
-  --switch-bgcolor: attr(bgcolor type(<color>));
+@layer components {
+  .H_switchbase {
+    font-size: attr(size type(<length>));
+    --switch-color: attr(color type(<color>));
+    --switch-bgcolor: attr(bgcolor type(<color>));
+  }
 }
 </style>

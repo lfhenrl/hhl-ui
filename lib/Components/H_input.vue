@@ -24,6 +24,8 @@
         :min
         :readonly
         :disabled
+        :autofocus
+        :tabindex
         autocomplete="off"
         :maxlength="counter"
         :type="type"
@@ -42,6 +44,8 @@ import { validateFunc } from "../utils/validateFunc";
 const P = defineProps({
   label: { type: String, default: "" },
   placeholder: { type: String, default: "" },
+  tabindex: { type: String, default: "" },
+  autofocus: { type: Boolean, default: false },
   clearable: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },

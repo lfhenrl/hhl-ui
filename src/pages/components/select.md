@@ -8,6 +8,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
       <template>
       <div class="flex items-center gap-4 flex-wrap">
       <H_select
+      autofocus
       variant="switch"
             :list="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">

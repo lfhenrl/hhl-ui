@@ -12,13 +12,13 @@
   >
     <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 items-center px-1.5">
       <slot> </slot>
-      <div class="H_inputbase-input col-start-2 flex items-center">
+      <div class="H_inputbase-input col-start-2 flex items-center pointer-events-none">
         <H_baseDatePicker
-          class="mr-2"
           :modelValue="dato"
           @dateChanged="setDate"
           :long-date="longDate"
           :hide-icon="hideIcon"
+          :autofocus
           :readonly="readonly"
           v-if="type === 'dateTime' || type === 'date'"
         />
@@ -27,6 +27,7 @@
           @timeChanged="setTime"
           :hide-icon="hideIcon"
           :readonly="readonly"
+          :autofocus
           :show-seconds="showSeconds"
           v-if="type === 'dateTime' || type === 'time'"
         />
@@ -49,6 +50,7 @@ const P = defineProps({
     default: "dateTime",
   },
   hideIcon: { default: false, type: Boolean },
+  autofocus: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
   longDate: { default: false, type: Boolean },
   hintStart: { type: String, default: "" },

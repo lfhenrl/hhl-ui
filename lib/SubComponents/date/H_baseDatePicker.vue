@@ -1,10 +1,18 @@
 <template>
   <div :focused :readonly="readonly">
-    <H_popover v-model="popupOpen" offset-top="8px" :readonly="readonly" class="flex items-center">
+    <H_popover
+      v-model="popupOpen"
+      offset-top="8px"
+      :readonly="readonly"
+      :autofocus
+      class="flex items-center"
+      ref-class="focus:outline-none focus:bg-pri/30 rounded"
+    >
       <template v-slot:referance>
-        <div class="group inline-flex items-center cursor-pointer h-full" title="Datepicker">
+        <div class="group inline-flex items-center pointer-events-none cursor-pointer h-full" title="Datepicker">
           <H_icon name="event" size="1.1rem" color="txt1" v-if="!hideIcon" />
           <input
+            tabindex="-1"
             name="datepicker"
             title="Datepicker"
             :value="formattetValueDate"
@@ -12,7 +20,7 @@
             readonly
             @focus="focused = !readonly"
             @blur="focused = false"
-            class="overflow-hidden cursor-pointer text-xm text-txt1 focus:outline-none bg-transparent border-none appearance-none pointer-events-none"
+            class="overflow-hidden cursor-pointer text-xm text-txt1 bg-transparent border-none appearance-none"
           />
         </div>
       </template>
@@ -29,8 +37,8 @@
         />
         <H_monthTable v-show="activeView == 'month'" v-model="tempDatomy" @month-selected="activeView = 'day'" />
         <div class="flex justify-end gap-4 p-4 border-t border-bg4">
-          <H_btn tabindex="3" @click.stop="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
-          <H_btn tabindex="0" @click.stop="ok" class="text-sm w-18">OK</H_btn>
+          <H_btn tabindex="-1" @click.stop="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
+          <H_btn tabindex="-1" @click.stop="ok" class="text-sm w-18">OK</H_btn>
         </div>
       </div>
     </H_popover>
@@ -49,6 +57,7 @@ import H_icon from "../../Components/H_icon.vue";
 
 const props = defineProps({
   modelValue: { type: Date, default: null },
+  autofocus: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
   hideIcon: { default: false, type: Boolean },
   longDate: { default: false, type: Boolean },
@@ -75,7 +84,7 @@ watch(
 
 function setSize() {
   if (props.longDate) {
-    return 13;
+    return 11;
   } else {
     return 8;
   }

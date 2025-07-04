@@ -1,9 +1,18 @@
 <template>
-  <H_popover ref="popup" @toggled="selectToggled" offset-top="-1em" :disabled :readonly width-as-ref>
+  <H_popover
+    ref-class="h_select focus:outline-none"
+    ref="popup"
+    @toggled="selectToggled"
+    offset-top="-1em"
+    :disabled
+    :readonly
+    width-as-ref
+    :autofocus
+  >
     <template v-slot:referance>
-      <div class="H_sel pointer-events-none text-left">
+      <div class="H_sel pointer-events-none text-left" tabindex="-1">
         <H_input
-          class="overflow-hidden"
+          class="overflow-hidden pointer-events-none"
           v-model="labelValue"
           :label="label"
           readonly
@@ -12,6 +21,7 @@
           :hintStart
           :hintEnd
           :validator
+          tabindex="-1"
         >
           <slot />
           <H_icon
@@ -19,6 +29,7 @@
             name="expand_down"
             color="txt2"
             set-end
+            tabindex="-1"
             class="pointer-events-none -mr-1 transition-transform duration-200"
             :class="{ 'rotate-180': isOpen }"
           />
@@ -52,6 +63,9 @@
 import { ref, toRef, useTemplateRef, watch, type PropType } from "vue";
 import { useColor, useColorProp } from "../SubComponents/props/colorProp";
 import H_selectbase from "./H_selectbase.vue";
+import H_popover from "./H_popover.vue";
+import H_input from "./H_input.vue";
+import H_icon from "./H_icon.vue";
 
 const P = defineProps({
   ...useColorProp("pri"),
@@ -64,6 +78,7 @@ const P = defineProps({
   listGap: { type: String, default: "3px" },
   placeholder: { type: String, default: "" },
   showFilter: { type: Boolean, default: false },
+  autofocus: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
   hintStart: { type: String, default: "" },
@@ -159,3 +174,10 @@ function getFocusList() {
   return { ok, focusIndex, list };
 }
 </script>
+<style>
+@layer components {
+  .h_select:focus .H_inputbase-slot {
+    border-color: var(--color-pri);
+  }
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
   <button
     :style="{ '--color-currentBg': col.txt, '--color-current': col.bg, '--btn-size': endSize }"
-    class="H_btn outline-none hover:brightness-90 active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
+    class="H_btn hover:brightness-90 active:scale-95 disabled:opacity-50 disabled:pointer-events-none focus:outline-2 focus:outline-offset-2 focus:outline-pri"
     type="button"
     :class="{
       'bg-transparent border text-currentBg border-currentBg border-solid ': variant === 'outline',
@@ -36,6 +36,7 @@ const endSize = useSize(toRef(() => P.size));
 @layer components {
   .H_btn {
     display: inline-flex;
+
     justify-content: center;
     align-items: center;
     font-family: "Public Sans", sans-serif;

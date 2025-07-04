@@ -78,60 +78,62 @@ function close() {
 </script>
 
 <style>
-.H_modal {
-  position: fixed;
-  z-index: 10;
-  inset-block: v-bind(insetTop);
-  inset-inline: v-bind(insetLeft);
-  transform: scaleY(0);
-  transition: opacity 0.3s, transform 0.2s, display 0.3s allow-discrete;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
-}
-
-[moveable-drag] {
-  cursor: move;
-}
-
-.H_modal[open] {
-  opacity: 1;
-  transform: scaleY(1);
-}
-
-@starting-style {
-  .H_modal[open] {
-    opacity: 0;
+@layer components {
+  .H_modal {
+    position: fixed;
+    z-index: 10;
+    inset-block: v-bind(insetTop);
+    inset-inline: v-bind(insetLeft);
     transform: scaleY(0);
-  }
-}
-
-.H_modal.modal::backdrop {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-.H_modal.shake {
-  animation: shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
-}
-
-@keyframes shaking {
-  10%,
-  90% {
-    transform: rotate(-1deg);
+    transition: opacity 0.3s, transform 0.2s, display 0.3s allow-discrete;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.2);
   }
 
-  20%,
-  80% {
-    transform: rotate(1deg);
+  [moveable-drag] {
+    cursor: move;
   }
 
-  30%,
-  50%,
-  70% {
-    transform: rotate(-1deg);
+  .H_modal[open] {
+    opacity: 1;
+    transform: scaleY(1);
   }
 
-  40%,
-  60% {
-    transform: rotate(1deg);
+  @starting-style {
+    .H_modal[open] {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+  }
+
+  .H_modal.modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .H_modal.shake {
+    animation: shaking 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+  }
+
+  @keyframes shaking {
+    10%,
+    90% {
+      transform: rotate(-1deg);
+    }
+
+    20%,
+    80% {
+      transform: rotate(1deg);
+    }
+
+    30%,
+    50%,
+    70% {
+      transform: rotate(-1deg);
+    }
+
+    40%,
+    60% {
+      transform: rotate(1deg);
+    }
   }
 }
 </style>

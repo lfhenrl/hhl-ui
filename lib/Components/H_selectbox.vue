@@ -22,9 +22,11 @@
       :labelLeft="labelLeft"
       :list="list"
       :variant
+      :autofocus
+      tabindex="0"
       :readonly
       :disabled
-      class="px-2"
+      class="xxxx px-2"
       :class="{ 'py-1': !row }"
     />
   </H_inputbase>
@@ -43,6 +45,7 @@ const P = defineProps({
   ...sizeProp,
   label: { type: String, default: "" },
   row: { type: Boolean, default: false },
+  autofocus: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
   filter: { type: String, default: "" },

@@ -14,6 +14,7 @@ const P = defineProps({
   label: { type: String, default: "Label" },
   labelGap: { type: String, default: "6px" },
   labelLeft: { type: Boolean, default: false },
+  autofocus: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   setFocus: { type: Boolean, default: false },
   value: {
@@ -77,6 +78,7 @@ function onClick() {
       :variant
       :disabled
       :color="col.txt"
+      :autofocus
       class="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pri"
     />
     <span class="text-txt2 whitespace-nowrap">{{ label }}</span>
@@ -85,15 +87,17 @@ function onClick() {
 
 <style>
 /* stylelint-disable declaration-property-value-no-unknown */
-.H_switch {
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  font-size: attr(size type(<length>));
-}
+@layer components {
+  .H_switch {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    font-size: attr(size type(<length>));
+  }
 
-.H_switch[disabled] {
-  pointer-events: none;
-  opacity: 50%;
+  .H_switch[disabled] {
+    pointer-events: none;
+    opacity: 50%;
+  }
 }
 </style>

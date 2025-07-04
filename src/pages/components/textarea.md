@@ -5,7 +5,7 @@
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4 flex-wrap">
-            <H_textarea v-model="txt" label="Text input"></H_textarea>
+            <H_textarea autofocus v-model="txt" label="Text input"></H_textarea>
             <H_input v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -18,8 +18,8 @@
 
 <br>
 
-
 ## No Autoresize
+
 By adding `no-grow="true"`
 
 <hhl-live-editor title="" htmlCode='
@@ -38,6 +38,7 @@ By adding `no-grow="true"`
 <br>
 
 ## No Autoresize and setting amounts of rows
+
 By adding `no-grow="true"` and `rows="5"`
 
 <hhl-live-editor title="" htmlCode='

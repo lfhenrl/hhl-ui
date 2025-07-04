@@ -5,7 +5,7 @@
 <hhl-live-editor title="" style="overflow:none" htmlCode='
     <template>
     <div class="flex items-center flex-wrap"> 
-          <H_time-picker label="Time" v-model="time"></H_time-picker>
+          <H_time-picker autofocus label="Time" v-model="time"></H_time-picker>
           <H_input readonly :model-value="time" label="Value"></H_input>
     </div>
     </template>
@@ -33,7 +33,6 @@
       </script>
 '>
 </hhl-live-editor>
-
 
 <br>
 

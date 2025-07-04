@@ -125,10 +125,12 @@ function setValue(val: any) {
 
 <style>
 /* stylelint-disable declaration-property-value-no-unknown */
-.H_selBase {
-  display: flex;
-  width: 100%;
-  outline-style: none;
-  font-size: attr(size type(<length>));
+@layer components {
+  .H_selBase {
+    display: flex;
+    width: 100%;
+    outline-style: none;
+    font-size: attr(size type(<length>));
+  }
 }
 </style>

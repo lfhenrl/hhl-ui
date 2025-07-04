@@ -4,7 +4,9 @@
     :popovertarget="id"
     type="button"
     role="popover"
-    class="H_pop-referance appearance-none focus:ring-0 outline-none flex items-center"
+    :autofocus
+    class="H_pop-referance flex items-center"
+    :class="refClass"
     :disabled="disabled || readonly"
   >
     <slot name="referance"></slot>
@@ -14,7 +16,7 @@
     v-bind="$attrs"
     ref="popup"
     :id="id"
-    class="H_pop-popup w-full drop-shadow-bg4 drop-shadow-md"
+    class="H_pop-popup drop-shadow-bg4 drop-shadow-md"
     :class="{
       top: placement.startsWith('top'),
       bottom: placement.startsWith('bottom'),
@@ -57,8 +59,10 @@ const P = defineProps({
     type: String as PropType<"auto" | "manual" | "hint">,
     default: "auto",
   },
+  autofocus: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
+  refClass: {},
   offsetTop: { type: String, default: "0" },
   offsetLeft: { type: String, default: "0" },
   widthAsRef: { type: Boolean, default: false },
@@ -143,95 +147,96 @@ function closeDragElement() {
 /* stylelint-disable declaration-property-value-no-unknown */
 /* stylelint-disable function-no-unknown */
 /* stylelint-disable custom-property-no-missing-var-function */
-
-.H_pop-referance {
-  anchor-name: v-bind("--" + id);
-}
-
-[moveable-drag] {
-  cursor: move;
-}
-
-.H_pop-popup {
-  position: absolute;
-  width: max-content;
-
-  background-color: transparent;
-  position-anchor: v-bind("--" + id);
-  margin-block: attr(offsettop type(<length>));
-  margin-inline: attr(offsetleft type(<length>));
-  --placement: attr(placement type(<custom-ident>));
-  position-area: if(
-    style(--placement: top): top; style(--placement: top-start): top span-right; style(--placement: top-end): top
-      span-left; style(--placement: right): right center; style(--placement: right-start): right span-bottom;
-      style(--placement: right-end): right span-top; style(--placement: bottom): bottom center;
-      style(--placement: bottom-start): bottom span-right; style(--placement: bottom-end): bottom span-left;
-      style(--placement: left): left center; style(--placement: left-start): left span-bottom;
-      style(--placement: left-end): left span-top; else: center;
-  );
-  position-try-fallbacks: flip-block, flip-inline;
-
-  transition: transform 0.3s, overlay 0.3s allow-discrete, display 0.5s allow-discrete;
-}
-
-.H_pop-popup.widthAsRef {
-  width: anchor-size(width);
-}
-
-.H_pop-popup.top {
-  transform: scaleY(0);
-  transform-origin: bottom;
-}
-
-.H_pop-popup.bottom {
-  transform: scaleY(0);
-  transform-origin: top;
-}
-
-.H_pop-popup.right {
-  transform: scaleX(0);
-  transform-origin: left;
-}
-
-.H_pop-popup.left {
-  transform: scaleX(0);
-  transform-origin: right;
-}
-
-.H_pop-popup.top:popover-open {
-  transform: scaleY(1);
-  transform-origin: bottom;
-}
-
-.H_pop-popup.bottom:popover-open {
-  transform: scaleY(1);
-  transform-origin: top;
-}
-
-.H_pop-popup.right:popover-open {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-.H_pop-popup.left:popover-open {
-  transform: scaleX(1);
-  transform-origin: right;
-}
-
-@starting-style {
-  .H_pop-popup.top:popover-open {
-    transform: scaleY(0);
+@layer components {
+  .H_pop-referance {
+    anchor-name: v-bind("--" + id);
   }
-  .H_pop-popup.bottom:popover-open {
+
+  [moveable-drag] {
+    cursor: move;
+  }
+
+  .H_pop-popup {
+    position: absolute;
+    width: max-content;
+
+    background-color: transparent;
+    position-anchor: v-bind("--" + id);
+    margin-block: attr(offsettop type(<length>));
+    margin-inline: attr(offsetleft type(<length>));
+    --placement: attr(placement type(<custom-ident>));
+    position-area: if(
+      style(--placement: top): top; style(--placement: top-start): top span-right; style(--placement: top-end): top
+        span-left; style(--placement: right): right center; style(--placement: right-start): right span-bottom;
+        style(--placement: right-end): right span-top; style(--placement: bottom): bottom center;
+        style(--placement: bottom-start): bottom span-right; style(--placement: bottom-end): bottom span-left;
+        style(--placement: left): left center; style(--placement: left-start): left span-bottom;
+        style(--placement: left-end): left span-top; else: center;
+    );
+    position-try-fallbacks: flip-block, flip-inline;
+
+    transition: transform 0.3s, overlay 0.3s allow-discrete, display 0.5s allow-discrete;
+  }
+
+  .H_pop-popup.widthAsRef {
+    width: anchor-size(width);
+  }
+
+  .H_pop-popup.top {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+
+  .H_pop-popup.bottom {
     transform: scaleY(0);
     transform-origin: top;
   }
-  .H_pop-popup.right:popover-open {
+
+  .H_pop-popup.right {
     transform: scaleX(0);
     transform-origin: left;
   }
-  .H_pop-popup.left:popover-open {
+
+  .H_pop-popup.left {
     transform: scaleX(0);
     transform-origin: right;
+  }
+
+  .H_pop-popup.top:popover-open {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+
+  .H_pop-popup.bottom:popover-open {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+
+  .H_pop-popup.right:popover-open {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  .H_pop-popup.left:popover-open {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+
+  @starting-style {
+    .H_pop-popup.top:popover-open {
+      transform: scaleY(0);
+    }
+    .H_pop-popup.bottom:popover-open {
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+    .H_pop-popup.right:popover-open {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    .H_pop-popup.left:popover-open {
+      transform: scaleX(0);
+      transform-origin: right;
+    }
   }
 }
 </style>

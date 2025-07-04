@@ -19,6 +19,8 @@
           :hide-icon="hideIcon"
           :readonly="readonly"
           :show-seconds="showSeconds"
+          :autofocus
+          solo
         />
       </div>
     </div>
@@ -38,6 +40,7 @@ const P = defineProps({
   hintEnd: { type: String, default: "" },
   showSeconds: { default: false, type: Boolean },
   noOutsideClick: { type: Boolean, default: false },
+  autofocus: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   label: { type: String, default: "" },
   clearable: Boolean,

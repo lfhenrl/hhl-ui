@@ -7,7 +7,7 @@ The `H_selectBox` component is selector box for singel selection or multi select
 <hhl-live-editor title="" htmlCode='
       <template>
        <div class="flex items-center gap-4 flex-wrap"> 
-            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectbox>
+            <H_selectbox autofocus :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectbox>
             <H_input readonly v-model="selection" label="Selector"></H_input>
       </div>
       </template>
@@ -87,7 +87,7 @@ By adding attribute "row"
 <hhl-live-editor title="" htmlCode='
       <template>
        <div class="flex items-center gap-4 flex-wrap"> 
-            <H_selectbox row :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectbox>
+            <H_selectbox  row :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectbox>
             <H_input readonly v-model="selection" label="Selector"></H_input>
       </div>
       </template>
