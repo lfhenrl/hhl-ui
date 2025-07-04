@@ -24,6 +24,9 @@
         <div moveable-drag class="col-pri py-1 text-center">Drag me!</div>
         <div class="p-33">Hej</div>
       </H_dialog>
+      <div class="henrik">
+        <svg class="larsen w-10 h-10">hej</svg>
+      </div>
     </div>
     <div class="m-6 p-2 flex items-center gap-1 border border-err border-solid">
       ssdsd:
@@ -160,6 +163,16 @@ console.log("tjek ", ddd()); // outputs: `Chrome 62`
 </script>
 
 <style>
+.henrik {
+  --xxx: "base";
+}
+
+@container style(--xxx: "base") {
+  .larsen {
+    background-color: aqua;
+  }
+}
+
 .my-popoverx {
   anchor-name: --thumb;
 }
