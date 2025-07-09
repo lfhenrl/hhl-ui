@@ -9,23 +9,23 @@
       ref-class="focus:outline-none focus:bg-pri/30 rounded"
     >
       <template v-slot:referance>
-        <div class="group inline-flex items-center pointer-events-none cursor-pointer h-full" title="Datepicker">
+        <div class="group inline-flex items-center cursor-pointer h-full" title="Datepicker">
           <H_icon name="event" size="1.1rem" color="txt1" v-if="!hideIcon" />
           <input
-            tabindex="-1"
             name="datepicker"
             title="Datepicker"
             :value="formattetValueDate"
             :size="setSize()"
+            tabindex="-1"
             readonly
             @focus="focused = !readonly"
             @blur="focused = false"
-            class="overflow-hidden cursor-pointer text-xm text-txt1 bg-transparent border-none appearance-none"
+            class="overflow-hidden cursor-pointer text-xm text-txt1 bg-transparent border-none appearance-none pointer-events-none"
           />
         </div>
       </template>
-      <div @click.stop class="rounded bg-bg0 border-bg5 border">
-        <div class="flex items-center text-lg text-txt1 font-bold justify-center bg-bg3 p-1">
+      <div @click.stop class="rounded bg-bg5">
+        <div class="flex items-center text-lg text-txt1 font-bold justify-center p-1 border-b border-txt6">
           {{ formattetTempDate }}
         </div>
         <H_dateTable
@@ -36,7 +36,7 @@
           @month-click="activeView = 'month'"
         />
         <H_monthTable v-show="activeView == 'month'" v-model="tempDatomy" @month-selected="activeView = 'day'" />
-        <div class="flex justify-end gap-4 p-4 border-t border-bg4">
+        <div class="flex justify-end gap-4 p-4 border-t border-txt6">
           <H_btn tabindex="-1" @click.stop="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
           <H_btn tabindex="-1" @click.stop="ok" class="text-sm w-18">OK</H_btn>
         </div>

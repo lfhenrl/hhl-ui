@@ -1,5 +1,5 @@
 <template>
-  <div class="menu-right">
+  <div class="menu-right mt-1">
     <div
       class="menu-right-links"
       :class="{ 'menu-right-links-selected': item.id === activeIndex }"
@@ -108,7 +108,7 @@ export default MenuRight;
   min-width: 160px;
   max-width: 160px;
   overflow: auto;
-  background-color: var(--color-bg1);
+  background-color: var(--color-bg3);
   padding: 8px;
   font-size: 14px;
 }

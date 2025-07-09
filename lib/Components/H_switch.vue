@@ -67,21 +67,13 @@ function onClick() {
   <label
     :size="endSize"
     class="H_switch"
-    :class="{ 'flex-row-reverse': labelLeft }"
+    :labelLeft="labelLeft ? '' : undefined"
     :style="{ gap: labelGap }"
     :disabled="disabled ? '' : undefined"
     @click.prevent="onClick"
   >
-    <H_switchbase
-      :check
-      tabindex="0"
-      :variant
-      :disabled
-      :color="col.txt"
-      :autofocus
-      class="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pri"
-    />
-    <span class="text-txt2 whitespace-nowrap">{{ label }}</span>
+    <H_switchbase :check tabindex="0" :variant :disabled :color="col.txt" :bgcolor="col.bg" :autofocus />
+    <span class="H_switch__label">{{ label }}</span>
   </label>
 </template>
 
@@ -93,11 +85,24 @@ function onClick() {
     align-items: center;
     width: fit-content;
     font-size: attr(size type(<length>));
-  }
+    &[disabled] {
+      pointer-events: none;
+      opacity: 50%;
+    }
 
-  .H_switch[disabled] {
-    pointer-events: none;
-    opacity: 50%;
+    &[labelLeft] {
+      flex-direction: row-reverse;
+    }
+
+    .H_switchbase:focus-visible {
+      outline: solid 2px var(--color-pri);
+      outline-offset: 2px;
+    }
+
+    .H_switch__label {
+      white-space: nowrap;
+      color: var(--color-txt2);
+    }
   }
 }
 </style>

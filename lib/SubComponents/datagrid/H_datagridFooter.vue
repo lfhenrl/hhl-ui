@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center flex-wrap gap-2 text-txt3 border border-bg6 p-2 rounded-b">
+  <div class="flex items-center flex-wrap gap-2 text-txt3 bg-bg2 border border-txt6 p-2 rounded-b">
     <H_icon name="columns" color="txt3" size="1.6rem" btn title="Edit Columns" @click="editColumns" />
     <H_icon
       name="expand_horizontal"

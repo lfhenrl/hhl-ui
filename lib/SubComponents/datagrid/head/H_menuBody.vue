@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="flex flex-col ring-1 ring-bg6 ring-inset rounded bg-bg0 pt-1text-txt1 text-sm font-light"
-    @click="menuClick"
-  >
+  <div class="flex flex-col rounded bg-bg5 pt-1text-txt1 text-sm font-light shadow-theme-md" @click="menuClick">
     <div
       class="flex items-center pl-1 pr-3 py-1.5 cursor-pointer gap-2 border-b border-b-bg4 hover:bg-bg3"
       :class="{ 'bg-pri text-priTxt': col.sortDirection.value === 'asc' }"

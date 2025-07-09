@@ -1,5 +1,5 @@
 <template>
-  <div class="gap-8">
+  <div class="flex flex-col gap-4 py-4">
     <H_selectbox
       multi
       list-gap="6px"

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center bg-bg3 text-txt1 text-xl leading-none p-1.5">
+  <div class="flex items-center justify-center text-txt1 text-xl leading-none p-1.5 border-b border-txt6">
     <div
       class="p-0.5 rounded cursor-pointer"
       @click.stop.prevent="timeBase = 'hour'"

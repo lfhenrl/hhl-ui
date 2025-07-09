@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col flex-0 border-r border-bg5 min-h-[34px] w-min"
+    class="flex flex-col flex-0 border-r border-txt7 min-h-[34px] w-min"
     ref="headCellRef"
     :data-col-index="index"
     data-type="headcell"

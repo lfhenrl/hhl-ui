@@ -13,7 +13,7 @@
   --color-info: #17a2b8;
   --color-infoTxt: #fff;
 
-  --color-txt0: hsl(0, 0%, 0%);
+  /*   --color-txt0: hsl(0, 0%, 0%);
   --color-txt1: hsl(0, 0%, 17%);
   --color-txt2: hsl(0, 0%, 27%);
   --color-txt3: hsl(0, 0%, 37%);
@@ -26,10 +26,35 @@
   --color-bg3: hsl(0, 0%, 88%);
   --color-bg4: hsl(0, 0%, 84%);
   --color-bg5: hsl(0, 0%, 80%);
-  --color-bg6: hsl(0, 0%, 76%);
+  --color-bg6: hsl(0, 0%, 76%); */
+
+  --color-bg0: oklch(0.94 0.01 250);
+  --color-bg1: oklch(0.95 0.01 250);
+  --color-bg2: oklch(0.96 0.01 250);
+  --color-bg3: oklch(0.97 0.01 250);
+  --color-bg4: oklch(0.98 0.01 250);
+  --color-bg5: oklch(0.99 0.01 250);
+  --color-bg6: oklch(1 0.01 250);
+
+  --color-txt0: oklch(0.1 0.04 250);
+  --color-txt1: oklch(0.4 0.04 250);
+  --color-txt2: oklch(0.5 0.04 250);
+  --color-txt3: oklch(0.6 0.04 250);
+  --color-txt4: oklch(0.65 0.04 250);
+  --color-txt5: oklch(0.7 0.04 250);
+  --color-txt6: oklch(0.75 0.04 250);
+  --color-txt7: oklch(0.9 0.04 250);
 
   --color-black: black;
   --color-white: white;
   --color-current: var(--color-txt2);
   --color-currentBg: var(--color-bg0);
+  --x-theme-sm: 1px 2px 3px -3px rgb(143, 143, 143), -1px 2px 3px -3px rgb(143, 143, 143),
+    0 -3px 3px -3px rgb(235, 232, 232);
+  --x-theme-md: 1px 2px 6px -6px black, -1px 2px 6px -6px black, 0 -2px 10px -6px rgb(215, 211, 223);
+  --x-theme-lg: 1px 4px 6px -6px black, -1px 4px 6px -6px black, 0 -4px 10px -6px rgb(215, 211, 223);
+
+  --shadow-theme-sm: var(--x-theme-sm);
+  --shadow-theme-md: var(--x-theme-md);
+  --shadow-theme-lg: var(--x-theme-lg);
 }

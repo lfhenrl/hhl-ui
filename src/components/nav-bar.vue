@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav-bar">
+  <nav class="nav-bar shadow-theme-sm">
     <H_icon name="menu" size="1.8rem" btn @click.stop="$emit('update:modelValue', !modelValue)" v-if="small" />
     <router-link to="/" class="nav-bar-home">
       <img src="/icon.svg" height="30" width="32" alt="Logo" href="#" />
@@ -16,14 +16,14 @@
         :class="{ activ: activeRoute === route.id }"
         >{{ route.name }}</router-link
       >
-      <H_popover offset-top="14px" offset-left="-8px">
+      <H_popover offset-top="4px" offset-left="-8px">
         <template v-slot:referance>
           <div style="display: flex; align-items: center">
             <span class="text-pri"> External</span>
             <H_icon name="expand_down" size="1.4rem" btn />
           </div>
         </template>
-        <div class="bg-bg3 p-2 rounded flex flex-col">
+        <div class="bg-bg6 p-2 rounded flex flex-col">
           <a href="https://v3.vuejs.org/guide/introduction.html" target="blank">Vue 3 Docs</a>
           <a href="https://vitejs.dev/" target="blank">Vite</a>
           <a href="https://materialdesignicons.com/" target="blank">Icons</a>

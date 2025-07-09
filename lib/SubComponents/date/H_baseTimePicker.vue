@@ -22,13 +22,13 @@
             readonly
             @focus="focused = !readonly"
             @blur="focused = false"
-            class="overflow-hidden cursor-pointer text-xm text-txt1 bg-transparent border-none appearance-none"
+            class="overflow-hidden cursor-pointer text-xm text-txt1 bg-transparent border-none appearance-none pointer-events-none"
           />
         </div>
       </template>
-      <div @click.stop class="rounded bg-bg0 border-bg5 border">
+      <div @click.stop class="rounded bg-bg5">
         <H_timeTable v-model="tempDato" :show-seconds="showSeconds" :isopen="popupOpen" />
-        <div class="flex justify-end gap-4 p-4 border-t border-bg4">
+        <div class="flex justify-end gap-4 p-4 border-t border-txt6">
           <H_btn tabindex="-1" size="sm" @click.stop="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
           <H_btn tabindex="-1" size="sm" @click.stop="ok" class="text-sm w-18">OK</H_btn>
         </div>

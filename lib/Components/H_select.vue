@@ -1,20 +1,21 @@
 <template>
   <H_popover
-    ref-class="h_select focus:outline-none"
+    ref-class="h_select focus:outline-none group"
     ref="popup"
     @toggled="selectToggled"
-    offset-top="-1em"
+    offset-top="2px"
     :disabled
     :readonly
-    width-as-ref
     :autofocus
+    width-as-ref
   >
     <template v-slot:referance>
-      <div class="H_sel pointer-events-none text-left" tabindex="-1">
+      <div class="H_sel pointer-events-none text-left">
         <H_input
-          class="overflow-hidden pointer-events-none"
+          class="pointer-events-none"
+          ref-class="group-focus:border-pri"
           v-model="labelValue"
-          :label="label"
+          :label
           readonly
           :disabled
           :placeholder
@@ -36,9 +37,17 @@
         </H_input>
       </div>
     </template>
-    <div class="H_sel-list flex flex-col bg-bg0 rounded inset-ring inset-ring-bg4 h-full" @keydown="keyDown">
-      <H_input v-if="showFilter" ref="filterInput" narrow v-model="filterValue" clearable class="mx-2 mt-2 w-fit">
-        <H_icon name="search" color="txt2" size="1.2em" set-end />
+    <div class="H_sel-list flex flex-col bg-bg6 rounded h-full" @keydown="keyDown">
+      <H_input
+        v-if="showFilter"
+        ref="filterInput"
+        narrow
+        v-model="filterValue"
+        clearable
+        class="mx-2 mt-2 w-fit"
+        tabindex="-1"
+      >
+        <H_icon name="search" color="txt2" size="1.2em" set-end tabindex="-1" />
       </H_input>
       <H_selectbase
         class="p-2.5"
@@ -54,6 +63,7 @@
         :label-left
         v-model:label="labelValue"
         :filter="filterValue"
+        tabindex="-1"
       />
     </div>
   </H_popover>

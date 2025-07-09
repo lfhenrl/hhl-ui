@@ -7,8 +7,8 @@
       <H_icon name="close" btn color="white" class="cursor-pointer mr-1" @click="open = false" />
     </div>
 
-    <div class="flex flex-col p-3">
-      <H_inputbase label="Grouping" class="w-full mb-3" narrow>
+    <div class="flex flex-col gap-8 px-4 pt-8">
+      <H_inputbase label="Grouping" class="w-full">
         <H_dragDrop
           v-model="groupColumns"
           :max-items="3"
@@ -29,7 +29,7 @@
       </H_inputbase>
     </div>
 
-    <div class="flex gap-4 justify-end px-3 pb-3">
+    <div class="flex gap-4 justify-end px-4 pb-3 mt-4">
       <H_btn @click="columnsSave" class="bg-ok text-sm" :disabled="!canSave">OK</H_btn>
     </div>
   </H_dialog>

@@ -8,6 +8,7 @@
     class="H_pop-referance flex items-center"
     :class="refClass"
     :disabled="disabled || readonly"
+    :tabindex
   >
     <slot name="referance"></slot>
   </button>
@@ -16,7 +17,7 @@
     v-bind="$attrs"
     ref="popup"
     :id="id"
-    class="H_pop-popup drop-shadow-bg4 drop-shadow-md"
+    class="H_pop-popup shadow-theme-lg"
     :class="{
       top: placement.startsWith('top'),
       bottom: placement.startsWith('bottom'),
@@ -63,6 +64,7 @@ const P = defineProps({
   readonly: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   refClass: {},
+  tabindex: { type: String, default: "0" },
   offsetTop: { type: String, default: "0" },
   offsetLeft: { type: String, default: "0" },
   widthAsRef: { type: Boolean, default: false },
@@ -152,9 +154,9 @@ function closeDragElement() {
     anchor-name: v-bind("--" + id);
   }
 
-  [moveable-drag] {
+  /*   [moveable-drag] {
     cursor: move;
-  }
+  } */
 
   .H_pop-popup {
     position: absolute;

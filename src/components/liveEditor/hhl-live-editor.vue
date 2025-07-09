@@ -1,5 +1,5 @@
 <template>
-  <div class="hhl-live-editor shadow-lg border border-bg3 rounded border-solid" ref="el">
+  <div class="hhl-live-editor bg-bg3 shadow-theme-md border border-bg3 rounded border-solid" ref="el">
     <div class="hhl-live-editor_errBox" v-show="showError" v-movable>
       <div class="hhl-live-editor_errBox_title" moveable-drag>
         <div>Error</div>
@@ -155,7 +155,7 @@ export default defineComponent({
 }
 .hhl-live-editor_errBox_body {
   color: var(--color-err);
-  font-size: 14p;
+  font-size: 14px;
   margin: 8px;
 }
 .hhl-live-editor_topBar {
@@ -164,7 +164,7 @@ export default defineComponent({
   gap: 8px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  background-color: var(--color-bg2);
+  background-color: var(--color-bg3);
   color: var(--color-txt3);
   padding: 4px;
 }

@@ -8,7 +8,7 @@
     :HelpTextStart="hintStart"
     :HelpTextEnd="stringCounter"
     :ErrorMessage="validate"
-    :narrow
+    :refClass
     class="H_input"
   >
     <div
@@ -17,7 +17,7 @@
     >
       <slot> </slot>
       <input
-        class="col-start-2 w-full bg-transparent border-none appearance-none focus:outline-none"
+        class="col-start-2 bg-transparent border-none appearance-none focus:outline-none"
         :class="{ 'w-[3em] h-[1em] p-0': type === 'color' }"
         v-model="model"
         :max
@@ -54,7 +54,7 @@ const P = defineProps({
   min: { type: String, default: "" },
   hintStart: { type: String, default: "" },
   hintEnd: { type: String, default: "" },
-  narrow: { type: Boolean, default: false },
+  refClass: {},
   validator: Array,
   type: {
     type: String as PropType<"string" | "number" | "password" | "color">,

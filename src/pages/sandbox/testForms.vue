@@ -1,9 +1,13 @@
 <template>
   <div class="_page">
-    <div style="display: flex; gap: 20px">
+    <div style="display: flex" class="flex items-center bg-bg3 mt-8 px-4 py-8">
+      <H_input type="number" label="OffsetTop" v-model="offsetTop" hint-start="START" hint-end="END" />
       <H_select
-        label="Placement"
+        label="Placementx"
         v-model="placement"
+        hint-start="START"
+        hint-end="END"
+        autofocus
         :list="[
           'top',
           'top-start',
@@ -21,8 +25,10 @@
         ]"
       />
       <H_switch label="Inner" v-model="inner" />
-      <H_input type="number" label="OffsetTop" v-model="offsetTop" />
-      <H_input type="number" label="OffsetLeft" v-model="offsetLeft" />
+      <H_input type="number" label="OffsetLeft" v-model="offsetLeft" hint-start="START" hint-end="END" />
+      <H_range :min="0" :max="100" label="Slider Label" class="w-full"></H_range>
+      <H_date-picker label="Date"></H_date-picker>
+      <H_selectbox row :list="[`nr1`, `nr2`, `nr3`]" label="Selector"></H_selectbox>
     </div>
     <div style="min-height: 500px" />
   </div>
@@ -44,9 +50,6 @@ const offsetLeft = ref(0);
 <style scoped>
 ._page {
   display: flex;
-  padding: 32px;
-  background-color: var(--color-bg0);
-  height: 900px;
 }
 
 .pop {

@@ -105,6 +105,7 @@ You can change the label position to left by adding the prop `label-gap`
 
 You can change the size by the size property `"xs" | "sm" | "md" | "lg" | "xl"`<br>
 Default is `md`
+If you need a special size then just use `style="font-size: 33px"` or `class="text-4xl"`
 
 <hhl-live-editor title="" htmlCode='
     <template>
@@ -113,7 +114,9 @@ Default is `md`
         <H_switch size="sm"  label="SM" v-model="radio" value="n2" variant="radio"></H_switch>    
         <H_switch size="md" label="MD default" v-model="radio" value="n3" variant="radio"></H_switch>
         <H_switch size="lg"  label="LG" v-model="radio" value="n4" variant="radio"></H_switch>  
-        <H_switch size="xl"  label="XL" v-model="radio" value="n6" variant="radio"></H_switch>  
+        <H_switch size="xl"  label="XL" v-model="radio" value="n5" variant="radio"></H_switch>  
+        <H_switch style="font-size: 33px" label="style" v-model="radio" value="n6" variant="radio"></H_switch>
+        <H_switch class="text-4xl" label="class" v-model="radio" value="n6" variant="radio"></H_switch>
     </div>
     <div class="flex items-center gap-4 flex-wrap mt-9">
         <H_switch size="xs" label="XS" v-model="check"></H_switch>
@@ -143,7 +146,7 @@ Default is `md`
 
 ## Color
 
-You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6"`. <br>
+You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6" | "txt7"`. <br>
 The default is `pri`.<br>
 If you need a special color then just use `style="--color-pri: purple"`
 
@@ -163,6 +166,7 @@ If you need a special color then just use `style="--color-pri: purple"`
         <H_switch label="txt4" v-model="check" variant="radio" color="txt4" size="xs"></H_switch>
         <H_switch label="txt5" v-model="check" variant="radio" color="txt5" size="xs"></H_switch>
         <H_switch label="txt6" v-model="check" variant="radio" color="txt6" size="xs"></H_switch>
+        <H_switch label="txt7" v-model="check" variant="radio" color="txt7" size="xs"></H_switch>
         <H_switch style="--color-pri: purple" variant="radio" label="purple" v-model="check" size="xs"></H_switch>
     </div>
     <div class="flex items-center gap-4 flexWrap mt-9">
@@ -179,6 +183,7 @@ If you need a special color then just use `style="--color-pri: purple"`
         <H_switch label="txt4" v-model="radio" color="txt4" size="xs"></H_switch>
         <H_switch label="txt5" v-model="radio" color="txt5" size="xs"></H_switch>
         <H_switch label="txt6" v-model="radio" color="txt6" size="xs"></H_switch>
+        <H_switch label="txt7" v-model="radio" color="txt7" size="xs"></H_switch>
         <H_switch style="--color-pri: purple" label="purple" v-model="radio"  size="xs"></H_switch>
     </div>
         <div class="flex items-center gap-4 flexWrap  mt-9">
@@ -195,6 +200,7 @@ If you need a special color then just use `style="--color-pri: purple"`
         <H_switch label="txt4" v-model="sw" color="txt4" variant="switch" size="xs"></H_switch>
         <H_switch label="txt5" v-model="sw" color="txt5" variant="switch" size="xs"></H_switch>
         <H_switch label="txt6" v-model="sw" color="txt6" variant="switch" size="xs"></H_switch>
+        <H_switch label="txt7" v-model="sw" color="txt7" variant="switch" size="xs"></H_switch>
         <H_switch style="--color-pri: purple" label="purple" v-model="sw" variant="switch" size="xs"></H_switch>
     </div>
     </template>

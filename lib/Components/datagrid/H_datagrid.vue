@@ -5,19 +5,19 @@
     </div>
     <div
       ref="header"
-      class="H_datagrid-header flex flex-col relative h-[36px] max-h-[36px] overflow-x-hidden overflow-y-scroll rounded-t bg-bg2 border border-bg6"
+      class="H_datagrid-header flex flex-col relative h-[36px] max-h-[36px] overflow-x-hidden overflow-y-scroll rounded-t bg-bg2 border border-txt6"
     >
       <H_headerRow role="heading" aria-level="2" :key="DG.changeCounter.value" @click="headerClick" />
       <H_progressBar :show="DG.dataHandler?.rowsLoading.value" class="absolute bottom-0 z-10" />
     </div>
-    <div class="H_datagrid-body overflow-hidden border-r border-l border-bg6">
+    <div class="H_datagrid-body overflow-hidden border-r border-l border-txt6">
       <H_virtualList
         :item_style="rowStyle"
         :data-key="dataKey"
         @scroll="onScroll"
         :keeps="keeps"
         :overscan="overscan"
-        item-class="H_dataRow flex flex-1 h-min w-full bg-bg0 odd:bg-bg1 hover:bg-bg2 data-[selected]:bg-bg3 leading-4 min-h-(--dgrid-row-height) max-h-(--dgrid-row-height)"
+        item-class="H_dataRow flex flex-1 h-min w-full bg-bg0 odd:bg-bg3 even:bg-bg2 hover:bg-bg6 data-[selected]:bg-pri/20 leading-4 min-h-(--dgrid-row-height) max-h-(--dgrid-row-height)"
         :data-sources="DG.dataHandler!.outData.value"
         :selectedId="selected_Id"
         :estimateSize="parseInt(row_height)"

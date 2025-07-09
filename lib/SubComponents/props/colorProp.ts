@@ -20,6 +20,7 @@ export function useColorProp(_default: string) {
         | "txt4"
         | "txt5"
         | "txt6"
+        | "txt7"
       >,
       default: _default || "txt2",
     },
@@ -42,6 +43,7 @@ const colors: any = {
   txt4: { txt: "var(--color-txt4)", bg: "var(--color-bg0)" },
   txt5: { txt: "var(--color-txt5)", bg: "var(--color-bg0)" },
   txt6: { txt: "var(--color-txt6)", bg: "var(--color-bg0)" },
+  txt7: { txt: "var(--color-txt7)", bg: "var(--color-bg0)" },
 };
 
 interface HColor {

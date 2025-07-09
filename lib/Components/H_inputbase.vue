@@ -4,14 +4,18 @@
     :class="{ 'pointer-events-none': readonly }"
     :data-error="ErrorMessage != '' ? true : undefined"
   >
-    <span v-if="!narrow" class="text-[.9em] text-txt2 ml-1 min-h-[1.3em] max-h-[1.3em] leading-none">{{ label }}</span>
+    <span
+      class="text-[.9em] text-txt2 ml-1 min-h-[1.3em] max-h-[1.3em] leading-none absolute -top-[1.3em] z-10 whitespace-nowrap"
+      >{{ label }}</span
+    >
     <div
       class="H_inputbase-slot flex items-center text-txt1 border border-txt5 border-solid rounded min-h-[1.875em] focus-within:border-pri"
+      :class="refClass"
     >
       <slot />
       <H_icon name="close" size="1.2rem" color="txt3" btn v-if="clearable" class="-ml-1.5" @click="$emit('clear')" />
     </div>
-    <div v-if="!narrow" class="text-[.9em] text-txt2 ml-1 mr-1 flex justify-between min-h-[1.3em] max-h-[1.3em]">
+    <div class="text-[.9em] text-txt2 px-1 flex justify-between min-h-[1.3em] max-h-[1.3em] w-full absolute top-[2em]">
       <template v-if="ErrorMessage == ''">
         <div class="text-[.75em]">{{ HelpTextStart }}</div>
         <div class="text-[.75em]">{{ HelpTextEnd }}</div>
@@ -26,12 +30,12 @@
 <script setup lang="ts">
 import H_icon from "./H_icon.vue";
 defineProps({
+  refClass: {},
   label: { type: String, default: "label" },
   clearable: { type: Boolean, default: false },
   HelpTextStart: { type: String, default: "" },
   HelpTextEnd: { type: String, default: "" },
   ErrorMessage: { type: String, default: "" },
-  narrow: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
 });
 </script>
@@ -41,10 +45,11 @@ defineProps({
     display: flex;
     flex-direction: column;
     width: max-content;
+    position: relative;
   }
 
   .H_inputbase .H_icon {
-    --icon-size: 1.2rem;
+    font-size: 1.2em;
   }
   .H_inputbase-slot .H_icon:first-child {
     margin-right: 6px;

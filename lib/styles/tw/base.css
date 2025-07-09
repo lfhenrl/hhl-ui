@@ -1,22 +1,29 @@
 @layer base {
   .darkTheme {
-    --color-txt0: rgb(255, 255, 255);
-    --color-txt1: rgba(255, 255, 255, 0.87);
-    --color-txt2: rgba(255, 255, 255, 0.6);
-    --color-txt3: rgba(255, 255, 255, 0.45);
-    --color-txt4: rgba(255, 255, 255, 0.3);
-    --color-txt5: rgba(255, 255, 255, 0.2);
-    --color-txt6: rgba(255, 255, 255, 0.1);
-    --color-bg0: hsl(231, 12%, 20%);
-    --color-bg1: hsl(231, 12%, 23%);
-    --color-bg2: hsl(231, 12%, 27%);
-    --color-bg3: hsl(231, 12%, 32%);
-    --color-bg4: hsl(231, 12%, 35%);
-    --color-bg5: hsl(231, 12%, 39%);
-    --color-bg6: hsl(231, 12%, 43%);
+    --color-bg0: oklch(0.129 0.01 250);
+    --color-bg1: oklch(0.2 0.01 250);
+    --color-bg2: oklch(0.25 0.01 250);
+    --color-bg3: oklch(0.3 0.01 250);
+    --color-bg4: oklch(0.32 0.01 250);
+    --color-bg5: oklch(0.35 0.01 250);
+    --color-bg6: oklch(0.37 0.01 250);
+
+    --color-txt0: oklch(1 0.03 250);
+    --color-txt1: oklch(0.86 0.03 250);
+    --color-txt2: oklch(0.76 0.03 250);
+    --color-txt3: oklch(0.7 0.03 250);
+    --color-txt4: oklch(0.64 0.03 250);
+    --color-txt5: oklch(0.56 0.03 250);
+    --color-txt6: oklch(0.5 0.03 250);
+    --color-txt7: oklch(0.4 0.03 250);
+
     --color-current: var(--color-txt2);
     --color-currentBg: var(--color-bg0);
     color-scheme: dark;
+
+    --x-theme-sm: 1px 3px 6px -6px black, -1px 3px 6px -6px black, 0 -5px 6px -6px rgb(110, 110, 110);
+    --x-theme-md: 1px 3px 6px -6px black, -1px 3px 6px -6px black, 0 -5px 6px -6px rgb(110, 110, 110);
+    --x-theme-lg: 2px 4px 6px -6px black, -2px 4px 6px -6px black, 0 -4px 6px -6px rgb(110, 110, 110);
   }
 
   :fullscreen {

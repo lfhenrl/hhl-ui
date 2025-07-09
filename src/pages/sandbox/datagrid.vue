@@ -11,7 +11,7 @@
       data-key="id"
     >
       <template v-slot:head>
-        <div style="display: flex; padding: 2px 0; flex: 1">
+        <div class="flex flex-1 py-2 justify-between items-center">
           <H_btn @click="load" style="width: 100px">Load</H_btn>
           <div style="flex: 1" />
           <H_input v-model="seek" clearable style="max-width: 200px">

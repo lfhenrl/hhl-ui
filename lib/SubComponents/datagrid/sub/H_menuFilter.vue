@@ -1,6 +1,6 @@
 <template>
   <H_popover offset-left="-20px" v-model="isOpen" movable class="H_menuFilter">
-    <div class="grid text-txt1 font-normal bg-bg0 overflow-hidden ring-1 ring-bg3 ring-inset rounded">
+    <div class="grid text-txt1 font-normal bg-bg6 overflow-hidden rounded shadow-theme-md">
       <div
         moveable-drag
         class="flex items-center text-base font-bold bg-pri text-priTxt [&[moveable-drag]]:cursor-move py-1"

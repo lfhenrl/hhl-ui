@@ -104,7 +104,7 @@ export default defineComponent({
 </script>
 <style>
 .live-render {
-  background-color: var(--color-bg0);
+  background-color: var(--color-bg1);
   padding: 32px 16px;
 }
 </style>

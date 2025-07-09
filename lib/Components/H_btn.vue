@@ -1,14 +1,5 @@
 <template>
-  <button
-    :style="{ '--color-currentBg': col.txt, '--color-current': col.bg, '--btn-size': endSize }"
-    class="H_btn hover:brightness-90 active:scale-95 disabled:opacity-50 disabled:pointer-events-none focus:outline-2 focus:outline-offset-2 focus:outline-pri"
-    type="button"
-    :class="{
-      'bg-transparent border text-currentBg border-currentBg border-solid ': variant === 'outline',
-      'text-currentBg bg-transparent': variant === 'text',
-      'pointer-events-none opacity-35': disabled,
-    }"
-  >
+  <button :size="endSize" :color="col.bg" :bgcolor="col.txt" :variant :disabled class="H_btn" type="button">
     <slot>{{ size }}</slot>
   </button>
 </template>
@@ -33,10 +24,10 @@ const col = useColor(toRef(() => P.color));
 const endSize = useSize(toRef(() => P.size));
 </script>
 <style>
+/* stylelint-disable declaration-property-value-no-unknown */
 @layer components {
   .H_btn {
     display: inline-flex;
-
     justify-content: center;
     align-items: center;
     font-family: "Public Sans", sans-serif;
@@ -45,12 +36,45 @@ const endSize = useSize(toRef(() => P.size));
     cursor: pointer;
     white-space: nowrap;
     border-radius: 0.25rem;
-    background-color: var(--color-currentBg);
-    color: var(--color-current);
-    font-size: var(--btn-size);
+    font-size: attr(size type(<length>));
+
     line-height: 1.2;
-    max-height: calc(var(--btn-size) * 1.9);
-    min-height: calc(var(--btn-size) * 1.9);
+    max-height: calc(1em * 1.9);
+    min-height: calc(1em * 1.9);
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &:focus {
+      outline: solid 1px var(--color-pri);
+      outline-offset: 2px;
+    }
+
+    &:hover {
+      filter: brightness(80%);
+    }
+
+    &[disabled] {
+      pointer-events: none;
+      opacity: 0.35;
+    }
+
+    &[variant="standard"] {
+      color: attr(color type(<color>));
+      background-color: attr(bgcolor type(<color>));
+    }
+
+    &[variant="outline"] {
+      background-color: transparent;
+      color: attr(bgcolor type(<color>));
+      border: 1px solid attr(bgcolor type(<color>));
+    }
+
+    &[variant="text"] {
+      background-color: transparent;
+      color: attr(bgcolor type(<color>));
+    }
   }
 }
 </style>

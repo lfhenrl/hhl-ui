@@ -4,8 +4,8 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex w-full items-center flex-wrap">
-            <H_input v-model="txt" label="Text input"></H_input>
+      <div class="flex w-full items-center flex-wrap gap-4">
+            <H_input autofocus v-model="txt" label="Text input"></H_input>
             <H_input v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -24,11 +24,11 @@ The H_input can handle 4 different types by setting the property `type="string(d
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center flex-wrap">
+      <div class="flex items-center flex-wrap gap-4">
        <H_input  v-model="txt"  label="string"></H_input>
-        <H_input  v-model="txt" type="password"  label="password"></H_input>
-         <H_input  v-model="num" type="number"  label="number"></H_input>
-         <H_input  v-model="col" type="color"  label="color"></H_input>
+       <H_input  v-model="txt" type="password"  label="password"></H_input>
+       <H_input  v-model="num" type="number"  label="number"></H_input>
+       <H_input  v-model="col" type="color"  label="color"></H_input>
       </div>
       </template>
       <script>

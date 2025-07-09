@@ -1,35 +1,8 @@
 <template>
-  <button
-    :color
-    :bgcolor
-    type="button"
-    :role="variant"
-    :data-state="check ? 'checked' : 'unchecked'"
-    class="H_switchbase inline-flex items-center border-2"
-    :class="{
-      'w-[1.2em] h-[1.2em] justify-center rounded  border-txt5 data-[state=checked]:bg-(--switch-color) data-[state=checked]:border-(--switch-color)':
-        variant === 'checkbox',
-      'w-[1.2em] h-[1.2em] justify-center rounded-full  border-txt5 data-[state=checked]:border-(--switch-color) data-[state=checked]:border-[0.15em]':
-        variant === 'radio',
-      'w-[2.25em] rounded-full border-transparent data-[state=unchecked]:bg-bg6 data-[state=checked]:bg-(--switch-color)':
-        variant === 'switch',
-    }"
-  >
-    <div
-      :data-state="check ? 'checked' : 'unchecked'"
-      class="border-bg0 flex items-center"
-      :class="{
-        'w-full h-full rounded-full border-[0.2em]  data-[state=checked]:bg-(--switch-color) ': variant === 'radio',
-        'h-[1em] w-[1em] rounded-full bg-bg0 transition-transform duration-200 data-[state=unchecked]:translate-x-0 data-[state=checked]:translate-x-full':
-          variant === 'switch',
-      }"
-    >
-      <H_icon
-        v-show="check && variant === 'checkbox'"
-        name="check"
-        size="1.2em"
-        class="text-(--switch-bgcolor) pb-[0.1em] m-0"
-      />
+  <button :color :bgcolor type="button" :role="variant" :check class="H_switchbase">
+    <div class="H_switchbase__indicator">
+      <H_icon v-if="check && variant === 'checkbox'" name="check" size="1.2em" class="H_switchbase__indicator_svg" />
+      <div v-if="check && variant === 'radio'" class="H_switchbase__indicator_radio"></div>
     </div>
   </button>
 </template>
@@ -54,9 +27,81 @@ const E = defineEmits([]);
 /* stylelint-disable declaration-property-value-no-unknown */
 @layer components {
   .H_switchbase {
+    display: inline-flex;
+    align-items: center;
+    border-width: 2px;
     font-size: attr(size type(<length>));
     --switch-color: attr(color type(<color>));
     --switch-bgcolor: attr(bgcolor type(<color>));
+
+    &[role="checkbox"] {
+      height: 1.2em;
+      width: 1.2em;
+      justify-content: center;
+      border-radius: 4px;
+      border-color: var(--color-txt5);
+      &[check="true"] {
+        background-color: var(--switch-color);
+        border-color: var(--switch-color);
+      }
+
+      .H_switchbase__indicator_svg {
+        color: var(--switch-bgcolor);
+        padding-bottom: 0.1em;
+      }
+    }
+
+    &[role="radio"] {
+      height: 1.2em;
+      width: 1.2em;
+      justify-content: center;
+      border-radius: calc(infinity * 1px);
+      border-color: var(--color-txt5);
+
+      &[check="true"] {
+        border-color: var(--switch-color);
+        border-width: 0.15em;
+      }
+
+      .H_switchbase__indicator {
+        height: 100%;
+        width: 100%;
+        border-radius: calc(infinity * 1px);
+        border-width: 0.2em;
+        border-color: transparent;
+      }
+
+      .H_switchbase__indicator_radio {
+        height: 100%;
+        width: 100%;
+        border-radius: calc(infinity * 1px);
+        background-color: var(--switch-color);
+      }
+    }
+
+    &[role="switch"] {
+      width: 2.25em;
+      border-radius: calc(infinity * 1px);
+      border-color: transparent;
+      background-color: var(--color-txt5);
+      --switch-translate: 0;
+
+      &[check="true"] {
+        background-color: var(--switch-color);
+        --switch-translate: 100%;
+      }
+
+      .H_switchbase__indicator {
+        display: flex;
+        align-items: center;
+        height: 1em;
+        width: 1em;
+        border-radius: calc(infinity * 1px);
+        background-color: var(--color-bg6);
+        transition-duration: 200ms;
+        transform: translateX(var(--switch-translate));
+      }
+    }
   }
 }
 </style>

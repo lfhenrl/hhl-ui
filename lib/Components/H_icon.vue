@@ -4,15 +4,11 @@
     :size
     :color="col.bg"
     :bgcolor="col.txt"
+    :variant
+    :btn="btn ? '' : undefined"
+    :disabled="disabled ? '' : undefined"
     viewBox="0 0 24 24"
     class="H_icon"
-    :class="{
-      'pointer-events-none opacity-35': disabled,
-      'border border-current p-[0.15em]': variant.includes('outline'),
-      'rounded-full': variant.includes('round') || variant === 'base',
-      'border-none p-[0.2em] text-(--icon-color) bg-(--icon-bgcolor)': variant.includes('filled'),
-      'hover:outline-2 hover:outline-offset-1 hover:outline-(--color-txt6) active:scale-90': btn,
-    }"
     height="24"
     width="24"
     fill="none"
@@ -65,15 +61,44 @@ watch(
   .H_icon {
     display: block;
     font-size: attr(size type(<length>));
-    --icon-color: attr(color type(<color>));
-    --icon-bgcolor: attr(bgcolor type(<color>));
-    color: var(--icon-bgcolor);
+    color: attr(bgcolor type(<color>));
+    background-color: transparent;
     min-width: 1em;
     max-width: 1em;
     min-height: 1em;
     max-height: 1em;
     aspect-ratio: 1/1;
     border-radius: 4px;
+
+    &[btn] {
+      &:hover {
+        outline: 1px solid currentColor;
+        opacity: 0.8;
+        outline-offset: 1px;
+      }
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+    &[disabled] {
+      pointer-events: none;
+      opacity: 0.35;
+    }
+    &[variant="base"] {
+      border-radius: 50%;
+    }
+    &[variant^="outline"] {
+      border: 1px solid currentColor;
+      padding: 0.15em;
+    }
+    &[variant^="filled"] {
+      color: attr(color type(<color>));
+      background-color: attr(bgcolor type(<color>));
+      padding: 0.2em;
+    }
+    &[variant$="round"] {
+      border-radius: 50%;
+    }
   }
 }
 </style>
