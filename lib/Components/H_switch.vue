@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed, toRef, type PropType } from "vue";
-import { useColor, useColorProp } from "../SubComponents/props/colorProp";
+import { colorProps, useColor } from "../SubComponents/props/colorProp";
 import { sizeProp, useSize } from "../SubComponents/props/sizeProp";
 import H_switchbase from "./H_switchbase.vue";
 
 const P = defineProps({
-  ...useColorProp("pri"),
-  ...sizeProp,
+  color: { type: colorProps, default: "pri" },
+  size: { type: sizeProp, default: "md" },
   variant: {
     type: String as PropType<"switch" | "checkbox" | "radio">,
     default: "checkbox",

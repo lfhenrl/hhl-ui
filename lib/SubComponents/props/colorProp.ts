@@ -1,31 +1,25 @@
 import type { PropType, Ref } from "vue";
 import { computed } from "vue";
 
-export function useColorProp(_default: string) {
-  return {
-    color: {
-      type: String as PropType<
-        | "pri"
-        | "ok"
-        | "sec"
-        | "warn"
-        | "err"
-        | "info"
-        | "white"
-        | "black"
-        | "txt0"
-        | "txt1"
-        | "txt2"
-        | "txt3"
-        | "txt4"
-        | "txt5"
-        | "txt6"
-        | "txt7"
-      >,
-      default: _default || "txt2",
-    },
-  };
-}
+export const colorProps = String as PropType<
+  | "pri"
+  | "ok"
+  | "sec"
+  | "warn"
+  | "err"
+  | "info"
+  | "white"
+  | "black"
+  | "transparent"
+  | "txt0"
+  | "txt1"
+  | "txt2"
+  | "txt3"
+  | "txt4"
+  | "txt5"
+  | "txt6"
+  | "txt7"
+>;
 
 const colors: any = {
   pri: { txt: "var(--color-pri)", bg: "var(--color-priTxt)" },
@@ -36,6 +30,7 @@ const colors: any = {
   info: { txt: "var(--color-info)", bg: "var(--color-infoTxt)" },
   white: { txt: "white", bg: "black" },
   black: { txt: "black", bg: "white" },
+  transparent: { txt: "transparent", bg: "var(--color-bg0)" },
   txt0: { txt: "var(--color-txt0)", bg: "var(--color-bg0)" },
   txt1: { txt: "var(--color-txt1)", bg: "var(--color-bg0)" },
   txt2: { txt: "var(--color-txt2)", bg: "var(--color-bg0)" },

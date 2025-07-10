@@ -30,7 +30,7 @@
 import { ref, watchEffect, computed, onMounted, toRef } from "vue";
 import H_inputbase from "./H_inputbase.vue";
 import { validateFunc } from "../utils/validateFunc";
-import { useColor, useColorProp } from "../SubComponents/props/colorProp";
+import { colorProps, useColor } from "../SubComponents/props/colorProp";
 
 const P = defineProps({
   label: { type: String, default: "" },
@@ -41,7 +41,7 @@ const P = defineProps({
   min: { type: Number, default: 0 },
   max: { type: Number, default: 100 },
   validator: Array,
-  ...useColorProp("pri"),
+  color: { type: colorProps, default: "pri" },
 });
 const E = defineEmits([]);
 const el = ref<HTMLInputElement | null>(null);

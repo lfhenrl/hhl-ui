@@ -19,13 +19,13 @@
 
 <script setup lang="ts">
 import { iconsProp } from "../SubComponents/icons/iconProp";
-import { useColor, useColorProp } from "../SubComponents/props/colorProp";
+import { colorProps, useColor } from "../SubComponents/props/colorProp";
 import { icons } from "../SubComponents/icons/icons";
 import { shallowRef, toRef, watch, type PropType } from "vue";
 
 const P = defineProps({
   ...iconsProp,
-  ...useColorProp("txt2"),
+  color: { type: colorProps, default: "txt2" },
   size: {
     type: String,
     default: "1.4rem",

@@ -6,12 +6,12 @@
 
 <script setup lang="ts">
 import { toRef, type PropType } from "vue";
-import { useColor, useColorProp } from "../SubComponents/props/colorProp";
+import { colorProps, useColor } from "../SubComponents/props/colorProp";
 import { sizeProp, useSize } from "../SubComponents/props/sizeProp";
 
 const P = defineProps({
-  ...useColorProp("pri"),
-  ...sizeProp,
+  color: { type: colorProps, default: "err" },
+  size: { type: sizeProp, default: "md" },
   /** @type {variant} The variant of Btn it can be standard, outline or text default is standard */
   variant: {
     type: String as PropType<"standard" | "outline" | "text">,

@@ -1,11 +1,6 @@
 import type { PropType, Ref } from "vue";
 import { computed } from "vue";
-export const sizeProp = {
-  size: {
-    type: String as PropType<"xs" | "sm" | "md" | "lg" | "xl">,
-    default: "md",
-  },
-};
+export const sizeProp = String as PropType<"xs" | "sm" | "md" | "lg" | "xl">;
 
 const sizes: any = {
   xs: "0.7rem",
