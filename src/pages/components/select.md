@@ -6,10 +6,9 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
-      <H_select
+      <div class="flex items-center gap-4">
+      <H_select class="w-44"
       autofocus
-      variant="switch"
             :list="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">
       </H_select>
@@ -29,7 +28,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
+      <div class="flex items-center gap-4">
       <H_select
             :list="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="checkbox default">
@@ -59,7 +58,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap"> 
+      <div class="flex items-center gap-4"> 
             <H_select 
             :list="[
                         {value:`nr1`, label: `Number 1`},
@@ -86,7 +85,7 @@ Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap"> 
+      <div class="flex items-center gap-4 "> 
             <H_select multi
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
@@ -109,7 +108,7 @@ Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap"> 
+      <div class="flex items-center gap-4 "> 
             <H_select 
             :list="[
                         {value:`nr1`, label: `Number 1`},
@@ -130,23 +129,32 @@ Multi selections by adding `multi`
 
 <br>
 
-## Start slot
+## Icons
 
-You can add a Icon or other stoff with the start slot.
+You can add a Icon or other stof to the select all will be added to the front.<br>
+If you want it behind the input just add the attribute `set-end`.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap"> 
+      <div class="flex items-center gap-4 "> 
             <H_select multi
             :list="[
                         {value:`nr1`, label: `Number 1`},
                         {value:`nr2`, label: `Number 2`},
                         {value:`nr3`, label: `Number 3`}
                         ]" 
-            v-model="selection" label="Selector">
+            v-model="selection" label="Start Icon">
                 <H_icon name="mail"></H_icon>
             </H_select>
-            <H_input readonly v-model="selection" label="Value"></H_input>
+            <H_select multi
+            :list="[
+                        {value:`nr1`, label: `Number 1`},
+                        {value:`nr2`, label: `Number 2`},
+                        {value:`nr3`, label: `Number 3`}
+                        ]" 
+            v-model="selection" label="End Icon">
+                <H_icon name="mail" set-end></H_icon>
+            </H_select>
       </div>
       </template>
       <script>
@@ -167,7 +175,7 @@ Show filter by adding `showFilter`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap"> 
+      <div class="flex items-center gap-4"> 
             <H_select show-filter
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
@@ -190,7 +198,7 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap"> 
+      <div class="flex items-center gap-4"> 
             <H_select disabled
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
@@ -213,7 +221,7 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap"> 
+      <div class="flex items-center gap-4"> 
             <H_select readonly
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">

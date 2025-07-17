@@ -4,7 +4,7 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex w-full items-center flex-wrap gap-4">
+      <div class="flex w-full items-center gap-4">
             <H_input autofocus v-model="txt" label="Text input"></H_input>
             <H_input v-model="txt" label="Text input"></H_input>
       </div>
@@ -24,7 +24,7 @@ The H_input can handle 4 different types by setting the property `type="string(d
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center flex-wrap gap-4">
+      <div class="flex items-center gap-4">
        <H_input  v-model="txt"  label="string"></H_input>
        <H_input  v-model="txt" type="password"  label="password"></H_input>
        <H_input  v-model="num" type="number"  label="number"></H_input>
@@ -48,7 +48,7 @@ Add Placeholder text by adding `placeholder="placeholder!!!"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
+      <div class="flex items-center gap-4">
             <H_input  v-model="txt" placeholder="placeholder!!!" label="Text input"></H_input>
       </div>
       </template>
@@ -67,7 +67,7 @@ Add input clear functionality by adding `clearable`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
+      <div class="flex items-center gap-4">
             <H_input clearable v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -86,7 +86,7 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
+      <div class="flex items-center gap-4">
             <H_input disabled v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -105,7 +105,7 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
+      <div class="flex items-center gap-4">
             <H_input readonly v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -124,7 +124,7 @@ Input Click by adding @input_click=""
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
+      <div class="flex items-center gap-4">
             <H_input @input_click="click(`Input Click`)" v-model="txt" label="Text input">
             </H_input>
       </div>
@@ -143,43 +143,26 @@ Input Click by adding @input_click=""
 
 ## Icons
 
-You can add a Icon or other stoff the first child will be in front and the second will be in the end.
+You can add a Icon or other stof to the input all will be added to the front.<br>
+If you want it behind the input just add the attribute `set-end`.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
-            <H_input clearable  v-model="txt" label="Text input"> 
+      <div class="flex items-center gap-4">
+            <H_input clearable  v-model="txt" label="Start Icon"> 
                 <H_icon name="mail" btn  @click="click(txt)"></H_icon>
-                <H_icon name="clock" btn  @click="click(`end icon`)"></H_icon>
+            </H_input>
+            <H_input clearable  v-model="txt" label="End Icon"> 
+                <H_icon set-end name="clock" btn  @click="click(`end icon`)"></H_icon>
+            </H_input>
+            <H_input clearable  v-model="txt" label="Start and End Icon"> 
+                <H_icon name="mail" btn  @click="click(txt)"></H_icon>
+                <H_icon set-end name="clock" btn  @click="click(`end icon`)"></H_icon>
             </H_input>
       </div>
       </template>
       <script>
-            const txt = ref("Start icon");
-            function click(e) {
-                  alert(e);
-            }
-            return {txt, click}
-      </script>
-'>
-</hhl-live-editor>
-
-<br>
-
-## End Icon
-
-If you have on child you can force it to the end by adding `set-end` attribute.
-
-<hhl-live-editor title="" htmlCode='
-      <template>
-      <div class="flex items-center gap-4 flex-wrap">
-            <H_input v-model="txt" label="Text input">                        
-                <H_icon name="mail" set-end  @click="click(`end icon`)"></H_icon>
-            </H_input>
-      </div>
-      </template>
-      <script>
-            const txt = ref("End icon");
+            const txt = ref("Icon");
             function click(e) {
                   alert(e);
             }
@@ -196,7 +179,7 @@ Hint text by adding `hint-start=""` and `hint-end=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
+      <div class="flex items-center gap-4">
             <H_input hint-start="hint-start." hint-end="hint-end."  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -215,7 +198,7 @@ Character counter by adding `counter=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
+      <div class="flex items-center gap-4">
             <H_input counter="10"  v-model="txt" label="Text input"></H_input>
       </div>
       </template>

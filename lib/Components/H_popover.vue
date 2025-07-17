@@ -5,27 +5,30 @@
     type="button"
     role="popover"
     :autofocus
-    class="H_pop-referance flex items-center"
+    class="H_pop-referance"
     :class="refClass"
     :disabled="disabled || readonly"
     :tabindex
+    v-bind="$attrs"
   >
     <slot name="referance"></slot>
   </button>
   <div
     :popover="closeAction"
-    v-bind="$attrs"
     ref="popup"
     :id="id"
-    class="H_pop-popup shadow-theme-lg"
-    :class="{
-      top: placement.startsWith('top'),
-      bottom: placement.startsWith('bottom'),
-      right: placement.startsWith('right'),
-      left: placement.startsWith('left'),
-      widthAsRef: widthAsRef,
-    }"
-    :placement
+    class="H_pop-popup"
+    :class="[
+      {
+        top: placement.startsWith('top'),
+        bottom: placement.startsWith('bottom'),
+        right: placement.startsWith('right'),
+        left: placement.startsWith('left'),
+        widthAsRef: widthAsRef,
+      },
+      refClass,
+    ]"
+    :placement="posPlacement"
     :offsettop="offsetTop"
     :offsetleft="offsetLeft"
     @toggle="toggleEvent"
@@ -35,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { useId, useTemplateRef, watch, onMounted, type PropType } from "vue";
+import { useId, useTemplateRef, watch, onMounted, type PropType, computed } from "vue";
 
 const id = useId();
 const P = defineProps({
@@ -77,9 +80,29 @@ defineExpose({
 const E = defineEmits(["toggled"]);
 const modelValue = defineModel();
 const popup = useTemplateRef("popup");
+const referance = useTemplateRef<HTMLButtonElement>("referance");
 
 let lastTop = 0;
 let lastLeft = 0;
+
+const pos = {
+  top: "top",
+  "top-start": "top span-right",
+  "top-end": "top span-left",
+  right: "right center",
+  "right-start": "right span-bottom",
+  "right-end": "right span-top",
+  bottom: "bottom center",
+  "bottom-start": "bottom span-right",
+  "bottom-end": "bottom span-left",
+  left: "left center",
+  "left-start": "left span-bottom",
+  "left-end": "left span-top",
+};
+
+const posPlacement = computed(() => {
+  return pos[P.placement];
+});
 
 watch(modelValue, () => {
   if (modelValue.value === true) {
@@ -99,6 +122,7 @@ function close() {
   if (popup.value) {
     (popup.value as any).hidePopover?.();
   }
+  referance.value?.focus();
 }
 
 function toggleEvent(e: ToggleEvent) {
@@ -146,38 +170,31 @@ function closeDragElement() {
 </script>
 
 <style>
-/* stylelint-disable declaration-property-value-no-unknown */
-/* stylelint-disable function-no-unknown */
-/* stylelint-disable custom-property-no-missing-var-function */
 @layer components {
   .H_pop-referance {
+    display: flex;
+    align-items: center;
     anchor-name: v-bind("--" + id);
   }
-
-  /*   [moveable-drag] {
-    cursor: move;
-  } */
 
   .H_pop-popup {
     position: absolute;
     width: max-content;
-
     background-color: transparent;
+    box-shadow: var(--shadow-theme-lg);
     position-anchor: v-bind("--" + id);
-    margin-block: attr(offsettop type(<length>));
-    margin-inline: attr(offsetleft type(<length>));
-    --placement: attr(placement type(<custom-ident>));
-    position-area: if(
-      style(--placement: top): top; style(--placement: top-start): top span-right; style(--placement: top-end): top
-        span-left; style(--placement: right): right center; style(--placement: right-start): right span-bottom;
-        style(--placement: right-end): right span-top; style(--placement: bottom): bottom center;
-        style(--placement: bottom-start): bottom span-right; style(--placement: bottom-end): bottom span-left;
-        style(--placement: left): left center; style(--placement: left-start): left span-bottom;
-        style(--placement: left-end): left span-top; else: center;
-    );
+    --margin-block: attr(offsettop type(<length>));
+    --margin-inline: attr(offsetleft type(<length>));
+    --placement: attr(placement type(*));
+    margin-block: var(--margin-block);
+    margin-inline: var(--margin-inline);
     position-try-fallbacks: flip-block, flip-inline;
-
     transition: transform 0.3s, overlay 0.3s allow-discrete, display 0.5s allow-discrete;
+    position-area: var(--placement);
+
+    [moveable-drag] {
+      cursor: move;
+    }
   }
 
   .H_pop-popup.widthAsRef {

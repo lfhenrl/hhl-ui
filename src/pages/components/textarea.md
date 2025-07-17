@@ -4,7 +4,7 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
+      <div class="flex items-center gap-8 flex-wrap">
             <H_textarea autofocus v-model="txt" label="Text input"></H_textarea>
             <H_input v-model="txt" label="Text input"></H_input>
       </div>
@@ -105,7 +105,7 @@ Readonly by adding `readonly`
       </div>
       </template>
       <script>
-            const txt = ref("disabled");
+            const txt = ref("readonly");
             return {txt}
       </script>
 '>
@@ -166,7 +166,7 @@ If you have on child you can force it to the end by adding `set-end` attribute.
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4 flex-wrap">
-            <H_textarea end-icon="mail"  v-model="txt" label="Text input">
+            <H_textarea   v-model="txt" label="Text input" clearable>
                 <H_icon name="mail" set-end size="1.6em" @click="click(`end icon`)"></H_icon>
             </H_textarea>
       </div>

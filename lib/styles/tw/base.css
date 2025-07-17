@@ -24,6 +24,10 @@
     --x-theme-sm: 1px 3px 6px -6px black, -1px 3px 6px -6px black, 0 -5px 6px -6px rgb(110, 110, 110);
     --x-theme-md: 1px 3px 6px -6px black, -1px 3px 6px -6px black, 0 -5px 6px -6px rgb(110, 110, 110);
     --x-theme-lg: 2px 4px 6px -6px black, -2px 4px 6px -6px black, 0 -4px 6px -6px rgb(110, 110, 110);
+
+    --shadow-theme-sm: var(--x-theme-sm);
+    --shadow-theme-md: var(--x-theme-md);
+    --shadow-theme-lg: var(--x-theme-lg);
   }
 
   :fullscreen {

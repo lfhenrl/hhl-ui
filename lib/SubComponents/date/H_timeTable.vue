@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center text-txt1 text-xl leading-none p-1.5 border-b border-txt6">
+  <div class="flex items-center justify-center text-txt1 text-xl leading-none p-1.5 border-txt6 bg-bg5 rounded">
     <div
       class="p-0.5 rounded cursor-pointer"
       @click.stop.prevent="timeBase = 'hour'"
@@ -31,7 +31,7 @@
       {{ getZeroInFront(value.second) }}
     </div>
   </div>
-  <div class="H_timeTable__table grid p-1 gap-1">
+  <div class="H_timeTable__table grid p-1 gap-1 bg-bg6">
     <div
       v-for="(item, index) in time"
       @click.stop.prevent="itemClick(index)"

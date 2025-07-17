@@ -2,26 +2,20 @@
   <div
     ref="baselist"
     :size
-    class="H_selBase border-solid rounded"
-    :class="{ '!flex-row ': row, '!flex-col': !row }"
-    :style="{ gap: listGap }"
+    class="H_selectbase"
+    :row="row ? '' : undefined"
+    :listgap="listGap"
+    :labelgap="labelGap"
     @click="Click"
   >
     <label
       v-for="item in filterList"
-      class="inline-flex items-center justify-items-center hover:bg-bg3 rounded focus-within:outline-1 focus-within:outline-offset-1 focus-within:outline-pri w-fit"
-      :class="{ 'flex-row-reverse': labelLeft, 'justify-between w-full': justifyBetween }"
-      :style="{ gap: labelGap }"
+      :key="item.label"
+      :labelleft="labelLeft ? '' : undefined"
+      :justifybetween="justifyBetween ? '' : undefined"
     >
-      <H_switchbase
-        :check="selected(item.value) ? true : false"
-        :variant
-        :color
-        :bgcolor
-        :value="item.value"
-        class="H_selectbase-item pointer-events-none outline-none"
-      />
-      <span class="text-txt2 whitespace-nowrap pointer-events-none">{{ item.label }}</span>
+      <H_switchbase :check="selected(item.value) ? true : false" :variant :color :bgcolor :value="item.value" />
+      <span class="label">{{ item.label }}</span>
     </label>
   </div>
 </template>
@@ -33,7 +27,7 @@ import H_switchbase from "./H_switchbase.vue";
 const P = defineProps({
   color: { String, default: "var(--color-pri)" },
   bgcolor: { String, default: "var(--color-priTxt)" },
-  size: { type: String, default: "1em" },
+  size: { type: String, default: "1rem" },
   list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] },
   multi: { type: Boolean, default: true },
   readonly: { type: Boolean, default: false },
@@ -101,7 +95,7 @@ function selected(item: any) {
 function Click(e: any) {
   if (P.readonly || P.disabled) return;
   let T: HTMLElement = e.target;
-  if (!T.classList.contains("H_selectbase-item")) return;
+  if (!T.classList.contains("H_switchbase")) return;
 
   setValue(T.getAttribute("value"));
 }
@@ -124,13 +118,58 @@ function setValue(val: any) {
 </script>
 
 <style>
-/* stylelint-disable declaration-property-value-no-unknown */
 @layer components {
-  .H_selBase {
+  .H_selectbase {
     display: flex;
+    flex-direction: column;
     width: 100%;
+    border: solid 1px var(--color-txt5);
+    border-radius: 4px;
     outline-style: none;
-    font-size: attr(size type(<length>));
+    --switch-size: attr(size type(<length>));
+    --list-gap: attr(listgap type(<length>));
+    --label-gap: attr(labelgap type(<length>));
+    font-size: var(--switch-size);
+    gap: var(--list-gap);
+
+    &[row] {
+      flex-direction: row;
+    }
+
+    label {
+      display: inline-flex;
+      align-items: center;
+      justify-items: center;
+      border-radius: 4px;
+      width: 100%;
+      gap: var(--label-gap);
+
+      &:hover {
+        background-color: hsl(from var(--color-pri) h s l / 15%);
+      }
+
+      &[labelleft] {
+        flex-direction: row-reverse;
+      }
+      &[justifybetween] {
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .H_switchbase {
+        pointer-events: none;
+
+        &:focus-visible {
+          outline: solid 2px var(--color-pri);
+          outline-offset: 2px;
+        }
+      }
+      .label {
+        color: var(--color-txt2);
+        white-space: nowrap;
+        pointer-events: none;
+      }
+    }
   }
 }
 </style>

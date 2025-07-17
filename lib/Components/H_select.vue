@@ -1,56 +1,27 @@
 <template>
   <H_popover
-    ref-class="h_select focus:outline-none group"
+    class="H_select"
     ref="popup"
     @toggled="selectToggled"
     offset-top="2px"
     :disabled
     :readonly
     :autofocus
+    role="combobox"
     width-as-ref
   >
     <template v-slot:referance>
-      <div class="H_sel pointer-events-none text-left">
-        <H_input
-          class="pointer-events-none"
-          ref-class="group-focus:border-pri"
-          v-model="labelValue"
-          :label
-          readonly
-          :disabled
-          :placeholder
-          :hintStart
-          :hintEnd
-          :validator
-          tabindex="-1"
-        >
-          <slot />
-          <H_icon
-            btn
-            name="expand_down"
-            color="txt2"
-            set-end
-            tabindex="-1"
-            class="pointer-events-none -mr-1 transition-transform duration-200"
-            :class="{ 'rotate-180': isOpen }"
-          />
-        </H_input>
-      </div>
+      <H_inputbase :label readonly :disabled :placeholder :hintStart :hintEnd :validator>
+        <slot />
+        <div class="value">{{ labelValue }}</div>
+        <H_icon btn name="expand_down" color="txt2" tabindex="-1" :down="isOpen ? '' : undefined" />
+      </H_inputbase>
     </template>
-    <div class="H_sel-list flex flex-col bg-bg6 rounded h-full" @keydown="keyDown">
-      <H_input
-        v-if="showFilter"
-        ref="filterInput"
-        narrow
-        v-model="filterValue"
-        clearable
-        class="mx-2 mt-2 w-fit"
-        tabindex="-1"
-      >
-        <H_icon name="search" color="txt2" size="1.2em" set-end tabindex="-1" />
+    <div class="H_select__list" @keydown="keyDown">
+      <H_input v-if="showFilter" ref="filterInput" narrow v-model="filterValue" clearable tabindex="-1">
+        <H_icon class="arrow" name="search" color="txt2" size="1.2em" set-end tabindex="-1" />
       </H_input>
       <H_selectbase
-        class="p-2.5"
         ref="selBase"
         :color="col.txt"
         v-model="modelValue"
@@ -71,14 +42,15 @@
 
 <script setup lang="ts">
 import { ref, toRef, useTemplateRef, watch, type PropType } from "vue";
-import { useColor, useColorProp } from "../SubComponents/props/colorProp";
+import { useColor, colorProps } from "../SubComponents/props/colorProp";
 import H_selectbase from "./H_selectbase.vue";
 import H_popover from "./H_popover.vue";
+import H_inputbase from "./H_inputbase.vue";
 import H_input from "./H_input.vue";
 import H_icon from "./H_icon.vue";
 
 const P = defineProps({
-  ...useColorProp("pri"),
+  color: { type: colorProps, default: "pri" },
   label: { type: String, default: "" },
   list: { type: Array, default: [] },
   multi: { type: Boolean, default: false },
@@ -186,8 +158,60 @@ function getFocusList() {
 </script>
 <style>
 @layer components {
-  .h_select:focus .H_inputbase-slot {
-    border-color: var(--color-pri);
+  .H_select {
+    outline-style: none;
+    border-radius: 4px;
+    width: stretch;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    &:focus {
+      outline-style: none;
+      .H_inputbase {
+        border-color: var(--color-pri);
+      }
+    }
+    .H_inputbase {
+      padding-inline: 0.2em;
+
+      .value {
+        margin-inline: 0.2em;
+        text-align: start;
+        overflow: hidden;
+        user-select: all;
+        width: 100%;
+        text-wrap-mode: nowrap;
+      }
+
+      .H_icon {
+        --icon-size: 1.3em;
+      }
+
+      .arrow {
+        pointer-events: none;
+        margin-right: -4px;
+        transition-duration: 200ms;
+      }
+      .arrow[down] {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .H_select__list {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg6);
+    border-radius: 4px;
+    height: 100%;
+
+    .H_input {
+      margin-inline: 0.5em;
+      margin-top: 0.5em;
+    }
+
+    .H_selectbase {
+      padding: 0.625em;
+    }
   }
 }
 </style>

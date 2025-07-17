@@ -4,7 +4,7 @@
 
 You can change the size by the size property `"xs" | "sm" | "md" | "lg" | "xl"`<br>
 Default is `md`<br>
-If you need a special size then just use `style="font-size: 44px"` or `class="text-3xl"`
+If you need a special size then just use `style="--btn-size: 28px"` or `class="text-3xl"`
 
 <hhl-live-editor title=""  htmlCode='
 <template>
@@ -14,7 +14,7 @@ If you need a special size then just use `style="font-size: 44px"` or `class="te
             <H_btn size="md"><H_icon name="mail" color="white" size="1.3em"></H_icon>MD (Default)</H_btn>
             <H_btn size="lg"><H_icon name="mail"  color="white" size="1.3em"></H_icon>LG</H_btn>
             <H_btn size="xl"><H_icon name="mail"  color="white" size="1.3em"></H_icon>XL</H_btn>
-            <H_btn style="font-size: 28px"><H_icon name="mail"  color="white" size="1.3em"></H_icon>style</H_btn>
+            <H_btn style="--btn-size: 28px"><H_icon name="mail"  color="white" size="1.3em"></H_icon>style</H_btn>
             <H_btn class="text-3xl"><H_icon name="mail"  color="white" size="1.3em"></H_icon>class</H_btn>
       </div>
 </template>
@@ -100,7 +100,7 @@ If you need a special color then just use `style="background-color: purple: colo
             <H_btn color="txt5">TXT5</H_btn>
             <H_btn color="txt6">TXT6</H_btn>
             <H_btn color="txt7">TXT7</H_btn>
-            <H_btn style="background-color: purple; color:white">purple</H_btn>
+            <H_btn style="--btn-bgcolor: purple; --btn-color:white">purple</H_btn>
       </div>
       </template>
 '>

@@ -18,13 +18,13 @@
 </template>
 
 <script setup lang="ts">
-import { iconsProp } from "../SubComponents/icons/iconProp";
+import { iconsProps } from "../SubComponents/icons/iconProp";
 import { colorProps, useColor } from "../SubComponents/props/colorProp";
 import { icons } from "../SubComponents/icons/icons";
 import { shallowRef, toRef, watch, type PropType } from "vue";
 
 const P = defineProps({
-  ...iconsProp,
+  name: { type: iconsProps, default: "close" },
   color: { type: colorProps, default: "txt2" },
   size: {
     type: String,
@@ -42,7 +42,6 @@ const P = defineProps({
 });
 
 const col = useColor(toRef(() => P.color));
-
 const icon = shallowRef("");
 
 watch(
@@ -56,13 +55,16 @@ watch(
 );
 </script>
 <style>
-/* stylelint-disable declaration-property-value-no-unknown */
 @layer components {
   .H_icon {
     display: block;
-    font-size: attr(size type(<length>));
-    color: attr(bgcolor type(<color>));
+    --icon-color: attr(bgcolor type(<color>));
+    --icon-bgcolor: attr(color type(<color>));
+    --icon-size: attr(size type(<length>));
+
     background-color: transparent;
+    color: var(--icon-color);
+    font-size: var(--icon-size);
     min-width: 1em;
     max-width: 1em;
     min-height: 1em;
@@ -92,8 +94,8 @@ watch(
       padding: 0.15em;
     }
     &[variant^="filled"] {
-      color: attr(color type(<color>));
-      background-color: attr(bgcolor type(<color>));
+      color: var(--icon-bgcolor);
+      background-color: var(--icon-color);
       padding: 0.2em;
     }
     &[variant$="round"] {

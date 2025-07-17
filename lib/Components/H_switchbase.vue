@@ -24,13 +24,11 @@ const E = defineEmits([]);
 </script>
 
 <style>
-/* stylelint-disable declaration-property-value-no-unknown */
 @layer components {
   .H_switchbase {
     display: inline-flex;
     align-items: center;
     border-width: 2px;
-    font-size: attr(size type(<length>));
     --switch-color: attr(color type(<color>));
     --switch-bgcolor: attr(bgcolor type(<color>));
 

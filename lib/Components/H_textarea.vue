@@ -1,30 +1,28 @@
 <template>
   <H_inputbase
-    @clear="model = null"
     :label="label"
     :clearable="showClear"
-    :disabled="disabled ? '' : undefined"
+    :disabled
     :readonly
-    :HelpTextStart="hintStart"
-    :HelpTextEnd="stringCounter"
+    :hintStart="hintStart"
+    :hintEnd="stringCounter"
     :ErrorMessage="validate"
     class="H_textarea"
   >
-    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1">
-      <slot> </slot>
-      <textarea
-        ref="el"
-        v-model="model"
-        :autofocus
-        :rows="rows"
-        @click="$emit('input_click')"
-        :maxlength="counter"
-        spellcheck="false"
-        :readonly="readonly"
-        :placeholder="placeholder"
-        class="col-start-2 w-full bg-transparent border-none appearance-none focus:outline-none px-1.5"
-      />
-    </div>
+    <slot> </slot>
+    <textarea
+      ref="el"
+      v-model="model"
+      :autofocus
+      :rows="rows"
+      @click="$emit('input_click')"
+      :maxlength="counter"
+      spellcheck="false"
+      :readonly="readonly"
+      :placeholder="placeholder"
+      class="input"
+    />
+    <H_icon name="close" color="txt3" btn class="clearBtn" v-if="showClear" @click="model = ''" />
   </H_inputbase>
 </template>
 
@@ -85,3 +83,30 @@ const stringCounter = computed(() => {
 
 const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
+<style>
+@layer components {
+  .H_textarea {
+    width: 100%;
+    padding-left: 0.3em;
+    .input {
+      appearance: none;
+      outline-style: none;
+      width: 100%;
+      margin-left: 0.2em;
+    }
+    .clearBtn {
+      margin-inline: 0.1em;
+    }
+    .H_icon {
+      --icon-size: 1.3em;
+    }
+
+    &:focus-within {
+      border-color: var(--color-pri);
+    }
+    [set-end] {
+      margin-inline: 0.2em;
+    }
+  }
+}
+</style>

@@ -1,32 +1,13 @@
 <template>
   <div class="_page">
-    <div style="display: flex" class="flex items-center bg-bg3 mt-8 px-4 py-8">
-      <H_input type="number" label="OffsetTop" v-model="offsetTop" hint-start="START" hint-end="END" />
-      <H_select
-        label="Placementx"
-        v-model="placement"
-        hint-start="START"
-        hint-end="END"
-        autofocus
-        :list="[
-          'top',
-          'top-start',
-          'top-end',
-          'bottom',
-          'bottom-start',
-          'bottom-end',
-          'left',
-          'left-start',
-          'left-end',
-          'right',
-          'right-start',
-          'right-end',
-          'center',
-        ]"
-      />
+    <div style="display: flex" class="flex items-center bg-bg3 mt-8 px-4">
+      <input size="1" class="border-pri border" />
       <H_switch label="Inner" v-model="inner" />
       <H_input type="number" label="OffsetLeft" v-model="offsetLeft" hint-start="START" hint-end="END" />
-      <H_range :min="0" :max="100" label="Slider Label" class="w-full"></H_range>
+      <H_input v-model="inputValue">
+        <H_icon name="clock" size="1.2rem" color="txt3" btn set-end />
+        <H_icon name="clock" size="1.2rem" color="txt3" btn class="" />
+      </H_input>
       <H_date-picker label="Date"></H_date-picker>
       <H_selectbox row :list="[`nr1`, `nr2`, `nr3`]" label="Selector"></H_selectbox>
     </div>
@@ -35,21 +16,31 @@
 </template>
 
 <script setup lang="ts">
-import H_select from "../../../lib/Components/H_select.vue";
 import H_switch from "../../../lib/Components/H_switch.vue";
 import H_input from "../../../lib/Components/H_input.vue";
 
 import { ref } from "vue";
 
-const placement: any = ref("bottom");
+const inputValue = ref("henrik");
+
 const inner = ref(false);
 
-const offsetTop = ref(0);
 const offsetLeft = ref(0);
 </script>
 <style scoped>
 ._page {
   display: flex;
+}
+
+.H_input_input {
+  /*   border: solid 1px lime; */
+  margin-inline: 0.2em;
+  appearance: none;
+  outline-style: none;
+}
+
+.xxx {
+  order: 20;
 }
 
 .pop {

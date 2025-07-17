@@ -10,7 +10,7 @@ import { colorProps, useColor } from "../SubComponents/props/colorProp";
 import { sizeProp, useSize } from "../SubComponents/props/sizeProp";
 
 const P = defineProps({
-  color: { type: colorProps, default: "err" },
+  color: { type: colorProps, default: "pri" },
   size: { type: sizeProp, default: "md" },
   /** @type {variant} The variant of Btn it can be standard, outline or text default is standard */
   variant: {
@@ -24,9 +24,11 @@ const col = useColor(toRef(() => P.color));
 const endSize = useSize(toRef(() => P.size));
 </script>
 <style>
-/* stylelint-disable declaration-property-value-no-unknown */
 @layer components {
   .H_btn {
+    --btn-color: attr(color type(<color>));
+    --btn-bgcolor: attr(bgcolor type(<color>));
+    --btn-size: attr(size type(<length>));
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +38,7 @@ const endSize = useSize(toRef(() => P.size));
     cursor: pointer;
     white-space: nowrap;
     border-radius: 0.25rem;
-    font-size: attr(size type(<length>));
+    font-size: var(--btn-size);
 
     line-height: 1.2;
     max-height: calc(1em * 1.9);
@@ -61,19 +63,19 @@ const endSize = useSize(toRef(() => P.size));
     }
 
     &[variant="standard"] {
-      color: attr(color type(<color>));
-      background-color: attr(bgcolor type(<color>));
+      color: var(--btn-color);
+      background-color: var(--btn-bgcolor);
     }
 
     &[variant="outline"] {
       background-color: transparent;
-      color: attr(bgcolor type(<color>));
-      border: 1px solid attr(bgcolor type(<color>));
+      color: var(--btn-bgcolor);
+      border: 1px solid var(--btn-bgcolor);
     }
 
     &[variant="text"] {
       background-color: transparent;
-      color: attr(bgcolor type(<color>));
+      color: var(--btn-bgcolor);
     }
   }
 }

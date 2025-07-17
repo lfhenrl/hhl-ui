@@ -73,18 +73,19 @@ function onClick() {
     @click.prevent="onClick"
   >
     <H_switchbase :check tabindex="0" :variant :disabled :color="col.txt" :bgcolor="col.bg" :autofocus />
-    <span class="H_switch__label">{{ label }}</span>
+    <span class="label">{{ label }}</span>
   </label>
 </template>
 
 <style>
-/* stylelint-disable declaration-property-value-no-unknown */
 @layer components {
   .H_switch {
+    --switch-size: attr(size type(<length>));
+    font-size: var(--switch-size);
     display: inline-flex;
     align-items: center;
     width: fit-content;
-    font-size: attr(size type(<length>));
+
     &[disabled] {
       pointer-events: none;
       opacity: 50%;
@@ -99,7 +100,7 @@ function onClick() {
       outline-offset: 2px;
     }
 
-    .H_switch__label {
+    .label {
       white-space: nowrap;
       color: var(--color-txt2);
     }

@@ -27,7 +27,7 @@ If you need a special size then just use `style="font-size: 44px"` or `class="te
 You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6" | "txt7"`. <br>
 The default is `txt2`.<br>
 
-If you need a special color then just use `style="color: lime"`
+If you need a special color then just use `style="--icon-color: lime"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
@@ -39,12 +39,8 @@ If you need a special color then just use `style="color: lime"`
             <div><p>err</p><H_icon name="edit" color="err"></H_icon></div>
             <div><p>warn</p><H_icon name="edit" color="warn"></H_icon></div>
             <div><p>info</p><H_icon name="edit" color="info"></H_icon></div>
-            <div class="bg-bg6">
             <div><p>white</p><H_icon name="edit" color="white"></H_icon></div>
-            </div>
-            <div class="bg-bg6">
             <div><p>black</p><H_icon name="edit" color="black"></H_icon></div>
-            </div>
             <div><p>txt0</p><H_icon name="edit" color="txt0"></H_icon></div>
             <div><p>txt1</p><H_icon name="edit" color="txt1"></H_icon></div> 
             <div><p>txt2</p><H_icon name="edit" color="txt2"></H_icon></div>
@@ -53,7 +49,26 @@ If you need a special color then just use `style="color: lime"`
             <div><p>txt5</p><H_icon name="edit" color="txt5"></H_icon></div>
             <div><p>txt6</p><H_icon name="edit" color="txt6"></H_icon></div>
             <div><p>txt7</p><H_icon name="edit" color="txt7"></H_icon></div>
-            <div><p>Lime</p><H_icon name="edit" style="color:lime"></H_icon></div>             
+            <div><p>Lime</p><H_icon name="edit" style="--icon-color:lime"></H_icon></div>             
+      </div>
+            <div class="flex gap-4">
+            <div><p>pri</p><H_icon name="edit" color="pri" variant="outline-round"></H_icon></div>
+            <div><p>sec</p><H_icon name="edit" color="sec" variant="outline-round"></H_icon></div>
+            <div><p>ok</p><H_icon name="edit" color="ok" variant="outline-round"></H_icon></div>
+            <div><p>err</p><H_icon name="edit" color="err" variant="outline-round"></H_icon></div>
+            <div><p>warn</p><H_icon name="edit" color="warn" variant="outline-round"></H_icon></div>
+            <div><p>info</p><H_icon name="edit" color="info" variant="outline-round"></H_icon></div>
+            <div><p>white</p><H_icon name="edit" color="white" variant="outline-round"></H_icon></div>
+            <div><p>black</p><H_icon name="edit" color="black" variant="outline-round"></H_icon></div>
+            <div><p>txt0</p><H_icon name="edit" color="txt0" variant="outline-round"></H_icon></div>
+            <div><p>txt1</p><H_icon name="edit" color="txt1" variant="outline-round"></H_icon></div> 
+            <div><p>txt2</p><H_icon name="edit" color="txt2" variant="outline-round"></H_icon></div>
+            <div><p>txt3</p><H_icon name="edit" color="txt3" variant="outline-round"></H_icon></div>
+            <div><p>txt4</p><H_icon name="edit" color="txt4" variant="outline-round"></H_icon></div>
+            <div><p>txt5</p><H_icon name="edit" color="txt5" variant="outline-round"></H_icon></div>
+            <div><p>txt6</p><H_icon name="edit" color="txt6" variant="outline-round"></H_icon></div>
+            <div><p>txt7</p><H_icon name="edit" color="txt7" variant="outline-round"></H_icon></div>
+            <div><p>Lime</p><H_icon name="edit" style="--icon-color:lime" variant="outline-round"></H_icon></div>             
       </div>
             <div class="flex gap-4 mt-4">
             <div><p>pri</p><H_icon name="edit" color="pri" variant="filled-round"></H_icon></div>
@@ -72,7 +87,7 @@ If you need a special color then just use `style="color: lime"`
             <div><p>txt5</p><H_icon name="edit" color="txt5" variant="filled-round"></H_icon></div> 
             <div><p>txt6</p><H_icon name="edit" color="txt6" variant="filled-round"></H_icon></div> 
             <div><p>txt7</p><H_icon name="edit" color="txt7" variant="filled-round"></H_icon></div>
-            <div><p>Lime</p><H_icon name="edit" style="background-color:lime; color:black" variant="filled-round"></H_icon></div>             
+            <div><p>Lime</p><H_icon name="edit" style="--icon-color:lime; --icon-bgcolor:black" variant="filled-round"></H_icon></div>             
       </div>
       </div>
       </template>

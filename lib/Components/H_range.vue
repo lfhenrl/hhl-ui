@@ -1,7 +1,7 @@
 <template>
   <H_inputbase
     :label="label"
-    :disabled="disabled ? '' : undefined"
+    :disabled
     :readonly
     :HelpTextStart="hintStart"
     :HelpTextEnd="hintEnd"
@@ -9,7 +9,7 @@
     :color="col.txt"
     class="H_range"
   >
-    <div class="H_range__container">
+    <div class="container">
       <slot> </slot>
       <input
         ref="el"
@@ -110,7 +110,7 @@ onMounted(() => (model.value = model.value));
       border-radius: 50%;
     }
 
-    .H_range__container {
+    .container {
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;

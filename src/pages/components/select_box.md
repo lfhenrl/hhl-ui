@@ -6,7 +6,7 @@ The `H_selectBox` component is selector box for singel selection or multi select
 
 <hhl-live-editor title="" htmlCode='
       <template>
-       <div class="flex items-center gap-4 flex-wrap"> 
+       <div class="flex items-center gap-4"> 
             <H_selectbox autofocus :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectbox>
             <H_input readonly v-model="selection" label="Selector"></H_input>
       </div>
@@ -20,13 +20,32 @@ The `H_selectBox` component is selector box for singel selection or multi select
 
 <br>
 
+## Variant = checkbox (Default)
+
+<hhl-live-editor title="" htmlCode='
+    <template>
+        <div class="flex items-center gap-4">
+            <H_selectbox variant="checkbox" :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="checkbox (Default)"></H_selectbox>
+            <H_selectbox variant="radio" :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="radio"></H_selectbox>
+            <H_selectbox variant="switch" :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="switch"></H_selectbox>
+        </div>
+    </template>
+    <script>
+    const selection = ref("nr2");
+    return { selection }
+    </script>
+'>
+</hhl-live-editor>
+
+<br>
+
 ## Label left
 
 By adding attribute "LabelLeft"
 
 <hhl-live-editor title="" htmlCode='
       <template>
-       <div class="flex items-center gap-4 fflex-wrap"> 
+       <div class="flex items-center gap-4 "> 
             <H_selectbox label-left :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectbox>
             <H_input readonly v-model="selection" label="Selector"></H_input>
       </div>
@@ -46,8 +65,8 @@ By adding attribute "label gap"
 
 <hhl-live-editor title="" htmlCode='
       <template>
-       <div class="flex items-center gap-4 flex-wrap"> 
-            <H_selectbox label-left :list="[`nr1`, `nr2`, `nr3`]" label-gap="22px" v-model="selection" label="Selector"></H_selectbox>
+       <div class="flex items-center gap-4"> 
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" label-gap="22px" v-model="selection" label="Selector"></H_selectbox>
             <H_input readonly v-model="selection" label="Selector"></H_input>
       </div>
       </template>
@@ -66,8 +85,28 @@ By adding attribute "list gap"
 
 <hhl-live-editor title="" htmlCode='
       <template>
-       <div class="flex items-center gap-4 flex-wrap"> 
-            <H_selectbox label-left :list="[`nr1`, `nr2`, `nr3`]" list-gap="2px" v-model="selection" label="Selector"></H_selectbox>
+       <div class="flex items-center gap-4"> 
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" list-gap="2px" v-model="selection" label="Selector"></H_selectbox>
+            <H_input readonly v-model="selection" label="Selector"></H_input>
+      </div>
+      </template>
+      <script>
+            const selection = ref("nr2");
+            return { selection }
+      </script>
+'>
+</hhl-live-editor>
+
+<br>
+
+## justify between
+
+By adding attribute "justify-between"
+
+<hhl-live-editor title="" htmlCode='
+      <template>
+       <div class="flex items-center gap-4"> 
+            <H_selectbox justify-between :list="[`nr1`, `nr2`, `nr3`]" list-gap="2px" v-model="selection" label="justify-between"></H_selectbox>
             <H_input readonly v-model="selection" label="Selector"></H_input>
       </div>
       </template>
@@ -86,7 +125,7 @@ By adding attribute "row"
 
 <hhl-live-editor title="" htmlCode='
       <template>
-       <div class="flex items-center gap-4 flex-wrap"> 
+       <div class="flex items-center gap-4"> 
             <H_selectbox  row :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" label="Selector"></H_selectbox>
             <H_input readonly v-model="selection" label="Selector"></H_input>
       </div>
@@ -108,7 +147,7 @@ If you need a special color then just use `style="--color-pri: purple"`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-            <div class="flex items-center gap-4 flex-wrap">
+            <div class="flex items-center gap-4">
             <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" color="pri" label="pri"></H_selectbox>
             <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" color="ok" label="ok"></H_selectbox>
             <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" color="sec" label="sec"></H_selectbox>
@@ -134,7 +173,7 @@ If you need a special color then just use `style="--color-pri: purple"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-       <div class="flex items-center gap-4 flex-wrap">
+       <div class="flex items-center gap-4">
             <H_selectbox 
             :list="[
                         {value:`nr1`, label: `Number 1`},
@@ -161,7 +200,7 @@ Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-       <div class="flex items-center gap-4 flex-wrap"> 
+       <div class="flex items-center gap-4"> 
             <H_selectbox multi
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
@@ -184,7 +223,7 @@ Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-       <div class="flex items-center gap-4 flex-wrap"> 
+       <div class="flex items-center gap-4"> 
             <H_selectbox multi
             :list="[
                         {value:`nr1`, label: `Number 1`},
@@ -211,7 +250,7 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-       <div class="flex items-center gap-4 flex-wrap"> 
+       <div class="flex items-center gap-4"> 
             <H_selectbox disabled
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
@@ -234,7 +273,7 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-       <div class="flex items-center gap-4 flex-wrap"> 
+       <div class="flex items-center gap-4"> 
             <H_selectbox readonly
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">

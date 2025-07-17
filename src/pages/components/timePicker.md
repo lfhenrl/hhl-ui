@@ -4,8 +4,8 @@
 
 <hhl-live-editor title="" style="overflow:none" htmlCode='
     <template>
-    <div class="flex items-center flex-wrap"> 
-          <H_time-picker autofocus label="Time" v-model="time"></H_time-picker>
+    <div class="flex items-center gap-4"> 
+          <H_time-picker autofocus autofocus label="Time" v-model="time"></H_time-picker>
           <H_input readonly :model-value="time" label="Value"></H_input>
     </div>
     </template>
@@ -22,7 +22,7 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center flex-wrap"> 
+      <div class="flex items-center gap-4"> 
             <H_time-picker label="Time" v-model="time"></H_time-picker>
             <H_input readonly :model-value="time" label="Value"></H_input>
       </div>
@@ -42,7 +42,7 @@ By adding the property `show-seconds`.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center flex-wrap"> 
+      <div class="flex items-center gap-4"> 
       <H_time-picker label="Time" v-model="time" show-seconds></H_time-picker>
             <H_input readonly :model-value="time" label="Value"></H_input>
       </div>
@@ -62,7 +62,7 @@ By adding the property `hide-icon` you will remove the icon.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center flex-wrap"> 
+      <div class="flex items-center gap-4"> 
             <H_time-picker label="Time" v-model="time" show-seconds hide-icon></H_time-picker>
             <H_input readonly :model-value="time" label="Value"></H_input>
       </div>
@@ -82,7 +82,7 @@ By adding the attribute `disabled` you will disable the dateTime-picker
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center flex-wrap"> 
+      <div class="flex items-center gap-4"> 
             <H_time-picker label="Time" v-model="time" disabled show-seconds></H_time-picker>
             <H_input readonly :model-value="time" label="Value"></H_input>
       </div>
@@ -102,7 +102,7 @@ By adding the attribute `readonly` it will be in readonly mode.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center flex-wrap"> 
+      <div class="flex items-center gap-4"> 
             <H_time-picker label="Time" v-model="time" readonly show-seconds></H_time-picker>
             <H_input readonly :model-value="time" label="Value"></H_input>
       </div>
@@ -122,7 +122,7 @@ You can show a hint text at the bottom of the datepicker by adding `hint-start="
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center flex-wrap"> 
+      <div class="flex items-center gap-4"> 
             <H_time-picker label="Time" v-model="time" show-seconds hint-start="hint-start." hint-end="hint-end."></H_time-picker>
             <H_input readonly :model-value="time" label="Value"></H_input>
       </div>
@@ -142,7 +142,7 @@ Validation by adding `validator=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center flex-wrap"> 
+      <div class="flex items-center gap-4"> 
        <H_time-picker label="Time" v-model="time" :validator="[v.required]" show-seconds></H_time-picker>
             <H_input :model-value="time" label="Value" ></H_input>
       </div>

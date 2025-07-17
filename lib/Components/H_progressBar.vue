@@ -1,6 +1,6 @@
 <template>
   <div class="H_progressBar" :color="col.txt" :color2="col2.txt" :size="endSize" :speed>
-    <div v-if="show" class="H_progressBar-value"></div>
+    <div v-if="show" class="value"></div>
   </div>
 </template>
 
@@ -36,14 +36,13 @@ const endSize = useSize(toRef(() => P.size));
     min-height: var(--progress-size);
     width: 100%;
     border-radius: 4px;
-  }
-
-  .H_progressBar-value {
-    background-color: var(--progress-color);
-    min-height: var(--progress-size);
-    width: 50%;
-    height: 100%;
-    animation: indeterminateAnimation var(--progress-speed) infinite linear;
+    .value {
+      background-color: var(--progress-color);
+      min-height: var(--progress-size);
+      width: 50%;
+      height: 100%;
+      animation: indeterminateAnimation var(--progress-speed) infinite linear;
+    }
   }
 
   @keyframes indeterminateAnimation {

@@ -1,10 +1,10 @@
 <template>
   <H_inputbase
-    class="H_selbox"
+    class="H_selectbox"
     :label="label"
     :HelpTextStart="hintStart"
     :HelpTextEnd="hintEnd"
-    :disabled="disabled ? '' : undefined"
+    :disabled
     :narrow
     :ErrorMessage="validate"
     @keydown="keyDown"
@@ -13,21 +13,20 @@
       ref="selBase"
       :row="row"
       :multi
-      size="0.8em"
+      :size
       :color="col.txt"
       v-model="model"
-      :filter="filter"
-      :listGap="listGap"
-      :labelGap="labelGap"
-      :labelLeft="labelLeft"
-      :list="list"
+      :filter
+      :listGap
+      :labelGap
+      :labelLeft
+      :justifyBetween
+      :list
       :variant
       :autofocus
       tabindex="0"
       :readonly
       :disabled
-      class="xxxx px-2"
-      :class="{ 'py-1': !row }"
     />
   </H_inputbase>
 </template>
@@ -35,14 +34,14 @@
 <script setup lang="ts">
 import { computed, toRef, useTemplateRef, type PropType } from "vue";
 import { sizeProp } from "../SubComponents/props/sizeProp";
-import { useColor, useColorProp } from "../SubComponents/props/colorProp";
+import { useColor, colorProps } from "../SubComponents/props/colorProp";
 import H_inputbase from "./H_inputbase.vue";
 import H_selectbase from "./H_selectbase.vue";
 import { validateFunc } from "../utils/validateFunc";
 
 const P = defineProps({
-  ...useColorProp("pri"),
-  ...sizeProp,
+  color: { type: colorProps, default: "pri" },
+  size: { type: sizeProp, default: "md" },
   label: { type: String, default: "" },
   row: { type: Boolean, default: false },
   autofocus: { type: Boolean, default: false },
@@ -50,8 +49,9 @@ const P = defineProps({
   readonly: { type: Boolean, default: false },
   filter: { type: String, default: "" },
   labelGap: { type: String, default: "8px" },
-  listGap: { type: String, default: "13px" },
+  listGap: { type: String, default: "8px" },
   labelLeft: { type: Boolean, default: false },
+  justifyBetween: { type: Boolean, default: false },
   multi: { type: Boolean, default: false },
   list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] },
   hintStart: { type: String, default: "" },
@@ -112,3 +112,18 @@ function getFocusList() {
   return { ok, focusIndex, list };
 }
 </script>
+
+<style>
+@layer components {
+  .H_selectbox {
+    .H_selectbase {
+      border: none;
+      padding-inline: 0.5em;
+      padding-block: 0.4em;
+      &[row] {
+        padding-block: 0;
+      }
+    }
+  }
+}
+</style>

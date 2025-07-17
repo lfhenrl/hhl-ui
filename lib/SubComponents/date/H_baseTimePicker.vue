@@ -1,40 +1,26 @@
 <template>
-  <div :focused="focused" :readonly="readonly">
-    <H_popover
-      v-model="popupOpen"
-      trigger="click"
-      offset-top="8px"
-      :modal="noOutsideClick"
-      :readonly="readonly"
-      :autofocus
-      class="flex items-center"
-      :ref-class="{ 'focus:outline-none': true, 'focus:bg-pri/30 rounded': !solo }"
-    >
-      <template v-slot:referance>
-        <div class="group inline-flex items-center cursor-pointer h-full pl-1.5 pr-1" title="Timepicker">
-          <H_icon name="clock" size="1.1rem" color="txt1" v-if="!hideIcon" />
-          <input
-            name="timepicker"
-            title="Timepicker"
-            :value="formattetTime"
-            :size="setSize()"
-            tabindex="-1"
-            readonly
-            @focus="focused = !readonly"
-            @blur="focused = false"
-            class="overflow-hidden cursor-pointer text-xm text-txt1 bg-transparent border-none appearance-none pointer-events-none"
-          />
-        </div>
-      </template>
-      <div @click.stop class="rounded bg-bg5">
-        <H_timeTable v-model="tempDato" :show-seconds="showSeconds" :isopen="popupOpen" />
-        <div class="flex justify-end gap-4 p-4 border-t border-txt6">
-          <H_btn tabindex="-1" size="sm" @click.stop="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
-          <H_btn tabindex="-1" size="sm" @click.stop="ok" class="text-sm w-18">OK</H_btn>
-        </div>
+  <H_popover
+    v-model="popupOpen"
+    offset-top="8px"
+    :readonly="readonly"
+    :autofocus
+    :solo
+    title="Timepicker"
+    class="H_baseTimePicker"
+  >
+    <template v-slot:referance>
+      <H_icon name="clock" size="1.2em" color="txt1" v-if="!hideIcon" tabindex="-1" />
+      <span class="value">{{ formattetTime }}</span>
+    </template>
+
+    <div @click.stop class="H_baseTimePicker__popup">
+      <H_timeTable v-model="tempDato" :show-seconds="showSeconds" :isopen="popupOpen" />
+      <div class="actions bg-bg4">
+        <H_btn tabindex="-1" size="sm" color="sec" @click.stop="cancel">CANCEL</H_btn>
+        <H_btn tabindex="-1" size="sm" @click.stop="ok">OK</H_btn>
       </div>
-    </H_popover>
-  </div>
+    </div>
+  </H_popover>
 </template>
 
 <script setup lang="ts">
@@ -85,3 +71,38 @@ const formattetTime = computed(() => {
   return xxx;
 });
 </script>
+<style>
+@layer components {
+  .H_baseTimePicker {
+    display: flex;
+    align-items: center;
+    padding-inline: 0.2em;
+    outline-style: none;
+    border-radius: 4px;
+
+    [solo="false"]&:focus {
+      background-color: hsl(from var(--color-pri) h s l / 30%);
+    }
+
+    .value {
+      padding-inline: 0.2em;
+      text-align: start;
+      width: fit-content;
+      line-height: 1.1;
+    }
+  }
+
+  .H_baseTimePicker__popup {
+    background-color: var(--color-bg5);
+    border: 1px solid var(--color-bg2);
+    border-radius: 4px;
+    .actions {
+      display: flex;
+      justify-content: end;
+      gap: 1em;
+      padding: 0.7em;
+      border-radius: 0 0 4px 4px;
+    }
+  }
+}
+</style>

@@ -6,24 +6,22 @@
     :HelpTextStart="hintStart"
     :HelpTextEnd="hintEnd"
     :ErrorMessage="validate"
-    :disabled="disabled ? '' : undefined"
+    :disabled
+    title="Timepicker"
     @isValid="$emit('isValid', $event)"
-    class="H_timePicker"
+    class="H_timePicker focus-within:border-pri"
   >
-    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 items-center">
-      <slot> </slot>
-      <div class="H_inputbase-input col-start-2 flex items-center">
-        <H_baseTimePicker
-          :time="time"
-          @timeChanged="setTime"
-          :hide-icon="hideIcon"
-          :readonly="readonly"
-          :show-seconds="showSeconds"
-          :autofocus
-          solo
-        />
-      </div>
-    </div>
+    <slot> </slot>
+
+    <H_baseTimePicker
+      :time="time"
+      @timeChanged="setTime"
+      :hide-icon="hideIcon"
+      :readonly="readonly"
+      :show-seconds="showSeconds"
+      :autofocus
+      solo
+    />
   </H_inputBase>
 </template>
 
@@ -81,3 +79,11 @@ watch(
 
 const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
+<style>
+@layer components {
+  .H_baseTimePicker {
+    width: 100%;
+    cursor: pointer;
+  }
+}
+</style>

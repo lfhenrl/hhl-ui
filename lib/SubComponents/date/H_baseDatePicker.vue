@@ -5,27 +5,16 @@
       offset-top="8px"
       :readonly="readonly"
       :autofocus
-      class="flex items-center"
-      ref-class="focus:outline-none focus:bg-pri/30 rounded"
+      title="Datepicker"
+      class="H_baseDatePicker"
     >
       <template v-slot:referance>
-        <div class="group inline-flex items-center cursor-pointer h-full" title="Datepicker">
-          <H_icon name="event" size="1.1rem" color="txt1" v-if="!hideIcon" />
-          <input
-            name="datepicker"
-            title="Datepicker"
-            :value="formattetValueDate"
-            :size="setSize()"
-            tabindex="-1"
-            readonly
-            @focus="focused = !readonly"
-            @blur="focused = false"
-            class="overflow-hidden cursor-pointer text-xm text-txt1 bg-transparent border-none appearance-none pointer-events-none"
-          />
-        </div>
+        <H_icon name="event" size="1.2em" color="txt1" v-if="!hideIcon" tabindex="-1" />
+        <span class="value">{{ formattetValueDate }}</span>
       </template>
-      <div @click.stop class="rounded bg-bg5">
-        <div class="flex items-center text-lg text-txt1 font-bold justify-center p-1 border-b border-txt6">
+
+      <div @click.stop class="H_baseDatePicker__popup">
+        <div class="header">
           {{ formattetTempDate }}
         </div>
         <H_dateTable
@@ -36,9 +25,9 @@
           @month-click="activeView = 'month'"
         />
         <H_monthTable v-show="activeView == 'month'" v-model="tempDatomy" @month-selected="activeView = 'day'" />
-        <div class="flex justify-end gap-4 p-4 border-t border-txt6">
-          <H_btn tabindex="-1" @click.stop="cancel" class="col-sec text-sm w-18">CANCEL</H_btn>
-          <H_btn tabindex="-1" @click.stop="ok" class="text-sm w-18">OK</H_btn>
+        <div class="actions">
+          <H_btn tabindex="-1" @click.stop="cancel" size="sm" color="sec">CANCEL</H_btn>
+          <H_btn tabindex="-1" @click.stop="ok" size="sm">OK</H_btn>
         </div>
       </div>
     </H_popover>
@@ -115,3 +104,49 @@ const ok = () => {
 };
 const cancel = () => close();
 </script>
+<style>
+@layer components {
+  .H_baseDatePicker {
+    display: flex;
+    align-items: center;
+    padding-inline: 0.2em;
+    outline-style: none;
+    border-radius: 4px;
+
+    &:focus {
+      background-color: hsl(from var(--color-pri) h s l / 30%);
+    }
+
+    .value {
+      padding-inline: 0.2em;
+      text-align: start;
+      width: fit-content;
+      line-height: 1.1;
+    }
+  }
+
+  .H_baseDatePicker__popup {
+    background-color: var(--color-bg5);
+    border-radius: 4px;
+    padding-inline: 0.2em;
+
+    .header {
+      display: flex;
+      align-items: center;
+      color: var(--color-txt1);
+      font-size: 1.2em;
+      font-weight: bold;
+      justify-content: center;
+      padding: 0.25em;
+      border-bottom: 1px solid var(--color-txt6);
+    }
+    .actions {
+      display: flex;
+      justify-content: end;
+      gap: 1em;
+      padding: 1em;
+      border-top: 1px solid var(--color-txt6);
+    }
+  }
+}
+</style>
