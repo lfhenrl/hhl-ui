@@ -1,14 +1,9 @@
 <template>
   <div class="_page">
     <div style="display: flex" class="flex items-center bg-bg3 mt-8 px-4">
-      <input size="1" class="border-pri border" />
-      <H_switch label="Inner" v-model="inner" />
-      <H_input type="number" label="OffsetLeft" v-model="offsetLeft" hint-start="START" hint-end="END" />
-      <H_input v-model="inputValue">
-        <H_icon name="clock" size="1.2rem" color="txt3" btn set-end />
-        <H_icon name="clock" size="1.2rem" color="txt3" btn class="" />
-      </H_input>
+      <H_baseTimePicker class="ml-2" :time="time" @time-changed="(e:any) => (time = e)"></H_baseTimePicker>
       <H_date-picker label="Date"></H_date-picker>
+      <H_baseDatePicker class="ml-2" :date="date" @date-changed="(e:any) => (date = e)"></H_baseDatePicker>
       <H_selectbox row :list="[`nr1`, `nr2`, `nr3`]" label="Selector"></H_selectbox>
     </div>
     <div style="min-height: 500px" />
@@ -16,16 +11,13 @@
 </template>
 
 <script setup lang="ts">
-import H_switch from "../../../lib/Components/H_switch.vue";
-import H_input from "../../../lib/Components/H_input.vue";
+import H_baseTimePicker from "../../../lib/SubComponents/date/H_baseTimePicker.vue";
+import H_baseDatePicker from "../../../lib/SubComponents/date/H_baseDatePicker.vue";
 
 import { ref } from "vue";
 
-const inputValue = ref("henrik");
-
-const inner = ref(false);
-
-const offsetLeft = ref(0);
+const time = ref({ hour: "11", minute: "11", second: "22" });
+const date = ref({ date: 11, month: 11, year: 2022 });
 </script>
 <style scoped>
 ._page {

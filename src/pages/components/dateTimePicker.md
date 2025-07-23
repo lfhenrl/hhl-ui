@@ -4,7 +4,7 @@
 
 <hhl-live-editor title="" style="overflow:none" htmlCode='
     <template>
-    <div class="flex items-center gap-8 flex-wrap"> 
+    <div class="flex items-center gap-8"> 
           <H_date-picker autofocus label="Date" v-model="dato"></H_date-picker>
           <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
     </div>
@@ -31,7 +31,7 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-8 flex-wrap"> 
+      <div class="flex items-center gap-8"> 
             <H_date-picker v-model="dato"/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
@@ -61,7 +61,7 @@ By adding the property `long-date` you will get the week day name incluted
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-8 flex-wrap"> 
+      <div class="flex items-center gap-8"> 
             <H_date-picker v-model="dato" long-date/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
@@ -91,7 +91,7 @@ By adding the property `show-seconds`.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-8 flex-wrap"> 
+      <div class="flex items-center gap-8"> 
             <H_date-picker v-model="dato" show-seconds/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
@@ -122,7 +122,7 @@ You can select "datetime" (default) "date" or "time"
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-8 flex-wrap"> 
+      <div class="flex items-center gap-8"> 
             <H_date-picker label="Date" v-model="dato" type="date"/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
@@ -153,7 +153,7 @@ You can select "datetime" (default) "date" or "time"
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-8 flex-wrap"> 
+      <div class="flex items-center gap-8"> 
             <H_date-picker label="Date" v-model="dato" type="time"/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
@@ -183,7 +183,7 @@ By adding the property `hide-icon` you will remove the icon.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-8 flex-wrap"> 
+      <div class="flex items-center gap-8"> 
             <H_date-picker label="Date" v-model="dato" hide-icon/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
@@ -213,7 +213,7 @@ By adding the attribute `disabled` you will disable the dateTime-picker
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-8 flex-wrap"> 
+      <div class="flex items-center gap-8"> 
             <H_date-picker label="Date" v-model="dato" disabled/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
@@ -243,7 +243,7 @@ By adding the attribute `readonly` it will be in readonly mode.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-8 flex-wrap"> 
+      <div class="flex items-center gap-8"> 
             <H_date-picker label="Date" v-model="dato" readonly/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
@@ -273,7 +273,7 @@ You can show a hint text at the bottom of the datepicker by adding `hint-start="
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-8 flex-wrap"> 
+      <div class="flex items-center gap-8"> 
             <H_date-picker label="Date" v-model="dato" hint-start="hint-start." hint-end="hint-end."/>
             </H_date-picker>
             <H_input readonly :model-value="formatDate(dato)" label="Value"></H_input>
@@ -303,7 +303,7 @@ Validation by adding `validator=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-8 flex-wrap"> 
+      <div class="flex items-center gap-8"> 
             <H_date-picker label="Date" v-model="dato" :validator="[v.dateRequired]"/>
             </H_date-picker>
             <H_input :model-value="formatDate(dato)" label="Value" ></H_input>

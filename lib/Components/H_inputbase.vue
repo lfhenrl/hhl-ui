@@ -1,9 +1,9 @@
 <template>
   <div class="H_inputbase" :disabled="disabled ? '' : undefined" :data-error="ErrorMessage != '' ? true : undefined">
     <slot />
-    <span class="label">{{ label }}</span>
-    <span class="hintStart">{{ infotext }}</span>
-    <span class="hintEnd">{{ hintEnd }}</span>
+    <span class="H_inputbase__label">{{ label }}</span>
+    <span class="H_inputbase__hintStart">{{ infotext }}</span>
+    <span class="H_inputbase__hintEnd">{{ hintEnd }}</span>
   </div>
 </template>
 
@@ -43,14 +43,14 @@ const infotext = computed(() => {
     border: 1px solid var(--color-txt5);
     border-radius: 4px;
 
-    .label {
+    .H_inputbase__label {
       position: absolute;
       color: var(--color-txt2);
       font-size: 0.9em;
       top: -1.6em;
       left: 2px;
     }
-    .hintStart {
+    .H_inputbase__hintStart {
       position: absolute;
       color: var(--color-txt2);
       font-size: 0.65em;
@@ -58,7 +58,7 @@ const infotext = computed(() => {
       left: 4px;
     }
 
-    .hintEnd {
+    .H_inputbase__hintEnd {
       position: absolute;
       color: var(--color-txt2);
       font-size: 0.7em;
@@ -74,7 +74,7 @@ const infotext = computed(() => {
       .H_inputbase__hintEnd {
         display: none;
       }
-      .hintStart {
+      .H_inputbase__hintStart {
         color: var(--color-err);
       }
     }

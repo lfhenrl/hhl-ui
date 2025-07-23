@@ -13,6 +13,7 @@
       :key="item.label"
       :labelleft="labelLeft ? '' : undefined"
       :justifybetween="justifyBetween ? '' : undefined"
+      class="H_selectbase__label"
     >
       <H_switchbase :check="selected(item.value) ? true : false" :variant :color :bgcolor :value="item.value" />
       <span class="label">{{ item.label }}</span>
@@ -136,7 +137,7 @@ function setValue(val: any) {
       flex-direction: row;
     }
 
-    label {
+    .H_selectbase__label {
       display: inline-flex;
       align-items: center;
       justify-items: center;

@@ -3,35 +3,32 @@
     :clearable="clearable"
     :validator="validator"
     :label="label"
-    :HelpTextStart="hintStart"
-    :HelpTextEnd="hintEnd"
+    :hintStart
+    :hintEnd
     :ErrorMessage="validate"
-    :disabled="disabled ? '' : undefined"
-    @isValid="$emit('isValid', $event)"
+    :disabled
     class="H_datePicker"
   >
-    <div class="grid grid-cols-[auto_1fr_auto] w-full h-full *:row-start-1 items-center px-1.5">
-      <slot> </slot>
-      <div class="H_inputbase-input col-start-2 flex items-center">
-        <H_baseDatePicker
-          :modelValue="dato"
-          @dateChanged="setDate"
-          :long-date="longDate"
-          :hide-icon="hideIcon"
-          :autofocus
-          :readonly="readonly"
-          v-if="type === 'dateTime' || type === 'date'"
-        />
-        <H_baseTimePicker
-          :time="time"
-          @timeChanged="setTime"
-          :hide-icon="hideIcon"
-          :readonly="readonly"
-          :autofocus
-          :show-seconds="showSeconds"
-          v-if="type === 'dateTime' || type === 'time'"
-        />
-      </div>
+    <slot> </slot>
+    <div class="H_datePicker__content">
+      <H_baseDatePicker
+        :date="tempDate"
+        @dateChanged="setDate"
+        :long-date="longDate"
+        :hide-icon="hideIcon"
+        :autofocus
+        :readonly="readonly"
+        v-if="type === 'dateTime' || type === 'date'"
+      />
+      <H_baseTimePicker
+        :time
+        @timeChanged="setTime"
+        :hide-icon="hideIcon"
+        :readonly="readonly"
+        :autofocus
+        :show-seconds="showSeconds"
+        v-if="type === 'dateTime' || type === 'time'"
+      />
     </div>
   </H_inputBase>
 </template>
@@ -44,7 +41,6 @@ import H_baseDatePicker from "../SubComponents/date/H_baseDatePicker.vue";
 import H_baseTimePicker from "../SubComponents/date/H_baseTimePicker.vue";
 
 const P = defineProps({
-  modelValue: { type: Object as PropType<Date | undefined>, default: null },
   type: {
     type: String as PropType<"dateTime" | "date" | "time">,
     default: "dateTime",
@@ -62,54 +58,24 @@ const P = defineProps({
   clearable: Boolean,
   validator: Array,
 });
-
 const emit = defineEmits(["update:date", "update:modelValue", "update:time", "isValid"]);
-
-const dato = ref();
-const time = ref({ hour: 0, minute: 0, second: 0 });
-
-function setDate(e: any) {
-  const newDatoNumber = new Date(e.getFullYear(), e.getMonth(), e.getDate()).valueOf();
-  const newTimeNumber = time.value.hour * 3600 + time.value.minute * 60 + time.value.second;
-  const newDato = new Date(newDatoNumber + newTimeNumber * 1000);
-  if (newDato) {
-    emit("update:modelValue", newDato);
-    emit("update:date", new Date(newDatoNumber));
-    emit("update:time", new Date(newTimeNumber * 1000));
-  }
-}
-
-function setTime(e: any) {
-  time.value = { hour: e.hour, minute: e.minute, second: e.second };
-  const newTimeNumber = e.hour * 3600 + e.minute * 60 + e.second;
-  if (dato.value) {
-    const newDatoNumber = new Date(dato.value.getFullYear(), dato.value.getMonth(), dato.value.getDate()).valueOf();
-    const newDato = new Date(newDatoNumber + newTimeNumber * 1000);
-    if (newDato) {
-      emit("update:modelValue", newDato);
-    }
-  }
-  emit("update:time", new Date(newTimeNumber * 1000));
-  if (P.type === "time") {
-    emit("update:modelValue", new Date(0, 0, 0, e.hour, e.minute, e.second));
-    emit("update:date", new Date(0, 0, 0));
-  }
-}
+const model: any = defineModel();
+const tempDate = ref();
+const time = ref({ hour: "00", minute: "00", second: "00" });
 
 watch(
-  () => P.modelValue,
-  () => {
-    if (P.modelValue) {
-      const pDato = new Date(P.modelValue);
+  () => model.value,
+  (dato: Date) => {
+    if (model.value) {
+      tempDate.value = { date: dato.getDate(), month: dato.getMonth(), year: dato.getFullYear() };
       time.value = {
-        hour: pDato.getHours(),
-        minute: pDato.getMinutes(),
-        second: pDato.getSeconds(),
+        hour: dato.getHours().toString().padStart(2, "0"),
+        minute: dato.getMinutes().toString().padStart(2, "0"),
+        second: P.showSeconds ? dato.getSeconds().toString().padStart(2, "0") : "00",
       };
-      dato.value = new Date(pDato.getFullYear(), pDato.getMonth(), pDato.getDate());
     } else {
-      time.value = { hour: 0, minute: 0, second: 0 };
-      dato.value = null;
+      time.value = { hour: "00", minute: "00", second: "00" };
+      tempDate.value = null;
     }
   },
   {
@@ -117,5 +83,42 @@ watch(
   }
 );
 
-const validate = computed(() => validateFunc(P.validator, P.modelValue));
+function updateModel() {
+  if (tempDate.value) {
+    model.value = new Date(
+      tempDate.value.year,
+      tempDate.value.month,
+      tempDate.value.date,
+      parseInt(time.value.hour),
+      parseInt(time.value.minute),
+      parseInt(time.value.second)
+    );
+  }
+}
+
+function setTime(newTime: any) {
+  time.value = newTime;
+  updateModel();
+}
+
+function setDate(newDate: any) {
+  tempDate.value = newDate;
+  updateModel();
+}
+
+const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
+<style>
+@layer components {
+  .H_datePicker {
+    &:focus-within {
+      border-color: var(--color-pri);
+    }
+
+    .H_datePicker__content {
+      display: flex;
+      width: 100%;
+    }
+  }
+}
+</style>

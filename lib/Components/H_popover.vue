@@ -178,7 +178,7 @@ function closeDragElement() {
   }
 
   .H_pop-popup {
-    position: absolute;
+    position: fixed;
     width: max-content;
     background-color: transparent;
     box-shadow: var(--shadow-theme-lg);

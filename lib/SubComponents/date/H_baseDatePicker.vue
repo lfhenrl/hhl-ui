@@ -1,109 +1,202 @@
 <template>
-  <div :focused :readonly="readonly">
-    <H_popover
-      v-model="popupOpen"
-      offset-top="8px"
-      :readonly="readonly"
-      :autofocus
-      title="Datepicker"
-      class="H_baseDatePicker"
-    >
-      <template v-slot:referance>
-        <H_icon name="event" size="1.2em" color="txt1" v-if="!hideIcon" tabindex="-1" />
-        <span class="value">{{ formattetValueDate }}</span>
-      </template>
+  <H_popover
+    v-model="popupOpen"
+    offset-top="8px"
+    :readonly="readonly"
+    :autofocus
+    title="Datepicker"
+    class="H_baseDatePicker"
+    @toggled="toggled"
+  >
+    <template v-slot:referance>
+      <H_icon name="event" size="1.2em" color="txt1" v-if="!hideIcon" tabindex="-1" />
+      <span class="value">{{ formattetValueDate }}</span>
+    </template>
 
-      <div @click.stop class="H_baseDatePicker__popup">
-        <div class="header">
-          {{ formattetTempDate }}
-        </div>
-        <H_dateTable
-          v-show="activeView == 'day'"
-          v-model:tempDatomy="tempDatomy"
-          v-model="tempDato"
-          @update:tempDatomy="tempDatomy = $event"
-          @month-click="activeView = 'month'"
-        />
-        <H_monthTable v-show="activeView == 'month'" v-model="tempDatomy" @month-selected="activeView = 'day'" />
-        <div class="actions">
-          <H_btn tabindex="-1" @click.stop="cancel" size="sm" color="sec">CANCEL</H_btn>
-          <H_btn tabindex="-1" @click.stop="ok" size="sm">OK</H_btn>
-        </div>
+    <div class="H_baseDatePicker__popup" @keydown="keyDown">
+      <H_dateSelector
+        ref="dateSelector"
+        tabindex="0"
+        :date="tempDate"
+        :date-base="dateBase"
+        :month-array="monthString"
+        @base-changed="(e) => (dateBase = e)"
+      ></H_dateSelector>
+
+      <H_dateTable
+        v-if="dateBase === 'date'"
+        :date="tempDate"
+        :dates="DaysArray"
+        :month-array="monthString"
+        @base-changed="(e) => (dateBase = e)"
+        tabindex="-1"
+      ></H_dateTable>
+      <H_monthTable
+        v-else
+        :date="tempDate"
+        :month-array="monthString"
+        @base-changed="(e) => (dateBase = e)"
+        tabindex="-1"
+      ></H_monthTable>
+      <div class="actions bg-bg4">
+        <H_btn tabindex="-1" size="sm" color="sec" @click.stop="cancel">CANCEL</H_btn>
+        <H_btn tabindex="-1" size="sm" @click.stop="ok">OK</H_btn>
       </div>
-    </H_popover>
-  </div>
+    </div>
+  </H_popover>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
-import { D_01_dec_2021, D_mon_01_dec_2021 } from "../../utils/dateFormat";
-import { DateGetToday } from "../../utils/dateFunctions";
+import { computed, ref, useTemplateRef, watch, watchEffect, type PropType } from "vue";
 import H_popover from "../../Components/H_popover.vue";
 import H_btn from "../../Components/H_btn.vue";
-import H_dateTable from "./H_dateTable.vue";
-import H_monthTable from "./H_monthTable.vue";
+import H_dateSelector from "./date/H_dateSelector.vue";
+import H_monthTable from "./date/H_monthTable.vue";
+import H_dateTable from "./date/H_dateTable.vue";
 import H_icon from "../../Components/H_icon.vue";
+import { D_01_dec_2021, D_mon_01_dec_2021 } from "../../utils/dateFormat";
+import { getDaysArray } from "./date/getDaysArray";
 
-const props = defineProps({
-  modelValue: { type: Date, default: null },
+type idato = {
+  date: number;
+  month: number;
+  year: number;
+};
+
+const P = defineProps({
+  date: { type: Object as PropType<idato | undefined>, default: { date: 0, month: 0, year: 0 } },
+  longDate: { default: false, type: Boolean },
   autofocus: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
   hideIcon: { default: false, type: Boolean },
-  longDate: { default: false, type: Boolean },
-  noOutsideClick: { type: Boolean, default: false },
 });
-
-const emit = defineEmits(["dateChanged"]);
-
+const E = defineEmits(["dateChanged"]);
+const dateSelector = useTemplateRef("dateSelector");
+const monthString = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const DaysArray = ref(getDaysArray(P.date?.year, P.date?.month));
 const popupOpen = ref(false);
-const focused = ref(false);
-const activeView = ref("day");
-const tempDato = ref(DateGetToday());
-const tempDatomy = ref<Date | undefined>(DateGetToday());
-
-watch(
-  () => props.modelValue,
-  () => {
-    if (props.modelValue) {
-      tempDato.value = props.modelValue;
-      tempDatomy.value = tempDato.value;
-    }
-  }
-);
-
-function setSize() {
-  if (props.longDate) {
-    return 11;
-  } else {
-    return 8;
-  }
-}
-
-const formattetTempDate = computed(() => {
-  if (tempDato.value) {
-    return D_01_dec_2021(tempDato.value);
-  }
-  return null;
-});
+const dateBase = ref("date");
+const tempDate = ref();
+let monthLength = 31;
 
 const formattetValueDate = computed(() => {
-  if (props.modelValue) {
-    if (props.longDate) {
-      return D_mon_01_dec_2021(new Date(props.modelValue));
+  if (P.date) {
+    console.log("H_baseDatePicker.vue formattetValueDate", P.date);
+    if (P.longDate) {
+      return D_mon_01_dec_2021(new Date(P.date.year, P.date.month, P.date.date));
     } else {
-      return D_01_dec_2021(new Date(props.modelValue));
+      return D_01_dec_2021(new Date(P.date.year, P.date.month, P.date.date));
     }
   }
   return "?? ??? ????";
 });
 
+watch(
+  () => P.date,
+  (newDate) => {
+    if (!newDate) {
+      const d = new Date();
+      tempDate.value = { date: d.getDate(), month: d.getMonth(), year: d.getFullYear() };
+      return;
+    }
+    tempDate.value = { ...newDate };
+  },
+  { immediate: true }
+);
+
+watch(dateBase, () => {
+  setTimeout(() => {
+    dateSelector.value?.$el.focus();
+  }, 10);
+});
+
+watchEffect(() => {
+  DaysArray.value = getDaysArray(tempDate.value.year, tempDate.value.month);
+  monthLength = DaysArray.value.filter((d) => d.activeMonth === true).length;
+  if (tempDate.value.date > monthLength) {
+    tempDate.value.date = monthLength;
+  }
+});
+
+function toggled(e: boolean) {
+  if (e) {
+    setTimeout(() => {
+      dateSelector.value?.$el.focus();
+    }, 10); // Delay to allow focus to be set correctly
+  }
+}
+
 const close = () => (popupOpen.value = false);
-const ok = () => {
-  close();
-  emit("dateChanged", new Date(tempDato.value));
-};
+const ok = () => (close(), E("dateChanged", tempDate.value));
 const cancel = () => close();
+
+function keyDown(e: KeyboardEvent) {
+  console.log("key", e.key);
+  if (e.key === "ArrowDown") ArrowDown();
+  if (e.key === "ArrowUp") ArrowUp();
+  if (e.key === "ArrowLeft") ArrowLeft();
+  if (e.key === "ArrowRight") ArrowRight();
+  if (e.key === "Enter") Enter();
+}
+
+function Enter() {
+  setTimeout(() => {
+    ok();
+  }, 100); // Delay to allow focus to be set correctly
+}
+
+function ArrowLeft() {
+  console.log("ArrowLeft");
+  if (dateBase.value === "date") {
+    dateBase.value = "year";
+  } else if (dateBase.value === "month") {
+    dateBase.value = "date";
+  } else if (dateBase.value === "year") {
+    dateBase.value = "month";
+  }
+}
+
+function ArrowRight() {
+  if (dateBase.value === "date") {
+    dateBase.value = "month";
+  } else if (dateBase.value === "month") {
+    dateBase.value = "year";
+  } else if (dateBase.value === "year") {
+    dateBase.value = "date";
+  }
+}
+
+function ArrowUp() {
+  let maxVal = 9999;
+  if (dateBase.value === "month") maxVal = 11;
+  if (dateBase.value === "date") maxVal = monthLength;
+
+  if (parseInt(tempDate.value[dateBase.value]) <= maxVal) {
+    let val = parseInt(tempDate.value[dateBase.value]) + 1;
+    if (dateBase.value === "month" && val > 11) {
+      val = 0; // Wrap around for month
+    } else if (dateBase.value === "date" && val > monthLength) {
+      val = 1; // Wrap around for date
+    }
+
+    tempDate.value[dateBase.value] = val;
+  }
+}
+
+function ArrowDown() {
+  if (parseInt(tempDate.value[dateBase.value]) >= 0) {
+    let val = parseInt(tempDate.value[dateBase.value]) - 1;
+
+    if (dateBase.value === "month" && val < 0) {
+      val = 11; // Wrap around for month
+    } else if (dateBase.value === "date" && val < 1) {
+      val = monthLength; // Wrap around for date
+    }
+    tempDate.value[dateBase.value] = val;
+  }
+}
 </script>
+
 <style>
 @layer components {
   .H_baseDatePicker {
@@ -121,31 +214,21 @@ const cancel = () => close();
       padding-inline: 0.2em;
       text-align: start;
       width: fit-content;
-      line-height: 1.1;
+      text-wrap: nowrap;
+      text-box-trim: trim-both;
     }
   }
 
   .H_baseDatePicker__popup {
     background-color: var(--color-bg5);
+    border: 1px solid var(--color-bg2);
     border-radius: 4px;
-    padding-inline: 0.2em;
-
-    .header {
-      display: flex;
-      align-items: center;
-      color: var(--color-txt1);
-      font-size: 1.2em;
-      font-weight: bold;
-      justify-content: center;
-      padding: 0.25em;
-      border-bottom: 1px solid var(--color-txt6);
-    }
     .actions {
       display: flex;
       justify-content: end;
       gap: 1em;
-      padding: 1em;
-      border-top: 1px solid var(--color-txt6);
+      padding: 0.7em;
+      border-radius: 0 0 4px 4px;
     }
   }
 }

@@ -3,23 +3,22 @@
     :clearable="clearable"
     :validator="validator"
     :label="label"
-    :HelpTextStart="hintStart"
-    :HelpTextEnd="hintEnd"
+    :hintStart
+    :hintEnd
     :ErrorMessage="validate"
     :disabled
     title="Timepicker"
-    @isValid="$emit('isValid', $event)"
-    class="H_timePicker focus-within:border-pri"
+    class="H_timePicker"
   >
     <slot> </slot>
 
     <H_baseTimePicker
       :time="time"
-      @timeChanged="setTime"
       :hide-icon="hideIcon"
       :readonly="readonly"
       :show-seconds="showSeconds"
       :autofocus
+      @time-changed="timeChanged"
       solo
     />
   </H_inputBase>
@@ -46,17 +45,8 @@ const P = defineProps({
 });
 
 const model: any = defineModel();
-const emit = defineEmits(["isValid"]);
 
-const time = ref({ hour: 0, minute: 0, second: 0 });
-
-function setTime(e: any) {
-  // put zero in front of numbers < 10
-  const h = e.hour < 10 ? "0" + e.hour : e.hour;
-  const m = e.minute < 10 ? "0" + e.minute : e.minute;
-  const s = e.second < 10 ? "0" + e.second : e.second;
-  model.value = `${h}:${m}:${s}`;
-}
+const time = ref({ hour: "00", minute: "00", second: "00" });
 
 watch(
   () => model.value,
@@ -64,12 +54,12 @@ watch(
     if (model.value) {
       const pDato = model.value.split(":");
       time.value = {
-        hour: parseInt(pDato[0] ?? 0),
-        minute: parseInt(pDato[1] ?? 0),
-        second: parseInt(pDato[2] ?? 0),
+        hour: pDato[0],
+        minute: pDato[1],
+        second: pDato[2],
       };
     } else {
-      time.value = { hour: 0, minute: 0, second: 0 };
+      time.value = { hour: "00", minute: "00", second: "00" };
     }
   },
   {
@@ -77,13 +67,24 @@ watch(
   }
 );
 
+function timeChanged(e: any) {
+  model.value = "";
+  model.value = `${e.hour}:${e.minute}:${e.second}`;
+  console.log("timeChanged", model.value);
+}
+
 const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
 <style>
 @layer components {
-  .H_baseTimePicker {
-    width: 100%;
-    cursor: pointer;
+  .H_timePicker {
+    &:focus-within {
+      border-color: var(--color-pri);
+    }
+    .H_baseTimePicker {
+      width: 100%;
+      cursor: pointer;
+    }
   }
 }
 </style>

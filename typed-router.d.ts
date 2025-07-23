@@ -24,7 +24,6 @@ declare module 'vue-router/auto-routes' {
     '/components/chartPie': RouteRecordInfo<'/components/chartPie', '/components/chartPie', Record<never, never>, Record<never, never>>,
     '/components/dataGrid': RouteRecordInfo<'/components/dataGrid', '/components/dataGrid', Record<never, never>, Record<never, never>>,
     '/components/dateTimePicker': RouteRecordInfo<'/components/dateTimePicker', '/components/dateTimePicker', Record<never, never>, Record<never, never>>,
-    '/components/dateTimePicker_native': RouteRecordInfo<'/components/dateTimePicker_native', '/components/dateTimePicker_native', Record<never, never>, Record<never, never>>,
     '/components/dialog': RouteRecordInfo<'/components/dialog', '/components/dialog', Record<never, never>, Record<never, never>>,
     '/components/dialog_service': RouteRecordInfo<'/components/dialog_service', '/components/dialog_service', Record<never, never>, Record<never, never>>,
     '/components/dragDrop': RouteRecordInfo<'/components/dragDrop', '/components/dragDrop', Record<never, never>, Record<never, never>>,

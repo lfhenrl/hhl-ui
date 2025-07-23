@@ -13,7 +13,7 @@
     width="24"
     fill="none"
   >
-    <path fill="currentColor" :d="icon" />
+    <path fill="currentColor" :d="icon" style="pointer-events: none" />
   </svg>
 </template>
 
@@ -71,6 +71,7 @@ watch(
     max-height: 1em;
     aspect-ratio: 1/1;
     border-radius: 4px;
+    outline: none;
 
     &[btn] {
       &:hover {

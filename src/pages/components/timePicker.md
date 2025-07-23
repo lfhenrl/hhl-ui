@@ -10,7 +10,7 @@
     </div>
     </template>
     <script>
-      const time = ref("00:00:00");
+      const time = ref("00:00:11");
       return { time }
     </script>
 '>

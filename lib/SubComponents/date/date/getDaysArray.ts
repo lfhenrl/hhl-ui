@@ -1,6 +1,7 @@
-import { DateAddMonths, DateAddDays, DateGetWeek, DateDiffDays } from "../../utils/dateFunctions";
+import { DateAddMonths, DateAddDays, DateGetWeek, DateDiffDays } from "../../../utils/dateFunctions";
+export type igetDaysArray = ReturnType<typeof getDaysArray>;
 
-export const getDaysArray = (_year: number, _month: number) => {
+export const getDaysArray = (_year: number = new Date().getFullYear(), _month: number = new Date().getMonth()) => {
   let startDate = new Date(_year, _month, 1);
   let endDate = DateAddMonths(startDate, 1);
   const activeMonth = startDate.getMonth();
@@ -25,7 +26,7 @@ export const getDaysArray = (_year: number, _month: number) => {
       value: item,
       title: item,
       daytype: null,
-      activeMonth: null
+      activeMonth: null,
     });
   });
 
@@ -37,7 +38,7 @@ export const getDaysArray = (_year: number, _month: number) => {
       value: week.toString(),
       title: week.toString(),
       daytype: null,
-      activeMonth: null
+      activeMonth: null,
     };
     if (oldWeek !== week) {
       arr.push(weekItem);
@@ -52,7 +53,7 @@ export const getDaysArray = (_year: number, _month: number) => {
       value: `${dato.getDate()}/${month}/${dato.getFullYear()}`,
       title: dato.getDate().toString(),
       daytype: dataDaytype,
-      activeMonth: dataActiveMonth
+      activeMonth: dataActiveMonth,
     };
 
     arr.push(dayItem);
