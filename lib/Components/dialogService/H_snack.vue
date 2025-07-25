@@ -1,26 +1,11 @@
 <template>
-  <transition
-    @after-leave="$emit('close')"
-    enter-from-class="translate-x-[150%] opacity-0 "
-    enter-active-class="transition duration-400 ease-in"
-    leave-to-class="translate-x-[150%] opacity-0"
-    leave-active-class="transition duration-500 ease-out"
-  >
-    <div
-      v-show="modelValue"
-      class="H_snack"
-      :class="{
-        'col-err': type === 'err',
-        'col-warn': type === 'warn',
-        'col-ok': type === 'info',
-      }"
-      @click="$emit('update:modelValue', false)"
-    >
+  <transition name="snack" @after-leave="$emit('close')">
+    <div v-show="modelValue" class="H_snack" :type @click="$emit('update:modelValue', false)">
       <H_icon name="check" size="2rem" color="white" v-if="type === 'info'" />
       <H_icon name="info" size="2rem" :color="type === 'warn' ? 'black' : 'white'" v-else />
-      <div class="H_snack-info flex flex-col items-center flex-1">
-        <span class="text-lg font-bold">{{ title }}</span>
-        <span class="H_snack__text">{{ text }}</span>
+      <div class="H_snack-info">
+        <div>{{ title }}</div>
+        <span>{{ text }}</span>
       </div>
     </div>
   </transition>
@@ -44,6 +29,19 @@ defineExpose({ close });
 </script>
 <style>
 @layer components {
+  .snack-enter-active {
+    transition: all 0.5s ease-in;
+  }
+
+  .snack-leave-active {
+    transition: all 0.5s ease-out;
+  }
+  .snack-enter-from,
+  .snack-leave-to {
+    opacity: 0;
+    transform: translateX(150%);
+  }
+
   .H_snack {
     display: flex;
     position: fixed;
@@ -56,6 +54,32 @@ defineExpose({ close });
     width: 20rem;
     max-width: 20rem;
     z-index: 500;
+
+    &[type="err"] {
+      background-color: var(--color-err);
+      color: var(--color-errTxt);
+    }
+
+    &[type="warn"] {
+      background-color: var(--color-warn);
+      color: var(--color-warnTxt);
+    }
+
+    &[type="info"] {
+      background-color: var(--color-ok);
+      color: var(--color-okTxt);
+    }
+
+    .H_snack-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      div {
+        font-size: 1.125em;
+        font-weight: bold;
+      }
+    }
   }
 }
 </style>

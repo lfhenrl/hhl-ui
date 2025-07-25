@@ -1,21 +1,15 @@
 <template>
-  <transition
-    mode="out-in"
-    enter-from-class="translate-x-[-50%] opacity-0 absolute"
-    leave-to-class="translate-x-[50%] opacity-0 absolute"
-    enter-active-class="transition duration-300"
-    leave-active-class="transition duration-300"
-  >
-    <div v-if="v_ifSelected" v-show="selected" class="H_tab">
+  <transition mode="out-in" name="h_tab">
+    <div v-if="show || keep_alive" v-show="show" :animateLeft="animateLeft ? '' : null" class="H_tab">
       <slot />
     </div>
   </transition>
 </template>
 
 <script setup lang="ts">
-import { computed, inject, watch, ref } from "vue";
+import { inject, watch, ref } from "vue";
 
-const props = defineProps({
+const P = defineProps({
   label: { default: "???", type: String },
   name: { default: "???", type: String },
   icon: { default: "", type: String },
@@ -24,37 +18,62 @@ const props = defineProps({
   selected: { default: false, type: Boolean },
   disabled: { type: Boolean, default: false },
 });
+const show = ref(false);
+const animateLeft = ref(false);
+const keep_alive = ref(false);
+const tabData: any = inject("tabData");
 
 watch(
-  () => props.tab_class,
-  () => tabData.changed()
+  tabData.selectedIndex,
+  () => {
+    if (tabData.selectedIndex.value < tabData.oldSelectedIndex) {
+      animateLeft.value = true;
+    } else {
+      animateLeft.value = false;
+    }
+    if (tabData.name === P.name) {
+      setTimeout(() => {
+        show.value = true;
+        setTimeout(() => {
+          keep_alive.value = P.keepAlive;
+        }, 10);
+      }, 50);
+    } else {
+      show.value = false;
+    }
+  },
+  { immediate: true }
 );
-
-//let haveBeenShowed = false;
-const tabData: any = inject("tabData");
-const selected = computed(() => tabData.selected.value === props.name);
-
-watch(selected, (v) => {
-  if (v === true) {
-    setTimeout(() => {
-      if (props.keepAlive) {
-        keepA.value = true;
-      }
-    }, 5);
-  }
-});
-
-const keepA = ref(false);
-
-const v_ifSelected = computed(() => selected.value || keepA.value);
 </script>
 <style>
 @layer components {
+  .h_tab-enter-active {
+    transition: all 0.3s ease-in;
+  }
+
+  .h_tab-leave-active {
+    transition: all 0.3s ease-out;
+  }
+  .h_tab-enter-from {
+    opacity: 0;
+    transform: translateX(var(--animate-from));
+  }
+
+  .h_tab-leave-to {
+    opacity: 0;
+    transform: translateX(var(--animate-to));
+  }
   .H_tab {
-    display: grid;
-    grid-template-rows: repeat(1, minmax(0, 1fr));
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    --animate-from: 50%;
+    --animate-to: -50%;
+    display: flex;
+    flex-direction: column;
     height: 100%;
+
+    &[animateLeft] {
+      --animate-from: -50%;
+      --animate-to: 50%;
+    }
   }
 }
 </style>

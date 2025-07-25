@@ -33,6 +33,7 @@ const E = defineEmits([]);
   .bodyCell-text {
     overflow: hidden;
     display: -webkit-box;
+    line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: block-axis;
   }

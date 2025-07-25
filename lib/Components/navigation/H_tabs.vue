@@ -1,94 +1,57 @@
 <template>
   <div class="H_tabs">
-    <div class="H_tabs__tabs flex">
+    <div class="H_tabs__tabs">
       <div
-        v-for="tab in tabs"
+        v-for="(tab, index) in tabs"
         :key="tab.props.name"
-        :disabled="tab.props.disabled"
-        :selected="tab.props.name === tabData.selected.value"
-        :class="[
-          tab.props.tab_class,
-          {
-            'border border-txt4 border-b-transparent border-b-0   bg-bg0 -mb-[1px] z-10':
-              tab.props.name === tabData.selected.value,
-            'opacity-50 pointer-events-none cursor-none': tab.props.disabled,
-          },
-        ]"
-        class="H_tabs__tab inline-flex relative py-1 px-1 rounded-t cursor-pointer"
-        @click="changeTab(tab.props.name)"
+        :disabled="tab.props.disabled ? '' : null"
+        :selected="activeTab === index"
+        :class="[tab.props.tab_class]"
+        class="H_tabs__tab"
+        @click="changeTab(index)"
       >
-        <div
-          class="H_tabs__tab_label inline-flex items-center relative border-b-3 border-transparent px-1"
-          :class="{ 'border-b-pri': tab.props.name === tabData.selected.value }"
-        >
+        <div class="H_tabs__tab_label" :selected="activeTab === index ? '' : null">
           <div class="iconBtn" :class="tab.props.icon" v-if="tab.props.icon" />
-          {{ tab.props.label }}
+          {{ tab.props.label }} {{ tab.props.sofus }}
         </div>
       </div>
-      <div class="flex-1" />
     </div>
 
-    <div
-      class="rounded overflow-hidden h-full relative border border-txt4 bg-bg0"
-      :class="{ 'rounded-tl-none': firstChildx == tabData.selected.value }"
-    >
+    <div class="H_tabs__tab_content" :first="activeTab === 0 ? '' : null">
       <slot />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, provide, onMounted, useSlots, watch } from "vue";
-
-const props = defineProps({
-  defaultTab: { type: String, default: "" },
+import { ref, onMounted, useSlots, provide } from "vue";
+const P = defineProps({
+  defaultIndex: { type: Number, default: 0 },
   willChange: { type: Function, default: () => true },
 });
 
 const slots = useSlots();
+const activeTab = ref(0);
 const tabs = ref<any>([]);
-const show = ref(true);
-const firstChildx = ref("");
-
-watch(
-  () => props.defaultTab,
-  () => {
-    changeTab(props.defaultTab);
-  }
-);
 
 const tabData = {
-  selected: ref(),
-  changed() {
-    tabs.value = slots.default?.({});
-  },
+  selectedIndex: ref(0),
+  oldSelectedIndex: 0,
+  name: "",
 };
 
 provide("tabData", tabData);
 
 onMounted(() => {
   tabs.value = slots.default?.({});
-  let selected: string = props.defaultTab;
-  if (props.defaultTab === "" && tabs.value) {
-    const firstChild: any = tabs.value[0];
-    selected = firstChild.props.name as string;
-    firstChildx.value = firstChild.props.name as string;
-  }
-  changeTab(selected);
+  changeTab(P.defaultIndex);
 });
 
-function changeTab(e: string) {
-  if (tabData.selected.value === e) {
-    return;
-  }
-  if (props.willChange(tabData.selected.value, e)) {
-    show.value = false;
-
-    setTimeout(() => {
-      tabData.selected.value = e;
-      show.value = true;
-    }, 1);
-  }
+function changeTab(e: number) {
+  tabData.oldSelectedIndex = tabData.selectedIndex.value;
+  tabData.selectedIndex.value = e;
+  tabData.name = tabs.value[e].props.name;
+  activeTab.value = e;
 }
 </script>
 <style>
@@ -99,6 +62,57 @@ function changeTab(e: string) {
     overflow: hidden;
     height: 100%;
     width: 100%;
+
+    .H_tabs__tabs {
+      display: flex;
+    }
+
+    .H_tabs__tab {
+      display: inline-flex;
+      position: relative;
+      padding: 0.25em;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+      border-color: transparent;
+      cursor: pointer;
+
+      &[selected="true"] {
+        border: 1px solid var(--color-txt4);
+        border-bottom-color: transparent;
+        background-color: var(--color-bg0);
+        margin-bottom: -1px;
+        z-index: 10;
+      }
+
+      &[disabled] {
+        pointer-events: none;
+        cursor: none;
+        opacity: 0.5;
+      }
+    }
+
+    .H_tabs__tab_label {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      border-bottom: 3px solid transparent;
+      padding-inline: 0.25em;
+      &[selected] {
+        border-bottom-color: var(--color-pri);
+      }
+    }
+
+    .H_tabs__tab_content {
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      height: 100%;
+      background-color: var(--color-bg0);
+      border: 1px solid var(--color-txt4);
+      &[first] {
+        border-top-left-radius: 0;
+      }
+    }
   }
 }
 </style>

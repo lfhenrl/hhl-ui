@@ -1,15 +1,15 @@
 <template>
   <div class="H_dialogService">
     <H_dialog v-model="dialogPop">
-      <div moveable-drag class="col-pri py-1 text-center">{{ dialog.title }}</div>
-      <div class="p-3">
+      <div moveable-drag class="H_dialogService__title">{{ dialog.title }}</div>
+      <div class="H_dialogService__content p-3">
         {{ dialog.info }}
       </div>
-      <div class="H_dialogService-footer flex gap-4 justify-end px-3 pb-3">
-        <H_btn class="w-20 text-sm" :class="dialog.buttons.cancel.Color" @click="dialogCancel">
+      <div class="H_dialogService-footer">
+        <H_btn size="sm" :class="dialog.buttons.cancel.Color" @click="dialogCancel">
           {{ dialog.buttons.cancel.Text }}
         </H_btn>
-        <H_btn class="w-20 text-sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
+        <H_btn size="sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
           {{ dialog.buttons.ok.Text }}
         </H_btn>
       </div>
@@ -164,3 +164,28 @@ function updateButtons(data: any) {
   return data;
 }
 </script>
+<style>
+@layer components {
+  .H_dialogService {
+    .H_dialogService__title {
+      background-color: var(--color-pri);
+      color: var(--color-priTxt);
+      padding-block: 0.25em;
+      text-align: center;
+    }
+
+    .H_dialogService__content {
+      padding: 0.75em;
+      color: var(--color-txt);
+    }
+
+    .H_dialogService-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1em;
+      padding-inline: 0.75em;
+      padding-bottom: 0.75em;
+    }
+  }
+}
+</style>

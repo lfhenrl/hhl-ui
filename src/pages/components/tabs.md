@@ -22,8 +22,8 @@ Tabs are elements that help you organize and navigate multiple documents in a si
 		<template>
 			<div class="flex items-center gap-4 flex-wrap">
 				<H_tabs>
-					<H_tab name="tab1" label="Tab 1."><div class="p-10 h-full" keep-alive>This is TAB 1...</div></H_tab>
-					<H_tab name="tab2" label="Tab 2."><div class="p-10" keep-alive>
+					<H_tab name="tab1" label="Tab 1." keep-alive><div class="p-10 h-full">This is TAB 1...</div></H_tab>
+					<H_tab name="tab2" label="Tab 2." keep-alive><div class="p-10">
                     <H_datagrid
                             :data-handler="lData"
                             data-key="id"                 
@@ -38,7 +38,7 @@ Tabs are elements that help you organize and navigate multiple documents in a si
                             <H_column field="val7" type="string"></H_column>
                     </H_datagrid>
                     </div></H_tab>
-					<H_tab name="tab3" label="Tab 3."><div class="p-10" keep-alive>This is TAB 3...</div></H_tab>
+					<H_tab name="tab3" label="Tab 3." keep-alive><div class="p-10" >This is TAB 3...</div></H_tab>
 				</H_tabs>
 			</div>
 		</template>

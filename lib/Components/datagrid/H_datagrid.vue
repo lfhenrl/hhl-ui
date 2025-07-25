@@ -3,10 +3,7 @@
     <div class="flex">
       <slot name="head"></slot>
     </div>
-    <div
-      ref="header"
-      class="H_datagrid-header flex flex-col relative h-[36px] max-h-[36px] overflow-x-hidden overflow-y-scroll rounded-t bg-bg2 border border-txt6"
-    >
+    <div ref="header" class="H_datagrid-header">
       <H_headerRow role="heading" aria-level="2" :key="DG.changeCounter.value" @click="headerClick" />
       <H_progressBar :show="DG.dataHandler?.rowsLoading.value" class="absolute bottom-0 z-10" />
     </div>
@@ -168,22 +165,34 @@ onMounted(() => {
     grid-template-rows: auto auto 1fr auto;
     grid-template-columns: 1fr;
     --dgrid-row-height: v-bind(row_height);
-  }
 
-  .H_datagrid-header::-webkit-scrollbar {
-    border-radius: 0;
-    border-top-right-radius: 4px;
-  }
+    .H_datagrid-header {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background-color: var(--color-bg2);
+      height: 36px;
+      max-height: 36px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      border-top: 1px solid var(--color-txt6);
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
 
-  .H_datagrid-header::-webkit-scrollbar-track {
-    border-radius: 0;
-    border-top-right-radius: 4px;
-    background-color: var(--color-bg2);
-  }
-
-  .H_datagrid-header::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    opacity: 0;
+      &::-webkit-scrollbar {
+        border-radius: 0;
+        border-top-right-radius: 4px;
+      }
+      &::-webkit-scrollbar-track {
+        border-radius: 0;
+        border-top-right-radius: 4px;
+        background-color: var(--color-bg2);
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        opacity: 0;
+      }
+    }
   }
 }
 </style>
