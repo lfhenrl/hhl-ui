@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center text-txt1 hover:bg-bg2 ml-0.5">
+  <div class="H_columnItem">
     <H_switchbase variant="checkbox" size="0.9em" :check="data.visibel" @click="checkClick" />
     <H_icon name="drag" size="1.2rem" btn />
     {{ data?.title }}

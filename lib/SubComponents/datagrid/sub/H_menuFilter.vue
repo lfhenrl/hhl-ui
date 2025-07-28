@@ -1,21 +1,18 @@
 <template>
   <H_popover offset-left="-20px" v-model="isOpen" movable class="H_menuFilter">
-    <div class="grid text-txt1 font-normal bg-bg6 overflow-hidden rounded shadow-theme-md">
-      <div
-        moveable-drag
-        class="flex items-center text-base font-bold bg-pri text-priTxt [&[moveable-drag]]:cursor-move py-1"
-      >
-        <div class="flex-1" />
+    <div class="H_menuFilter__content">
+      <div moveable-drag class="H_menuFilter__header">
+        <div></div>
         <div>{{ col.props.title }}</div>
-        <div class="flex-1" />
-        <H_icon name="close" btn color="white" class="cursor-pointer mr-1" @click="isOpen = false" />
+
+        <H_icon name="close" btn color="white" @click="isOpen = false" />
       </div>
-      <div class="H_menuFilter_comp overflow-hidden px-4">
+      <div class="H_menuFilter_comp">
         <component ref="filterCompRef" :is="filtComponent" :index="index" />
       </div>
-      <div class="flex items-center justify-end gap-2 p-4 pt-1">
-        <H_btn @click="filterSave" class="bg-ok text-sm" :disabled="!filterCompRef?.canSave">OK</H_btn>
-        <H_btn @click="filterClear" :disabled="!col.filter.active" class="text-sm">CLEAR</H_btn>
+      <div class="H_menuFilter__action">
+        <H_btn @click="filterSave" size="sm" color="pri" :disabled="!filterCompRef?.canSave">OK</H_btn>
+        <H_btn @click="filterClear" :disabled="!col.filter.active" size="sm" color="sec">CLEAR</H_btn>
       </div>
     </div>
   </H_popover>
@@ -84,3 +81,46 @@ const filtComponent = computed(() => {
   }
 });
 </script>
+
+<style>
+@layer components {
+  .H_menuFilter__content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--color-bg6);
+    color: var(--color-txt1);
+    border-radius: 4px;
+    font-weight: normal;
+    min-width: 18em;
+
+    .H_menuFilter__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 0.25em;
+      font-size: 1.125em;
+      font-weight: bold;
+      background-color: var(--color-pri);
+      color: var(--color-priTxt);
+      .H_icon {
+        cursor: pointer;
+        margin: 2px 4px;
+      }
+    }
+
+    .H_menuFilter_comp {
+      overflow: hidden;
+      padding-inline: 1em;
+    }
+
+    .H_menuFilter__action {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.5em;
+      padding: 1em;
+    }
+  }
+}
+</style>

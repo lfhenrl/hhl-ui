@@ -4,8 +4,8 @@
   <div
     v-else
     v-for="(col, index) in DG.getVisibelColumns()"
-    class="overflow-hidden whitespace-nowrap text-ellipsis py-1 px-2 border-r border-txt7 border-b"
-    :class="[col.props.cell_class, slotClass(col), col.props.autoHeight === true ? 'whitespace-break-spaces' : '']"
+    class="H_dataRow__cell"
+    :class="[col.props.cell_class, slotClass(col)]"
     :style="[
       {
         minWidth: col.width.value ?? '',
@@ -14,6 +14,7 @@
       cellStyle(col),
     ]"
     :data-col-index="index"
+    :autoHeight="col.props.autoHeight ? '' : undefined"
     data-type="rowcell"
   >
     <rend :col="col" :row="row" />

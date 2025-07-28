@@ -1,8 +1,7 @@
 <template>
-  <div class="flex max-h-[1px] opacity-0">
+  <div class="H_spaceRow">
     <div
       v-for="col in DG.getVisibelColumns()"
-      class="inline-block max-h-[1px] overflow-hidden border-r border-bg3"
       :style="[
         {
           minWidth: col.width.value ?? '',

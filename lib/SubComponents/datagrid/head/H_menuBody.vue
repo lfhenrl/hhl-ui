@@ -1,53 +1,41 @@
 <template>
-  <div class="flex flex-col rounded bg-bg5 pt-1text-txt1 text-sm font-light shadow-theme-md" @click="menuClick">
+  <div class="H_menuBody" @click="menuClick">
     <div
-      class="flex items-center pl-1 pr-3 py-1.5 cursor-pointer gap-2 border-b border-b-bg4 hover:bg-bg3"
-      :class="{ 'bg-pri text-priTxt': col.sortDirection.value === 'asc' }"
+      class="H_menuBody__item"
+      :selected="col.sortDirection.value === 'asc' ? '' : undefined"
       data-action="asc"
       data-subtype="menuSortAsc"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_icon
-        name="arrow_upward"
-        size="1.2rem"
-        class="pointer-events-none"
-        :style="{ color: col.sortDirection.value === 'asc' ? 'white' : '' }"
-      />
-      <div class="pointer-events-none">Sort Ascending</div>
+      <H_icon name="arrow_upward" size="1.6em" :color="col.sortDirection.value === 'asc' ? 'white' : 'txt2'" />
+      <div class="H_menuBody__item_title">Sort Ascending</div>
     </div>
+
     <div
-      class="flex items-center pl-1 pr-3 py-1.5 cursor-pointer gap-2 border-b border-b-bg4 hover:bg-bg3"
-      :class="{ 'bg-pri text-priTxt': col.sortDirection.value === 'desc' }"
+      class="H_menuBody__item"
+      :selected="col.sortDirection.value === 'desc' ? '' : undefined"
       data-action="desc"
       data-subtype="menuSortDesc"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_icon
-        name="arrow_downward"
-        size="1.2rem"
-        class="pointer-events-none"
-        :style="{ color: col.sortDirection.value === 'desc' ? 'white' : '' }"
-      />
-      <div class="pointer-events-none">Sort Descending</div>
+      <H_icon name="arrow_downward" size="1.6em" :color="col.sortDirection.value === 'asc' ? 'white' : 'txt2'" />
+      <div class="H_menuBody__item_title">Sort Descending</div>
     </div>
+
     <div
-      class="flex items-center pl-1 pr-3 py-1.5 cursor-pointer gap-2 border-b border-b-bg4 hover:bg-bg3"
-      :class="{ 'bg-pri text-priTxt': col.filter.active }"
+      class="H_menuBody__item"
+      :selected="col.filter.active ? '' : undefined"
       data-action="filter"
       v-if="col.filter.type !== 'none'"
       data-subtype="menuFilter"
     >
-      <H_icon name="filter" size="1.2rem" class="pointer-events-none" />
-      <div class="pointer-events-none">Filter</div>
+      <H_icon name="filter" size="1.4em" :color="col.filter.active ? 'white' : 'txt2'" />
+      <div class="H_menuBody__item_title">Filter</div>
     </div>
 
-    <div
-      class="flex items-center pl-1 pr-3 py-1.5 cursor-pointer gap-2 hover:bg-bg3"
-      data-action="autoSize"
-      data-subtype="menuAutoSize"
-    >
-      <H_icon name="expand_horizontal" size="1.2rem" class="pointer-events-none" />
-      <div class="pointer-events-none">Auto size</div>
+    <div class="H_menuBody__item" data-action="autoSize" data-subtype="menuAutoSize">
+      <H_icon name="expand_horizontal" size="1.6em" />
+      <div class="H_menuBody__item_title">Auto size</div>
     </div>
   </div>
 </template>

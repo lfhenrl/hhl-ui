@@ -1,27 +1,23 @@
 <template>
-  <H_dialog v-model="open" movable>
-    <div moveable-drag class="flex items-center min-w-64 text-lg col-pri text-center py-1">
+  <H_dialog v-model="open" movable class="H_menuColumns">
+    <div moveable-drag class="H_menuColumns__header">
       <div class="flex-1" />
       <div class="">Columns</div>
       <div class="flex-1" />
-      <H_icon name="close" btn color="white" class="cursor-pointer mr-1" @click="open = false" />
+      <H_icon name="close" btn color="white" @click="open = false" />
     </div>
 
-    <div class="flex flex-col gap-8 px-4 pt-8">
-      <H_inputbase label="Grouping" class="w-full">
-        <H_dragDrop
-          v-model="groupColumns"
-          :max-items="3"
-          class="flex flex-col gap-0.5 w-full p-1 overflow-auto max-h-24 min-h-24"
-        >
+    <div class="H_menuColumns__body">
+      <H_inputbase label="Grouping">
+        <H_dragDrop v-model="groupColumns" :max-items="3" class="H_menuColumns__body__groups">
           <template v-slot:item="{ item, index }">
             <H_columnItem :item="item" :index="index" />
           </template>
         </H_dragDrop>
       </H_inputbase>
 
-      <H_inputbase label="Columns" class="w-full" narrow>
-        <H_dragDrop v-model="sourceColumns" class="flex flex-col gap-0.5 w-full p-1 overflow-auto max-h-80 min-h-80">
+      <H_inputbase label="Columns">
+        <H_dragDrop v-model="sourceColumns" class="H_menuColumns__body__columns">
           <template v-slot:item="{ item, index }">
             <H_columnItem :item="item" :index="index" />
           </template>
@@ -29,8 +25,8 @@
       </H_inputbase>
     </div>
 
-    <div class="flex gap-4 justify-end px-4 pb-3 mt-4">
-      <H_btn @click="columnsSave" class="bg-ok text-sm" :disabled="!canSave">OK</H_btn>
+    <div class="H_menuColumns__body__action">
+      <H_btn @click="columnsSave" size="sm" color="pri" :disabled="!canSave">OK</H_btn>
     </div>
   </H_dialog>
 </template>
@@ -136,3 +132,75 @@ function columnsSave() {
   }
 }
 </script>
+<style>
+@layer components {
+  .H_menuColumns {
+    outline: none;
+    .H_menuColumns__header {
+      display: flex;
+      align-items: center;
+      min-width: 16em;
+      font-size: 1.125em;
+      text-align: center;
+      padding-block: 0.25em;
+      background-color: var(--color-pri);
+      color: var(--color-priTxt);
+
+      .H_icon {
+        margin-right: 0.25em;
+        cursor: pointer;
+      }
+    }
+
+    .H_menuColumns__body {
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+      padding-inline: 1em;
+      padding-top: 2em;
+
+      .H_menuColumns__body__groups {
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        gap: 0.125em;
+        width: 100%;
+        padding: 0.25em;
+        max-height: 6em;
+        min-height: 6em;
+      }
+
+      .H_menuColumns__body__columns {
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        gap: 0.125em;
+        width: 100%;
+        padding: 0.25em;
+        max-height: 20em;
+        min-height: 20em;
+      }
+
+      .H_columnItem {
+        display: flex;
+        align-items: center;
+        color: var(--color-txt1);
+        margin-left: 0.125em;
+        &:hover {
+          @media (hover: hover) {
+            background-color: var(--color-bg2);
+          }
+        }
+        .H_switchbase {
+          outline: none;
+        }
+      }
+    }
+    .H_menuColumns__body__action {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1em;
+    }
+  }
+}
+</style>
