@@ -92,7 +92,7 @@ const filtComponent = computed(() => {
     color: var(--color-txt1);
     border-radius: 4px;
     font-weight: normal;
-    min-width: 18em;
+    min-width: 16em;
 
     .H_menuFilter__header {
       display: flex;
@@ -112,6 +112,28 @@ const filtComponent = computed(() => {
     .H_menuFilter_comp {
       overflow: hidden;
       padding-inline: 1em;
+      padding-top: 1em;
+
+      .H_selectbox {
+        margin-block: 1em;
+      }
+
+      .H_filter__string,
+      .H_filter__number,
+      .H_filterSelect,
+      .H_filterDate,
+      .H_filterBool {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        padding-block: 1em;
+      }
+
+      .H_filterNone {
+        text-align: center;
+        font-size: 1.25em;
+        padding-bottom: 6em;
+      }
     }
 
     .H_menuFilter__action {

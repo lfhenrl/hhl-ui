@@ -76,7 +76,7 @@ You disable by adding the props `disabled`
 
 ## Color
 
-You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6" | "txt7"`. <br>
+You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6" | "txt7" | "txt8" | "txt9"`. <br>
 The default is `pri`.<br>
 
 If you need a special color then just use `style="background-color: purple: color: white"`
@@ -100,6 +100,8 @@ If you need a special color then just use `style="background-color: purple: colo
             <H_btn color="txt5">TXT5</H_btn>
             <H_btn color="txt6">TXT6</H_btn>
             <H_btn color="txt7">TXT7</H_btn>
+            <H_btn color="txt8">TXT8</H_btn>
+            <H_btn color="txt9">TXT9</H_btn>
             <H_btn style="--btn-bgcolor: purple; --btn-color:white">purple</H_btn>
       </div>
       </template>

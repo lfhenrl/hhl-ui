@@ -1,13 +1,11 @@
 <template>
-  <div class="flex flex-col gap-4 py-4">
+  <div class="H_filter__number">
     <H_select v-model="condition1" :list="list" hide-filter />
-    <H_input type="number" v-model="value1" class="w-full" />
+    <H_input type="number" v-model="value1" />
     <H_selectbox
       row
       list-gap="20px"
       label-gap="5px"
-      class="w-full my-2"
-      narrow
       v-model="logical"
       :list="[
         { label: 'AND', value: 'and' },
@@ -15,7 +13,7 @@
       ]"
     />
     <H_select v-model="condition2" :list="list" hide-filter />
-    <H_input type="number" v-model="value2" class="w-full" />
+    <H_input type="number" v-model="value2" />
   </div>
 </template>
 

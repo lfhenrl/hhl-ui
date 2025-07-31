@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-hidden flex flex-col gap-2 py-4">
+  <div class="H_filterSelect">
     <H_input v-model="searchValue" clearable>
       <H_icon name="search" color="txt1" set-end />
     </H_input>

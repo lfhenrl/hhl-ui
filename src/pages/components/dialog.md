@@ -169,7 +169,7 @@ It can be controlled by `inset-left` and/or `inset-top`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-        <div class="flex items-center gap-4 flex-wrap">
+        <div class="flex items-center gap-4">
             <H_select variant="radio"
                   :list 
                   v-model="left" label="inset-left">

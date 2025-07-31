@@ -1,5 +1,5 @@
 <template>
-  <div class="H_filterNone text-center text-xl pb-24">Filter disabled....</div>
+  <div class="H_filterNone">Filter disabled....</div>
 </template>
 
 <script setup lang="ts">

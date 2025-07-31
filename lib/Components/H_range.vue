@@ -9,7 +9,7 @@
     :color="col.txt"
     class="H_range"
   >
-    <div class="container">
+    <div class="content">
       <slot> </slot>
       <input
         ref="el"
@@ -21,8 +21,8 @@
         autocomplete="off"
         type="range"
       />
+      <span class="H_range-value">{{ model }}</span>
     </div>
-    <span class="H_range-value">{{ model }}</span>
   </H_inputbase>
 </template>
 
@@ -110,9 +110,9 @@ onMounted(() => (model.value = model.value));
       border-radius: 50%;
     }
 
-    .container {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
+    .content {
+      display: flex;
+      flex: 1;
       align-items: center;
       width: 100%;
       height: 100%;

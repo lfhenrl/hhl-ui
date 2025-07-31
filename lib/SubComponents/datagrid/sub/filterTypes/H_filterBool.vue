@@ -1,10 +1,9 @@
 <template>
-  <div class="flex flex-col gap-4 py-4">
+  <div class="H_filterBool">
     <H_selectbox
       multi
       list-gap="6px"
       v-model="value1"
-      class="w-full"
       :list="[
         { label: 'Is True', value: 'true' },
         { label: 'Is False', value: 'false' },

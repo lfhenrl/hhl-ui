@@ -124,7 +124,6 @@ function setValue(val: any) {
     display: flex;
     flex-direction: column;
     width: 100%;
-    border: solid 1px var(--color-txt5);
     border-radius: 4px;
     outline-style: none;
     --switch-size: attr(size type(<length>));

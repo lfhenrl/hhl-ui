@@ -146,7 +146,7 @@ If you need a special size then just use `style="font-size: 33px"` or `class="te
 
 ## Color
 
-You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6" | "txt7"`. <br>
+You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6" | "txt7" | "txt8" | "txt9"`. <br>
 The default is `pri`.<br>
 If you need a special color then just use `style="--color-pri: purple"`
 
@@ -167,6 +167,8 @@ If you need a special color then just use `style="--color-pri: purple"`
         <H_switch label="txt5" v-model="check" variant="radio" color="txt5" size="xs"></H_switch>
         <H_switch label="txt6" v-model="check" variant="radio" color="txt6" size="xs"></H_switch>
         <H_switch label="txt7" v-model="check" variant="radio" color="txt7" size="xs"></H_switch>
+        <H_switch label="txt8" v-model="check" variant="radio" color="txt8" size="xs"></H_switch>
+        <H_switch label="txt9" v-model="check" variant="radio" color="txt9" size="xs"></H_switch>
         <H_switch style="--color-pri: purple" variant="radio" label="purple" v-model="check" size="xs"></H_switch>
     </div>
     <div class="flex items-center gap-4 flexWrap mt-9">
@@ -184,6 +186,8 @@ If you need a special color then just use `style="--color-pri: purple"`
         <H_switch label="txt5" v-model="radio" color="txt5" size="xs"></H_switch>
         <H_switch label="txt6" v-model="radio" color="txt6" size="xs"></H_switch>
         <H_switch label="txt7" v-model="radio" color="txt7" size="xs"></H_switch>
+        <H_switch label="txt8" v-model="radio" color="txt8" size="xs"></H_switch>
+        <H_switch label="txt9" v-model="radio" color="txt9" size="xs"></H_switch>
         <H_switch style="--color-pri: purple" label="purple" v-model="radio"  size="xs"></H_switch>
     </div>
         <div class="flex items-center gap-4 flexWrap  mt-9">
@@ -201,6 +205,8 @@ If you need a special color then just use `style="--color-pri: purple"`
         <H_switch label="txt5" v-model="sw" color="txt5" variant="switch" size="xs"></H_switch>
         <H_switch label="txt6" v-model="sw" color="txt6" variant="switch" size="xs"></H_switch>
         <H_switch label="txt7" v-model="sw" color="txt7" variant="switch" size="xs"></H_switch>
+        <H_switch label="txt8" v-model="sw" color="txt8" variant="switch" size="xs"></H_switch>
+        <H_switch label="txt9" v-model="sw" color="txt9" variant="switch" size="xs"></H_switch>
         <H_switch style="--color-pri: purple" label="purple" v-model="sw" variant="switch" size="xs"></H_switch>
     </div>
     </template>

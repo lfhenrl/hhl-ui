@@ -17,7 +17,7 @@ The event: `@dirty-valid=""` is true when all is valid and the data have changes
       <H_switch label="Dirty" v-model="isDirty" ></H_switch>
       <H_switch label="DirtyAndValid" v-model="isDirtyAndValid" ></H_switch>
       <H_range v-model="data.duration" :min="0" :max="100" ></H_range>
-      <H_btn class="self-start" type="submit">SAVE</H_btn>
+      <H_btn class="self-start" type="submit" :disabled="!isDirtyAndValid" >SAVE</H_btn>
     </H_form>
     </template>
     <script>

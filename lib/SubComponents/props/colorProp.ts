@@ -19,6 +19,8 @@ export const colorProps = String as PropType<
   | "txt5"
   | "txt6"
   | "txt7"
+  | "txt8"
+  | "txt9"
 >;
 
 const colors: any = {
@@ -37,8 +39,10 @@ const colors: any = {
   txt3: { txt: "var(--color-txt3)", bg: "var(--color-bg0)" },
   txt4: { txt: "var(--color-txt4)", bg: "var(--color-bg0)" },
   txt5: { txt: "var(--color-txt5)", bg: "var(--color-bg0)" },
-  txt6: { txt: "var(--color-txt6)", bg: "var(--color-bg0)" },
-  txt7: { txt: "var(--color-txt7)", bg: "var(--color-bg0)" },
+  txt6: { txt: "var(--color-txt6)", bg: "var(--color-txt0)" },
+  txt7: { txt: "var(--color-txt7)", bg: "var(--color-txt0)" },
+  txt8: { txt: "var(--color-txt8)", bg: "var(--color-txt0)" },
+  txt9: { txt: "var(--color-txt9)", bg: "var(--color-txt0)" },
 };
 
 interface HColor {

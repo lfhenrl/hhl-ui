@@ -40,12 +40,13 @@ const infotext = computed(() => {
     width: -webkit-fill-available;
     min-height: 1.875em;
     color: var(--color-txt1);
-    border: 1px solid var(--color-txt5);
+    border: 1px solid var(--color-txt6);
     border-radius: 4px;
 
     .H_inputbase__label {
       position: absolute;
       color: var(--color-txt2);
+      white-space: nowrap;
       font-size: 0.9em;
       top: -1.6em;
       left: 2px;

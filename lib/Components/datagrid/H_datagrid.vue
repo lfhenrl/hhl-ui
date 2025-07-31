@@ -165,16 +165,14 @@ onMounted(() => {
       display: flex;
       flex-direction: column;
       position: relative;
-      background-color: var(--color-bg2);
+      background-color: var(--color-bg1);
       height: 36px;
       max-height: 36px;
       overflow-x: hidden;
       overflow-y: scroll;
-      border-top: 1px solid var(--color-txt6);
+      border: 1px solid var(--color-txt8);
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
-      border-right: 1px solid var(--color-txt6);
-      border-left: 1px solid var(--color-txt6);
 
       &::-webkit-scrollbar {
         border-radius: 0;
@@ -200,7 +198,7 @@ onMounted(() => {
           flex: 0;
           width: min-content;
           min-height: 34px;
-          border-right: 1px solid var(--color-txt7);
+          border-right: 1px solid var(--color-txt8);
 
           .H_HeadCell-space {
             height: 0;
@@ -325,8 +323,8 @@ onMounted(() => {
 
     .H_datagrid-body {
       overflow: hidden;
-      border-right: 1px solid var(--color-txt6);
-      border-left: 1px solid var(--color-txt6);
+      border-right: 1px solid var(--color-txt8);
+      border-left: 1px solid var(--color-txt8);
 
       .H_dataRow {
         display: flex;
@@ -376,8 +374,8 @@ onMounted(() => {
           white-space: nowrap;
           text-overflow: ellipsis;
           text-box-trim: trim-both;
-          border-right: 1px solid var(--color-txt7);
-          border-bottom: 1px solid var(--color-txt7);
+          border-right: 1px solid var(--color-txt9);
+          border-bottom: 1px solid var(--color-txt9);
           &[autoheight] {
             white-space: break-spaces;
           }
@@ -431,7 +429,7 @@ onMounted(() => {
       align-items: center;
       color: var(--color-txt3);
       background-color: var(--color-bg2);
-      border: 1px solid var(--color-txt6);
+      border: 1px solid var(--color-txt8);
       padding: 0.5em;
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;

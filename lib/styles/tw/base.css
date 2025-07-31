@@ -1,52 +1,34 @@
 @layer base {
   .darkTheme {
-    --color-bg0: oklch(0.129 0.01 250);
-    --color-bg1: oklch(0.2 0.01 250);
-    --color-bg2: oklch(0.25 0.01 250);
-    --color-bg3: oklch(0.3 0.01 250);
-    --color-bg4: oklch(0.32 0.01 250);
-    --color-bg5: oklch(0.35 0.01 250);
-    --color-bg6: oklch(0.37 0.01 250);
+    --color-bg0: hsl(240, 30%, 18%);
+    --color-bg1: hsl(240, 30%, 20%);
+    --color-bg2: hsl(240, 30%, 22%);
+    --color-bg3: hsl(240, 30%, 24%);
+    --color-bg4: hsl(240, 30%, 26%);
+    --color-bg5: hsl(240, 30%, 28%);
+    --color-bg6: hsl(240, 30%, 30%);
 
-    --color-txt0: oklch(1 0.03 250);
-    --color-txt1: oklch(0.86 0.03 250);
-    --color-txt2: oklch(0.76 0.03 250);
-    --color-txt3: oklch(0.7 0.03 250);
-    --color-txt4: oklch(0.64 0.03 250);
-    --color-txt5: oklch(0.56 0.03 250);
-    --color-txt6: oklch(0.5 0.03 250);
-    --color-txt7: oklch(0.4 0.03 250);
+    --color-txt0: hsl(180, 100%, 97%);
+    --color-txt1: hsl(211, 38%, 83%);
+    --color-txt2: hsl(211, 22%, 70%);
+    --color-txt3: hsl(212, 17%, 63%);
+    --color-txt4: hsl(211, 14%, 56%);
+    --color-txt5: hsl(212, 13%, 47%);
+    --color-txt6: hsl(211, 14%, 40%);
+    --color-txt7: hsl(212, 19%, 29%);
+    --color-txt8: hsl(212, 19%, 24%);
+    --color-txt9: hsl(212, 19%, 22%);
 
-    --color-current: var(--color-txt2);
-    --color-currentBg: var(--color-bg0);
     color-scheme: dark;
 
-    --x-theme-sm: 1px 3px 6px -6px black, -1px 3px 6px -6px black, 0 -5px 6px -6px rgb(110, 110, 110);
-    --x-theme-md: 1px 3px 6px -6px black, -1px 3px 6px -6px black, 0 -5px 6px -6px rgb(110, 110, 110);
-    --x-theme-lg: 2px 4px 6px -6px black, -2px 4px 6px -6px black, 0 -4px 6px -6px rgb(110, 110, 110);
-
-    --shadow-theme-sm: var(--x-theme-sm);
-    --shadow-theme-md: var(--x-theme-md);
-    --shadow-theme-lg: var(--x-theme-lg);
+    --theme-shadow-sm: 0 8px 18px -18px black;
+    --theme-shadow-md: 0 14px 18px -18px black;
+    --theme-shadow-lg: 0 18px 18px -18px black;
+    --theme-shadow-border: 1px solid rgb(62, 65, 73);
+    --theme-shadow-border-bottom: 1px solid rgb(31, 31, 61);
   }
 
   :fullscreen {
     background-color: var(--color-bg0);
   }
-
-  /*   ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--color-txt4);
-    border-radius: 4px;
-    opacity: 0.1;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: var(--color-bg4);
-    border-radius: 2px;
-  } */
 }

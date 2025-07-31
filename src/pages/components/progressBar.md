@@ -60,7 +60,7 @@ Default is `1s`
 
 ## Colors
 
-You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6" | "txt7"`. <br>
+You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6" | "txt7" | "txt8" | "txt9"`. <br>
 The default is `pri`.<br>
 If you need a special color then just use `style="--progress-color: purple"`
 
@@ -83,7 +83,9 @@ If you need a special color then just use `style="--progress-color: purple"`
       <div class="flex flex-1 items-center">TXT5:<H_progress-bar show color="txt5" speed="2s"></H_progress-bar></div>
       <div class="flex flex-1 items-center">TXT6:<H_progress-bar show color="txt6" speed="2s"></H_progress-bar></div>
       <div class="flex flex-1 items-center">TXT7:<H_progress-bar show color="txt7" speed="2s"></H_progress-bar></div>
-      <div class="flex flex-1 items-center">TXT2:<H_progress-bar show style="--progress-color: purple" speed="2s"></H_progress-bar></div>
+      <div class="flex flex-1 items-center">TXT8:<H_progress-bar show color="txt8" speed="2s"></H_progress-bar></div>
+      <div class="flex flex-1 items-center">TXT9:<H_progress-bar show color="txt9" speed="2s"></H_progress-bar></div>
+      <div class="flex flex-1 items-center">Purple:<H_progress-bar show style="--progress-color: purple" speed="2s"></H_progress-bar></div>
       </div>
     </template>
 '>

@@ -1,5 +1,5 @@
 <template>
-  <div class="hhl-live-editor bg-bg3 shadow-theme-md border border-bg3 rounded border-solid" ref="el">
+  <div class="hhl-live-editor bg-bg2" ref="el">
     <div class="hhl-live-editor_errBox" v-show="showError" v-movable>
       <div class="hhl-live-editor_errBox_title" moveable-drag>
         <div>Error</div>
@@ -21,9 +21,16 @@
         v-if="error !== '' && showCode"
         @click="hideError = !hideError"
       />
-      <H_icon name="zoom_out_map" size="1.4rem" btn title="Fullscreen." @click="toggleFullScreen" />
-      <H_icon name="split" btn title="Change Horisont or Vertical." :disabled="!showCode" @click="changeHorisont" />
-      <H_icon name="expand_down" btn title="Show Code." @click="codeShow" />
+      <H_icon name="zoom_out_map" color="txt1" size="1.4rem" btn title="Fullscreen." @click="toggleFullScreen" />
+      <H_icon
+        name="split"
+        color="txt1"
+        btn
+        title="Change Horisont or Vertical."
+        :disabled="!showCode"
+        @click="changeHorisont"
+      />
+      <H_icon name="expand_down" color="txt1" btn title="Show Code." @click="codeShow" />
     </div>
 
     <div class="hhl-live-editor_renderBox" :class="{ 'hhl-live-editor_renderBox-column': column }">
@@ -131,6 +138,10 @@ export default defineComponent({
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  border-radius: 4px;
+  box-shadow: var(--theme-shadow-md);
+  border: var(--theme-shadow-border);
+  border-bottom: var(--theme-shadow-border-bottom);
 }
 .hhl-live-editor_errBox {
   display: flex;
@@ -162,11 +173,12 @@ export default defineComponent({
   display: flex;
   align-items: center;
   gap: 8px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  background-color: var(--color-bg3);
-  color: var(--color-txt3);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: var(--color-txt7);
+  color: var(--color-txt0);
   padding: 4px;
+  padding-left: 8px;
 }
 .hhl-live-editor_spacer {
   flex: 1 1 0%;

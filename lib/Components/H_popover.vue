@@ -181,7 +181,10 @@ function closeDragElement() {
     position: fixed;
     width: max-content;
     background-color: transparent;
-    box-shadow: var(--shadow-theme-lg);
+    border-radius: 4px;
+    box-shadow: var(--theme-shadow-md);
+    border: var(--theme-shadow-border);
+    border-bottom: var(--theme-shadow-border-bottom);
     position-anchor: v-bind("--" + id);
     --margin-block: attr(offsettop type(<length>));
     --margin-inline: attr(offsetleft type(<length>));

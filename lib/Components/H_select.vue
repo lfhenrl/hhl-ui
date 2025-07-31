@@ -3,7 +3,7 @@
     class="H_select"
     ref="popup"
     @toggled="selectToggled"
-    offset-top="2px"
+    offset-top="6px"
     :disabled
     :readonly
     :autofocus

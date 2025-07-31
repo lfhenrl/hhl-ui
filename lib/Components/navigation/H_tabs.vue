@@ -44,7 +44,10 @@ provide("tabData", tabData);
 
 onMounted(() => {
   tabs.value = slots.default?.({});
-  changeTab(P.defaultIndex);
+  tabData.selectedIndex.value = -1;
+  setTimeout(() => {
+    changeTab(P.defaultIndex);
+  });
 });
 
 function changeTab(e: number) {
@@ -108,7 +111,7 @@ function changeTab(e: number) {
       position: relative;
       height: 100%;
       background-color: var(--color-bg0);
-      border: 1px solid var(--color-txt4);
+      border: 1px solid var(--color-txt6);
       &[first] {
         border-top-left-radius: 0;
       }

@@ -86,7 +86,9 @@ function close() {
     border-radius: 4px;
     position: fixed;
     background-color: var(--color-bg5);
-    box-shadow: var(--shadow-theme-lg);
+    box-shadow: var(--theme-shadow-md);
+    border: var(--theme-shadow-border);
+    border-bottom: var(--theme-shadow-border-bottom);
     z-index: 10;
     inset-block: v-bind(insetTop);
     inset-inline: v-bind(insetLeft);

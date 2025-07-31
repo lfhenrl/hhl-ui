@@ -6,8 +6,8 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
-      <H_select class="w-44"
+      <div class="flex items-center gap-4 pb-40">
+      <H_select 
       autofocus
             :list="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="Selector">

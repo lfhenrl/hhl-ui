@@ -1,6 +1,6 @@
 @theme {
   --color-*: initial;
-  --color-pri: oklch(0.623 0.214 259.815);
+  --color-pri: #297eff;
   --color-priTxt: #fff;
   --color-sec: #6c757d;
   --color-secTxt: #fff;
@@ -13,33 +13,31 @@
   --color-info: #17a2b8;
   --color-infoTxt: #fff;
 
-  --color-bg0: oklch(0.89 0.01 250);
-  --color-bg1: oklch(0.9 0.01 250);
-  --color-bg2: oklch(0.91 0.01 250);
-  --color-bg3: oklch(0.925 0.01 250);
-  --color-bg4: oklch(0.932 0.01 250);
-  --color-bg5: oklch(0.98 0.01 250);
-  --color-bg6: oklch(1 0.01 250);
+  --color-bg0: hsl(230, 40%, 90%);
+  --color-bg1: hsl(225, 40%, 90.5%);
+  --color-bg2: hsl(210, 40%, 91%);
+  --color-bg3: hsl(200, 35%, 92%);
+  --color-bg4: hsl(220, 35%, 94%);
+  --color-bg5: hsl(240, 50%, 96%);
+  --color-bg6: hsl(200, 30%, 98%);
 
-  --color-txt0: oklch(0.1 0.04 250);
-  --color-txt1: oklch(0.4 0.04 250);
-  --color-txt2: oklch(0.5 0.04 250);
-  --color-txt3: oklch(0.6 0.04 250);
-  --color-txt4: oklch(0.65 0.04 250);
-  --color-txt5: oklch(0.7 0.04 250);
-  --color-txt6: oklch(0.7 0.04 250);
-  --color-txt7: oklch(0.9 0.04 250);
+  --color-txt0: hsl(230, 100%, 3%);
+  --color-txt1: hsl(230, 26%, 29%);
+  --color-txt2: hsl(230, 15%, 40%);
+  --color-txt3: hsl(230, 15%, 52%);
+  --color-txt4: hsl(230, 15%, 57%);
+  --color-txt5: hsl(230, 15%, 60%);
+  --color-txt6: hsl(230, 15%, 63%);
+  --color-txt7: hsl(230, 20%, 70%);
+  --color-txt8: hsl(230, 20%, 78%);
+  --color-txt9: hsl(230, 20%, 86%);
 
   --color-black: black;
   --color-white: white;
-  --color-current: var(--color-txt2);
-  --color-currentBg: var(--color-bg0);
-  --x-theme-sm: 1px 2px 3px -3px rgb(143, 143, 143), -1px 2px 3px -3px rgb(143, 143, 143),
-    0 -3px 3px -3px rgb(235, 232, 232);
-  --x-theme-md: 1px 2px 6px -6px black, -1px 2px 6px -6px black, 0 -2px 10px -6px rgb(215, 211, 223);
-  --x-theme-lg: 1px 4px 6px -6px black, -1px 4px 6px -6px black, 0 -4px 10px -6px rgb(215, 211, 223);
 
-  --shadow-theme-sm: var(--x-theme-sm);
-  --shadow-theme-md: var(--x-theme-md);
-  --shadow-theme-lg: var(--x-theme-lg);
+  --theme-shadow-sm: 0 6px 8px -8px rgba(0, 0, 0, 0.658);
+  --theme-shadow-md: 0 10px 12px -12px rgba(0, 0, 0, 0.603);
+  --theme-shadow-lg: 0 16px 18px -18px rgba(0, 0, 0, 0.658);
+  --theme-shadow-border: 1px solid rgb(221, 229, 252);
+  --theme-shadow-border-bottom: 1px solid rgb(179, 179, 179);
 }

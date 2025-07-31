@@ -24,7 +24,7 @@ If you need a special size then just use `style="font-size: 44px"` or `class="te
 
 ## Color
 
-You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6" | "txt7"`. <br>
+You can change the color by the variant property `"pri" | "ok" | "sec" | "warn" | "err" | "info" | "white" |  "black" |  "txt0" | "txt1" | "txt2" | "txt3" | "txt4" | "txt5" | "txt6" | "txt7" | "txt8" | "txt9"`. <br>
 The default is `txt2`.<br>
 
 If you need a special color then just use `style="--icon-color: lime"`
@@ -49,6 +49,8 @@ If you need a special color then just use `style="--icon-color: lime"`
             <div><p>txt5</p><H_icon name="edit" color="txt5"></H_icon></div>
             <div><p>txt6</p><H_icon name="edit" color="txt6"></H_icon></div>
             <div><p>txt7</p><H_icon name="edit" color="txt7"></H_icon></div>
+            <div><p>txt8</p><H_icon name="edit" color="txt8"></H_icon></div>
+            <div><p>txt9</p><H_icon name="edit" color="txt9"></H_icon></div>
             <div><p>Lime</p><H_icon name="edit" style="--icon-color:lime"></H_icon></div>             
       </div>
             <div class="flex gap-4">
@@ -68,6 +70,8 @@ If you need a special color then just use `style="--icon-color: lime"`
             <div><p>txt5</p><H_icon name="edit" color="txt5" variant="outline-round"></H_icon></div>
             <div><p>txt6</p><H_icon name="edit" color="txt6" variant="outline-round"></H_icon></div>
             <div><p>txt7</p><H_icon name="edit" color="txt7" variant="outline-round"></H_icon></div>
+            <div><p>txt8</p><H_icon name="edit" color="txt8" variant="outline-round"></H_icon></div>
+            <div><p>txt9</p><H_icon name="edit" color="txt9" variant="outline-round"></H_icon></div>
             <div><p>Lime</p><H_icon name="edit" style="--icon-color:lime" variant="outline-round"></H_icon></div>             
       </div>
             <div class="flex gap-4 mt-4">
@@ -87,6 +91,8 @@ If you need a special color then just use `style="--icon-color: lime"`
             <div><p>txt5</p><H_icon name="edit" color="txt5" variant="filled-round"></H_icon></div> 
             <div><p>txt6</p><H_icon name="edit" color="txt6" variant="filled-round"></H_icon></div> 
             <div><p>txt7</p><H_icon name="edit" color="txt7" variant="filled-round"></H_icon></div>
+            <div><p>txt8</p><H_icon name="edit" color="txt8" variant="filled-round"></H_icon></div>
+            <div><p>txt9</p><H_icon name="edit" color="txt9" variant="filled-round"></H_icon></div>
             <div><p>Lime</p><H_icon name="edit" style="--icon-color:lime; --icon-bgcolor:black" variant="filled-round"></H_icon></div>             
       </div>
       </div>

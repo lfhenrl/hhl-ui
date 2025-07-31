@@ -21,7 +21,7 @@ Tabs are elements that help you organize and navigate multiple documents in a si
 <hhl-live-editor title="" htmlCode='
 		<template>
 			<div class="flex items-center gap-4 flex-wrap">
-				<H_tabs>
+				<H_tabs class="min-h-60">
 					<H_tab name="tab1" label="Tab 1." keep-alive><div class="p-10 h-full">This is TAB 1...</div></H_tab>
 					<H_tab name="tab2" label="Tab 2." keep-alive><div class="p-10">
                     <H_datagrid

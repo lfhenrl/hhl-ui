@@ -161,9 +161,9 @@ By adding the property `offset-left` it will adjust the left position with the v
         </H_popover>
       </div>
      <div class="flex items-center gap-4 mt-4" >
-        <H_select :list="selectData" v-model="placement" label="Placement"></H_select>
-         <H_input  v-model="offsetTop" label="offset-top" style="max-width:150px"></H_input>
-         <H_input  v-model="offsetLeft" label="offset-left" style="max-width:150px"></H_input>
+        <H_select :list="selectData" v-model="placement" label="Placement" class="w-fit"></H_select>
+         <H_input  v-model="offsetTop" label="offset-top" class="w-fit"></H_input>
+         <H_input  v-model="offsetLeft" label="offset-left" class="w-fit"></H_input>
       </div>
     </div>
     </div>
