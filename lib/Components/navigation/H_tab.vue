@@ -1,6 +1,11 @@
 <template>
   <transition mode="out-in" name="h_tab">
-    <div v-if="show || keep_alive" v-show="show" :animateLeft="animateLeft ? '' : null" class="H_tab">
+    <div
+      v-if="show || keep_alive"
+      v-show="show"
+      :animateLeft="animateLeft ? '' : null"
+      class="H_tab h_flex-col h_h-full"
+    >
       <slot />
     </div>
   </transition>
@@ -66,9 +71,6 @@ watch(
   .H_tab {
     --animate-from: 50%;
     --animate-to: -50%;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
 
     &[animateLeft] {
       --animate-from: -50%;

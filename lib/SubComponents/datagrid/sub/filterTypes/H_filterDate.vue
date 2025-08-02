@@ -1,5 +1,5 @@
 <template>
-  <div class="H_filterDate">
+  <div class="H_filterDate H_filterSame h_flex-col">
     <H_select v-model="condition1" :list="list" hide-filter />
     <H_datePicker v-model="value1" :show-seconds="col.filter.type === 'datetime'" />
     <H_selectbox

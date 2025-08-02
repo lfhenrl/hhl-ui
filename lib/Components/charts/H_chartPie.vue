@@ -1,12 +1,12 @@
 <template>
-  <div class="H_chartPie" :class="cl_pie" :style="{ fontSize: fontSize }">
+  <div class="H_chartPie h_flex h_items-center h_relative" :class="cl_pie" :style="{ fontSize: fontSize }">
     <svg viewBox="0 0 64 64" class="H_chartPie_pie">
       <circle :style="item.style" v-for="item in pieData" class="H_chartPie_circle">
         <title>{{ item.name }} - {{ item.value }}%</title>
       </circle>
     </svg>
-    <div v-if="!hideLegend" class="H_chartPie-legend" :class="cl_legend">
-      <div class="H_chartPie-pieData" v-for="item in pieData">
+    <div v-if="!hideLegend" class="H_chartPie-legend h_flexInline h_justify-center h_relative" :class="cl_legend">
+      <div class="H_chartPie-pieData h_flex h_items-center" v-for="item in pieData">
         <div class="H_chartPie-pieData-item" :style="{ backgroundColor: item.color }" />
         {{ item.name }} ({{ item.value }}%)
       </div>
@@ -105,10 +105,7 @@ watch(
     flex-direction: row-reverse;
   }
   .H_chartPie {
-    display: flex;
     flex: 0 0 0%;
-    position: relative;
-    align-items: center;
     padding: 0;
     gap: 10px;
   }
@@ -129,18 +126,13 @@ watch(
   }
 
   .H_chartPie-legend {
-    display: inline-flex;
-    justify-content: center;
     flex-wrap: wrap;
-    position: relative;
   }
   .H_chartPie-legend.legendStacked {
     flex-direction: column;
   }
 
   .H_chartPie-pieData {
-    display: flex;
-    align-items: center;
     white-space: nowrap;
     margin: 2px;
   }

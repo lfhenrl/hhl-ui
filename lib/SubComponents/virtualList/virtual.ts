@@ -24,7 +24,12 @@ export default class Virtual {
   public direction = "";
 
   public range = {} as any;
-  constructor(public param: any, public callUpdate: any) {
+  public param: any;
+  public callUpdate: any;
+
+  constructor(param: any, callUpdate: any) {
+    this.param = param;
+    this.callUpdate = callUpdate;
     this.init();
   }
 

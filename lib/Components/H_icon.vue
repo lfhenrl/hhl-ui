@@ -8,7 +8,7 @@
     :btn="btn ? '' : undefined"
     :disabled="disabled ? '' : undefined"
     viewBox="0 0 24 24"
-    class="H_icon"
+    class="H_icon h_bg-transparent h_rounded h_outline-none"
     height="24"
     width="24"
     fill="none"
@@ -62,7 +62,6 @@ watch(
     --icon-bgcolor: attr(color type(<color>));
     --icon-size: attr(size type(<length>));
 
-    background-color: transparent;
     color: var(--icon-color);
     font-size: var(--icon-size);
     min-width: 1em;
@@ -70,8 +69,6 @@ watch(
     min-height: 1em;
     max-height: 1em;
     aspect-ratio: 1/1;
-    border-radius: 4px;
-    outline: none;
 
     &[btn] {
       &:hover {

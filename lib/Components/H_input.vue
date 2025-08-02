@@ -2,7 +2,7 @@
   <H_inputbase class="H_input" :label :disabled :hintStart :hintEnd="stringCounter" :ErrorMessage="validate">
     <slot />
     <input
-      class="H_input_input"
+      class="H_input_input h_outline-none h_border-none h_w-full"
       v-model="model"
       :max
       :min
@@ -74,8 +74,6 @@ const validate = computed(() => validateFunc(P.validator, model.value));
     .H_input_input {
       margin-inline: 0.2em;
       appearance: none;
-      outline-style: none;
-      width: 100%;
 
       &[type="color"] {
         height: 1em;

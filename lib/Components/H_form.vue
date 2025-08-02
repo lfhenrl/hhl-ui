@@ -1,5 +1,5 @@
 <template>
-  <div ref="hform" class="H_form"><slot /></div>
+  <div ref="hform" class="H_form h_flex-row"><slot /></div>
 </template>
 
 <script setup lang="ts">
@@ -44,11 +44,3 @@ onMounted(() => {
   isvalid();
 });
 </script>
-<style>
-@layer components {
-  .H_form {
-    display: flex;
-    flex-direction: column;
-  }
-}
-</style>

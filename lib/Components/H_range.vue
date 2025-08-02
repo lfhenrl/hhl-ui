@@ -9,14 +9,14 @@
     :color="col.txt"
     class="H_range"
   >
-    <div class="content">
+    <div class="content h_flex h_flex-1 h_items-center h_w-full h_h-full">
       <slot> </slot>
       <input
         ref="el"
         :min="min"
         :max="max"
         v-model="model"
-        class="H_range-input"
+        class="H_range-input h_cursor-pointer h_w-full h_outline-none h_border-none h_bg-transparent"
         :readonly="readonly"
         autocomplete="off"
         type="range"
@@ -111,25 +111,15 @@ onMounted(() => (model.value = model.value));
     }
 
     .content {
-      display: flex;
-      flex: 1;
-      align-items: center;
-      width: 100%;
-      height: 100%;
       max-height: 1.875em;
       margin-right: 0.5em;
     }
 
     .H_range-input {
       appearance: none;
-      cursor: pointer;
       grid-column-start: 2;
-      background-color: transparent;
       border-radius: 0.5em;
       margin-inline: 0.25em;
-      border-style: none;
-      outline-style: none;
-      width: 100%;
       max-height: 0.25em;
       min-height: 0.25em;
     }

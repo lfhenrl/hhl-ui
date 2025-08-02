@@ -1,6 +1,6 @@
-@theme {
+:root {
   --color-*: initial;
-  --color-pri: #297eff;
+  --color-pri: #2972e8;
   --color-priTxt: #fff;
   --color-sec: #6c757d;
   --color-secTxt: #fff;

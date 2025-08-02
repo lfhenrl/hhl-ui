@@ -1,6 +1,6 @@
 <template>
-  <div class="H_columnItem">
-    <H_switchbase variant="checkbox" size="0.9em" :check="data.visibel" @click="checkClick" />
+  <div class="H_columnItem h_flex h_items-center">
+    <H_switchbase class="h_outline-none" variant="checkbox" size="0.9em" :check="data.visibel" @click="checkClick" />
     <H_icon name="drag" size="1.2rem" btn />
     {{ data?.title }}
   </div>

@@ -1,10 +1,14 @@
 <template>
-  <div class="H_inputbase" :disabled="disabled ? '' : undefined" :data-error="ErrorMessage != '' ? true : undefined">
+  <label
+    class="H_inputbase h_flex h_relative h_items-center h_w-stretch h_rounded"
+    :disabled="disabled ? '' : undefined"
+    :data-error="ErrorMessage != '' ? true : undefined"
+  >
     <slot />
-    <span class="H_inputbase__label">{{ label }}</span>
-    <span class="H_inputbase__hintStart">{{ infotext }}</span>
-    <span class="H_inputbase__hintEnd">{{ hintEnd }}</span>
-  </div>
+    <span class="H_inputbase__label h_absolute">{{ label }}</span>
+    <span class="H_inputbase__hintStart h_absolute">{{ infotext }}</span>
+    <span class="H_inputbase__hintEnd h_absolute">{{ hintEnd }}</span>
+  </label>
 </template>
 
 <script setup lang="ts">
@@ -31,20 +35,11 @@ const infotext = computed(() => {
 <style>
 @layer components {
   .H_inputbase {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    align-items: center;
-    width: stretch;
-    width: -moz-available;
-    width: -webkit-fill-available;
     min-height: 1.875em;
     color: var(--color-txt1);
     border: 1px solid var(--color-txt6);
-    border-radius: 4px;
 
     .H_inputbase__label {
-      position: absolute;
       color: var(--color-txt2);
       white-space: nowrap;
       font-size: 0.9em;
@@ -52,7 +47,6 @@ const infotext = computed(() => {
       left: 2px;
     }
     .H_inputbase__hintStart {
-      position: absolute;
       color: var(--color-txt2);
       font-size: 0.65em;
       bottom: -1.5em;
@@ -60,7 +54,6 @@ const infotext = computed(() => {
     }
 
     .H_inputbase__hintEnd {
-      position: absolute;
       color: var(--color-txt2);
       font-size: 0.7em;
       bottom: -1.6em;

@@ -1,37 +1,7 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "moduleDetection": "force",
-    "esModuleInterop": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "skipLibCheck": true,
-    "noEmit": true,
-    "allowImportingTsExtensions": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-    "verbatimModuleSyntax": true,
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "lib": ["esnext", "dom"],
-    "types": ["unplugin-vue-router/client", "./lib/index.d.ts"]
-  },
-  "include": [
-    "vite.config.ts",
-    "./typed-router.d.ts",
-    "components.d.ts",
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "src/**/*.md",
-    "lib/**/*.vue",
-    "lib/**/*.ts",
-    "lib/**/*.d.ts"
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
   ]
 }

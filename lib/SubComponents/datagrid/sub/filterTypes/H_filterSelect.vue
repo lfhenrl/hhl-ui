@@ -1,5 +1,5 @@
 <template>
-  <div class="H_filterSelect">
+  <div class="H_filterSelect H_filterSame h_flex-col">
     <H_input v-model="searchValue" clearable>
       <H_icon name="search" color="txt1" set-end />
     </H_input>

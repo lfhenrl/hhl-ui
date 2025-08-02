@@ -1,6 +1,6 @@
 <template>
   <H_popover
-    class="H_select"
+    class="H_select h_outline-none h_rounded h_w-stretch"
     ref="popup"
     @toggled="selectToggled"
     offset-top="6px"
@@ -13,11 +13,11 @@
     <template v-slot:referance>
       <H_inputbase :label readonly :disabled :placeholder :hintStart :hintEnd :validator>
         <slot />
-        <div class="value">{{ labelValue }}</div>
+        <div class="value h_w-full">{{ labelValue }}</div>
         <H_icon btn name="expand_down" color="txt2" tabindex="-1" :down="isOpen ? '' : undefined" />
       </H_inputbase>
     </template>
-    <div class="H_select__list" @keydown="keyDown">
+    <div class="H_select__list h_flex-col h_rounded h_h-full h_bg6" @keydown="keyDown">
       <H_input v-if="showFilter" ref="filterInput" narrow v-model="filterValue" clearable tabindex="-1">
         <H_icon class="arrow" name="search" color="txt2" size="1.2em" set-end tabindex="-1" />
       </H_input>
@@ -159,11 +159,6 @@ function getFocusList() {
 <style>
 @layer components {
   .H_select {
-    outline-style: none;
-    border-radius: 4px;
-    width: stretch;
-    width: -moz-available;
-    width: -webkit-fill-available;
     &:focus {
       outline-style: none;
       .H_inputbase {
@@ -178,7 +173,6 @@ function getFocusList() {
         text-align: start;
         overflow: hidden;
         user-select: all;
-        width: 100%;
         text-wrap-mode: nowrap;
       }
 
@@ -198,12 +192,6 @@ function getFocusList() {
   }
 
   .H_select__list {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-bg6);
-    border-radius: 4px;
-    height: 100%;
-
     .H_input {
       margin-inline: 0.5em;
       margin-top: 0.5em;

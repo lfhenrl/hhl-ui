@@ -79,11 +79,11 @@ async function getReq(
     controller.abort();
   }
   return await fetch(uri, { ...opt, signal: controller.signal })
-    .then((response) => {
+    .then((response: any) => {
       const type = response.headers.get("content-type") || "";
       clearTimeout(id);
       if (response.ok && type.includes("json")) {
-        return response.json().then((json) => {
+        return response.json().then((json: any) => {
           return {
             data: json,
             ok: true,

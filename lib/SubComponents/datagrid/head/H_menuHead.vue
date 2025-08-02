@@ -1,6 +1,6 @@
 <template>
-  <div class="H_menuHead" data-subtype="menu">
-    <div class="H_menuHead__sorting" v-if="col.props.sorting !== 'none'">
+  <div class="H_menuHead h_flex-col h_items-center h_justify-center h_cursor-pointer" data-subtype="menu">
+    <div class="H_menuHead__sorting h_flex h_flex-1" v-if="col.props.sorting !== 'none'">
       <H_icon
         name="arrow_upward"
         size="1.8em"

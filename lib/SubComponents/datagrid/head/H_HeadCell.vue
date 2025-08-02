@@ -1,6 +1,6 @@
 <template>
   <div
-    class="H_headCell"
+    class="H_headCell h_flex-col h_w-min"
     ref="headCellRef"
     :data-col-index="index"
     data-type="headcell"
@@ -9,12 +9,12 @@
       maxWidth: col.head_width.value ?? '',
     }"
   >
-    <div class="H_headCell__actions">
-      <div class="H_headCell__actions_title" data-subtype="title">
+    <div class="H_headCell__actions h_flex h_flex-1 h_items-center h_w-full h_relative h_font-bold">
+      <div class="H_headCell__actions_title h_w-full" data-subtype="title">
         {{ col.props.title }}
       </div>
       <H_menu :index="index" />
-      <div class="H_headCell__actions_resize" @mousedown="resize" data-subtype="resize"></div>
+      <div class="H_headCell__actions_resize h_absolute h_h-full" @mousedown="resize" data-subtype="resize"></div>
     </div>
     <div class="H_HeadCell-space">
       {{ col.maxValueRef.value }}

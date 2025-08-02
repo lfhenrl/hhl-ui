@@ -1,3 +1,4 @@
-@import "./tw/base.css";
-@import "./tw/theme.css";
+@import "./sub/colorsTailwind.css";
+@import "./sub/darkTheme.css";
+@import "./sub/baseUtils.css";
 @source "../Components/";

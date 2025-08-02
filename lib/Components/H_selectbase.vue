@@ -2,7 +2,7 @@
   <div
     ref="baselist"
     :size
-    class="H_selectbase"
+    class="H_selectbase h_flex-col h_w-full h_rounded h_outline-none"
     :row="row ? '' : undefined"
     :listgap="listGap"
     :labelgap="labelGap"
@@ -13,10 +13,17 @@
       :key="item.label"
       :labelleft="labelLeft ? '' : undefined"
       :justifybetween="justifyBetween ? '' : undefined"
-      class="H_selectbase__label"
+      class="H_selectbase__label h_flexInline h_items-center h_rounded h_w-full"
     >
-      <H_switchbase :check="selected(item.value) ? true : false" :variant :color :bgcolor :value="item.value" />
-      <span class="label">{{ item.label }}</span>
+      <H_switchbase
+        class="h_pointer-events-none"
+        :check="selected(item.value) ? true : false"
+        :variant
+        :color
+        :bgcolor
+        :value="item.value"
+      />
+      <span class="label h_pointer-events-none">{{ item.label }}</span>
     </label>
   </div>
 </template>
@@ -121,27 +128,18 @@ function setValue(val: any) {
 <style>
 @layer components {
   .H_selectbase {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border-radius: 4px;
-    outline-style: none;
     --switch-size: attr(size type(<length>));
     --list-gap: attr(listgap type(<length>));
     --label-gap: attr(labelgap type(<length>));
     font-size: var(--switch-size);
     gap: var(--list-gap);
+    align-items: start;
 
     &[row] {
       flex-direction: row;
     }
 
     .H_selectbase__label {
-      display: inline-flex;
-      align-items: center;
-      justify-items: center;
-      border-radius: 4px;
-      width: 100%;
       gap: var(--label-gap);
 
       &:hover {
@@ -157,8 +155,6 @@ function setValue(val: any) {
       }
 
       .H_switchbase {
-        pointer-events: none;
-
         &:focus-visible {
           outline: solid 2px var(--color-pri);
           outline-offset: 2px;
@@ -167,7 +163,6 @@ function setValue(val: any) {
       .label {
         color: var(--color-txt2);
         white-space: nowrap;
-        pointer-events: none;
       }
     }
   }

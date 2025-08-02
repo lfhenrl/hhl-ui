@@ -1,12 +1,12 @@
 <template>
   <div
-    class="H_dataGroupRow"
+    class="H_dataGroupRow h_flex h_flex-1 h_items-center h_w-full"
     :style="{ paddingLeft: 17 * row.__level + 'px' }"
     :col-index="0"
     data-type="rowgroup"
     :row-level="row.__level"
   >
-    <div class="H_dataGroupRow__icons" @click.stop="expand">
+    <div class="H_dataGroupRow__icons h_flex h_items-center" @click.stop="expand">
       <H_icon name="expand_down" size="1.4rem" btn v-if="row.__expanded" />
       <H_icon name="expand_right" size="1.4rem" btn v-else />
     </div>

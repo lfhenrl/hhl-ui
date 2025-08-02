@@ -1,15 +1,15 @@
 <template>
-  <H_dialog v-model="open" movable class="H_menuColumns">
-    <div moveable-drag class="H_menuColumns__header">
+  <H_dialog v-model="open" movable class="H_menuColumns h_outline-none">
+    <div moveable-drag class="H_menuColumns__header h_flex h_items-center h_bg-pri">
       <div class="flex-1" />
       <div class="">Columns</div>
       <div class="flex-1" />
-      <H_icon name="close" btn color="white" @click="open = false" />
+      <H_icon class="h_cursor-pointer" name="close" btn color="white" @click="open = false" />
     </div>
 
-    <div class="H_menuColumns__body">
+    <div class="H_menuColumns__body h_flex-col">
       <H_inputbase label="Grouping">
-        <H_dragDrop v-model="groupColumns" :max-items="3" class="H_menuColumns__body__groups">
+        <H_dragDrop v-model="groupColumns" :max-items="3" class="H_menuColumns__body__groups h_flex-col h_w-full">
           <template v-slot:item="{ item, index }">
             <H_columnItem :item="item" :index="index" />
           </template>
@@ -17,7 +17,7 @@
       </H_inputbase>
 
       <H_inputbase label="Columns">
-        <H_dragDrop v-model="sourceColumns" class="H_menuColumns__body__columns">
+        <H_dragDrop v-model="sourceColumns" class="H_menuColumns__body__columns h_flex-col h_w-full">
           <template v-slot:item="{ item, index }">
             <H_columnItem :item="item" :index="index" />
           </template>
@@ -25,7 +25,7 @@
       </H_inputbase>
     </div>
 
-    <div class="H_menuColumns__body__action">
+    <div class="H_menuColumns__body__action h_flex h_justify-end">
       <H_btn @click="columnsSave" size="sm" color="pri" :disabled="!canSave">OK</H_btn>
     </div>
   </H_dialog>
@@ -135,55 +135,40 @@ function columnsSave() {
 <style>
 @layer components {
   .H_menuColumns {
-    outline: none;
     .H_menuColumns__header {
-      display: flex;
-      align-items: center;
       min-width: 16em;
       font-size: 1.125em;
       text-align: center;
       padding-block: 0.25em;
-      background-color: var(--color-pri);
       color: var(--color-priTxt);
 
       .H_icon {
         margin-right: 0.25em;
-        cursor: pointer;
       }
     }
 
     .H_menuColumns__body {
-      display: flex;
-      flex-direction: column;
       gap: 2em;
       padding-inline: 1em;
       padding-top: 2em;
 
       .H_menuColumns__body__groups {
-        display: flex;
-        flex-direction: column;
         overflow: auto;
         gap: 0.125em;
-        width: 100%;
         padding: 0.25em;
         max-height: 6em;
         min-height: 6em;
       }
 
       .H_menuColumns__body__columns {
-        display: flex;
-        flex-direction: column;
         overflow: auto;
         gap: 0.125em;
-        width: 100%;
         padding: 0.25em;
         max-height: 20em;
         min-height: 20em;
       }
 
       .H_columnItem {
-        display: flex;
-        align-items: center;
         color: var(--color-txt1);
         margin-left: 0.125em;
         &:hover {
@@ -191,14 +176,9 @@ function columnsSave() {
             background-color: var(--color-bg2);
           }
         }
-        .H_switchbase {
-          outline: none;
-        }
       }
     }
     .H_menuColumns__body__action {
-      display: flex;
-      justify-content: flex-end;
       padding: 1em;
     }
   }

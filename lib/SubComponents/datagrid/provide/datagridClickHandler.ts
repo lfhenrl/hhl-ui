@@ -1,4 +1,3 @@
-import { type iColumn } from "./Column";
 import { type iDgrid } from "./Dgrid";
 import { type iClickData } from "./datagridTypes";
 
@@ -36,7 +35,7 @@ function getData(ele0: HTMLElement) {
     subType: "",
     dataId: null,
     dataItem: null,
-    column: (<any>[]) as iColumn,
+    column: null,
     field: "",
   };
   getDetails(val, ele0);

@@ -5,15 +5,15 @@
     :readonly="readonly"
     :autofocus
     title="Datepicker"
-    class="H_baseDatePicker"
+    class="H_baseDatePicker h_flex h_items-center h_outline-none h_rounded"
     @toggled="toggled"
   >
     <template v-slot:referance>
       <H_icon name="event" size="1.2em" color="txt1" v-if="!hideIcon" tabindex="-1" />
-      <span class="value">{{ formattetValueDate }}</span>
+      <span class="value h_w-fit">{{ formattetValueDate }}</span>
     </template>
 
-    <div class="H_baseDatePicker__popup" @keydown="keyDown">
+    <div class="H_baseDatePicker__popup h_rounded h_bg6" @keydown="keyDown" @click.prevent>
       <H_dateSelector
         ref="dateSelector"
         tabindex="0"
@@ -38,7 +38,7 @@
         @base-changed="(e) => (dateBase = e)"
         tabindex="-1"
       ></H_monthTable>
-      <div class="actions bg-bg4">
+      <div class="actions h_flex h_justify-end h_bg4">
         <H_btn tabindex="-1" size="sm" color="sec" @click.stop="cancel">CANCEL</H_btn>
         <H_btn tabindex="-1" size="sm" @click.stop="ok">OK</H_btn>
       </div>
@@ -81,7 +81,6 @@ let monthLength = 31;
 
 const formattetValueDate = computed(() => {
   if (P.date) {
-    console.log("H_baseDatePicker.vue formattetValueDate", P.date);
     if (P.longDate) {
       return D_mon_01_dec_2021(new Date(P.date.year, P.date.month, P.date.date));
     } else {
@@ -131,7 +130,6 @@ const ok = () => (close(), E("dateChanged", tempDate.value));
 const cancel = () => close();
 
 function keyDown(e: KeyboardEvent) {
-  console.log("key", e.key);
   if (e.key === "ArrowDown") ArrowDown();
   if (e.key === "ArrowUp") ArrowUp();
   if (e.key === "ArrowLeft") ArrowLeft();
@@ -146,7 +144,6 @@ function Enter() {
 }
 
 function ArrowLeft() {
-  console.log("ArrowLeft");
   if (dateBase.value === "date") {
     dateBase.value = "year";
   } else if (dateBase.value === "month") {
@@ -200,32 +197,21 @@ function ArrowDown() {
 <style>
 @layer components {
   .H_baseDatePicker {
-    display: flex;
-    align-items: center;
     padding-inline: 0.2em;
-    outline-style: none;
-    border-radius: 4px;
-
     &:focus {
       background-color: hsl(from var(--color-pri) h s l / 30%);
     }
-
     .value {
       padding-inline: 0.2em;
       text-align: start;
       width: fit-content;
-      text-wrap: nowrap;
       text-box-trim: trim-both;
     }
   }
 
   .H_baseDatePicker__popup {
-    background-color: var(--color-bg5);
     border: 1px solid var(--color-bg2);
-    border-radius: 4px;
     .actions {
-      display: flex;
-      justify-content: end;
       gap: 1em;
       padding: 0.7em;
       border-radius: 0 0 4px 4px;

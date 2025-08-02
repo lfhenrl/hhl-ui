@@ -6,15 +6,15 @@
     :autofocus
     :solo
     title="Timepicker"
-    class="H_baseTimePicker"
+    class="H_baseTimePicker h_flex h_items-center h_outline-none h_rounded"
     @toggled="toggled"
   >
     <template v-slot:referance>
       <H_icon name="clock" size="1.2em" color="txt1" v-if="!hideIcon" tabindex="-1" />
-      <span class="value">{{ showTime }}</span>
+      <span class="value h_w-fit">{{ showTime }}</span>
     </template>
 
-    <div class="H_baseTimePicker__popup" @keydown="keyDown">
+    <div class="H_baseTimePicker__popup h_rounded h_bg6" @keydown="keyDown" @click.prevent>
       <H_timeSelector
         ref="timeSelector"
         tabindex="0"
@@ -30,7 +30,7 @@
         @base-changed="(e) => (timeBase = e)"
         tabindex="-1"
       ></H_timeTable>
-      <div class="actions bg-bg4">
+      <div class="actions h_flex h_justify-end h_bg4">
         <H_btn tabindex="-1" size="sm" color="sec" @click.stop="cancel">CANCEL</H_btn>
         <H_btn tabindex="-1" size="sm" @click.stop="ok">OK</H_btn>
       </div>
@@ -58,7 +58,7 @@ const E = defineEmits(["timeChanged"]);
 const timeSelector = useTemplateRef("timeSelector");
 const popupOpen = ref(false);
 const timeBase = ref("hour");
-const tempTime = ref({ ...P.time });
+const tempTime: any = ref({ hour: "09", minute: "11", second: "22" });
 const showTime = computed(() => `${P.time.hour}:${P.time.minute}${P.showSeconds ? `:${P.time.second}` : ""}`);
 
 watch(
@@ -82,7 +82,6 @@ const ok = () => (close(), E("timeChanged", tempTime.value));
 const cancel = () => close();
 
 function keyDown(e: KeyboardEvent) {
-  console.log("key", e.key);
   if (e.key === "ArrowDown") ArrowDown();
   if (e.key === "ArrowUp") ArrowUp();
   if (e.key === "ArrowLeft") ArrowLeft();
@@ -97,7 +96,6 @@ function Enter() {
 }
 
 function ArrowLeft() {
-  console.log("ArrowLeft");
   if (timeBase.value === "hour") {
     timeBase.value = P.showSeconds ? "second" : "minute";
   } else if (timeBase.value === "minute") {
@@ -144,11 +142,7 @@ function ArrowDown() {
 <style>
 @layer components {
   .H_baseTimePicker {
-    display: flex;
-    align-items: center;
     padding-inline: 0.2em;
-    outline-style: none;
-    border-radius: 4px;
 
     [solo="false"]&:focus {
       background-color: hsl(from var(--color-pri) h s l / 30%);
@@ -164,12 +158,8 @@ function ArrowDown() {
   }
 
   .H_baseTimePicker__popup {
-    background-color: var(--color-bg5);
     border: 1px solid var(--color-bg2);
-    border-radius: 4px;
     .actions {
-      display: flex;
-      justify-content: end;
       gap: 1em;
       padding: 0.7em;
       border-radius: 0 0 4px 4px;

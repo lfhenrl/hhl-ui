@@ -1,5 +1,5 @@
 <template>
-  <div class="H_headerRow" ref="dom">
+  <div class="H_headerRow h_flex" ref="dom">
     <template v-for="(col, index) in DG.columns">
       <H_HeadCell v-if="col.visibel.value" :index="index" />
     </template>

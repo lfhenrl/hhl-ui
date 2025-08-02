@@ -1,17 +1,25 @@
 <template>
-  <div class="H_monthTable" @click="click">
-    <div class="year-selector">
+  <div class="H_monthTable h_bg6 h_outline-none" @click="click">
+    <div class="year-selector h_flex h_items-center h_justify-between h_font-bold h_user-select-none">
       <H_icon name="expand_left" size="1.6rem" btn data-value="yearMinus" tabindex="-1" />
       {{ date.year }}
       <H_icon name="expand_right" size="1.6rem" btn data-value="yearPlus" tabindex="-1" />
     </div>
-    <div class="H_monthTable__table" tabindex="-1">
-      <div v-for="(item, index) in monthArray" :data-value="index" :selected="isSelected(index)">{{ item }}</div>
+    <div class="H_monthTable__table h_grid" tabindex="-1">
+      <div
+        class="h_flex h_items-center h_justify-center h_cursor-pointer h_rounded h_font-bold h_user-select-none"
+        v-for="(item, index) in monthArray"
+        :data-value="index"
+        :selected="isSelected(index)"
+      >
+        {{ item }}
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import H_icon from "../../../Components/H_icon.vue";
 const P = defineProps({
   date: { type: Object, default: { date: 9, month: 0, year: 2025 } },
   monthArray: { type: Array, default: () => [] },
@@ -50,35 +58,20 @@ function isSelected(month: number) {
 <style>
 @layer components {
   .H_monthTable {
-    outline: none;
-    background-color: var(--color-bg6);
     .year-selector {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       padding-inline: 0.5em;
       padding-block: 0.25em;
-      font-weight: bold;
-      user-select: none;
       font-size: 1.2em;
       border-bottom: 1px solid var(--color-bg1);
       border-top: 1px solid var(--color-bg1);
     }
     .H_monthTable__table {
-      display: grid;
       grid-template-columns: repeat(3, 5.3em);
       grid-template-rows: repeat(4, 3.5em);
       padding: 0.5em;
 
       div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        border-radius: 4px;
         font-size: 1.2em;
-        font-weight: bold;
-        user-select: none;
         padding: 0.5em;
         &[selected] {
           background-color: var(--color-pri);

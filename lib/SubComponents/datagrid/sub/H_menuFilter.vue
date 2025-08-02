@@ -1,16 +1,16 @@
 <template>
   <H_popover offset-left="-20px" v-model="isOpen" movable class="H_menuFilter">
-    <div class="H_menuFilter__content">
-      <div moveable-drag class="H_menuFilter__header">
+    <div class="H_menuFilter__content h_flex-col h_rounded h_bg6">
+      <div moveable-drag class="H_menuFilter__header h_flex h_items-center h_justify-between h_font-bold h_bg-pri">
         <div></div>
         <div>{{ col.props.title }}</div>
 
-        <H_icon name="close" btn color="white" @click="isOpen = false" />
+        <H_icon class="h_cursor-pointer" name="close" btn color="white" @click="isOpen = false" />
       </div>
       <div class="H_menuFilter_comp">
         <component ref="filterCompRef" :is="filtComponent" :index="index" />
       </div>
-      <div class="H_menuFilter__action">
+      <div class="H_menuFilter__action h_flex h_items-center h_justify-end">
         <H_btn @click="filterSave" size="sm" color="pri" :disabled="!filterCompRef?.canSave">OK</H_btn>
         <H_btn @click="filterClear" :disabled="!col.filter.active" size="sm" color="sec">CLEAR</H_btn>
       </div>
@@ -85,26 +85,16 @@ const filtComponent = computed(() => {
 <style>
 @layer components {
   .H_menuFilter__content {
-    display: flex;
-    flex-direction: column;
     overflow: hidden;
-    background-color: var(--color-bg6);
     color: var(--color-txt1);
-    border-radius: 4px;
     font-weight: normal;
     min-width: 16em;
 
     .H_menuFilter__header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       padding-block: 0.25em;
       font-size: 1.125em;
-      font-weight: bold;
-      background-color: var(--color-pri);
       color: var(--color-priTxt);
       .H_icon {
-        cursor: pointer;
         margin: 2px 4px;
       }
     }
@@ -118,13 +108,7 @@ const filtComponent = computed(() => {
         margin-block: 1em;
       }
 
-      .H_filter__string,
-      .H_filter__number,
-      .H_filterSelect,
-      .H_filterDate,
-      .H_filterBool {
-        display: flex;
-        flex-direction: column;
+      .H_filterSame {
         gap: 1em;
         padding-block: 1em;
       }
@@ -137,9 +121,6 @@ const filtComponent = computed(() => {
     }
 
     .H_menuFilter__action {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
       gap: 0.5em;
       padding: 1em;
     }

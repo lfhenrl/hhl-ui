@@ -1,11 +1,11 @@
 <template>
-  <div class="H_dateTable" @click="click">
-    <div class="month-selector">
+  <div class="H_dateTable h_bg6 h_outline-none" @click="click">
+    <div class="month-selector h_flex h_items-center h_justify-between h_font-bold h_user-select-none">
       <H_icon name="expand_left" size="1.6rem" btn data-value="monthMinus" tabindex="-1" />
-      <span data-value="monthSelect">{{ monthArray[date.month] }} {{ date.year }}</span>
+      <span class="h_cursor-pointer" data-value="monthSelect">{{ monthArray[date.month] }} {{ date.year }}</span>
       <H_icon name="expand_right" size="1.6rem" btn data-value="monthPlus" tabindex="-1" />
     </div>
-    <div class="H_dateTable__table">
+    <div class="H_dateTable__table h_grid">
       <div
         v-for="item in dates"
         :key="item.value"
@@ -16,6 +16,7 @@
         :selected="isSelected(item.value)"
         :today="isToday(item.value)"
         :title="isHolyday(item.value)"
+        class="h_flex h_items-center h_justify-center h_cursor-pointer"
       >
         {{ item.title }}
       </div>
@@ -27,6 +28,7 @@
 import { computed, type PropType } from "vue";
 import { type igetDaysArray } from "./getDaysArray";
 import { HHL_isHolyDay } from "./holyDays";
+import H_icon from "../../../Components/H_icon.vue";
 const P = defineProps({
   date: { type: Object, default: { date: 9, month: 0, year: 2025 } },
   dates: { type: Object as PropType<igetDaysArray>, default: () => [] },
@@ -88,36 +90,20 @@ const isHolyday = (dato: any) => HHL_isHolyDay(dato);
 <style>
 @layer components {
   .H_dateTable {
-    outline: none;
-    background-color: var(--color-bg6);
     .month-selector {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       padding-inline: 0.5em;
       padding-block: 0.25em;
-      font-weight: bold;
-      user-select: none;
       font-size: 1.2em;
       border-bottom: 1px solid var(--color-bg1);
       border-top: 1px solid var(--color-bg1);
-      span {
-        cursor: pointer;
-      }
     }
 
     .H_dateTable__table {
-      display: grid;
       grid-template-columns: repeat(8, 2em);
       grid-template-rows: repeat(7, 2em);
       padding: 0.5em;
       div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
         border-radius: 50%;
-
         &[data-type="head"],
         &[data-type="week"] {
           pointer-events: none;

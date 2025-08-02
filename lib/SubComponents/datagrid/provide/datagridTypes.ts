@@ -29,6 +29,6 @@ export type iClickData = {
   subType: string;
   dataId: any;
   dataItem: unknown;
-  column: iColumn;
+  column: iColumn | null;
   field: string;
 };

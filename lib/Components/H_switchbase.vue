@@ -1,6 +1,6 @@
 <template>
-  <button :color :bgcolor type="button" :role="variant" :check class="H_switchbase">
-    <div class="H_switchbase__indicator">
+  <button :color :bgcolor type="button" :role="variant" :check class="H_switchbase h_flexInline h_items-center">
+    <div class="H_switchbase__indicator h_flex h_items-center">
       <H_icon v-if="check && variant === 'checkbox'" name="check" size="1.2em" class="H_switchbase__indicator_svg" />
       <div v-if="check && variant === 'radio'" class="H_switchbase__indicator_radio"></div>
     </div>
@@ -26,8 +26,6 @@ const E = defineEmits([]);
 <style>
 @layer components {
   .H_switchbase {
-    display: inline-flex;
-    align-items: center;
     border-width: 2px;
     --switch-color: attr(color type(<color>));
     --switch-bgcolor: attr(bgcolor type(<color>));
@@ -90,8 +88,6 @@ const E = defineEmits([]);
       }
 
       .H_switchbase__indicator {
-        display: flex;
-        align-items: center;
         height: 1em;
         width: 1em;
         border-radius: calc(infinity * 1px);

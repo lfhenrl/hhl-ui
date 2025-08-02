@@ -6,7 +6,7 @@
     @close="onClose"
     @click="onClick"
     @keyup.esc="tryClose()"
-    class="H_dialog"
+    class="H_dialog h_flex-col h_rounded h_bg5 theme-shadow-md"
   >
     <slot />
   </dialog>
@@ -80,15 +80,8 @@ function close() {
 <style>
 @layer components {
   .H_dialog {
-    display: flex;
-    flex-direction: column;
     margin: auto;
-    border-radius: 4px;
     position: fixed;
-    background-color: var(--color-bg5);
-    box-shadow: var(--theme-shadow-md);
-    border: var(--theme-shadow-border);
-    border-bottom: var(--theme-shadow-border-bottom);
     z-index: 10;
     inset-block: v-bind(insetTop);
     inset-inline: v-bind(insetLeft);

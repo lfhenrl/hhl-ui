@@ -19,6 +19,7 @@
       :show-seconds="showSeconds"
       :autofocus
       @time-changed="timeChanged"
+      class="h_w-full h_cursor-pointer"
       solo
     />
   </H_inputBase>
@@ -70,7 +71,6 @@ watch(
 function timeChanged(e: any) {
   model.value = "";
   model.value = `${e.hour}:${e.minute}:${e.second}`;
-  console.log("timeChanged", model.value);
 }
 
 const validate = computed(() => validateFunc(P.validator, model.value));
@@ -80,10 +80,6 @@ const validate = computed(() => validateFunc(P.validator, model.value));
   .H_timePicker {
     &:focus-within {
       border-color: var(--color-pri);
-    }
-    .H_baseTimePicker {
-      width: 100%;
-      cursor: pointer;
     }
   }
 }

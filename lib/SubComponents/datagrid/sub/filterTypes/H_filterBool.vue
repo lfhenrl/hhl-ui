@@ -1,5 +1,5 @@
 <template>
-  <div class="H_filterBool">
+  <div class="H_filterBool H_filterSame h_flex-col">
     <H_selectbox
       multi
       list-gap="6px"

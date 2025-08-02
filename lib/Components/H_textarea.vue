@@ -20,7 +20,7 @@
       spellcheck="false"
       :readonly="readonly"
       :placeholder="placeholder"
-      class="input"
+      class="input h_outline-none h_border-none h_w-full"
     />
     <H_icon name="close" color="txt3" btn class="clearBtn" v-if="showClear" @click="model = ''" />
   </H_inputbase>
@@ -29,6 +29,7 @@
 <script setup lang="ts">
 import { computed, ref, watchEffect } from "vue";
 import H_inputbase from "./H_inputbase.vue";
+import H_icon from "./H_icon.vue";
 import { validateFunc } from "../utils/validateFunc";
 const P = defineProps({
   label: { type: String, default: "" },
@@ -86,12 +87,9 @@ const validate = computed(() => validateFunc(P.validator, model.value));
 <style>
 @layer components {
   .H_textarea {
-    width: 100%;
     padding-left: 0.3em;
     .input {
       appearance: none;
-      outline-style: none;
-      width: 100%;
       margin-left: 0.2em;
     }
     .clearBtn {

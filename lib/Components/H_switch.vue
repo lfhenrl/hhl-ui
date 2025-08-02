@@ -66,7 +66,7 @@ function onClick() {
 <template>
   <label
     :size="endSize"
-    class="H_switch"
+    class="H_switch h_flexInline h_items-center h_w-fit"
     :labelLeft="labelLeft ? '' : undefined"
     :style="{ gap: labelGap }"
     :disabled="disabled ? '' : undefined"
@@ -82,9 +82,6 @@ function onClick() {
   .H_switch {
     --switch-size: attr(size type(<length>));
     font-size: var(--switch-size);
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
 
     &[disabled] {
       pointer-events: none;

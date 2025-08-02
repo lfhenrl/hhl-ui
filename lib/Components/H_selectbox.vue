@@ -1,6 +1,6 @@
 <template>
   <H_inputbase
-    class="H_selectbox"
+    class="H_selectbox h_border-none"
     :label="label"
     :HelpTextStart="hintStart"
     :HelpTextEnd="hintEnd"
@@ -117,7 +117,6 @@ function getFocusList() {
 @layer components {
   .H_selectbox {
     .H_selectbase {
-      border: none;
       padding-inline: 0.5em;
       padding-block: 0.4em;
       &[row] {

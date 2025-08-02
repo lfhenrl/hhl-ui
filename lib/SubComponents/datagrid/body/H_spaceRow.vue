@@ -1,5 +1,5 @@
 <template>
-  <div class="H_spaceRow">
+  <div class="H_spaceRow h_flex h_w-min">
     <div
       v-for="col in DG.getVisibelColumns()"
       :style="[

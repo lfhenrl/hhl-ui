@@ -1,5 +1,5 @@
 <template>
-  <div class="H_datagridFooter">
+  <div class="H_datagridFooter h_flex h_items-center h_bg2" v-bind="$attrs">
     <H_icon name="columns" color="txt3" size="1.6rem" btn title="Edit Columns" @click="editColumns" />
     <H_icon
       name="expand_horizontal"

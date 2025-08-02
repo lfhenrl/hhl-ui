@@ -1,5 +1,5 @@
 <template>
-  <div class="H_filter__number">
+  <div class="H_filter__number H_filterSame h_flex-col">
     <H_select v-model="condition1" :list="list" hide-filter />
     <H_input type="number" v-model="value1" />
     <H_selectbox

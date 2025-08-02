@@ -1,40 +1,54 @@
 <template>
-  <div class="H_menuBody" @click="menuClick">
+  <div class="H_menuBody h_bg5" @click="menuClick">
     <div
-      class="H_menuBody__item"
+      class="H_menuBody__item h_flex h_items-center h_cursor-pointer"
       :selected="col.sortDirection.value === 'asc' ? '' : undefined"
       data-action="asc"
       data-subtype="menuSortAsc"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_icon name="arrow_upward" size="1.6em" :color="col.sortDirection.value === 'asc' ? 'white' : 'txt2'" />
+      <H_icon
+        class="h_pointer-events-none"
+        name="arrow_upward"
+        size="1.6em"
+        :color="col.sortDirection.value === 'asc' ? 'white' : 'txt2'"
+      />
       <div class="H_menuBody__item_title">Sort Ascending</div>
     </div>
 
     <div
-      class="H_menuBody__item"
+      class="H_menuBody__item h_flex h_items-center h_cursor-pointer"
       :selected="col.sortDirection.value === 'desc' ? '' : undefined"
       data-action="desc"
       data-subtype="menuSortDesc"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_icon name="arrow_downward" size="1.6em" :color="col.sortDirection.value === 'asc' ? 'white' : 'txt2'" />
+      <H_icon
+        class="h_pointer-events-none"
+        name="arrow_downward"
+        size="1.6em"
+        :color="col.sortDirection.value === 'asc' ? 'white' : 'txt2'"
+      />
       <div class="H_menuBody__item_title">Sort Descending</div>
     </div>
 
     <div
-      class="H_menuBody__item"
+      class="H_menuBody__item h_flex h_items-center h_cursor-pointer"
       :selected="col.filter.active ? '' : undefined"
       data-action="filter"
       v-if="col.filter.type !== 'none'"
       data-subtype="menuFilter"
     >
-      <H_icon name="filter" size="1.4em" :color="col.filter.active ? 'white' : 'txt2'" />
-      <div class="H_menuBody__item_title">Filter</div>
+      <H_icon class="h_pointer-events-none" name="filter" size="1.4em" :color="col.filter.active ? 'white' : 'txt2'" />
+      <div class="H_menuBody__item_title h_pointer-events-none">Filter</div>
     </div>
 
-    <div class="H_menuBody__item" data-action="autoSize" data-subtype="menuAutoSize">
-      <H_icon name="expand_horizontal" size="1.6em" />
+    <div
+      class="H_menuBody__item h_flex h_items-center h_cursor-pointer"
+      data-action="autoSize"
+      data-subtype="menuAutoSize"
+    >
+      <H_icon class="h_pointer-events-none" name="expand_horizontal" size="1.6em" />
       <div class="H_menuBody__item_title">Auto size</div>
     </div>
   </div>

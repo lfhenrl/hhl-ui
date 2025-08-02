@@ -1,5 +1,5 @@
 <template>
-  <div :data-row="JSON.stringify(row)" class="H_loadMoreRows">Loding...</div>
+  <div :data-row="JSON.stringify(row)" class="H_loadMoreRows h_flex h_items-center">Loding...</div>
 </template>
 
 <script setup lang="ts">

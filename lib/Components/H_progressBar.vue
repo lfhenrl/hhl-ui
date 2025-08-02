@@ -1,5 +1,5 @@
 <template>
-  <div class="H_progressBar" :color="col.txt" :color2="col2.txt" :size="endSize" :speed>
+  <div class="H_progressBar h_w-full h_rounded" :color="col.txt" :color2="col2.txt" :size="endSize" :speed>
     <div v-if="show" class="value"></div>
   </div>
 </template>
@@ -34,8 +34,6 @@ const endSize = useSize(toRef(() => P.size));
     background-color: var(--progress-color2);
     overflow: hidden;
     min-height: var(--progress-size);
-    width: 100%;
-    border-radius: 4px;
     .value {
       background-color: var(--progress-color);
       min-height: var(--progress-size);

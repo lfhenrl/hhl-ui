@@ -1,5 +1,13 @@
 <template>
-  <button :size="endSize" :color="col.bg" :bgcolor="col.txt" :variant :disabled class="H_btn" type="button">
+  <button
+    :size="endSize"
+    :color="col.bg"
+    :bgcolor="col.txt"
+    :variant
+    :disabled
+    class="H_btn h_flexInline h_items-center h_justify-center h_rounded h_cursor-pointer"
+    type="button"
+  >
     <slot>{{ size }}</slot>
   </button>
 </template>
@@ -29,18 +37,11 @@ const endSize = useSize(toRef(() => P.size));
     --btn-color: attr(color type(<color>));
     --btn-bgcolor: attr(bgcolor type(<color>));
     --btn-size: attr(size type(<length>));
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
     font-family: "Public Sans", sans-serif;
     gap: 0.3em;
     padding-inline: 0.9em;
-    cursor: pointer;
     white-space: nowrap;
-    border-radius: 0.25rem;
     font-size: var(--btn-size);
-
-    line-height: 1.2;
     max-height: calc(1em * 1.9);
     min-height: calc(1em * 1.9);
 

@@ -6,7 +6,9 @@
       <H_baseDatePicker class="ml-2" :date="date" @date-changed="(e:any) => (date = e)"></H_baseDatePicker>
       <H_selectbox row :list="[`nr1`, `nr2`, `nr3`]" label="Selector"></H_selectbox>
     </div>
-    <div style="min-height: 500px" />
+    <div style="min-height: 500px; color: contrast-color(var(--color-pri)); background-color: var(--color-pri)">
+      HEJ
+    </div>
   </div>
 </template>
 

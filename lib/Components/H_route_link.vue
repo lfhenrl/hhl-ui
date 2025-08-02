@@ -1,10 +1,10 @@
 <template>
   <a class="H_route_link" :href="to" :selected="isSelected ? '' : undefined">
-    <div class="bar"></div>
-    <div class="img">
+    <div class="bar h_h-full h_w-full"></div>
+    <div class="img h_flex h_items-center h_justify-center">
       <H_icon :name="icon"></H_icon>
     </div>
-    <div class="text">{{ title }}</div>
+    <div class="text h_flex h_items-center h_justify-center">{{ title }}</div>
   </a>
 </template>
 
@@ -30,22 +30,14 @@ defineProps({
       grid-column-start: 1;
       grid-row-start: 1;
       grid-row-end: 3;
-      height: 100%;
-      width: 100%;
     }
 
     .img {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       grid-column-start: 2;
       grid-row-start: 1;
     }
 
     .text {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-size: 0.75em;
       grid-column-start: 2;
       grid-row-start: 2;

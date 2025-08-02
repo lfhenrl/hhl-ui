@@ -1,6 +1,10 @@
 <template>
-  <div ref="tablelist" class="H_timeTable" :base="timeBase" @click="click">
-    <div v-for="index in 60" :key="index" class="time-item"></div>
+  <div ref="tablelist" class="h_grid H_timeTable h_outline-none h_bg6" :base="timeBase" @click="click">
+    <div
+      v-for="index in 60"
+      :key="index"
+      class="time-item h_flex h_items-center h_justify-center h_cursor-pointer"
+    ></div>
   </div>
 </template>
 
@@ -37,7 +41,6 @@ function click(e: MouseEvent) {
   const newVal = target.textContent;
   model.value[P.timeBase] = newVal;
   model.value = { ...model.value };
-  console.log("xxx", Number(newVal).toString().padStart(2, "0"));
   if (P.timeBase === "hour") E("baseChanged", "minute");
   if (P.timeBase === "minute" && P.showSeconds) E("baseChanged", "second");
 }
@@ -58,11 +61,8 @@ onMounted(() => {
 <style>
 @layer components {
   .H_timeTable {
-    display: grid;
     grid-template-columns: repeat(8, 30px);
     grid-template-rows: repeat(8, 30px);
-    outline: none;
-    background-color: var(--color-bg6);
     padding: 0.25em;
 
     &[base="hour"] {
@@ -73,11 +73,7 @@ onMounted(() => {
     }
 
     .time-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       border-radius: 50%;
-      cursor: pointer;
       text-box-trim: trim-both;
 
       &[selected] {

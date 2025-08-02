@@ -1,16 +1,29 @@
 <template>
-  <div ref="dateSelector" class="H_dateSelector">
-    <span class="date" @focus="onFocus($event, 'date')" :selected="dateBase === 'date'" tabindex="0" autofocus>{{
-      date.date
-    }}</span>
+  <div ref="dateSelector" class="H_dateSelector h_flex h_items-center h_justify-center h_bg4 h_outline-none">
+    <span
+      class="date h_cursor-pointer h_rounded h_outline-none"
+      @focus="onFocus($event, 'date')"
+      :selected="dateBase === 'date'"
+      tabindex="0"
+      autofocus
+      >{{ date.date }}</span
+    >
 
-    <span class="month" @focus="onFocus($event, 'month')" :selected="dateBase === 'month'" tabindex="0">{{
-      monthArray[date.month]
-    }}</span>
+    <span
+      class="month h_cursor-pointer h_rounded h_outline-none"
+      @focus="onFocus($event, 'month')"
+      :selected="dateBase === 'month'"
+      tabindex="0"
+      >{{ monthArray[date.month] }}</span
+    >
 
-    <span class="year" @focus="onFocus($event, 'year')" :selected="dateBase === 'year'" tabindex="0">{{
-      date.year
-    }}</span>
+    <span
+      class="year h_cursor-pointer h_rounded h_outline-none"
+      @focus="onFocus($event, 'year')"
+      :selected="dateBase === 'year'"
+      tabindex="0"
+      >{{ date.year }}</span
+    >
   </div>
 </template>
 
@@ -22,7 +35,7 @@ defineProps({
 });
 const E = defineEmits(["baseChanged"]);
 
-function onFocus(e: FocusEvent, value: string) {
+function onFocus(_: FocusEvent, value: string) {
   E("baseChanged", value);
 }
 </script>
@@ -30,20 +43,12 @@ function onFocus(e: FocusEvent, value: string) {
 <style>
 @layer components {
   .H_dateSelector {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-bg5);
-    outline: none;
     padding: 4px;
     span {
-      cursor: pointer;
       font-size: 1.3em;
       padding-block: 0.05em;
-      border-radius: 4px;
       text-align: center;
       text-box-trim: trim-both;
-      outline: none;
       &.date {
         min-width: 1.5em;
       }
