@@ -13,13 +13,13 @@
     <slot> </slot>
 
     <H_baseTimePicker
+      class="H_timePicker_H_timePicker"
       :time="time"
       :hide-icon="hideIcon"
       :readonly="readonly"
       :show-seconds="showSeconds"
       :autofocus
       @time-changed="timeChanged"
-      class="h_w-full h_cursor-pointer"
       solo
     />
   </H_inputBase>
@@ -77,10 +77,12 @@ const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
 <style>
 @layer components {
-  .H_timePicker {
-    &:focus-within {
-      border-color: var(--color-pri);
-    }
+  .H_timePicker:focus-within {
+    border-color: var(--color-pri);
+  }
+  .H_timePicker_H_timePicker {
+    width: 100%;
+    cursor: pointer;
   }
 }
 </style>

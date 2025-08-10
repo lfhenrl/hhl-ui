@@ -2,7 +2,7 @@
   <H_inputbase class="H_input" :label :disabled :hintStart :hintEnd="stringCounter" :ErrorMessage="validate">
     <slot />
     <input
-      class="H_input_input h_outline-none h_border-none h_w-full"
+      class="H_input_input"
       v-model="model"
       :max
       :min
@@ -18,7 +18,7 @@
       :name="label === '' ? 'No name' : label"
       @click="$emit('input_click')"
     />
-    <H_icon name="close" color="txt3" btn v-if="showClear" @click="model = ''" />
+    <H_icon name="close" class="H_input_clearIcon" btn v-if="showClear" @click="model = ''" />
   </H_inputbase>
 </template>
 
@@ -70,23 +70,23 @@ const validate = computed(() => validateFunc(P.validator, model.value));
 <style>
 @layer components {
   .H_input {
-    padding-inline: 0.3em;
-    .H_input_input {
-      margin-inline: 0.2em;
-      appearance: none;
+    padding: 0 0.3em;
 
-      &[type="color"] {
-        height: 1em;
-        padding: 0;
-      }
-    }
     .H_icon {
-      --icon-size: 1.3em;
+      font-size: 1.3em;
     }
+  }
+  .H_input:focus-within {
+    border-color: var(--color-pri);
+  }
 
-    &:focus-within {
-      border-color: var(--color-pri);
-    }
+  .H_input_input {
+    width: 100%;
+    margin: 0 0.2em;
+    background-color: transparent;
+  }
+  .H_icon.H_input_clearIcon {
+    color: var(--color-txt3);
   }
 }
 </style>

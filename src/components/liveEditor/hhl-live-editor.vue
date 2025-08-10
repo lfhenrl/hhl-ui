@@ -143,6 +143,10 @@ export default defineComponent({
   border: var(--theme-shadow-border);
   border-bottom: var(--theme-shadow-border-bottom);
 }
+
+.hhl-live-editor:fullscreen {
+  background-color: var(--color-bg0);
+}
 .hhl-live-editor_errBox {
   display: flex;
   flex-direction: column;

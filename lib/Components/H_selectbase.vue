@@ -1,11 +1,10 @@
 <template>
   <div
     ref="baselist"
-    :size
-    class="H_selectbase h_flex-col h_w-full h_rounded h_outline-none"
+    class="H_selectbase"
+    :class="{ row: row }"
+    :h-gap="listGap"
     :row="row ? '' : undefined"
-    :listgap="listGap"
-    :labelgap="labelGap"
     @click="Click"
   >
     <label
@@ -13,17 +12,22 @@
       :key="item.label"
       :labelleft="labelLeft ? '' : undefined"
       :justifybetween="justifyBetween ? '' : undefined"
-      class="H_selectbase__label h_flexInline h_items-center h_rounded h_w-full"
+      class="H_selectbase__label"
+      :class="{ labelleft: labelLeft, justifybetween: justifyBetween }"
+      h-display="inline-flex"
+      h-align-items="center"
+      h-border-radius="4px"
+      h-width="100%"
+      :h-gap="labelGap"
     >
       <H_switchbase
-        class="h_pointer-events-none"
+        class="H_selectbase__switchbase"
         :check="selected(item.value) ? true : false"
         :variant
-        :color
         :bgcolor
         :value="item.value"
       />
-      <span class="label h_pointer-events-none">{{ item.label }}</span>
+      <span class="H_selectbase__switchbase_label">{{ item.label }}</span>
     </label>
   </div>
 </template>
@@ -128,43 +132,46 @@ function setValue(val: any) {
 <style>
 @layer components {
   .H_selectbase {
-    --switch-size: attr(size type(<length>));
-    --list-gap: attr(listgap type(<length>));
-    --label-gap: attr(labelgap type(<length>));
-    font-size: var(--switch-size);
-    gap: var(--list-gap);
+    display: flex;
     align-items: start;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 4px;
+  }
 
-    &[row] {
-      flex-direction: row;
-    }
+  .H_selectbase.row {
+    flex-direction: row;
+  }
 
-    .H_selectbase__label {
-      gap: var(--label-gap);
+  .H_selectbase__label {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 4px;
+    width: 100%;
+  }
 
-      &:hover {
-        background-color: hsl(from var(--color-pri) h s l / 15%);
-      }
+  .H_selectbase__label:hover {
+    background-color: hsl(from var(--color-pri) h s l / 15%);
+  }
+  .H_selectbase__label.labelleft {
+    flex-direction: row-reverse;
+  }
+  .H_selectbase__label.justifybetween {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .H_selectbase__switchbase {
+    pointer-events: none;
+  }
+  .H_selectbase__switchbase:focus-visible {
+    outline: solid 2px var(--color-pri);
+    outline-offset: 2px;
+  }
 
-      &[labelleft] {
-        flex-direction: row-reverse;
-      }
-      &[justifybetween] {
-        justify-content: space-between;
-        width: 100%;
-      }
-
-      .H_switchbase {
-        &:focus-visible {
-          outline: solid 2px var(--color-pri);
-          outline-offset: 2px;
-        }
-      }
-      .label {
-        color: var(--color-txt2);
-        white-space: nowrap;
-      }
-    }
+  .H_selectbase__switchbase_label {
+    pointer-events: none;
+    color: var(--color-txt2);
+    white-space: nowrap;
   }
 }
 </style>

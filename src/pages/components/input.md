@@ -150,7 +150,7 @@ If you want it behind the input just add the attribute `set-end`.
       <template>
       <div class="flex items-center gap-4">
             <H_input clearable  v-model="txt" label="Start Icon"> 
-                <H_icon name="mail" btn  @click="click(txt)"></H_icon>
+                <H_icon name="mail" btn  h-font-size="2em"  @click="click(txt)"></H_icon>
             </H_input>
             <H_input clearable  v-model="txt" label="End Icon"> 
                 <H_icon set-end name="clock" btn  @click="click(`end icon`)"></H_icon>

@@ -1,10 +1,41 @@
 <template>
-  <a class="H_route_link" :href="to" :selected="isSelected ? '' : undefined">
-    <div class="bar h_h-full h_w-full"></div>
-    <div class="img h_flex h_items-center h_justify-center">
+  <a
+    class="H_route_link"
+    :href="to"
+    :selected="isSelected ? '' : undefined"
+    h-display="grid"
+    h-grid-template-columns="3px 50px"
+    h-grid-template-rows="26px 14px"
+  >
+    <div
+      class="bar"
+      h-height="100%"
+      h-width="100%"
+      h-grid-row-start="1"
+      h-grid-row-end="3"
+      h-grid-column-start="1"
+    ></div>
+    <div
+      class="img"
+      h-display="flex"
+      h-align-items="center"
+      h-justify-content="center"
+      h-grid-row-start="1"
+      h-grid-column-start="2"
+    >
       <H_icon :name="icon"></H_icon>
     </div>
-    <div class="text h_flex h_items-center h_justify-center">{{ title }}</div>
+    <div
+      class="text"
+      h-font-size="0.75em"
+      h-display="flex"
+      h-align-items="center"
+      h-justify-content="center"
+      h-grid-row-start="2"
+      h-grid-column-start="2"
+    >
+      {{ title }}
+    </div>
   </a>
 </template>
 
@@ -22,26 +53,6 @@ defineProps({
 <style>
 @layer components {
   .H_route_link {
-    display: grid;
-    grid-template-columns: 3px 50px;
-    grid-template-rows: 26px 14px;
-
-    .bar {
-      grid-column-start: 1;
-      grid-row-start: 1;
-      grid-row-end: 3;
-    }
-
-    .img {
-      grid-column-start: 2;
-      grid-row-start: 1;
-    }
-
-    .text {
-      font-size: 0.75em;
-      grid-column-start: 2;
-      grid-row-start: 2;
-    }
     &[selected] {
       color: var(--color-pri);
       .H_route_link_bar {

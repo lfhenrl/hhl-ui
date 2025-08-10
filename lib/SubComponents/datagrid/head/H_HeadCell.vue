@@ -1,6 +1,6 @@
 <template>
   <div
-    class="H_headCell h_flex-col h_w-min"
+    class="H_headCell"
     ref="headCellRef"
     :data-col-index="index"
     data-type="headcell"
@@ -9,18 +9,66 @@
       maxWidth: col.head_width.value ?? '',
     }"
   >
-    <div class="H_headCell__actions h_flex h_flex-1 h_items-center h_w-full h_relative h_font-bold">
-      <div class="H_headCell__actions_title h_w-full" data-subtype="title">
+    <div class="H_headCell__actions">
+      <div class="H_headCell__actions_title" data-subtype="title">
         {{ col.props.title }}
       </div>
       <H_menu :index="index" />
-      <div class="H_headCell__actions_resize h_absolute h_h-full" @mousedown="resize" data-subtype="resize"></div>
+      <div class="H_headCell__actions_resize" @mousedown="resize" data-subtype="resize"></div>
     </div>
     <div class="H_HeadCell-space">
       {{ col.maxValueRef.value }}
     </div>
   </div>
 </template>
+
+<style>
+@layer components {
+  .H_headCell {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: min-content;
+    min-height: 34px;
+    border-right: 1px solid var(--color-txt8);
+  }
+
+  .H_headCell__actions {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    font-weight: 700;
+  }
+
+  .H_headCell__actions_title {
+    width: 100%;
+    overflow: hidden;
+    padding: 0.375em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .H_headCell__actions_resize {
+    position: absolute;
+    height: 100%;
+    overflow: visible;
+    right: -4px;
+    width: 8px;
+    cursor: ew-resize;
+    z-index: 2;
+  }
+
+  .H_HeadCell-space {
+    height: 0;
+    overflow-x: hidden;
+    overflow-y: visible;
+    white-space: nowrap;
+    padding: 0 0.5em;
+    opacity: 0;
+  }
+}
+</style>
 
 <script setup lang="ts">
 import { inject, onMounted, ref } from "vue";

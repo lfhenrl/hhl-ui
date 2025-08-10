@@ -7,6 +7,7 @@
     :hintStart="hintStart"
     :hintEnd="stringCounter"
     :ErrorMessage="validate"
+    h-padding="0 0 0 0.3em"
     class="H_textarea"
   >
     <slot> </slot>
@@ -20,9 +21,11 @@
       spellcheck="false"
       :readonly="readonly"
       :placeholder="placeholder"
-      class="input h_outline-none h_border-none h_w-full"
+      class="input"
+      h-width="100%"
+      h-margin="0 0 0 0.2em"
     />
-    <H_icon name="close" color="txt3" btn class="clearBtn" v-if="showClear" @click="model = ''" />
+    <H_icon name="close" h-color="var(--color-txt3)" h-margin="0 0.1em" btn v-if="showClear" @click="model = ''" />
   </H_inputbase>
 </template>
 
@@ -87,18 +90,6 @@ const validate = computed(() => validateFunc(P.validator, model.value));
 <style>
 @layer components {
   .H_textarea {
-    padding-left: 0.3em;
-    .input {
-      appearance: none;
-      margin-left: 0.2em;
-    }
-    .clearBtn {
-      margin-inline: 0.1em;
-    }
-    .H_icon {
-      --icon-size: 1.3em;
-    }
-
     &:focus-within {
       border-color: var(--color-pri);
     }

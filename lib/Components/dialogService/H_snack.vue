@@ -1,11 +1,25 @@
 <template>
   <transition name="snack" @after-leave="$emit('close')">
-    <div v-show="modelValue" class="H_snack" :type @click="$emit('update:modelValue', false)">
-      <H_icon name="check" size="2rem" color="white" v-if="type === 'info'" />
-      <H_icon name="info" size="2rem" :color="type === 'warn' ? 'black' : 'white'" v-else />
-      <div class="H_snack-info">
-        <div>{{ title }}</div>
-        <span>{{ text }}</span>
+    <div
+      v-show="modelValue"
+      class="H_snack"
+      h-display="flex"
+      h-position="fixed"
+      h-padding="0.375rem 0 0.75rem 0.75rem"
+      h-border-radius="0.25rem"
+      h-right="1.25rem"
+      h-top="1.25rem"
+      h-width="20rem"
+      h-max-width="20rem"
+      :type
+      @click="$emit('update:modelValue', false)"
+    >
+      <H_icon name="check" h-font-size="2rem" h-color="white" v-if="type === 'info'" />
+      <H_icon name="info" h-font-size="2rem" v-else />
+
+      <div class="H_snack-info" h-display="flex" h-flex-direction="column" h-align-items="center" h-flex="1">
+        <div h-font-size="1.125em">{{ title }}</div>
+        <span h-font-size="1.125em">{{ text }}</span>
       </div>
     </div>
   </transition>
@@ -32,7 +46,6 @@ defineExpose({ close });
   .snack-enter-active {
     transition: all 0.5s ease-in;
   }
-
   .snack-leave-active {
     transition: all 0.5s ease-out;
   }
@@ -41,42 +54,22 @@ defineExpose({ close });
     opacity: 0;
     transform: translateX(150%);
   }
-
   .H_snack {
-    display: flex;
-    position: fixed;
-    padding-top: 0.375rem;
-    padding-bottom: 0.75rem;
-    padding-left: 0.75rem;
-    border-radius: 0.25rem;
-    right: 1.25rem;
-    top: 1.25rem;
-    width: 20rem;
-    max-width: 20rem;
     z-index: 500;
-
     &[type="err"] {
       background-color: var(--color-err);
       color: var(--color-errTxt);
     }
-
     &[type="warn"] {
       background-color: var(--color-warn);
       color: var(--color-warnTxt);
     }
-
     &[type="info"] {
       background-color: var(--color-ok);
       color: var(--color-okTxt);
     }
-
     .H_snack-info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 1;
       div {
-        font-size: 1.125em;
         font-weight: bold;
       }
     }

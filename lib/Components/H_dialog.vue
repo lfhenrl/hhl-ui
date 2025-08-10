@@ -6,7 +6,14 @@
     @close="onClose"
     @click="onClick"
     @keyup.esc="tryClose()"
-    class="H_dialog h_flex-col h_rounded h_bg5 theme-shadow-md"
+    class="H_dialog"
+    h-display="flex"
+    h-shadow="md"
+    h-position="fixed"
+    h-flex-direction="column"
+    h-bgcolor="var(--color-bg5)"
+    h-border-radius="4px"
+    h-margin="auto"
   >
     <slot />
   </dialog>
@@ -80,9 +87,6 @@ function close() {
 <style>
 @layer components {
   .H_dialog {
-    margin: auto;
-    position: fixed;
-    z-index: 10;
     inset-block: v-bind(insetTop);
     inset-inline: v-bind(insetLeft);
     transform: scaleY(0);

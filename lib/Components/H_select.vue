@@ -1,6 +1,6 @@
 <template>
   <H_popover
-    class="H_select h_outline-none h_rounded h_w-stretch"
+    class="H_select"
     ref="popup"
     @toggled="selectToggled"
     offset-top="6px"
@@ -11,19 +11,28 @@
     width-as-ref
   >
     <template v-slot:referance>
-      <H_inputbase :label readonly :disabled :placeholder :hintStart :hintEnd :validator>
+      <H_inputbase class="H_select_input" :label readonly :disabled :placeholder :hintStart :hintEnd :validator>
         <slot />
-        <div class="value h_w-full">{{ labelValue }}</div>
-        <H_icon btn name="expand_down" color="txt2" tabindex="-1" :down="isOpen ? '' : undefined" />
+        <div class="H_select_input_value">
+          {{ labelValue }}
+        </div>
+        <H_icon
+          btn
+          name="expand_down"
+          class="H_select_input_icon"
+          :class="{ isopen: isOpen }"
+          tabindex="-1"
+          :down="isOpen ? '' : undefined"
+        />
       </H_inputbase>
     </template>
-    <div class="H_select__list h_flex-col h_rounded h_h-full h_bg6" @keydown="keyDown">
+    <div class="H_select__list" @keydown="keyDown">
       <H_input v-if="showFilter" ref="filterInput" narrow v-model="filterValue" clearable tabindex="-1">
-        <H_icon class="arrow" name="search" color="txt2" size="1.2em" set-end tabindex="-1" />
+        <H_icon class="H_select__list_search_icon" name="search" set-end tabindex="-1" />
       </H_input>
       <H_selectbase
         ref="selBase"
-        :color="col.txt"
+        class="H_select__list_selectbase"
         v-model="modelValue"
         :list
         :multi
@@ -41,8 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRef, useTemplateRef, watch, type PropType } from "vue";
-import { useColor, colorProps } from "../SubComponents/props/colorProp";
+import { ref, useTemplateRef, watch, type PropType } from "vue";
 import H_selectbase from "./H_selectbase.vue";
 import H_popover from "./H_popover.vue";
 import H_inputbase from "./H_inputbase.vue";
@@ -50,7 +58,6 @@ import H_input from "./H_input.vue";
 import H_icon from "./H_icon.vue";
 
 const P = defineProps({
-  color: { type: colorProps, default: "pri" },
   label: { type: String, default: "" },
   list: { type: Array, default: [] },
   multi: { type: Boolean, default: false },
@@ -72,7 +79,6 @@ const P = defineProps({
   },
 });
 
-const col = useColor(toRef(() => P.color));
 const modelValue: any = defineModel();
 const popup = useTemplateRef("popup");
 const selBase = useTemplateRef<typeof H_selectbase>("selBase");
@@ -159,47 +165,55 @@ function getFocusList() {
 <style>
 @layer components {
   .H_select {
-    &:focus {
-      outline-style: none;
-      .H_inputbase {
-        border-color: var(--color-pri);
-      }
-    }
-    .H_inputbase {
-      padding-inline: 0.2em;
+    border-radius: 4px;
+    width: 100%;
+  }
 
-      .value {
-        margin-inline: 0.2em;
-        text-align: start;
-        overflow: hidden;
-        user-select: all;
-        text-wrap-mode: nowrap;
-      }
+  .H_select_input {
+    padding: 0 0.2em;
+  }
 
-      .H_icon {
-        --icon-size: 1.3em;
-      }
+  .H_select:focus .H_select_input {
+    border-color: var(--color-pri);
+  }
 
-      .arrow {
-        pointer-events: none;
-        margin-right: -4px;
-        transition-duration: 200ms;
-      }
-      .arrow[down] {
-        transform: rotate(180deg);
-      }
-    }
+  .H_select_input_value {
+    width: 100%;
+    margin: 0 0.2em;
+    overflow: hidden;
+    white-space: white-space;
+    text-align: left;
+    user-select: text;
+  }
+
+  .H_select_input_icon {
+    color: var(--color-txt2);
+    transition-duration: 200ms;
+  }
+
+  .H_select_input_icon.isopen {
+    transform: rotate(180deg);
   }
 
   .H_select__list {
-    .H_input {
-      margin-inline: 0.5em;
-      margin-top: 0.5em;
-    }
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    height: 100%;
+    background-color: var(--color-bg6);
+    color: currentColor;
+  }
+  .H_select__list_search_icon {
+    font-size: 1.2em;
+    color: var(--color-txt2);
+    margin: 0 -4px 0 0;
+    pointer-events: none;
+  }
 
-    .H_selectbase {
-      padding: 0.625em;
-    }
+  .H_select__list_selectbase {
+    padding: 0.625em;
+    --h-color: var(--color-pri);
+    --h-color-contrast: white;
   }
 }
 </style>

@@ -1,18 +1,51 @@
 <template>
-  <div class="H_datagridFooter h_flex h_items-center h_bg2" v-bind="$attrs">
-    <H_icon name="columns" color="txt3" size="1.6rem" btn title="Edit Columns" @click="editColumns" />
+  <div
+    class="H_datagridFooter"
+    h-display="flex"
+    h-align-items="center"
+    h-bgcolor="var(--color-bg2)"
+    h-gap="0.5em"
+    h-color="var(--color-txt3)"
+    h-border="1px solid var(--color-txt8)"
+    h-border-radius="0 0 4px 4px"
+    h-padding="0.5em"
+    h-flex-wrap="wrap"
+    v-bind="$attrs"
+  >
+    <H_icon
+      name="columns"
+      h-color="var(--color-txt3)"
+      h-font-size="1.6rem"
+      btn
+      title="Edit Columns"
+      @click="editColumns"
+    />
     <H_icon
       name="expand_horizontal"
-      color="txt3"
-      size="1.6rem"
+      h-color="var(--color-txt3)"
+      h-font-size="1.6rem"
       btn
       title="Auto adjust all columns"
       @click="autoAdjustColumns"
     />
-    <H_icon name="excel" color="txt3" size="1.6rem" btn title="Download to excel" @click="excel" />
-    <H_icon name="zoom_out_map" color="txt3" size="1.6rem" btn title="fullScreen" @click="fullScreen" />
+    <H_icon
+      name="excel"
+      h-color="var(--color-txt3)"
+      h-font-size="1.6rem"
+      btn
+      title="Download to excel"
+      @click="excel"
+    />
+    <H_icon
+      name="zoom_out_map"
+      h-color="var(--color-txt3)"
+      h-font-size="1.6rem"
+      btn
+      title="fullScreen"
+      @click="fullScreen"
+    />
     <div style="flex: 1" />
-    <div class="H_datagridFooter__info">
+    <div class="H_datagridFooter__info" h-display="flex" h-align-items="center" h-color="var(--color-txt2)">
       <b>{{ DG.dataHandler?.rowsCount }}</b
       >&nbsp; Loaded of&nbsp; <b>{{ DG.dataHandler?.rowsCountTotal }}</b
       >&nbsp; Rows.
@@ -20,6 +53,14 @@
   </div>
   <H_menuColumns ref="menuColumnsRef" />
 </template>
+
+<style>
+@layer components {
+  .H_datagridFooter:fullscreen {
+    background-color: var(--color-bg0);
+  }
+}
+</style>
 
 <script setup lang="ts">
 import H_icon from "../../Components/H_icon.vue";

@@ -4,7 +4,10 @@
       v-if="show || keep_alive"
       v-show="show"
       :animateLeft="animateLeft ? '' : null"
-      class="H_tab h_flex-col h_h-full"
+      class="H_tab"
+      h-display="flex"
+      h-flex-direction="column"
+      h-height="100%"
     >
       <slot />
     </div>

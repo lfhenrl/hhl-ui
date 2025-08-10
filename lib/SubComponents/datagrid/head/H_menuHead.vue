@@ -1,26 +1,62 @@
 <template>
-  <div class="H_menuHead h_flex-col h_items-center h_justify-center h_cursor-pointer" data-subtype="menu">
-    <div class="H_menuHead__sorting h_flex h_flex-1" v-if="col.props.sorting !== 'none'">
+  <div class="H_menuHead" data-subtype="menu">
+    <div class="H_menuHead__sorting" v-if="col.props.sorting !== 'none'">
       <H_icon
         name="arrow_upward"
-        size="1.8em"
-        :color="col.sortDirection.value === 'asc' ? 'pri' : 'txt6'"
+        :h-color="col.sortDirection.value === 'asc' ? 'var(--color-pri)' : 'var(--color-txt6)'"
         v-if="col.sortDirection.value === 'asc' || col.sortDirection.value === 'none'"
       />
       <H_icon
         name="arrow_downward"
-        size="1.8em"
-        :color="col.sortDirection.value === 'desc' ? 'pri' : 'txt6'"
+        :h-color="col.sortDirection.value === 'desc' ? 'var(--color-pri)' : 'var(--color-txt6)'"
         v-if="col.sortDirection.value === 'desc' || col.sortDirection.value === 'none'"
       />
-      <div class="H_menuHead__sorting_order" v-if="col.sortDirection.value !== 'none'">
+      <div class="H_menuHead__sorting_order" h-color="var(--color-pri)" v-if="col.sortDirection.value !== 'none'">
         {{ col.sortIndex.value + 1 }}
       </div>
     </div>
-    <H_icon name="filter" size="1.1em" :color="col.filter.active ? 'pri' : 'txt6'" v-if="col.filter.type !== 'none'" />
-    <H_icon name="menu_small" size="1.1rem" btn v-if="col.filter.type === 'none' && col.props.sorting === 'none'" />
+    <H_icon
+      name="filter"
+      h-font-size="1.1em"
+      :h-color="col.filter.active ? 'var(--color-pri)' : 'var(--color-txt6)'"
+      v-if="col.filter.type !== 'none'"
+    />
+    <H_icon
+      name="menu_small"
+      h-font-size="1.1em"
+      btn
+      v-if="col.filter.type === 'none' && col.props.sorting === 'none'"
+    />
   </div>
 </template>
+<style>
+@layer components {
+  .H_menuHead {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: visible;
+    min-width: 1.5em;
+    gap: 5px;
+    &:hover {
+      background-color: var(--color-bg4);
+    }
+  }
+  .H_menuHead__sorting {
+    display: flex;
+    flex: 1;
+    overflow: visible;
+    font-size: 0.75em;
+    max-height: 1em;
+    .H_icon {
+      margin: 0 -5px;
+      font-size: 1.8em;
+    }
+  }
+}
+</style>
 
 <script setup lang="ts">
 import H_icon from "../../../Components/H_icon.vue";

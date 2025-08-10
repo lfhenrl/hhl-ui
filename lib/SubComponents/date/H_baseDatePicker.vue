@@ -5,15 +5,22 @@
     :readonly="readonly"
     :autofocus
     title="Datepicker"
-    class="H_baseDatePicker h_flex h_items-center h_outline-none h_rounded"
+    class="H_baseDatePicker"
     @toggled="toggled"
   >
     <template v-slot:referance>
-      <H_icon name="event" size="1.2em" color="txt1" v-if="!hideIcon" tabindex="-1" />
-      <span class="value h_w-fit">{{ formattetValueDate }}</span>
+      <H_icon class="H_baseDatePicker_input_icon" name="event" v-if="!hideIcon" tabindex="-1" />
+      <span class="H_baseDatePicker_input_value">{{ formattetValueDate }}</span>
     </template>
 
-    <div class="H_baseDatePicker__popup h_rounded h_bg6" @keydown="keyDown" @click.prevent>
+    <div
+      class="H_baseDatePicker__popup"
+      h-border-radius="4px"
+      h-border="1px solid var(--color-bg2)"
+      h-bgcolor="var(--color-bg6)"
+      @keydown="keyDown"
+      @click.prevent
+    >
       <H_dateSelector
         ref="dateSelector"
         tabindex="0"
@@ -38,9 +45,17 @@
         @base-changed="(e) => (dateBase = e)"
         tabindex="-1"
       ></H_monthTable>
-      <div class="actions h_flex h_justify-end h_bg4">
-        <H_btn tabindex="-1" size="sm" color="sec" @click.stop="cancel">CANCEL</H_btn>
-        <H_btn tabindex="-1" size="sm" @click.stop="ok">OK</H_btn>
+      <div
+        class="actions"
+        h-display="flex"
+        h-justify-content="end"
+        h-bgcolor="var(--color-bg4)"
+        h-gap="1em"
+        h-padding="0.7em"
+        h-border-radius="0 0 4px 4px"
+      >
+        <H_btn tabindex="-1" h-font-size="sm" color="sec" h-color="var(--color-sec)" @click.stop="cancel">CANCEL</H_btn>
+        <H_btn tabindex="-1" h-font-size="sm" @click.stop="ok">OK</H_btn>
       </div>
     </div>
   </H_popover>
@@ -197,25 +212,24 @@ function ArrowDown() {
 <style>
 @layer components {
   .H_baseDatePicker {
-    padding-inline: 0.2em;
-    &:focus {
-      background-color: hsl(from var(--color-pri) h s l / 30%);
-    }
-    .value {
-      padding-inline: 0.2em;
-      text-align: start;
-      width: fit-content;
-      text-box-trim: trim-both;
-    }
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    padding: 0 0.2em;
+  }
+  .H_baseDatePicker:focus {
+    background-color: hsl(from var(--color-pri) h s l / 30%);
   }
 
-  .H_baseDatePicker__popup {
-    border: 1px solid var(--color-bg2);
-    .actions {
-      gap: 1em;
-      padding: 0.7em;
-      border-radius: 0 0 4px 4px;
-    }
+  .H_baseDatePicker_input_icon {
+    font-size: 1.2em;
+    color: var(--color-txt1);
+  }
+  .H_baseDatePicker_input_value {
+    width: fit-content;
+    padding: 0 0.2em;
+    text-align: left;
+    text-box-trim: trim-both;
   }
 }
 </style>

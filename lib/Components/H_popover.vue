@@ -1,6 +1,6 @@
 <template>
   <button
-    ref="referance h_flex h_items-center"
+    ref="referance"
     :popovertarget="id"
     type="button"
     role="popover"
@@ -17,7 +17,8 @@
     :popover="closeAction"
     ref="popup"
     :id="id"
-    class="H_pop-popup h_bg-transparent h_rounded theme-shadow-md"
+    class="H_pop-popup"
+    :h-margin="`${offsetTop} ${offsetLeft}`"
     :class="[
       {
         top: placement.startsWith('top'),
@@ -29,8 +30,6 @@
       refClass,
     ]"
     :placement="posPlacement"
-    :offsettop="offsetTop"
-    :offsetleft="offsetLeft"
     @toggle="toggleEvent"
   >
     <slot></slot>
@@ -172,18 +171,22 @@ function closeDragElement() {
 <style>
 @layer components {
   .H_pop-referance {
+    display: flex;
+    align-items: center;
     anchor-name: v-bind("--" + id);
   }
 
   .H_pop-popup {
     position: fixed;
     width: max-content;
+    background-color: transparent;
+    border-radius: 4px;
+    box-shadow: var(--theme-shadow-md);
+    border: var(--theme-shadow-border);
+    border-bottom: var(--theme-shadow-border-bottom);
+
     position-anchor: v-bind("--" + id);
-    --margin-block: attr(offsettop type(<length>));
-    --margin-inline: attr(offsetleft type(<length>));
     --placement: attr(placement type(*));
-    margin-block: var(--margin-block);
-    margin-inline: var(--margin-inline);
     position-try-fallbacks: flip-block, flip-inline;
     transition: transform 0.3s, overlay 0.3s allow-discrete, display 0.5s allow-discrete;
     position-area: var(--placement);

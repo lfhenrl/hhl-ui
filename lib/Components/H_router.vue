@@ -1,7 +1,7 @@
 <template>
   <Transition name="H_router-slide-fade" mode="out-in">
     <keep-alive :include="cachedPages">
-      <component :is="currentView" class="H_router h_h-full h_w-full" />
+      <component :is="currentView" class="H_router" h-height="100%" h-width="100%" h-overflow="auto" />
     </keep-alive>
   </Transition>
 </template>
@@ -69,9 +69,6 @@ getcachedPages();
 
 <style>
 @layer components {
-  .H_router {
-    overflow: auto;
-  }
   .H_router-slide-fade-enter-active {
     transition: all 0.2s ease-out;
   }

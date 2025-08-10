@@ -1,20 +1,46 @@
 <template>
   <div
-    class="H_dataGroupRow h_flex h_flex-1 h_items-center h_w-full"
+    class="H_dataGroupRow"
     :style="{ paddingLeft: 17 * row.__level + 'px' }"
     :col-index="0"
     data-type="rowgroup"
     :row-level="row.__level"
   >
-    <div class="H_dataGroupRow__icons h_flex h_items-center" @click.stop="expand">
-      <H_icon name="expand_down" size="1.4rem" btn v-if="row.__expanded" />
-      <H_icon name="expand_right" size="1.4rem" btn v-else />
+    <div class="H_dataGroupRow__icons" @click.stop="expand">
+      <H_icon name="expand_down" btn v-if="row.__expanded" />
+      <H_icon name="expand_right" btn v-else />
     </div>
     <div>{{ row.__title }}</div>
     <span class="H_dataGroupRow__counts"> ({{ row.__count }}/{{ row.__count_total }})</span>
   </div>
 </template>
+<style>
+.H_dataGroupRow {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  width: 100%;
+  gap: 0.5em;
+  padding-inline: 0.25em;
+  min-height: var(--dgrid-row-height);
+  max-height: var(--dgrid-row-height);
 
+  .H_dataGroupRow__icons {
+    display: flex;
+    align-items: center;
+    padding-left: 0.25em;
+
+    .H_icon {
+      font-size: 1.4em;
+    }
+  }
+
+  .H_dataGroupRow__counts {
+    font-size: 0.75em;
+    color: var(--color-txt3);
+  }
+}
+</style>
 <script setup lang="ts">
 import H_icon from "../../../Components/H_icon.vue";
 import { getCurrentInstance, inject, onMounted } from "vue";

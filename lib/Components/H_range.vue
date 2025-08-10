@@ -6,31 +6,47 @@
     :HelpTextStart="hintStart"
     :HelpTextEnd="hintEnd"
     :ErrorMessage="validate"
-    :color="col.txt"
+    h-color="var(--color-pri)"
     class="H_range"
   >
-    <div class="content h_flex h_flex-1 h_items-center h_w-full h_h-full">
+    <div
+      class="content"
+      h-display="flex"
+      h-flex="1"
+      h-align-items="center"
+      h-width="100%"
+      h-height="100%"
+      h-max-height="1.875em"
+      h-margin="0 0.5em 0 0"
+    >
       <slot> </slot>
       <input
         ref="el"
         :min="min"
         :max="max"
         v-model="model"
-        class="H_range-input h_cursor-pointer h_w-full h_outline-none h_border-none h_bg-transparent"
+        class="H_range-input"
+        h-cursor="pointer"
+        h-width="100%"
+        h-border-style="none"
+        h-bgcolor="transparent"
+        h-border-radius="0.5em"
+        h-margin="0 0.25em"
+        h-max-height="0.25em"
+        h-min-height="0.25em"
         :readonly="readonly"
         autocomplete="off"
         type="range"
       />
-      <span class="H_range-value">{{ model }}</span>
+      <span class="H_range-value" h-padding="0 0.25em" h-color="var(--color-txt2)">{{ model }}</span>
     </div>
   </H_inputbase>
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect, computed, onMounted, toRef } from "vue";
+import { ref, watchEffect, computed, onMounted } from "vue";
 import H_inputbase from "./H_inputbase.vue";
 import { validateFunc } from "../utils/validateFunc";
-import { colorProps, useColor } from "../SubComponents/props/colorProp";
 
 const P = defineProps({
   label: { type: String, default: "" },
@@ -41,18 +57,16 @@ const P = defineProps({
   min: { type: Number, default: 0 },
   max: { type: Number, default: 100 },
   validator: Array,
-  color: { type: colorProps, default: "pri" },
 });
 const E = defineEmits([]);
 const el = ref<HTMLInputElement | null>(null);
 const model: any = defineModel({ default: 50 });
-const col = useColor(toRef(() => P.color));
 
 watchEffect(() => {
   if (el.value) {
     const max = P.max - P.min;
     const progress = ((model.value - P.min) / max) * 100;
-    el.value.style.background = `linear-gradient(to right, var(--range-color) ${progress}%, #ccc ${progress}%)`;
+    el.value.style.background = `linear-gradient(to right, var(--h-color) ${progress}%, #ccc ${progress}%)`;
   }
 });
 
@@ -62,9 +76,8 @@ onMounted(() => (model.value = model.value));
 <style>
 @layer components {
   .H_range {
-    --range-color: attr(color type(<color>));
-    --range-shadow-hover: 0 0 0 10px color-mix(in srgb, var(--range-color) 10%, transparent);
-    --range-shadow-focus: 0 0 0 10px color-mix(in srgb, var(--range-color) 20%, transparent);
+    --range-shadow-hover: 0 0 0 10px color-mix(in srgb, var(--h-color) 10%, transparent);
+    --range-shadow-focus: 0 0 0 10px color-mix(in srgb, var(--h-color) 20%, transparent);
 
     &[readonly] {
       pointer-events: none;
@@ -76,7 +89,7 @@ onMounted(() => (model.value = model.value));
       height: 15px;
       width: 15px;
       border-radius: 50%;
-      background-color: var(--range-color);
+      background-color: var(--h-color);
       border: none;
       transition: 0.2s ease-in-out;
     }
@@ -84,7 +97,7 @@ onMounted(() => (model.value = model.value));
     .H_range-input::-moz-range-thumb {
       height: 15px;
       width: 15px;
-      background-color: var(--range-color);
+      background-color: var(--h-color);
       border-radius: 50%;
       border: none;
       transition: 0.2s ease-in-out;
@@ -108,28 +121,6 @@ onMounted(() => (model.value = model.value));
     .H_range-input:focus::-moz-range-thumb {
       box-shadow: var(--range-shadow-focus);
       border-radius: 50%;
-    }
-
-    .content {
-      max-height: 1.875em;
-      margin-right: 0.5em;
-    }
-
-    .H_range-input {
-      appearance: none;
-      grid-column-start: 2;
-      border-radius: 0.5em;
-      margin-inline: 0.25em;
-      max-height: 0.25em;
-      min-height: 0.25em;
-    }
-
-    .H_range-value {
-      grid-column-start: 3;
-      grid-row-start: 1;
-      padding-block: 0;
-      padding-inline: 0.25em;
-      color: var(--color-txt2);
     }
   }
 }

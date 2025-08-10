@@ -1,10 +1,6 @@
 <template>
-  <div ref="tablelist" class="h_grid H_timeTable h_outline-none h_bg6" :base="timeBase" @click="click">
-    <div
-      v-for="index in 60"
-      :key="index"
-      class="time-item h_flex h_items-center h_justify-center h_cursor-pointer"
-    ></div>
+  <div ref="tablelist" class="H_timeTable" :class="{ hour: timeBase === 'hour' }" @click="click">
+    <div v-for="index in 60" :key="index" class="H_timeTable_item"></div>
   </div>
 </template>
 
@@ -47,7 +43,7 @@ function click(e: MouseEvent) {
 
 onMounted(() => {
   if (tablelist.value) {
-    list = tablelist.value.querySelectorAll(".time-item");
+    list = tablelist.value.querySelectorAll(".H_timeTable_item");
   }
 
   list.forEach((item, index) => {
@@ -61,30 +57,34 @@ onMounted(() => {
 <style>
 @layer components {
   .H_timeTable {
-    grid-template-columns: repeat(8, 30px);
+    display: grid;
     grid-template-rows: repeat(8, 30px);
+    grid-template-columns: repeat(8, 30px);
     padding: 0.25em;
+    background-color: var(--color-bg6);
+  }
 
-    &[base="hour"] {
-      .time-item:not([hour]) {
-        opacity: 20%;
-        pointer-events: none;
-      }
+  .H_timeTable_item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    text-box-trim: trim-both;
+
+    &[selected] {
+      background-color: var(--color-pri);
+      color: var(--color-priTxt);
     }
+  }
 
-    .time-item {
-      border-radius: 50%;
-      text-box-trim: trim-both;
+  .H_timeTable_item:hover {
+    background-color: var(--color-warn);
+  }
 
-      &[selected] {
-        background-color: var(--color-pri);
-        color: var(--color-priTxt);
-      }
-
-      &:hover {
-        background-color: var(--color-warn);
-      }
-    }
+  .H_timeTable.hour .H_timeTable_item:not([hour]) {
+    opacity: 20%;
+    pointer-events: none;
   }
 }
 </style>

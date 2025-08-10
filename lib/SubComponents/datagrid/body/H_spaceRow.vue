@@ -1,5 +1,5 @@
 <template>
-  <div class="H_spaceRow h_flex h_w-min">
+  <div class="H_spaceRow">
     <div
       v-for="col in DG.getVisibelColumns()"
       :style="[
@@ -13,6 +13,20 @@
     </div>
   </div>
 </template>
+<style>
+.H_spaceRow {
+  display: flex;
+  max-width: min-content;
+  max-height: 0;
+  opacity: 0;
+  div {
+    display: inline-block;
+    max-height: 0;
+    overflow: hidden;
+    border-right: 1px solid var(--color-bg3);
+  }
+}
+</style>
 
 <script setup lang="ts">
 import { inject } from "vue";

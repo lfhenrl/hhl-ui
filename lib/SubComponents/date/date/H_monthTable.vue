@@ -1,13 +1,13 @@
 <template>
-  <div class="H_monthTable h_bg6 h_outline-none" @click="click">
-    <div class="year-selector h_flex h_items-center h_justify-between h_font-bold h_user-select-none">
-      <H_icon name="expand_left" size="1.6rem" btn data-value="yearMinus" tabindex="-1" />
+  <div class="H_monthTable" @click="click">
+    <div class="H_monthTable_year-selector">
+      <H_icon name="expand_left" btn data-value="yearMinus" tabindex="-1" />
       {{ date.year }}
-      <H_icon name="expand_right" size="1.6rem" btn data-value="yearPlus" tabindex="-1" />
+      <H_icon name="expand_right" btn data-value="yearPlus" tabindex="-1" />
     </div>
-    <div class="H_monthTable__table h_grid" tabindex="-1">
+    <div class="H_monthTable__table" tabindex="-1">
       <div
-        class="h_flex h_items-center h_justify-center h_cursor-pointer h_rounded h_font-bold h_user-select-none"
+        class="H_monthTable__table_item"
         v-for="(item, index) in monthArray"
         :data-value="index"
         :selected="isSelected(index)"
@@ -58,30 +58,49 @@ function isSelected(month: number) {
 <style>
 @layer components {
   .H_monthTable {
-    .year-selector {
-      padding-inline: 0.5em;
-      padding-block: 0.25em;
-      font-size: 1.2em;
-      border-bottom: 1px solid var(--color-bg1);
-      border-top: 1px solid var(--color-bg1);
-    }
-    .H_monthTable__table {
-      grid-template-columns: repeat(3, 5.3em);
-      grid-template-rows: repeat(4, 3.5em);
-      padding: 0.5em;
+    background-color: var(--color-bg6);
+  }
 
-      div {
-        font-size: 1.2em;
-        padding: 0.5em;
-        &[selected] {
-          background-color: var(--color-pri);
-          color: var(--color-priTxt);
-        }
-        &:hover {
-          background-color: var(--color-warn);
-        }
-      }
+  .H_monthTable_year-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    user-select: none;
+    border-style: solid;
+    border-color: var(--color-bg1);
+    border-width: 1px 0 1px 0;
+    .H_icon {
+      font-size: 1.6em;
     }
+  }
+
+  .H_monthTable__table {
+    display: grid;
+    grid-template-rows: repeat(4, 3.5em);
+    grid-template-columns: repeat(3, 5.3em);
+    padding: 0.5em;
+  }
+
+  .H_monthTable__table_item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 0.5em;
+  }
+  .H_monthTable__table_item[selected] {
+    background-color: var(--color-pri);
+    color: var(--color-priTxt);
+  }
+  .H_monthTable__table_item:hover {
+    background-color: var(--color-warn);
   }
 }
 </style>

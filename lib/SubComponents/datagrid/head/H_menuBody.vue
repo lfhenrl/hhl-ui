@@ -1,58 +1,89 @@
 <template>
-  <div class="H_menuBody h_bg5" @click="menuClick">
+  <div class="H_menuBody" @click="menuClick">
     <div
-      class="H_menuBody__item h_flex h_items-center h_cursor-pointer"
+      class="H_menuBody__item"
+      h-display="flex"
+      h-align-items="center"
+      h-cursor="pointer"
+      h-padding="0.375em 0.75em 0.375em 0.25em"
+      h-gap="0.5em"
+      h-border-color="var(--color-bg4)"
+      h-border-style="solid"
+      h-border-width="0 0 1px 0"
       :selected="col.sortDirection.value === 'asc' ? '' : undefined"
       data-action="asc"
       data-subtype="menuSortAsc"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_icon
-        class="h_pointer-events-none"
-        name="arrow_upward"
-        size="1.6em"
-        :color="col.sortDirection.value === 'asc' ? 'white' : 'txt2'"
-      />
+      <H_icon name="arrow_upward" :h-color="col.sortDirection.value === 'asc' ? 'white' : 'var(--color-txt2)'" />
       <div class="H_menuBody__item_title">Sort Ascending</div>
     </div>
 
     <div
-      class="H_menuBody__item h_flex h_items-center h_cursor-pointer"
+      class="H_menuBody__item"
       :selected="col.sortDirection.value === 'desc' ? '' : undefined"
       data-action="desc"
       data-subtype="menuSortDesc"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_icon
-        class="h_pointer-events-none"
-        name="arrow_downward"
-        size="1.6em"
-        :color="col.sortDirection.value === 'asc' ? 'white' : 'txt2'"
-      />
+      <H_icon name="arrow_downward" :h-color="col.sortDirection.value === 'asc' ? 'white' : 'var(--color-txt2)'" />
       <div class="H_menuBody__item_title">Sort Descending</div>
     </div>
 
     <div
-      class="H_menuBody__item h_flex h_items-center h_cursor-pointer"
+      class="H_menuBody__item"
       :selected="col.filter.active ? '' : undefined"
       data-action="filter"
       v-if="col.filter.type !== 'none'"
       data-subtype="menuFilter"
     >
-      <H_icon class="h_pointer-events-none" name="filter" size="1.4em" :color="col.filter.active ? 'white' : 'txt2'" />
-      <div class="H_menuBody__item_title h_pointer-events-none">Filter</div>
+      <H_icon name="filter" h-font-size="1.2em" :h-color="col.filter.active ? 'white' : 'var(--color-txt2)'" />
+      <div class="H_menuBody__item_title">Filter</div>
     </div>
 
-    <div
-      class="H_menuBody__item h_flex h_items-center h_cursor-pointer"
-      data-action="autoSize"
-      data-subtype="menuAutoSize"
-    >
-      <H_icon class="h_pointer-events-none" name="expand_horizontal" size="1.6em" />
+    <div class="H_menuBody__item" data-action="autoSize" data-subtype="menuAutoSize">
+      <H_icon name="expand_horizontal" />
       <div class="H_menuBody__item_title">Auto size</div>
     </div>
   </div>
 </template>
+<style>
+@layer components {
+  .H_menuBody {
+    background-color: var(--color-bg5);
+    color: var(--color-txt1);
+    font-weight: 400;
+    font-size: 0.875em;
+  }
+  .H_menuBody__item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.375em 0.75em 0.375em 0.25em;
+    gap: 0.5em;
+    border-bottom: 1px solid var(--color-bg4);
+
+    .H_icon {
+      pointer-events: none;
+      font-size: 1.6em;
+    }
+
+    &[selected] {
+      background-color: var(--color-pri);
+      color: var(--color-priTxt);
+    }
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-bg3);
+      }
+    }
+  }
+
+  .H_menuBody__item_title {
+    pointer-events: none;
+  }
+}
+</style>
 
 <script setup lang="ts">
 import H_icon from "../../../Components/H_icon.vue";

@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { computed, toRef, type PropType } from "vue";
-import { colorProps, useColor } from "../SubComponents/props/colorProp";
-import { sizeProp, useSize } from "../SubComponents/props/sizeProp";
+import { computed, type PropType } from "vue";
 import H_switchbase from "./H_switchbase.vue";
 
 const P = defineProps({
-  color: { type: colorProps, default: "pri" },
-  size: { type: sizeProp, default: "md" },
   variant: {
     type: String as PropType<"switch" | "checkbox" | "radio">,
     default: "checkbox",
@@ -23,9 +19,6 @@ const P = defineProps({
 });
 const E = defineEmits(["update:modelValue"]);
 const model = defineModel();
-
-const col = useColor(toRef(() => P.color));
-const endSize = useSize(toRef(() => P.size));
 
 const check = computed(() => {
   if (P.value !== undefined) {
@@ -65,42 +58,39 @@ function onClick() {
 
 <template>
   <label
-    :size="endSize"
-    class="H_switch h_flexInline h_items-center h_w-fit"
-    :labelLeft="labelLeft ? '' : undefined"
-    :style="{ gap: labelGap }"
-    :disabled="disabled ? '' : undefined"
+    class="H_switch"
+    :class="{ reverse: labelLeft }"
+    :h-gap="labelGap"
+    :h-disabled="disabled ? '50%' : undefined"
     @click.prevent="onClick"
   >
-    <H_switchbase :check tabindex="0" :variant :disabled :color="col.txt" :bgcolor="col.bg" :autofocus />
-    <span class="label">{{ label }}</span>
+    <H_switchbase :check tabindex="0" :variant :disabled :autofocus />
+    <span class="H_switch_label">{{ label }}</span>
   </label>
 </template>
 
 <style>
 @layer components {
   .H_switch {
-    --switch-size: attr(size type(<length>));
-    font-size: var(--switch-size);
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    --h-color: var(--color-pri);
+    --h-color-contrast: white;
+  }
 
-    &[disabled] {
-      pointer-events: none;
-      opacity: 50%;
-    }
+  .H_switch.reverse {
+    flex-direction: row-reverse;
+  }
 
-    &[labelLeft] {
-      flex-direction: row-reverse;
-    }
+  .H_switch:focus-visible {
+    outline: solid 2px var(--color-pri);
+    outline-offset: 2px;
+  }
 
-    .H_switchbase:focus-visible {
-      outline: solid 2px var(--color-pri);
-      outline-offset: 2px;
-    }
-
-    .label {
-      white-space: nowrap;
-      color: var(--color-txt2);
-    }
+  .H_switch_label {
+    white-space: nowrap;
+    color: var(--color-txt2);
   }
 }
 </style>

@@ -1,0 +1,819 @@
+{
+  "globalAttributes": [
+    { "name": "h-color", "description": "color", "valueSet": "h-colors" },
+    { "name": "h-bgcolor", "description": "Background-color", "valueSet": "h-colors" },
+    { "name": "h-padding", "description": "Padding (10px 20px) (10px 20px 2px 5px)", "valueSet": "h-spacing" },
+    { "name": "h-margin", "description": "Margin (10px 20px) (10px 20px 2px 5px)", "valueSet": "h-spacing" },
+    { "name": "h-align-items", "description": "Align items in flex--box", "valueSet": "h-alignItems" },
+    { "name": "h-justify-content", "description": "Justify-content in flex--box", "valueSet": "h-justifycontent" },
+    { "name": "h-height", "description": "Height", "valueSet": "h-height-widths" },
+    { "name": "h-min-height", "description": "Min Height", "valueSet": "h-height-widths" },
+    { "name": "h-max-height", "description": "Max Height", "valueSet": "h-height-widths" },
+    { "name": "h-width", "description": "Width", "valueSet": "h-height-widths" },
+    { "name": "h-min-width", "description": "Min Width", "valueSet": "h-height-widths" },
+    { "name": "h-max-width", "description": "Max Width", "valueSet": "h-height-widths" },
+    { "name": "h-font-size", "description": "Font-size", "valueSet": "h-font-sizes" },
+    { "name": "h-gap", "description": "Gap for flexbox", "valueSet": "h-spacing" },
+    { "name": "h-display", "description": "Display", "valueSet": "h-displays" },
+    { "name": "h-border", "description": "Border" },
+    { "name": "h-border-color", "description": "Border-color", "valueSet": "h-colors" },
+    { "name": "h-border-width", "description": "Border-width" },
+    { "name": "h-border-style", "description": "Border-Style", "valueSet": "h-border-styles" },
+    { "name": "h-border-radius", "description": "Border-radius" },
+
+    { "name": "h-outline", "description": "Outline" },
+    { "name": "h-outline-color", "description": "Outline-color", "valueSet": "h-colors" },
+    { "name": "h-outline-width", "description": "Outline-width" },
+    { "name": "h-outline-style", "description": "Outline-Style", "valueSet": "h-border-styles" },
+    { "name": "h-outline-offset", "description": "Outline-offset" },
+
+    { "name": "h-white-space", "description": "An element's white-space property", "valueSet": "h-white-spaces" },
+    {
+      "name": "h-cursor",
+      "description": "Utilities for controlling the cursor style when hovering over an element",
+      "valueSet": "h-cursors"
+    },
+    { "name": "h-disabled", "description": "Set the elemnt to disabled. opacaty in % and the pointer events to none." },
+    {
+      "name": "h-position",
+      "description": "Utilities for controlling how an element is positioned in the document",
+      "valueSet": "h-positions"
+    },
+    { "name": "h-top", "description": "controlling the placement of positioned elements" },
+    { "name": "h-bottom", "description": "controlling the placement of positioned elements" },
+    { "name": "h-left", "description": "controlling the placement of positioned elements" },
+    { "name": "h-right", "description": "controlling the placement of positioned elements" },
+    {
+      "name": "h-flex-direction",
+      "description": "controlling the direction of flex items.",
+      "valueSet": "h-flex-directions"
+    },
+    {
+      "name": "h-flex",
+      "description": "controlling how flex items both grow and shrink.",
+      "valueSet": "h-flexes"
+    },
+    {
+      "name": "h-grid-template-rows",
+      "description": "Specifying the rows in a grid layout."
+    },
+    {
+      "name": "h-grid-template-columns",
+      "description": "Specifying the columns in a grid layout."
+    },
+    {
+      "name": "h-grid-row-start",
+      "description": "Specifying the row start for a element in a grid layout."
+    },
+    {
+      "name": "h-grid-row-end",
+      "description": "Specifying the row end for a element in a grid layout."
+    },
+    {
+      "name": "h-grid-column-start",
+      "description": "Specifying the column start for a element in a grid layout."
+    },
+    {
+      "name": "h-grid-column-end",
+      "description": "Specifying the column end for a element in a grid layout.."
+    },
+    {
+      "name": "h-shadow",
+      "description": "controlling the box shadow of an element.",
+      "valueSet": "h-shadows"
+    },
+    {
+      "name": "h-overflow",
+      "description": "controlling how an element handles content that is too large for the container.",
+      "valueSet": "h-overflows"
+    },
+    {
+      "name": "h-overflow-x",
+      "description": "controlling how an element horizontal handles content that is too large for the container.",
+      "valueSet": "h-overflows"
+    },
+    {
+      "name": "h-overflow-y",
+      "description": "controlling how an element vertical handles content that is too large for the container.",
+      "valueSet": "h-overflows"
+    },
+    {
+      "name": "h-text-align",
+      "description": "controlling the alignment of text.",
+      "valueSet": "h-text-aligns"
+    },
+    {
+      "name": ":h-text-align",
+      "description": "controlling the alignment of text.",
+      "valueSet": "h-text-aligns"
+    },
+    {
+      "name": "h-pointer-events",
+      "description": "controlling whether an element responds to pointer events.",
+      "valueSet": "h-pointer-eventser"
+    },
+    {
+      "name": "h-user-select",
+      "description": "controlling whether an element responds to pointer events.",
+      "valueSet": "h-user-selections"
+    },
+    {
+      "name": "h-text-box-trim",
+      "description": "Specifies which of the over and under edges of text content to trim from a text element's block container.",
+      "valueSet": "h-text-box-trims"
+    },
+    {
+      "name": "h-z-index",
+      "description": "controlling the stack order of an element."
+    },
+    {
+      "name": "h-font-weight",
+      "description": "Sets the weight (or boldness) of the font.",
+      "valueSet": "h-font-weights"
+    },
+    {
+      "name": "h-text-overflow",
+      "description": "Sets how hidden overflow content is signaled to users.",
+      "valueSet": "h-text-overflows"
+    },
+    {
+      "name": "h-flex-wrap",
+      "description": "Sets whether flex items are forced onto one line or can wrap onto multiple lines..",
+      "valueSet": "h-flex-wraps"
+    }
+  ],
+
+  "valueSets": [
+    {
+      "name": "h-flex-wraps",
+      "values": [
+        {
+          "name": "nowrap",
+          "description": "flex-wrap: nowrap; Default The flex items are laid out in a single line which may cause the flex container to overflow."
+        },
+        {
+          "name": "wrap",
+          "description": "flex-wrap: wrap; The flex items break into multiple lines."
+        },
+        {
+          "name": "wrap-reverse",
+          "description": "flex-wrap: wrap-reverse; Behaves the same as wrap, but cross-start and cross-end are inverted."
+        }
+      ]
+    },
+    {
+      "name": "h-text-overflows",
+      "values": [
+        {
+          "name": "clip",
+          "description": "text-overflow: clip; DEFAULT  will truncate the text."
+        },
+        {
+          "name": "ellipsis",
+          "description": "text-overflow: ellipsis; displayed inside the content area, decreasing the amount of text displayed."
+        }
+      ]
+    },
+    {
+      "name": "h-font-weights",
+      "values": [
+        {
+          "name": "100",
+          "description": "font-weight:100;"
+        },
+        {
+          "name": "200",
+          "description": "font-weight: 200;"
+        },
+        {
+          "name": "300",
+          "description": "font-weight: 300;"
+        },
+        {
+          "name": "400",
+          "description": "font-weight: 400; NORMAL"
+        },
+        {
+          "name": "500",
+          "description": "font-weight: 500;"
+        },
+        {
+          "name": "600",
+          "description": "font-weight: 600;"
+        },
+        {
+          "name": "700",
+          "description": "font-weight: 700; BOLD"
+        },
+        {
+          "name": "800",
+          "description": "font-weight: 800;"
+        },
+        {
+          "name": "900",
+          "description": "font-weight: 900;"
+        }
+      ]
+    },
+    {
+      "name": "h-text-box-trims",
+      "values": [
+        {
+          "name": "none",
+          "description": "text-box-trim: none; The default value. No space is trimmed from the text."
+        },
+        {
+          "name": "trim-both",
+          "description": "text-box-trim: trim-both; The start (over) and end (under) edges are both trimmed"
+        },
+        {
+          "name": "trim-start",
+          "description": "text-box-trim: trim-start; The start (over) edge is trimmed."
+        },
+        {
+          "name": "trim-end",
+          "description": "text-box-trim: trim-end; The end (under) edge is trimmed."
+        }
+      ]
+    },
+    {
+      "name": "h-user-selections",
+      "values": [
+        {
+          "name": "none",
+          "description": "user-select: none; The text of the element and its sub-elements is not selectable."
+        },
+        {
+          "name": "text",
+          "description": "user-select: text; The text can be selected by the user."
+        },
+        {
+          "name": "all",
+          "description": "user-select: all; The content of the element shall be selected atomically"
+        },
+        {
+          "name": "auto",
+          "description": "user-select: auto; Standard"
+        }
+      ]
+    },
+    {
+      "name": "h-pointer-eventser",
+      "values": [
+        {
+          "name": "auto",
+          "description": "pointer-events: auto;"
+        },
+        {
+          "name": "none",
+          "description": "pointer-events: none;"
+        }
+      ]
+    },
+    {
+      "name": "h-text-aligns",
+      "values": [
+        {
+          "name": "left",
+          "description": "text-align: left;"
+        },
+        {
+          "name": "center",
+          "description": "text-align: center;"
+        },
+        {
+          "name": "right",
+          "description": "text-align: right;"
+        },
+        {
+          "name": "justify",
+          "description": "text-align: justify;"
+        }
+      ]
+    },
+    {
+      "name": "h-flexes",
+      "values": [
+        {
+          "name": "0",
+          "description": "flex: 0;"
+        },
+        {
+          "name": "1",
+          "description": "flex: 1;"
+        },
+        {
+          "name": "2",
+          "description": "flex: 2;"
+        },
+        {
+          "name": "3",
+          "description": "flex: 3;"
+        },
+        {
+          "name": "auto",
+          "description": "flex: auto;"
+        }
+      ]
+    },
+    {
+      "name": "h-overflows",
+      "values": [
+        {
+          "name": "auto",
+          "description": "overflow/-x/-y: auto;"
+        },
+        {
+          "name": "hidden",
+          "description": "overflow/-x/-y: hidden;"
+        },
+        {
+          "name": "clip",
+          "description": "overflow/-x/-y: clip;"
+        },
+        {
+          "name": "visible",
+          "description": "overflow/-x/-y: visible;"
+        },
+        {
+          "name": "scroll",
+          "description": "overflow/-x/-y: scroll;"
+        }
+      ]
+    },
+    {
+      "name": "h-shadows",
+      "values": [
+        {
+          "name": "sm",
+          "description": "Make a small shadow."
+        },
+        {
+          "name": "md",
+          "description": "Make a medium shadow."
+        },
+        {
+          "name": "lg",
+          "description": "Make a large shadow."
+        }
+      ]
+    },
+    {
+      "name": "h-flex-directions",
+      "values": [
+        {
+          "name": "row",
+          "description": "flex-direction: row; position flex items horizontally in the same direction as text."
+        },
+        {
+          "name": "row-reverse",
+          "description": "flex-direction: row-reverse;  position flex items horizontally in the opposite direction."
+        },
+        {
+          "name": "column",
+          "description": "flex-direction: column; position flex items vertically."
+        },
+        {
+          "name": "column-reverse",
+          "description": "flex-direction: column-reverse; position flex items vertically in the opposite direction"
+        }
+      ]
+    },
+    {
+      "name": "h-positions",
+      "values": [
+        {
+          "name": "static",
+          "description": "position: static; position an element according to the normal flow of the document."
+        },
+        {
+          "name": "relative",
+          "description": "position: relative;  position an element according to the normal flow of the document"
+        },
+        {
+          "name": "absolute",
+          "description": "position: absolute; position an element outside of the normal flow of the document, causing neighboring elements to act as if the element doesn't exist."
+        },
+        {
+          "name": "fixed",
+          "description": "position: fixed; position an element relative to the browser window"
+        },
+        {
+          "name": "sticky",
+          "description": "position: sticky; position an element as relative until it crosses a specified threshold, then treat it as fixed until its parent is off screen"
+        }
+      ]
+    },
+    {
+      "name": "h-cursors",
+      "values": [
+        {
+          "name": "auto",
+          "description": "cursor: auto;"
+        },
+        {
+          "name": "pointer",
+          "description": "cursor: pointer;"
+        },
+        {
+          "name": "text",
+          "description": "cursor: text;"
+        },
+        {
+          "name": "move",
+          "description": "cursor: move;"
+        },
+        {
+          "name": "none",
+          "description": "cursor: none;"
+        },
+        {
+          "name": "not-allowed",
+          "description": "cursor: not-allowed;"
+        },
+        {
+          "name": "ew-resize",
+          "description": "cursor: ew-resize;"
+        }
+      ]
+    },
+    {
+      "name": "h-white-spaces",
+      "values": [
+        {
+          "name": "normal",
+          "description": "white-space: normal; Utility to cause text to wrap normally within an element. Newlines and spaces will be collapsed."
+        },
+        {
+          "name": "nowrap",
+          "description": "white-space: nowrap; utility to prevent text from wrapping within an element. Newlines and spaces will be collapsed."
+        },
+        {
+          "name": "pre",
+          "description": "white-space: pre; utility to preserve newlines and spaces within an element. Text will not be wrapped."
+        },
+        {
+          "name": "pre-line",
+          "description": "white-space: pre-line; utility to preserve newlines but not spaces within an element. Text will be wrapped normally."
+        },
+        {
+          "name": "pre-wrap",
+          "description": "white-space: pre-wrap; utility to preserve newlines and spaces within an element. Text will be wrapped normally."
+        },
+        {
+          "name": "break-spaces",
+          "description": "white-space: break-spaces; utility to preserve newlines and spaces within an element. White space at the end of lines will not hang, but will wrap to the next line."
+        }
+      ]
+    },
+    {
+      "name": "h-font-sizes",
+      "values": [
+        {
+          "name": "xs",
+          "description": "font-size: 0.7rem."
+        },
+        {
+          "name": "sm",
+          "description": "font-size: 0.875rem."
+        },
+        {
+          "name": "md",
+          "description": "font-size: 1rem."
+        },
+        {
+          "name": "lg",
+          "description": "font-size: 1.25rem."
+        },
+        {
+          "name": "xl",
+          "description": "font-size: 1.5rem."
+        }
+      ]
+    },
+    {
+      "name": "h-border-styles",
+      "values": [
+        {
+          "name": "solid",
+          "description": "border-style:: solid."
+        },
+        {
+          "name": "none",
+          "description": "border-style:: none."
+        },
+        {
+          "name": "dotted",
+          "description": "border-style:: dotted."
+        },
+        {
+          "name": "dashed",
+          "description": "border-style:: dashed."
+        },
+        {
+          "name": "double",
+          "description": "border-style:: double."
+        },
+        {
+          "name": "groove",
+          "description": "border-style:: groove."
+        },
+        {
+          "name": "ridge",
+          "description": "border-style:: ridge."
+        },
+        {
+          "name": "inset",
+          "description": "border-style:: inset."
+        },
+        {
+          "name": "outset",
+          "description": "border-style:: outset."
+        }
+      ]
+    },
+    {
+      "name": "h-displays",
+      "values": [
+        {
+          "name": "flex",
+          "description": "display: flex."
+        },
+        {
+          "name": "inline-flex",
+          "description": "display:inline-flex."
+        },
+        {
+          "name": "block",
+          "description": "display: block."
+        },
+        {
+          "name": "inline-block",
+          "description": "display: inline-block."
+        },
+        {
+          "name": "grid",
+          "description": "display: grid."
+        },
+        {
+          "name": "inline-grid",
+          "description": "display: inline-grid."
+        },
+        {
+          "name": "none",
+          "description": "display: none."
+        },
+        {
+          "name": "table",
+          "description": "display: table."
+        }
+      ]
+    },
+    {
+      "name": "h-height-widths",
+      "values": [
+        {
+          "name": "0",
+          "description": "height/width: 0."
+        },
+        {
+          "name": "auto",
+          "description": "height/width: auto."
+        },
+        {
+          "name": "100%",
+          "description": "height/width: 100%."
+        },
+        {
+          "name": "max-content",
+          "description": "height/width: max-content."
+        },
+        {
+          "name": "min-content",
+          "description": "height/width: min-content."
+        },
+        {
+          "name": "fit-content",
+          "description": "height/width: fit-content."
+        },
+        {
+          "name": "stretch",
+          "description": "height/width: stretch."
+        }
+      ]
+    },
+    {
+      "name": "h-justifycontent",
+      "values": [
+        {
+          "name": "stretch",
+          "description": "justify-content: stretch."
+        },
+        {
+          "name": "center",
+          "description": "justify-content: center."
+        },
+        {
+          "name": "start",
+          "description": "justify-content: start."
+        },
+        {
+          "name": "end",
+          "description": "justify-content: end."
+        },
+        {
+          "name": "space-between",
+          "description": "justify-content: space-between."
+        },
+        {
+          "name": "space-around",
+          "description": "justify-content: space-around."
+        },
+        {
+          "name": "space-evenly",
+          "description": "justify-content: space-evenly."
+        }
+      ]
+    },
+    {
+      "name": "h-alignItems",
+      "values": [
+        {
+          "name": "stretch",
+          "description": "align-items: stretch."
+        },
+        {
+          "name": "center",
+          "description": "align-items: center."
+        },
+        {
+          "name": "start",
+          "description": "align-items: start."
+        },
+        {
+          "name": "end",
+          "description": "align-items: end."
+        }
+      ]
+    },
+    {
+      "name": "h-spacing",
+      "values": [
+        {
+          "name": "auto",
+          "description": "Spacing auto."
+        },
+        {
+          "name": "1px",
+          "description": "Spacing 1px."
+        },
+        {
+          "name": "2px",
+          "description": "Spacing 2px."
+        },
+        {
+          "name": "0.25rem",
+          "description": "Spacing 0.25rem = 4px."
+        },
+        {
+          "name": "0.5rem",
+          "description": "Spacing 0.5rem = 8px."
+        },
+        {
+          "name": "0.75rem",
+          "description": "Spacing 0.75rem = 12px."
+        },
+        {
+          "name": "1rem",
+          "description": "Spacing 1rem = 16px."
+        },
+        {
+          "name": "1.25rem",
+          "description": "Spacing 1.25rem = 20px."
+        },
+        {
+          "name": "1.5rem",
+          "description": "Spacing 1.5rem = 24p."
+        },
+        {
+          "name": "1.75rem",
+          "description": "Spacing 1.75rem = 28px."
+        },
+        {
+          "name": "2rem",
+          "description": "Spacing 2rem = 32px."
+        }
+      ]
+    },
+    {
+      "name": "h-colors",
+      "values": [
+        {
+          "name": "var(--color-pri)",
+          "description": "The Primary color"
+        },
+        {
+          "name": "var(--color-ok)",
+          "description": "The Ok color"
+        },
+        {
+          "name": "var(--color-sec)",
+          "description": "The Secondary color"
+        },
+        {
+          "name": "var(--color-warn)",
+          "description": "The Warning color"
+        },
+        {
+          "name": "var(--color-err)",
+          "description": "The Error color"
+        },
+        {
+          "name": "var(--color-info)",
+          "description": "The Info color"
+        },
+        {
+          "name": "white",
+          "description": "The White color"
+        },
+        {
+          "name": "black",
+          "description": "The Black color"
+        },
+        {
+          "name": "transparent",
+          "description": "The Transparent color"
+        },
+        {
+          "name": "var(--color-bg0)",
+          "description": "The Bg0 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-bg1)",
+          "description": "The Bg1 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-bg2)",
+          "description": "The Bg2 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-bg3)",
+          "description": "The Bg3 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-bg4)",
+          "description": "The Bg4 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-bg5)",
+          "description": "The Bg5 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-bg6)",
+          "description": "The Bg6 color change with Ligt/dark theme"
+        },
+
+        {
+          "name": "var(--color-txt0)",
+          "description": "The Txt0 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-txt1)",
+          "description": "The Txt1 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-txt2)",
+          "description": "The Txt2 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-txt3)",
+          "description": "The Txt3 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-txt4)",
+          "description": "The Txt4 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-txt5)",
+          "description": "The Txt5 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-txt6)",
+          "description": "The Txt6 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-txt7)",
+          "description": "The Txt7 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-txt8)",
+          "description": "The Txt8 color change with Ligt/dark theme"
+        },
+        {
+          "name": "var(--color-txt9)",
+          "description": "The Txt8 color change with Ligt/dark theme"
+        }
+      ]
+    }
+  ]
+}

@@ -1,9 +1,5 @@
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
+  * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -40,6 +36,9 @@
     letter-spacing: inherit;
     color: inherit;
     border-radius: 0;
+    outline-style: none;
+    border-style: none;
+    appearance: none;
     background-color: transparent;
     opacity: 1;
   }

@@ -1,6 +1,6 @@
 {
   "name": "hhl-ui",
-  "version": "1.0.155",
+  "version": "1.0.160",
   "description": "hhl-ui is a VUE library for personel use.",
   "homepage": "https://github.com/lfhenrl/hhl-ui",
   "author": {
@@ -17,6 +17,7 @@
     "Directives/*",
     "styles/*",
     "index.d.ts",
-    "index.ts"
+    "index.ts",
+    "htmlattr.json"
   ]
 }

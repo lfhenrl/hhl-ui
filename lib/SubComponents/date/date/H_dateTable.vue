@@ -1,14 +1,15 @@
 <template>
-  <div class="H_dateTable h_bg6 h_outline-none" @click="click">
-    <div class="month-selector h_flex h_items-center h_justify-between h_font-bold h_user-select-none">
-      <H_icon name="expand_left" size="1.6rem" btn data-value="monthMinus" tabindex="-1" />
-      <span class="h_cursor-pointer" data-value="monthSelect">{{ monthArray[date.month] }} {{ date.year }}</span>
-      <H_icon name="expand_right" size="1.6rem" btn data-value="monthPlus" tabindex="-1" />
+  <div class="H_dateTable" @click="click">
+    <div class="H_dateTable_month-selector">
+      <H_icon name="expand_left" btn data-value="monthMinus" tabindex="-1" />
+      <span h-cursor="pointer" data-value="monthSelect">{{ monthArray[date.month] }} {{ date.year }}</span>
+      <H_icon name="expand_right" btn data-value="monthPlus" tabindex="-1" />
     </div>
-    <div class="H_dateTable__table h_grid">
+    <div class="H_dateTable__table">
       <div
         v-for="item in dates"
         :key="item.value"
+        class="H_dateTable__table_item"
         :data-value="item.value"
         :data-type="item.type"
         :data-daytype="item.daytype"
@@ -16,7 +17,6 @@
         :selected="isSelected(item.value)"
         :today="isToday(item.value)"
         :title="isHolyday(item.value)"
-        class="h_flex h_items-center h_justify-center h_cursor-pointer"
       >
         {{ item.title }}
       </div>
@@ -90,48 +90,68 @@ const isHolyday = (dato: any) => HHL_isHolyDay(dato);
 <style>
 @layer components {
   .H_dateTable {
-    .month-selector {
-      padding-inline: 0.5em;
-      padding-block: 0.25em;
-      font-size: 1.2em;
-      border-bottom: 1px solid var(--color-bg1);
-      border-top: 1px solid var(--color-bg1);
+    background-color: var(--color-bg6);
+    padding: 0.5em;
+  }
+  .H_dateTable_month-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2em;
+    font-weight: bold;
+    user-select: none;
+    padding: 0.25em 0.5em;
+    border-style: solid;
+    border-color: var(--color-bg1);
+    border-width: 1px 0 1px 0;
+    .H_icon {
+      font-size: 1.6em;
     }
+  }
 
-    .H_dateTable__table {
-      grid-template-columns: repeat(8, 2em);
-      grid-template-rows: repeat(7, 2em);
-      padding: 0.5em;
-      div {
-        border-radius: 50%;
-        &[data-type="head"],
-        &[data-type="week"] {
-          pointer-events: none;
-          opacity: 0.5;
-        }
+  .H_dateTable__table {
+    display: grid;
+    grid-template-rows: repeat(7, 2em);
+    grid-template-columns: repeat(8, 2em);
+  }
 
-        &[data-daytype="weekend"] {
-          color: color-mix(in oklab, var(--color-err) 80%, transparent);
-        }
-        &[data-daytype="day"] {
-          opacity: 0.7;
-          &[data-activemonth] {
-            opacity: 1;
-            font-weight: bold;
-          }
-        }
-        &[today] {
-          background-color: var(--color-bg1);
-        }
-        &[selected] {
-          background-color: var(--color-pri);
-          color: var(--color-priTxt);
-        }
-        &:hover {
-          background-color: var(--color-warn);
-        }
-      }
+  .H_dateTable__table_item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .H_dateTable__table_item[data-type="head"],
+  .H_dateTable__table_item[data-type="week"] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .H_dateTable__table_item[data-daytype="weekend"] {
+    color: color-mix(in oklab, var(--color-err) 80%, transparent);
+  }
+
+  .H_dateTable__table_item[data-daytype="day"] {
+    opacity: 0.7;
+    &[data-activemonth] {
+      opacity: 1;
+      font-weight: bold;
     }
+  }
+
+  .H_dateTable__table_item[today] {
+    background-color: var(--color-bg1);
+  }
+
+  .H_dateTable__table_item[selected] {
+    background-color: var(--color-pri);
+    color: var(--color-priTxt);
+  }
+
+  .H_dateTable__table_item:hover {
+    background-color: var(--color-warn);
   }
 }
 </style>

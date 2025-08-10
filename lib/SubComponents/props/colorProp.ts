@@ -11,7 +11,13 @@ export const colorProps = String as PropType<
   | "white"
   | "black"
   | "transparent"
-  | "txt0"
+  | "bg0"
+  | "bg1"
+  | "bg2"
+  | "bg3"
+  | "bg4"
+  | "bg5"
+  | "bg6"
   | "txt1"
   | "txt2"
   | "txt3"
@@ -50,9 +56,43 @@ interface HColor {
   bg: string;
 }
 
+const colorsx: any = {
+  pri: "white",
+  ok: "white",
+  sec: "white",
+  warn: "black",
+  err: "white",
+  info: "white",
+  white: "black",
+  black: "white",
+  transparent: "bg0",
+  txt0: "bg0",
+  txt1: "bg0",
+  txt2: "bg0",
+  txt3: "bg0",
+  txt4: "bg0",
+  txt5: "bg0",
+  txt6: "txt0",
+  txt7: "txt0",
+  txt8: "txt0",
+  txt9: "txt0",
+};
+
+interface HColor {
+  txt: string;
+  bg: string;
+}
+
 export function useColor(colorProp: Ref<string>) {
   const color = computed(() => {
     return colors[colorProp.value] || colors["txt2"];
   });
   return color as Ref<HColor>;
+}
+
+export function useColorx(colorProp: Ref<string>) {
+  const color = computed(() => {
+    return colorsx[colorProp.value] || colorsx["txt2"];
+  });
+  return color as Ref<string>;
 }

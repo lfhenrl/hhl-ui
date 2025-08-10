@@ -1,13 +1,15 @@
 <template>
-  <label
-    class="H_inputbase h_flex h_relative h_items-center h_w-stretch h_rounded"
-    :disabled="disabled ? '' : undefined"
-    :data-error="ErrorMessage != '' ? true : undefined"
-  >
+  <label class="H_inputbase" :h-disabled="disabled ? '35%' : undefined">
     <slot />
-    <span class="H_inputbase__label h_absolute">{{ label }}</span>
-    <span class="H_inputbase__hintStart h_absolute">{{ infotext }}</span>
-    <span class="H_inputbase__hintEnd h_absolute">{{ hintEnd }}</span>
+    <span class="H_inputbase__label">{{ label }}</span>
+    <span
+      class="H_inputbase__hintStart"
+      :class="{
+        error: ErrorMessage != '',
+      }"
+      >{{ infotext }}</span
+    >
+    <span class="H_inputbase__hintEnd" v-if="ErrorMessage === ''">{{ hintEnd }}</span>
   </label>
 </template>
 
@@ -35,47 +37,50 @@ const infotext = computed(() => {
 <style>
 @layer components {
   .H_inputbase {
-    min-height: 1.875em;
-    color: var(--color-txt1);
+    display: flex;
+    box-sizing: border-box;
+    position: relative;
+    align-items: center;
+    width: stretch;
+    width: -moz-available;
+    width: -webkit-fill-available;
     border: 1px solid var(--color-txt6);
-
-    .H_inputbase__label {
-      color: var(--color-txt2);
-      white-space: nowrap;
-      font-size: 0.9em;
-      top: -1.6em;
-      left: 2px;
-    }
-    .H_inputbase__hintStart {
-      color: var(--color-txt2);
-      font-size: 0.65em;
-      bottom: -1.5em;
-      left: 4px;
-    }
-
-    .H_inputbase__hintEnd {
-      color: var(--color-txt2);
-      font-size: 0.7em;
-      bottom: -1.6em;
-      right: 4px;
-    }
-
-    &[disabled] {
-      pointer-events: none;
-      opacity: 50%;
-    }
-    &[data-error] {
-      .H_inputbase__hintEnd {
-        display: none;
-      }
-      .H_inputbase__hintStart {
-        color: var(--color-err);
-      }
-    }
+    border-radius: 4px;
+    color: var(--color-txt1);
+    min-height: 1.875em;
 
     [set-end] {
       order: 20;
     }
+  }
+
+  .H_inputbase__label {
+    position: absolute;
+    top: -1.6em;
+    left: 2px;
+    color: var(--color-txt2);
+    white-space: nowrap;
+    font-size: 0.9em;
+  }
+
+  .H_inputbase__hintStart {
+    position: absolute;
+    bottom: -1.5em;
+    left: 4px;
+    font-size: 0.65em;
+    color: var(--color-txt2);
+  }
+
+  .H_inputbase__hintStart.error {
+    color: var(--color-err);
+  }
+
+  .H_inputbase__hintEnd {
+    position: absolute;
+    bottom: -1.5em;
+    right: 4px;
+    color: var(--color-txt2);
+    font-size: 0.65em;
   }
 }
 </style>

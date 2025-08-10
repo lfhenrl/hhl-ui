@@ -1,14 +1,16 @@
 /* stylelint-disable declaration-property-value-no-unknown */
 <template>
   <svg
-    :size
-    :color="col.bg"
-    :bgcolor="col.txt"
+    :h-disabled="disabled ? '35%' : undefined"
+    :class="{
+      outline: variant.startsWith('outline'),
+      filled: variant.startsWith('filled'),
+      round: variant.endsWith('round'),
+      btn: btn,
+    }"
     :variant
-    :btn="btn ? '' : undefined"
-    :disabled="disabled ? '' : undefined"
     viewBox="0 0 24 24"
-    class="H_icon h_bg-transparent h_rounded h_outline-none"
+    class="H_icon"
     height="24"
     width="24"
     fill="none"
@@ -19,17 +21,11 @@
 
 <script setup lang="ts">
 import { iconsProps } from "../SubComponents/icons/iconProp";
-import { colorProps, useColor } from "../SubComponents/props/colorProp";
 import { icons } from "../SubComponents/icons/icons";
-import { shallowRef, toRef, watch, type PropType } from "vue";
+import { shallowRef, watch, type PropType } from "vue";
 
 const P = defineProps({
   name: { type: iconsProps, default: "close" },
-  color: { type: colorProps, default: "txt2" },
-  size: {
-    type: String,
-    default: "1.4rem",
-  },
   variant: {
     type: String as PropType<"base" | "outline" | "outline-round" | "filled" | "filled-round">,
     default: "base",
@@ -41,9 +37,7 @@ const P = defineProps({
   disabled: { type: Boolean, default: false },
 });
 
-const col = useColor(toRef(() => P.color));
 const icon = shallowRef("");
-
 watch(
   () => P.name,
   () => {
@@ -58,47 +52,44 @@ watch(
 @layer components {
   .H_icon {
     display: block;
-    --icon-color: attr(bgcolor type(<color>));
-    --icon-bgcolor: attr(color type(<color>));
-    --icon-size: attr(size type(<length>));
-
-    color: var(--icon-color);
-    font-size: var(--icon-size);
-    min-width: 1em;
-    max-width: 1em;
+    font-size: 1.2em;
+    aspect-ratio: 1/1;
     min-height: 1em;
     max-height: 1em;
-    aspect-ratio: 1/1;
+    min-width: 1em;
+    max-width: 1em;
+    border-radius: 4px;
+    --h-color: var(--color-txt3);
+    --h-color-contrast: white;
+    color: var(--h-color);
 
-    &[btn] {
-      &:hover {
-        outline: 1px solid currentColor;
-        opacity: 0.8;
-        outline-offset: 1px;
-      }
-      &:active {
-        transform: scale(0.9);
-      }
-    }
-    &[disabled] {
-      pointer-events: none;
-      opacity: 0.35;
-    }
-    &[variant="base"] {
-      border-radius: 50%;
-    }
-    &[variant^="outline"] {
-      border: 1px solid currentColor;
-      padding: 0.15em;
-    }
-    &[variant^="filled"] {
-      color: var(--icon-bgcolor);
-      background-color: var(--icon-color);
+    &.filled {
       padding: 0.2em;
+      color: var(--h-color-contrast) !important;
+      background-color: var(--h-color);
     }
-    &[variant$="round"] {
+
+    &.outline {
+      padding: 0.15em;
+      border: 1px solid var(--h-color);
+    }
+
+    &.round {
+      padding: 0.15em;
       border-radius: 50%;
     }
+  }
+
+  .H_icon.btn:hover {
+    transform: scale(0.9);
+  }
+  .H_icon.btn:active {
+    transform: scale(1.1);
+  }
+
+  .H_icon.btn:focus {
+    outline: solid 1px var(--color-pri);
+    outline-offset: 2px;
   }
 }
 </style>

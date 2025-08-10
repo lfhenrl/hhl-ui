@@ -1,13 +1,43 @@
 <template>
-  <div class="H_chartPie h_flex h_items-center h_relative" :class="cl_pie" :style="{ fontSize: fontSize }">
-    <svg viewBox="0 0 64 64" class="H_chartPie_pie">
+  <div
+    class="H_chartPie"
+    h-display="flex"
+    h-align-items="center"
+    h-position="relative"
+    h-flex=" 0 0 0%"
+    h-padding="0"
+    h-gap="10px"
+    :class="cl_pie"
+    :style="{ fontSize: fontSize }"
+  >
+    <svg viewBox="0 0 64 64" class="H_chartPie_pie" radius="50%">
       <circle :style="item.style" v-for="item in pieData" class="H_chartPie_circle">
         <title>{{ item.name }} - {{ item.value }}%</title>
       </circle>
     </svg>
-    <div v-if="!hideLegend" class="H_chartPie-legend h_flexInline h_justify-center h_relative" :class="cl_legend">
-      <div class="H_chartPie-pieData h_flex h_items-center" v-for="item in pieData">
-        <div class="H_chartPie-pieData-item" :style="{ backgroundColor: item.color }" />
+    <div
+      v-if="!hideLegend"
+      class="H_chartPie-legend"
+      h-display="inline-flex"
+      h-justify-content="center"
+      h-position="relative"
+      :class="cl_legend"
+    >
+      <div
+        class="H_chartPie-pieData"
+        h-display="flex"
+        h-align-items="center"
+        h-white-space="nowrap"
+        h-margin="2px"
+        v-for="item in pieData"
+      >
+        <div
+          class="H_chartPie-pieData-item"
+          h-margin="0 4px 0 0"
+          h-height="12px"
+          h-width="12px"
+          :style="{ backgroundColor: item.color }"
+        />
         {{ item.name }} ({{ item.value }}%)
       </div>
     </div>
@@ -104,15 +134,9 @@ watch(
   .Placement_left {
     flex-direction: row-reverse;
   }
-  .H_chartPie {
-    flex: 0 0 0%;
-    padding: 0;
-    gap: 10px;
-  }
 
   .H_chartPie_pie {
     width: v-bind(size);
-    border-radius: 50%;
   }
 
   .H_chartPie_circle {
@@ -130,17 +154,6 @@ watch(
   }
   .H_chartPie-legend.legendStacked {
     flex-direction: column;
-  }
-
-  .H_chartPie-pieData {
-    white-space: nowrap;
-    margin: 2px;
-  }
-
-  .H_chartPie-pieData-item {
-    margin-right: 4px;
-    height: 12px;
-    width: 12px;
   }
 }
 </style>

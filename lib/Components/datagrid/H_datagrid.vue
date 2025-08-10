@@ -1,20 +1,52 @@
 <template>
-  <div class="H_datagrid h_grid h_relative h_h-full" ref="datagridRef">
-    <div class="h_flex">
+  <div
+    class="H_datagrid"
+    h-display="grid"
+    h-position="relative"
+    h-height="100%"
+    ref="datagridRef"
+    h-font-size="0.875rem"
+    h-grid-template-rows="auto auto 1fr auto"
+    h-grid-template-columns="1fr"
+  >
+    <div h-display="flex">
       <slot name="head"></slot>
     </div>
-    <div ref="header" class="H_datagrid-header h_flex-col h_relative h_bg1 h_h-min">
+    <div
+      ref="header"
+      class="H_datagrid-header"
+      h-display="flex"
+      h-flex-direction="column"
+      h-position="relative"
+      h-bgcolor="var(--color-bg1)"
+      h-height="36px"
+      h-min-height="36px"
+      h-overflow-x="hidden"
+      h-overflow-y="scroll"
+      h-border="1px solid var(--color-txt8)"
+      h-border-radius="4px 4px 0 0"
+    >
       <H_headerRow role="heading" aria-level="2" :key="DG.changeCounter.value" @click="headerClick" />
-      <H_progressBar class="h_absolute" :show="DG.dataHandler?.rowsLoading.value" />
+      <H_progressBar h-position="absolute" h-bottom="0" h-z-index="10" :show="DG.dataHandler?.rowsLoading.value" />
     </div>
-    <div class="H_datagrid-body h_flex-col h_bg5 h_rounded">
+    <div
+      class="H_datagrid-body"
+      h-display="flex"
+      h-flex-direction="column"
+      h-bgcolor="var(--color-bg5)"
+      h-border-radius="4px"
+      h-overflow="hidden"
+      h-border-color="var(--color-txt8)"
+      h-border-style="solid"
+      h-border-width="0 1px"
+    >
       <H_virtualList
         :item_style="rowStyle"
         :data-key="dataKey"
         @scroll="onScroll"
         :keeps="keeps"
         :overscan="overscan"
-        item-class="H_dataRow h_flex h_flex-1 h_h-min h_w-full"
+        item-class="H_dataRow"
         :data-sources="DG.dataHandler!.outData.value"
         :selectedId="selected_Id"
         :estimateSize="parseInt(row_height)"
@@ -23,7 +55,15 @@
       >
         <template v-slot:header
           ><H_spaceRow />
-          <div v-if="DG.dataHandler?.rowsCount.value === 0" class="H_datagrid-noRows h_flex h_justify-center">
+          <div
+            v-if="DG.dataHandler?.rowsCount.value === 0"
+            class="H_datagrid-noRows"
+            h-display="flex"
+            h-align-items="end"
+            h-justify-content="center"
+            h-font-size="1.25em"
+            h-height="6em"
+          >
             No rows loaded...
           </div>
         </template>
@@ -155,20 +195,9 @@ onMounted(() => {
 <style>
 @layer components {
   .H_datagrid {
-    font-size: 0.875rem;
-    grid-template-rows: auto auto 1fr auto;
-    grid-template-columns: 1fr;
     --dgrid-row-height: v-bind(row_height);
 
     .H_datagrid-header {
-      height: 36px;
-      max-height: 36px;
-      overflow-x: hidden;
-      overflow-y: scroll;
-      border: 1px solid var(--color-txt8);
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-
       &::-webkit-scrollbar {
         border-radius: 0;
         border-top-right-radius: 4px;
@@ -181,197 +210,6 @@ onMounted(() => {
       &::-webkit-scrollbar-thumb {
         background-color: transparent;
         opacity: 0;
-      }
-    }
-    .H_headerRow {
-      flex: 1 1 100%;
-    }
-
-    .H_headCell {
-      flex: 0;
-      min-height: 34px;
-      border-right: 1px solid var(--color-txt8);
-    }
-    .H_HeadCell-space {
-      height: 0;
-      overflow-x: hidden;
-      overflow-y: visible;
-      white-space: nowrap;
-      opacity: 0;
-      padding: 0 0.5em;
-    }
-
-    .H_headCell__actions_title {
-      overflow: hidden;
-      padding: 0.375em;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .H_headCell__actions_resize {
-      overflow: visible;
-      right: -4px;
-      width: 8px;
-      cursor: ew-resize;
-      z-index: 2;
-    }
-
-    .H_menuHead {
-      overflow: visible;
-      min-width: 1.5em;
-      gap: 5px;
-      &:hover {
-        @media (hover: hover) {
-          background-color: var(--color-bg4);
-        }
-      }
-    }
-    .H_menuHead__sorting {
-      overflow: visible;
-      font-size: 0.75em;
-      max-height: 1em;
-      .H_icon {
-        margin-inline: -5px;
-      }
-    }
-    .H_menuHead__sorting_order {
-      color: var(--color-pri);
-    }
-
-    .H_menuBody {
-      color: var(--color-txt1);
-      font-weight: normal;
-      font-size: 0.875em;
-    }
-    .H_menuBody__item {
-      padding-left: 0.25em;
-      padding-right: 0.75em;
-      padding-block: 0.375em;
-      gap: 0.5em;
-      border-bottom: 1px solid var(--color-bg4);
-      &[selected] {
-        background-color: var(--color-pri);
-        color: var(--color-priTxt);
-      }
-      &:hover {
-        @media (hover: hover) {
-          background-color: var(--color-bg3);
-        }
-      }
-    }
-
-    .H_progressBar {
-      bottom: 0;
-      z-index: 10;
-    }
-
-    .H_datagrid-noRows {
-      align-items: flex-end;
-      font-size: 1.25em;
-      line-height: 1.25em;
-      height: 6em;
-    }
-
-    .H_datagrid-body {
-      overflow: hidden;
-      border-right: 1px solid var(--color-txt8);
-      border-left: 1px solid var(--color-txt8);
-    }
-    .H_dataRow {
-      min-height: var(--dgrid-row-height);
-      max-height: var(--dgrid-row-height);
-      height: var(--dgrid-row-height);
-      background-color: var(--color-bg0);
-      &:nth-child(odd) {
-        background-color: var(--color-bg3);
-      }
-      &:nth-child(even) {
-        background-color: var(--color-bg2);
-      }
-
-      &:hover {
-        @media (hover: hover) {
-          background-color: var(--color-bg6);
-        }
-      }
-      &[data-selected] {
-        background-color: color-mix(in oklab, var(--color-pri) 20%, transparent);
-      }
-
-      &.sticky-0 {
-        position: sticky;
-        top: 0;
-        opacity: 1;
-      }
-      &.sticky-1 {
-        position: sticky;
-        top: var(--dgrid-row-height);
-        opacity: 1;
-      }
-      &.sticky-2 {
-        position: sticky;
-        top: calc(var(--dgrid-row-height) * 2);
-        opacity: 1;
-      }
-    }
-
-    .H_dataRow__cell {
-      padding-block: 0.25em;
-      padding-inline: 0.5em;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      text-box-trim: trim-both;
-      border-right: 1px solid var(--color-txt9);
-      border-bottom: 1px solid var(--color-txt9);
-      &[autoheight] {
-        white-space: break-spaces;
-      }
-    }
-
-    .H_dataGroupRow {
-      gap: 0.5em;
-      padding-inline: 0.25em;
-      min-height: var(--dgrid-row-height);
-      max-height: var(--dgrid-row-height);
-
-      .H_dataGroupRow__icons {
-        padding-left: 0.25em;
-      }
-
-      .H_dataGroupRow__counts {
-        font-size: 0.75em;
-        color: var(--color-txt3);
-      }
-    }
-
-    .H_loadMoreRows {
-      padding-left: 2.5em;
-    }
-
-    .H_spaceRow {
-      max-height: 0;
-      opacity: 0;
-      div {
-        display: inline-block;
-        max-height: 0;
-        overflow: hidden;
-        border-right: 1px solid var(--color-bg3);
-      }
-    }
-
-    .H_datagridFooter {
-      flex-wrap: wrap;
-      gap: 0.5em;
-      color: var(--color-txt3);
-      border: 1px solid var(--color-txt8);
-      padding: 0.5em;
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
-
-      .H_datagridFooter__info {
-        display: flex;
-        align-items: center;
-        color: var(--color-txt2);
       }
     }
   }

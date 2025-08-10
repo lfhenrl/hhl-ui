@@ -1,15 +1,30 @@
 <template>
   <div class="H_dialogService">
     <H_dialog v-model="dialogPop">
-      <div moveable-drag class="H_dialogService__title">{{ dialog.title }}</div>
-      <div class="H_dialogService__content p-3">
+      <div
+        moveable-drag
+        class="H_dialogService__title"
+        h-bgcolor="var(--color-pri)"
+        h-color="var(--color-priTxt)"
+        h-padding="0.25em 0"
+        h-text-align="center"
+      >
+        {{ dialog.title }}
+      </div>
+      <div class="H_dialogService__content" h-padding="0.75rem" h-color="var(--color-txt1)">
         {{ dialog.info }}
       </div>
-      <div class="H_dialogService-footer">
-        <H_btn size="sm" :class="dialog.buttons.cancel.Color" @click="dialogCancel">
+      <div
+        class="H_dialogService-footer"
+        h-display="flex"
+        h-justify-content="end"
+        h-gap="1em"
+        h-padding="0 0.75em 0.75em 0.75em"
+      >
+        <H_btn h-font-size="sm" :class="dialog.buttons.cancel.Color" @click="dialogCancel">
           {{ dialog.buttons.cancel.Text }}
         </H_btn>
-        <H_btn size="sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
+        <H_btn h-font-size="sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
           {{ dialog.buttons.ok.Text }}
         </H_btn>
       </div>
@@ -164,28 +179,3 @@ function updateButtons(data: any) {
   return data;
 }
 </script>
-<style>
-@layer components {
-  .H_dialogService {
-    .H_dialogService__title {
-      background-color: var(--color-pri);
-      color: var(--color-priTxt);
-      padding-block: 0.25em;
-      text-align: center;
-    }
-
-    .H_dialogService__content {
-      padding: 0.75em;
-      color: var(--color-txt);
-    }
-
-    .H_dialogService-footer {
-      display: flex;
-      justify-content: flex-end;
-      gap: 1em;
-      padding-inline: 0.75em;
-      padding-bottom: 0.75em;
-    }
-  }
-}
-</style>

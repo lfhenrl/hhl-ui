@@ -6,15 +6,16 @@
     :autofocus
     :solo
     title="Timepicker"
-    class="H_baseTimePicker h_flex h_items-center h_outline-none h_rounded"
+    class="H_baseTimePicker"
+    :class="{ solo: solo }"
     @toggled="toggled"
   >
     <template v-slot:referance>
-      <H_icon name="clock" size="1.2em" color="txt1" v-if="!hideIcon" tabindex="-1" />
-      <span class="value h_w-fit">{{ showTime }}</span>
+      <H_icon name="clock" class="H_baseTimePicker_input_icon" v-if="!hideIcon" tabindex="-1" />
+      <span class="H_baseTimePicker_input_value">{{ showTime }}</span>
     </template>
 
-    <div class="H_baseTimePicker__popup h_rounded h_bg6" @keydown="keyDown" @click.prevent>
+    <div class="H_baseTimePicker__popup" @keydown="keyDown" @click.prevent>
       <H_timeSelector
         ref="timeSelector"
         tabindex="0"
@@ -30,9 +31,9 @@
         @base-changed="(e) => (timeBase = e)"
         tabindex="-1"
       ></H_timeTable>
-      <div class="actions h_flex h_justify-end h_bg4">
-        <H_btn tabindex="-1" size="sm" color="sec" @click.stop="cancel">CANCEL</H_btn>
-        <H_btn tabindex="-1" size="sm" @click.stop="ok">OK</H_btn>
+      <div class="H_baseTimePicker__popup_actions">
+        <H_btn tabindex="-1" h-font-size="sm" h-color="var(--color-sec)" @click.stop="cancel">CANCEL</H_btn>
+        <H_btn tabindex="-1" h-font-size="sm" @click.stop="ok">OK</H_btn>
       </div>
     </div>
   </H_popover>
@@ -142,28 +143,40 @@ function ArrowDown() {
 <style>
 @layer components {
   .H_baseTimePicker {
-    padding-inline: 0.2em;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    padding: 0 0.2em;
+  }
+  .H_baseTimePicker.solo:focus {
+    background-color: hsl(from var(--color-pri) h s l / 30%);
+  }
 
-    [solo="false"]&:focus {
-      background-color: hsl(from var(--color-pri) h s l / 30%);
-    }
+  .H_baseTimePicker_input_icon {
+    color: var(--color-txt2);
+  }
 
-    .value {
-      padding-inline: 0.2em;
-      text-align: start;
-      width: fit-content;
-      text-wrap: nowrap;
-      text-box-trim: trim-both;
-    }
+  .H_baseTimePicker_input_value {
+    width: fit-content;
+    padding: 0 0.2em;
+    text-align: left;
+    white-space: nowrap;
+    text-box-trim: trim-both;
   }
 
   .H_baseTimePicker__popup {
     border: 1px solid var(--color-bg2);
-    .actions {
-      gap: 1em;
-      padding: 0.7em;
-      border-radius: 0 0 4px 4px;
-    }
+    border-radius: 4px;
+    background-color: var(--color-bg6);
+  }
+
+  .H_baseTimePicker__popup_actions {
+    display: flex;
+    justify-content: end;
+    background-color: var(--color-bg4);
+    gap: 1em;
+    padding: 0.7em;
+    border-radius: 0 0 4px 4px;
   }
 }
 </style>

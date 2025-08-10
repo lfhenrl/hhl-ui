@@ -5,10 +5,10 @@ import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router/auto";
 import { routes } from "vue-router/auto-routes";
 
-import "./components/mdStyle/index.css";
-import "./assets/main.css";
+//import "./components/mdStyle/index.css";
+//import "./assets/main.css";
+import "../lib/styles/hhlui.css";
 import { themeSelector } from "../lib/utils/themeSelector";
-//import twMergeDirective from "tailwind-merge-vue-directive/src/entry.js";
 
 themeSelector().loadTheme;
 

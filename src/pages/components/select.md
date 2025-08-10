@@ -29,7 +29,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 <hhl-live-editor title="" htmlCode='
       <template>
       <div class="flex items-center gap-4">
-      <H_select
+      <H_select h-color="purple"
             :list="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="checkbox default">
       </H_select>

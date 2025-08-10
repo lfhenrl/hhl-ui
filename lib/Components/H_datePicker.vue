@@ -10,7 +10,7 @@
     class="H_datePicker"
   >
     <slot> </slot>
-    <div class="H_datePicker__content h_flex h_h-full">
+    <div class="H_datePicker__content">
       <H_baseDatePicker
         :date="tempDate"
         @dateChanged="setDate"
@@ -110,10 +110,13 @@ const validate = computed(() => validateFunc(P.validator, model.value));
 </script>
 <style>
 @layer components {
-  .H_datePicker {
-    &:focus-within {
-      border-color: var(--color-pri);
-    }
+  .H_datePicker:focus-within {
+    border-color: var(--color-pri);
+  }
+
+  .H_datePicker__content {
+    display: flex;
+    height: 100%;
   }
 }
 </style>
