@@ -2,6 +2,7 @@
   <div class="H_spaceRow">
     <div
       v-for="col in DG.getVisibelColumns()"
+      class="H_spaceRow_item"
       :style="[
         {
           minWidth: col.width.value ?? '',
@@ -14,12 +15,14 @@
   </div>
 </template>
 <style>
-.H_spaceRow {
-  display: flex;
-  max-width: min-content;
-  max-height: 0;
-  opacity: 0;
-  div {
+@layer components {
+  .H_spaceRow {
+    display: flex;
+    max-width: min-content;
+    max-height: 0;
+    opacity: 0;
+  }
+  .H_spaceRow_item {
     display: inline-block;
     max-height: 0;
     overflow: hidden;

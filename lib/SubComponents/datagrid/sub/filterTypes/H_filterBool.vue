@@ -1,5 +1,5 @@
 <template>
-  <div class="H_filterBool H_filterSame h_flex-col">
+  <div class="H_filterBool">
     <H_selectbox
       multi
       list-gap="6px"
@@ -59,3 +59,13 @@ onMounted(() => {
 
 defineExpose({ save, clear, open, close, canSave });
 </script>
+<style>
+@layer components {
+  .H_filterBool {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 0.2em 0;
+  }
+}
+</style>

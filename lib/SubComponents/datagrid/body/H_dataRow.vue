@@ -28,51 +28,48 @@
     max-height: var(--dgrid-row-height);
     height: var(--dgrid-row-height);
     background-color: var(--color-bg0);
-    &:nth-child(odd) {
-      background-color: var(--color-bg3);
-    }
-    &:nth-child(even) {
-      background-color: var(--color-bg2);
-    }
-
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-bg6);
-      }
-    }
-    &[data-selected] {
-      background-color: color-mix(in oklab, var(--color-pri) 20%, transparent);
-    }
-
-    &.sticky-0 {
-      position: sticky;
-      top: 0;
-      opacity: 1;
-    }
-    &.sticky-1 {
-      position: sticky;
-      top: var(--dgrid-row-height);
-      opacity: 1;
-    }
-    &.sticky-2 {
-      position: sticky;
-      top: calc(var(--dgrid-row-height) * 2);
-      opacity: 1;
-    }
+  }
+  .H_dataRow:nth-child(odd) {
+    background-color: var(--color-bg3);
   }
 
-  .H_dataRow__cell {
-    padding-block: 0.25em;
-    padding-inline: 0.5em;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-box-trim: trim-both;
-    border-right: 1px solid var(--color-txt9);
-    border-bottom: 1px solid var(--color-txt9);
-    &[autoheight] {
-      white-space: break-spaces;
-    }
+  .H_dataRow:nth-child(even) {
+    background-color: var(--color-bg2);
+  }
+  .H_dataRow:hover {
+    background-color: var(--color-bg2);
+  }
+  .H_dataRow[data-selected] {
+    background-color: color-mix(in oklab, var(--color-pri) 20%, transparent);
+  }
+  .H_dataRow.sticky-0 {
+    position: sticky;
+    top: 0;
+    opacity: 1;
+  }
+  .H_dataRow.sticky-1 {
+    position: sticky;
+    top: var(--dgrid-row-height);
+    opacity: 1;
+  }
+  .H_dataRow.sticky-2 {
+    position: sticky;
+    top: calc(var(--dgrid-row-height) * 2);
+    opacity: 1;
+  }
+}
+
+.H_dataRow__cell {
+  padding-block: 0.25em;
+  padding-inline: 0.5em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-box-trim: trim-both;
+  border-right: 1px solid var(--color-txt9);
+  border-bottom: 1px solid var(--color-txt9);
+  &[autoheight] {
+    white-space: break-spaces;
   }
 }
 </style>

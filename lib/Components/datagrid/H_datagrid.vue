@@ -1,14 +1,5 @@
 <template>
-  <div
-    class="H_datagrid"
-    h-display="grid"
-    h-position="relative"
-    h-height="100%"
-    ref="datagridRef"
-    h-font-size="0.875rem"
-    h-grid-template-rows="auto auto 1fr auto"
-    h-grid-template-columns="1fr"
-  >
+  <div class="H_datagrid" ref="datagridRef">
     <div h-display="flex">
       <slot name="head"></slot>
     </div>
@@ -195,23 +186,29 @@ onMounted(() => {
 <style>
 @layer components {
   .H_datagrid {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: 1fr;
+    position: relative;
+    height: 100%;
+    font-size: 0.875rem;
     --dgrid-row-height: v-bind(row_height);
+  }
 
-    .H_datagrid-header {
-      &::-webkit-scrollbar {
-        border-radius: 0;
-        border-top-right-radius: 4px;
-      }
-      &::-webkit-scrollbar-track {
-        border-radius: 0;
-        border-top-right-radius: 4px;
-        background-color: var(--color-bg2);
-      }
-      &::-webkit-scrollbar-thumb {
-        background-color: transparent;
-        opacity: 0;
-      }
-    }
+  .H_datagrid-header::-webkit-scrollbar {
+    border-radius: 0;
+    border-top-right-radius: 4px;
+  }
+
+  .H_datagrid-header::-webkit-scrollbar-track {
+    border-radius: 0;
+    border-top-right-radius: 4px;
+    background-color: var(--color-bg2);
+  }
+
+  .H_datagrid-header::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    opacity: 0;
   }
 }
 </style>

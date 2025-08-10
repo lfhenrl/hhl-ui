@@ -1,5 +1,5 @@
 <template>
-  <div class="H_filter__number H_filterSame h_flex-col">
+  <div class="H_filter__number">
     <H_select v-model="condition1" :list="list" hide-filter />
     <H_input type="number" v-model="value1" />
     <H_selectbox
@@ -97,3 +97,13 @@ onMounted(() => {
 
 defineExpose({ save, clear, open, close, canSave });
 </script>
+<style>
+@layer components {
+  .H_filter__number {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 0.2em 0;
+  }
+}
+</style>

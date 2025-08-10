@@ -1,51 +1,11 @@
 <template>
-  <div
-    class="H_datagridFooter"
-    h-display="flex"
-    h-align-items="center"
-    h-bgcolor="var(--color-bg2)"
-    h-gap="0.5em"
-    h-color="var(--color-txt3)"
-    h-border="1px solid var(--color-txt8)"
-    h-border-radius="0 0 4px 4px"
-    h-padding="0.5em"
-    h-flex-wrap="wrap"
-    v-bind="$attrs"
-  >
-    <H_icon
-      name="columns"
-      h-color="var(--color-txt3)"
-      h-font-size="1.6rem"
-      btn
-      title="Edit Columns"
-      @click="editColumns"
-    />
-    <H_icon
-      name="expand_horizontal"
-      h-color="var(--color-txt3)"
-      h-font-size="1.6rem"
-      btn
-      title="Auto adjust all columns"
-      @click="autoAdjustColumns"
-    />
-    <H_icon
-      name="excel"
-      h-color="var(--color-txt3)"
-      h-font-size="1.6rem"
-      btn
-      title="Download to excel"
-      @click="excel"
-    />
-    <H_icon
-      name="zoom_out_map"
-      h-color="var(--color-txt3)"
-      h-font-size="1.6rem"
-      btn
-      title="fullScreen"
-      @click="fullScreen"
-    />
+  <div class="H_datagridFooter" v-bind="$attrs">
+    <H_icon name="columns" btn title="Edit Columns" @click="editColumns" />
+    <H_icon name="expand_horizontal" btn title="Auto adjust all columns" @click="autoAdjustColumns" />
+    <H_icon name="excel" btn title="Download to excel" @click="excel" />
+    <H_icon name="zoom_out_map" btn title="fullScreen" @click="fullScreen" />
     <div style="flex: 1" />
-    <div class="H_datagridFooter__info" h-display="flex" h-align-items="center" h-color="var(--color-txt2)">
+    <div class="H_datagridFooter__info">
       <b>{{ DG.dataHandler?.rowsCount }}</b
       >&nbsp; Loaded of&nbsp; <b>{{ DG.dataHandler?.rowsCountTotal }}</b
       >&nbsp; Rows.
@@ -56,6 +16,27 @@
 
 <style>
 @layer components {
+  .H_datagridFooter {
+    display: flex;
+    align-items: center;
+    color: var(--color-txt3);
+    background-color: var(--color-bg2);
+    gap: 0.5em;
+    border: 1px solid var(--color-txt8);
+    border-radius: 0 0 4px 4px;
+    padding: 0.5em;
+    flex-wrap: wrap;
+    .H_icon {
+      font-size: 1.6em;
+      color: var(--color-txt3);
+    }
+  }
+
+  .H_datagridFooter__info {
+    display: flex;
+    align-items: center;
+    color: var(--color-txt2);
+  }
   .H_datagridFooter:fullscreen {
     background-color: var(--color-bg0);
   }

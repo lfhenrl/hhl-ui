@@ -1,7 +1,7 @@
 <template>
   <div class="H_columnItem h_flex h_items-center">
-    <H_switchbase class="h_outline-none" variant="checkbox" size="0.9em" :check="data.visibel" @click="checkClick" />
-    <H_icon name="drag" size="1.2rem" btn />
+    <H_switchbase variant="checkbox" :check="data.visibel" @click="checkClick" />
+    <H_icon name="drag" btn />
     {{ data?.title }}
   </div>
 </template>
@@ -34,3 +34,22 @@ function checkClick() {
   data.value.visibel = !data.value.visibel;
 }
 </script>
+<style>
+@layer components {
+  .H_columnItem {
+    display: flex;
+    align-items: center;
+    color: var(--color-txt1);
+    margin-left: 0.125em;
+    --h-color: var(--color-pri);
+    --h-color-contrast: white;
+    .H_icon {
+      font-size: 1.2em;
+    }
+  }
+
+  .H_columnItem:hover {
+    background-color: var(--color-bg2);
+  }
+}
+</style>

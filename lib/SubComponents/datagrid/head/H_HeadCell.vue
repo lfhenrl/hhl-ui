@@ -27,8 +27,7 @@
   .H_headCell {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    width: min-content;
+    flex: 0;
     min-height: 34px;
     border-right: 1px solid var(--color-txt8);
   }
@@ -37,7 +36,6 @@
     display: flex;
     flex: 1;
     align-items: center;
-    width: 100%;
     position: relative;
     font-weight: 700;
   }

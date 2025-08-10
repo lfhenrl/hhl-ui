@@ -15,16 +15,17 @@
   </div>
 </template>
 <style>
-.H_dataGroupRow {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  width: 100%;
-  gap: 0.5em;
-  padding-inline: 0.25em;
-  min-height: var(--dgrid-row-height);
-  max-height: var(--dgrid-row-height);
-
+@layer components {
+  .H_dataGroupRow {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    width: 100%;
+    gap: 0.5em;
+    padding-inline: 0.25em;
+    min-height: var(--dgrid-row-height);
+    max-height: var(--dgrid-row-height);
+  }
   .H_dataGroupRow__icons {
     display: flex;
     align-items: center;

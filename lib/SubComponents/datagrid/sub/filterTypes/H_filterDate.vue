@@ -1,5 +1,5 @@
 <template>
-  <div class="H_filterDate H_filterSame h_flex-col">
+  <div class="H_filterDate">
     <H_select v-model="condition1" :list="list" hide-filter />
     <H_datePicker v-model="value1" :show-seconds="col.filter.type === 'datetime'" />
     <H_selectbox
@@ -98,3 +98,13 @@ onMounted(() => {
 
 defineExpose({ save, clear, open, close, canSave });
 </script>
+<style>
+@layer components {
+  .H_filterDate {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 0.2em 0;
+  }
+}
+</style>

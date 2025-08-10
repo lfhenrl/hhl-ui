@@ -1,18 +1,18 @@
 <template>
   <H_popover offset-left="-20px" v-model="isOpen" movable class="H_menuFilter">
-    <div class="H_menuFilter__content h_flex-col h_rounded h_bg6">
-      <div moveable-drag class="H_menuFilter__header h_flex h_items-center h_justify-between h_font-bold h_bg-pri">
+    <div class="H_menuFilter__content">
+      <div moveable-drag class="H_menuFilter__header">
         <div></div>
         <div>{{ col.props.title }}</div>
 
-        <H_icon class="h_cursor-pointer" name="close" btn color="white" @click="isOpen = false" />
+        <H_icon class="h_cursor-pointer" name="close" btn h-color="white" @click="isOpen = false" />
       </div>
       <div class="H_menuFilter_comp">
         <component ref="filterCompRef" :is="filtComponent" :index="index" />
       </div>
-      <div class="H_menuFilter__action h_flex h_items-center h_justify-end">
-        <H_btn @click="filterSave" size="sm" color="pri" :disabled="!filterCompRef?.canSave">OK</H_btn>
-        <H_btn @click="filterClear" :disabled="!col.filter.active" size="sm" color="sec">CLEAR</H_btn>
+      <div class="H_menuFilter__action">
+        <H_btn @click="filterSave" h-color="var(--color-pri)" :disabled="!filterCompRef?.canSave">OK</H_btn>
+        <H_btn @click="filterClear" :disabled="!col.filter.active" h-color="var(--color-sec)">CLEAR</H_btn>
       </div>
     </div>
   </H_popover>
@@ -85,44 +85,59 @@ const filtComponent = computed(() => {
 <style>
 @layer components {
   .H_menuFilter__content {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: var(--color-bg6);
     overflow: hidden;
     color: var(--color-txt1);
     font-weight: normal;
     min-width: 16em;
-
-    .H_menuFilter__header {
-      padding-block: 0.25em;
-      font-size: 1.125em;
-      color: var(--color-priTxt);
-      .H_icon {
-        margin: 2px 4px;
-      }
+  }
+  .H_menuFilter__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 0.25em;
+    font-size: 1.125em;
+    font-weight: bold;
+    color: var(--color-priTxt);
+    background-color: var(--color-pri);
+    .H_icon {
+      margin: 2px 4px;
+      cursor: pointer;
     }
+  }
 
-    .H_menuFilter_comp {
-      overflow: hidden;
-      padding-inline: 1em;
-      padding-top: 1em;
+  .H_menuFilter_comp {
+    overflow: hidden;
+    padding-inline: 1em;
+    padding-top: 1em;
+  }
 
-      .H_selectbox {
-        margin-block: 1em;
-      }
+  .H_menuFilter_comp .H_selectbox {
+    margin-block: 1em;
+  }
 
-      .H_filterSame {
-        gap: 1em;
-        padding-block: 1em;
-      }
+  .H_menuFilter_comp .H_filterSame {
+    gap: 1em;
+    padding-block: 1em;
+  }
 
-      .H_filterNone {
-        text-align: center;
-        font-size: 1.25em;
-        padding-bottom: 6em;
-      }
-    }
+  .H_menuFilter_comp .H_filterNone {
+    text-align: center;
+    font-size: 1.25em;
+    padding-bottom: 6em;
+  }
 
-    .H_menuFilter__action {
-      gap: 0.5em;
-      padding: 1em;
+  .H_menuFilter__action {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 0.5em;
+    padding: 1em;
+    .H_icon {
+      font-size: 0.875rem;
     }
   }
 }

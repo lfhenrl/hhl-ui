@@ -2,14 +2,6 @@
   <div class="H_menuBody" @click="menuClick">
     <div
       class="H_menuBody__item"
-      h-display="flex"
-      h-align-items="center"
-      h-cursor="pointer"
-      h-padding="0.375em 0.75em 0.375em 0.25em"
-      h-gap="0.5em"
-      h-border-color="var(--color-bg4)"
-      h-border-style="solid"
-      h-border-width="0 0 1px 0"
       :selected="col.sortDirection.value === 'asc' ? '' : undefined"
       data-action="asc"
       data-subtype="menuSortAsc"
@@ -67,16 +59,15 @@
       pointer-events: none;
       font-size: 1.6em;
     }
+  }
 
-    &[selected] {
-      background-color: var(--color-pri);
-      color: var(--color-priTxt);
-    }
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-bg3);
-      }
-    }
+  .H_menuBody__item:hover {
+    background-color: var(--color-bg3);
+  }
+
+  .H_menuBody__item[selected] {
+    background-color: var(--color-pri);
+    color: var(--color-priTxt);
   }
 
   .H_menuBody__item_title {

@@ -1,15 +1,15 @@
 <template>
-  <H_dialog v-model="open" movable class="H_menuColumns h_outline-none">
-    <div moveable-drag class="H_menuColumns__header h_flex h_items-center h_bg-pri">
-      <div class="flex-1" />
-      <div class="">Columns</div>
-      <div class="flex-1" />
-      <H_icon class="h_cursor-pointer" name="close" btn color="white" @click="open = false" />
+  <H_dialog v-model="open" movable class="H_menuColumns">
+    <div moveable-drag class="H_menuColumns__header">
+      <div h-flex="1" />
+      <div>Columns</div>
+      <div h-flex="1" />
+      <H_icon name="close" btn color="white" @click="open = false" />
     </div>
 
-    <div class="H_menuColumns__body h_flex-col">
+    <div class="H_menuColumns__body">
       <H_inputbase label="Grouping">
-        <H_dragDrop v-model="groupColumns" :max-items="3" class="H_menuColumns__body__groups h_flex-col h_w-full">
+        <H_dragDrop v-model="groupColumns" :max-items="3" class="H_menuColumns__body__groups">
           <template v-slot:item="{ item, index }">
             <H_columnItem :item="item" :index="index" />
           </template>
@@ -17,7 +17,7 @@
       </H_inputbase>
 
       <H_inputbase label="Columns">
-        <H_dragDrop v-model="sourceColumns" class="H_menuColumns__body__columns h_flex-col h_w-full">
+        <H_dragDrop v-model="sourceColumns" class="H_menuColumns__body__columns">
           <template v-slot:item="{ item, index }">
             <H_columnItem :item="item" :index="index" />
           </template>
@@ -25,8 +25,8 @@
       </H_inputbase>
     </div>
 
-    <div class="H_menuColumns__body__action h_flex h_justify-end">
-      <H_btn @click="columnsSave" size="sm" color="pri" :disabled="!canSave">OK</H_btn>
+    <div class="H_menuColumns__body__action">
+      <H_btn @click="columnsSave" :disabled="!canSave">OK</H_btn>
     </div>
   </H_dialog>
 </template>
@@ -135,51 +135,70 @@ function columnsSave() {
 <style>
 @layer components {
   .H_menuColumns {
-    .H_menuColumns__header {
-      min-width: 16em;
-      font-size: 1.125em;
-      text-align: center;
-      padding-block: 0.25em;
-      color: var(--color-priTxt);
+    outline-style: none;
+  }
+  .H_menuColumns__header {
+    display: flex;
+    align-items: center;
+    min-width: 16em;
+    font-size: 1.125em;
+    text-align: center;
+    padding-block: 0.25em;
+    color: var(--color-priTxt);
+    background-color: var(--color-pri);
+    .H_icon {
+      margin-right: 0.25em;
+      cursor: pointer;
+      color: white;
+    }
+  }
 
-      .H_icon {
-        margin-right: 0.25em;
+  .H_menuColumns__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding-inline: 1em;
+    padding-top: 2em;
+  }
+
+  .H_menuColumns__body__groups {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto;
+    gap: 0.125em;
+    padding: 0.25em;
+    max-height: 6em;
+    min-height: 6em;
+  }
+
+  .H_menuColumns__body__columns {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto;
+    gap: 0.125em;
+    padding: 0.25em;
+    max-height: 20em;
+    min-height: 20em;
+  }
+
+  .H_columnItem {
+    color: var(--color-txt1);
+    margin-left: 0.125em;
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-bg2);
       }
     }
+  }
 
-    .H_menuColumns__body {
-      gap: 2em;
-      padding-inline: 1em;
-      padding-top: 2em;
-
-      .H_menuColumns__body__groups {
-        overflow: auto;
-        gap: 0.125em;
-        padding: 0.25em;
-        max-height: 6em;
-        min-height: 6em;
-      }
-
-      .H_menuColumns__body__columns {
-        overflow: auto;
-        gap: 0.125em;
-        padding: 0.25em;
-        max-height: 20em;
-        min-height: 20em;
-      }
-
-      .H_columnItem {
-        color: var(--color-txt1);
-        margin-left: 0.125em;
-        &:hover {
-          @media (hover: hover) {
-            background-color: var(--color-bg2);
-          }
-        }
-      }
-    }
-    .H_menuColumns__body__action {
-      padding: 1em;
+  .H_menuColumns__body__action {
+    display: flex;
+    justify-content: end;
+    padding: 1em;
+    .H_icon {
+      font-size: 0.875rem;
     }
   }
 }

@@ -40,9 +40,9 @@
     overflow: visible;
     min-width: 1.5em;
     gap: 5px;
-    &:hover {
-      background-color: var(--color-bg4);
-    }
+  }
+  .H_menuHead:hover {
+    background-color: var(--color-bg4);
   }
   .H_menuHead__sorting {
     display: flex;
