@@ -8,6 +8,8 @@
     title="Timepicker"
     class="H_baseTimePicker"
     :class="{ solo: solo }"
+    aria-label="TimePicker"
+    role="combobox"
     @toggled="toggled"
   >
     <template v-slot:referance>

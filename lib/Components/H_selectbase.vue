@@ -23,6 +23,7 @@
       <H_switchbase
         class="H_selectbase__switchbase"
         :check="selected(item.value) ? true : false"
+        :aria-label="label"
         :variant
         :bgcolor
         :value="item.value"

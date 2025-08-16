@@ -8,6 +8,8 @@
     :readonly
     :autofocus
     role="combobox"
+    aria-haspopup="listbox"
+    :aria-label="label"
     width-as-ref
   >
     <template v-slot:referance>

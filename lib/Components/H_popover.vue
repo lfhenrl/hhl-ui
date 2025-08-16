@@ -10,6 +10,7 @@
     :disabled="disabled || readonly"
     :tabindex
     v-bind="$attrs"
+    :aria-expanded="modelValue ? true : false"
   >
     <slot name="referance"></slot>
   </button>

@@ -7,6 +7,8 @@
     h-bgcolor="var(--color-bg0)"
     h-color="var(--color-pri)"
     h-min-height="0.3em"
+    role="progressbar"
+    aria-label="progressbar"
     :speed
   >
     <div v-if="show" class="value" h-width="50%" h-height="100%" h-min-height="0.3em"></div>

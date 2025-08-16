@@ -27,14 +27,13 @@
   .H_headCell {
     display: flex;
     flex-direction: column;
-    flex: 0;
+    width: max-content;
     min-height: 34px;
     border-right: 1px solid var(--color-txt8);
   }
 
   .H_headCell__actions {
     display: flex;
-    flex: 1;
     align-items: center;
     position: relative;
     font-weight: 700;
@@ -62,6 +61,7 @@
     overflow-x: hidden;
     overflow-y: visible;
     white-space: nowrap;
+    width: fit-content;
     padding: 0 0.5em;
     opacity: 0;
   }

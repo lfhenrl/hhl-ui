@@ -6,6 +6,8 @@
     :autofocus
     title="Datepicker"
     class="H_baseDatePicker"
+    aria-label="DatePicker"
+    role="combobox"
     @toggled="toggled"
   >
     <template v-slot:referance>
@@ -230,6 +232,7 @@ function ArrowDown() {
     padding: 0 0.2em;
     text-align: left;
     text-box-trim: trim-both;
+    white-space: nowrap;
   }
 }
 </style>

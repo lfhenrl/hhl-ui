@@ -2,7 +2,7 @@
   <button
     type="button"
     :role="variant"
-    :check
+    :aria-checked="check"
     class="H_switchbase"
     :class="{
       switch: variant === 'switch',

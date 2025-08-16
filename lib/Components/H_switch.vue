@@ -64,7 +64,7 @@ function onClick() {
     :h-disabled="disabled ? '50%' : undefined"
     @click.prevent="onClick"
   >
-    <H_switchbase :check tabindex="0" :variant :disabled :autofocus />
+    <H_switchbase :check tabindex="0" :variant :disabled :autofocus :aria-label="label" />
     <span class="H_switch_label">{{ label }}</span>
   </label>
 </template>
