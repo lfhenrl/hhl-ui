@@ -96,7 +96,6 @@ const _HHMMSSms = new Intl.DateTimeFormat("en-GB", {
   hour: "2-digit",
   minute: "2-digit",
   second: "2-digit",
-  fractionalSecondDigits: 3,
 });
 export const D_HHMMSSms = (D: Date) => _HHMMSSms.format(new Date(D));
 
