@@ -27,8 +27,6 @@ defineProps({
 <style>
 @layer components {
   .H_btn {
-    --h-color: var(--color-pri);
-    --h-color-contrast: white;
     display: inline-flex;
     max-height: calc(1em * 1.9);
     min-height: calc(1em * 1.9);
@@ -40,8 +38,10 @@ defineProps({
     gap: 0.3em;
     white-space: nowrap;
     cursor: pointer;
-    color: var(--h-color-contrast) !important;
+    --h-color: var(--color-pri);
     background-color: var(--h-color);
+    --color-contrast: oklch(from var(--h-color) var(--h-l) 0 h);
+    color: var(--color-contrast) !important;
 
     &.outline {
       background-color: transparent;

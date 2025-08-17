@@ -140,8 +140,7 @@ export default defineComponent({
   overflow: hidden;
   border-radius: 4px;
   box-shadow: var(--theme-shadow-md);
-  border: var(--theme-shadow-border);
-  border-bottom: var(--theme-shadow-border-bottom);
+  border: 1px solid var(--color-txt8);
 }
 
 .hhl-live-editor:fullscreen {

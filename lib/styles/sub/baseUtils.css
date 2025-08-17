@@ -13,13 +13,11 @@
 @layer utilities {
   [h-bgcolor] {
     --h-bgcolor: attr(h-bgcolor type(<color>));
-    --h-bgcolor-contrast: oklch(from var(--h-bgcolor) var(--h-l) 0 h);
     background-color: var(--h-bgcolor, lime);
   }
 
   [h-color] {
     --h-color: attr(h-color type(<color>));
-    --h-color-contrast: oklch(from var(--h-color) var(--h-l) 0 h);
     color: var(--h-color, lime);
   }
 
@@ -191,20 +189,14 @@
 
   [h-shadow="sm"] {
     box-shadow: var(--theme-shadow-sm);
-    border: var(--theme-shadow-border);
-    border-bottom: var(--theme-shadow-border-bottom);
   }
 
   [h-shadow="md"] {
     box-shadow: var(--theme-shadow-md);
-    border: var(--theme-shadow-border);
-    border-bottom: var(--theme-shadow-border-bottom);
   }
 
   [h-shadow="lg"] {
     box-shadow: var(--theme-shadow-lg);
-    border: var(--theme-shadow-border);
-    border-bottom: var(--theme-shadow-border-bottom);
   }
 
   [h-overflow] {

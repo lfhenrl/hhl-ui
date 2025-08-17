@@ -86,7 +86,7 @@ If you need a special color then just use `h-color="purple"`
       <div class="flex items-center gap-4 flex-wrap">
             <H_btn>PRI</H_btn>
             <H_btn h-color="var(--color-sec)">SEC</H_btn>
-            <H_btn h-color="var(--color-ok=">OK</H_btn>
+            <H_btn h-color="var(--color-ok)">OK</H_btn>
             <H_btn h-color="var(--color-err)">ERR</H_btn>
             <H_btn h-color="var(--color-warn)">Warn</H_btn>
             <H_btn h-color="var(--color-info)">INFO</H_btn>

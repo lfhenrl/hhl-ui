@@ -26,6 +26,7 @@ import { vMovable } from "../Directives/v-movable";
 const P = defineProps({
   noShake: { default: false, type: Boolean },
   movable: { default: true, type: Boolean },
+  modal: { default: true, type: Boolean },
   closedby: {
     type: String as PropType<"any" | "closerequest" | "none">,
     default: "closerequest",
@@ -52,7 +53,11 @@ watch(
   modelValue,
   () => {
     if (modelValue.value === true) {
-      dialog.value?.showModal();
+      if (P.modal) {
+        dialog.value?.showModal();
+      } else {
+        dialog.value?.show();
+      }
     } else {
       dialog.value?.close();
     }
@@ -89,6 +94,7 @@ function close() {
   .H_dialog {
     inset-block: v-bind(insetTop);
     inset-inline: v-bind(insetLeft);
+    z-index: 111;
     transform: scaleY(0);
     transition: opacity 0.3s, transform 0.2s, display 0.3s allow-discrete;
 

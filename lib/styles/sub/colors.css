@@ -34,8 +34,6 @@
   --theme-shadow-sm: 0 6px 8px -8px rgba(0, 0, 0, 0.658);
   --theme-shadow-md: 0 10px 12px -12px rgba(0, 0, 0, 0.603);
   --theme-shadow-lg: 0 16px 18px -18px rgba(0, 0, 0, 0.658);
-  --theme-shadow-border: 1px solid rgb(221, 229, 252);
-  --theme-shadow-border-bottom: 1px solid rgb(179, 179, 179);
   --h-l: clamp(0, (l / var(--l-threshold, 0.623) - 1) * -infinity, 1);
   --font-sans: "Public Sans", sans-serif;
 }

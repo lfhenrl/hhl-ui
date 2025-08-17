@@ -76,7 +76,6 @@ function onClick() {
     align-items: center;
     width: fit-content;
     --h-color: var(--color-pri);
-    --h-color-contrast: white;
   }
 
   .H_switch.reverse {

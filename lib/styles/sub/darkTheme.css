@@ -22,8 +22,6 @@
     --theme-shadow-sm: 0 8px 18px -18px black;
     --theme-shadow-md: 0 14px 18px -18px black;
     --theme-shadow-lg: 0 18px 18px -18px black;
-    --theme-shadow-border: 1px solid rgb(62, 65, 73);
-    --theme-shadow-border-bottom: 1px solid rgb(31, 31, 61);
 
     color-scheme: dark;
   }

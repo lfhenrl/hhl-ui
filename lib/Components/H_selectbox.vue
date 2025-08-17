@@ -28,7 +28,6 @@
       tabindex="0"
       :readonly
       :disabled
-      h-padding="0.4em 0.5em"
     />
   </H_inputbase>
 </template>
@@ -43,7 +42,7 @@ import { validateFunc } from "../utils/validateFunc";
 
 const P = defineProps({
   color: { type: colorProps, default: "pri" },
-  size: { type: sizeProp, default: "md" },
+  size: { type: sizeProp, default: "sm" },
   label: { type: String, default: "" },
   row: { type: Boolean, default: false },
   autofocus: { type: Boolean, default: false },
@@ -51,7 +50,7 @@ const P = defineProps({
   readonly: { type: Boolean, default: false },
   filter: { type: String, default: "" },
   labelGap: { type: String, default: "8px" },
-  listGap: { type: String, default: "8px" },
+  listGap: { type: String, default: "6px" },
   labelLeft: { type: Boolean, default: false },
   justifyBetween: { type: Boolean, default: false },
   multi: { type: Boolean, default: false },
@@ -119,6 +118,7 @@ function getFocusList() {
 @layer components {
   .H_selectbox {
     .H_selectbase {
+      padding: 0.4em 0.5em;
       &[row] {
         padding-block: 0;
       }

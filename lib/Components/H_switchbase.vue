@@ -41,6 +41,7 @@ const E = defineEmits([]);
     justify-content: center;
     border: 0.15em solid var(--color-txt5);
     border-radius: 4px;
+    --color-contrast: oklch(from var(--h-color) var(--h-l) 0 h);
   }
 
   .H_switchbase.checkbox {
@@ -49,7 +50,7 @@ const E = defineEmits([]);
     background-color: transparent;
   }
   .H_switchbase__indicator_checkbox {
-    color: var(--h-color-contrast);
+    color: var(--color-contrast);
     padding-bottom: 0.1em;
   }
   .H_switchbase.checkbox.checked {

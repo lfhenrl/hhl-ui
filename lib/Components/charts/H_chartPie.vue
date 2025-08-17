@@ -10,7 +10,7 @@
     :class="cl_pie"
     :style="{ fontSize: fontSize }"
   >
-    <svg viewBox="0 0 64 64" class="H_chartPie_pie" radius="50%">
+    <svg viewBox="0 0 64 64" class="H_chartPie_pie" h-border-radius="50%">
       <circle :style="item.style" v-for="item in pieData" class="H_chartPie_circle">
         <title>{{ item.name }} - {{ item.value }}%</title>
       </circle>

@@ -5,6 +5,7 @@
     :class="{ row: row }"
     :h-gap="listGap"
     :row="row ? '' : undefined"
+    h-outline="none"
     @click="Click"
   >
     <label
@@ -18,6 +19,7 @@
       h-align-items="center"
       h-border-radius="4px"
       h-width="100%"
+      :h-font-size="size"
       :h-gap="labelGap"
     >
       <H_switchbase
@@ -25,7 +27,6 @@
         :check="selected(item.value) ? true : false"
         :aria-label="label"
         :variant
-        :bgcolor
         :value="item.value"
       />
       <span class="H_selectbase__switchbase_label">{{ item.label }}</span>
@@ -49,7 +50,7 @@ const P = defineProps({
   justifyBetween: { type: Boolean, default: false },
   labelLeft: { type: Boolean, default: false },
   labelGap: { type: String, default: "6px" },
-  listGap: { type: String, default: "2px" },
+  listGap: { type: String, default: "4px" },
   row: { type: Boolean, default: false },
   variant: {
     type: String as PropType<"switch" | "checkbox" | "radio">,
@@ -138,6 +139,7 @@ function setValue(val: any) {
     flex-direction: column;
     width: 100%;
     border-radius: 4px;
+    line-height: 0;
   }
 
   .H_selectbase.row {

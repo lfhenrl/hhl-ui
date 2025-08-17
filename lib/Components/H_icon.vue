@@ -60,12 +60,12 @@ watch(
     max-width: 1em;
     border-radius: 4px;
     --h-color: var(--color-txt3);
-    --h-color-contrast: white;
+    --color-contrast: oklch(from var(--h-color) var(--h-l) 0 h);
     color: var(--h-color);
 
     &.filled {
       padding: 0.2em;
-      color: var(--h-color-contrast) !important;
+      color: var(--color-contrast) !important;
       background-color: var(--h-color);
     }
 

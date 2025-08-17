@@ -2,6 +2,7 @@
   <div class="pagex">
     <H_themeSelector />
     <h1>Some text in H1</h1>
+    <div h-bgcolor="var(--h-color-contrast)" h-color="lime">JJJJ</div>
     <H_icon btn name="account" color="pri" size="4em" />
     <H_input label="Input" />
     <H_textarea label="TextArea" />

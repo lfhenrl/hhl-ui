@@ -18,10 +18,13 @@
         class="H_tabs__tab"
         h-display="inline-flex"
         h-position="relative"
+        :h-bgcolor="activeTab === index ? 'var(--color-bg2)' : 'transparent'"
         h-cursor="pointer"
         h-padding="0.25em"
-        h-border-color="transparent"
+        :h-border-width="activeTab === index ? '1px 1px 0 1px' : '0'"
+        :h-margin="activeTab === index ? '0 0 -1px 0' : '0'"
         h-border-radius="4px 4px 0 0"
+        h-border-color="var(--color-txt6)"
         h-z-index="1"
         @click="changeTab(index)"
       >
@@ -31,7 +34,7 @@
           h-align-items="center"
           h-position="relative"
           h-padding="0 0.25em"
-          h-border-color="transparent"
+          :h-border-color="activeTab === index ? 'var(--color-pri)' : 'transparent'"
           h-border-width="0 0 3px 0"
         >
           <div class="iconBtn" :class="tab.props.icon" v-if="tab.props.icon" />
@@ -43,12 +46,11 @@
     <div
       class="H_tabs__tab_content"
       h-position="relative"
-      h-border-radius="4px"
+      :h-border-radius="activeTab === 0 ? '0 4px 4px 4px' : '4px'"
       h-height="100%"
       h-overflow="hidden"
       h-bgcolor="var(--color-bg2)"
       h-border="1px solid var(--color-txt6)"
-      :first="activeTab === 0 ? '' : null"
     >
       <slot />
     </div>
@@ -89,27 +91,3 @@ function changeTab(e: number) {
   activeTab.value = e;
 }
 </script>
-<style>
-@layer components {
-  .H_tabs {
-    .H_tabs__tab {
-      &[selected] {
-        border: 1px solid var(--color-txt4);
-        border-bottom-color: transparent;
-        background-color: var(--color-bg2);
-        margin-bottom: -1px;
-
-        .H_tabs__tab_label {
-          border-bottom-color: var(--color-pri);
-        }
-      }
-    }
-
-    .H_tabs__tab_content {
-      &[first] {
-        border-top-left-radius: 0;
-      }
-    }
-  }
-}
-</style>

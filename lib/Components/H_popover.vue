@@ -198,7 +198,7 @@ function closeDragElement() {
   }
 
   .H_pop-popup.widthAsRef {
-    width: anchor-size(width);
+    min-width: anchor-size(width);
   }
 
   .H_pop-popup.top {
