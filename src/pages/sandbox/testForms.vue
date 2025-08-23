@@ -2,7 +2,15 @@
   <div class="pagex">
     <H_themeSelector />
     <h1>Some text in H1</h1>
-    <div h-bgcolor="var(--h-color-contrast)" h-color="lime">JJJJ</div>
+    <div h-bgcolor="var(--color-ok)" h-color-contrast-fromBg h-bgcolor-opacity="70%">JJJJ</div>
+    <div h-color="red">JJJJ</div>
+    <div h-color="red" h-color-lighten="10%">JJJJ</div>
+    <div h-color="red" h-color-lighten="20%">JJJJ</div>
+    <div h-color="red" h-color-lighten="30%">JJJJ</div>
+    <div h-color="red" h-color-lighten="40%">JJJJ</div>
+    <div h-color="red" h-color-lighten="50%">JJJJ</div>
+    <div h-color="red" h-color-lighten="60%">JJJJ</div>
+
     <H_icon btn name="account" color="pri" size="4em" />
     <H_input label="Input" />
     <H_textarea label="TextArea" />

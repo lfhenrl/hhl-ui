@@ -16,9 +16,55 @@
     background-color: var(--h-bgcolor, lime);
   }
 
+  [h-bgcolor-opacity] {
+    --h-bgcolor-opacity: attr(h-bgcolor-opacity type(<percentage>));
+    background-color: color-mix(in srgb, var(--h-bgcolor), transparent var(--h-bgcolor-opacity));
+  }
+
+  [h-bgcolor-darken] {
+    --h-bgcolor-darken: attr(h-bgcolor-darken type(<percentage>));
+    background-color: color-mix(in srgb, var(--h-bgcolor), black var(--h-bgcolor-darken));
+  }
+
+  [h-bgcolor-lighten] {
+    --h-bgcolor-lighten: attr(h-bgcolor-lighten type(<percentage>));
+    background-color: color-mix(in srgb, var(--h-bgcolor), white var(--h-bgcolor-lighten));
+  }
+
+  [h-bgcolor-odd] {
+    --h-bgcolor-odd: attr(h-bgcolor-odd type(<color>));
+    &:nth-child(odd) {
+      background-color: var(--h-bgcolor-odd, lime);
+    }
+  }
+
   [h-color] {
     --h-color: attr(h-color type(<color>));
     color: var(--h-color, lime);
+  }
+
+  [h-color-opacity] {
+    --h-color-opacity: attr(h-color-opacity type(<percentage>));
+    color: color-mix(in srgb, var(--h-color), transparent var(--h-color-opacity));
+  }
+
+  [h-color-darken] {
+    --h-color-darken: attr(h-color-darken type(<percentage>));
+    color: color-mix(in srgb, var(--h-color), black var(--h-color-darken));
+  }
+
+  [h-color-lighten] {
+    --h-color-lighten: attr(h-color-lighten type(<percentage>));
+    color: color-mix(in srgb, var(--h-color), white var(--h-color-lighten));
+  }
+
+  [h-color-contrast] {
+    --h-color-contrast: attr(h-color-contrast type(<color>));
+    color: oklch(from var(--h-color-contrast) var(--h-l) 0 h);
+  }
+
+  [h-color-contrast-fromBg] {
+    color: oklch(from var(--h-bgcolor) var(--h-l) 0 h);
   }
 
   [h-margin] {
@@ -26,9 +72,49 @@
     margin: var(--h-margin, 0);
   }
 
+  [h-margin-top] {
+    --h-margin-top: attr(h-margin-top type(<length-percentage> | auto));
+    margin-top: var(--h-margin-top, 0);
+  }
+
+  [h-margin-bottom] {
+    --h-margin-bottom: attr(h-margin-bottom type(<length-percentage> | auto));
+    margin-bottom: var(--h-margin-bottom, 0);
+  }
+
+  [h-margin-left] {
+    --h-margin-left: attr(h-margin-left type(<length-percentage> | auto));
+    margin-left: var(--h-margin-left, 0);
+  }
+
+  [h-margin-right] {
+    --h-margin-right: attr(h-margin-right type(<length-percentage> | auto));
+    margin-right: var(--h-margin-right, 0);
+  }
+
   [h-padding] {
     --h-padding: attr(h-padding type(*));
     padding: var(--h-padding, 0);
+  }
+
+  [h-padding-top] {
+    --h-padding-top: attr(h-padding-top type(<length-percentage> | auto));
+    padding-top: var(--h-padding-top, 0);
+  }
+
+  [h-padding-bottom] {
+    --h-padding-bottom: attr(h-padding-bottom type(<length-percentage> | auto));
+    padding-bottom: var(--h-padding-bottom, 0);
+  }
+
+  [h-padding-left] {
+    --h-padding-left: attr(h-padding-left type(<length-percentage> | auto));
+    padding-left: var(--h-padding-left, 0);
+  }
+
+  [h-padding-right] {
+    --h-padding-right: attr(h-padding-right type(<length-percentage> | auto));
+    padding-right: var(--h-padding-right, 0);
   }
 
   [h-align-items] {
@@ -122,6 +208,26 @@
   [h-border] {
     --h-border: attr(h-border type(*));
     border: var(--h-border, 10px solid lime);
+  }
+
+  [h-border-top] {
+    --h-border-top: attr(h-border-top type(*));
+    border-top: var(--h-border-top, 10px solid lime);
+  }
+
+  [h-border-bottom] {
+    --h-border-bottom: attr(h-border-bottom type(*));
+    border-bottom: var(--h-border-bottom, 10px solid lime);
+  }
+
+  [h-border-left] {
+    --h-border-left: attr(h-border-left type(*));
+    border-left: var(--h-border-left, 10px solid lime);
+  }
+
+  [h-border-right] {
+    --h-border-right: attr(h-border-right type(*));
+    border-right: var(--h-border-right, 10px solid lime);
   }
 
   [h-border-color] {
@@ -330,5 +436,12 @@
   [h-flex-wrap] {
     --h-flex-wrap: attr(h-flex-wrap type(nowrap | wrap | wrap-reverse));
     flex-wrap: var(--h-flex-wrap);
+  }
+
+  [h-hover-scale] {
+    --h-hover-scale: attr(h-hover-scale type(<number> | <percentage>));
+    &:hover {
+      scale: var(--h-hover-scale);
+    }
   }
 }

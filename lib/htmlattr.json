@@ -1,9 +1,36 @@
 {
   "globalAttributes": [
     { "name": "h-color", "description": "color", "valueSet": "h-colors" },
+    { "name": "h-color-opacity", "description": "Set the opacity of the color" },
+    { "name": "h-color-darken", "description": "Darken the color" },
+    { "name": "h-color-lighten", "description": "Lighten the color" },
+    {
+      "name": "h-color-contrast",
+      "description": "Set the color to the contrast from the input color",
+      "valueSet": "h-colors"
+    },
+    { "name": "h-color-contrast-fromBg", "description": "Set the color to the contrast from the bgColor" },
+
     { "name": "h-bgcolor", "description": "Background-color", "valueSet": "h-colors" },
+    { "name": "h-bgcolor-opacity", "description": "Set the opacity of the Background-color" },
+    { "name": "h-bgcolor-darken", "description": "Darken the Background-color" },
+    { "name": "h-bgcolor-lighten", "description": "Lighten the Background-color" },
+    { "name": "h-bgcolor-odd", "description": "The Background-color for nth-child(odd)" },
+
+    { "name": "h-opacity", "description": "opacity" },
+
     { "name": "h-padding", "description": "Padding (10px 20px) (10px 20px 2px 5px)", "valueSet": "h-spacing" },
+    { "name": "h-padding-top", "description": "padding-top", "valueSet": "h-spacing" },
+    { "name": "h-padding-bottom", "description": "padding-bottom", "valueSet": "h-spacing" },
+    { "name": "h-padding-left", "description": "padding-left", "valueSet": "h-spacing" },
+    { "name": "h-padding-right", "description": "padding-right", "valueSet": "h-spacing" },
+
     { "name": "h-margin", "description": "Margin (10px 20px) (10px 20px 2px 5px)", "valueSet": "h-spacing" },
+    { "name": "h-margin-top", "description": "Margin-top", "valueSet": "h-spacing" },
+    { "name": "h-margin-bottom", "description": "Margin-bottom", "valueSet": "h-spacing" },
+    { "name": "h-margin-left", "description": "Margin-left", "valueSet": "h-spacing" },
+    { "name": "h-margin-right", "description": "Margin-right", "valueSet": "h-spacing" },
+
     { "name": "h-align-items", "description": "Align items in flex--box", "valueSet": "h-alignItems" },
     { "name": "h-justify-content", "description": "Justify-content in flex--box", "valueSet": "h-justifycontent" },
     { "name": "h-height", "description": "Height", "valueSet": "h-height-widths" },
@@ -15,7 +42,12 @@
     { "name": "h-font-size", "description": "Font-size", "valueSet": "h-font-sizes" },
     { "name": "h-gap", "description": "Gap for flexbox", "valueSet": "h-spacing" },
     { "name": "h-display", "description": "Display", "valueSet": "h-displays" },
+
     { "name": "h-border", "description": "Border" },
+    { "name": "h-border-top", "description": "Border-top" },
+    { "name": "h-border-bottom", "description": "Border-bottom" },
+    { "name": "h-border-left", "description": "Border-left" },
+    { "name": "h-border-right", "description": "Border-right" },
     { "name": "h-border-color", "description": "Border-color", "valueSet": "h-colors" },
     { "name": "h-border-width", "description": "Border-width" },
     { "name": "h-border-style", "description": "Border-Style", "valueSet": "h-border-styles" },
@@ -103,11 +135,6 @@
       "valueSet": "h-text-aligns"
     },
     {
-      "name": ":h-text-align",
-      "description": "controlling the alignment of text.",
-      "valueSet": "h-text-aligns"
-    },
-    {
       "name": "h-pointer-events",
       "description": "controlling whether an element responds to pointer events.",
       "valueSet": "h-pointer-eventser"
@@ -140,6 +167,10 @@
       "name": "h-flex-wrap",
       "description": "Sets whether flex items are forced onto one line or can wrap onto multiple lines..",
       "valueSet": "h-flex-wraps"
+    },
+    {
+      "name": "h-hover-scale",
+      "description": "Sets the scale when hovering over an element."
     }
   ],
 
@@ -664,44 +695,40 @@
           "description": "Spacing auto."
         },
         {
-          "name": "1px",
-          "description": "Spacing 1px."
-        },
-        {
-          "name": "2px",
-          "description": "Spacing 2px."
+          "name": "0.125rem",
+          "description": "0.5: Spacing 0.125rem = 2px."
         },
         {
           "name": "0.25rem",
-          "description": "Spacing 0.25rem = 4px."
+          "description": "1: Spacing 0.25rem = 4px."
         },
         {
           "name": "0.5rem",
-          "description": "Spacing 0.5rem = 8px."
+          "description": "2: Spacing 0.5rem = 8px."
         },
         {
           "name": "0.75rem",
-          "description": "Spacing 0.75rem = 12px."
+          "description": "3: Spacing 0.75rem = 12px."
         },
         {
-          "name": "1rem",
-          "description": "Spacing 1rem = 16px."
+          "name": "1.0rem",
+          "description": "4: Spacing 1rem = 16px."
         },
         {
           "name": "1.25rem",
-          "description": "Spacing 1.25rem = 20px."
+          "description": "5: Spacing 1.25rem = 20px."
         },
         {
           "name": "1.5rem",
-          "description": "Spacing 1.5rem = 24p."
+          "description": "6: Spacing 1.5rem = 24p."
         },
         {
           "name": "1.75rem",
-          "description": "Spacing 1.75rem = 28px."
+          "description": "7: Spacing 1.75rem = 28px."
         },
         {
-          "name": "2rem",
-          "description": "Spacing 2rem = 32px."
+          "name": "2.0rem",
+          "description": "8: Spacing 2rem = 32px."
         }
       ]
     },
