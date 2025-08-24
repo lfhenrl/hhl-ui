@@ -15,7 +15,7 @@
     { "name": "h-bgcolor-opacity", "description": "Set the opacity of the Background-color" },
     { "name": "h-bgcolor-darken", "description": "Darken the Background-color" },
     { "name": "h-bgcolor-lighten", "description": "Lighten the Background-color" },
-    { "name": "h-bgcolor-odd", "description": "The Background-color for nth-child(odd)" },
+    { "name": "h-bgcolor-odd", "description": "The Background-color for nth-child(odd)", "valueSet": "h-colors" },
 
     { "name": "h-opacity", "description": "opacity" },
 
@@ -86,29 +86,25 @@
       "valueSet": "h-flexes"
     },
     {
-      "name": "h-grid-template-rows",
+      "name": "h-grid-tmp-rows",
       "description": "Specifying the rows in a grid layout."
     },
     {
-      "name": "h-grid-template-columns",
+      "name": "h-grid-tmp-cols",
       "description": "Specifying the columns in a grid layout."
     },
     {
-      "name": "h-grid-row-start",
-      "description": "Specifying the row start for a element in a grid layout."
+      "name": "h-grid-col",
+      "description": "Specifies a grid item's size and location within a grid column by contributing a line, a span, or nothing (automatic) to its grid placement",
+      "valueSet": "h-grid-column/rows"
     },
+
     {
-      "name": "h-grid-row-end",
-      "description": "Specifying the row end for a element in a grid layout."
+      "name": "h-grid-row",
+      "description": "Specifies a grid item's size and location within a grid row by contributing a line, a span, or nothing (automatic) to its grid placement",
+      "valueSet": "h-grid-column/rows"
     },
-    {
-      "name": "h-grid-column-start",
-      "description": "Specifying the column start for a element in a grid layout."
-    },
-    {
-      "name": "h-grid-column-end",
-      "description": "Specifying the column end for a element in a grid layout.."
-    },
+
     {
       "name": "h-shadow",
       "description": "controlling the box shadow of an element.",
@@ -175,6 +171,27 @@
   ],
 
   "valueSets": [
+    {
+      "name": "h-grid-column/rows",
+      "values": [
+        {
+          "name": "1",
+          "description": "place the item at grid-line 1."
+        },
+        {
+          "name": "1 / 3",
+          "description": "place the item at grid-line 1 to grid-line 3."
+        },
+        {
+          "name": "1 / span 2",
+          "description": "place the item at grid-line 1 and span to line 3."
+        },
+        {
+          "name": "span 2",
+          "description": "place the item automatic and span 2 rows."
+        }
+      ]
+    },
     {
       "name": "h-flex-wraps",
       "values": [

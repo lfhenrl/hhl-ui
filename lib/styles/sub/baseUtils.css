@@ -338,33 +338,24 @@
     flex: var(--h-flex);
   }
 
-  [h-grid-template-rows] {
-    --h-grid-template-rows: attr(h-grid-template-rows type(*));
-    grid-template-rows: var(--h-grid-template-rows);
+  [h-grid-tmp-rows] {
+    --h-grid-tmp-rows: attr(h-grid-tmp-rows type(*));
+    grid-template-rows: var(--h-grid-tmp-rows);
   }
 
-  [h-grid-template-columns] {
-    --h-grid-template-columns: attr(h-grid-template-columns type(*));
-    grid-template-columns: var(--h-grid-template-columns);
+  [h-grid-tmp-cols] {
+    --h-grid-tmp-cols: attr(h-grid-tmp-cols type(*));
+    grid-template-columns: var(--h-grid-tmp-cols);
   }
 
-  [h-grid-row-start] {
-    --h-grid-row-start: attr(h-grid-row-start type(*));
-    grid-row-start: var(--h-grid-row-start);
+  [h-grid-col] {
+    --h-grid-col: attr(h-grid-col type(*));
+    grid-column: var(--h-grid-col);
   }
 
-  [h-grid-row-end] {
-    --h-grid-row-end: attr(h-grid-row-end type(*));
-    grid-row-end: var(--h-grid-row-end);
-  }
-
-  [h-grid-column-start] {
-    --h-grid-column-start: attr(h-grid-column-start type(*));
-    grid-column-start: var(--h-grid-column-start);
-  }
-  [h-grid-column-end] {
-    --h-grid-column-end: attr(h-grid-column-end type(*));
-    grid-column-end: var(--h-grid-column-end);
+  [h-grid-row] {
+    --h-grid-row: attr(h-grid-row type(*));
+    grid-row: var(--h-grid-row);
   }
 
   [h-font-size] {

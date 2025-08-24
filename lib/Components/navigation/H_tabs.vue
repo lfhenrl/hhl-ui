@@ -1,12 +1,5 @@
 <template>
-  <div
-    class="H_tabs"
-    h-display="grid"
-    h-height="100%"
-    h-width="100%"
-    h-overflow="hidden"
-    h-grid-template-rows="auto 1fr"
-  >
+  <div class="H_tabs" h-display="grid" h-height="100%" h-width="100%" h-overflow="hidden" h-grid-tmp-rows="auto 1fr">
     <div class="H_tabs__tabs" h-display="flex">
       <div
         v-for="(tab, index) in tabs"

@@ -4,25 +4,11 @@
     :href="to"
     :selected="isSelected ? '' : undefined"
     h-display="grid"
-    h-grid-template-columns="3px 50px"
-    h-grid-template-rows="26px 14px"
+    h-grid-tmp-cols="3px 50px"
+    h-grid-tmp-rows="26px 14px"
   >
-    <div
-      class="bar"
-      h-height="100%"
-      h-width="100%"
-      h-grid-row-start="1"
-      h-grid-row-end="3"
-      h-grid-column-start="1"
-    ></div>
-    <div
-      class="img"
-      h-display="flex"
-      h-align-items="center"
-      h-justify-content="center"
-      h-grid-row-start="1"
-      h-grid-column-start="2"
-    >
+    <div class="bar" h-height="100%" h-width="100%" h-grid-row="1 / 3" h-grid-col="1"></div>
+    <div class="img" h-display="flex" h-align-items="center" h-justify-content="center" h-grid-row="1" h-grid-col="2">
       <H_icon :name="icon"></H_icon>
     </div>
     <div
@@ -31,8 +17,8 @@
       h-display="flex"
       h-align-items="center"
       h-justify-content="center"
-      h-grid-row-start="2"
-      h-grid-column-start="2"
+      h-grid-row="2"
+      h-grid-col="2"
     >
       {{ title }}
     </div>

@@ -2,14 +2,17 @@
   <div class="pagex">
     <H_themeSelector />
     <h1>Some text in H1</h1>
-    <div h-bgcolor="var(--color-ok)" h-color-contrast-fromBg h-bgcolor-opacity="70%">JJJJ</div>
-    <div h-color="red">JJJJ</div>
-    <div h-color="red" h-color-lighten="10%">JJJJ</div>
-    <div h-color="red" h-color-lighten="20%">JJJJ</div>
-    <div h-color="red" h-color-lighten="30%">JJJJ</div>
-    <div h-color="red" h-color-lighten="40%">JJJJ</div>
-    <div h-color="red" h-color-lighten="50%">JJJJ</div>
-    <div h-color="red" h-color-lighten="60%">JJJJ</div>
+    <div
+      h-display="grid"
+      h-grid-tmp-rows="100px 100px 100px"
+      h-grid-tmp-cols="100px 100px 100px"
+      h-gap="0.5rem"
+      h-border="2px solid red"
+    >
+      <div h-bgcolor="var(--color-ok)" h-grid-col="3" h-grid-row="3 / 4">A</div>
+      <div h-bgcolor="var(--color-ok)" h-grid-row="2" h-grid-col="span 2">B</div>
+      <div h-bgcolor="var(--color-ok)" h-grid-row="1" h-grid-col="2 / 4">C</div>
+    </div>
 
     <H_icon btn name="account" color="pri" size="4em" />
     <H_input label="Input" />
