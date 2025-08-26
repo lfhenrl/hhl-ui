@@ -20,12 +20,16 @@
     { "name": "h-opacity", "description": "opacity" },
 
     { "name": "h-padding", "description": "Padding (10px 20px) (10px 20px 2px 5px)", "valueSet": "h-spacing" },
+    { "name": "h-padding-block", "description": "padding top and bottom ", "valueSet": "h-spacing" },
+    { "name": "h-padding-inline", "description": "padding left and right ", "valueSet": "h-spacing" },
     { "name": "h-padding-top", "description": "padding-top", "valueSet": "h-spacing" },
     { "name": "h-padding-bottom", "description": "padding-bottom", "valueSet": "h-spacing" },
     { "name": "h-padding-left", "description": "padding-left", "valueSet": "h-spacing" },
     { "name": "h-padding-right", "description": "padding-right", "valueSet": "h-spacing" },
 
     { "name": "h-margin", "description": "Margin (10px 20px) (10px 20px 2px 5px)", "valueSet": "h-spacing" },
+    { "name": "h-margin-block", "description": "margin top and bottom ", "valueSet": "h-spacing" },
+    { "name": "h-margin-inline", "description": "margin left and right ", "valueSet": "h-spacing" },
     { "name": "h-margin-top", "description": "Margin-top", "valueSet": "h-spacing" },
     { "name": "h-margin-bottom", "description": "Margin-bottom", "valueSet": "h-spacing" },
     { "name": "h-margin-left", "description": "Margin-left", "valueSet": "h-spacing" },

@@ -72,6 +72,16 @@
     margin: var(--h-margin, 0);
   }
 
+  [h-margin-block] {
+    --h-margin-block: attr(h-margin-block type(<length-percentage> | auto));
+    margin-block: var(--h-margin-block, 0);
+  }
+
+  [h-margin-inline] {
+    --h-margin-inline: attr(h-margin-inline type(<length-percentage> | auto));
+    margin-inline: var(--h-margin-inline, 0);
+  }
+
   [h-margin-top] {
     --h-margin-top: attr(h-margin-top type(<length-percentage> | auto));
     margin-top: var(--h-margin-top, 0);
@@ -95,6 +105,16 @@
   [h-padding] {
     --h-padding: attr(h-padding type(*));
     padding: var(--h-padding, 0);
+  }
+
+  [h-padding-block] {
+    --h-padding-block: attr(h-padding-block type(<length-percentage> | auto));
+    padding-block: var(--h-padding-block, 0);
+  }
+
+  [h-padding-inline] {
+    --h-padding-inline: attr(h-padding-inline type(<length-percentage> | auto));
+    padding-inline: var(--h-padding-inline, 0);
   }
 
   [h-padding-top] {
