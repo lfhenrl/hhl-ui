@@ -142,9 +142,19 @@
     align-items: var(--h-align-items);
   }
 
+  [h-align-self] {
+    --h-align-self: attr(h-align-self type(<custom-ident>));
+    align-self: var(--h-align-self);
+  }
+
   [h-justify-content] {
     --h-justify-content: attr(h-justify-content type(<custom-ident>));
     justify-content: var(--h-justify-content);
+  }
+
+  [h-justify-self] {
+    --h-justify-self: attr(h-justify-self type(<custom-ident>));
+    justify-self: var(--h-justify-self);
   }
 
   [h-height] {

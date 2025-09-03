@@ -18,13 +18,13 @@
     <div
       class="H_baseDatePicker__popup"
       h-border-radius="4px"
-      h-border="1px solid var(--color-bg2)"
-      h-bgcolor="var(--color-bg6)"
+      h-bgcolor="var(--bgcol-2)"
       @keydown="keyDown"
       @click.prevent
     >
       <H_dateSelector
         ref="dateSelector"
+        h-bgcolor="var(--bgcol-1)"
         tabindex="0"
         :date="tempDate"
         :date-base="dateBase"
@@ -51,12 +51,12 @@
         class="actions"
         h-display="flex"
         h-justify-content="end"
-        h-bgcolor="var(--color-bg4)"
+        h-bgcolor="var(--bgcol-1)"
         h-gap="1em"
         h-padding="0.7em"
         h-border-radius="0 0 4px 4px"
       >
-        <H_btn tabindex="-1" h-font-size="sm" color="sec" h-color="var(--color-sec)" @click.stop="cancel">CANCEL</H_btn>
+        <H_btn tabindex="-1" h-font-size="sm" color="sec" h-color="var(--col-sec)" @click.stop="cancel">CANCEL</H_btn>
         <H_btn tabindex="-1" h-font-size="sm" @click.stop="ok">OK</H_btn>
       </div>
     </div>
@@ -220,12 +220,12 @@ function ArrowDown() {
     padding: 0 0.2em;
   }
   .H_baseDatePicker:focus {
-    background-color: hsl(from var(--color-pri) h s l / 30%);
+    background-color: hsl(from var(--col-pri) h s l / 30%);
   }
 
   .H_baseDatePicker_input_icon {
     font-size: 1.2em;
-    color: var(--color-txt1);
+    color: var(--col-1);
   }
   .H_baseDatePicker_input_value {
     width: fit-content;

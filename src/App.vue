@@ -105,8 +105,8 @@ export default defineComponent({
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: var(--color-bg0);
-  color: var(--color-txt1);
+  background-color: var(--bgcol-0);
+  color: var(--col-1);
 }
 
 .main-container .nav-bar {

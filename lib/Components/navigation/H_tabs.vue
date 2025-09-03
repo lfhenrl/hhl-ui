@@ -11,13 +11,13 @@
         class="H_tabs__tab"
         h-display="inline-flex"
         h-position="relative"
-        :h-bgcolor="activeTab === index ? 'var(--color-bg2)' : 'transparent'"
+        :h-bgcolor="activeTab === index ? 'var(--bgcol-2)' : 'transparent'"
         h-cursor="pointer"
         h-padding="0.25em"
         :h-border-width="activeTab === index ? '1px 1px 0 1px' : '0'"
         :h-margin="activeTab === index ? '0 0 -1px 0' : '0'"
         h-border-radius="4px 4px 0 0"
-        h-border-color="var(--color-txt6)"
+        h-border-color="var(--col-6)"
         h-z-index="1"
         @click="changeTab(index)"
       >
@@ -27,7 +27,7 @@
           h-align-items="center"
           h-position="relative"
           h-padding="0 0.25em"
-          :h-border-color="activeTab === index ? 'var(--color-pri)' : 'transparent'"
+          :h-border-color="activeTab === index ? 'var(--col-pri)' : 'transparent'"
           h-border-width="0 0 3px 0"
         >
           <div class="iconBtn" :class="tab.props.icon" v-if="tab.props.icon" />
@@ -42,8 +42,8 @@
       :h-border-radius="activeTab === 0 ? '0 4px 4px 4px' : '4px'"
       h-height="100%"
       h-overflow="hidden"
-      h-bgcolor="var(--color-bg2)"
-      h-border="1px solid var(--color-txt6)"
+      h-bgcolor="var(--bgcol-2)"
+      h-border="1px solid var(--col-6)"
     >
       <slot />
     </div>

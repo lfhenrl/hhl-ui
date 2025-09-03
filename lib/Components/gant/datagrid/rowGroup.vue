@@ -127,7 +127,7 @@ onMounted(() => {
   }
 
   .rowGroup.dropGroup {
-    outline: 2px solid var(--color-pri);
+    outline: 2px solid var(--col-pri);
     outline-offset: -1px;
   }
 

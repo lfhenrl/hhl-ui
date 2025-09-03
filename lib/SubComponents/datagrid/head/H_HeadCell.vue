@@ -29,7 +29,7 @@
     flex-direction: column;
     width: max-content;
     min-height: 34px;
-    border-right: 1px solid var(--color-txt8);
+    border-right: 1px solid var(--col-7);
   }
 
   .H_headCell__actions {

@@ -10,14 +10,16 @@ The event: `@dirty-valid=""` is true when all is valid and the data have changes
 
 <hhl-live-editor title="" htmlCode=' 
     <template>
-    <H_form :data="data" v-model:dirty="isDirty" @valid="isValid = $event"  @dirty-valid="isDirtyAndValid = $event" class="flex flex-col py-8 gap-8" >
-      <H_input label="Navn" v-model="data.navn" :validator="[validator.required]" class="mb-4"></H_input>
+    <H_form :data="data" v-model:dirty="isDirty" @valid="isValid = $event"  @dirty-valid="isDirtyAndValid = $event"   h-gap="3rem">
+      <H_input label="Navn" v-model="data.navn" :validator="[validator.required]" ></H_input>
       <H_input label="City" v-model="data.city" :validator="[validator.required]" ></H_input>
+      <div h-display=flex h-flex-direction="column">
       <H_switch label="Valid" v-model="isValid"></H_switch>
       <H_switch label="Dirty" v-model="isDirty" ></H_switch>
       <H_switch label="DirtyAndValid" v-model="isDirtyAndValid" ></H_switch>
+      </div>
       <H_range v-model="data.duration" :min="0" :max="100" ></H_range>
-      <H_btn class="self-start" type="submit" :disabled="!isDirtyAndValid" >SAVE</H_btn>
+      <H_btn h-align-self="end" type="submit" :disabled="!isDirtyAndValid" >SAVE</H_btn>
     </H_form>
     </template>
     <script>

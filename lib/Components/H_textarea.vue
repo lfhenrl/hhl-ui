@@ -25,7 +25,7 @@
       h-width="100%"
       h-margin="0 0 0 0.2em"
     />
-    <H_icon name="close" h-color="var(--color-txt3)" h-margin="0 0.1em" btn v-if="showClear" @click="model = ''" />
+    <H_icon name="close" h-color="var(--col-3)" h-margin="0 0.1em" btn v-if="showClear" @click="model = ''" />
   </H_inputbase>
 </template>
 
@@ -91,7 +91,7 @@ const validate = computed(() => validateFunc(P.validator, model.value));
 @layer components {
   .H_textarea {
     &:focus-within {
-      border-color: var(--color-pri);
+      border-color: var(--col-pri);
     }
     [set-end] {
       margin-inline: 0.2em;

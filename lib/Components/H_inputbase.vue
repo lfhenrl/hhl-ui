@@ -44,9 +44,9 @@ const infotext = computed(() => {
     width: stretch;
     width: -moz-available;
     width: -webkit-fill-available;
-    border: 1px solid var(--color-txt6);
+    border: 1px solid var(--col-6);
     border-radius: 4px;
-    color: var(--color-txt1);
+    color: var(--col-1);
     min-height: 1.875em;
 
     [set-end] {
@@ -58,7 +58,7 @@ const infotext = computed(() => {
     position: absolute;
     top: -1.6em;
     left: 2px;
-    color: var(--color-txt2);
+    color: var(--col-2);
     white-space: nowrap;
     font-size: 0.9em;
   }
@@ -68,18 +68,18 @@ const infotext = computed(() => {
     bottom: -1.5em;
     left: 4px;
     font-size: 0.65em;
-    color: var(--color-txt2);
+    color: var(--col-2);
   }
 
   .H_inputbase__hintStart.error {
-    color: var(--color-err);
+    color: var(--col-err);
   }
 
   .H_inputbase__hintEnd {
     position: absolute;
     bottom: -1.5em;
     right: 4px;
-    color: var(--color-txt2);
+    color: var(--col-2);
     font-size: 0.65em;
   }
 }

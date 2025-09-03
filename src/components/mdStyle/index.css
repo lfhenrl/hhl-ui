@@ -4,7 +4,7 @@
 .linkList {
   display: flex;
   flex-direction: column;
-  color: var(--color-ok);
+  color: var(--col-ok);
 }
 
 .markdown-body h1,
@@ -54,16 +54,16 @@
 }
 
 .markdown-body tr {
-  border-top: 1px solid var(--coler-bg4);
+  border-top: 1px solid var(--bgcol-1);
 }
 
 .markdown-body tr:nth-child(2n) {
-  background-color: var(--color-bg2);
+  background-color: var(--bgcol-2);
 }
 
 .markdown-body th,
 .markdown-body td {
-  border: 1px solid var(--color-bg4);
+  border: 1px solid var(--bgcol-1);
   padding: 0.6em 1em;
 }
 

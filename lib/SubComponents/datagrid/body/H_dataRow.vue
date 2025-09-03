@@ -27,20 +27,22 @@
     min-height: var(--dgrid-row-height);
     max-height: var(--dgrid-row-height);
     height: var(--dgrid-row-height);
-    background-color: var(--color-bg0);
+    background-color: var(--bgcol-0);
   }
   .H_dataRow:nth-child(odd) {
-    background-color: var(--color-bg3);
+    background-color: var(--bgcol-2);
   }
 
   .H_dataRow:nth-child(even) {
-    background-color: var(--color-bg2);
+    background-color: color-mix(in oklab, var(--bgcol-0) 50%, transparent);
   }
-  .H_dataRow:hover {
-    background-color: var(--color-bg2);
-  }
+
   .H_dataRow[data-selected] {
-    background-color: color-mix(in oklab, var(--color-pri) 20%, transparent);
+    background-color: color-mix(in oklab, var(--col-pri) 20%, transparent);
+  }
+
+  .H_dataRow:hover {
+    background-color: color-mix(in oklab, var(--col-warn) 10%, transparent);
   }
   .H_dataRow.sticky-0 {
     position: sticky;
@@ -66,8 +68,8 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   text-box-trim: trim-both;
-  border-right: 1px solid var(--color-txt9);
-  border-bottom: 1px solid var(--color-txt9);
+  border-right: 1px solid var(--col-7);
+  border-bottom: 1px solid var(--col-7);
   &[autoheight] {
     white-space: break-spaces;
   }

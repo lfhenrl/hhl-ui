@@ -9,9 +9,9 @@
       h-gap="0.5rem"
       h-border="2px solid red"
     >
-      <div h-bgcolor="var(--color-ok)" h-grid-col="3" h-grid-row="3 / 4">A</div>
-      <div h-bgcolor="var(--color-ok)" h-grid-row="2" h-grid-col="span 2">B</div>
-      <div h-bgcolor="var(--color-ok)" h-grid-row="1" h-grid-col="2 / 4">C</div>
+      <div h-bgcolor="var(--col-ok)" h-grid-col="3" h-grid-row="3 / 4">A</div>
+      <div h-bgcolor="var(--col-ok)" h-grid-row="2" h-grid-col="span 2">B</div>
+      <div h-bgcolor="var(--col-ok)" h-grid-row="1" h-grid-col="2 / 4">C</div>
     </div>
 
     <H_icon btn name="account" color="pri" size="4em" />

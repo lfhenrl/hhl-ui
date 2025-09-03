@@ -4,9 +4,9 @@
   padding: 0.25rem 0.5rem;
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
   font-size: 0.9em;
-  color: var(--color-txt1);
+  color: var(--col-0);
   font-weight: bold;
-  background-color: var(--color-bg3);
+  background-color: var(--col-9);
   line-height: 0.9em;
 }
 

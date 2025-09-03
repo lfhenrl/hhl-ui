@@ -1,39 +1,29 @@
 :root {
-  --color-pri: #2972e8;
-  --color-priTxt: #fff;
-  --color-sec: #6c757d;
-  --color-secTxt: #fff;
-  --color-ok: #28a745;
-  --color-okTxt: #fff;
-  --color-err: #dc3545;
-  --color-errTxt: #fff;
-  --color-warn: #ffc107;
-  --color-warnTxt: black;
-  --color-info: #17a2b8;
-  --color-infoTxt: #fff;
+  --col-pri: #2972e8;
+  --col-sec: #6c757d;
+  --col-ok: #28a745;
+  --col-err: #dc3545;
+  --col-warn: #ffc107;
+  --col-info: #17a2b8;
 
-  --color-bg0: hsl(230, 40%, 90%);
-  --color-bg1: hsl(225, 40%, 90.5%);
-  --color-bg2: hsl(210, 40%, 91%);
-  --color-bg3: hsl(200, 35%, 92%);
-  --color-bg4: hsl(220, 35%, 94%);
-  --color-bg5: hsl(240, 50%, 96%);
-  --color-bg6: hsl(200, 30%, 98%);
+  --bgcol-0: hsl(212.72, 29.91%, 84.02%);
+  --bgcol-1: hsl(214.28, 32.97%, 91.42%);
+  --bgcol-2: hsl(210, 40.55%, 96.05%);
 
-  --color-txt0: hsl(230, 100%, 3%);
-  --color-txt1: hsl(230, 26%, 29%);
-  --color-txt2: hsl(230, 15%, 40%);
-  --color-txt3: hsl(230, 15%, 52%);
-  --color-txt4: hsl(230, 15%, 57%);
-  --color-txt5: hsl(230, 15%, 60%);
-  --color-txt6: hsl(230, 15%, 63%);
-  --color-txt7: hsl(230, 20%, 70%);
-  --color-txt8: hsl(230, 20%, 78%);
-  --color-txt9: hsl(230, 20%, 86%);
+  --col-0: hsl(230, 100%, 3%);
+  --col-1: hsl(230, 26%, 29%);
+  --col-2: hsl(230, 15%, 40%);
+  --col-3: hsl(230, 15%, 52%);
+  --col-4: hsl(230, 15%, 57%);
+  --col-5: hsl(230, 15%, 60%);
+  --col-6: hsl(230, 15%, 63%);
+  --col-7: hsl(230, 20%, 70%);
+  --col-8: hsl(230, 20%, 78%);
+  --col-9: hsl(230, 20%, 86%);
 
   --theme-shadow-sm: 0 6px 8px -8px rgba(0, 0, 0, 0.658);
   --theme-shadow-md: 0 10px 12px -12px rgba(0, 0, 0, 0.603);
   --theme-shadow-lg: 0 16px 18px -18px rgba(0, 0, 0, 0.658);
   --h-l: clamp(0, (l / var(--l-threshold, 0.623) - 1) * -infinity, 1);
-  --font-sans: "Public Sans", sans-serif;
+  --font-sans: "Public Sans", sans-seri;
 }

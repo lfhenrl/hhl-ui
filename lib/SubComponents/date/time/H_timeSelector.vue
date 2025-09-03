@@ -60,8 +60,8 @@ function onFocus(_: FocusEvent, value: string) {
     text-box-trim: trim-both;
   }
   .H_timeSelector_value[selected="true"] {
-    background-color: var(--color-pri);
-    color: var(--color-priTxt);
+    background-color: var(--col-pri);
+    color: white;
   }
   .H_timeSelector_space {
     font-size: 1.3em;

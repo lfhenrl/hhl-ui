@@ -4,14 +4,14 @@
       <div
         moveable-drag
         class="H_dialogService__title"
-        h-bgcolor="var(--color-pri)"
-        h-color="var(--color-priTxt)"
+        h-bgcolor="var(--col-pri)"
+        h-color-contrast-fromBg
         h-padding="0.25em 0"
         h-text-align="center"
       >
         {{ dialog.title }}
       </div>
-      <div class="H_dialogService__content" h-padding="0.75rem" h-color="var(--color-txt1)">
+      <div class="H_dialogService__content" h-padding="0.75rem" h-color="var(--col-1)">
         {{ dialog.info }}
       </div>
       <div
@@ -21,10 +21,10 @@
         h-gap="1em"
         h-padding="0 0.75em 0.75em 0.75em"
       >
-        <H_btn h-font-size="sm" :class="dialog.buttons.cancel.Color" @click="dialogCancel">
+        <H_btn h-font-size="sm" :h-color="dialog.buttons.cancel.Color" @click="dialogCancel">
           {{ dialog.buttons.cancel.Text }}
         </H_btn>
-        <H_btn h-font-size="sm" :class="dialog.buttons.ok.Color" @click="dialogOk">
+        <H_btn h-font-size="sm" :h-color="dialog.buttons.ok.Color" @click="dialogOk">
           {{ dialog.buttons.ok.Text }}
         </H_btn>
       </div>
@@ -47,8 +47,8 @@ const dialog = ref({
   title: "Title",
   info: "Info",
   buttons: {
-    ok: { Text: "Ok", Color: "col-pri" },
-    cancel: { Text: "Cancel", Color: "col-sec" },
+    ok: { Text: "Ok", Color: "var(--col-pri)" },
+    cancel: { Text: "Cancel", Color: "var(--col-sec)" },
   },
   callback(ok: boolean) {
     return ok;
@@ -168,13 +168,13 @@ function updateButtons(data: any) {
     data.buttons.ok.Text = "Ok";
   }
   if (!but.ok.Color) {
-    data.buttons.ok.Color = "col-pri";
+    data.buttons.ok.Color = "var(--col-pri)";
   }
   if (!but.cancel.Text) {
     data.buttons.cancel.Text = "Cancel";
   }
   if (!but.cancel.Color) {
-    data.buttons.cancel.Color = "col-sec";
+    data.buttons.cancel.Color = "var(--col-sec)";
   }
   return data;
 }

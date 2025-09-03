@@ -24,7 +24,6 @@ import H_icon from "./H_icon.vue";
 
 defineProps({
   check: { type: Boolean, default: false },
-  bgcolor: { String, default: "var(--color-priTxt)" },
   variant: {
     type: String as PropType<"switch" | "checkbox" | "radio">,
     default: "radio",
@@ -39,7 +38,7 @@ const E = defineEmits([]);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 0.15em solid var(--color-txt5);
+    border: 0.15em solid var(--col-5);
     border-radius: 4px;
     --color-contrast: oklch(from var(--h-color) var(--h-l) 0 h);
   }
@@ -80,7 +79,7 @@ const E = defineEmits([]);
     border-radius: calc(infinity * 1px);
     justify-content: start;
     border-color: transparent;
-    background-color: var(--color-txt5);
+    background-color: var(--col-5);
     --switch-translate: 0;
   }
   .H_switchbase__indicator_switch {

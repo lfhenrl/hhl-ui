@@ -14,8 +14,9 @@
       :type
       @click="$emit('update:modelValue', false)"
     >
-      <H_icon name="check" h-font-size="2rem" h-color="white" v-if="type === 'info'" />
-      <H_icon name="info" h-font-size="2rem" v-else />
+      <H_icon name="check" h-font-size="2rem" h-color="black" v-if="type === 'info'" />
+      <H_icon name="info" h-font-size="2rem" h-color="black" v-if="type === 'warn'" />
+      <H_icon name="info" h-font-size="2rem" h-color="white" v-if="type === 'err'" />
 
       <div class="H_snack-info" h-display="flex" h-flex-direction="column" h-align-items="center" h-flex="1">
         <div h-font-size="1.125em">{{ title }}</div>
@@ -57,16 +58,16 @@ defineExpose({ close });
   .H_snack {
     z-index: 500;
     &[type="err"] {
-      background-color: var(--color-err);
-      color: var(--color-errTxt);
+      background-color: var(--col-err);
+      color: white;
     }
     &[type="warn"] {
-      background-color: var(--color-warn);
-      color: var(--color-warnTxt);
+      background-color: var(--col-warn);
+      color: black;
     }
     &[type="info"] {
-      background-color: var(--color-ok);
-      color: var(--color-okTxt);
+      background-color: var(--col-ok);
+      color: black;
     }
     .H_snack-info {
       div {

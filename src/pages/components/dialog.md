@@ -10,11 +10,11 @@ It can be controlled by v-model and the closing depent on the property `closedby
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex items-center gap-4 flex-wrap">
+    <div h-display="flex" h-align-items="center" h-gap="1rem">
     <H_btn @click="dialogOpen = !dialogOpen">PopUp</H_btn>
     <H_dialog closedby="any" v-model="dialogOpen">
-    <div class="p-33">hej</div>
-    <div class="H_dialogService-footer flex gap-4 justify-end px-3 pb-3">
+    <div h-padding="100px">hej</div>
+    <div h-display="flex" h-justify-content="end" h-padding="0 0.75rem 0.75rem 0.75rem" h-gap="1rem">
     <H_btn @click="dialogOpen = !dialogOpen">Close</H_btn>
     </div>
     </H_dialog>
@@ -36,11 +36,11 @@ It can be controlled by v-model and the closing depent on the property `closedby
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex items-center gap-4 flex-wrap">
+    <div h-display="flex" h-align-items="center" h-gap="1rem">
     <H_btn @click="dialogOpen = !dialogOpen">PopUp</H_btn>
     <H_dialog closedby="closerequest" v-model="dialogOpen">
-     <div class="p-33">hej</div>
-    <div class="H_dialogService-footer flex gap-4 justify-end px-3 pb-3">
+     <div h-padding="100px">hej</div>
+    <div h-display="flex" h-justify-content="end" h-padding="0 0.75rem 0.75rem 0.75rem" h-gap="1rem">
     <H_btn @click="dialogOpen = !dialogOpen">Close</H_btn>
     </div>
     </H_dialog>
@@ -62,11 +62,11 @@ It can be controlled by v-model and the closing depent on the property `closedby
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex items-center gap-4 flex-wrap">
+    <div h-display="flex" h-align-items="center" h-gap="1rem">
     <H_btn @click="dialogOpen = !dialogOpen">PopUp</H_btn>
     <H_dialog closedby="none" v-model="dialogOpen">
-    <div class="p-33">hej</div>
-    <div class="H_dialogService-footer flex gap-4 justify-end px-3 pb-3">
+    <div h-padding="100px">hej</div>
+    <div h-display="flex" h-justify-content="end" h-padding="0 0.75rem 0.75rem 0.75rem" h-gap="1rem">
     <H_btn @click="dialogOpen = !dialogOpen">Close</H_btn>
     </div>
     </H_dialog>
@@ -88,11 +88,11 @@ It can be controlled by v-model and the closing depent on the property `closedby
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex items-center gap-4 flex-wrap">
+    <div h-display="flex" h-align-items="center" h-gap="1rem">
     <H_btn @click="dialogOpen">PopUp</H_btn>
     <H_dialog closedby="none" ref="dialog">
-    <div class="p-33">hej</div>
-    <div class="H_dialogService-footer flex gap-4 justify-end px-3 pb-3">
+    <div h-padding="100px">hej</div>
+    <div h-display="flex" h-justify-content="end" h-padding="0 0.75rem 0.75rem 0.75rem" h-gap="1rem">
     <H_btn @click="dialogClose">Close</H_btn>
     </div>
     </H_dialog>
@@ -118,11 +118,11 @@ By adding the property `no-shake` it will remove the shaking when you try to clo
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex items-center gap-4 flex-wrap">
+    <div h-display="flex" h-align-items="center" h-gap="1rem">
     <H_btn @click="dialogOpen = !dialogOpen">PopUp</H_btn>
     <H_dialog closedby="none" no-shake v-model="dialogOpen">
-    <div class="p-33">hej</div>
-    <div class="H_dialogService-footer flex gap-4 justify-end px-3 pb-3">
+    <div h-padding="100px">hej</div>
+    <div h-display="flex" h-justify-content="end" h-padding="0 0.75rem 0.75rem 0.75rem" h-gap="1rem">
     <H_btn @click="dialogOpen = !dialogOpen">Close</H_btn>
     </div>
     </H_dialog>
@@ -143,12 +143,12 @@ By adding the property `moveable-drag` to one element in the Popup it will be he
 
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="flex items-center gap-4 flex-wrap">
+    <div h-display="flex" h-align-items="center" h-gap="1rem">
     <H_btn @click="dialogOpen = !dialogOpen">Drag</H_btn>
     <H_dialog closedby="none" movable v-model="dialogOpen">
      <div moveable-drag class="col-pri py-1 text-center">Drag me!</div>
-    <div class="p-33">hej</div>
-    <div class="H_dialogService-footer flex gap-4 justify-end px-3 pb-3">
+    <div h-padding="100px">hej</div>
+    <div h-display="flex" h-justify-content="end" h-padding="0 0.75rem 0.75rem 0.75rem" h-gap="1rem">
     <H_btn @click="dialogOpen = !dialogOpen">Close</H_btn>
     </div>
     </H_dialog>
@@ -169,7 +169,7 @@ It can be controlled by `inset-left` and/or `inset-top`
 
 <hhl-live-editor title="" htmlCode='
     <template>
-        <div class="flex items-center gap-4">
+        <div h-display="flex" h-align-items="center" h-gap="1rem">
             <H_select variant="radio"
                   :list 
                   v-model="left" label="inset-left">
@@ -179,7 +179,7 @@ It can be controlled by `inset-left` and/or `inset-top`
                   v-model="top" label="inset-top">
             </H_select>
             <H_btn @click="dialogOpen = !dialogOpen">PopUp</H_btn>
-            <H_dialog closedby="any" :inset-left="left" :inset-top="top" inset-top="0 0" v-model="dialogOpen"><div class="p-33">Hej</div></H_dialog>
+            <H_dialog closedby="any" :inset-left="left" :inset-top="top" inset-top="0 0" v-model="dialogOpen"><div h-padding="100px">Hej</div></H_dialog>
         </div>
     </template>
     <script>

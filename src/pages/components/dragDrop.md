@@ -8,7 +8,7 @@
   flex-direction: column;
   height:460px;
   width:160px;
-  border: 1px solid var(--color-bg5);
+  border: 1px solid var(--col-5);
   border-radius: 4px;
   padding: 16px;
   gap: 10px;
@@ -22,11 +22,11 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-     <div class="flex items-center gap-4">
+     <div h-display="flex" h-align-items="center" h-gap="1rem">
         <H_drag-drop v-model="list1" class="dragContainer">
           <template v-slot:item="{ item }">
             <!-- example -->
-            <div class="dragItem col-pri shadow">
+            <div h-shadow="md" h-bgcolor="var(--col-pri)" h-color="white" h-text-align="center">
               {{ item.title }}
             </div>
             <!-- or your own template -->
@@ -38,7 +38,7 @@
         <H_drag-drop v-model="list2" class="dragContainer" :max-items="3">
           <template v-slot:item="{ item }">
             <!-- example -->
-            <div class="dragItem col-pri shadow">
+            <div h-shadow="md" h-bgcolor="var(--col-pri)" h-color="white" h-text-align="center">
               {{ item.title }}
             </div>
             <!-- or your own template -->

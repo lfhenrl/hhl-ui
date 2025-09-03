@@ -1,27 +1,31 @@
 @layer base {
   .darkTheme {
-    --color-bg0: hsl(240, 30%, 18%);
-    --color-bg1: hsl(240, 30%, 20%);
-    --color-bg2: hsl(240, 30%, 22%);
-    --color-bg3: hsl(240, 30%, 24%);
+    --bgcol-0: hsl(240, 30%, 17%);
+    --bgcol-1: hsl(223, 48%, 22%);
+    --bgcol-2: hsl(240, 30%, 30%);
+    /*     --color-bg3: hsl(240, 30%, 24%);
     --color-bg4: hsl(240, 30%, 26%);
     --color-bg5: hsl(240, 30%, 28%);
-    --color-bg6: hsl(240, 30%, 30%);
+    --color-bg6: hsl(240, 30%, 30%); */
 
-    --color-txt0: hsl(180, 100%, 97%);
-    --color-txt1: hsl(211, 38%, 83%);
-    --color-txt2: hsl(211, 22%, 70%);
-    --color-txt3: hsl(212, 17%, 63%);
-    --color-txt4: hsl(211, 14%, 56%);
-    --color-txt5: hsl(212, 13%, 47%);
-    --color-txt6: hsl(211, 14%, 40%);
-    --color-txt7: hsl(212, 19%, 29%);
-    --color-txt8: hsl(212, 19%, 24%);
-    --color-txt9: hsl(212, 19%, 22%);
+    /*     --bgcol-0: hsl(0, 0%, 0%);
+    --bgcol-1: hsl(0, 0%, 5%);
+    --bgcol-2: hsl(0, 0%, 9%); */
 
-    --theme-shadow-sm: 0 8px 18px -18px black;
-    --theme-shadow-md: 0 14px 18px -18px black;
-    --theme-shadow-lg: 0 18px 18px -18px black;
+    --col-0: hsl(180, 100%, 97%);
+    --col-1: hsl(211, 38%, 83%);
+    --col-2: hsl(211, 22%, 70%);
+    --col-3: hsl(212, 17%, 63%);
+    --col-4: hsl(211, 14%, 56%);
+    --col-5: hsl(212, 13%, 47%);
+    --col-6: hsl(211, 14%, 40%);
+    --col-7: hsl(212, 19%, 29%);
+    --col-8: hsl(212, 19%, 24%);
+    --col-9: hsl(212, 19%, 22%);
+
+    --theme-shadow-sm: 0 2px 2px -1px rgba(12, 6, 6, 0.685), inset 0px 5px 9px -10px rgba(255, 255, 255, 0.2);
+    --theme-shadow-md: 0 2px 4px -1px rgba(12, 6, 6, 0.685), inset 0px 5px 9px -10px rgba(255, 255, 255, 0.2);
+    --theme-shadow-lg: 0 4px 8px -1px rgba(12, 6, 6, 0.685), inset 0px 5px 9px -10px rgba(255, 255, 255, 0.2);
 
     color-scheme: dark;
   }

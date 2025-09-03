@@ -19,26 +19,26 @@
   .H_datagridFooter {
     display: flex;
     align-items: center;
-    color: var(--color-txt3);
-    background-color: var(--color-bg2);
+    color: var(--col-3);
+    background-color: var(--bgcol-1);
     gap: 0.5em;
-    border: 1px solid var(--color-txt8);
+    border: 1px solid var(--col-8);
     border-radius: 0 0 4px 4px;
     padding: 0.5em;
     flex-wrap: wrap;
     .H_icon {
       font-size: 1.6em;
-      color: var(--color-txt3);
+      color: var(--col-3);
     }
   }
 
   .H_datagridFooter__info {
     display: flex;
     align-items: center;
-    color: var(--color-txt2);
+    color: var(--col-2);
   }
   .H_datagridFooter:fullscreen {
-    background-color: var(--color-bg0);
+    background-color: var(--bgcol-0);
   }
 }
 </style>

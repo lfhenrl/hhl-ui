@@ -12,7 +12,7 @@ It is very important it's only added one time and in the main page (app.vue).
 <template>
   <div class="app">
     <div class="app-toolbar">
-      <H_btn  @click="menuOpen()"></H_btn>
+      <H_btn @click="menuOpen()"></H_btn>
     </div>
 
     <div class="app-menu">
@@ -63,9 +63,9 @@ It return a promise with true (OK) or false (cancel).
 By adding a "buttons" property to the dialog call, you can change the Text and Color of the buttons
 
 The syntax is:
-{ok: { Text: 'OK', Color: 'col-pri' }, cancel: { Text: 'CANCEL', Color: 'col-sec' }}
+{ok: { Text: 'OK', Color: 'var(--col-pri)' }, cancel: { Text: 'CANCEL', Color: 'var(--col-sec)' }}
 
-The theme colors are `col-pri` `col-sec` `col-ok` `col-err` `col-warn` `col-info` `col-black` `col-white`<br>
+The theme colors are `var(--col-pri)` `var(--col-sec)` `var(--col-ok)` `var(--col-err)` `var(--col-warn)` `var(--col-info)` `var(--col-black)` `var(--col-white)`<br>
 <br>
 
 <hhl-live-editor title="" htmlCode='
@@ -78,7 +78,7 @@ The theme colors are `col-pri` `col-sec` `col-ok` `col-err` `col-warn` `col-info
       function open() {
          hhl.dialog("Change Text & Color on buttons",
             "By adding a buttons property to the dialog call, you can change the Text and Color of the buttons",
-            { ok: { Text: "YES", Color: "col-ok" }, cancel: { Color: "col-err" } })
+            { ok: { Text: "YES", Color: "var(--col-ok)" }, cancel: { Color: "var(--col-err)" } })
           .then(() => {
             alert("You clicked OK");
           })
@@ -105,7 +105,7 @@ timeout: "Number" the amount of millisecond the snack is open.<br>
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 flex-wrap">
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
             <H_btn @click="open(`info`)">Snack Info</H_btn>
             <H_btn @click="open(`warn`)">Snack Warning</H_btn>
             <H_btn @click="open(`err`)">Snack Error</H_btn>

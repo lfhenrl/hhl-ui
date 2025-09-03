@@ -40,9 +40,9 @@ defineProps({
 @layer components {
   .H_route_link {
     &[selected] {
-      color: var(--color-pri);
+      color: var(--col-pri);
       .H_route_link_bar {
-        background-color: var(--color-pri);
+        background-color: var(--col-pri);
       }
     }
   }

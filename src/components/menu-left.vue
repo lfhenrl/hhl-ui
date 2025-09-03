@@ -1,5 +1,5 @@
 <template>
-  <div class="menu-left shadow-theme-md mt-1" :class="{ small }">
+  <div class="menu-left mt-1" :class="{ small }" h-shadow="md">
     <nav class="menu-left-flyOut" :class="{ open: showMenu }">
       <div class="menu-left-links">
         <router-link
@@ -64,7 +64,7 @@ export default MenuLeft;
   min-width: 160px;
   max-width: 160px;
   overflow: auto;
-  background-color: var(--color-bg3);
+  background-color: var(--bgcol-1);
   padding: 8px;
   font-size: 14px;
 }
@@ -83,7 +83,7 @@ export default MenuLeft;
   margin-bottom: 15px;
 }
 .menu-left-links-selected {
-  color: var(--color-ok);
+  color: var(--col-ok);
   font-weight: bold;
 }
 </style>

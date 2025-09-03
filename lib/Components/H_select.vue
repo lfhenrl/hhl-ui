@@ -176,20 +176,19 @@ function getFocusList() {
   }
 
   .H_select:focus .H_select_input {
-    border-color: var(--color-pri);
+    border-color: var(--col-pri);
   }
 
   .H_select_input_value {
     width: 100%;
     margin: 0 0.2em;
     overflow: hidden;
-    white-space: white-space;
     text-align: left;
     user-select: text;
   }
 
   .H_select_input_icon {
-    color: var(--color-txt2);
+    color: var(--col-2);
     transition-duration: 200ms;
   }
 
@@ -202,19 +201,19 @@ function getFocusList() {
     flex-direction: column;
     border-radius: 4px;
     height: 100%;
-    background-color: var(--color-bg6);
+    background-color: var(--bgcol-2);
     color: currentColor;
   }
   .H_select__list_search_icon {
     font-size: 1.2em;
-    color: var(--color-txt2);
+    color: var(--col-2);
     margin: 0 -4px 0 0;
     pointer-events: none;
   }
 
   .H_select__list_selectbase {
     padding: 0.625em;
-    --h-color: var(--color-pri);
+    --h-color: var(--col-pri);
     --h-color-contrast: white;
   }
 }

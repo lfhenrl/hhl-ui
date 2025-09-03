@@ -4,7 +4,7 @@
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex w-full items-center gap-4">
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
             <H_input autofocus v-model="txt" label="Text input"></H_input>
             <H_input v-model="txt" label="Text input"></H_input>
       </div>
@@ -24,7 +24,7 @@ The H_input can handle 4 different types by setting the property `type="string(d
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
        <H_input  v-model="txt"  label="string"></H_input>
        <H_input  v-model="txt" type="password"  label="password"></H_input>
        <H_input  v-model="num" type="number"  label="number"></H_input>
@@ -48,7 +48,7 @@ Add Placeholder text by adding `placeholder="placeholder!!!"`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
             <H_input  v-model="txt" placeholder="placeholder!!!" label="Text input"></H_input>
       </div>
       </template>
@@ -67,7 +67,7 @@ Add input clear functionality by adding `clearable`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
             <H_input clearable v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -86,7 +86,7 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
             <H_input disabled v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -105,7 +105,7 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
             <H_input readonly v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -124,7 +124,7 @@ Input Click by adding @input_click=""
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
             <H_input @input_click="click(`Input Click`)" v-model="txt" label="Text input">
             </H_input>
       </div>
@@ -148,7 +148,7 @@ If you want it behind the input just add the attribute `set-end`.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
             <H_input clearable  v-model="txt" label="Start Icon"> 
                 <H_icon name="mail" btn  h-font-size="2em"  @click="click(txt)"></H_icon>
             </H_input>
@@ -179,7 +179,7 @@ Hint text by adding `hint-start=""` and `hint-end=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
             <H_input hint-start="hint-start." hint-end="hint-end."  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -198,7 +198,7 @@ Character counter by adding `counter=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
             <H_input counter="10"  v-model="txt" label="Text input"></H_input>
       </div>
       </template>
@@ -220,7 +220,7 @@ Validation by adding `validator=""`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex flex-col gap-12">
+      <div h-display="flex" h-flex-direction="column" h-align-items="center" h-gap="3rem">
       <H_input v-model="txt" label="required" :validator="[v.required]"></H_input>
       <H_input v-model="txt" label="email" :validator="[v.email]"></H_input>
       <H_input v-model="txt" label="strMin(5)" :validator="[v.strMin(5)]"></H_input>

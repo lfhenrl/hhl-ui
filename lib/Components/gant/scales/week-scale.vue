@@ -55,7 +55,7 @@ function getWeek(item: iScaleItem) {
   .week-scale-header {
     position: sticky;
     top: 0;
-    background-color: var(--color-bg1);
+    background-color: var(--bgcol-1);
     max-height: var(--gantt-head-height);
     min-height: var(--gantt-head-height);
     border-bottom: 1px solid var(--color-bg3);
@@ -82,7 +82,7 @@ function getWeek(item: iScaleItem) {
   }
 
   .holyday {
-    background-color: var(--color-bg1);
+    background-color: var(--bgcol-1);
   }
 }
 </style>

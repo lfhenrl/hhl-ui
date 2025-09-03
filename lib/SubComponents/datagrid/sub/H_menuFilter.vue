@@ -11,8 +11,8 @@
         <component ref="filterCompRef" :is="filtComponent" :index="index" />
       </div>
       <div class="H_menuFilter__action">
-        <H_btn @click="filterSave" h-color="var(--color-pri)" :disabled="!filterCompRef?.canSave">OK</H_btn>
-        <H_btn @click="filterClear" :disabled="!col.filter.active" h-color="var(--color-sec)">CLEAR</H_btn>
+        <H_btn @click="filterSave" h-color="var(--col-pri)" :disabled="!filterCompRef?.canSave">OK</H_btn>
+        <H_btn @click="filterClear" :disabled="!col.filter.active" h-color="var(--col-sec)">CLEAR</H_btn>
       </div>
     </div>
   </H_popover>
@@ -88,9 +88,9 @@ const filtComponent = computed(() => {
     display: flex;
     flex-direction: column;
     border-radius: 4px;
-    background-color: var(--color-bg6);
+    background-color: var(--bgcol-2);
     overflow: hidden;
-    color: var(--color-txt1);
+    color: var(--col-1);
     font-weight: normal;
     min-width: 16em;
   }
@@ -101,8 +101,8 @@ const filtComponent = computed(() => {
     padding-block: 0.25em;
     font-size: 1.125em;
     font-weight: bold;
-    color: var(--color-priTxt);
-    background-color: var(--color-pri);
+    color: white;
+    background-color: var(--col-pri);
     .H_icon {
       margin: 2px 4px;
       cursor: pointer;

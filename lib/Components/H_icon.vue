@@ -59,7 +59,7 @@ watch(
     min-width: 1em;
     max-width: 1em;
     border-radius: 4px;
-    --h-color: var(--color-txt3);
+    --h-color: var(--col-3);
     --color-contrast: oklch(from var(--h-color) var(--h-l) 0 h);
     color: var(--h-color);
 
@@ -88,7 +88,7 @@ watch(
   }
 
   .H_icon.btn:focus {
-    outline: solid 1px var(--color-pri);
+    outline: solid 1px var(--col-pri);
     outline-offset: 2px;
   }
 }

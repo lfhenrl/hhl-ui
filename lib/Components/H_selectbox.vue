@@ -8,7 +8,7 @@
     :narrow
     :ErrorMessage="validate"
     @keydown="keyDown"
-    h-color="var(--color-pri)"
+    h-color="var(--col-pri)"
   >
     <H_selectbase
       ref="selBase"

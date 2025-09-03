@@ -38,7 +38,7 @@ defineProps({
     gap: 0.3em;
     white-space: nowrap;
     cursor: pointer;
-    --h-color: var(--color-pri);
+    --h-color: var(--col-pri);
     background-color: var(--h-color);
     --color-contrast: oklch(from var(--h-color) var(--h-l) 0 h);
     color: var(--color-contrast) !important;
@@ -64,7 +64,7 @@ defineProps({
     transform: scale(0.95);
   }
   .H_btn:focus {
-    outline: solid 1px var(--color-pri);
+    outline: solid 1px var(--col-pri);
     outline-offset: 2px;
   }
   .H_btn:hover {

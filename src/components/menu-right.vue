@@ -108,7 +108,7 @@ export default MenuRight;
   min-width: 160px;
   max-width: 160px;
   overflow: auto;
-  background-color: var(--color-bg3);
+  background-color: var(--bgcol-1);
   padding: 8px;
   font-size: 14px;
 }
@@ -116,7 +116,7 @@ export default MenuRight;
   cursor: pointer;
 }
 .menu-right-links-selected {
-  color: var(--color-ok);
+  color: var(--col-ok);
   font-weight: bold;
 }
 </style>

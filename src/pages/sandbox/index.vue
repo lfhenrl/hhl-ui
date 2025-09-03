@@ -37,6 +37,6 @@ export default Index;
 .linkList {
   display: flex;
   flex-direction: column;
-  color: var(--color-ok);
+  color: var(--col-ok);
 }
 </style>

@@ -144,8 +144,8 @@ function columnsSave() {
     font-size: 1.125em;
     text-align: center;
     padding-block: 0.25em;
-    color: var(--color-priTxt);
-    background-color: var(--color-pri);
+    color: white;
+    background-color: var(--col-pri);
     .H_icon {
       margin-right: 0.25em;
       cursor: pointer;
@@ -184,11 +184,11 @@ function columnsSave() {
   }
 
   .H_columnItem {
-    color: var(--color-txt1);
+    color: var(--col-1);
     margin-left: 0.125em;
     &:hover {
       @media (hover: hover) {
-        background-color: var(--color-bg2);
+        background-color: var(--bgcol-2);
       }
     }
   }

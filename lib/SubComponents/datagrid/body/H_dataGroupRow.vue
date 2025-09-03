@@ -38,7 +38,7 @@
 
   .H_dataGroupRow__counts {
     font-size: 0.75em;
-    color: var(--color-txt3);
+    color: var(--col-3);
   }
 }
 </style>

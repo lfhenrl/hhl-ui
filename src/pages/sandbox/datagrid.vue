@@ -65,9 +65,11 @@ function headClick(data: iClickData) {
 }
 
 function rowClick(data: iClickData) {
-  if (data.subType === "XX1") {
-    console.log("rowClick: ", data);
-  }
+  console.log("rowClick: ", data);
+  lData.startLoading();
+  setTimeout(() => {
+    lData.stopLoading();
+  }, 500);
 }
 
 function styleCell(val: string, row: any) {

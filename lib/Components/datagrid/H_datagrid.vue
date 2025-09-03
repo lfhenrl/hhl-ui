@@ -3,31 +3,31 @@
     <div h-display="flex">
       <slot name="head"></slot>
     </div>
+    <H_progressBar h-z-index="10" :show="DG.dataHandler?.rowsLoading.value" />
     <div
       ref="header"
       class="H_datagrid-header"
       h-display="flex"
       h-flex-direction="column"
       h-position="relative"
-      h-bgcolor="var(--color-bg1)"
+      h-bgcolor="var(--bgcol-1)"
       h-height="36px"
       h-min-height="36px"
       h-overflow-x="hidden"
       h-overflow-y="scroll"
-      h-border="1px solid var(--color-txt8)"
+      h-border="1px solid var(--col-8)"
       h-border-radius="4px 4px 0 0"
     >
       <H_headerRow role="heading" aria-level="2" :key="DG.changeCounter.value" @click="headerClick" />
-      <H_progressBar h-position="absolute" h-bottom="0" h-z-index="10" :show="DG.dataHandler?.rowsLoading.value" />
     </div>
     <div
       class="H_datagrid-body"
       h-display="flex"
       h-flex-direction="column"
-      h-bgcolor="var(--color-bg5)"
+      h-bgcolor="var(--bgcol-2)"
       h-border-radius="4px"
       h-overflow="hidden"
-      h-border-color="var(--color-txt8)"
+      h-border-color="var(--col-8)"
       h-border-style="solid"
       h-border-width="0 1px"
     >
@@ -187,7 +187,7 @@ onMounted(() => {
 @layer components {
   .H_datagrid {
     display: grid;
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-rows: auto auto auto 1fr auto;
     grid-template-columns: 1fr;
     position: relative;
     height: 100%;
@@ -203,7 +203,7 @@ onMounted(() => {
   .H_datagrid-header::-webkit-scrollbar-track {
     border-radius: 0;
     border-top-right-radius: 4px;
-    background-color: var(--color-bg2);
+    background-color: var(--bgcol-2);
   }
 
   .H_datagrid-header::-webkit-scrollbar-thumb {

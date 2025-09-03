@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav-bar shadow-theme-sm">
+  <nav class="nav-bar shadow-theme-sm" h-shadow="md" h-bgcolor="var(--bgcol-1)">
     <H_icon name="menu" size="1.8rem" btn @click.stop="$emit('update:modelValue', !modelValue)" v-if="small" />
     <router-link to="/" class="nav-bar-home">
       <img src="/icon.svg" height="30" width="32" alt="Logo" href="#" />
@@ -30,7 +30,7 @@
         </div>
       </H_popover>
     </div>
-    <H_themeSelector style="margin-left: 17px" />
+    <H_themeSelector style="margin-left: 17px" h-font-size="lg" />
   </nav>
 </template>
 
@@ -59,7 +59,6 @@ export default defineComponent({
   display: flex;
   align-items: center;
   overflow: hidden;
-  background-color: var(--color-bg3);
   padding-left: 8px;
   padding-right: 12px;
 }
@@ -82,7 +81,7 @@ export default defineComponent({
   cursor: pointer;
   border-bottom-style: solid;
   border-bottom-width: 0;
-  border-bottom-color: var(--color-ok);
+  border-bottom-color: var(--col-ok);
 }
 .nav-bar-items-item.activ {
   border-bottom-width: 4px;

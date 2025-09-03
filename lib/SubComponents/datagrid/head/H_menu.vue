@@ -3,7 +3,7 @@
     <template v-slot:referance>
       <H_menuHead :index="index" />
     </template>
-    <H_menuBody :index="index" @filteropen="filterOpen" @popup-close="popupClose" />
+    <H_menuBody :index="index" @filteropen="filterOpen" @popup-close="popupClose" h-bgcolor="var(--bgcol-2)" />
   </H_popover>
   <H_menuFilter :index="index" ref="menuFilterRef" data-subtype="menu" />
 </template>

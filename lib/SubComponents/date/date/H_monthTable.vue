@@ -70,7 +70,7 @@ function isSelected(month: number) {
     padding: 0.25em 0.5em;
     user-select: none;
     border-style: solid;
-    border-color: var(--color-bg1);
+    border-color: var(--bgcol-1);
     border-width: 1px 0 1px 0;
     .H_icon {
       font-size: 1.6em;
@@ -96,11 +96,11 @@ function isSelected(month: number) {
     padding: 0.5em;
   }
   .H_monthTable__table_item[selected] {
-    background-color: var(--color-pri);
-    color: var(--color-priTxt);
+    background-color: var(--col-pri);
+    color: white;
   }
   .H_monthTable__table_item:hover {
-    background-color: var(--color-warn);
+    background-color: var(--col-warn);
   }
 }
 </style>

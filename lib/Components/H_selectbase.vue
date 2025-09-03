@@ -39,8 +39,6 @@ import { computed, watch, type PropType } from "vue";
 import H_switchbase from "./H_switchbase.vue";
 
 const P = defineProps({
-  color: { String, default: "var(--color-pri)" },
-  bgcolor: { String, default: "var(--color-priTxt)" },
   size: { type: String, default: "1rem" },
   list: { type: Array, default: ["nr1", "nr2", "nr3", "nr4"] },
   multi: { type: Boolean, default: true },
@@ -154,7 +152,7 @@ function setValue(val: any) {
   }
 
   .H_selectbase__label:hover {
-    background-color: hsl(from var(--color-pri) h s l / 15%);
+    background-color: hsl(from var(--col-pri) h s l / 15%);
   }
   .H_selectbase__label.labelleft {
     flex-direction: row-reverse;
@@ -167,13 +165,13 @@ function setValue(val: any) {
     pointer-events: none;
   }
   .H_selectbase__switchbase:focus-visible {
-    outline: solid 2px var(--color-pri);
+    outline: solid 2px var(--col-pri);
     outline-offset: 2px;
   }
 
   .H_selectbase__switchbase_label {
     pointer-events: none;
-    color: var(--color-txt2);
+    color: var(--col-2);
     white-space: nowrap;
   }
 }

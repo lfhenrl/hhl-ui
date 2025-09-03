@@ -1,6 +1,6 @@
 <template>
-  <div class="hhl-live-editor bg-bg2" ref="el">
-    <div class="hhl-live-editor_errBox" v-show="showError" v-movable>
+  <div class="hhl-live-editor" ref="el">
+    <div class="hhl-live-editor_errBox" v-show="showError" v-movable h-bgcolor="var(--bgcol-1)">
       <div class="hhl-live-editor_errBox_title" moveable-drag>
         <div>Error</div>
         <div class="flex-1" />
@@ -140,11 +140,11 @@ export default defineComponent({
   overflow: hidden;
   border-radius: 4px;
   box-shadow: var(--theme-shadow-md);
-  border: 1px solid var(--color-txt8);
+  border: 1px solid var(--col-8);
 }
 
 .hhl-live-editor:fullscreen {
-  background-color: var(--color-bg0);
+  background-color: var(--bgcol-0);
 }
 .hhl-live-editor_errBox {
   display: flex;
@@ -156,19 +156,19 @@ export default defineComponent({
   z-index: 10;
   height: 208px;
   width: 208px;
-  background-color: var(--color-warn);
+  background-color: var(--col-warn);
 }
 .hhl-live-editor_errBox_title {
   display: flex;
   align-items: center;
-  background-color: var(--color-err);
-  color: var(--color-errTxt);
+  background-color: var(--col-err);
+  color: var(--col-errTxt);
   cursor: grab;
   overflow: hidden;
   padding-left: 8px;
 }
 .hhl-live-editor_errBox_body {
-  color: var(--color-err);
+  color: var(--col-err);
   font-size: 14px;
   margin: 8px;
 }
@@ -178,8 +178,8 @@ export default defineComponent({
   gap: 8px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  background-color: var(--color-txt7);
-  color: var(--color-txt0);
+  background-color: var(--bgcol-1);
+  color: var(--col-0);
   padding: 4px;
   padding-left: 8px;
 }
@@ -206,6 +206,6 @@ export default defineComponent({
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-  background-color: var(--color-bg2);
+  background-color: var(--bgcol-2);
 }
 </style>

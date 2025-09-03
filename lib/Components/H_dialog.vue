@@ -8,10 +8,10 @@
     @keyup.esc="tryClose()"
     class="H_dialog"
     h-display="flex"
-    h-shadow="md"
+    h-shadow="lg"
     h-position="fixed"
     h-flex-direction="column"
-    h-bgcolor="var(--color-bg5)"
+    h-bgcolor="var(--bgcol-2)"
     h-border-radius="4px"
     h-margin="auto"
   >
@@ -103,7 +103,7 @@ function close() {
       transform: scaleY(1);
     }
     &::backdrop {
-      background-color: rgba(0, 0, 0, 0.2);
+      background-color: rgba(255, 255, 255, 0.3);
     }
     [moveable-drag] {
       cursor: move;

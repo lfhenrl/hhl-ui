@@ -182,10 +182,7 @@ function closeDragElement() {
     width: max-content;
     background-color: transparent;
     border-radius: 4px;
-    box-shadow: var(--theme-shadow-md);
-    border: var(--theme-shadow-border);
-    border-bottom: var(--theme-shadow-border-bottom);
-
+    box-shadow: var(--theme-shadow-lg);
     position-anchor: v-bind("--" + id);
     --placement: attr(placement type(*));
     position-try-fallbacks: flip-block, flip-inline;

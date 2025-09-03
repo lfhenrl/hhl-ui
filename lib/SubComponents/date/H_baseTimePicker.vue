@@ -20,6 +20,7 @@
     <div class="H_baseTimePicker__popup" @keydown="keyDown" @click.prevent>
       <H_timeSelector
         ref="timeSelector"
+        h-bgcolor="var(--bgcol-1)"
         tabindex="0"
         :showSeconds
         :time="tempTime"
@@ -34,7 +35,7 @@
         tabindex="-1"
       ></H_timeTable>
       <div class="H_baseTimePicker__popup_actions">
-        <H_btn tabindex="-1" h-font-size="sm" h-color="var(--color-sec)" @click.stop="cancel">CANCEL</H_btn>
+        <H_btn tabindex="-1" h-font-size="sm" h-color="var(--col-sec)" @click.stop="cancel">CANCEL</H_btn>
         <H_btn tabindex="-1" h-font-size="sm" @click.stop="ok">OK</H_btn>
       </div>
     </div>
@@ -151,11 +152,11 @@ function ArrowDown() {
     padding: 0 0.2em;
   }
   .H_baseTimePicker.solo:focus {
-    background-color: hsl(from var(--color-pri) h s l / 30%);
+    background-color: hsl(from var(--col-pri) h s l / 30%);
   }
 
   .H_baseTimePicker_input_icon {
-    color: var(--color-txt2);
+    color: var(--col-2);
   }
 
   .H_baseTimePicker_input_value {
@@ -167,15 +168,14 @@ function ArrowDown() {
   }
 
   .H_baseTimePicker__popup {
-    border: 1px solid var(--color-bg2);
     border-radius: 4px;
-    background-color: var(--color-bg6);
+    background-color: var(--bgcol-2);
   }
 
   .H_baseTimePicker__popup_actions {
     display: flex;
     justify-content: end;
-    background-color: var(--color-bg4);
+    background-color: var(--bgcol-1);
     gap: 1em;
     padding: 0.7em;
     border-radius: 0 0 4px 4px;

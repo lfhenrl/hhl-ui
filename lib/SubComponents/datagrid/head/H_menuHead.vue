@@ -3,22 +3,22 @@
     <div class="H_menuHead__sorting" v-if="col.props.sorting !== 'none'">
       <H_icon
         name="arrow_upward"
-        :h-color="col.sortDirection.value === 'asc' ? 'var(--color-pri)' : 'var(--color-txt6)'"
+        :h-color="col.sortDirection.value === 'asc' ? 'var(--col-pri)' : 'var(--col-6)'"
         v-if="col.sortDirection.value === 'asc' || col.sortDirection.value === 'none'"
       />
       <H_icon
         name="arrow_downward"
-        :h-color="col.sortDirection.value === 'desc' ? 'var(--color-pri)' : 'var(--color-txt6)'"
+        :h-color="col.sortDirection.value === 'desc' ? 'var(--col-pri)' : 'var(--col-6)'"
         v-if="col.sortDirection.value === 'desc' || col.sortDirection.value === 'none'"
       />
-      <div class="H_menuHead__sorting_order" h-color="var(--color-pri)" v-if="col.sortDirection.value !== 'none'">
+      <div class="H_menuHead__sorting_order" h-color="var(--col-pri)" v-if="col.sortDirection.value !== 'none'">
         {{ col.sortIndex.value + 1 }}
       </div>
     </div>
     <H_icon
       name="filter"
       h-font-size="1.1em"
-      :h-color="col.filter.active ? 'var(--color-pri)' : 'var(--color-txt6)'"
+      :h-color="col.filter.active ? 'var(--col-pri)' : 'var(--col-6)'"
       v-if="col.filter.type !== 'none'"
     />
     <H_icon

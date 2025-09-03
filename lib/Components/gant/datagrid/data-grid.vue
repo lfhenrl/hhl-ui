@@ -139,7 +139,7 @@ defineExpose({
     align-items: center;
     max-height: 38px;
     min-height: 38px;
-    background-color: var(--color-bg1);
+    background-color: var(--bgcol-1);
     border-bottom: 1px solid var(--color-bg3);
   }
 

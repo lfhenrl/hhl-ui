@@ -39,9 +39,9 @@ function checkClick() {
   .H_columnItem {
     display: flex;
     align-items: center;
-    color: var(--color-txt1);
+    color: var(--col-1);
     margin-left: 0.125em;
-    --h-color: var(--color-pri);
+    --h-color: var(--col-pri);
     --h-color-contrast: white;
     .H_icon {
       font-size: 1.2em;
@@ -49,7 +49,7 @@ function checkClick() {
   }
 
   .H_columnItem:hover {
-    background-color: var(--color-bg2);
+    background-color: var(--bgcol-2);
   }
 }
 </style>

@@ -75,7 +75,7 @@ function onClick() {
     display: inline-flex;
     align-items: center;
     width: fit-content;
-    --h-color: var(--color-pri);
+    --h-color: var(--col-pri);
   }
 
   .H_switch.reverse {
@@ -83,13 +83,13 @@ function onClick() {
   }
 
   .H_switch:focus-visible {
-    outline: solid 2px var(--color-pri);
+    outline: solid 2px var(--col-pri);
     outline-offset: 2px;
   }
 
   .H_switch_label {
     white-space: nowrap;
-    color: var(--color-txt2);
+    color: var(--col-2);
   }
 }
 </style>

@@ -148,15 +148,15 @@ If you need a special color then just use `h-color="purple"`
 <hhl-live-editor title="" htmlCode='
     <template>
             <div class="flex items-center gap-4">
-            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--color-pri)" label="pri"></H_selectbox>
-            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--color-ok)"></H_selectbox>
-            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--color-sec)" label="sec"></H_selectbox>
-            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--color-warn)" label="warn"></H_selectbox>
-            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--color-err)" label="err"></H_selectbox>
-            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--color-info)" label="info"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--col-pri)" label="pri"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--col-ok)"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--col-sec)" label="sec"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--col-warn)" label="warn"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--col-err)" label="err"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--col-info)" label="info"></H_selectbox>
             <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="black" label="black"></H_selectbox>
-            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--color-txt3)" label="txt3"></H_selectbox>
-            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--color-txt6)" label="txt6"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--col-3)" label="txt3"></H_selectbox>
+            <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="var(--col-6)" label="txt6"></H_selectbox>
             <H_selectbox :list="[`nr1`, `nr2`, `nr3`]" v-model="selection" h-color="purple" label="purple"></H_selectbox>
         </div>
     </template>

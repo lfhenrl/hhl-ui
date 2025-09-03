@@ -36,7 +36,17 @@
     { "name": "h-margin-right", "description": "Margin-right", "valueSet": "h-spacing" },
 
     { "name": "h-align-items", "description": "Align items in flex--box", "valueSet": "h-alignItems" },
+    {
+      "name": "h-align-self",
+      "description": "The align-self CSS property overrides a grid or flex item's align-items value.",
+      "valueSet": "h-alignItems"
+    },
     { "name": "h-justify-content", "description": "Justify-content in flex--box", "valueSet": "h-justifycontent" },
+    {
+      "name": "h-justify-self",
+      "description": "The CSS justify-self property sets the way a box is justified inside its alignment container along the appropriate axis",
+      "valueSet": "h-alignItems"
+    },
     { "name": "h-height", "description": "Height", "valueSet": "h-height-widths" },
     { "name": "h-min-height", "description": "Min Height", "valueSet": "h-height-widths" },
     { "name": "h-max-height", "description": "Max Height", "valueSet": "h-height-widths" },
@@ -757,27 +767,27 @@
       "name": "h-colors",
       "values": [
         {
-          "name": "var(--color-pri)",
+          "name": "var(--col-pri)",
           "description": "The Primary color"
         },
         {
-          "name": "var(--color-ok)",
+          "name": "var(--col-ok)",
           "description": "The Ok color"
         },
         {
-          "name": "var(--color-sec)",
+          "name": "var(--col-sec)",
           "description": "The Secondary color"
         },
         {
-          "name": "var(--color-warn)",
+          "name": "var(--col-warn)",
           "description": "The Warning color"
         },
         {
-          "name": "var(--color-err)",
+          "name": "var(--col-err)",
           "description": "The Error color"
         },
         {
-          "name": "var(--color-info)",
+          "name": "var(--col-info)",
           "description": "The Info color"
         },
         {
@@ -793,72 +803,55 @@
           "description": "The Transparent color"
         },
         {
-          "name": "var(--color-bg0)",
+          "name": "var(--bgcol-0)",
           "description": "The Bg0 color change with Ligt/dark theme"
         },
         {
-          "name": "var(--color-bg1)",
+          "name": "var(--bgcol-1)",
           "description": "The Bg1 color change with Ligt/dark theme"
         },
         {
-          "name": "var(--color-bg2)",
+          "name": "var(--bgcol-2)",
           "description": "The Bg2 color change with Ligt/dark theme"
         },
         {
-          "name": "var(--color-bg3)",
-          "description": "The Bg3 color change with Ligt/dark theme"
-        },
-        {
-          "name": "var(--color-bg4)",
-          "description": "The Bg4 color change with Ligt/dark theme"
-        },
-        {
-          "name": "var(--color-bg5)",
-          "description": "The Bg5 color change with Ligt/dark theme"
-        },
-        {
-          "name": "var(--color-bg6)",
-          "description": "The Bg6 color change with Ligt/dark theme"
-        },
-
-        {
-          "name": "var(--color-txt0)",
+          "name": "var(--col-0)",
           "description": "The Txt0 color change with Ligt/dark theme"
         },
         {
-          "name": "var(--color-txt1)",
+          "name": "var(--col-1)",
           "description": "The Txt1 color change with Ligt/dark theme"
         },
         {
-          "name": "var(--color-txt2)",
+          "name": "var(--col-2)",
           "description": "The Txt2 color change with Ligt/dark theme"
         },
         {
-          "name": "var(--color-txt3)",
+          "name": "var(--col-3)",
           "description": "The Txt3 color change with Ligt/dark theme"
         },
         {
-          "name": "var(--color-txt4)",
+          "name": "var(--col-4)",
           "description": "The Txt4 color change with Ligt/dark theme"
         },
         {
-          "name": "var(--color-txt5)",
+          "name": "var(--col-5)",
           "description": "The Txt5 color change with Ligt/dark theme"
         },
         {
-          "name": "var(--color-txt6)",
+          "name": "var(--col-6)",
           "description": "The Txt6 color change with Ligt/dark theme"
         },
         {
-          "name": "var(--color-txt7)",
+          "name": "var(--col-7)",
           "description": "The Txt7 color change with Ligt/dark theme"
         },
         {
-          "name": "var(--color-txt8)",
+          "name": "var(--col-8)",
           "description": "The Txt8 color change with Ligt/dark theme"
         },
         {
-          "name": "var(--color-txt9)",
+          "name": "var(--col-9)",
           "description": "The Txt8 color change with Ligt/dark theme"
         }
       ]

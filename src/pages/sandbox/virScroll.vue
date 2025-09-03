@@ -33,7 +33,7 @@ async function load() {
 ._page {
   display: flex;
   padding: 32px;
-  background-color: var(--color-bg0);
+  background-color: var(--bgcol-0);
   height: 500px;
 }
 .header {
@@ -43,7 +43,7 @@ async function load() {
 
 .listItem {
   display: flex;
-  background-color: var(--color-bg2);
+  background-color: var(--bgcol-2);
   max-height: 30px;
   overflow: visible;
   margin: 2px 0;

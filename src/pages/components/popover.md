@@ -5,7 +5,7 @@
     display:flex;
     border-radius: 4px;
     padding: 29px;
-    background-color: var(--color-warn); 
+    background-color: var(--col-warn); 
     
   }
 </style>
@@ -23,7 +23,7 @@ It will close on click outside and by the ESC key.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flex  items-center gap-4 flex-wrap">
+     <div h-display="flex" h-align-items="center" h-gap="1rem">
           <H_popover>
             <template v-slot:referance>
                 <H_btn>Toggle</H_btn>
@@ -43,7 +43,7 @@ You can also use the v-model to control the open/close of the popup.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flex items-center gap-4 flex-wrap">
+     <div h-display="flex" h-align-items="center" h-gap="1rem">
         <H_popover v-model="open" offset-top="10px">
           <div class="popUpBox">Hello</div>
         </H_popover>
@@ -66,10 +66,10 @@ The popover have a open and a close command.
 
 <hhl-live-editor title="" htmlCode='
     <template>
-     <div class="flex items-center gap-4 flex-wrap">
+     <div h-display="flex" h-align-items="center" h-gap="1rem">
         <H_popover ref="pop" close-action="manual">
             <template v-slot:referance>
-                <div style="border: 1px solid red;line-height:2">referance</div>
+                <div  h-border="1px solid red" h-padding-block="0.25rem">referance</div>
             </template>
           <div class="popUpBox">Hello</div>
         </H_popover>
@@ -104,7 +104,7 @@ You the have to possibillities to close the popup: by using the V-model or by ma
 
 <hhl-live-editor title="" htmlCode='
     <template>
-       <div class="flex items-center gap-4 flex-wrap">
+       <div h-display="flex" h-align-items="center" h-gap="1rem">
         <H_popover close-action="manual">
           <template v-slot:referance>
               <H_btn>close-action="manual"</H_btn>
@@ -148,24 +148,18 @@ By adding the property `offset-left` it will adjust the left position with the v
 <br>
 <hhl-live-editor title="" htmlCode='
     <template>
-    <div class="thisContainer" style="border: 1px red dashed">
-      <div class="flex flex-col gap-4 flex-wrap">
-       <div class="flex gap-12 items-center">
-        <H_popover  :placement="placement" 
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
+        <H_popover :placement="placement" 
                 :offset-top="offsetTop"
                 :offset-left="offsetLeft">      
             <template v-slot:referance>
               <H_btn>Open</H_btn>
             </template>
-          <div class="popUpBox w-fit" >Hello</div>
+          <div class="popUpBox" >Hello</div>
         </H_popover>
-      </div>
-     <div class="flex items-center gap-4 mt-4" >
-        <H_select :list="selectData" v-model="placement" label="Placement" class="w-fit"></H_select>
-         <H_input  v-model="offsetTop" label="offset-top" class="w-fit"></H_input>
-         <H_input  v-model="offsetLeft" label="offset-left" class="w-fit"></H_input>
-      </div>
-    </div>
+         <H_select :list="selectData" v-model="placement" label="Placement" h-width="fit-content"></H_select>
+         <H_input  v-model="offsetTop" label="offset-top" h-width="fit-content"></H_input>
+         <H_input  v-model="offsetLeft" label="offset-left" h-width="fit-content"></H_input>
     </div>
     </template>
     <script>
@@ -197,7 +191,7 @@ By adding attribute `width-as-ref` the width of the popup will be the same as th
 
 <hhl-live-editor title="" htmlCode='
     <template>
-       <div class="flex items-center gap-4 flex-wrap">
+       <div h-display="flex" h-align-items="center" h-gap="1rem">
         <H_popover width-as-ref>
           <template v-slot:referance>
               <H_btn>width-as-ref .......</H_btn>
@@ -227,14 +221,14 @@ By adding the property `moveable-drag` to one element in the Popup it will be he
 
 <hhl-live-editor title="" htmlCode='
     <template>
-       <div class="flex items-center gap-4 flex-wrap">
+       <div h-display="flex" h-align-items="center" h-gap="1rem">
         <H_popover movable>
           <template v-slot:referance>
               <H_btn>Drag by element</H_btn>
           </template>
-          <div class="flex flex-col bg-bg0">
-          <div moveable-drag style="background-color: lime; text-align: center;">dragme</div>
-          <div class="p-20">Hello</div>          
+          <div  h-display="flex" h-flex-direction="column" h-bgcolor="var(--bgcol-2)">
+          <div moveable-drag h-bgcolor="var(--col-pri)" h-color="white" h-padding-block="0.25rem" h-text-align="center">dragme</div>
+          <div  h-padding="100px">Hello</div>          
           </div>
         </H_popover>        
       </div>

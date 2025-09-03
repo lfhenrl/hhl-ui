@@ -73,13 +73,13 @@ onMounted(() => {
     text-box-trim: trim-both;
 
     &[selected] {
-      background-color: var(--color-pri);
-      color: var(--color-priTxt);
+      background-color: var(--col-pri);
+      color: white;
     }
   }
 
   .H_timeTable_item:hover {
-    background-color: var(--color-warn);
+    background-color: var(--col-warn);
   }
 
   .H_timeTable.hour .H_timeTable_item:not([hour]) {

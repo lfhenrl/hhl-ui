@@ -7,7 +7,7 @@
       data-subtype="menuSortAsc"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_icon name="arrow_upward" :h-color="col.sortDirection.value === 'asc' ? 'white' : 'var(--color-txt2)'" />
+      <H_icon name="arrow_upward" :h-color="col.sortDirection.value === 'asc' ? 'white' : 'var(--col-2)'" />
       <div class="H_menuBody__item_title">Sort Ascending</div>
     </div>
 
@@ -18,7 +18,7 @@
       data-subtype="menuSortDesc"
       v-if="col.props.sorting !== 'none'"
     >
-      <H_icon name="arrow_downward" :h-color="col.sortDirection.value === 'asc' ? 'white' : 'var(--color-txt2)'" />
+      <H_icon name="arrow_downward" :h-color="col.sortDirection.value === 'asc' ? 'white' : 'var(--col-2)'" />
       <div class="H_menuBody__item_title">Sort Descending</div>
     </div>
 
@@ -29,7 +29,7 @@
       v-if="col.filter.type !== 'none'"
       data-subtype="menuFilter"
     >
-      <H_icon name="filter" h-font-size="1.2em" :h-color="col.filter.active ? 'white' : 'var(--color-txt2)'" />
+      <H_icon name="filter" h-font-size="1.2em" :h-color="col.filter.active ? 'white' : 'var(--col-2)'" />
       <div class="H_menuBody__item_title">Filter</div>
     </div>
 
@@ -43,7 +43,7 @@
 @layer components {
   .H_menuBody {
     background-color: var(--color-bg5);
-    color: var(--color-txt1);
+    color: var(--col-1);
     font-weight: 400;
     font-size: 0.875em;
   }
@@ -66,8 +66,8 @@
   }
 
   .H_menuBody__item[selected] {
-    background-color: var(--color-pri);
-    color: var(--color-priTxt);
+    background-color: var(--col-pri);
+    color: white;
   }
 
   .H_menuBody__item_title {

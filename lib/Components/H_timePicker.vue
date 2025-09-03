@@ -78,7 +78,7 @@ const validate = computed(() => validateFunc(P.validator, model.value));
 <style>
 @layer components {
   .H_timePicker:focus-within {
-    border-color: var(--color-pri);
+    border-color: var(--col-pri);
   }
   .H_timePicker_H_timePicker {
     width: 100%;

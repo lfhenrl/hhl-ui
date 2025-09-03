@@ -18,7 +18,7 @@ Where the total of values gives 100 (%) <br />
 
 <hhl-live-editor title="Data" htmlCode='
   <template>
-    <div class="flex items-center gap-4 flex-wrap" >
+    <div  h-display="flex" h-align-items="center" h-flex-wrap="wrap" h-gap="1rem">
     <div>
         <H_chart-pie :data="list" size="200px"/>
     </div>
@@ -57,14 +57,14 @@ By the `"legend-placement"="bottom/center/top/right/left"` property you chose th
 
 <hhl-live-editor title="Legend" htmlCode='
     <template>
-      <div class="flex flex-col gap-8 flex-wrap">
+      <div h-display="flex" h-align-items="center" h-flex-wrap="wrap" h-gap="2rem">
         <div>
           <H_chart-pie :data="list" 
             :hide-legend="hideLegend" 
             :legend-placement="placeMent" 
             :legend-stacked="legendStacked"/>
         </div>
-       <div class="flex items-center gap-4 flex-wrap">
+       <div h-display="flex" h-align-items="center" h-flex-wrap="wrap" h-gap="1rem">
           <H_switch v-model="hideLegend" label="Hide legend."></H_checkbox>
           <H_switch v-model="legendStacked" label="legend-stacked."></H_checkbox>
           <H_select v-model="placeMent" label="placment" :list="placements"></H_select>
@@ -97,11 +97,11 @@ By the `"font-size"`=`"px/em/rem etc"` property you chose the font size of the l
 
 <hhl-live-editor title="Size" htmlCode='
     <template>
-       <div class="flex items-center gap-8 flex-wrap">
+       <div h-display="flex" h-align-items="center" h-flex-wrap="wrap" h-gap="2rem">
         <div>
           <H_chart-pie :data="list" :font-size="fontSize" :pie-width="Number(pWidth)" legend-placement="bottom" />
         </div>
-         <div class="flex items-center gap-4 flex-wrap">
+         <div h-display="flex" h-flex-direction="column" h-align-items="center" h-flex-wrap="wrap" h-gap="2rem">
           <H_input type="number" v-model="pWidth" label="Pie width." max="64" min="2"></H_input>
           <H_input type="number" v-model="fSize" label="Font size. (px)" max="30" min="4"></H_input>
         </div>

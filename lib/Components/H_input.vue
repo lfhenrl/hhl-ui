@@ -77,7 +77,7 @@ const validate = computed(() => validateFunc(P.validator, model.value));
     }
   }
   .H_input:focus-within {
-    border-color: var(--color-pri);
+    border-color: var(--col-pri);
   }
 
   .H_input_input {
@@ -86,7 +86,7 @@ const validate = computed(() => validateFunc(P.validator, model.value));
     background-color: transparent;
   }
   .H_icon.H_input_clearIcon {
-    color: var(--color-txt3);
+    color: var(--col-3);
   }
 }
 </style>

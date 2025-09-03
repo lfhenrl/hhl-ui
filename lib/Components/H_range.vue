@@ -6,7 +6,7 @@
     :HelpTextStart="hintStart"
     :HelpTextEnd="hintEnd"
     :ErrorMessage="validate"
-    h-color="var(--color-pri)"
+    h-color="var(--col-pri)"
     class="H_range"
   >
     <div
@@ -38,7 +38,7 @@
         autocomplete="off"
         type="range"
       />
-      <span class="H_range-value" h-padding="0 0.25em" h-color="var(--color-txt2)">{{ model }}</span>
+      <span class="H_range-value" h-padding="0 0.25em" h-color="var(--col-2)">{{ model }}</span>
     </div>
   </H_inputbase>
 </template>

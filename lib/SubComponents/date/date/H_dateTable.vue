@@ -102,7 +102,7 @@ const isHolyday = (dato: any) => HHL_isHolyDay(dato);
     user-select: none;
     padding: 0.25em 0.5em;
     border-style: solid;
-    border-color: var(--color-bg1);
+    border-color: var(--bgcol-1);
     border-width: 1px 0 1px 0;
     .H_icon {
       font-size: 1.6em;
@@ -130,7 +130,7 @@ const isHolyday = (dato: any) => HHL_isHolyDay(dato);
   }
 
   .H_dateTable__table_item[data-daytype="weekend"] {
-    color: color-mix(in oklab, var(--color-err) 80%, transparent);
+    color: color-mix(in oklab, var(--col-err) 80%, transparent);
   }
 
   .H_dateTable__table_item[data-daytype="day"] {
@@ -142,16 +142,16 @@ const isHolyday = (dato: any) => HHL_isHolyDay(dato);
   }
 
   .H_dateTable__table_item[today] {
-    background-color: var(--color-bg1);
+    background-color: var(--bgcol-1);
   }
 
   .H_dateTable__table_item[selected] {
-    background-color: var(--color-pri);
-    color: var(--color-priTxt);
+    background-color: var(--col-pri);
+    color: white;
   }
 
   .H_dateTable__table_item:hover {
-    background-color: var(--color-warn);
+    background-color: var(--col-warn);
   }
 }
 </style>
