@@ -6,9 +6,9 @@
   --col-warn: #ffc107;
   --col-info: #17a2b8;
 
-  --bgcol-0: hsl(212.72, 29.91%, 84.02%);
-  --bgcol-1: hsl(214.28, 32.97%, 91.42%);
-  --bgcol-2: hsl(210, 40.55%, 96.05%);
+  --bgcol-0: hsl(274, 60%, 95%);
+  --bgcol-1: hsl(277, 100%, 98%);
+  --bgcol-2: hsl(300, 100%, 100%);
 
   --col-0: hsl(230, 100%, 3%);
   --col-1: hsl(230, 26%, 29%);
@@ -21,9 +21,9 @@
   --col-8: hsl(230, 20%, 78%);
   --col-9: hsl(230, 20%, 86%);
 
-  --theme-shadow-sm: 0 6px 8px -8px rgba(0, 0, 0, 0.658);
-  --theme-shadow-md: 0 10px 12px -12px rgba(0, 0, 0, 0.603);
-  --theme-shadow-lg: 0 16px 18px -18px rgba(0, 0, 0, 0.658);
+  --theme-shadow-sm: 0 3px 14px -12px rgba(0, 0, 0, 0.7);
+  --theme-shadow-md: 0 3px 14px -10px rgba(0, 0, 0, 0.7);
+  --theme-shadow-lg: 0 4px 14px -8px rgba(0, 0, 0, 0.7);
   --h-l: clamp(0, (l / var(--l-threshold, 0.623) - 1) * -infinity, 1);
-  --font-sans: "Public Sans", sans-seri;
+  --font-sans: "Public Sans", sans-serif;
 }

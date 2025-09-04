@@ -2,7 +2,7 @@
   <div class="markdown-body">
     <h1>Sandbox</h1>
     <p>This is a sandbox area for development</p>
-    <div class="linkList">
+    <div class="linkList" h-display="flex" h-flex-direction="column" h-color="var(--col-ok)">
       <router-link v-for="route in links" :key="route.id" :to="route.path">-{{ route.name }}</router-link>
     </div>
   </div>
@@ -33,10 +33,3 @@ const Index = defineComponent({
 export type iIndex = InstanceType<typeof Index>;
 export default Index;
 </script>
-<style scoped>
-.linkList {
-  display: flex;
-  flex-direction: column;
-  color: var(--col-ok);
-}
-</style>

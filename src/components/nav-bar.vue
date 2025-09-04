@@ -1,6 +1,6 @@
 <template>
-  <nav class="nav-bar shadow-theme-sm" h-shadow="md" h-bgcolor="var(--bgcol-1)">
-    <H_icon name="menu" size="1.8rem" btn @click.stop="$emit('update:modelValue', !modelValue)" v-if="small" />
+  <nav class="nav-bar" h-shadow="md" h-bgcolor="var(--bgcol-1)" h-color="var(--col-2)">
+    <H_icon name="menu" h-font-size="1.8rem" btn @click.stop="$emit('update:modelValue', !modelValue)" v-if="small" />
     <router-link to="/" class="nav-bar-home">
       <img src="/icon.svg" height="30" width="32" alt="Logo" href="#" />
       <div>HHL-UI</div>
@@ -18,19 +18,25 @@
       >
       <H_popover offset-top="4px" offset-left="-8px">
         <template v-slot:referance>
-          <div style="display: flex; align-items: center">
-            <span class="text-pri"> External</span>
-            <H_icon name="expand_down" size="1.4rem" btn />
+          <div h-display="flex" h-align-items="center">
+            <span h-color="var(--col-pri)"> External</span>
+            <H_icon name="expand_down" h-font-size="1.4rem" btn />
           </div>
         </template>
-        <div class="bg-bg6 p-2 rounded flex flex-col">
+        <div
+          h-display="flex"
+          h-flex-direction="column"
+          h-border-radius="4px"
+          h-bgcolor="var(--bgcol-2)"
+          h-padding="0.5rem"
+        >
           <a href="https://v3.vuejs.org/guide/introduction.html" target="blank">Vue 3 Docs</a>
           <a href="https://vitejs.dev/" target="blank">Vite</a>
           <a href="https://materialdesignicons.com/" target="blank">Icons</a>
         </div>
       </H_popover>
     </div>
-    <H_themeSelector style="margin-left: 17px" h-font-size="lg" />
+    <H_themeSelector h-margin-left="17px" h-font-size="lg" />
   </nav>
 </template>
 

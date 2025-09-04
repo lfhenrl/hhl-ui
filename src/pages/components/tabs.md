@@ -9,6 +9,7 @@ Tabs are elements that help you organize and navigate multiple documents in a si
 
 - `default-tab=""`: The name of the tab that should be active when page load.<br>
 - `willChange=""`: Event that trigger before change to a new tab, the function called shall return true for navigate to the new tab.
+- `active-color=""`: The color of the active tab.
 
 **The H_tab component har 3 properties.**<br>
 
@@ -20,10 +21,10 @@ Tabs are elements that help you organize and navigate multiple documents in a si
 
 <hhl-live-editor title="" htmlCode='
 		<template>
-			<div class="flex items-center gap-4 flex-wrap">
-				<H_tabs class="min-h-60">
-					<H_tab name="tab1" label="Tab 1." keep-alive><div class="p-10 h-full">This is TAB 1...</div></H_tab>
-					<H_tab name="tab2" label="Tab 2." keep-alive><div class="p-10">
+			<div h-display="flex" h-align-items="center" h-gap="1rem">
+				<H_tabs  h-height="20rem" active-color="lime">
+					<H_tab name="tab1" label="Tab 1." keep-alive><div h-height="100%" h-padding="2.5rem">This is TAB 1...</div></H_tab>
+					<H_tab name="tab2" label="Tab 2." keep-alive><div h-padding="2.5rem">
                     <H_datagrid
                             :data-handler="lData"
                             data-key="id"                 
@@ -38,7 +39,7 @@ Tabs are elements that help you organize and navigate multiple documents in a si
                             <H_column field="val7" type="string"></H_column>
                     </H_datagrid>
                     </div></H_tab>
-					<H_tab name="tab3" label="Tab 3." keep-alive><div class="p-10" >This is TAB 3...</div></H_tab>
+					<H_tab name="tab3" label="Tab 3." keep-alive><div h-padding="2.5rem" >This is TAB 3...</div></H_tab>
 				</H_tabs>
 			</div>
 		</template>
@@ -68,11 +69,11 @@ You can add `disabled` to a tab<br>
 
 <hhl-live-editor title="" htmlCode='
 		<template>
-			<div class="flex items-center gap-4 flex-wrap">
-				<H_tabs>
-					<H_tab name="tab1" label="Tab 1."><div class="p-10">This is TAB 1...</div></H_tab>
-					<H_tab :disabled="true" name="tab2" label="Tab 2."><div class="p-10">This is TAB 2...</div></H_tab>
-					<H_tab name="tab3" label="Tab 3."><div class="p-10">This is TAB 3...</div></H_tab>
+			<div h-display="flex" h-align-items="center" h-gap="1rem">
+				<H_tabs h-height="150px">
+					<H_tab name="tab1" label="Tab 1."><div h-padding="2.5rem">This is TAB 1...</div></H_tab>
+					<H_tab :disabled="true" name="tab2" label="Tab 2."><div h-padding="2.5rem">This is TAB 2...</div></H_tab>
+					<H_tab name="tab3" label="Tab 3."><div h-padding="2.5rem">This is TAB 3...</div></H_tab>
 				</H_tabs>
 			</div>
 		</template>
@@ -87,18 +88,18 @@ You can use a `will-change` event to do some work or validation before leaving t
 
 <hhl-live-editor title="" htmlCode='
 		<template>
-			<div class="flex items-center gap-4 flex-wrap">
-				<H_tabs :will-change="canChange">
-					<H_tab name="tab1" label="Tab 1."><div class="p-10">This is TAB 1...</div></H_tab>
-					<H_tab name="tab2" label="Tab 2."><div class="p-10">This is TAB 2...</div></H_tab>
-					<H_tab name="tab3" label="Tab 3."><div class="p-10">This is TAB 3...</div></H_tab>
+			<div h-display="flex" h-align-items="center" h-gap="1rem">
+				<H_tabs :will-change="canChange" h-height="150px">
+					<H_tab name="tab1" label="Tab 1."><div h-padding="2.5rem">This is TAB 1...</div></H_tab>
+					<H_tab name="tab2" label="Tab 2."><div h-padding="2.5rem">This is TAB 2...</div></H_tab>
+					<H_tab name="tab3" label="Tab 3."><div h-padding="2.5rem">This is TAB 3...</div></H_tab>
 				</H_tabs>
 			</div>
 		</template>
 		<script>
-    function canChange(e) {
-      if (e==="tab1" || e===undefined) {return true;}
-      if (confirm("Will you navigate away from " + e)) {
+    function canChange(from,to) {
+      if (from==="tab1" || from==="") {return true;}
+      if (confirm("Will you navigate away from " + from + " to " + to)) {
 					return true;
 				} else {
 					return false;

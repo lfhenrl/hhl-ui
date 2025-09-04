@@ -43,6 +43,11 @@
     opacity: 1;
   }
 
+  a {
+    color: inherit;
+    text-decoration-line: none;
+  }
+
   button,
   input:where([type="button"], [type="reset"], [type="submit"]) {
     appearance: button;

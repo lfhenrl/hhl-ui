@@ -1,15 +1,22 @@
 <template>
-  <div class="_page">
+  <div h-display="flex" h-bgcolor="var(--bgcol-0)" h-padding="32px" h-height="500px">
     <H_btn @click="load">Load</H_btn>
     <H_virtualList data-key="id" :data-sources="data" ref="vscroll">
       <template v-slot:footer>FOOTER</template>
       <template v-slot="{ item }">
-        <div class="listItem">
-          <div>Id: {{ item.id }}</div>
-          <div>Row: {{ item.val1 }}</div>
-          <div>Group: {{ item.val2 }}</div>
-          <div>Val3: {{ item.val3 }}</div>
-          <div>Val4: {{ item.val4 }}</div>
+        <div
+          h-display="flex"
+          h-align-items="center"
+          h-bgcolor="var(--bgcol-2)"
+          h-max-height="30px"
+          h-overflow="visible"
+          h-margin="2px 0"
+        >
+          <div h-width="200px">Id: {{ item.id }}</div>
+          <div h-width="200px">Row: {{ item.val1 }}</div>
+          <div h-width="200px">Group: {{ item.val2 }}</div>
+          <div h-width="200px">Val3: {{ item.val3 }}</div>
+          <div h-width="200px">Val4: {{ item.val4 }}</div>
         </div>
       </template>
     </H_virtualList>
@@ -29,31 +36,4 @@ async function load() {
   data.value = await getData(5000);
 }
 </script>
-<style>
-._page {
-  display: flex;
-  padding: 32px;
-  background-color: var(--bgcol-0);
-  height: 500px;
-}
-.header {
-  background-color: rgb(245, 113, 113);
-  width: 100%;
-}
-
-.listItem {
-  display: flex;
-  background-color: var(--bgcol-2);
-  max-height: 30px;
-  overflow: visible;
-  margin: 2px 0;
-  align-items: center;
-}
-.listItem div {
-  width: 200px;
-}
-.H_virtualListItem {
-  overflow: visible;
-  display: inline-block;
-}
-</style>
+<style></style>

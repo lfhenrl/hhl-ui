@@ -1,5 +1,5 @@
 <template>
-  <div class="pagex">
+  <div h-display="flex" h-flex-direction="column" h-gap="24px" h-padding="20px">
     <H_themeSelector />
     <h1>Some text in H1</h1>
     <div
@@ -14,7 +14,7 @@
       <div h-bgcolor="var(--col-ok)" h-grid-row="1" h-grid-col="2 / 4">C</div>
     </div>
 
-    <H_icon btn name="account" color="pri" size="4em" />
+    <H_icon btn name="account" h-color="var(--col-pri)" h-font-size="4em" />
     <H_input label="Input" />
     <H_textarea label="TextArea" />
     <H_btn @click="dialogOpen = !dialogOpen">PopUp</H_btn>
@@ -44,15 +44,21 @@
       data-key="id"
     >
       <template v-slot:head>
-        <div class="flex flex-1 py-2 justify-between items-center">
-          <H_btn @click="load" style="width: 100px">Load</H_btn>
-          <div style="flex: 1" />
+        <div
+          h-display="flex"
+          h-flex="1"
+          h-padding-block="0.5rem"
+          h-align-items="center"
+          h-justify-content="space-between"
+        >
+          <H_btn @click="load" h-width="100px">Load</H_btn>
+          <div h-flex="1" />
         </div>
       </template>
       <H_column field="id" title="Id" type="number" />
       <H_column field="val1" title="Value 1" type="string" />
       <H_column field="val2" title="Value 2" type="string" filter="select" />
-      <H_column field="val3" title="Value 3" type="string" :auto-height="true" class="text-err" />
+      <H_column field="val3" title="Value 3" type="string" :auto-height="true" />
       <H_column field="val4" title="Value 4" type="string" />
       <H_column field="val5" title="Value 5" type="bool" />
       <H_column field="val6" title="Value 6" type="date" :auto-height="true" />
@@ -79,11 +85,4 @@ async function load() {
   lData.loadData();
 }
 </script>
-<style>
-.pagex {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 20px;
-}
-</style>
+

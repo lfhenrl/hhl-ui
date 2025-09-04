@@ -1,6 +1,19 @@
 <template>
-  <div class="menu-left mt-1" :class="{ small }" h-shadow="md">
-    <nav class="menu-left-flyOut" :class="{ open: showMenu }">
+  <div h-display="flex" h-margin-top="0.25rem" h-shadow="md">
+    <nav
+      class="menu-left-flyOut"
+      h-display="flex"
+      h-flex-direction="column"
+      h-flex="1 1 0%"
+      h-height="100%"
+      h-min-width="160px"
+      h-max-width="160px"
+      h-overflow="auto"
+      h-bgcolor="var(--bgcol-1)"
+      h-padding="8px"
+      h-font-size="14px"
+      :class="{ open: showMenu }"
+    >
       <div class="menu-left-links">
         <router-link
           v-for="route in mainRoutes"
@@ -20,7 +33,19 @@
         >
       </div>
     </nav>
-    <nav v-if="!small">
+    <nav
+      v-if="!small"
+      h-display="flex"
+      h-flex-direction="column"
+      h-flex="1 1 0%"
+      h-height="100%"
+      h-min-width="160px"
+      h-max-width="160px"
+      h-overflow="auto"
+      h-bgcolor="var(--bgcol-1)"
+      h-padding="8px"
+      h-font-size="14px"
+    >
       <router-link
         active-class="menu-left-links-selected"
         v-for="link in routeLinks"
@@ -53,21 +78,6 @@ export type iMenuLeft = InstanceType<typeof MenuLeft>;
 export default MenuLeft;
 </script>
 <style>
-.menu-left {
-  display: flex;
-}
-.menu-left nav {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 0%;
-  height: 100%;
-  min-width: 160px;
-  max-width: 160px;
-  overflow: auto;
-  background-color: var(--bgcol-1);
-  padding: 8px;
-  font-size: 14px;
-}
 .menu-left-flyOut {
   position: absolute;
   z-index: 10;

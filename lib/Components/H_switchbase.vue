@@ -11,7 +11,20 @@
       checked: check,
     }"
   >
-    <H_icon v-if="check && variant === 'checkbox'" name="check" class="H_switchbase__indicator_checkbox" />
+    <svg
+      v-if="check && variant === 'checkbox'"
+      viewBox="0 0 24 24"
+      height="24"
+      width="24"
+      fill="none"
+      class="H_switchbase__indicator_checkbox"
+    >
+      <path
+        fill="currentColor"
+        d="m9 20.42l-6.21-6.21l2.83-2.83L9 14.77l9.88-9.89l2.83 2.83z"
+        style="pointer-events: none"
+      />
+    </svg>
     <div v-if="check && variant === 'radio'" class="H_switchbase__indicator_radio"></div>
 
     <div v-if="variant === 'switch'" class="H_switchbase__indicator_switch"></div>
@@ -20,7 +33,6 @@
 
 <script setup lang="ts">
 import { type PropType } from "vue";
-import H_icon from "./H_icon.vue";
 
 defineProps({
   check: { type: Boolean, default: false },
@@ -40,7 +52,7 @@ const E = defineEmits([]);
     justify-content: center;
     border: 0.15em solid var(--col-5);
     border-radius: 4px;
-    --color-contrast: oklch(from var(--h-color) var(--h-l) 0 h);
+    --color-contrast: oklch(from var(--h-color) var(--h-l) 0 h) !important;
   }
 
   .H_switchbase.checkbox {
@@ -48,9 +60,11 @@ const E = defineEmits([]);
     width: 1.2em;
     background-color: transparent;
   }
+
   .H_switchbase__indicator_checkbox {
+    aspect-ratio: 1/1;
     color: var(--color-contrast);
-    padding-bottom: 0.1em;
+    padding-bottom: 0.05em;
   }
   .H_switchbase.checkbox.checked {
     background-color: var(--h-color);
@@ -61,7 +75,7 @@ const E = defineEmits([]);
     height: 1.2em;
     width: 1.2em;
     border-radius: calc(infinity * 1px);
-    background-color: transparent;
+    background-color: transparent !important;
     padding: 0.2em;
   }
   .H_switchbase__indicator_radio {
@@ -88,7 +102,7 @@ const E = defineEmits([]);
     height: 1em;
     width: 1em;
     border-radius: calc(infinity * 1px);
-    background-color: var(--color-bg6);
+    background-color: var(--bgcol-2);
     transition-duration: 200ms;
     transform: translateX(var(--switch-translate));
   }

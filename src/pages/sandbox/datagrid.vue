@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full">
+  <div h-height="100%">
     <H_datagrid
       @head-click="headClick"
       @row-click="rowClick"
@@ -11,25 +11,24 @@
       data-key="id"
     >
       <template v-slot:head>
-        <div class="flex flex-1 py-2 justify-between items-center">
+        <div
+          h-display="flex"
+          h-flex="1"
+          h-align-items="center"
+          h-justify-content="space-between"
+          h-padding-block="0.5rem"
+        >
           <H_btn @click="load" style="width: 100px">Load</H_btn>
           <div style="flex: 1" />
           <H_input v-model="seek" clearable style="max-width: 200px">
-            <H_icon name="search" set-end color="txt3" />
+            <H_icon name="search" set-end h-color="var(--col-3)" />
           </H_input>
         </div>
       </template>
       <H_column field="id" title="Id" type="number" />
       <H_column field="val1" title="Value 1" type="string" />
       <H_column field="val2" title="Value 2" type="string" filter="select" />
-      <H_column
-        field="val3"
-        title="Value 3"
-        type="string"
-        :auto-height="true"
-        class="text-err"
-        :cell_style="styleCell"
-      />
+      <H_column field="val3" title="Value 3" type="string" :auto-height="true" :cell_style="styleCell" />
       <H_column field="val4" title="Value 4" type="string" />
       <H_column field="val5" title="Value 5" type="bool" />
       <H_column field="val6" title="Value 6" type="date" :auto-height="true" />

@@ -1,12 +1,19 @@
 <template>
-  <div class="flex flex-wrap gap-3 my-4 p-2 bg-bg6">
+  <div h-display="flex" h-flex-wrap="wrap" h-gap="0.75rem" h-margin-block="1.0rem" h-padding="0.5rem">
     <div
       v-for="(item, index) in Object.keys(icons)"
       :key="index"
-      class="flex flex-col items-center w-40 border border-txt6 border-solid rounded p-2 text-2xl"
+      h-display="flex"
+      h-flex-direction="column"
+      h-align-items="center"
+      h-width="10rem"
+      h-border="1px solid var(--col-6)"
+      h-border-radius="4px"
+      h-font-size="1.5rem"
+      h-padding="0.5rem"
     >
       <H_icon :name="item as any" size="2rem" />
-      <div class="text-sm">{{ item }}</div>
+      <div h-color="var(--col-2)" h-font-size="sm">{{ item }}</div>
     </div>
   </div>
 </template>

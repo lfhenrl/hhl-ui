@@ -11,7 +11,7 @@
         class="H_tabs__tab"
         h-display="inline-flex"
         h-position="relative"
-        :h-bgcolor="activeTab === index ? 'var(--bgcol-2)' : 'transparent'"
+        :h-bgcolor="activeTab === index ? activeColor : 'transparent'"
         h-cursor="pointer"
         h-padding="0.25em"
         :h-border-width="activeTab === index ? '1px 1px 0 1px' : '0'"
@@ -40,9 +40,9 @@
       class="H_tabs__tab_content"
       h-position="relative"
       :h-border-radius="activeTab === 0 ? '0 4px 4px 4px' : '4px'"
-      h-height="100%"
+      h-max-height="100%"
       h-overflow="hidden"
-      h-bgcolor="var(--bgcol-2)"
+      :h-bgcolor="activeColor"
       h-border="1px solid var(--col-6)"
     >
       <slot />
@@ -55,6 +55,7 @@ import { ref, onMounted, useSlots, provide } from "vue";
 const P = defineProps({
   defaultIndex: { type: Number, default: 0 },
   willChange: { type: Function, default: () => true },
+  activeColor: { default: "var(--bgcol-2)", type: String },
 });
 
 const slots = useSlots();
@@ -78,9 +79,13 @@ onMounted(() => {
 });
 
 function changeTab(e: number) {
-  tabData.oldSelectedIndex = tabData.selectedIndex.value;
-  tabData.selectedIndex.value = e;
-  tabData.name = tabs.value[e].props.name;
-  activeTab.value = e;
+  console.log("tabData.name ", tabData.name, tabs.value[e].props.name);
+  const navigate = P.willChange(tabData.name, tabs.value[e].props.name);
+  if (navigate) {
+    tabData.oldSelectedIndex = tabData.selectedIndex.value;
+    tabData.selectedIndex.value = e;
+    tabData.name = tabs.value[e].props.name;
+    activeTab.value = e;
+  }
 }
 </script>

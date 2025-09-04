@@ -3,7 +3,7 @@
     <div h-display="flex">
       <slot name="head"></slot>
     </div>
-    <H_progressBar h-z-index="10" :show="DG.dataHandler?.rowsLoading.value" />
+    <H_progressBar h-z-index="10" :show="DG.dataHandler?.rowsLoading.value" h-bgcolor="transparent" />
     <div
       ref="header"
       class="H_datagrid-header"

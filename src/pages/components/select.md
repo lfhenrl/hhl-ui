@@ -6,7 +6,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 pb-40">
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
       <H_select 
       autofocus
             :list="[`nr1`, `nr2`, `nr3`]" 
@@ -28,7 +28,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4">
+      <div h-display="flex" h-align-items="center" h-gap="1rem">
       <H_select h-color="purple"
             :list="[`nr1`, `nr2`, `nr3`]" 
             v-model="selection" label="checkbox default">
@@ -58,7 +58,7 @@ The `H_select` component is dropdown selector for singel selection or multi sele
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4"> 
+      <div h-display="flex" h-align-items="center" h-gap="1rem"> 
             <H_select 
             :list="[
                         {value:`nr1`, label: `Number 1`},
@@ -85,7 +85,7 @@ Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 "> 
+      <div h-display="flex" h-align-items="center" h-gap="1rem"> 
             <H_select multi
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
@@ -108,7 +108,7 @@ Multi selections by adding `multi`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 "> 
+      <div h-display="flex" h-align-items="center" h-gap="1rem"> 
             <H_select 
             :list="[
                         {value:`nr1`, label: `Number 1`},
@@ -136,7 +136,7 @@ If you want it behind the input just add the attribute `set-end`.
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4 "> 
+      <div h-display="flex" h-align-items="center" h-gap="1rem"> 
             <H_select multi
             :list="[
                         {value:`nr1`, label: `Number 1`},
@@ -175,7 +175,7 @@ Show filter by adding `showFilter`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4"> 
+      <div h-display="flex" h-align-items="center" h-gap="1rem"> 
             <H_select show-filter
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
@@ -198,7 +198,7 @@ Disabled by adding `disabled`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4"> 
+      <div h-display="flex" h-align-items="center" h-gap="1rem"> 
             <H_select disabled
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">
@@ -221,7 +221,7 @@ Readonly by adding `readonly`
 
 <hhl-live-editor title="" htmlCode='
       <template>
-      <div class="flex items-center gap-4"> 
+      <div h-display="flex" h-align-items="center" h-gap="1rem"> 
             <H_select readonly
                   :list="[`nr1`, `nr2`, `nr3`]" 
                   v-model="selection" label="Selector">

@@ -1,11 +1,11 @@
 <template>
-  <div class="_page w-full">
-    <div style="display: flex; align-items: center">
-      <H_btn @click="load" style="width: 100px">Load</H_btn>
-      <div style="flex: 1" />
-      <H_input v-model="seek" clearable style="max-width: 200px">
+  <div h-width="100%">
+    <div h-display="flex" h-align-items="center">
+      <H_btn @click="load" h-width="100px">Load</H_btn>
+      <div h-flex="1" />
+      <H_input v-model="seek" clearable h-max-width="200px">
         <template v-slot:end>
-          <H_icon name="search" set-end color="txt3" />
+          <H_icon name="search" set-end h-color="var(--col-3)" />
         </template>
       </H_input>
     </div>
@@ -18,7 +18,7 @@
       data-key="id"
       :group-list="[]"
     >
-      <H_column field="id" title="Id" type="number" filter_type="number" cell-class="text-err" />
+      <H_column field="id" title="Id" type="number" filter_type="number" />
       <H_column field="val1" title="Value 1" type="string" filter_type="string" width="auto" />
       <H_column field="val2" title="Value 2" type="string" filter_type="select" />
       <H_column
@@ -26,7 +26,7 @@
         title="Value 3"
         type="string"
         filter_type="string"
-        class="text-err"
+        h-color="var(--col-err)"
         :cell_style="styleCell"
       />
       <H_column field="val4" title="Value 4" type="string" filter_type="select" />

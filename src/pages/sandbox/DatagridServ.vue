@@ -1,11 +1,11 @@
 <template>
-  <div class="h-[90%] w-full">
-    <div style="display: flex; align-items: center">
-      <H_btn @click="load" style="width: 100px">Load</H_btn>
-      <div style="flex: 1" />
-      <H_input v-model="seek" clearable style="max-width: 200px">
+  <div h-height="90%" h-width="100%">
+    <div h-display="flex" h-align-items="center">
+      <H_btn @click="load" h-width="100px">Load</H_btn>
+      <div h-flex="1" />
+      <H_input v-model="seek" clearable h-max-width="200px">
         <template v-slot:end>
-          <H_icon name="search" set-end color="txt3" />
+          <H_icon name="search" set-end h-color="var(--col-3)" />
         </template>
       </H_input>
     </div>

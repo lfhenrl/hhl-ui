@@ -1,7 +1,17 @@
 <template>
-  <div class="menu-right mt-1">
+  <div
+    h-display="flex"
+    h-flex-direction="column"
+    h-min-width="160px"
+    h-max-width="160px"
+    h-overflow="auto"
+    h-bgcolor="var(--bgcol-1)"
+    h-padding="8px"
+    h-font-size="14px"
+    h-margin-top="0.25rem"
+  >
     <div
-      class="menu-right-links"
+      h-cursor="pointer"
       :class="{ 'menu-right-links-selected': item.id === activeIndex }"
       :hh="item.id"
       :dd="activeIndex"
@@ -102,19 +112,6 @@ export type iMenuRight = InstanceType<typeof MenuRight>;
 export default MenuRight;
 </script>
 <style>
-.menu-right {
-  display: flex;
-  flex-direction: column;
-  min-width: 160px;
-  max-width: 160px;
-  overflow: auto;
-  background-color: var(--bgcol-1);
-  padding: 8px;
-  font-size: 14px;
-}
-.menu-right-links {
-  cursor: pointer;
-}
 .menu-right-links-selected {
   color: var(--col-ok);
   font-weight: bold;

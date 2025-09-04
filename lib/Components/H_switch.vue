@@ -74,7 +74,6 @@ function onClick() {
   .H_switch {
     display: inline-flex;
     align-items: center;
-    width: fit-content;
     --h-color: var(--col-pri);
   }
 

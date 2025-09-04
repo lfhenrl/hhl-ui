@@ -1,20 +1,65 @@
 <template>
   <div>
-    <div class="dragDrop items-center gap-4">
+    <div h-display="flex" h-align-items="center" h-gap="1.0rem">
       <VueDraggable v-model="list1" ref="el" class="dragContainer" animation="150" @update="update">
-        <div v-for="item in list1" :key="item.id" class="dragItem col-pri shadow">
+        <div
+          v-for="item in list1"
+          :key="item.id"
+          h-shadow="md"
+          h-color="var(--col-pri)"
+          h-border-radius="4px"
+          h-padding="4px 12px"
+          h-cursor="pointer"
+        >
           {{ item.title }}
         </div>
       </VueDraggable>
-      <div class="dragContainer">
+      <div
+        class="dragContainer"
+        h-display="flex"
+        h-flex-direction="column"
+        h-height="460px"
+        h-width="160px"
+        h-border="1px solid var(--col-9)"
+        h-border-radius="4px"
+        h-padding="16px"
+        h-gap="10px"
+      >
         {{ list1 }}
       </div>
-      <VueDraggable v-model="list2" class="dragContainer">
-        <div v-for="item in list2" :key="item.id" class="dragItem col-pri shadow">
+      <VueDraggable
+        v-model="list2"
+        h-display="flex"
+        h-flex-direction="column"
+        h-height="460px"
+        h-width="160px"
+        h-border="1px solid var(--col-9)"
+        h-border-radius="4px"
+        h-padding="16px"
+        h-gap="10px"
+      >
+        <div
+          v-for="item in list2"
+          :key="item.id"
+          h-shadow="md"
+          h-color="var(--col-pri)"
+          h-border-radius="4px"
+          h-padding="4px 12px"
+          h-cursor="pointer"
+        >
           {{ item.title }}
         </div>
       </VueDraggable>
-      <div class="dragContainer">
+      <div
+        h-display="flex"
+        h-flex-direction="column"
+        h-height="460px"
+        h-width="160px"
+        h-border="1px solid var(--col-9)"
+        h-border-radius="4px"
+        h-padding="16px"
+        h-gap="10px"
+      >
         {{ list2 }}
       </div>
     </div>
@@ -41,24 +86,3 @@ function update(e: any) {
   console.log("update ", e);
 }
 </script>
-
-<style>
-.dragDrop {
-  display: flex;
-}
-.dragContainer {
-  display: flex;
-  flex-direction: column;
-  height: 460px;
-  width: 160px;
-  border: 1px solid var(--color-bg5);
-  border-radius: 4px;
-  padding: 16px;
-  gap: 10px;
-}
-.dragItem {
-  border-radius: 4px;
-  padding: 4px 12px;
-  cursor: pointer;
-}
-</style>
