@@ -76,7 +76,8 @@ watch(
 );
 
 function getIndexFromName(name: string) {
-  return tabs.value.findIndex((t: any) => t.props.name === name) || P.defaultIndex;
+  const index = tabs.value.findIndex((t: any) => t.props.name === name);
+  return index >= 0 ? index : P.defaultIndex;
 }
 
 const tabData = {
