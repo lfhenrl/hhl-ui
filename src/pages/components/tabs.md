@@ -20,44 +20,46 @@ Tabs are elements that help you organize and navigate multiple documents in a si
 <br>
 
 <hhl-live-editor title="" htmlCode='
-		<template>
-			<div h-display="flex" h-align-items="center" h-gap="1rem">
-				<H_tabs  h-height="20rem" active-color="lime">
-					<H_tab name="tab1" label="Tab 1." keep-alive><div h-height="100%" h-padding="2.5rem">This is TAB 1...</div></H_tab>
-					<H_tab name="tab2" label="Tab 2." keep-alive><div h-padding="2.5rem">
-                    <H_datagrid
-                            :data-handler="lData"
-                            data-key="id"                 
-                        >
-                            <H_column field="id" type="number"></H_column>
-                            <H_column field="val1" type="string"></H_column>
-                            <H_column field="val2" type="string" filter="select"></H_column>
-                            <H_column field="val3" type="string"></H_column>
-                            <H_column field="val4" type="string"></H_column>
-                            <H_column field="val5" type="bool"></H_column>
-                            <H_column field="val6" type="date"></H_column>
-                            <H_column field="val7" type="string"></H_column>
-                    </H_datagrid>
-                    </div></H_tab>
-					<H_tab name="tab3" label="Tab 3." keep-alive><div h-padding="2.5rem" >This is TAB 3...</div></H_tab>
-				</H_tabs>
-			</div>
-		</template>
+        <template>
+        <div h-display="flex" h-flex-direction="column" h-align-items="center" h-gap="1rem">
+        <H_btn @click="tab=`tab1`">Tab1</H_btn>
+        <H_tabs h-height="20rem" active-color="lime" :default-tab="tab">
+        <H_tab name="tab1" label="Tab 1." keep-alive><div h-height="100%" h-padding="2.5rem">This is TAB 1...</div></H_tab>
+        <H_tab name="tab2" label="Tab 2." keep-alive><div h-padding="2.5rem">
+        <H_datagrid
+        :data-handler="lData"
+        data-key="id"  
+        >
+        <H_column field="id" type="number"></H_column>
+        <H_column field="val1" type="string"></H_column>
+        <H_column field="val2" type="string" filter="select"></H_column>
+        <H_column field="val3" type="string"></H_column>
+        <H_column field="val4" type="string"></H_column>
+        <H_column field="val5" type="bool"></H_column>
+        <H_column field="val6" type="date"></H_column>
+        <H_column field="val7" type="string"></H_column>
+        </H_datagrid>
+        </div></H_tab>
+        <H_tab name="tab3" label="Tab 3." keep-alive><div h-padding="2.5rem" >This is TAB 3...</div></H_tab>
+        </H_tabs>
+        </div>
+        </template>
         <script>
-    // import { localData } from "HHL-UI/Components/datagrid";            
-    const { localData, getData, dateFormat } = fakeImport;
-    const lData = new localData();
-    async function load() {
-      await lData.startLoading();
-          const data = await getData(100);
-          lData.setData(data);
-          lData.loadData();
-    }
-    function formatDate(value) {
+        // import { localData } from "HHL-UI/Components/datagrid";  
+        const { localData, getData, dateFormat } = fakeImport;
+        const lData = new localData();
+        const tab = ref("tab3");
+        async function load() {
+        await lData.startLoading();
+        const data = await getData(100);
+        lData.setData(data);
+        lData.loadData();
+        }
+        function formatDate(value) {
         return dateFormat.D_01_dec_2021_HHMM(value);
-    }
-    return { lData,formatDate }
-</script>
+        }
+        return { lData,formatDate,tab }
+        </script>
 '>
 </hhl-live-editor>
 

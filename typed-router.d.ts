@@ -61,4 +61,196 @@ declare module 'vue-router/auto-routes' {
     '/styles/Background_Text': RouteRecordInfo<'/styles/Background_Text', '/styles/Background_Text', Record<never, never>, Record<never, never>>,
     '/styles/Brand_colors': RouteRecordInfo<'/styles/Brand_colors', '/styles/Brand_colors', Record<never, never>, Record<never, never>>,
   }
+
+  /**
+   * Route file to route info map by unplugin-vue-router.
+   * Used by the volar plugin to automatically type useRoute()
+   *
+   * Each key is a file path relative to the project root with 2 properties:
+   * - routes: union of route names of the possible routes when in this page (passed to useRoute<...>())
+   * - views: names of nested views (can be passed to <RouterView name="...">)
+   *
+   * @internal
+   */
+  export interface _RouteFileInfoMap {
+    'src/pages/index.md': {
+      routes: '/'
+      views: never
+    }
+    'src/pages/components/index.vue': {
+      routes: '/components/'
+      views: never
+    }
+    'src/pages/components/button.md': {
+      routes: '/components/button'
+      views: never
+    }
+    'src/pages/components/chartPie.md': {
+      routes: '/components/chartPie'
+      views: never
+    }
+    'src/pages/components/dataGrid.md': {
+      routes: '/components/dataGrid'
+      views: never
+    }
+    'src/pages/components/dateTimePicker.md': {
+      routes: '/components/dateTimePicker'
+      views: never
+    }
+    'src/pages/components/dialog.md': {
+      routes: '/components/dialog'
+      views: never
+    }
+    'src/pages/components/dialog_service.md': {
+      routes: '/components/dialog_service'
+      views: never
+    }
+    'src/pages/components/dragDrop.md': {
+      routes: '/components/dragDrop'
+      views: never
+    }
+    'src/pages/components/form.md': {
+      routes: '/components/form'
+      views: never
+    }
+    'src/pages/components/icons.md': {
+      routes: '/components/icons'
+      views: never
+    }
+    'src/pages/components/input.md': {
+      routes: '/components/input'
+      views: never
+    }
+    'src/pages/components/popover.md': {
+      routes: '/components/popover'
+      views: never
+    }
+    'src/pages/components/progressBar.md': {
+      routes: '/components/progressBar'
+      views: never
+    }
+    'src/pages/components/range.md': {
+      routes: '/components/range'
+      views: never
+    }
+    'src/pages/components/select.md': {
+      routes: '/components/select'
+      views: never
+    }
+    'src/pages/components/select_box.md': {
+      routes: '/components/select_box'
+      views: never
+    }
+    'src/pages/components/switch.md': {
+      routes: '/components/switch'
+      views: never
+    }
+    'src/pages/components/tabs.md': {
+      routes: '/components/tabs'
+      views: never
+    }
+    'src/pages/components/textarea.md': {
+      routes: '/components/textarea'
+      views: never
+    }
+    'src/pages/components/timePicker.md': {
+      routes: '/components/timePicker'
+      views: never
+    }
+    'src/pages/components/virtualScroll.md': {
+      routes: '/components/virtualScroll'
+      views: never
+    }
+    'src/pages/introduction/index.vue': {
+      routes: '/introduction/'
+      views: never
+    }
+    'src/pages/introduction/main.css.md': {
+      routes: '/introduction/main.css'
+      views: never
+    }
+    'src/pages/introduction/main.ts.md': {
+      routes: '/introduction/main.ts'
+      views: never
+    }
+    'src/pages/introduction/packageJson.md': {
+      routes: '/introduction/packageJson'
+      views: never
+    }
+    'src/pages/introduction/style.md': {
+      routes: '/introduction/style'
+      views: never
+    }
+    'src/pages/introduction/tsconfig.md': {
+      routes: '/introduction/tsconfig'
+      views: never
+    }
+    'src/pages/introduction/viteConfig.md': {
+      routes: '/introduction/viteConfig'
+      views: never
+    }
+    'src/pages/sandbox/index.vue': {
+      routes: '/sandbox/'
+      views: never
+    }
+    'src/pages/sandbox/chartGantt.vue': {
+      routes: '/sandbox/chartGantt'
+      views: never
+    }
+    'src/pages/sandbox/colors.vue': {
+      routes: '/sandbox/colors'
+      views: never
+    }
+    'src/pages/sandbox/datagrid.vue': {
+      routes: '/sandbox/datagrid'
+      views: never
+    }
+    'src/pages/sandbox/DatagridServ.vue': {
+      routes: '/sandbox/DatagridServ'
+      views: never
+    }
+    'src/pages/sandbox/DatagridServer.vue': {
+      routes: '/sandbox/DatagridServer'
+      views: never
+    }
+    'src/pages/sandbox/dragDrop.vue': {
+      routes: '/sandbox/dragDrop'
+      views: never
+    }
+    'src/pages/sandbox/gantt.vue': {
+      routes: '/sandbox/gantt'
+      views: never
+    }
+    'src/pages/sandbox/testForms.vue': {
+      routes: '/sandbox/testForms'
+      views: never
+    }
+    'src/pages/sandbox/virScroll.vue': {
+      routes: '/sandbox/virScroll'
+      views: never
+    }
+    'src/pages/styles/index.vue': {
+      routes: '/styles/'
+      views: never
+    }
+    'src/pages/styles/Background_Text.md': {
+      routes: '/styles/Background_Text'
+      views: never
+    }
+    'src/pages/styles/Brand_colors.md': {
+      routes: '/styles/Brand_colors'
+      views: never
+    }
+  }
+
+  /**
+   * Get a union of possible route names in a certain route component file.
+   * Used by the volar plugin to automatically type useRoute()
+   *
+   * @internal
+   */
+  export type _RouteNamesForFilePath<FilePath extends string> =
+    _RouteFileInfoMap extends Record<FilePath, infer Info>
+      ? Info['routes']
+      : keyof RouteNamedMap
 }

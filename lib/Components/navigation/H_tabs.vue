@@ -51,9 +51,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, useSlots, provide } from "vue";
+import { ref, onMounted, useSlots, provide, watch } from "vue";
 const P = defineProps({
   defaultIndex: { type: Number, default: 0 },
+  defaultTab: { type: String, default: "??" },
   willChange: { type: Function, default: () => true },
   activeColor: { default: "var(--bgcol-2)", type: String },
 });
@@ -61,6 +62,22 @@ const P = defineProps({
 const slots = useSlots();
 const activeTab = ref(0);
 const tabs = ref<any>([]);
+
+watch(
+  () => P.defaultTab,
+  (newVal) => {
+    if (newVal !== "??") {
+      const index = getIndexFromName(newVal);
+      if (index >= 0) {
+        changeTab(index);
+      }
+    }
+  }
+);
+
+function getIndexFromName(name: string) {
+  return tabs.value.findIndex((t: any) => t.props.name === name) || P.defaultIndex;
+}
 
 const tabData = {
   selectedIndex: ref(0),
@@ -74,7 +91,7 @@ onMounted(() => {
   tabs.value = slots.default?.({});
   tabData.selectedIndex.value = -1;
   setTimeout(() => {
-    changeTab(P.defaultIndex);
+    changeTab(getIndexFromName(P.defaultTab));
   });
 });
 
