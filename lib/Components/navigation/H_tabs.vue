@@ -54,26 +54,26 @@
 import { ref, onMounted, useSlots, provide, watch } from "vue";
 const P = defineProps({
   defaultIndex: { type: Number, default: 0 },
-  defaultTab: { type: String, default: "??" },
   willChange: { type: Function, default: () => true },
   activeColor: { default: "var(--bgcol-2)", type: String },
 });
 
+const model = defineModel({ type: String, default: "??" });
 const slots = useSlots();
 const activeTab = ref(0);
 const tabs = ref<any>([]);
 
-watch(
-  () => P.defaultTab,
-  (newVal) => {
-    if (newVal !== "??") {
-      const index = getIndexFromName(newVal);
-      if (index >= 0) {
-        changeTab(index);
-      }
+watch(model, (newVal) => {
+  if (newVal !== "??") {
+    if (newVal === tabs.value[activeTab.value]?.props.name) {
+      return;
+    }
+    const index = getIndexFromName(newVal);
+    if (index >= 0) {
+      changeTab(index);
     }
   }
-);
+});
 
 function getIndexFromName(name: string) {
   const index = tabs.value.findIndex((t: any) => t.props.name === name);
@@ -92,17 +92,17 @@ onMounted(() => {
   tabs.value = slots.default?.({});
   tabData.selectedIndex.value = -1;
   setTimeout(() => {
-    changeTab(getIndexFromName(P.defaultTab));
+    changeTab(getIndexFromName(model.value));
   });
 });
 
 function changeTab(e: number) {
-  console.log("tabData.name ", tabData.name, tabs.value[e].props.name);
   const navigate = P.willChange(tabData.name, tabs.value[e].props.name);
   if (navigate) {
     tabData.oldSelectedIndex = tabData.selectedIndex.value;
     tabData.selectedIndex.value = e;
     tabData.name = tabs.value[e].props.name;
+    model.value = tabs.value[e].props.name;
     activeTab.value = e;
   }
 }

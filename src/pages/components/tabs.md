@@ -23,7 +23,7 @@ Tabs are elements that help you organize and navigate multiple documents in a si
         <template>
         <div h-display="flex" h-flex-direction="column" h-align-items="center" h-gap="1rem">
         <H_btn @click="tab=`tab1`">Tab1</H_btn>
-        <H_tabs h-height="20rem" active-color="lime" :default-tab="tab">
+        <H_tabs h-height="20rem" active-color="lime" v-model="tab">
         <H_tab name="tab1" label="Tab 1." keep-alive><div h-height="100%" h-padding="2.5rem">This is TAB 1...</div></H_tab>
         <H_tab name="tab2" label="Tab 2." keep-alive><div h-padding="2.5rem">
         <H_datagrid
