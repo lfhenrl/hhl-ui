@@ -123,6 +123,18 @@ onMounted(() => {
     }
   });
 });
+
+Date.prototype.toDT = function () {
+  return this.toLocaleString("sv-SE");
+};
+
+Date.prototype.toD = function () {
+  return this.toLocaleDateString("sv-SE");
+};
+
+Date.prototype.toT = function () {
+  return this.toLocaleTimeString("sv-SE");
+};
 </script>
 
 <script lang="ts">

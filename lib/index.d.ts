@@ -25,6 +25,11 @@ declare type hhl = {
 
 declare global {
   var hhl: hhl;
+  interface Date {
+    toDT(): void;
+    toD(): void;
+    toT(): void;
+  }
 }
 
 declare var hhl: hhl;
