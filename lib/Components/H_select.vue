@@ -13,7 +13,16 @@
     width-as-ref
   >
     <template v-slot:referance>
-      <H_inputbase class="H_select_input" :label readonly :disabled :placeholder :hintStart :hintEnd :validator>
+      <H_inputbase
+        class="H_select_input"
+        :label
+        readonly
+        :disabled
+        :placeholder
+        :hintStart
+        :hintEnd
+        :ErrorMessage="validate"
+      >
         <slot />
         <div class="H_select_input_value">
           {{ labelValue }}
@@ -52,7 +61,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, useTemplateRef, watch, type PropType } from "vue";
+import { computed, ref, useTemplateRef, watch, type PropType } from "vue";
+import { validateFunc } from "../utils/validateFunc";
 import H_selectbase from "./H_selectbase.vue";
 import H_popover from "./H_popover.vue";
 import H_inputbase from "./H_inputbase.vue";
@@ -163,6 +173,8 @@ function getFocusList() {
   }
   return { ok, focusIndex, list };
 }
+
+const validate = computed(() => validateFunc(P.validator, modelValue.value));
 </script>
 <style>
 @layer components {
