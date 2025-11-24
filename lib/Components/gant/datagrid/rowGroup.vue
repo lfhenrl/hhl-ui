@@ -7,7 +7,7 @@
     @dragover="dragOver($event)"
     @dragleave="dragLeave($event)"
   >
-    <div class="rowGroup-content" :style="{ minWidth: thisCol[0].Width.value, maxWidth: thisCol[0].Width.value }">
+    <div class="rowGroup-content" :style="{ minWidth: thisCol[0]?.Width.value, maxWidth: thisCol[0]?.Width.value }">
       <div draggable="true" @dragstart="startDrag($event)">
         <H_icon name="drag" btn class="cursor-move" style="margin-left: -2px" />
       </div>

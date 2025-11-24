@@ -26,7 +26,11 @@ export class EventHandler<T extends string> {
   }
 
   public offAll(): void {
-    Object.keys(this.events).forEach((event: string) => this.events[event].splice(0, this.events[event].length));
+    Object.keys(this.events).forEach((event: string) => {
+      if (this.events[event]) {
+        this.events[event].splice(0, this.events[event].length);
+      }
+    });
   }
 
   public emit(event: T, ...args: any[]): void {

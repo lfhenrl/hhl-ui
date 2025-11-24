@@ -63,10 +63,15 @@ function click(e: MouseEvent) {
 
       return;
     }
-    const dArr = target.dataset.value.split("/");
-    P.date.date = parseInt(dArr[0]);
-    P.date.month = parseInt(dArr[1]);
-    P.date.year = parseInt(dArr[2]);
+    const dataValue = target.dataset.value;
+    if (dataValue) {
+      const dArr = dataValue.split("/");
+      if (dArr[0] && dArr[1] && dArr[2]) {
+        P.date.date = parseInt(dArr[0]);
+        P.date.month = parseInt(dArr[1]);
+        P.date.year = parseInt(dArr[2]);
+      }
+    }
 
     E("baseChanged", "date");
     console.log("click:", target.dataset.value);

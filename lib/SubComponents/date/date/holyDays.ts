@@ -35,7 +35,7 @@ const HHL_holyDays: any = {
 
 export function HHL_isHolyDay(d: string) {
   const dArr = d.split("/");
-  const short = `${dArr[0]}/${parseInt(dArr[1]) + 1}`;
+  const short = `${dArr[0]}/${parseInt(dArr[1] ?? "0") + 1}`;
   // const short = d.substring(0, 5);
   const day = HHL_holyDays[short];
   if (day) {

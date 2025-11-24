@@ -59,9 +59,13 @@ function makeMonthlist(_startTime: Date, endTime: Date) {
     timelist.push(rec);
   }
   const first = timelist[0];
-  first.dayFirst = startTime;
+  if (first) {
+    first.dayFirst = startTime;
+  }
   const last = timelist.slice(-1)[0];
-  last.dayLast = endTime;
+  if (last) {
+    last.dayLast = endTime;
+  }
 
   return timelist;
 }

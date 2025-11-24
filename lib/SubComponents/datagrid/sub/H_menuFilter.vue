@@ -40,7 +40,7 @@ defineExpose({ filterOpen });
 
 const DG = inject("DG") as iDgrid;
 
-const col: iColumn = DG.columns[P.index];
+const col: iColumn = DG.columns[P.index]!;
 
 const isOpen = ref(false);
 const filterCompRef = ref<any>();

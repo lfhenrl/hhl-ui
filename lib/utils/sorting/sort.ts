@@ -88,7 +88,7 @@ const multiPropertySorterProvider = function (defaultComparer: IComparer) {
     const equality = comparer(valA, valB, order);
 
     if ((equality === 0 || (valA == null && valB == null)) && sortByArr.length > depth) {
-      return multiPropertySorter(sortByArr[depth], sortByArr, depth + 1, order, comparer, a, b);
+      return multiPropertySorter(sortByArr[depth]!, sortByArr, depth + 1, order, comparer, a, b);
     }
 
     return equality;
@@ -115,7 +115,7 @@ function getSortStrategy(sortBy: IAnySortBy, comparer: IComparer, order: IOrder)
   // Sort by multiple properties
   if (Array.isArray(sortBy)) {
     const multiPropSorter = multiPropertySorterProvider(comparer);
-    return (a, b) => multiPropSorter(sortBy[0], sortBy, 1, order, comparer, a, b);
+    return (a, b) => multiPropSorter(sortBy[0]!, sortBy, 1, order, comparer, a, b);
   }
 
   // Unpack object config to get actual sorter strategy
@@ -130,7 +130,7 @@ const sortArray = function (order: IOrder, ctx: any[], sortBy: IAnySortBy, compa
 
   // Unwrap sortBy if array with only 1 value to get faster sort strategy
   if (Array.isArray(sortBy) && sortBy.length < 2) {
-    [sortBy] = sortBy;
+    [sortBy] = sortBy as any;
   }
 
   return ctx.sort(getSortStrategy(sortBy, comparer, order));

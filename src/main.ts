@@ -2,7 +2,7 @@
 
 import { createApp, defineAsyncComponent } from "vue";
 import App from "./App.vue";
-import { createRouter, createWebHistory } from "vue-router/auto";
+import { createRouter, createWebHistory } from "vue-router";
 import { routes } from "vue-router/auto-routes";
 
 import "./components/mdStyle/index.css";
@@ -37,7 +37,7 @@ Object.keys(requireComponent).forEach((fileName: string) => {
   const componentConfig = requireComponent[fileName];
   const componentName = (fileName.split("/").pop() ?? "").replace(/\.\w+$/, "");
   //console.log(componentConfig, "---", componentName);
-  if (componentName !== "H_column") {
+  if (componentName !== "H_column" && componentConfig) {
     app.component(
       componentName,
       defineAsyncComponent(() => componentConfig().then((mod) => (mod as { default: any }).default))

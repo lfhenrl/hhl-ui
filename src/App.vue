@@ -44,7 +44,7 @@ export default defineComponent({
     function routeChanged() {
       const val = router.currentRoute.value.name as string;
       const val1 = val.split("/")[1];
-      if (val1 !== activeMainPath.value) {
+      if (val1 && val1 !== activeMainPath.value) {
         activeMainPath.value = val1;
         activeRouteLinks.value = routeLinks[val1].children;
       }

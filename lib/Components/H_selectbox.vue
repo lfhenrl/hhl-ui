@@ -83,7 +83,7 @@ function ArrowDown(e: KeyboardEvent) {
   if (ok === false) return;
   if (focusIndex < 0) list[0]?.focus();
   if (focusIndex >= 0 && focusIndex < list.length - 1) {
-    list[focusIndex + 1].focus();
+    list[focusIndex + 1]?.focus();
   }
 }
 
@@ -92,7 +92,7 @@ function ArrowUp(e: KeyboardEvent) {
   const { ok, focusIndex, list } = getFocusList();
   if (ok === false) return;
   if (focusIndex > 0 && focusIndex < list.length) {
-    list[focusIndex - 1].focus();
+    list[focusIndex - 1]?.focus();
   }
 }
 

@@ -31,11 +31,7 @@ function toSvg(node: any, options: any) {
     .then(inlineImages)
     .then(applyOptions)
     .then(function (clone) {
-      return makeSvgDataUri(
-        clone,
-        options.width || util.width(node),
-        options.height || util.height(node),
-      );
+      return makeSvgDataUri(clone, options.width || util.width(node), options.height || util.height(node));
     });
 
   function applyOptions(clone: any) {
@@ -55,8 +51,7 @@ function toSvg(node: any, options: any) {
 
     var onCloneResult = null;
 
-    if (typeof options.onclone === "function")
-      onCloneResult = options.onclone(clone);
+    if (typeof options.onclone === "function") onCloneResult = options.onclone(clone);
 
     return Promise.resolve(onCloneResult).then(function () {
       return clone;
@@ -73,9 +68,7 @@ function toPixelData(node: any, options: any) {
   options = options || {};
   options.raster = true;
   return draw(node, options).then(function (canvas) {
-    return canvas
-      .getContext("2d")
-      ?.getImageData(0, 0, util.width(node), util.height(node)).data;
+    return canvas.getContext("2d")?.getImageData(0, 0, util.width(node), util.height(node)).data;
   });
 }
 
@@ -192,8 +185,7 @@ function cloneNode(node: any, filter: any, root: any, vector: any) {
     });
 
   function makeNodeCopy(original: any) {
-    if (original instanceof HTMLCanvasElement)
-      return util.makeImage(original.toDataURL());
+    if (original instanceof HTMLCanvasElement) return util.makeImage(original.toDataURL());
     // if (original.nodeName === "IFRAME") {
     //   return html2canvas(original.contentDocument.body)
     //     .then((canvas: any) => {
@@ -208,11 +200,9 @@ function cloneNode(node: any, filter: any, root: any, vector: any) {
     var children = original.childNodes;
     if (children.length === 0) return Promise.resolve(clone);
 
-    return cloneChildrenInOrder(clone, util.asArray(children)).then(
-      function () {
-        return clone;
-      },
-    );
+    return cloneChildrenInOrder(clone, util.asArray(children)).then(function () {
+      return clone;
+    });
 
     function cloneChildrenInOrder(parent: any, childs: any) {
       var done = Promise.resolve();
@@ -273,18 +263,12 @@ function cloneNode(node: any, filter: any, root: any, vector: any) {
 
         function copyProperties(from: any, to: any) {
           util.asArray(from).forEach(function (name) {
-            to.setProperty(
-              name,
-              from.getPropertyValue(name),
-              from.getPropertyPriority(name),
-            );
+            to.setProperty(name, from.getPropertyValue(name), from.getPropertyPriority(name));
           });
 
           // Remove positioning of root elements, which stops them from being captured correctly
           if (root) {
-            ["inset-block", "inset-block-start", "inset-block-end"].forEach(
-              (prop) => target.removeProperty(prop),
-            );
+            ["inset-block", "inset-block-start", "inset-block-end"].forEach((prop) => target.removeProperty(prop));
             ["left", "right", "top", "bottom"].forEach((prop) => {
               if (target.getPropertyValue(prop)) {
                 target.setProperty(prop, "0px");
@@ -322,12 +306,7 @@ function cloneNode(node: any, filter: any, root: any, vector: any) {
           return document.createTextNode(selector + "{" + cssText + "}");
 
           function formatCssText() {
-            return (
-              style.cssText +
-              " content: " +
-              style.getPropertyValue("content") +
-              ";"
-            );
+            return style.cssText + " content: " + style.getPropertyValue("content") + ";";
           }
 
           function formatCssProperties() {
@@ -335,10 +314,7 @@ function cloneNode(node: any, filter: any, root: any, vector: any) {
 
             function formatProperty(name: any) {
               return (
-                name +
-                ": " +
-                style.getPropertyValue(name) +
-                (style.getPropertyPriority(name) ? " !important" : "")
+                name + ": " + style.getPropertyValue(name) + (style.getPropertyPriority(name) ? " !important" : "")
               );
             }
           }
@@ -347,10 +323,8 @@ function cloneNode(node: any, filter: any, root: any, vector: any) {
     }
 
     function copyUserInput() {
-      if (original instanceof HTMLTextAreaElement)
-        clone.innerHTML = original.value;
-      if (original instanceof HTMLInputElement)
-        clone.setAttribute("value", original.value);
+      if (original instanceof HTMLTextAreaElement) clone.innerHTML = original.value;
+      if (original instanceof HTMLInputElement) clone.setAttribute("value", original.value);
     }
 
     function fixSvg() {
@@ -391,11 +365,7 @@ function makeSvgDataUri(node: any, width: any, height: any) {
     })
     .then(util.escapeXhtml)
     .then(function (xhtml) {
-      return (
-        '<foreignObject x="0" y="0" width="100%" height="100%">' +
-        xhtml +
-        "</foreignObject>"
-      );
+      return '<foreignObject x="0" y="0" width="100%" height="100%">' + xhtml + "</foreignObject>";
     })
     .then(function (foreignObject) {
       return (
@@ -461,7 +431,7 @@ function newUtil() {
   }
 
   function mimeType(url: string) {
-    var extension = parseExtension(url).toLowerCase();
+    var extension = parseExtension(url)?.toLowerCase() || "";
     return mimes()[extension] || "";
   }
 
@@ -475,13 +445,12 @@ function newUtil() {
       var length = binaryString.length;
       var binaryArray = new Uint8Array(length);
 
-      for (var i = 0; i < length; i++)
-        binaryArray[i] = binaryString.charCodeAt(i);
+      for (var i = 0; i < length; i++) binaryArray[i] = binaryString.charCodeAt(i);
 
       resolve(
         new Blob([binaryArray], {
           type: "image/png",
-        }),
+        })
       );
     });
   }
@@ -514,9 +483,7 @@ function newUtil() {
 
       function fourRandomChars() {
         /* see http://stackoverflow.com/a/6248722/2519373 */
-        return (
-          "0000" + ((Math.random() * Math.pow(36, 4)) << 0).toString(36)
-        ).slice(-4);
+        return ("0000" + ((Math.random() * Math.pow(36, 4)) << 0).toString(36)).slice(-4);
       }
     };
   }
@@ -572,9 +539,7 @@ function newUtil() {
           if (placeholder) {
             resolve(placeholder);
           } else {
-            fail(
-              "cannot fetch resource: " + url + ", status: " + request.status,
-            );
+            fail("cannot fetch resource: " + url + ", status: " + request.status);
           }
 
           return;
@@ -592,12 +557,7 @@ function newUtil() {
         if (placeholder) {
           resolve(placeholder);
         } else {
-          fail(
-            "timeout of " +
-              httpTimeout +
-              "ms occured while fetching resource: " +
-              url,
-          );
+          fail("timeout of " + httpTimeout + "ms occured while fetching resource: " + url);
         }
       }
 
@@ -634,10 +594,7 @@ function newUtil() {
   }
 
   function escapeXhtml(string: any) {
-    return string
-      .replace(/%/g, "%25")
-      .replace(/#/g, "%23")
-      .replace(/\n/g, "%0A");
+    return string.replace(/%/g, "%25").replace(/#/g, "%23").replace(/\n/g, "%0A");
   }
 
   function width(node: any) {
@@ -681,7 +638,7 @@ function newInliner() {
       result.push(match[1]);
     }
     return result.filter(function (url) {
-      return !util.isDataUrl(url);
+      return url && !util.isDataUrl(url);
     });
   }
 
@@ -699,10 +656,7 @@ function newInliner() {
       });
 
     function urlAsRegex(urlValue: any) {
-      return new RegExp(
-        "(url\\(['\"]?)(" + util.escape(urlValue) + ")(['\"]?\\))",
-        "g",
-      );
+      return new RegExp("(url\\(['\"]?)(" + util.escape(urlValue) + ")(['\"]?\\))", "g");
     }
   }
 
@@ -741,7 +695,7 @@ function newFontFaces() {
         return Promise.all(
           webFonts.map(function (webFont: any) {
             return webFont.resolve();
-          }),
+          })
         );
       })
       .then(function (cssStrings) {
@@ -772,14 +726,9 @@ function newFontFaces() {
       styleSheets.forEach(function (sheet: any) {
         if (Object.getPrototypeOf(sheet).hasOwnProperty("cssRules")) {
           try {
-            util
-              .asArray(sheet.cssRules || [])
-              .forEach(cssRules.push.bind(cssRules));
+            util.asArray(sheet.cssRules || []).forEach(cssRules.push.bind(cssRules));
           } catch (e: any) {
-            console.log(
-              "Error while reading CSS rules from " + sheet.href,
-              e.toString(),
-            );
+            console.log("Error while reading CSS rules from " + sheet.href, e.toString());
           }
         }
       });
@@ -843,7 +792,7 @@ function newImages() {
         return Promise.all(
           util.asArray(node.childNodes).map(function (child) {
             return inlineAll(child);
-          }),
+          })
         );
     });
 

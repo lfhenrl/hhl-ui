@@ -47,9 +47,9 @@ export class Sorting {
       }
     } else {
       const oldValue = this.sortArray[index];
-      if (col.sortDirection.value === "none" || oldValue.direction === col.sortDirection.value) {
+      if (oldValue && (col.sortDirection.value === "none" || oldValue.direction === col.sortDirection.value)) {
         this.sortArray.splice(index, 1);
-      } else {
+      } else if (oldValue) {
         oldValue.direction = col.sortDirection.value;
       }
     }

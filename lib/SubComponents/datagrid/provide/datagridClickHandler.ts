@@ -18,9 +18,9 @@ export class datagridClickHandler {
     }
 
     if (data.colIndex >= 0) {
-      data.column = this.DG.columns[data.colIndex];
-      data.field = data.column.props.field;
-      data.colOrgIndex = data.column.orgIndex;
+      data.column = this.DG.columns[data.colIndex] ?? null;
+      data.field = data.column?.props.field ?? "";
+      data.colOrgIndex = data.column?.orgIndex ?? -1;
     }
 
     return data;

@@ -5,19 +5,19 @@
     :data-col-index="index"
     data-type="headcell"
     :style="{
-      minWidth: col.head_width.value ?? '',
-      maxWidth: col.head_width.value ?? '',
+      minWidth: col?.head_width.value ?? '',
+      maxWidth: col?.head_width.value ?? '',
     }"
   >
     <div class="H_headCell__actions">
       <div class="H_headCell__actions_title" data-subtype="title">
-        {{ col.props.title }}
+        {{ col?.props.title }}
       </div>
       <H_menu :index="index" />
       <div class="H_headCell__actions_resize" @mousedown="resize" data-subtype="resize"></div>
     </div>
     <div class="H_HeadCell-space">
-      {{ col.maxValueRef.value }}
+      {{ col?.maxValueRef.value }}
     </div>
   </div>
 </template>
@@ -83,10 +83,14 @@ const DG = inject("DG") as iDgrid;
 const col = DG.columns[P.index];
 
 function resize(e: MouseEvent) {
-  ColResize(col, e);
+  if (col) {
+    ColResize(col, e);
+  }
 }
 
 onMounted(() => {
-  col.dom = headCellRef.value;
+  if (col) {
+    col.dom = headCellRef.value;
+  }
 });
 </script>

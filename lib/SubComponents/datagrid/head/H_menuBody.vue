@@ -2,34 +2,34 @@
   <div class="H_menuBody" @click="menuClick">
     <div
       class="H_menuBody__item"
-      :selected="col.sortDirection.value === 'asc' ? '' : undefined"
+      :selected="col?.sortDirection.value === 'asc' ? '' : undefined"
       data-action="asc"
       data-subtype="menuSortAsc"
-      v-if="col.props.sorting !== 'none'"
+      v-if="col?.props.sorting !== 'none'"
     >
-      <H_icon name="arrow_upward" :h-color="col.sortDirection.value === 'asc' ? 'white' : 'var(--col-2)'" />
+      <H_icon name="arrow_upward" :h-color="col?.sortDirection.value === 'asc' ? 'white' : 'var(--col-2)'" />
       <div class="H_menuBody__item_title">Sort Ascending</div>
     </div>
 
     <div
       class="H_menuBody__item"
-      :selected="col.sortDirection.value === 'desc' ? '' : undefined"
+      :selected="col?.sortDirection.value === 'desc' ? '' : undefined"
       data-action="desc"
       data-subtype="menuSortDesc"
-      v-if="col.props.sorting !== 'none'"
+      v-if="col?.props.sorting !== 'none'"
     >
-      <H_icon name="arrow_downward" :h-color="col.sortDirection.value === 'asc' ? 'white' : 'var(--col-2)'" />
+      <H_icon name="arrow_downward" :h-color="col?.sortDirection.value === 'desc' ? 'white' : 'var(--col-2)'" />
       <div class="H_menuBody__item_title">Sort Descending</div>
     </div>
 
     <div
       class="H_menuBody__item"
-      :selected="col.filter.active ? '' : undefined"
+      :selected="col?.filter.active ? '' : undefined"
       data-action="filter"
-      v-if="col.filter.type !== 'none'"
+      v-if="col?.filter.type !== 'none'"
       data-subtype="menuFilter"
     >
-      <H_icon name="filter" h-font-size="1.2em" :h-color="col.filter.active ? 'white' : 'var(--col-2)'" />
+      <H_icon name="filter" h-font-size="1.2em" :h-color="col?.filter.active ? 'white' : 'var(--col-2)'" />
       <div class="H_menuBody__item_title">Filter</div>
     </div>
 
@@ -89,12 +89,13 @@ const P = defineProps({
 const E = defineEmits(["filteropen", "popupClose"]);
 
 const DG = inject("DG") as iDgrid;
-const col: iColumn = DG.columns[P.index];
+const col: iColumn | undefined = DG.columns[P.index];
 
 function menuClick(e: MouseEvent) {
   const ele = e.target as HTMLElement;
   if (!ele) return;
   if (!ele.dataset.action) return;
+  if (!col) return;
   const action = ele.dataset.action;
 
   if (action === "asc") {

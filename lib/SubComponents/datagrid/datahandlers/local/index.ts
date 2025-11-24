@@ -76,7 +76,7 @@ export class localData {
         active: true,
         condition1: "equal",
         condition2: "equal",
-        field: this.groupList[i],
+        field: this.groupList[i] ?? "",
         logical: "and",
         value1: parentArr[i],
         value2: null,

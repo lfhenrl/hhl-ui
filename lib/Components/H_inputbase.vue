@@ -73,6 +73,7 @@ const infotext = computed(() => {
 
   .H_inputbase__hintStart.error {
     color: var(--col-err);
+    white-space: nowrap;
   }
 
   .H_inputbase__hintEnd {

@@ -70,5 +70,5 @@ const P = defineProps({
 
 const DG = inject("DG") as iDgrid;
 
-const col: iColumn = DG.columns[P.index];
+const col: iColumn = DG.columns[P.index]!;
 </script>
