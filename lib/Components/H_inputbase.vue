@@ -1,5 +1,9 @@
 <template>
-  <label class="H_inputbase" :h-disabled="disabled ? '35%' : undefined">
+  <label
+    class="H_inputbase"
+    :h-disabled="disabled ? '35%' : undefined"
+    :data-error="ErrorMessage !== '' ? 'true' : 'false'"
+  >
     <slot />
     <span class="H_inputbase__label">{{ label }}</span>
     <span
